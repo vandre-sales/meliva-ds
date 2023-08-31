@@ -209,11 +209,7 @@ import SlMenuLabel from '@shoelace-style/shoelace/dist/react/menu-label';
 
 const App = () => (
   <SlMenu
-    style={{
-      maxWidth: '240px',
-      border: 'solid 1px var(--sl-panel-border-color)',
-      borderRadius: 'var(--sl-border-radius-medium)'
-    }}
+    style={{ maxWidth: '240px' }}
   >
     <SlMenuLabel>Messages</SlMenuLabel>
     <SlMenuItem>

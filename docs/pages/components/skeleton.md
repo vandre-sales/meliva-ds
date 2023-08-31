@@ -12,13 +12,13 @@ Skeletons try not to be opinionated, as there are endless possibilities for desi
 ```html:preview
 <div class="skeleton-overview">
   <header>
-    <sl-skeleton></sl-skeleton>
-    <sl-skeleton></sl-skeleton>
+    <sl-skeleton effect="sheen"></sl-skeleton>
+    <sl-skeleton effect="sheen"></sl-skeleton>
   </header>
 
-  <sl-skeleton></sl-skeleton>
-  <sl-skeleton></sl-skeleton>
-  <sl-skeleton></sl-skeleton>
+  <sl-skeleton effect="sheen"></sl-skeleton>
+  <sl-skeleton effect="sheen"></sl-skeleton>
+  <sl-skeleton effect="sheen"></sl-skeleton>
 </div>
 
 <style>
@@ -129,7 +129,7 @@ There are two built-in effects, `sheen` and `pulse`. Effects are intentionally s
 
 <style>
   .skeleton-effects {
-    font-size: var(--sl-font-size-small);
+    font-size: var(--wa-font-size-s);
   }
 
   .skeleton-effects sl-skeleton:not(:first-child) {
@@ -143,7 +143,7 @@ import SlSkeleton from '@shoelace-style/shoelace/dist/react/skeleton';
 
 const css = `
   .skeleton-effects {
-    font-size: var(--sl-font-size-small);
+    font-size: var(--wa-font-size-s);
   }
 
   .skeleton-effects sl-skeleton:not(:first-child) {
@@ -259,7 +259,7 @@ Set a matching width and height to make a circle, square, or rounded avatar skel
   }
 
   .skeleton-avatars sl-skeleton:nth-child(2) {
-    --border-radius: var(--sl-border-radius-medium);
+    --border-radius: var(--wa-corners-1x);
   }
 </style>
 ```
@@ -280,7 +280,7 @@ const css = `
   }
 
   .skeleton-avatars sl-skeleton:nth-child(2) {
-    --border-radius: var(--sl-border-radius-medium);
+    --border-radius: var(--wa-corners-1x);
   }
 `;
 
@@ -318,11 +318,11 @@ Use the `--border-radius` custom property to make circles, squares, and rectangl
   }
 
   .skeleton-shapes .square::part(indicator) {
-    --border-radius: var(--sl-border-radius-medium);
+    --border-radius: var(--wa-corners-1x);
   }
 
   .skeleton-shapes .circle::part(indicator) {
-    --border-radius: var(--sl-border-radius-circle);
+    --border-radius: var(--wa-corners-circle);
   }
 
   .skeleton-shapes .triangle::part(indicator) {
@@ -370,11 +370,11 @@ const css = `
   }
 
   .skeleton-shapes .square::part(indicator) {
-    --border-radius: var(--sl-border-radius-medium);
+    --border-radius: var(--wa-corners-1x);
   }
 
   .skeleton-shapes .circle::part(indicator) {
-    --border-radius: var(--sl-border-radius-circle);
+    --border-radius: var(--wa-corners-circle);
   }
 
   .skeleton-shapes .triangle::part(indicator) {
@@ -438,7 +438,7 @@ const css = `
   }
 
   .skeleton-avatars sl-skeleton:nth-child(2) {
-    --border-radius: var(--sl-border-radius-medium);
+    --border-radius: var(--wa-corners-1x);
   }
 `;
 

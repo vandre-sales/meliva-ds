@@ -260,13 +260,13 @@ Use [CSS parts](#css-parts) to customize the way form controls are drawn. This e
   }
 
   .label-on-left + .label-on-left {
-    margin-top: var(--sl-spacing-medium);
+    margin-top: var(--wa-space-m);
   }
 
   .label-on-left::part(form-control) {
     display: grid;
     grid: auto / var(--label-width) 1fr;
-    gap: var(--sl-spacing-3x-small) var(--gap-width);
+    gap: var(--wa-space-3xs) var(--gap-width);
     align-items: center;
   }
 

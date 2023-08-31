@@ -44,7 +44,7 @@ body.search-visible {
   font: inherit;
   color: var(--docs-search-box-color);
   padding: 0.75rem 1rem;
-  margin: var(--wa-spacing-l) 0;
+  margin: var(--wa-space-l) 0;
   cursor: pointer;
 }
 

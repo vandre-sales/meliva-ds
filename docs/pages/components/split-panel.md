@@ -9,13 +9,13 @@ layout: component
 <sl-split-panel>
   <div
     slot="start"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     End
   </div>
@@ -33,7 +33,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -45,7 +45,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -69,13 +69,27 @@ To set the initial position, use the `position` attribute. If no position is pro
 <sl-split-panel position="75">
   <div
     slot="start"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="
+      height: 200px;
+      background: var(--wa-color-surface-lowered);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    "
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="
+      height: 200px;
+      background: var(--wa-color-surface-lowered);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    "
   >
     End
   </div>
@@ -90,13 +104,13 @@ To set the initial position in pixels instead of a percentage, use the `position
 <sl-split-panel position-in-pixels="150">
   <div
     slot="start"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     End
   </div>
@@ -114,7 +128,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -126,7 +140,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -148,13 +162,13 @@ Add the `vertical` attribute to render the split panel in a vertical orientation
 <sl-split-panel vertical style="height: 400px;">
   <div
     slot="start"
-    style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 100%; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 100%; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     End
   </div>
@@ -172,7 +186,7 @@ const App = () => (
       slot="start"
       style={{
         height: '100%',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -184,7 +198,7 @@ const App = () => (
       slot="end"
       style={{
         height: '100%',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -207,13 +221,13 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
   <sl-split-panel snap="100px 50%">
     <div
       slot="start"
-      style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
     >
       Start
     </div>
     <div
       slot="end"
-      style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
     >
       End
     </div>
@@ -235,7 +249,7 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--sl-color-neutral-400);
+    background: var(--wa-color-neutral-container-fill-vivid);
     transform: translateX(-3px);
   }
 
@@ -267,7 +281,7 @@ const css = `
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--sl-color-neutral-400);
+    background: var(--wa-color-neutral-container-fill-vivid);
     transform: translateX(-3px);
   }
 
@@ -288,7 +302,7 @@ const App = () => (
           slot="start"
           style={{
             height: '200px',
-            background: 'var(--sl-color-neutral-50)',
+            background: 'var(--wa-color-surface-lowered)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -300,7 +314,7 @@ const App = () => (
           slot="end"
           style={{
             height: '200px',
-            background: 'var(--sl-color-neutral-50)',
+            background: 'var(--wa-color-surface-lowered)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -328,13 +342,13 @@ Add the `disabled` attribute to prevent the divider from being repositioned.
 <sl-split-panel disabled>
   <div
     slot="start"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     End
   </div>
@@ -352,7 +366,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -364,7 +378,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -389,13 +403,13 @@ Try resizing the example below with each option and notice how the panels respon
   <sl-split-panel>
     <div
       slot="start"
-      style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
     >
       Start
     </div>
     <div
       slot="end"
-      style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
     >
       End
     </div>
@@ -435,7 +449,7 @@ const App = () => {
           slot="start"
           style={{
             height: '200px',
-            background: 'var(--sl-color-neutral-50)',
+            background: 'var(--wa-color-surface-lowered)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -447,7 +461,7 @@ const App = () => {
           slot="end"
           style={{
             height: '200px',
-            background: 'var(--sl-color-neutral-50)',
+            background: 'var(--wa-color-surface-lowered)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -484,13 +498,13 @@ This examples demonstrates how you can ensure both panels are at least 150px usi
 <sl-split-panel style="--min: 150px; --max: calc(100% - 150px);">
   <div
     slot="start"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     End
   </div>
@@ -508,7 +522,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -520,7 +534,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -542,7 +556,7 @@ Create complex layouts that can be repositioned independently by nesting split p
 <sl-split-panel>
   <div
     slot="start"
-    style="height: 400px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden"
+    style="height: 400px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden"
   >
     Start
   </div>
@@ -550,13 +564,13 @@ Create complex layouts that can be repositioned independently by nesting split p
     <sl-split-panel vertical style="height: 400px;">
       <div
         slot="start"
-        style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden"
+        style="height: 100%; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden"
       >
         Top
       </div>
       <div
         slot="end"
-        style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden"
+        style="height: 100%; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden"
       >
         Bottom
       </div>
@@ -576,7 +590,7 @@ const App = () => (
       slot="start"
       style={{
         height: '400px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -590,7 +604,7 @@ const App = () => (
           slot="start"
           style={{
             height: '100%',
-            background: 'var(--sl-color-neutral-50)',
+            background: 'var(--wa-color-surface-lowered)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -602,7 +616,7 @@ const App = () => (
           slot="end"
           style={{
             height: '100%',
-            background: 'var(--sl-color-neutral-50)',
+            background: 'var(--wa-color-surface-lowered)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -627,13 +641,27 @@ You can target the `divider` part to apply CSS properties to the divider. To add
   <sl-icon slot="divider" name="grip-vertical"></sl-icon>
   <div
     slot="start"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="
+      height: 200px;
+      background: var(--wa-color-surface-lowered);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    "
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="
+      height: 200px;
+      background: var(--wa-color-surface-lowered);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    "
   >
     End
   </div>
@@ -653,7 +681,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -665,7 +693,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--sl-color-neutral-50)',
+        background: 'var(--wa-color-surface-lowered)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -687,13 +715,27 @@ Here's a more elaborate example that changes the divider's color and width and a
     <sl-icon slot="divider" name="grip-vertical"></sl-icon>
     <div
       slot="start"
-      style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      style="
+        height: 200px;
+        background: var(--wa-color-surface-lowered);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      "
     >
       Start
     </div>
     <div
       slot="end"
-      style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      style="
+        height: 200px;
+        background: var(--wa-color-surface-lowered);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      "
     >
       End
     </div>
@@ -706,24 +748,24 @@ Here's a more elaborate example that changes the divider's color and width and a
   }
 
   .split-panel-divider sl-split-panel::part(divider) {
-    background-color: var(--sl-color-pink-600);
+    background-color: var(--wa-color-red-50);
   }
 
   .split-panel-divider sl-icon {
     position: absolute;
-    border-radius: var(--sl-border-radius-small);
-    background: var(--sl-color-pink-600);
-    color: var(--sl-color-neutral-0);
+    border-radius: var(--wa-corners-3x);
+    background: var(--wa-color-red-50);
+    color: var(--wa-color-white);
     padding: 0.5rem 0.125rem;
   }
 
   .split-panel-divider sl-split-panel::part(divider):focus-visible {
-    background-color: var(--sl-color-primary-600);
+    background-color: var(--wa-color-blue-50);
   }
 
   .split-panel-divider sl-split-panel:focus-within sl-icon {
-    background-color: var(--sl-color-primary-600);
-    color: var(--sl-color-neutral-0);
+    background-color: var(--wa-color-blue-50);
+    color: var(--wa-color-white);
   }
 </style>
 ```
@@ -740,24 +782,24 @@ const css = `
   }
 
   .split-panel-divider sl-split-panel::part(divider) {
-    background-color: var(--sl-color-pink-600);
+    background-color: var(--wa-color-red-50);
   }
 
   .split-panel-divider sl-icon {
     position: absolute;
-    border-radius: var(--sl-border-radius-small);
-    background: var(--sl-color-pink-600);
-    color: var(--sl-color-neutral-0);
+    border-radius: var(--wa-corners-half);
+    background: var(--wa-color-red-50);
+    color: var(--wa-color-white);
     padding: .5rem .125rem;
   }
 
   .split-panel-divider sl-split-panel::part(divider):focus-visible {
-    background-color: var(--sl-color-primary-600);
+    background-color: var(--wa-color-blue-50);
   }
 
   .split-panel-divider sl-split-panel:focus-within sl-icon {
-    background-color: var(--sl-color-primary-600);
-    color: var(--sl-color-neutral-0);
+    background-color: var(--wa-color-blue-50);
+    color: var(--wa-color-white);
   }
 `;
 
@@ -770,7 +812,7 @@ const App = () => (
           slot="start"
           style={{
             height: '200px',
-            background: 'var(--sl-color-neutral-50)',
+            background: 'var(--wa-color-surface-lowered)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -782,7 +824,7 @@ const App = () => (
           slot="end"
           style={{
             height: '200px',
-            background: 'var(--sl-color-neutral-50)',
+            background: 'var(--wa-color-surface-lowered)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'

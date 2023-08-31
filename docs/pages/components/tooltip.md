@@ -295,10 +295,10 @@ const App = () => {
 
 ### Removing Arrows
 
-You can control the size of tooltip arrows by overriding the `--sl-tooltip-arrow-size` design token. To remove them, set the value to `0` as shown below.
+You can control the size of tooltip arrows by overriding the `--wa-tooltip-arrow-size` design token. To remove them, set the value to `0` as shown below.
 
 ```html:preview
-<sl-tooltip content="This is a tooltip" style="--sl-tooltip-arrow-size: 0;">
+<sl-tooltip content="This is a tooltip" style="--wa-tooltip-arrow-size: 0;">
   <sl-button>No Arrow</sl-button>
 </sl-tooltip>
 ```
@@ -310,7 +310,7 @@ import SlButton from '@shoelace-style/shoelace/dist/react/button';
 import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <div style={{ '--sl-tooltip-arrow-size': '0' }}>
+  <div style={{ '--wa-tooltip-arrow-size': '0' }}>
     <SlTooltip content="This is a tooltip">
       <SlButton>Above</SlButton>
     </SlTooltip>
@@ -328,7 +328,7 @@ To override it globally, set it in a root block in your stylesheet after the Sho
 
 ```css
 :root {
-  --sl-tooltip-arrow-size: 0;
+  --wa-tooltip-arrow-size: 0;
 }
 ```
 
@@ -402,9 +402,9 @@ Tooltips will be clipped if they're inside a container that has `overflow: auto|
 <style>
   .tooltip-hoist {
     position: relative;
-    border: solid 2px var(--sl-panel-border-color);
+    border: solid 2px var(--wa-color-surface-outline);
     overflow: hidden;
-    padding: var(--sl-spacing-medium);
+    padding: var(--wa-space-m);
   }
 </style>
 ```
@@ -415,9 +415,9 @@ import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const css = `
   .tooltip-hoist {
-    border: solid 2px var(--sl-panel-border-color);
+    border: solid 2px var(--wa-color-surface-outline);
     overflow: hidden;
-    padding: var(--sl-spacing-medium);
+    padding: var(--wa-space-m);
     position: relative;
   }
 `;

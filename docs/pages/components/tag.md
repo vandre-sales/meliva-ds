@@ -102,7 +102,7 @@ Use the `removable` attribute to add a remove button to the tag.
 
 <style>
   .tags-removable sl-tag {
-    transition: var(--sl-transition-medium) opacity;
+    transition: var(--wa-transition-fast) opacity;
   }
 </style>
 ```
@@ -112,7 +112,7 @@ import SlTag from '@shoelace-style/shoelace/dist/react/tag';
 
 const css = `
   .tags-removable sl-tag {
-    transition: var(--sl-transition-medium) opacity;
+    transition: var(--wa-transition-fast) opacity;
   }
 `;
 

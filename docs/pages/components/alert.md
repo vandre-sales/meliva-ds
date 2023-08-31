@@ -208,7 +208,7 @@ Set the `duration` attribute to automatically hide an alert after a period of ti
 
 <style>
   .alert-duration sl-alert {
-    margin-top: var(--sl-spacing-medium);
+    margin-top: var(--wa-space-m);
   }
 </style>
 ```
@@ -221,7 +221,7 @@ import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
 
 const css = `
   .alert-duration sl-alert {
-    margin-top: var(--sl-spacing-medium);
+    margin-top: var(--wa-space-m);
   }
 `;
 

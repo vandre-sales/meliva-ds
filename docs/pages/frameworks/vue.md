@@ -94,7 +94,7 @@ Now you can start using Shoelace components in your app!
   }
 
   sl-input {
-    margin: var(--sl-spacing-large) 0;
+    margin: var(--wa-space-l) 0;
   }
 </style>
 ```

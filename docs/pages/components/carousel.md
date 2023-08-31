@@ -571,8 +571,8 @@ The content of the carousel can be changed by adding or removing carousel items.
   .dynamic-carousel ~ .carousel-options {
     display: flex;
     justify-content: center;
-    gap: var(--sl-spacing-x-small);
-    margin-top: var(--sl-spacing-large);
+    gap: var(--wa-space-xs);
+    margin-top: var(--wa-space-l);
   }
 
   .dynamic-carousel sl-carousel-item {
@@ -634,7 +634,7 @@ const css = `
   .dynamic-carousel ~ .carousel-options {
     display: flex;
     justify-content: center;
-    margin-top: var(--sl-spacing-large);
+    margin-top: var(--wa-space-l);
   }
 
   .dynamic-carousel sl-carousel-item {
@@ -1076,11 +1076,11 @@ The carousel has a robust API that makes it possible to extend and customize. Th
 
   .thumbnails__scroller {
     display: flex;
-    gap: var(--sl-spacing-small);
+    gap: var(--wa-space-s);
     overflow-x: auto;
     scrollbar-width: none;
     scroll-behavior: smooth;
-    scroll-padding: var(--sl-spacing-small);
+    scroll-padding: var(--wa-space-s);
   }
 
   .thumbnails__scroller::-webkit-scrollbar {
@@ -1154,11 +1154,11 @@ const css = `
 
   .thumbnails__scroller {
     display: flex;
-    gap: var(--sl-spacing-small);
+    gap: var(--wa-space-s);
     overflow-x: auto;
     scrollbar-width: none;
     scroll-behavior: smooth;
-    scroll-padding: var(--sl-spacing-small);
+    scroll-padding: var(--wa-space-s);
   }
 
   .thumbnails__scroller::-webkit-scrollbar {

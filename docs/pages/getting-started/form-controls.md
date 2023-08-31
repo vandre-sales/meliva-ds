@@ -386,7 +386,7 @@ This example demonstrates custom validation styles using `data-user-invalid` and
   .validity-styles sl-select,
   .validity-styles sl-checkbox {
     display: block;
-    margin-bottom: var(--sl-spacing-medium);
+    margin-bottom: var(--wa-space-m);
   }
 
   /* user invalid styles */
@@ -509,7 +509,7 @@ To disable the browser's error messages, you need to cancel the `sl-invalid` eve
   }
 
   #name-error ~ sl-button {
-    margin-top: var(--sl-spacing-medium);
+    margin-top: var(--wa-space-m);
   }
 
   .inline-validation sl-input {

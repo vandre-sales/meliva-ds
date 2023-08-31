@@ -157,11 +157,11 @@ You can group avatars with a few lines of CSS.
 
 <style>
   .avatar-group sl-avatar:not(:first-of-type) {
-    margin-left: -1rem;
+    margin-left: calc(-1 * var(--wa-space-m));
   }
 
   .avatar-group sl-avatar::part(base) {
-    border: solid 2px var(--sl-color-neutral-0);
+    border: solid 2px var(--wa-color-surface-default);
   }
 </style>
 ```
@@ -172,11 +172,11 @@ import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
 
 const css = `
   .avatar-group sl-avatar:not(:first-of-type) {
-    margin-left: -1rem;
+    margin-left: calc(-1 * var(--wa-space-m));
   }
 
   .avatar-group sl-avatar::part(base) {
-    border: solid 2px var(--sl-color-neutral-0);
+    border: solid 2px var(--wa-color-surface-default);
   }
 `;
 

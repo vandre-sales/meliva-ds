@@ -768,9 +768,9 @@ If you want to change the icons Shoelace uses internally, you can register an ic
 
 <style>
   .icon-search {
-    border: solid 1px var(--sl-panel-border-color);
-    border-radius: var(--sl-border-radius-medium);
-    padding: var(--sl-spacing-medium);
+    border: solid 1px var(--wa-color-surface-outline);
+    border-radius: var(--wa-corners-1x);
+    padding: var(--wa-space-m);
   }
 
   .icon-search [hidden] {
@@ -814,18 +814,18 @@ If you want to change the icons Shoelace uses internally, you can register an ic
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--sl-border-radius-medium);
+    border-radius: var(--wa-corners-1x);
     font-size: 24px;
     width: 2em;
     height: 2em;
     margin: 0 auto;
     cursor: copy;
-    transition: var(--sl-transition-medium) all;
+    transition: var(--wa-transition-fast) all;
   }
 
   .icon-list-item:hover {
-    background-color: var(--sl-color-primary-50);
-    color: var(--sl-color-primary-600);
+    background-color: var(--wa-color-brand-container-fill-muted);
+    color: var(--wa-color-brand-text-on-muted);
   }
 
   .icon-list[data-type="outline"] .icon-list-item[data-name$="-fill"] {

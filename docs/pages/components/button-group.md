@@ -435,7 +435,7 @@ Create interactive toolbars with button groups.
 
 <style>
   .button-group-toolbar sl-button-group:not(:last-of-type) {
-    margin-right: var(--sl-spacing-x-small);
+    margin-right: var(--wa-space-xs);
   }
 </style>
 ```
@@ -448,7 +448,7 @@ import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const css = `
   .button-group-toolbar sl-button-group:not(:last-of-type) {
-    margin-right: var(--sl-spacing-x-small);
+    margin-right: var(--wa-space-xs);
   }
 `;
 

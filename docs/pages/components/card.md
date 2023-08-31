@@ -29,7 +29,7 @@ layout: component
   }
 
   .card-overview small {
-    color: var(--sl-color-neutral-500);
+    color: var(--wa-color-text-quiet);
   }
 
   .card-overview [slot='footer'] {
@@ -51,7 +51,7 @@ const css = `
   }
 
   .card-overview small {
-    color: var(--sl-color-neutral-500);
+    color: var(--wa-color-text-quiet);
   }
 
   .card-overview [slot="footer"] {
@@ -155,7 +155,7 @@ Headers can be used to display titles and more.
   }
 
   .card-header sl-icon-button {
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--wa-font-size-m);
   }
 </style>
 ```
@@ -180,7 +180,7 @@ const css = `
   }
 
   .card-header sl-icon-button {
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--wa-font-size-m);
   }
 `;
 

@@ -49,13 +49,8 @@ import SlButton from '@shoelace-style/shoelace/dist/react/button';
 import SlMutationObserver from '@shoelace-style/shoelace/dist/react/mutation-observer';
 
 const css = `
-  .resize-observer-overview div {
-    display: flex;
-    border: solid 2px var(--sl-input-border-color);
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
+  .mutation-overview sl-button {
+    margin-bottom: 1rem;
   }
 `;
 
@@ -77,6 +72,9 @@ const App = () => {
           Click to mutate
         </SlButton>
       </SlMutationObserver>
+
+    <br />
+    👆 Click the button and watch the console
 
       <style>{css}</style>
     </>
