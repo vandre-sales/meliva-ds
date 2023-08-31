@@ -7,7 +7,7 @@ toc: false
 
 <div class="splash">
 <div class="splash-start">
-<img class="splash-logo" src="/assets/images/wordmark.svg" alt="Shoelace">
+{% include 'workmark.njk' %}
 
 # <sl-visually-hidden>Shoelace:</sl-visually-hidden> A forward-thinking library of web components.
 

@@ -209,10 +209,10 @@
         }.css';\n` +
         '\n' +
         'body {\n' +
-        '  font: 16px sans-serif;\n' +
-        '  background-color: var(--sl-color-neutral-0);\n' +
-        '  color: var(--sl-color-neutral-900);\n' +
-        '  padding: 1rem;\n' +
+        '  font: var(--wa-font-size-root) sans-serif;\n' +
+        '  background-color: var(--wa-color-surface-default);\n' +
+        '  color: var(--wa-color-text-normal);\n' +
+        '  padding: var(--wa-space-m);\n' +
         '}';
 
       // Docs: https://blog.codepen.io/documentation/prefill/
