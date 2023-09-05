@@ -193,19 +193,19 @@ You can customize the button to your liking with CSS.
 
   .custom-styles::part(button) {
     background-color: #ff1493;
-    border: solid 4px #ff7ac1;
+    border: solid 2px #ff7ac1;
     border-right-color: #ad005c;
     border-bottom-color: #ad005c;
-    border-radius: 0;
-    transition: 100ms scale ease-in-out, 100ms translate ease-in-out;
+    border-radius: 6px;
+    transition: var(--wa-transition-normal) all;
   }
 
   .custom-styles::part(button):hover {
-    scale: 1.1;
+    transform: scale(1.05);
   }
 
   .custom-styles::part(button):active {
-    translate: 0 2px;
+    transform: translateY(1px);
   }
 
   .custom-styles::part(button):focus-visible {
