@@ -22,7 +22,7 @@ const App = () => <SlBadge>Badge</SlBadge>;
 Set the `variant` attribute to change the badge's variant.
 
 ```html:preview
-<sl-badge variant="primary">Primary</sl-badge>
+<sl-badge variant="brand">Brand</sl-badge>
 <sl-badge variant="success">Success</sl-badge>
 <sl-badge variant="neutral">Neutral</sl-badge>
 <sl-badge variant="warning">Warning</sl-badge>
@@ -34,7 +34,7 @@ import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
 
 const App = () => (
   <>
-    <SlBadge variant="primary">Primary</SlBadge>
+    <SlBadge variant="brand">Brand</SlBadge>
     <SlBadge variant="success">Success</SlBadge>
     <SlBadge variant="neutral">Neutral</SlBadge>
     <SlBadge variant="warning">Warning</SlBadge>
@@ -48,7 +48,7 @@ const App = () => (
 Use the `pill` attribute to give badges rounded edges.
 
 ```html:preview
-<sl-badge variant="primary" pill>Primary</sl-badge>
+<sl-badge variant="brand" pill>Brand</sl-badge>
 <sl-badge variant="success" pill>Success</sl-badge>
 <sl-badge variant="neutral" pill>Neutral</sl-badge>
 <sl-badge variant="warning" pill>Warning</sl-badge>
@@ -60,8 +60,8 @@ import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
 
 const App = () => (
   <>
-    <SlBadge variant="primary" pill>
-      Primary
+    <SlBadge variant="brand" pill>
+      Brand
     </SlBadge>
     <SlBadge variant="success" pill>
       Success
@@ -85,7 +85,7 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 
 ```html:preview
 <div class="badge-pulse">
-  <sl-badge variant="primary" pill pulse>1</sl-badge>
+  <sl-badge variant="brand" pill pulse>1</sl-badge>
   <sl-badge variant="success" pill pulse>1</sl-badge>
   <sl-badge variant="neutral" pill pulse>1</sl-badge>
   <sl-badge variant="warning" pill pulse>1</sl-badge>
@@ -111,7 +111,7 @@ const css = `
 const App = () => (
   <>
     <div className="badge-pulse">
-      <SlBadge variant="primary" pill pulse>
+      <SlBadge variant="brand" pill pulse>
         1
       </SlBadge>
       <SlBadge variant="success" pill pulse>

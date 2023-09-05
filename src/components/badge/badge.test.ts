@@ -25,9 +25,9 @@ describe('<sl-badge>', () => {
       expect(el.innerText).to.eq('Badge');
     });
 
-    it('should default to square styling, with the primary color', () => {
+    it('should default to square styling, with the brand color', () => {
       const part = el.shadowRoot!.querySelector('[part~="base"]')!;
-      expect(part.classList.value.trim()).to.eq('badge badge--primary');
+      expect(part.classList.value.trim()).to.eq('badge badge--brand');
     });
   });
 
@@ -42,7 +42,7 @@ describe('<sl-badge>', () => {
 
     it('should append the pill class to the classlist to render a pill', () => {
       const part = el.shadowRoot!.querySelector('[part~="base"]')!;
-      expect(part.classList.value.trim()).to.eq('badge badge--primary badge--pill');
+      expect(part.classList.value.trim()).to.eq('badge badge--brand badge--pill');
     });
   });
 
@@ -57,11 +57,11 @@ describe('<sl-badge>', () => {
 
     it('should append the pulse class to the classlist to render a pulse', () => {
       const part = el.shadowRoot!.querySelector('[part~="base"]')!;
-      expect(part.classList.value.trim()).to.eq('badge badge--primary badge--pulse');
+      expect(part.classList.value.trim()).to.eq('badge badge--brand badge--pulse');
     });
   });
 
-  ['primary', 'success', 'neutral', 'warning', 'danger'].forEach(variant => {
+  ['brand', 'success', 'neutral', 'warning', 'danger'].forEach(variant => {
     describe(`when passed a variant attribute ${variant}`, () => {
       before(async () => {
         el = await fixture<SlBadge>(html`<sl-badge variant="${variant}">Badge</sl-badge>`);
@@ -71,7 +71,7 @@ describe('<sl-badge>', () => {
         await expect(el).to.be.accessible({ ignoredRules });
       });
 
-      it('should default to square styling, with the primary color', () => {
+      it('should default to square styling, with the correct color', () => {
         const part = el.shadowRoot!.querySelector('[part~="base"]')!;
         expect(part.classList.value.trim()).to.eq(`badge badge--${variant}`);
       });

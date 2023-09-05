@@ -95,9 +95,9 @@ Theme buttons are supported through the button's `variant` attribute.
 
 ```html:preview
 <sl-button-group label="Alignment">
-  <sl-button variant="primary">Left</sl-button>
-  <sl-button variant="primary">Center</sl-button>
-  <sl-button variant="primary">Right</sl-button>
+  <sl-button variant="brand">Left</sl-button>
+  <sl-button variant="brand">Center</sl-button>
+  <sl-button variant="brand">Right</sl-button>
 </sl-button-group>
 
 <br /><br />
@@ -111,9 +111,9 @@ Theme buttons are supported through the button's `variant` attribute.
 <br /><br />
 
 <sl-button-group label="Alignment">
-  <sl-button variant="neutral">Left</sl-button>
-  <sl-button variant="neutral">Center</sl-button>
-  <sl-button variant="neutral">Right</sl-button>
+  <sl-button>Left</sl-button>
+  <sl-button>Center</sl-button>
+  <sl-button>Right</sl-button>
 </sl-button-group>
 
 <br /><br />
@@ -140,9 +140,9 @@ import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
 const App = () => (
   <>
     <SlButtonGroup label="Alignment">
-      <SlButton variant="primary">Left</SlButton>
-      <SlButton variant="primary">Center</SlButton>
-      <SlButton variant="primary">Right</SlButton>
+      <SlButton variant="brand">Left</SlButton>
+      <SlButton variant="brand">Center</SlButton>
+      <SlButton variant="brand">Right</SlButton>
     </SlButtonGroup>
 
     <br />
@@ -158,9 +158,9 @@ const App = () => (
     <br />
 
     <SlButtonGroup label="Alignment">
-      <SlButton variant="neutral">Left</SlButton>
-      <SlButton variant="neutral">Center</SlButton>
-      <SlButton variant="neutral">Right</SlButton>
+      <SlButton>Left</SlButton>
+      <SlButton>Center</SlButton>
+      <SlButton>Right</SlButton>
     </SlButtonGroup>
 
     <br />
@@ -313,9 +313,9 @@ Create a split button using a button and a dropdown. Use a [visually hidden](/co
 
 ```html:preview
 <sl-button-group label="Example Button Group">
-  <sl-button variant="primary">Save</sl-button>
+  <sl-button variant="brand">Save</sl-button>
   <sl-dropdown placement="bottom-end">
-    <sl-button slot="trigger" variant="primary" caret>
+    <sl-button slot="trigger" variant="brand" caret>
       <sl-visually-hidden>More options</sl-visually-hidden>
     </sl-button>
     <sl-menu>
@@ -336,9 +336,9 @@ import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
 
 const App = () => (
   <SlButtonGroup label="Example Button Group">
-    <SlButton variant="primary">Save</SlButton>
+    <SlButton variant="brand">Save</SlButton>
     <SlDropdown placement="bottom-end">
-      <SlButton slot="trigger" variant="primary" caret></SlButton>
+      <SlButton slot="trigger" variant="brand" caret></SlButton>
       <SlMenu>
         <SlMenuItem>Save</SlMenuItem>
         <SlMenuItem>Save as&hellip;</SlMenuItem>

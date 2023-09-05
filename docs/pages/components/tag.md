@@ -6,7 +6,7 @@ layout: component
 ---
 
 ```html:preview
-<sl-tag variant="primary">Primary</sl-tag>
+<sl-tag variant="brand">Brand</sl-tag>
 <sl-tag variant="success">Success</sl-tag>
 <sl-tag variant="neutral">Neutral</sl-tag>
 <sl-tag variant="warning">Warning</sl-tag>
@@ -18,7 +18,7 @@ import SlTag from '@shoelace-style/shoelace/dist/react/tag';
 
 const App = () => (
   <>
-    <SlTag variant="primary">Primary</SlTag>
+    <SlTag variant="brand">Brand</SlTag>
     <SlTag variant="success">Success</SlTag>
     <SlTag variant="neutral">Neutral</SlTag>
     <SlTag variant="warning">Warning</SlTag>

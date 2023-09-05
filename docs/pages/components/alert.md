@@ -35,7 +35,7 @@ Alerts will not be visible if the `open` attribute is not present.
 Set the `variant` attribute to change the alert's variant.
 
 ```html:preview
-<sl-alert variant="primary" open>
+<sl-alert variant="brand" open>
   <sl-icon slot="icon" name="info-circle"></sl-icon>
   <strong>This is super informative</strong><br />
   You can tell by how pretty the alert is.
@@ -80,7 +80,7 @@ import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
 
 const App = () => (
   <>
-    <SlAlert variant="primary" open>
+    <SlAlert variant="brand" open>
       <SlIcon slot="icon" name="info-circle" />
       <strong>This is super informative</strong>
       <br />
@@ -131,7 +131,7 @@ const App = () => (
 Add the `closable` attribute to show a close button that will hide the alert.
 
 ```html:preview
-<sl-alert variant="primary" open closable class="alert-closable">
+<sl-alert variant="brand" open closable class="alert-closable">
   <sl-icon slot="icon" name="info-circle"></sl-icon>
   You can close this alert any time!
 </sl-alert>
@@ -171,14 +171,14 @@ const App = () => {
 Icons are optional. Simply omit the `icon` slot if you don't want them.
 
 ```html:preview
-<sl-alert variant="primary" open> Nothing fancy here, just a simple alert. </sl-alert>
+<sl-alert variant="brand" open> Nothing fancy here, just a simple alert. </sl-alert>
 ```
 
 ```jsx:react
 import SlAlert from '@shoelace-style/shoelace/dist/react/alert';
 
 const App = () => (
-  <SlAlert variant="primary" open>
+  <SlAlert variant="brand" open>
     Nothing fancy here, just a simple alert.
   </SlAlert>
 );
@@ -190,9 +190,9 @@ Set the `duration` attribute to automatically hide an alert after a period of ti
 
 ```html:preview
 <div class="alert-duration">
-  <sl-button variant="primary">Show Alert</sl-button>
+  <sl-button variant="brand">Show Alert</sl-button>
 
-  <sl-alert variant="primary" duration="3000" closable>
+  <sl-alert variant="brand" duration="3000" closable>
     <sl-icon slot="icon" name="info-circle"></sl-icon>
     This alert will automatically hide itself after three seconds, unless you interact with it.
   </sl-alert>
@@ -231,11 +231,11 @@ const App = () => {
   return (
     <>
       <div className="alert-duration">
-        <SlButton variant="primary" onClick={() => setOpen(true)}>
+        <SlButton variant="brand" onClick={() => setOpen(true)}>
           Show Alert
         </SlButton>
 
-        <SlAlert variant="primary" duration="3000" open={open} closable onSlAfterHide={() => setOpen(false)}>
+        <SlAlert variant="brand" duration="3000" open={open} closable onSlAfterHide={() => setOpen(false)}>
           <SlIcon slot="icon" name="info-circle" />
           This alert will automatically hide itself after three seconds, unless you interact with it.
         </SlAlert>
@@ -255,13 +255,13 @@ You should always use the `closable` attribute so users can dismiss the notifica
 
 ```html:preview
 <div class="alert-toast">
-  <sl-button variant="primary">Primary</sl-button>
+  <sl-button variant="brand">Brand</sl-button>
   <sl-button variant="success">Success</sl-button>
   <sl-button variant="neutral">Neutral</sl-button>
   <sl-button variant="warning">Warning</sl-button>
   <sl-button variant="danger">Danger</sl-button>
 
-  <sl-alert variant="primary" duration="3000" closable>
+  <sl-alert variant="brand" duration="3000" closable>
     <sl-icon slot="icon" name="info-circle"></sl-icon>
     <strong>This is super informative</strong><br />
     You can tell by how pretty the alert is.
@@ -295,7 +295,7 @@ You should always use the `closable` attribute so users can dismiss the notifica
 <script>
   const container = document.querySelector('.alert-toast');
 
-  ['primary', 'success', 'neutral', 'warning', 'danger'].map(variant => {
+  ['brand', 'success', 'neutral', 'warning', 'danger'].map(variant => {
     const button = container.querySelector(`sl-button[variant="${variant}"]`);
     const alert = container.querySelector(`sl-alert[variant="${variant}"]`);
 
@@ -315,7 +315,7 @@ function showToast(alert) {
 }
 
 const App = () => {
-  const primary = useRef(null);
+  const brand = useRef(null);
   const success = useRef(null);
   const neutral = useRef(null);
   const warning = useRef(null);
@@ -323,8 +323,8 @@ const App = () => {
 
   return (
     <>
-      <SlButton variant="primary" onClick={() => primary.current.toast()}>
-        Primary
+      <SlButton variant="brand" onClick={() => brand.current.toast()}>
+        Brand
       </SlButton>
 
       <SlButton variant="success" onClick={() => success.current.toast()}>
@@ -343,7 +343,7 @@ const App = () => {
         Danger
       </SlButton>
 
-      <SlAlert ref={primary} variant="primary" duration="3000" closable>
+      <SlAlert ref={brand} variant="brand" duration="3000" closable>
         <SlIcon slot="icon" name="info-circle" />
         <strong>This is super informative</strong>
         <br />
@@ -388,7 +388,7 @@ For convenience, you can create a utility that emits toast notifications with a 
 
 ```html:preview
 <div class="alert-toast-wrapper">
-  <sl-button variant="primary">Create Toast</sl-button>
+  <sl-button variant="brand">Create Toast</sl-button>
 </div>
 
 <script>
@@ -404,7 +404,7 @@ For convenience, you can create a utility that emits toast notifications with a 
   }
 
   // Custom function to emit toast notifications
-  function notify(message, variant = 'primary', icon = 'info-circle', duration = 3000) {
+  function notify(message, variant = 'brand', icon = 'info-circle', duration = 3000) {
     const alert = Object.assign(document.createElement('sl-alert'), {
       variant,
       closable: true,

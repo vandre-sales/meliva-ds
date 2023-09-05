@@ -41,7 +41,7 @@ Every Shoelace component is available to import as a React component. Note that 
 ```jsx
 import SlButton from '@shoelace-style/shoelace/%NPMDIR%/react/button';
 
-const MyComponent = () => <SlButton variant="primary">Click me</SlButton>;
+const MyComponent = () => <SlButton variant="brand">Click me</SlButton>;
 
 export default MyComponent;
 ```

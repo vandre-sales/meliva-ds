@@ -167,7 +167,7 @@ Setting the `required` attribute to make selecting an option mandatory. If a val
     <sl-radio value="3">Option 3</sl-radio>
   </sl-radio-group>
   <br />
-  <sl-button type="submit" variant="primary">Submit</sl-button>
+  <sl-button type="submit" variant="brand">Submit</sl-button>
 </form>
 
 <script>
@@ -206,7 +206,7 @@ const App = () => {
         </SlRadio>
       </SlRadioGroup>
       <br />
-      <SlButton type="submit" variant="primary">
+      <SlButton type="submit" variant="brand">
         Submit
       </SlButton>
     </form>
@@ -226,7 +226,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     <sl-radio value="3">Choose me</sl-radio>
   </sl-radio-group>
   <br />
-  <sl-button type="submit" variant="primary">Submit</sl-button>
+  <sl-button type="submit" variant="brand">Submit</sl-button>
 </form>
 
 <script>
@@ -284,7 +284,7 @@ const App = () => {
         <SlRadio value="3">Choose me</SlRadio>
       </SlRadioGroup>
       <br />
-      <SlButton type="submit" variant="primary">
+      <SlButton type="submit" variant="brand">
         Submit
       </SlButton>
     </form>

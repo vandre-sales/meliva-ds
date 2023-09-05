@@ -75,7 +75,7 @@ The form will not be submitted if a required field is incomplete.
   <br />
   <sl-checkbox required>Check me before submitting</sl-checkbox>
   <br /><br />
-  <sl-button type="submit" variant="primary">Submit</sl-button>
+  <sl-button type="submit" variant="brand">Submit</sl-button>
 </form>
 
 <script type="module">
@@ -128,7 +128,7 @@ const App = () => {
       <SlCheckbox required>Check me before submitting</SlCheckbox>
       <br />
       <br />
-      <SlButton type="submit" variant="primary">
+      <SlButton type="submit" variant="brand">
         Submit
       </SlButton>
     </form>
@@ -144,7 +144,7 @@ To restrict a value to a specific [pattern](https://developer.mozilla.org/en-US/
 <form class="input-validation-pattern">
   <sl-input name="letters" required label="Letters" pattern="[A-Za-z]+"></sl-input>
   <br />
-  <sl-button type="submit" variant="primary">Submit</sl-button>
+  <sl-button type="submit" variant="brand">Submit</sl-button>
   <sl-button type="reset" variant="default">Reset</sl-button>
 </form>
 
@@ -178,7 +178,7 @@ const App = () => {
     <form onSubmit={handleSubmit}>
       <SlInput name="letters" required label="Letters" pattern="[A-Za-z]+" />
       <br />
-      <SlButton type="submit" variant="primary">
+      <SlButton type="submit" variant="brand">
         Submit
       </SlButton>
     </form>
@@ -196,7 +196,7 @@ Some input types will automatically trigger constraints, such as `email` and `ur
   <br />
   <sl-input type="url" label="URL" placeholder="https://example.com/" required></sl-input>
   <br />
-  <sl-button type="submit" variant="primary">Submit</sl-button>
+  <sl-button type="submit" variant="brand">Submit</sl-button>
   <sl-button type="reset" variant="default">Reset</sl-button>
 </form>
 
@@ -232,7 +232,7 @@ const App = () => {
       <br />
       <SlInput type="url" label="URL" placeholder="https://example.com/" required />
       <br />
-      <SlButton type="submit" variant="primary">
+      <SlButton type="submit" variant="brand">
         Submit
       </SlButton>
     </form>
@@ -248,7 +248,7 @@ To create a custom validation error, pass a non-empty string to the `setCustomVa
 <form class="input-validation-custom">
   <sl-input label="Type “shoelace”" required></sl-input>
   <br />
-  <sl-button type="submit" variant="primary">Submit</sl-button>
+  <sl-button type="submit" variant="brand">Submit</sl-button>
   <sl-button type="reset" variant="default">Reset</sl-button>
 </form>
 
@@ -305,7 +305,7 @@ const App = () => {
     <form onSubmit={handleSubmit}>
       <SlInput ref={input} label="Type 'shoelace'" required value={value} onSlInput={handleInput} />
       <br />
-      <SlButton type="submit" variant="primary">
+      <SlButton type="submit" variant="brand">
         Submit
       </SlButton>
     </form>
@@ -359,7 +359,7 @@ This example demonstrates custom validation styles using `data-user-invalid` and
 
   <sl-checkbox value="accept" required>Accept terms and conditions</sl-checkbox>
 
-  <sl-button type="submit" variant="primary">Submit</sl-button>
+  <sl-button type="submit" variant="brand">Submit</sl-button>
   <sl-button type="reset" variant="default">Reset</sl-button>
 </form>
 
@@ -458,7 +458,7 @@ To disable the browser's error messages, you need to cancel the `sl-invalid` eve
 
   <div id="name-error" aria-live="polite" hidden></div>
 
-  <sl-button type="submit" variant="primary">Submit</sl-button>
+  <sl-button type="submit" variant="brand">Submit</sl-button>
   <sl-button type="reset" variant="default">Reset</sl-button>
 </form>
 

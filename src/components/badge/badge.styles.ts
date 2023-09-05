@@ -24,7 +24,7 @@ export default css`
   }
 
   /* Variant modifiers */
-  .badge--primary {
+  .badge--brand {
     background-color: var(--wa-color-brand-element-fill-vivid);
     color: var(--wa-color-brand-text-on-vivid);
   }
@@ -59,7 +59,7 @@ export default css`
     animation: pulse 1.5s infinite;
   }
 
-  .badge--pulse.badge--primary {
+  .badge--pulse.badge--brand {
     --pulse-color: var(--wa-color-brand-container-outline-vivid);
   }
 

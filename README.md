@@ -9,7 +9,7 @@ A forward-thinking library of web components.
 - Built with accessibility in mind ♿️
 - Open source 😸
 
-Designed in New Hampshire by [Cory LaViska](https://twitter.com/claviska).
+Built by the folks behind [Font Awesome](https://fontawesome.com/).
 
 ---
 
@@ -77,16 +77,4 @@ Shoelace is an open source project and contributions are encouraged! If you're i
 
 ## License
 
-Shoelace is designed in New Hampshire by [Cory LaViska](https://twitter.com/claviska). It’s available under the terms of the MIT license.
-
-Designing, developing, and supporting this library requires a lot of time, effort, and skill. I’d like to keep it open source so everyone can use it, but that doesn’t provide me with any income.
-
-**Therefore, if you’re using my software to make a profit,** I respectfully ask that you help [fund its development](https://github.com/sponsors/claviska) by becoming a sponsor. There are multiple tiers to choose from with benefits at every level, including prioritized support, bug fixes, feature requests, and advertising.
-
-👇 Your support is very much appreciated! 👇
-
-- [Become a sponsor](https://github.com/sponsors/claviska)
-- [Star on GitHub](https://github.com/shoelace-style/shoelace/stargazers)
-- [Follow on Twitter](https://twitter.com/shoelace_style)
-
-Whether you're building Shoelace or building something _with_ Shoelace — have fun creating! 🥾
+Shoelace is available under the terms of the MIT license.

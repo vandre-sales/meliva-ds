@@ -19,7 +19,7 @@ export default class SlBadge extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
   /** The badge's theme variant. */
-  @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) variant: 'brand' | 'success' | 'neutral' | 'warning' | 'danger' = 'brand';
 
   /** Draws a pill-style badge with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
@@ -33,7 +33,7 @@ export default class SlBadge extends ShoelaceElement {
         part="base"
         class=${classMap({
           badge: true,
-          'badge--primary': this.variant === 'primary',
+          'badge--brand': this.variant === 'brand',
           'badge--success': this.variant === 'success',
           'badge--neutral': this.variant === 'neutral',
           'badge--warning': this.variant === 'warning',

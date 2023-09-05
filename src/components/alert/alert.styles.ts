@@ -40,11 +40,11 @@ export default css`
     padding-inline-start: var(--sl-spacing-large);
   }
 
-  .alert--primary {
+  .alert--brand {
     border-top-color: var(--sl-color-primary-600);
   }
 
-  .alert--primary .alert__icon {
+  .alert--brand .alert__icon {
     color: var(--sl-color-primary-600);
   }
 

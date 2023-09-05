@@ -18,7 +18,7 @@ layout: component
   <small>6 weeks old</small>
 
   <div slot="footer">
-    <sl-button variant="primary" pill>More Info</sl-button>
+    <sl-button variant="brand" pill>More Info</sl-button>
     <sl-rating></sl-rating>
   </div>
 </sl-card>
@@ -75,7 +75,7 @@ const App = () => (
       <br />
       <small>6 weeks old</small>
       <div slot="footer">
-        <SlButton variant="primary" pill>
+        <SlButton variant="brand" pill>
           More Info
         </SlButton>
         <SlRating></SlRating>
@@ -209,7 +209,7 @@ Footers can be used to display actions, summaries, or other relevant content.
 
   <div slot="footer">
     <sl-rating></sl-rating>
-    <sl-button variant="primary">Preview</sl-button>
+    <sl-button variant="brand">Preview</sl-button>
   </div>
 </sl-card>
 
@@ -249,7 +249,7 @@ const App = () => (
       This card has a footer. You can put all sorts of things in it!
       <div slot="footer">
         <SlRating></SlRating>
-        <SlButton slot="footer" variant="primary">
+        <SlButton slot="footer" variant="brand">
           Preview
         </SlButton>
       </div>

@@ -10,7 +10,7 @@ The mutation observer will report changes to the content it wraps through the `s
 ```html:preview
 <div class="mutation-overview">
   <sl-mutation-observer attr="variant">
-    <sl-button variant="primary">Click to mutate</sl-button>
+    <sl-button variant="brand">Click to mutate</sl-button>
   </sl-mutation-observer>
 
   <br />
@@ -20,7 +20,7 @@ The mutation observer will report changes to the content it wraps through the `s
     const container = document.querySelector('.mutation-overview');
     const mutationObserver = container.querySelector('sl-mutation-observer');
     const button = container.querySelector('sl-button');
-    const variants = ['primary', 'success', 'neutral', 'warning', 'danger'];
+    const variants = ['brand', 'success', 'neutral', 'warning', 'danger'];
     let clicks = 0;
 
     // Change the button's variant attribute
@@ -54,11 +54,11 @@ const css = `
   }
 `;
 
-const variants = ['primary', 'success', 'neutral', 'warning', 'danger'];
+const variants = ['brand', 'success', 'neutral', 'warning', 'danger'];
 let clicks = 0;
 
 const App = () => {
-  const [variant, setVariant] = useState('primary');
+  const [variant, setVariant] = useState('brand');
 
   function handleClick() {
     clicks++;
@@ -96,7 +96,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
 <div class="mutation-child-list">
   <sl-mutation-observer child-list>
     <div class="buttons">
-      <sl-button variant="primary">Add button</sl-button>
+      <sl-button variant="brand">Add button</sl-button>
     </div>
   </sl-mutation-observer>
 
@@ -106,7 +106,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
     const container = document.querySelector('.mutation-child-list');
     const mutationObserver = container.querySelector('sl-mutation-observer');
     const buttons = container.querySelector('.buttons');
-    const button = container.querySelector('sl-button[variant="primary"]');
+    const button = container.querySelector('sl-button[variant="brand"]');
     let i = 0;
 
     // Add a button
@@ -118,7 +118,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
 
     // Remove a button
     buttons.addEventListener('click', event => {
-      const target = event.target.closest('sl-button:not([variant="primary"])');
+      const target = event.target.closest('sl-button:not([variant="brand"])');
       event.stopPropagation();
 
       if (target) {
@@ -175,7 +175,7 @@ const App = () => {
       <div className="mutation-child-list">
         <SlMutationObserver child-list onSlMutation={event => console.log(event.detail)}>
           <div className="buttons">
-            <SlButton variant="primary" onClick={addButton}>
+            <SlButton variant="brand" onClick={addButton}>
               Add button
             </SlButton>
             {buttonIds.map(id => (

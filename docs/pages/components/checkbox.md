@@ -97,7 +97,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 <form class="custom-validity">
   <sl-checkbox>Check me</sl-checkbox>
   <br />
-  <sl-button type="submit" variant="primary" style="margin-top: 1rem;">Submit</sl-button>
+  <sl-button type="submit" variant="brand" style="margin-top: 1rem;">Submit</sl-button>
 </form>
 <script>
   const form = document.querySelector('.custom-validity');
@@ -153,7 +153,7 @@ const App = () => {
         Check me
       </SlCheckbox>
       <br />
-      <SlButton type="submit" variant="primary" style={{ marginTop: '1rem' }}>
+      <SlButton type="submit" variant="brand" style={{ marginTop: '1rem' }}>
         Submit
       </SlButton>
     </form>

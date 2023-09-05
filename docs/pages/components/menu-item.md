@@ -103,7 +103,7 @@ Add content to the start and end of menu items using the `prefix` and `suffix` s
   <sl-menu-item>
     <sl-icon slot="prefix" name="envelope"></sl-icon>
     Messages
-    <sl-badge slot="suffix" variant="primary" pill>12</sl-badge>
+    <sl-badge slot="suffix" variant="brand" pill>12</sl-badge>
   </sl-menu-item>
 
   <sl-divider></sl-divider>
@@ -134,7 +134,7 @@ const App = () => (
     <SlMenuItem>
       <SlIcon slot="prefix" name="envelope" />
       Messages
-      <SlBadge slot="suffix" variant="primary" pill>
+      <SlBadge slot="suffix" variant="brand" pill>
         12
       </SlBadge>
     </SlMenuItem>

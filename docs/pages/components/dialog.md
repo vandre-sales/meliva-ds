@@ -10,7 +10,7 @@ layout: component
 ```html:preview
 <sl-dialog label="Dialog" class="dialog-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+  <sl-button slot="footer" variant="brand">Close</sl-button>
 </sl-dialog>
 
 <sl-button>Open Dialog</sl-button>
@@ -37,7 +37,7 @@ const App = () => {
     <>
       <SlDialog label="Dialog" open={open} onSlAfterHide={() => setOpen(false)}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+        <SlButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
         </SlButton>
       </SlDialog>
@@ -57,7 +57,7 @@ Use the `--width` custom property to set the dialog's width.
 ```html:preview
 <sl-dialog label="Dialog" class="dialog-width" style="--width: 50vw;">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+  <sl-button slot="footer" variant="brand">Close</sl-button>
 </sl-dialog>
 
 <sl-button>Open Dialog</sl-button>
@@ -86,7 +86,7 @@ const App = () => {
     <>
       <SlDialog label="Dialog" open={open} style={{ '--width': '50vw' }} onSlAfterHide={() => setOpen(false)}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+        <SlButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
         </SlButton>
       </SlDialog>
@@ -108,7 +108,7 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
   <div style="height: 150vh; border: dashed 2px var(--sl-color-neutral-200); padding: 0 1rem;">
     <p>Scroll down and give it a try! 👇</p>
   </div>
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+  <sl-button slot="footer" variant="brand">Close</sl-button>
 </sl-dialog>
 
 <sl-button>Open Dialog</sl-button>
@@ -146,7 +146,7 @@ const App = () => {
           <p>Scroll down and give it a try! 👇</p>
         </div>
 
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+        <SlButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
         </SlButton>
       </SlDialog>
@@ -167,7 +167,7 @@ The header shows a functional close button by default. You can use the `header-a
 <sl-dialog label="Dialog" class="dialog-header-actions">
   <sl-icon-button class="new-window" slot="header-actions" name="box-arrow-up-right"></sl-icon-button>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+  <sl-button slot="footer" variant="brand">Close</sl-button>
 </sl-dialog>
 
 <sl-button>Open Dialog</sl-button>
@@ -203,7 +203,7 @@ const App = () => {
           onClick={() => window.open(location.href)}
         />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+        <SlButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
         </SlButton>
       </SlDialog>
@@ -225,7 +225,7 @@ You can use `event.detail.source` to determine what triggered the request to clo
 ```html:preview
 <sl-dialog label="Dialog" class="dialog-deny-close">
   This dialog will not close when you click on the overlay.
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+  <sl-button slot="footer" variant="brand">Close</sl-button>
 </sl-dialog>
 
 <sl-button>Open Dialog</sl-button>
@@ -266,7 +266,7 @@ const App = () => {
     <>
       <SlDialog label="Dialog" open={open} onSlRequestClose={handleRequestClose} onSlAfterHide={() => setOpen(false)}>
         This dialog will not close when you click on the overlay.
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+        <SlButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
         </SlButton>
       </SlDialog>
@@ -284,7 +284,7 @@ By default, the dialog's panel will gain focus when opened. This allows a subseq
 ```html:preview
 <sl-dialog label="Dialog" class="dialog-focus">
   <sl-input autofocus placeholder="I will have focus when the dialog is opened"></sl-input>
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+  <sl-button slot="footer" variant="brand">Close</sl-button>
 </sl-dialog>
 
 <sl-button>Open Dialog</sl-button>
@@ -313,7 +313,7 @@ const App = () => {
     <>
       <SlDialog label="Dialog" open={open} onSlAfterHide={() => setOpen(false)}>
         <SlInput autofocus placeholder="I will have focus when the dialog is opened" />
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+        <SlButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
         </SlButton>
       </SlDialog>

@@ -1158,7 +1158,7 @@ html.sidebar-open #menu-toggle {
 }
 
 .repo-button--github sl-icon {
-  color: var(--wa-color-neutral-40);
+  color: var(--wa-color-white);
 }
 
 .repo-button--star sl-icon {

@@ -26,13 +26,13 @@ export default css`
    * Variant modifiers
    */
 
-  .tag--primary {
+  .tag--brand {
     background-color: var(--wa-color-brand-container-fill-muted);
     border-color: var(--wa-color-brand-element-outline-muted);
     color: var(--wa-color-brand-text-on-muted);
   }
 
-  .tag--primary:active > sl-icon-button {
+  .tag--brand:active > sl-icon-button {
     color: var(--wa-color-brand-text-on-muted);
   }
 

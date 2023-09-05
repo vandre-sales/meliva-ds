@@ -106,10 +106,6 @@ Critical bug fixes in earlier versions will be addressed based on their severity
 
 If you need to support IE11 or pre-Chromium Edge, this library isn't for you. Although web components can (to some degree) be polyfilled for legacy browsers, supporting them is outside the scope of this project. If you're using Shoelace in such a browser, you're gonna have a bad time. ⛷
 
-## License
-
-Shoelace was created in New Hampshire by [Cory LaViska](https://twitter.com/claviska). It's available under the terms of the [MIT license](https://github.com/shoelace-style/shoelace/blob/next/LICENSE.md).
-
 ## Attribution
 
 Special thanks to the following projects and individuals that help make Shoelace possible.

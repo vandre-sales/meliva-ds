@@ -312,7 +312,7 @@ Animations won't play until you apply the `play` attribute. You can omit it init
 ```html:preview
 <div class="animation-form">
   <sl-animation name="rubberBand" duration="1000" iterations="1">
-    <sl-button variant="primary">Click me</sl-button>
+    <sl-button variant="brand">Click me</sl-button>
   </sl-animation>
 </div>
 
@@ -338,7 +338,7 @@ const App = () => {
   return (
     <div class="animation-form">
       <SlAnimation name="rubberBand" duration={1000} iterations={1} play={play} onSlFinish={() => setPlay(false)}>
-        <SlButton variant="primary" onClick={() => setPlay(true)}>
+        <SlButton variant="brand" onClick={() => setPlay(true)}>
           Click me
         </SlButton>
       </SlAnimation>

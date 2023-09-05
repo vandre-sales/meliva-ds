@@ -69,8 +69,7 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
   @property() title = ''; // make reactive to pass through
 
   /** The button's theme variant. */
-  @property({ reflect: true }) variant: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' =
-    'default';
+  @property({ reflect: true }) variant: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' | 'text' = 'neutral';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -89,12 +88,6 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
 
   /** Draws a pill-style button with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
-
-  /**
-   * Draws a circular icon button. When this attribute is present, the button expects a single `<sl-icon>` in the
-   * default slot.
-   */
-  @property({ type: Boolean, reflect: true }) circle = false;
 
   /**
    * The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native
@@ -187,13 +180,17 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
     this.emit('sl-focus');
   }
 
-  private handleClick() {
+  private handleClick(event: MouseEvent) {
     if (this.type === 'submit') {
       this.formControlController.submit(this);
     }
 
     if (this.type === 'reset') {
       this.formControlController.reset(this);
+    }
+
+    if (this.href) {
+      event.preventDefault();
     }
   }
 
@@ -275,8 +272,7 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
         part="base"
         class=${classMap({
           button: true,
-          'button--default': this.variant === 'default',
-          'button--primary': this.variant === 'primary',
+          'button--brand': this.variant === 'brand',
           'button--success': this.variant === 'success',
           'button--neutral': this.variant === 'neutral',
           'button--warning': this.variant === 'warning',
@@ -286,7 +282,6 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
           'button--medium': this.size === 'medium',
           'button--large': this.size === 'large',
           'button--caret': this.caret,
-          'button--circle': this.circle,
           'button--disabled': this.disabled,
           'button--focused': this.hasFocus,
           'button--loading': this.loading,

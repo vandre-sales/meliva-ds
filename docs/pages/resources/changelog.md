@@ -6,11 +6,17 @@ meta:
 
 # Changelog
 
-Shoelace follows [Semantic Versioning](https://semver.org/). Breaking changes in components with the <sl-badge variant="primary" pill>Stable</sl-badge> badge will not be accepted until the next major version. As such, all contributions must consider the project's roadmap and take this into consideration. Features that are deemed no longer necessary will be deprecated but not removed.
+Shoelace follows [Semantic Versioning](https://semver.org/). Breaking changes in components with the <sl-badge variant="brand" pill>Stable</sl-badge> badge will not be accepted until the next major version. As such, all contributions must consider the project's roadmap and take this into consideration. Features that are deemed no longer necessary will be deprecated but not removed.
 
 Components with the <sl-badge variant="warning" pill>Experimental</sl-badge> badge should not be used in production. They are made available as release candidates for development and testing purposes. As such, changes to experimental components will not be subject to semantic versioning.
 
 New versions of Shoelace are released as-needed and generally occur when a critical mass of changes have accumulated. At any time, you can see what's coming in the next release by visiting [next.shoelace.style](https://next.shoelace.style).
+
+## Theme API
+
+- Changed `primary` variants to `brand` in all components
+- Removed `default` from `<sl-button>` and made `neutral` the new default
+- Removed the `circle` modifier from `<sl-button>` because button's no longer have a set height
 
 ## Next
 

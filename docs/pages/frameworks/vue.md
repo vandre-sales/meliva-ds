@@ -121,7 +121,7 @@ Here is an example:
 <sl-drawer label="Drawer" placement="start" class="drawer-placement-start" :open="drawerIsOpen">
   This drawer slides in from the start.
   <div slot="footer">
-    <sl-button variant="primary" @click=" drawerIsOpen = false">Close</sl-button>
+    <sl-button variant="brand" @click=" drawerIsOpen = false">Close</sl-button>
   </div>
 </sl-drawer>
 ```
