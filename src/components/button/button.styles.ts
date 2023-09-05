@@ -43,23 +43,23 @@ export default css`
   }
 
   .button--brand:focus-visible {
-    outline-color: var(--wa-color-brand-container-fill-vivid);
+    outline-color: var(--wa-color-brand-element-fill-vivid);
   }
 
   .button--success:focus-visible {
-    outline-color: var(--wa-color-success-container-fill-vivid);
+    outline-color: var(--wa-color-success-element-fill-vivid);
   }
 
   .button--neutral:focus-visible {
-    outline-color: var(--wa-color-neutral-container-fill-vivid);
+    outline-color: var(--wa-color-neutral-element-fill-vivid);
   }
 
   .button--warning:focus-visible {
-    outline-color: var(--wa-color-warning-container-fill-vivid);
+    outline-color: var(--wa-color-warning-element-fill-vivid);
   }
 
   .button--danger:focus-visible {
-    outline-color: var(--wa-color-danger-container-fill-vivid);
+    outline-color: var(--wa-color-danger-element-fill-vivid);
   }
 
   .button--disabled {
@@ -94,71 +94,71 @@ export default css`
 
   /* Brand */
   .button--standard.button--brand {
-    background-color: var(--wa-color-brand-container-fill-vivid);
+    background-color: var(--wa-color-brand-element-fill-vivid);
     color: var(--wa-color-brand-text-on-vivid);
   }
 
   .button--standard.button--brand:hover:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-brand-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-brand-element-fill-vivid), white 6%);
   }
 
   .button--standard.button--brand:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-brand-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-brand-element-fill-vivid), black 6%);
   }
 
   /* Success */
   .button--standard.button--success {
-    background-color: var(--wa-color-success-container-fill-vivid);
+    background-color: var(--wa-color-success-element-fill-vivid);
     color: var(--wa-color-success-text-on-vivid);
   }
 
   .button--standard.button--success:hover:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-success-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-success-element-fill-vivid), white 6%);
   }
 
   .button--standard.button--success:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-success-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-success-element-fill-vivid), black 6%);
   }
 
   /* Neutral */
   .button--standard.button--neutral {
-    background-color: var(--wa-color-neutral-container-fill-vivid);
+    background-color: var(--wa-color-neutral-element-fill-vivid);
     color: var(--wa-color-neutral-text-on-vivid);
   }
 
   .button--standard.button--neutral:hover:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-neutral-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-neutral-element-fill-vivid), white 6%);
   }
 
   .button--standard.button--neutral:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-neutral-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-neutral-element-fill-vivid), black 6%);
   }
 
   /* Warning */
   .button--standard.button--warning {
-    background-color: var(--wa-color-warning-container-fill-vivid);
+    background-color: var(--wa-color-warning-element-fill-vivid);
     color: var(--wa-color-warning-text-on-vivid);
   }
   .button--standard.button--warning:hover:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-warning-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-warning-element-fill-vivid), white 6%);
   }
 
   .button--standard.button--warning:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-warning-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-warning-element-fill-vivid), black 6%);
   }
 
   /* Danger */
   .button--standard.button--danger {
-    background-color: var(--wa-color-danger-container-fill-vivid);
+    background-color: var(--wa-color-danger-element-fill-vivid);
     color: var(--wa-color-danger-text-on-vivid);
   }
 
   .button--standard.button--danger:hover:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-danger-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-danger-element-fill-vivid), white 6%);
   }
 
   .button--standard.button--danger:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-danger-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-danger-element-fill-vivid), black 6%);
   }
 
   /*
@@ -178,14 +178,14 @@ export default css`
 
   .button--outline.button--brand:hover:not(.button--disabled),
   .button--outline.button--brand.button--checked:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-brand-container-fill-vivid), white 6%);
-    border-color: color-mix(in oklch, var(--wa-color-brand-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-brand-element-fill-vivid), white 6%);
+    border-color: color-mix(in oklch, var(--wa-color-brand-element-fill-vivid), white 6%);
     color: var(--wa-color-brand-text-on-vivid);
   }
 
   .button--outline.button--brand:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-brand-container-fill-vivid), black 6%);
-    border-color: color-mix(in oklch, var(--wa-color-brand-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-brand-element-fill-vivid), black 6%);
+    border-color: color-mix(in oklch, var(--wa-color-brand-element-fill-vivid), black 6%);
   }
 
   /* Success */
@@ -196,14 +196,14 @@ export default css`
 
   .button--outline.button--success:hover:not(.button--disabled),
   .button--outline.button--success.button--checked:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-success-container-fill-vivid), white 6%);
-    border-color: color-mix(in oklch, var(--wa-color-success-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-success-element-fill-vivid), white 6%);
+    border-color: color-mix(in oklch, var(--wa-color-success-element-fill-vivid), white 6%);
     color: var(--wa-color-success-text-on-vivid);
   }
 
   .button--outline.button--success:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-success-container-fill-vivid), black 6%);
-    border-color: color-mix(in oklch, var(--wa-color-success-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-success-element-fill-vivid), black 6%);
+    border-color: color-mix(in oklch, var(--wa-color-success-element-fill-vivid), black 6%);
   }
 
   /* Neutral */
@@ -214,14 +214,14 @@ export default css`
 
   .button--outline.button--neutral:hover:not(.button--disabled),
   .button--outline.button--neutral.button--checked:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-neutral-container-fill-vivid), white 6%);
-    border-color: color-mix(in oklch, var(--wa-color-neutral-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-neutral-element-fill-vivid), white 6%);
+    border-color: color-mix(in oklch, var(--wa-color-neutral-element-fill-vivid), white 6%);
     color: var(--wa-color-neutral-text-on-vivid);
   }
 
   .button--outline.button--neutral:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-neutral-container-fill-vivid), black 6%);
-    border-color: color-mix(in oklch, var(--wa-color-neutral-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-neutral-element-fill-vivid), black 6%);
+    border-color: color-mix(in oklch, var(--wa-color-neutral-element-fill-vivid), black 6%);
   }
 
   /* Warning */
@@ -232,14 +232,14 @@ export default css`
 
   .button--outline.button--warning:hover:not(.button--disabled),
   .button--outline.button--warning.button--checked:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-warning-container-fill-vivid), white 6%);
-    border-color: color-mix(in oklch, var(--wa-color-warning-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-warning-element-fill-vivid), white 6%);
+    border-color: color-mix(in oklch, var(--wa-color-warning-element-fill-vivid), white 6%);
     color: var(--wa-color-warning-text-on-vivid);
   }
 
   .button--outline.button--warning:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-warning-container-fill-vivid), black 6%);
-    border-color: color-mix(in oklch, var(--wa-color-warning-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-warning-element-fill-vivid), black 6%);
+    border-color: color-mix(in oklch, var(--wa-color-warning-element-fill-vivid), black 6%);
   }
 
   /* Danger */
@@ -250,14 +250,14 @@ export default css`
 
   .button--outline.button--danger:hover:not(.button--disabled),
   .button--outline.button--danger.button--checked:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-danger-container-fill-vivid), white 6%);
-    border-color: color-mix(in oklch, var(--wa-color-danger-container-fill-vivid), white 6%);
+    background-color: color-mix(in oklch, var(--wa-color-danger-element-fill-vivid), white 6%);
+    border-color: color-mix(in oklch, var(--wa-color-danger-element-fill-vivid), white 6%);
     color: var(--wa-color-danger-text-on-vivid);
   }
 
   .button--outline.button--danger:active:not(.button--disabled) {
-    background-color: color-mix(in oklch, var(--wa-color-danger-container-fill-vivid), black 6%);
-    border-color: color-mix(in oklch, var(--wa-color-danger-container-fill-vivid), black 6%);
+    background-color: color-mix(in oklch, var(--wa-color-danger-element-fill-vivid), black 6%);
+    border-color: color-mix(in oklch, var(--wa-color-danger-element-fill-vivid), black 6%);
   }
 
   @media (forced-colors: active) {
