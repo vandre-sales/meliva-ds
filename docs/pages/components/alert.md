@@ -24,7 +24,7 @@ const App = () => (
 );
 ```
 
-:::tip
+:::warning
 Alerts will not be visible if the `open` attribute is not present.
 :::
 
