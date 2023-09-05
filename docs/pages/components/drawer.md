@@ -193,7 +193,7 @@ Unlike normal drawers, contained drawers are not modal. This means they do not s
 
 ```html:preview
 <div
-  style="position: relative; border: solid 2px var(--sl-panel-border-color); height: 300px; padding: 1rem; margin-bottom: 1rem;"
+  style="position: relative; border: solid 2px var(--wa-color-surface-outline); height: 300px; padding: 1rem; margin-bottom: 1rem;"
 >
   The drawer will be contained to this box. This content won't shift or be affected in any way when the drawer opens.
 
@@ -230,7 +230,7 @@ const App = () => {
       <div
         style={{
           position: 'relative',
-          border: 'solid 2px var(--sl-panel-border-color)',
+          border: 'solid 2px var(--wa-color-surface-outline)',
           height: '300px',
           padding: '1rem',
           marginBottom: '1rem'
@@ -316,7 +316,7 @@ By design, a drawer's height will never exceed 100% of its container. As such, d
 
 ```html:preview
 <sl-drawer label="Drawer" class="drawer-scrolling">
-  <div style="height: 150vh; border: dashed 2px var(--sl-color-neutral-200); padding: 0 1rem;">
+  <div style="height: 150vh; border: dashed 2px var(--wa-color-surface-outline); padding: 0 1rem;">
     <p>Scroll down and give it a try! 👇</p>
   </div>
   <sl-button slot="footer" variant="brand">Close</sl-button>
@@ -350,7 +350,7 @@ const App = () => {
         <div
           style={{
             height: '150vh',
-            border: 'dashed 2px var(--sl-color-neutral-200)',
+            border: 'dashed 2px var(--wa-color-surface-outline)',
             padding: '0 1rem'
           }}
         >

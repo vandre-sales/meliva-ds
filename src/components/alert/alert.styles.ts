@@ -82,7 +82,7 @@ export default css`
     padding-inline-end: var(--wa-space-m);
   }
 
-  .alert__close-button:active {
-    color: color-mix(in oklch, currentColor, black 6%);
+  .alert__close-button:hover::part(base) {
+    color: currentColor;
   }
 `;
