@@ -263,11 +263,15 @@
   --wa-form-controls-border-style: var(--wa-border-style);
   --wa-form-controls-border-width: var(--wa-border-width-thin);
   --wa-form-controls-corners: var(--wa-corners-1x);
+  --wa-form-controls-color-text: var(--wa-color-neutral-text-on-surface);
   --wa-form-controls-color-resting: var(--wa-color-neutral-element-outline-muted);
   --wa-form-controls-color-activated: var(--wa-color-brand-action-vivid);
   --wa-form-controls-font-line-height: var(--wa-font-height-compact);
   --wa-form-controls-padding: var(--wa-space-square-s);
   --wa-form-controls-placeholder-color: var(--wa-color-neutral-60);
+  --wa-form-controls-height-s: 2rem;
+  --wa-form-controls-height-m: 2.75rem;
+  --wa-form-controls-height-l: 3.5rem;
 
   /**
   * From 2.x

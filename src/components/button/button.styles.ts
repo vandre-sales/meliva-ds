@@ -167,7 +167,7 @@ export default css`
 
   .button--outline {
     background: none;
-    border: solid 1px;
+    border: solid max(1px, var(--wa-form-controls-border-width));
   }
 
   /* Brand */
@@ -204,6 +204,18 @@ export default css`
   .button--outline.button--success:active:not(.button--disabled) {
     background-color: color-mix(in oklch, var(--wa-color-success-element-fill-vivid), black 6%);
     border-color: color-mix(in oklch, var(--wa-color-success-element-fill-vivid), black 6%);
+  }
+
+  .button--outline.button--small {
+    line-height: calc(var(--wa-form-controls-height-s) - max(1px, var(--wa-form-controls-border-width)) * 2);
+  }
+
+  .button--outline.button--medium {
+    line-height: calc(var(--wa-form-controls-height-m) - max(1px, var(--wa-form-controls-border-width)) * 2);
+  }
+
+  .button--outline.button--large {
+    line-height: calc(var(--wa-form-controls-height-l) - max(1px, var(--wa-form-controls-border-width)) * 2);
   }
 
   /* Neutral */
@@ -290,20 +302,23 @@ export default css`
    */
 
   .button--small {
-    height: auto;
+    height: var(--wa-form-controls-height-s);
     font-size: var(--wa-font-size-s);
+    line-height: var(--wa-form-controls-height-s);
     border-radius: var(--wa-corners-1x);
   }
 
   .button--medium {
-    height: auto;
+    height: var(--wa-form-controls-height-m);
     font-size: var(--wa-font-size-m);
+    line-height: var(--wa-form-controls-height-m);
     border-radius: var(--wa-corners-1x);
   }
 
   .button--large {
-    height: auto;
+    height: var(--wa-form-controls-height-l);
     font-size: var(--wa-font-size-l);
+    line-height: var(--wa-form-controls-height-l);
     border-radius: var(--wa-corners-1x);
   }
 
@@ -385,15 +400,15 @@ export default css`
    */
 
   .button--has-label.button--small .button__label {
-    padding: var(--wa-space-xs) var(--wa-space-m);
+    padding: 0 var(--wa-space-s);
   }
 
   .button--has-label.button--medium .button__label {
-    padding: var(--wa-space-s) var(--wa-space-l);
+    padding: 0 var(--wa-space-m);
   }
 
   .button--has-label.button--large .button__label {
-    padding: var(--wa-space-m) var(--wa-space-xl);
+    padding: 0 var(--wa-space-l);
   }
 
   .button--has-prefix.button--small {
