@@ -116,9 +116,11 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
   });
 
   // Handle submit
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    alert('All fields are valid!');
+  customElements.whenDefined('sl-checkbox').then(() => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('All fields are valid!');
+    });
   });
 </script>
 ```

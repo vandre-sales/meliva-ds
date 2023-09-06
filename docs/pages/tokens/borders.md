@@ -11,9 +11,9 @@ Border radius tokens are used to give sharp edges a more subtle, rounded effect.
 | Token                      | Value                                         | Example                                                                              |
 | -------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------ |
 | `--wa-border-style`        | `solid`                                       |                                                                                      |
-| `--sl-border-width-thin`   | 0.0625rem (1px)                               | <div class="border-demo" style="border-width: var(--wa-border-width-thin);"></div>   |
-| `--sl-border-width-medium` | `calc(var(--wa-border-width-thin) * 2)` (2px) | <div class="border-demo" style="border-width: var(--wa-border-width-medium);"></div> |
-| `--sl-border-width-thick`  | `calc(var(--wa-border-width-thin) * 3)` (3px) | <div class="border-demo" style="border-width: var(--wa-border-width-thick);"></div>  |
+| `--wa-border-width-thin`   | `0.0625rem` (1px)                             | <div class="border-demo" style="border-width: var(--wa-border-width-thin);"></div>   |
+| `--wa-border-width-medium` | `calc(var(--wa-border-width-thin) * 2)` (2px) | <div class="border-demo" style="border-width: var(--wa-border-width-medium);"></div> |
+| `--wa-border-width-thick`  | `calc(var(--wa-border-width-thin) * 3)` (3px) | <div class="border-demo" style="border-width: var(--wa-border-width-thick);"></div>  |
 
 ## Corners
 

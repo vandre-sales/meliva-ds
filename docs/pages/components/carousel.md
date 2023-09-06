@@ -518,12 +518,12 @@ The `slides-per-page` attribute makes it possible to display multiple slides at 
 
 ```html:preview
 <sl-carousel navigation pagination slides-per-page="2" slides-per-move="2">
-  <sl-carousel-item style="background: var(--sl-color-red-200);">Slide 1</sl-carousel-item>
-  <sl-carousel-item style="background: var(--sl-color-orange-200);">Slide 2</sl-carousel-item>
-  <sl-carousel-item style="background: var(--sl-color-yellow-200);">Slide 3</sl-carousel-item>
-  <sl-carousel-item style="background: var(--sl-color-green-200);">Slide 4</sl-carousel-item>
-  <sl-carousel-item style="background: var(--sl-color-blue-200);">Slide 5</sl-carousel-item>
-  <sl-carousel-item style="background: var(--sl-color-violet-200);">Slide 6</sl-carousel-item>
+  <sl-carousel-item style="background: red;">Slide 1</sl-carousel-item>
+  <sl-carousel-item style="background: orange;">Slide 2</sl-carousel-item>
+  <sl-carousel-item style="background: yellow;">Slide 3</sl-carousel-item>
+  <sl-carousel-item style="background: green;">Slide 4</sl-carousel-item>
+  <sl-carousel-item style="background: blue;">Slide 5</sl-carousel-item>
+  <sl-carousel-item style="background: purple;">Slide 6</sl-carousel-item>
 </sl-carousel>
 ```
 
@@ -535,12 +535,12 @@ import SlCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
 
 const App = () => (
   <SlCarousel navigation pagination slidesPerPage={2} slidesPerMove={2}>
-    <SlCarouselItem style={{ background: 'var(--sl-color-red-200)' }}>Slide 1</SlCarouselItem>
-    <SlCarouselItem style={{ background: 'var(--sl-color-orange-200)' }}>Slide 2</SlCarouselItem>
-    <SlCarouselItem style={{ background: 'var(--sl-color-yellow-200)' }}>Slide 3</SlCarouselItem>
-    <SlCarouselItem style={{ background: 'var(--sl-color-green-200)' }}>Slide 4</SlCarouselItem>
-    <SlCarouselItem style={{ background: 'var(--sl-color-blue-200)' }}>Slide 5</SlCarouselItem>
-    <SlCarouselItem style={{ background: 'var(--sl-color-violet-200)' }}>Slide 6</SlCarouselItem>
+    <SlCarouselItem style={{ background: 'red' }}>Slide 1</SlCarouselItem>
+    <SlCarouselItem style={{ background: 'orange' }}>Slide 2</SlCarouselItem>
+    <SlCarouselItem style={{ background: 'yellow' }}>Slide 3</SlCarouselItem>
+    <SlCarouselItem style={{ background: 'green' }}>Slide 4</SlCarouselItem>
+    <SlCarouselItem style={{ background: 'blue' }}>Slide 5</SlCarouselItem>
+    <SlCarouselItem style={{ background: 'purple' }}>Slide 6</SlCarouselItem>
   </SlCarousel>
 );
 ```
@@ -553,9 +553,9 @@ The content of the carousel can be changed by adding or removing carousel items.
 
 ```html:preview
 <sl-carousel class="dynamic-carousel" pagination navigation>
-  <sl-carousel-item style="background: var(--sl-color-red-200)">Slide 1</sl-carousel-item>
-  <sl-carousel-item style="background: var(--sl-color-orange-200)">Slide 2</sl-carousel-item>
-  <sl-carousel-item style="background: var(--sl-color-yellow-200)">Slide 3</sl-carousel-item>
+  <sl-carousel-item style="background: red">Slide 1</sl-carousel-item>
+  <sl-carousel-item style="background: orange">Slide 2</sl-carousel-item>
+  <sl-carousel-item style="background: yellow">Slide 3</sl-carousel-item>
 </sl-carousel>
 
 <div class="carousel-options">
@@ -589,14 +589,14 @@ The content of the carousel can be changed by adding or removing carousel items.
     const dynamicCarousel = document.querySelector('.dynamic-carousel');
     const dynamicAdd = document.querySelector('#dynamic-add');
     const dynamicRemove = document.querySelector('#dynamic-remove');
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
     let colorIndex = 2;
 
     const addSlide = () => {
       const slide = document.createElement('sl-carousel-item');
       const color = colors[++colorIndex % colors.length];
       slide.innerText = `Slide ${dynamicCarousel.children.length + 1}`;
-      slide.style.setProperty('background', `var(--sl-color-${color}-200)`);
+      slide.style.setProperty('background', color);
       dynamicCarousel.appendChild(slide);
       dynamicRemove.disabled = false;
     };
@@ -649,7 +649,7 @@ const css = `
 
 const App = () => {
   const [slides, setSlides] = useState(['#204ed8', '#be133d', '#6e28d9']);
-  const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
+  const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
   const addSlide = () => {
     setSlides([...slides, getRandomColor()]);
