@@ -20,8 +20,7 @@ export default css`
     color: var(--wa-form-controls-color-text);
     line-height: var(--wa-form-controls-font-line-height);
     vertical-align: middle;
-    transition: var(--wa-transition-fast) color, var(--wa-transition-fast) border,
-      var(--wa-transition-fast) background-color;
+    transition: var(--wa-transition-fast) border, var(--wa-transition-fast) background-color;
     cursor: text;
   }
 

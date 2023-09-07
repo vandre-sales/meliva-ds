@@ -22,8 +22,7 @@ export default css`
     vertical-align: middle;
     overflow: hidden;
     cursor: text;
-    transition: var(--wa-transition-fast) color, var(--wa-transition-fast) border,
-      var(--wa-transition-fast) background-color;
+    transition: var(--wa-transition-fast) border, var(--wa-transition-fast) background-color;
   }
 
   /* Standard inputs */
@@ -68,7 +67,7 @@ export default css`
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
-    line-height: var(----wa-form-controls-font-line-height);
+    line-height: var(--wa-form-controls-font-line-height);
     color: var(--wa-form-controls-color-text);
     border: none;
     background: inherit;
@@ -230,7 +229,7 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: inherit;
-    color: var(--wa-form-controls-color-activated);
+    color: var(--wa-color-neutral-element-fill-vivid);
     border: none;
     background: none;
     padding: 0;
@@ -240,7 +239,7 @@ export default css`
 
   .input__clear:active,
   .input__password-toggle:active {
-    color: color-mix(in oklch, currentColor, black 12%);
+    color: color-mix(in oklch, var(--wa-color-neutral-element-fill-vivid), black 12%);
   }
 
   .input__clear:focus,

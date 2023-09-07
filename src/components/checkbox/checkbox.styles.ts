@@ -42,7 +42,7 @@ export default css`
     justify-content: center;
     width: var(--toggle-size);
     height: var(--toggle-size);
-    border: solid var(--wa-form-controls-border-width) var(--wa-form-controls-color-resting);
+    border: var(--wa-border-style) var(--wa-form-controls-border-width) var(--wa-form-controls-color-resting);
     border-radius: 2px;
     background-color: var(--wa-form-controls-background);
     color: var(--wa-form-controls-color-text);
@@ -80,14 +80,6 @@ export default css`
     background-color: var(--wa-color-brand-element-fill-vivid);
   }
 
-  /* Checked/indeterminate + hover */
-  .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__control:hover,
-  .checkbox.checkbox--indeterminate:not(.checkbox--disabled) .checkbox__control:hover {
-    color: var(--wa-color-brand-text-on-vivid);
-    border-color: color-mix(in oklch, var(--wa-color-brand-element-fill-vivid), white 6%);
-    background-color: color-mix(in oklch, var(--wa-color-brand-element-fill-vivid), white 6%);
-  }
-
   /* Checked/indeterminate + focus */
   .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control,
   .checkbox.checkbox--indeterminate:not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control {
@@ -111,6 +103,6 @@ export default css`
   :host([required]) .checkbox__label::after {
     content: var(--wa-form-controls-required-content);
     color: var(--wa-form-controls-required-content-color);
-    margin-inline-start: -0.2em;
+    margin-inline-start: var(--wa-form-controls-required-content-offset);
   }
 `;

@@ -62,8 +62,8 @@ function syncCheckboxes(changedTreeItem: SlTreeItem, initialSync = false) {
  *
  * @csspart base - The component's base wrapper.
  *
- * @cssproperty [--indent-size=var(--sl-spacing-medium)] - The size of the indentation for nested items.
- * @cssproperty [--indent-guide-color=var(--sl-color-neutral-200)] - The color of the indentation line.
+ * @cssproperty [--indent-size=var(--wa-spacing-m)] - The size of the indentation for nested items.
+ * @cssproperty [--indent-guide-color=var(--wa-color-surface-outline)] - The color of the indentation line.
  * @cssproperty [--indent-guide-offset=0] - The amount of vertical spacing to leave between the top and bottom of the
  *  indentation line's starting position.
  * @cssproperty [--indent-guide-style=solid] - The style of the indentation line, e.g. solid, dotted, dashed.

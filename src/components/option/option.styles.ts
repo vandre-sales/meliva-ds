@@ -28,13 +28,13 @@ export default css`
   }
 
   .option--hover:not(.option--current):not(.option--disabled) {
-    background-color: var(--wa-color-neutral-container-fill-muted);
+    background-color: var(--wa-color-neutral-element-fill-muted);
     color: var(--wa-color-neutral-text-on-muted);
   }
 
   .option--current,
   .option--current.option--disabled {
-    background-color: var(--wa-color-brand-container-fill-vivid);
+    background-color: var(--wa-color-brand-element-fill-vivid);
     color: var(--wa-color-brand-text-on-vivid);
     opacity: 1;
   }

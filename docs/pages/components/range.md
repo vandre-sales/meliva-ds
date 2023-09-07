@@ -112,8 +112,8 @@ You can customize the active and inactive portions of the track using the `--tra
 ```html:preview
 <sl-range
   style="
-  --track-color-active: var(--sl-color-primary-600);
-  --track-color-inactive: var(--sl-color-primary-100);
+  --track-color-active: var(--wa-color-brand-element-fill-vivid);
+  --track-color-inactive: var(--wa-color-brand-element-fill-muted);
 "
 ></sl-range>
 ```
@@ -126,8 +126,8 @@ import SlRange from '@shoelace-style/shoelace/dist/react/range';
 const App = () => (
   <SlRange
     style={{
-      '--track-color-active': 'var(--sl-color-primary-600)',
-      '--track-color-inactive': 'var(--sl-color-primary-200)'
+      '--track-color-active': 'var(--wa-color-brand-element-fill-vivid)',
+      '--track-color-inactive': 'var(--wa-color-brand-element-fill-muted)'
     }}
   />
 );
@@ -144,8 +144,8 @@ You can customize the initial offset of the active track using the `--track-acti
   min="-100"
   max="100"
   style="
-  --track-color-active: var(--sl-color-primary-600);
-  --track-color-inactive: var(--sl-color-primary-100);
+  --track-color-active: var(--wa-color-brand-element-fill-vivid);
+  --track-color-inactive: var(--wa-color-brand-element-fill-muted);
   --track-active-offset: 50%;
 "
 ></sl-range>
@@ -161,8 +161,8 @@ const App = () => (
     min={-100}
     max={100}
     style={{
-      '--track-color-active': 'var(--sl-color-primary-600)',
-      '--track-color-inactive': 'var(--sl-color-primary-200)',
+      '--track-color-active': 'var(--wa-color-brand-element-fill-vivid)',
+      '--track-color-inactive': 'var(--wa-color-brand-element-fill-muted)',
       '--track-active-offset': '50%'
     }}
   />

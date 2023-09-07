@@ -8,7 +8,7 @@ meta:
 
 ## Focus Rings
 
-Focus ring tokens control the appearance of focus rings. Note that form inputs use `--sl-input-focus-ring-*` tokens instead.
+Focus ring tokens control the appearance of focus rings.
 
 | Token                    | Value                                                      |
 | ------------------------ | ---------------------------------------------------------- |

@@ -30,7 +30,7 @@ export default css`
 
   :host([required]) .form-control--has-label .form-control__label::after {
     content: var(--wa-form-controls-required-content);
-    margin-inline-start: var(--wa-space-2xs);
+    margin-inline-start: var(--wa-form-controls-required-content-offset);
     color: var(--wa-form-controls-required-content-color);
   }
 
