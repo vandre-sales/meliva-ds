@@ -1,6 +1,6 @@
 ---
 meta:
-  title: 'Shoelace: A forward-thinking library of web components.'
+  title: 'Web Awesome: A forward-thinking library of web components.'
   description: Hand-crafted custom elements for any occasion.
 toc: false
 ---
@@ -9,7 +9,7 @@ toc: false
 <div class="splash-start">
 {% include 'workmark.njk' %}
 
-# <sl-visually-hidden>Shoelace:</sl-visually-hidden> A forward-thinking library of web components.
+# <wa-visually-hidden>Web Awesome:</wa-visually-hidden> A forward-thinking library of web components.
 
 - Works with all frameworks 🧩
 - Works with CDNs 🚛
@@ -44,18 +44,18 @@ Add the following code to your page.
 
 <!-- prettier-ignore -->
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/themes/light.css" />
-<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/shoelace-autoloader.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/themes/default.css" />
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/autoloader.js"></script>
 ```
 
-Now you have access to all of Shoelace's components! Try adding a button:
+Now you have access to all of Web Awesome's components! Try adding a button:
 
 ```html:preview:expanded:no-codepen
-<sl-button>Click me</sl-button>
+<wa-button>Click me</wa-button>
 ```
 
 :::tip
-This will activate Shoelace's experimental autoloader, which registers components on the fly as you use them. To learn more about it, or for other ways to install Shoelace, refer to the [installation instructions](getting-started/installation).
+This will activate Web Awesome's experimental autoloader, which registers components on the fly as you use them. To learn more about it, or for other ways to install Web Awesome, refer to the [installation instructions](getting-started/installation).
 :::
 
 ## New to Web Components?
@@ -72,13 +72,13 @@ Unfortunately, _framework-specific_ components fail us in a number of ways:
 
 Web components solve these problems. They're [supported by all modern browsers](https://caniuse.com/#feat=custom-elementsv1), they're framework-agnostic, and they're [part of the standard](https://developer.mozilla.org/en-US/docs/Web/Web_Components), so we know they'll be supported for many years to come.
 
-This is the technology that Shoelace is built on.
+This is the technology that Web Awesome is built on.
 
 ## What Problem Does This Solve?
 
-Shoelace provides a collection of professionally designed, highly customizable UI components built on a framework agnostic technology. Why spend hundreds of hours (or more) building a design system from scratch? Why make a component library that only works with one framework?
+Web Awesome provides a collection of professionally designed, highly customizable UI components built on a framework agnostic technology. Why spend hundreds of hours (or more) building a design system from scratch? Why make a component library that only works with one framework?
 
-With Shoelace, you can:
+With Web Awesome, you can:
 
 - Start building things faster (no need to roll your own buttons)
 - Build multiple apps with different frameworks that all share the same UI components
@@ -86,15 +86,15 @@ With Shoelace, you can:
 - Incrementally adopt components as needed (no need to ditch your framework)
 - Upgrade or switch frameworks without rebuilding foundational components
 
-If your organization is looking to build a design system, [Shoelace will save you thousands of dollars](https://medium.com/eightshapes-llc/and-you-thought-buttons-were-easy-26eb5b5c1871).\* All the foundational components you need are right here, ready to be customized for your brand. And since it's built on web standards, browsers will continue to support it for many years to come.
+If your organization is looking to build a design system, [Web Awesome will save you thousands of dollars](https://medium.com/eightshapes-llc/and-you-thought-buttons-were-easy-26eb5b5c1871).\* All the foundational components you need are right here, ready to be customized for your brand. And since it's built on web standards, browsers will continue to support it for many years to come.
 
-Whether you use Shoelace as a starting point for your organization's design system or for a fun personal project, there's no limit to what you can do with it.
+Whether you use Web Awesome as a starting point for your organization's design system or for a fun personal project, there's no limit to what you can do with it.
 
 <small>\*Please consider giving back some of what you save by [supporting this project with a sponsorship](https://github.com/sponsors/claviska).</small>
 
 ## Browser Support
 
-Shoelace is tested in the latest two versions of the following browsers.
+Web Awesome is tested in the latest two versions of the following browsers.
 
 <img src="/assets/images/chrome.png" alt="Chrome" width="64" height="64">
 <img src="/assets/images/edge.png" alt="Edge" width="64" height="64">
@@ -104,11 +104,11 @@ Shoelace is tested in the latest two versions of the following browsers.
 
 Critical bug fixes in earlier versions will be addressed based on their severity and impact.
 
-If you need to support IE11 or pre-Chromium Edge, this library isn't for you. Although web components can (to some degree) be polyfilled for legacy browsers, supporting them is outside the scope of this project. If you're using Shoelace in such a browser, you're gonna have a bad time. ⛷
+If you need to support IE11 or pre-Chromium Edge, this library isn't for you. Although web components can (to some degree) be polyfilled for legacy browsers, supporting them is outside the scope of this project. If you're using Web Awesome in such a browser, you're gonna have a bad time. ⛷
 
 ## Attribution
 
-Special thanks to the following projects and individuals that help make Shoelace possible.
+Special thanks to the following projects and individuals that help make Web Awesome possible.
 
 - Components are built with [Lit](https://lit.dev/)
 - Component metadata is generated by the [Custom Elements Manifest Analyzer](https://github.com/open-wc/custom-elements-manifest)
@@ -120,4 +120,3 @@ Special thanks to the following projects and individuals that help make Shoelace
 - Positioning of dropdowns, tooltips, et al is handled by [Floating UI](https://floating-ui.com/)
 - Animations are courtesy of [animate.css](https://animate.style/)
 - Search is powered by [Lunr](https://lunrjs.com/)
-- The Shoelace logo was designed with a single shoelace by [Adam K Olson](https://twitter.com/adamkolson)

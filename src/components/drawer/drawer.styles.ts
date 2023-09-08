@@ -107,8 +107,8 @@ export default css`
     padding: 0 var(--header-spacing);
   }
 
-  .drawer__header-actions sl-icon-button,
-  .drawer__header-actions ::slotted(sl-icon-button) {
+  .drawer__header-actions wa-icon-button,
+  .drawer__header-actions ::slotted(wa-icon-button) {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -128,7 +128,7 @@ export default css`
     padding: var(--footer-spacing);
   }
 
-  .drawer__footer ::slotted(sl-button:not(:last-of-type)) {
+  .drawer__footer ::slotted(wa-button:not(:last-of-type)) {
     margin-inline-end: var(--wa-spacing-xs);
   }
 

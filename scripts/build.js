@@ -97,9 +97,9 @@ async function buildTheSource() {
       // NOTE: Entry points must be mapped in package.json > exports, otherwise users won't be able to import them!
       //
       // The whole shebang
-      './src/shoelace.ts',
+      './src/webawesome.ts',
       // The auto-loader
-      './src/shoelace-autoloader.ts',
+      './src/autoloader.ts',
       // Components
       ...(await globby('./src/components/**/!(*.(style|test)).ts')),
       // Translations
@@ -128,7 +128,7 @@ async function buildTheSource() {
     splitting: true,
     plugins: [
       replace({
-        __SHOELACE_VERSION__: shoelaceVersion
+        __WEBAWESOME_VERSION__: shoelaceVersion
       })
     ]
   };
@@ -252,7 +252,7 @@ if (serve) {
     startPath: '/',
     port,
     logLevel: 'silent',
-    logPrefix: '[shoelace]',
+    logPrefix: '[webawesome]',
     logFileChanges: true,
     notify: false,
     single: false,

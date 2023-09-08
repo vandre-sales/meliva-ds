@@ -17,9 +17,9 @@ export function lockBodyScrolling(lockingEl: HTMLElement) {
 
   // When the first lock is created, set the scroll lock size to match the scrollbar's width to prevent content from
   // shifting. We only do this on the first lock because the scrollbar width will measure zero after overflow is hidden.
-  if (!document.body.classList.contains('sl-scroll-lock')) {
-    const scrollbarWidth = getScrollbarWidth(); // must be measured before the `sl-scroll-lock` class is applied
-    document.body.classList.add('sl-scroll-lock');
+  if (!document.body.classList.contains('wa-scroll-lock')) {
+    const scrollbarWidth = getScrollbarWidth(); // must be measured before the `wa-scroll-lock` class is applied
+    document.body.classList.add('wa-scroll-lock');
     document.body.style.setProperty('--wa-scroll-lock-size', `${scrollbarWidth}px`);
   }
 }
@@ -31,7 +31,7 @@ export function unlockBodyScrolling(lockingEl: HTMLElement) {
   locks.delete(lockingEl);
 
   if (locks.size === 0) {
-    document.body.classList.remove('sl-scroll-lock');
+    document.body.classList.remove('wa-scroll-lock');
     document.body.style.removeProperty('--wa-scroll-lock-size');
   }
 }

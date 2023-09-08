@@ -107,7 +107,7 @@ export default css`
     order: 2;
   }
 
-  .tab-group--top ::slotted(sl-tab-panel) {
+  .tab-group--top ::slotted(wa-tab-panel) {
     --padding: var(--wa-space-m) 0;
   }
 
@@ -153,7 +153,7 @@ export default css`
     order: 1;
   }
 
-  .tab-group--bottom ::slotted(sl-tab-panel) {
+  .tab-group--bottom ::slotted(wa-tab-panel) {
     --padding: var(--wa-space-m) 0;
   }
 
@@ -190,7 +190,7 @@ export default css`
     order: 2;
   }
 
-  .tab-group--start ::slotted(sl-tab-panel) {
+  .tab-group--start ::slotted(wa-tab-panel) {
     --padding: 0 var(--wa-space-m);
   }
 
@@ -227,7 +227,7 @@ export default css`
     order: 1;
   }
 
-  .tab-group--end ::slotted(sl-tab-panel) {
+  .tab-group--end ::slotted(wa-tab-panel) {
     --padding: 0 var(--wa-space-m);
   }
 `;

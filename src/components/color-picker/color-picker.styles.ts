@@ -191,16 +191,16 @@ export default css`
     padding: 0 var(--wa-space-s) var(--wa-space-s) var(--wa-space-s);
   }
 
-  .color-picker__user-input sl-input {
+  .color-picker__user-input wa-input {
     min-width: 0; /* fix input width in Safari */
     flex: 1 1 auto;
   }
 
-  .color-picker__user-input sl-button-group {
+  .color-picker__user-input wa-button-group {
     margin-left: var(--wa-space-s);
   }
 
-  .color-picker__user-input sl-button {
+  .color-picker__user-input wa-button {
     min-width: 3.25rem;
     max-width: 3.25rem;
     font-size: 1rem;

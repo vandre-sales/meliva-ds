@@ -14,7 +14,7 @@ export default css`
     outline: none;
   }
 
-  slot:not([name])::slotted(sl-icon) {
+  slot:not([name])::slotted(wa-icon) {
     margin-inline-end: var(--wa-space-xs);
   }
 

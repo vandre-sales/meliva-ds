@@ -47,7 +47,7 @@ export default css`
   }
 
   /* When users slot a menu, make sure it conforms to the popup's auto-size */
-  ::slotted(sl-menu) {
+  ::slotted(wa-menu) {
     max-width: var(--auto-size-available-width) !important;
     max-height: var(--auto-size-available-height) !important;
   }

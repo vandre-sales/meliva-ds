@@ -33,14 +33,14 @@ export default {
   plugins: [
     // Append package data
     {
-      name: 'shoelace-package-data',
+      name: 'wa-package-data',
       packageLinkPhase({ customElementsManifest }) {
         customElementsManifest.package = { name, description, version, author, homepage, license };
       }
     },
     // Infer tag names because we no longer use @customElement decorators.
     {
-      name: 'shoelace-infer-tag-names',
+      name: 'wa-infer-tag-names',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -68,7 +68,7 @@ export default {
     },
     // Parse custom jsDoc tags
     {
-      name: 'shoelace-custom-tags',
+      name: 'wa-custom-tags',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -138,7 +138,7 @@ export default {
       }
     },
     {
-      name: 'shoelace-react-event-names',
+      name: 'wa-react-event-names',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -156,7 +156,7 @@ export default {
       }
     },
     {
-      name: 'shoelace-translate-module-paths',
+      name: 'wa-translate-module-paths',
       packageLinkPhase({ customElementsManifest }) {
         customElementsManifest?.modules?.forEach(mod => {
           //

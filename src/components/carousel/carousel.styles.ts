@@ -84,7 +84,7 @@ export default css`
     scroll-snap-type: unset;
   }
 
-  :host([vertical]) ::slotted(sl-carousel-item) {
+  :host([vertical]) ::slotted(wa-carousel-item) {
     height: 100%;
   }
 

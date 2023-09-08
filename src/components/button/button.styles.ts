@@ -84,7 +84,7 @@ export default css`
     display: inline-block;
   }
 
-  .button__label::slotted(sl-icon) {
+  .button__label::slotted(wa-icon) {
     vertical-align: -2px;
   }
 
@@ -366,7 +366,7 @@ export default css`
     visibility: hidden;
   }
 
-  .button--loading sl-spinner {
+  .button--loading wa-spinner {
     --indicator-color: currentColor;
     --track-color: color-mix(in oklch, currentColor, transparent 90%);
     position: absolute;
@@ -381,7 +381,7 @@ export default css`
    * Badges
    */
 
-  .button ::slotted(sl-badge) {
+  .button ::slotted(wa-badge) {
     position: absolute;
     top: 0;
     right: 0;
@@ -389,7 +389,7 @@ export default css`
     pointer-events: none;
   }
 
-  .button--rtl ::slotted(sl-badge) {
+  .button--rtl ::slotted(wa-badge) {
     right: auto;
     left: 0;
     translate: -50% -50%;
@@ -472,27 +472,27 @@ export default css`
    * buttons and we style them here instead.
    */
 
-  :host(.sl-button-group__button--first:not(.sl-button-group__button--last)) .button {
+  :host(.wa-button-group__button--first:not(.wa-button-group__button--last)) .button {
     border-start-end-radius: 0;
     border-end-end-radius: 0;
   }
 
-  :host(.sl-button-group__button--inner) .button {
+  :host(.wa-button-group__button--inner) .button {
     border-radius: 0;
   }
 
-  :host(.sl-button-group__button--last:not(.sl-button-group__button--first)) .button {
+  :host(.wa-button-group__button--last:not(.wa-button-group__button--first)) .button {
     border-start-start-radius: 0;
     border-end-start-radius: 0;
   }
 
   /* All except the first */
-  :host(.sl-button-group__button:not(.sl-button-group__button--first)) {
+  :host(.wa-button-group__button:not(.wa-button-group__button--first)) {
     margin-inline-start: calc(-1 * var(--wa-border-width-thin));
   }
 
   /* Add a visual separator between solid buttons */
-  :host(.sl-button-group__button:not(.sl-button-group__button--first, .sl-button-group__button--radio):not(:hover))
+  :host(.wa-button-group__button:not(.wa-button-group__button--first, .wa-button-group__button--radio):not(:hover))
     .button:after {
     content: '';
     position: absolute;
@@ -504,13 +504,13 @@ export default css`
   }
 
   /* Bump hovered, focused, and checked buttons up so their focus ring isn't clipped */
-  :host(.sl-button-group__button--hover) {
+  :host(.wa-button-group__button--hover) {
     z-index: 1;
   }
 
   /* Focus and checked are always on top */
-  :host(.sl-button-group__button--focus),
-  :host(.sl-button-group__button[checked]) {
+  :host(.wa-button-group__button--focus),
+  :host(.wa-button-group__button[checked]) {
     z-index: 2;
   }
 `;

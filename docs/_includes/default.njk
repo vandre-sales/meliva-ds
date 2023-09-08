@@ -2,7 +2,7 @@
 <html
   lang="en"
   data-layout="{{ layout }}"
-  data-shoelace-version="{{ meta.version }}"
+  data-wa-version="{{ meta.version }}"
 >
   <head>
     {# Metadata #}
@@ -33,9 +33,9 @@
     <meta property="og:description" content="{{ meta.description }}" />
     <meta property="og:image" content="{{ assetUrl(meta.image, true) }}" />
 
-    {# Shoelace #}
+    {# Web Awesome #}
     <link rel="stylesheet" href="/dist/themes/default.css" />
-    <script type="module" src="/dist/shoelace-autoloader.js"></script>
+    <script type="module" src="/dist/autoloader.js"></script>
 
     {# Web Fonts #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,19 +74,19 @@
       </header>
 
       <div class="sidebar-buttons">
-        <sl-button size="small" class="repo-button repo-button--github" href="https://github.com/shoelace-style/shoelace" target="_blank">
-          <sl-icon slot="prefix" name="github"></sl-icon> Code
-        </sl-button>
-        <sl-button size="small" class="repo-button repo-button--star" href="https://github.com/shoelace-style/shoelace/stargazers" target="_blank">
-          <sl-icon slot="prefix" name="star-fill"></sl-icon> Star
-        </sl-button>
-        <sl-button size="small" class="repo-button repo-button--twitter" href="https://twitter.com/shoelace_style" target="_blank">
-          <sl-icon slot="prefix" name="twitter"></sl-icon> Follow
-        </sl-button>
+        <wa-button size="small" class="repo-button repo-button--github" href="https://github.com/shoelace-style/shoelace" target="_blank">
+          <wa-icon slot="prefix" name="github"></wa-icon> Code
+        </wa-button>
+        <wa-button size="small" class="repo-button repo-button--star" href="https://github.com/shoelace-style/shoelace/stargazers" target="_blank">
+          <wa-icon slot="prefix" name="star-fill"></wa-icon> Star
+        </wa-button>
+        <wa-button size="small" class="repo-button repo-button--twitter" href="https://twitter.com/shoelace_style" target="_blank">
+          <wa-icon slot="prefix" name="twitter"></wa-icon> Follow
+        </wa-button>
       </div>
 
       <button class="search-box" type="button" title="Press / to search" aria-label="Search" data-plugin="search">
-        <sl-icon name="search"></sl-icon>
+        <wa-icon name="search"></wa-icon>
         <span>Search</span>
       </button>
 

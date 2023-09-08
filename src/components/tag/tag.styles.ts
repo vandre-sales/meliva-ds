@@ -32,7 +32,7 @@ export default css`
     color: var(--wa-color-brand-text-on-muted);
   }
 
-  .tag--brand:active > sl-icon-button {
+  .tag--brand:active > wa-icon-button {
     color: var(--wa-color-brand-text-on-muted);
   }
 
@@ -42,7 +42,7 @@ export default css`
     color: var(--wa-color-success-text-on-muted);
   }
 
-  .tag--success:active > sl-icon-button {
+  .tag--success:active > wa-icon-button {
     color: var(--wa-color-success-text-on-muted);
   }
 
@@ -52,7 +52,7 @@ export default css`
     color: var(--wa-color-neutral-text-on-muted);
   }
 
-  .tag--neutral:active > sl-icon-button {
+  .tag--neutral:active > wa-icon-button {
     color: var(--wa-color-neutral-text-on-muted);
   }
 
@@ -62,7 +62,7 @@ export default css`
     color: var(--wa-color-warning-text-on-muted);
   }
 
-  .tag--warning:active > sl-icon-button {
+  .tag--warning:active > wa-icon-button {
     color: var(--wa-color-warning-text-on-muted);
   }
 
@@ -72,7 +72,7 @@ export default css`
     color: var(--wa-color-danger-text-on-muted);
   }
 
-  .tag--danger:active > sl-icon-button {
+  .tag--danger:active > wa-icon-button {
     color: var(--wa-color-danger-text-on-muted);
   }
 

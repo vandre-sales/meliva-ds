@@ -15,7 +15,7 @@ export default css`
     overscroll-behavior: none;
   }
 
-  ::slotted(sl-divider) {
+  ::slotted(wa-divider) {
     --spacing: var(--wa-space-xs);
   }
 `;

@@ -118,8 +118,8 @@ export default css`
     cursor: default;
   }
 
-  .input__prefix ::slotted(sl-icon),
-  .input__suffix ::slotted(sl-icon) {
+  .input__prefix ::slotted(wa-icon),
+  .input__suffix ::slotted(wa-icon) {
     color: var(--wa-color-neutral-text-on-surface);
   }
 

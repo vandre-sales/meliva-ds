@@ -96,13 +96,13 @@ export default css`
   }
 
   /* Add elevation and z-index to submenus */
-  sl-popup::part(popup) {
+  wa-popup::part(popup) {
     box-shadow: var(--wa-shadow-level-3);
     z-index: var(--wa-z-index-dropdown);
     margin-left: var(--submenu-offset);
   }
 
-  .menu-item--rtl sl-popup::part(popup) {
+  .menu-item--rtl wa-popup::part(popup) {
     margin-left: calc(-1 * var(--submenu-offset));
   }
 

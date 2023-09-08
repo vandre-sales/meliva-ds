@@ -6,7 +6,7 @@ layout: component
 ---
 
 ```html:preview
-<sl-split-panel>
+<wa-split-panel>
   <div
     slot="start"
     style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
@@ -19,16 +19,16 @@ layout: component
   >
     End
   </div>
-</sl-split-panel>
+</wa-split-panel>
 ```
 
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
 
 const App = () => (
-  <SlSplitPanel>
+  <WaSplitPanel>
     <div
       slot="start"
       style={{
@@ -53,7 +53,7 @@ const App = () => (
     >
       End
     </div>
-  </SlSplitPanel>
+  </WaSplitPanel>
 );
 ```
 
@@ -66,7 +66,7 @@ const App = () => (
 To set the initial position, use the `position` attribute. If no position is provided, it will default to 50% of the available space.
 
 ```html:preview
-<sl-split-panel position="75">
+<wa-split-panel position="75">
   <div
     slot="start"
     style="
@@ -93,7 +93,7 @@ To set the initial position, use the `position` attribute. If no position is pro
   >
     End
   </div>
-</sl-split-panel>
+</wa-split-panel>
 ```
 
 ### Initial Position in Pixels
@@ -101,7 +101,7 @@ To set the initial position, use the `position` attribute. If no position is pro
 To set the initial position in pixels instead of a percentage, use the `position-in-pixels` attribute.
 
 ```html:preview
-<sl-split-panel position-in-pixels="150">
+<wa-split-panel position-in-pixels="150">
   <div
     slot="start"
     style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
@@ -114,16 +114,16 @@ To set the initial position in pixels instead of a percentage, use the `position
   >
     End
   </div>
-</sl-split-panel>
+</wa-split-panel>
 ```
 
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
 
 const App = () => (
-  <SlSplitPanel position="200">
+  <WaSplitPanel position="200">
     <div
       slot="start"
       style={{
@@ -148,7 +148,7 @@ const App = () => (
     >
       End
     </div>
-  </SlSplitPanel>
+  </WaSplitPanel>
 );
 ```
 
@@ -159,7 +159,7 @@ const App = () => (
 Add the `vertical` attribute to render the split panel in a vertical orientation where the start and end panels are stacked. You also need to set a height when using the vertical orientation.
 
 ```html:preview
-<sl-split-panel vertical style="height: 400px;">
+<wa-split-panel vertical style="height: 400px;">
   <div
     slot="start"
     style="height: 100%; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
@@ -172,16 +172,16 @@ Add the `vertical` attribute to render the split panel in a vertical orientation
   >
     End
   </div>
-</sl-split-panel>
+</wa-split-panel>
 ```
 
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
 
 const App = () => (
-  <SlSplitPanel vertical style={{ height: '400px' }}>
+  <WaSplitPanel vertical style={{ height: '400px' }}>
     <div
       slot="start"
       style={{
@@ -206,7 +206,7 @@ const App = () => (
     >
       End
     </div>
-  </SlSplitPanel>
+  </WaSplitPanel>
 );
 ```
 
@@ -218,7 +218,7 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
 
 ```html:preview
 <div class="split-panel-snapping">
-  <sl-split-panel snap="100px 50%">
+  <wa-split-panel snap="100px 50%">
     <div
       slot="start"
       style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
@@ -231,7 +231,7 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
     >
       End
     </div>
-  </sl-split-panel>
+  </wa-split-panel>
 
   <div class="split-panel-snapping-dots"></div>
 </div>
@@ -266,7 +266,7 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
 
 const css = `
   .split-panel-snapping {
@@ -297,7 +297,7 @@ const css = `
 const App = () => (
   <>
     <div className="split-panel-snapping">
-      <SlSplitPanel snap="100px 50%">
+      <WaSplitPanel snap="100px 50%">
         <div
           slot="start"
           style={{
@@ -322,7 +322,7 @@ const App = () => (
         >
           End
         </div>
-      </SlSplitPanel>
+      </WaSplitPanel>
 
       <div className="split-panel-snapping-dots" />
     </div>
@@ -339,7 +339,7 @@ const App = () => (
 Add the `disabled` attribute to prevent the divider from being repositioned.
 
 ```html:preview
-<sl-split-panel disabled>
+<wa-split-panel disabled>
   <div
     slot="start"
     style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
@@ -352,16 +352,16 @@ Add the `disabled` attribute to prevent the divider from being repositioned.
   >
     End
   </div>
-</sl-split-panel>
+</wa-split-panel>
 ```
 
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
 
 const App = () => (
-  <SlSplitPanel disabled>
+  <WaSplitPanel disabled>
     <div
       slot="start"
       style={{
@@ -386,7 +386,7 @@ const App = () => (
     >
       End
     </div>
-  </SlSplitPanel>
+  </WaSplitPanel>
 );
 ```
 
@@ -400,7 +400,7 @@ Try resizing the example below with each option and notice how the panels respon
 
 ```html:preview
 <div class="split-panel-primary">
-  <sl-split-panel>
+  <wa-split-panel>
     <div
       slot="start"
       style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
@@ -413,21 +413,21 @@ Try resizing the example below with each option and notice how the panels respon
     >
       End
     </div>
-  </sl-split-panel>
+  </wa-split-panel>
 
-  <sl-select label="Primary Panel" value="" style="max-width: 200px; margin-top: 1rem;">
-    <sl-option value="">None</sl-option>
-    <sl-option value="start">Start</sl-option>
-    <sl-option value="end">End</sl-option>
-  </sl-select>
+  <wa-select label="Primary Panel" value="" style="max-width: 200px; margin-top: 1rem;">
+    <wa-option value="">None</wa-option>
+    <wa-option value="start">Start</wa-option>
+    <wa-option value="end">End</wa-option>
+  </wa-select>
 </div>
 
 <script>
   const container = document.querySelector('.split-panel-primary');
-  const splitPanel = container.querySelector('sl-split-panel');
-  const select = container.querySelector('sl-select');
+  const splitPanel = container.querySelector('wa-split-panel');
+  const select = container.querySelector('wa-select');
 
-  select.addEventListener('sl-change', () => (splitPanel.primary = select.value));
+  select.addEventListener('wa-change', () => (splitPanel.primary = select.value));
 </script>
 ```
 
@@ -435,16 +435,16 @@ Try resizing the example below with each option and notice how the panels respon
 
 ```jsx:react
 import { useState } from 'react';
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaSelect from '@shoelace-style/shoelace/dist/react/select';
+import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
 
 const App = () => {
   const [primary, setPrimary] = useState('');
 
   return (
     <>
-      <SlSplitPanel primary={primary}>
+      <WaSplitPanel primary={primary}>
         <div
           slot="start"
           style={{
@@ -469,18 +469,18 @@ const App = () => {
         >
           End
         </div>
-      </SlSplitPanel>
+      </WaSplitPanel>
 
-      <SlSelect
+      <WaSelect
         label="Primary Panel"
         value={primary}
         style={{ maxWidth: '200px', marginTop: '1rem' }}
-        onSlChange={event => setPrimary(event.target.value)}
+        onWaChange={event => setPrimary(event.target.value)}
       >
-        <SlMenuItem value="">None</SlMenuItem>
-        <SlMenuItem value="start">Start</SlMenuItem>
-        <SlMenuItem value="end">End</SlMenuItem>
-      </SlSelect>
+        <WaMenuItem value="">None</WaMenuItem>
+        <WaMenuItem value="start">Start</WaMenuItem>
+        <WaMenuItem value="end">End</WaMenuItem>
+      </WaSelect>
     </>
   );
 };
@@ -495,7 +495,7 @@ To set a minimum or maximum size of the primary panel, use the `--min` and `--ma
 This examples demonstrates how you can ensure both panels are at least 150px using `--min`, `--max`, and the `calc()` function.
 
 ```html:preview
-<sl-split-panel style="--min: 150px; --max: calc(100% - 150px);">
+<wa-split-panel style="--min: 150px; --max: calc(100% - 150px);">
   <div
     slot="start"
     style="height: 200px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden;"
@@ -508,16 +508,16 @@ This examples demonstrates how you can ensure both panels are at least 150px usi
   >
     End
   </div>
-</sl-split-panel>
+</wa-split-panel>
 ```
 
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
 
 const App = () => (
-  <SlSplitPanel style={{ '--min': '150px', '--max': 'calc(100% - 150px)' }}>
+  <WaSplitPanel style={{ '--min': '150px', '--max': 'calc(100% - 150px)' }}>
     <div
       slot="start"
       style={{
@@ -542,7 +542,7 @@ const App = () => (
     >
       End
     </div>
-  </SlSplitPanel>
+  </WaSplitPanel>
 );
 ```
 
@@ -553,7 +553,7 @@ const App = () => (
 Create complex layouts that can be repositioned independently by nesting split panels.
 
 ```html:preview
-<sl-split-panel>
+<wa-split-panel>
   <div
     slot="start"
     style="height: 400px; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden"
@@ -561,7 +561,7 @@ Create complex layouts that can be repositioned independently by nesting split p
     Start
   </div>
   <div slot="end">
-    <sl-split-panel vertical style="height: 400px;">
+    <wa-split-panel vertical style="height: 400px;">
       <div
         slot="start"
         style="height: 100%; background: var(--wa-color-surface-lowered); display: flex; align-items: center; justify-content: center; overflow: hidden"
@@ -574,18 +574,18 @@ Create complex layouts that can be repositioned independently by nesting split p
       >
         Bottom
       </div>
-    </sl-split-panel>
+    </wa-split-panel>
   </div>
-</sl-split-panel>
+</wa-split-panel>
 ```
 
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
 
 const App = () => (
-  <SlSplitPanel>
+  <WaSplitPanel>
     <div
       slot="start"
       style={{
@@ -599,7 +599,7 @@ const App = () => (
       Start
     </div>
     <div slot="end">
-      <SlSplitPanel vertical style={{ height: '400px' }}>
+      <WaSplitPanel vertical style={{ height: '400px' }}>
         <div
           slot="start"
           style={{
@@ -624,9 +624,9 @@ const App = () => (
         >
           End
         </div>
-      </SlSplitPanel>
+      </WaSplitPanel>
     </div>
-  </SlSplitPanel>
+  </WaSplitPanel>
 );
 ```
 
@@ -637,8 +637,8 @@ const App = () => (
 You can target the `divider` part to apply CSS properties to the divider. To add a custom handle, slot an icon into the `divider` slot. When customizing the divider, make sure to think about focus styles for keyboard users.
 
 ```html:preview
-<sl-split-panel style="--divider-width: 20px;">
-  <sl-icon slot="divider" name="grip-vertical"></sl-icon>
+<wa-split-panel style="--divider-width: 20px;">
+  <wa-icon slot="divider" name="grip-vertical"></wa-icon>
   <div
     slot="start"
     style="
@@ -665,18 +665,18 @@ You can target the `divider` part to apply CSS properties to the divider. To add
   >
     End
   </div>
-</sl-split-panel>
+</wa-split-panel>
 ```
 
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
 
 const App = () => (
-  <SlSplitPanel style={{ '--divider-width': '20px' }}>
-    <SlIcon slot="divider" name="grip-vertical" />
+  <WaSplitPanel style={{ '--divider-width': '20px' }}>
+    <WaIcon slot="divider" name="grip-vertical" />
     <div
       slot="start"
       style={{
@@ -701,7 +701,7 @@ const App = () => (
     >
       End
     </div>
-  </SlSplitPanel>
+  </WaSplitPanel>
 );
 ```
 
@@ -711,8 +711,8 @@ Here's a more elaborate example that changes the divider's color and width and a
 
 ```html:preview
 <div class="split-panel-divider">
-  <sl-split-panel>
-    <sl-icon slot="divider" name="grip-vertical"></sl-icon>
+  <wa-split-panel>
+    <wa-icon slot="divider" name="grip-vertical"></wa-icon>
     <div
       slot="start"
       style="
@@ -739,19 +739,19 @@ Here's a more elaborate example that changes the divider's color and width and a
     >
       End
     </div>
-  </sl-split-panel>
+  </wa-split-panel>
 </div>
 
 <style>
-  .split-panel-divider sl-split-panel {
+  .split-panel-divider wa-split-panel {
     --divider-width: 2px;
   }
 
-  .split-panel-divider sl-split-panel::part(divider) {
+  .split-panel-divider wa-split-panel::part(divider) {
     background-color: var(--wa-color-red-50);
   }
 
-  .split-panel-divider sl-icon {
+  .split-panel-divider wa-icon {
     position: absolute;
     border-radius: var(--wa-corners-3x);
     background: var(--wa-color-red-50);
@@ -759,11 +759,11 @@ Here's a more elaborate example that changes the divider's color and width and a
     padding: 0.5rem 0.125rem;
   }
 
-  .split-panel-divider sl-split-panel::part(divider):focus-visible {
+  .split-panel-divider wa-split-panel::part(divider):focus-visible {
     background-color: var(--wa-color-blue-50);
   }
 
-  .split-panel-divider sl-split-panel:focus-within sl-icon {
+  .split-panel-divider wa-split-panel:focus-within wa-icon {
     background-color: var(--wa-color-blue-50);
     color: var(--wa-color-white);
   }
@@ -773,19 +773,19 @@ Here's a more elaborate example that changes the divider's color and width and a
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
 
 const css = `
-  .split-panel-divider sl-split-panel {
+  .split-panel-divider wa-split-panel {
     --divider-width: 2px;
   }
 
-  .split-panel-divider sl-split-panel::part(divider) {
+  .split-panel-divider wa-split-panel::part(divider) {
     background-color: var(--wa-color-red-50);
   }
 
-  .split-panel-divider sl-icon {
+  .split-panel-divider wa-icon {
     position: absolute;
     border-radius: var(--wa-corners-half);
     background: var(--wa-color-red-50);
@@ -793,11 +793,11 @@ const css = `
     padding: .5rem .125rem;
   }
 
-  .split-panel-divider sl-split-panel::part(divider):focus-visible {
+  .split-panel-divider wa-split-panel::part(divider):focus-visible {
     background-color: var(--wa-color-blue-50);
   }
 
-  .split-panel-divider sl-split-panel:focus-within sl-icon {
+  .split-panel-divider wa-split-panel:focus-within wa-icon {
     background-color: var(--wa-color-blue-50);
     color: var(--wa-color-white);
   }
@@ -806,8 +806,8 @@ const css = `
 const App = () => (
   <>
     <div className="split-panel-divider">
-      <SlSplitPanel>
-        <SlIcon slot="divider" name="grip-vertical" />
+      <WaSplitPanel>
+        <WaIcon slot="divider" name="grip-vertical" />
         <div
           slot="start"
           style={{
@@ -832,7 +832,7 @@ const App = () => (
         >
           End
         </div>
-      </SlSplitPanel>
+      </WaSplitPanel>
     </div>
 
     <style>{css}</style>

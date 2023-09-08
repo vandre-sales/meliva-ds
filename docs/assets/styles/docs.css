@@ -1094,15 +1094,15 @@ html.sidebar-open #menu-toggle {
   flex: 1 1 auto;
 }
 
-.repo-button--github sl-icon {
+.repo-button--github wa-icon {
   color: var(--wa-color-white);
 }
 
-.repo-button--star sl-icon {
+.repo-button--star wa-icon {
   color: var(--wa-color-yellow-80);
 }
 
-.repo-button--twitter sl-icon {
+.repo-button--twitter wa-icon {
   color: var(--wa-color-blue-70);
 }
 

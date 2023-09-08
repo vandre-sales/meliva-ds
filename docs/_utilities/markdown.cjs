@@ -32,11 +32,11 @@ markdown.use(markdownItReplaceIt);
     render: function (tokens, idx) {
       if (tokens[idx].nesting === 1) {
         return `
-          <sl-alert class="callout" variant="${variant}" open>
-            <sl-icon slot="icon" name="${icon}"></sl-icon>
+          <wa-alert class="callout" variant="${variant}" open>
+            <wa-icon slot="icon" name="${icon}"></wa-icon>
         `;
       }
-      return '</sl-alert>\n';
+      return '</wa-alert>\n';
     }
   });
 });

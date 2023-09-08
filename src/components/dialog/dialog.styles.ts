@@ -76,8 +76,8 @@ export default css`
     padding: 0 var(--header-spacing);
   }
 
-  .dialog__header-actions sl-icon-button,
-  .dialog__header-actions ::slotted(sl-icon-button) {
+  .dialog__header-actions wa-icon-button,
+  .dialog__header-actions ::slotted(wa-icon-button) {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -98,7 +98,7 @@ export default css`
     padding: var(--footer-spacing);
   }
 
-  .dialog__footer ::slotted(sl-button:not(:first-of-type)) {
+  .dialog__footer ::slotted(wa-button:not(:first-of-type)) {
     margin-inline-start: var(--wa-spacing-xs);
   }
 
