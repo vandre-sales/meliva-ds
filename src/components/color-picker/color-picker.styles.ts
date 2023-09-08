@@ -332,7 +332,7 @@ export default css`
     height: 100%;
     border-radius: inherit;
     background-color: currentColor;
-    box-shadow: inset 0 0 0 2px var(--wa-form-controls-color-resting),
+    box-shadow: inset 0 0 0 2px var(--wa-form-controls-border-color-resting),
       inset 0 0 0 4px var(--wa-color-white);
   }
 

@@ -30,13 +30,14 @@ export default css`
   .input--standard {
     background-color: var(--wa-form-controls-background);
     border: var(--wa-form-controls-border-style)
-      var(--wa-form-controls-border-width) var(--wa-form-controls-color-resting);
+      var(--wa-form-controls-border-width)
+      var(--wa-form-controls-border-color-resting);
   }
 
   .input--standard.input--focused:not(.input--disabled) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
-    border-color: var(--wa-form-controls-color-activated);
+    border-color: var(--wa-form-controls-border-color-activated);
   }
 
   .input--standard.input--disabled {
@@ -68,8 +69,8 @@ export default css`
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
-    line-height: var(--wa-form-controls-font-line-height);
-    color: var(--wa-form-controls-color-text);
+    line-height: var(--wa-form-controls-value-line-height);
+    color: var(--wa-form-controls-text-color);
     border: none;
     background: inherit;
     box-shadow: none;
@@ -92,7 +93,7 @@ export default css`
   .input__control:-webkit-autofill:active {
     box-shadow: none;
     -webkit-text-fill-color: var(--wa-color-brand-text-on-muted);
-    caret-color: var(--wa-form-controls-color-text);
+    caret-color: var(--wa-form-controls-text-color);
   }
 
   .input--filled .input__control:-webkit-autofill,
@@ -129,7 +130,7 @@ export default css`
    */
 
   .input--small {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-s);
     height: var(--wa-form-controls-height-s);
   }
@@ -156,7 +157,7 @@ export default css`
   }
 
   .input--medium {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-m);
     height: var(--wa-form-controls-height-m);
   }
@@ -183,7 +184,7 @@ export default css`
   }
 
   .input--large {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-l);
     height: var(--wa-form-controls-height-l);
   }

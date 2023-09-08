@@ -435,21 +435,21 @@ export default css`
     height: var(--wa-form-controls-height-s);
     font-size: var(--wa-font-size-s);
     line-height: var(--wa-form-controls-height-s);
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
   }
 
   .button--medium {
     height: var(--wa-form-controls-height-m);
     font-size: var(--wa-font-size-m);
     line-height: var(--wa-form-controls-height-m);
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
   }
 
   .button--large {
     height: var(--wa-form-controls-height-l);
     font-size: var(--wa-font-size-l);
     line-height: var(--wa-form-controls-height-l);
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
   }
 
   /*

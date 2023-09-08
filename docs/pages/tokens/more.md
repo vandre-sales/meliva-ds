@@ -19,14 +19,14 @@ Focus ring tokens control the appearance of focus rings.
 
 Form control tokens control the appearance of form controls such as [input](/components/input), [select](/components/select), [textarea](/components/textarea), etc.
 
-| Token                                  | Value                                       |
-| -------------------------------------- | ------------------------------------------- |
-| `--wa-form-controls-background`        | `var(--wa-color-surface-raised)`            |
-| `--wa-form-controls-border-style`      | `var(--wa-border-style)`                    |
-| `--wa-form-controls-border-width`      | `var(--wa-border-width-thin)`               |
-| `--wa-form-controls-corners`           | `var(--wa-corners-1x)`                      |
-| `--wa-form-controls-color-resting`     | `var(--wa-color-neutral-outline-muted-alt)` |
-| `--wa-form-controls-color-activated`   | `var(--wa-color-brand-action-vivid)`        |
-| `--wa-form-controls-font-line-height`  | `var(--wa-font-height-compact)`             |
-| `--wa-form-controls-padding`           | `var(--wa-space-square-s)`                  |
-| `--wa-form-controls-placeholder-color` | `var(--wa-color-neutral-60)`                |
+| Token                                       | Value                                       |
+| ------------------------------------------- | ------------------------------------------- |
+| `--wa-form-controls-background`             | `var(--wa-color-surface-raised)`            |
+| `--wa-form-controls-border-style`           | `var(--wa-border-style)`                    |
+| `--wa-form-controls-border-width`           | `var(--wa-border-width-thin)`               |
+| `--wa-form-controls-corners`                | `var(--wa-corners-1x)`                      |
+| `--wa-form-controls-border-color-resting`   | `var(--wa-color-neutral-outline-muted-alt)` |
+| `--wa-form-controls-border-color-activated` | `var(--wa-color-brand-action-vivid)`        |
+| `--wa-form-controls-value-line-height`      | `var(--wa-font-height-compact)`             |
+| `--wa-form-controls-padding`                | `var(--wa-space-square-s)`                  |
+| `--wa-form-controls-placeholder-color`      | `var(--wa-color-neutral-60)`                |

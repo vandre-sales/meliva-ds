@@ -56,8 +56,8 @@ export default css`
     font: inherit;
     border: none;
     background: none;
-    line-height: var(--wa-form-controls-font-line-height);
-    color: var(--wa-form-controls-color-text);
+    line-height: var(--wa-form-controls-value-line-height);
+    color: var(--wa-form-controls-text-color);
     cursor: inherit;
     overflow: hidden;
     padding: 0;
@@ -113,7 +113,8 @@ export default css`
   .select--standard .select__combobox {
     background-color: var(--wa-form-controls-background);
     border: var(--wa-form-controls-border-style)
-      var(--wa-form-controls-border-width) var(--wa-form-controls-color-resting);
+      var(--wa-form-controls-border-width)
+      var(--wa-form-controls-border-color-resting);
   }
 
   .select--standard.select--disabled .select__combobox {
@@ -148,7 +149,7 @@ export default css`
 
   /* Sizes */
   .select--small .select__combobox {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-s);
     min-height: var(--wa-form-controls-height-s);
     padding-block: 0;
@@ -174,7 +175,7 @@ export default css`
   }
 
   .select--medium .select__combobox {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-m);
     min-height: var(--wa-form-controls-height-m);
     padding-block: 0;
@@ -200,7 +201,7 @@ export default css`
   }
 
   .select--large .select__combobox {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-l);
     min-height: var(--wa-form-controls-height-l);
     padding-block: 0;
@@ -243,7 +244,7 @@ export default css`
     flex: 0;
     display: inline-flex;
     align-items: center;
-    color: var(--wa-form-controls-color-activated);
+    color: var(--wa-form-controls-border-color-activated);
   }
 
   /* Clear button */

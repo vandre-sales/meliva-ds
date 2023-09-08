@@ -18,7 +18,7 @@ export default css`
     font-family: var(--wa-font-family-body);
     font-size: var(--wa-font-size-m);
     font-weight: var(--wa-font-weight-normal);
-    color: var(--wa-form-controls-color-text);
+    color: var(--wa-form-controls-text-color);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -53,7 +53,7 @@ export default css`
     width: var(--toggle-size);
     height: var(--toggle-size);
     border: var(--wa-border-style) var(--wa-form-controls-border-width)
-      var(--wa-form-controls-color-resting);
+      var(--wa-form-controls-border-color-resting);
     border-radius: 50%;
     background-color: var(--wa-form-controls-background);
     color: transparent;
@@ -96,7 +96,7 @@ export default css`
 
   .radio__label {
     display: inline-block;
-    color: var(--wa-form-controls-color-text);
+    color: var(--wa-form-controls-text-color);
     line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;
