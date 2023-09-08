@@ -34,10 +34,6 @@
   "bugs": {
     "url": "https://github.com/shoelace-style/shoelace/issues"
   },
-  "funding": {
-    "type": "individual",
-    "url": "https://github.com/sponsors/claviska"
-  },
   "scripts": {
     "start": "node scripts/build.js --serve",
     "build": "node scripts/build.js",

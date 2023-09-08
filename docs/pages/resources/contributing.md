@@ -51,8 +51,6 @@ Feature requests can be added using the issue tracker.
 - Please **do** share substantial use cases and perspective that support new features if they haven't already been mentioned.
 - Please **do not** bump, spam, or ping contributors to prioritize your own feature.
 
-If you would like your feature prioritized, please consider [sponsoring the project](https://github.com/sponsors/claviska).
-
 ### Bug Reports
 
 A bug is _a demonstrable problem_ caused by code in the library. Bug reports are an important contribution to the quality of the project. When submitting a bug report, there are a few steps you can take to make sure your issues gets attention quickly.
@@ -64,8 +62,6 @@ A bug is _a demonstrable problem_ caused by code in the library. Bug reports are
 - Please **do** provide additional information, when necessary, to replicate the bug
 
 **A minimal test case is critical to a successful bug report.** It demonstrates that the bug exists in the library and not in surrounding code. Contributors should be able to understand the bug without studying your code, otherwise they'll probably move on to another bug.
-
-If you would like your bug prioritized, please consider [sponsoring the project](https://github.com/sponsors/claviska).
 
 ### Pull Requests
 
