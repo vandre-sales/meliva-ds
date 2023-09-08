@@ -55,7 +55,7 @@ export default {
             }
 
             const tagNameWithoutPrefix = path.basename(importPath, '.component.ts');
-            const tagName = 'sl-' + tagNameWithoutPrefix;
+            const tagName = 'wa-' + tagNameWithoutPrefix;
 
             classDoc.tagNameWithoutPrefix = tagNameWithoutPrefix;
             classDoc.tagName = tagName;
@@ -198,16 +198,17 @@ export default {
       referencesTemplate: (_, tag) => [
         {
           name: 'Documentation',
-          url: `https://shoelace.style/components/${tag.replace('sl-', '')}`
+          url: `https://shoelace.style/components/${tag.replace('wa-', '')}`
         }
       ]
     }),
     customElementJetBrainsPlugin({
+      outdir: './dist',
       excludeCss: true,
       referencesTemplate: (_, tag) => {
         return {
           name: 'Documentation',
-          url: `https://shoelace.style/components/${tag.replace('sl-', '')}`
+          url: `https://shoelace.style/components/${tag.replace('wa-', '')}`
         };
       }
     })
