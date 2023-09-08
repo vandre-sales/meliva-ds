@@ -21,9 +21,9 @@ Twitter: [@shoelace_style](https://twitter.com/shoelace_style)
 
 ---
 
-## Shoemakers 🥾
+## Developers ✨
 
-Shoemakers, or "Web Awesome developers," can use this documentation to learn how to build Web Awesome from source. You will need Node >= 14.17 to build and run the project locally.
+Developers can use this documentation to learn how to build Web Awesome from source. You will need Node >= 14.17 to build and run the project locally.
 
 **You don't need to do any of this to use Web Awesome!** This page is for people who want to contribute to the project, tinker with the source, or create a custom build of Web Awesome.
 
