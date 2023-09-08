@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -24,7 +24,7 @@ export default css`
     position: relative;
     align-items: center;
     justify-content: center;
-    background-color: var(--wa-color-neutral-element-outline-muted);
+    background-color: var(--wa-color-neutral-outline-muted-alt);
     color: var(--wa-color-neutral-text-on-muted);
     z-index: 1;
   }
@@ -34,7 +34,7 @@ export default css`
   }
 
   :host(:not([disabled])) .divider:focus-visible {
-    background-color: var(--wa-color-brand-element-outline-vivid);
+    background-color: var(--wa-color-brand-outline-vivid);
     color: var(--wa-color-brand-text-on-vivid);
   }
 
@@ -49,7 +49,7 @@ export default css`
 
   :host(:not([vertical])) .divider::after {
     display: flex;
-    content: '';
+    content: "";
     position: absolute;
     height: 100%;
     left: calc(var(--divider-hit-area) / -2 + var(--divider-width) / 2);
@@ -66,7 +66,7 @@ export default css`
   }
 
   :host([vertical]) .divider::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     top: calc(var(--divider-hit-area) / -2 + var(--divider-width) / 2);

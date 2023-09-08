@@ -1,12 +1,12 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
 
   :host {
-    --error-color: var(--wa-color-danger-container-fill-vivid);
-    --success-color: var(--wa-color-success-container-fill-vivid);
+    --error-color: var(--wa-color-danger-fill-vivid-alt);
+    --success-color: var(--wa-color-success-fill-vivid-alt);
 
     display: inline-block;
   }

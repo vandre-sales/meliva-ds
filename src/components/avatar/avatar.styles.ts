@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -17,7 +17,7 @@ export default css`
     position: relative;
     width: var(--size);
     height: var(--size);
-    background-color: var(--wa-color-neutral-element-fill-vivid);
+    background-color: var(--wa-color-neutral-fill-vivid);
     font-family: var(--wa-font-family-body);
     font-size: calc(var(--size) * 0.5);
     font-weight: var(--wa-font-weight-normal);

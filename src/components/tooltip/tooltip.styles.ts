@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -14,7 +14,7 @@ export default css`
 
   .tooltip {
     --arrow-size: var(--wa-tooltip-arrow-size);
-    --arrow-color: var(--wa-color-neutral-element-fill-vivid);
+    --arrow-color: var(--wa-color-neutral-fill-vivid);
   }
 
   .tooltip::part(popup) {
@@ -22,19 +22,19 @@ export default css`
     z-index: var(--wa-z-index-tooltip);
   }
 
-  .tooltip[placement^='top']::part(popup) {
+  .tooltip[placement^="top"]::part(popup) {
     transform-origin: bottom;
   }
 
-  .tooltip[placement^='bottom']::part(popup) {
+  .tooltip[placement^="bottom"]::part(popup) {
     transform-origin: top;
   }
 
-  .tooltip[placement^='left']::part(popup) {
+  .tooltip[placement^="left"]::part(popup) {
     transform-origin: right;
   }
 
-  .tooltip[placement^='right']::part(popup) {
+  .tooltip[placement^="right"]::part(popup) {
     transform-origin: left;
   }
 
@@ -43,7 +43,7 @@ export default css`
     width: max-content;
     max-width: var(--max-width);
     border-radius: var(--wa-corners-1x);
-    background-color: var(--wa-color-neutral-element-fill-vivid);
+    background-color: var(--wa-color-neutral-fill-vivid);
     font-family: var(--wa-font-family-body);
     font-size: var(--wa-font-size-s);
     font-weight: var(--wa-font-weight-regular);

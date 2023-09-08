@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -57,7 +57,7 @@ export default css`
     align-items: center;
     justify-content: center;
     box-sizing: content-box;
-    color: var(--wa-color-neutral-element-fill-vivid);
+    color: var(--wa-color-neutral-fill-vivid);
     padding: var(--wa-space-xs);
     width: 1rem;
     height: 1rem;
@@ -77,8 +77,8 @@ export default css`
     rotate: -90deg;
   }
 
-  .tree-item--expanded slot[name='expand-icon'],
-  .tree-item:not(.tree-item--expanded) slot[name='collapse-icon'] {
+  .tree-item--expanded slot[name="expand-icon"],
+  .tree-item:not(.tree-item--expanded) slot[name="collapse-icon"] {
     display: none;
   }
 
@@ -108,13 +108,13 @@ export default css`
     z-index: 2;
   }
 
-  :host(:not([aria-disabled='true'])) .tree-item--selected .tree-item__item {
-    background-color: var(--wa-color-neutral-container-fill-muted);
-    border-inline-start-color: var(--wa-color-brand-element-outline-vivid);
+  :host(:not([aria-disabled="true"])) .tree-item--selected .tree-item__item {
+    background-color: var(--wa-color-neutral-fill-muted);
+    border-inline-start-color: var(--wa-color-brand-outline-vivid);
   }
 
-  :host(:not([aria-disabled='true'])) .tree-item__expand-button {
-    color: var(--wa-color-neutral-element-fill-vivid);
+  :host(:not([aria-disabled="true"])) .tree-item__expand-button {
+    color: var(--wa-color-neutral-fill-vivid);
   }
 
   .tree-item__label {
@@ -134,12 +134,13 @@ export default css`
   }
 
   .tree-item__children::before {
-    content: '';
+    content: "";
     position: absolute;
     top: var(--indent-guide-offset);
     bottom: var(--indent-guide-offset);
     left: calc(1em - (var(--indent-guide-width) / 2) - 1px);
-    border-inline-end: var(--indent-guide-width) var(--indent-guide-style) var(--indent-guide-color);
+    border-inline-end: var(--indent-guide-width) var(--indent-guide-style)
+      var(--indent-guide-color);
     z-index: 1;
   }
 
@@ -149,7 +150,7 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    :host(:not([aria-disabled='true'])) .tree-item--selected .tree-item__item {
+    :host(:not([aria-disabled="true"])) .tree-item--selected .tree-item__item {
       outline: dashed 1px SelectedItem;
     }
   }

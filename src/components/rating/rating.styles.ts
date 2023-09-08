@@ -1,11 +1,11 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
 
   :host {
-    --symbol-color: var(--wa-color-neutral-element-fill-muted);
+    --symbol-color: var(--wa-color-neutral-fill-muted-alt);
     --symbol-color-active: var(--wa-color-yellow-70);
     --symbol-size: var(--wa-font-size-l);
     --symbol-spacing: var(--wa-space-3xs);

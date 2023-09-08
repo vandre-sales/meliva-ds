@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -22,19 +22,20 @@ export default css`
     font-weight: var(--wa-font-weight-normal);
     line-height: var(--wa-line-height-regular);
     color: var(--wa-color-neutral-text-on-surface);
-    padding: var(--wa-space-xs) var(--wa-space-m) var(--wa-space-xs) var(--wa-space-xs);
+    padding: var(--wa-space-xs) var(--wa-space-m) var(--wa-space-xs)
+      var(--wa-space-xs);
     transition: var(--wa-transition-fast) fill;
     cursor: pointer;
   }
 
   .option--hover:not(.option--current):not(.option--disabled) {
-    background-color: var(--wa-color-neutral-element-fill-muted);
+    background-color: var(--wa-color-neutral-fill-muted-alt);
     color: var(--wa-color-neutral-text-on-muted);
   }
 
   .option--current,
   .option--current.option--disabled {
-    background-color: var(--wa-color-brand-element-fill-vivid);
+    background-color: var(--wa-color-brand-fill-vivid);
     color: var(--wa-color-brand-text-on-vivid);
     opacity: 1;
   }
@@ -80,7 +81,7 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    :host(:hover:not([aria-disabled='true'])) .option {
+    :host(:hover:not([aria-disabled="true"])) .option {
       outline: dashed 1px SelectedItem;
       outline-offset: -1px;
     }

@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -42,11 +42,13 @@ export default css`
     justify-content: center;
     width: var(--toggle-size);
     height: var(--toggle-size);
-    border: var(--wa-border-style) var(--wa-form-controls-border-width) var(--wa-form-controls-color-resting);
+    border: var(--wa-border-style) var(--wa-form-controls-border-width)
+      var(--wa-form-controls-color-resting);
     border-radius: 2px;
     background-color: var(--wa-form-controls-background);
     color: var(--wa-form-controls-color-text);
-    transition: var(--wa-transition-fast) border-color, var(--wa-transition-fast) background-color,
+    transition: var(--wa-transition-fast) border-color,
+      var(--wa-transition-fast) background-color,
       var(--wa-transition-fast) color, var(--wa-transition-fast) box-shadow;
   }
 
@@ -66,7 +68,9 @@ export default css`
   }
 
   /* Focus */
-  .checkbox:not(.checkbox--checked):not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control {
+  .checkbox:not(.checkbox--checked):not(.checkbox--disabled)
+    .checkbox__input:focus-visible
+    ~ .checkbox__control {
     border-color: var(--wa-form-controls-color-activated);
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
@@ -76,13 +80,17 @@ export default css`
   .checkbox--checked .checkbox__control,
   .checkbox--indeterminate .checkbox__control {
     color: var(--wa-color-brand-text-on-vivid);
-    border-color: var(--wa-color-brand-element-fill-vivid);
-    background-color: var(--wa-color-brand-element-fill-vivid);
+    border-color: var(--wa-color-brand-fill-vivid);
+    background-color: var(--wa-color-brand-fill-vivid);
   }
 
   /* Checked/indeterminate + focus */
-  .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control,
-  .checkbox.checkbox--indeterminate:not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control {
+  .checkbox.checkbox--checked:not(.checkbox--disabled)
+    .checkbox__input:focus-visible
+    ~ .checkbox__control,
+  .checkbox.checkbox--indeterminate:not(.checkbox--disabled)
+    .checkbox__input:focus-visible
+    ~ .checkbox__control {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }

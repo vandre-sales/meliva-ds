@@ -88,62 +88,62 @@
   /**
    * Semantic color variants
    */
-  --wa-color-brand-container-fill-vivid: var(--wa-color-blue-40);
-  --wa-color-brand-container-fill-muted: var(--wa-color-blue-95);
-  --wa-color-brand-container-outline-vivid: var(--wa-color-blue-30);
-  --wa-color-brand-container-outline-muted: var(--wa-color-blue-90);
-  --wa-color-brand-element-fill-vivid: var(--wa-color-blue-50);
-  --wa-color-brand-element-fill-muted: var(--wa-color-blue-90);
-  --wa-color-brand-element-outline-vivid: var(--wa-color-blue-50);
-  --wa-color-brand-element-outline-muted: var(--wa-color-blue-80);
+  --wa-color-brand-fill-vivid: var(--wa-color-blue-50);
+  --wa-color-brand-fill-vivid-alt: var(--wa-color-blue-40);
+  --wa-color-brand-fill-muted: var(--wa-color-blue-95);
+  --wa-color-brand-fill-muted-alt: var(--wa-color-blue-90);
+  --wa-color-brand-outline-vivid: var(--wa-color-blue-50);
+  --wa-color-brand-outline-vivid-alt: var(--wa-color-blue-30);
+  --wa-color-brand-outline-muted: var(--wa-color-blue-90);
+  --wa-color-brand-outline-muted-alt: var(--wa-color-blue-80);
   --wa-color-brand-text-on-vivid: var(--wa-color-white);
   --wa-color-brand-text-on-muted: var(--wa-color-blue-40);
   --wa-color-brand-text-on-surface: var(--wa-color-blue-50);
 
-  --wa-color-success-container-fill-vivid: var(--wa-color-green-40);
-  --wa-color-success-container-fill-muted: var(--wa-color-green-95);
-  --wa-color-success-container-outline-vivid: var(--wa-color-green-30);
-  --wa-color-success-container-outline-muted: var(--wa-color-green-90);
-  --wa-color-success-element-fill-vivid: var(--wa-color-green-50);
-  --wa-color-success-element-fill-muted: var(--wa-color-green-90);
-  --wa-color-success-element-outline-vivid: var(--wa-color-green-50);
-  --wa-color-success-element-outline-muted: var(--wa-color-green-80);
+  --wa-color-success-fill-vivid: var(--wa-color-green-50);
+  --wa-color-success-fill-vivid-alt: var(--wa-color-green-40);
+  --wa-color-success-fill-muted: var(--wa-color-green-95);
+  --wa-color-success-fill-muted-alt: var(--wa-color-green-90);
+  --wa-color-success-outline-vivid: var(--wa-color-green-50);
+  --wa-color-success-outline-vivid-alt: var(--wa-color-green-30);
+  --wa-color-success-outline-muted: var(--wa-color-green-90);
+  --wa-color-success-outline-muted-alt: var(--wa-color-green-80);
   --wa-color-success-text-on-vivid: var(--wa-color-white);
   --wa-color-success-text-on-muted: var(--wa-color-green-40);
   --wa-color-success-text-on-surface: var(--wa-color-green-50);
 
-  --wa-color-warning-container-fill-vivid: var(--wa-color-yellow-40);
-  --wa-color-warning-container-fill-muted: var(--wa-color-yellow-95);
-  --wa-color-warning-container-outline-vivid: var(--wa-color-yellow-30);
-  --wa-color-warning-container-outline-muted: var(--wa-color-yellow-90);
-  --wa-color-warning-element-fill-vivid: var(--wa-color-yellow-50);
-  --wa-color-warning-element-fill-muted: var(--wa-color-yellow-90);
-  --wa-color-warning-element-outline-vivid: var(--wa-color-yellow-50);
-  --wa-color-warning-element-outline-muted: var(--wa-color-yellow-80);
+  --wa-color-warning-fill-vivid: var(--wa-color-yellow-50);
+  --wa-color-warning-fill-vivid-alt: var(--wa-color-yellow-40);
+  --wa-color-warning-fill-muted: var(--wa-color-yellow-95);
+  --wa-color-warning-fill-muted-alt: var(--wa-color-yellow-90);
+  --wa-color-warning-outline-vivid: var(--wa-color-yellow-50);
+  --wa-color-warning-outline-vivid-alt: var(--wa-color-yellow-30);
+  --wa-color-warning-outline-muted: var(--wa-color-yellow-90);
+  --wa-color-warning-outline-muted-alt: var(--wa-color-yellow-80);
   --wa-color-warning-text-on-vivid: var(--wa-color-white);
   --wa-color-warning-text-on-muted: var(--wa-color-yellow-40);
   --wa-color-warning-text-on-surface: var(--wa-color-yellow-50);
 
-  --wa-color-danger-container-fill-vivid: var(--wa-color-red-40);
-  --wa-color-danger-container-fill-muted: var(--wa-color-red-95);
-  --wa-color-danger-container-outline-vivid: var(--wa-color-red-30);
-  --wa-color-danger-container-outline-muted: var(--wa-color-red-90);
-  --wa-color-danger-element-fill-vivid: var(--wa-color-red-50);
-  --wa-color-danger-element-fill-muted: var(--wa-color-red-90);
-  --wa-color-danger-element-outline-vivid: var(--wa-color-red-50);
-  --wa-color-danger-element-outline-muted: var(--wa-color-red-80);
+  --wa-color-danger-fill-vivid: var(--wa-color-red-50);
+  --wa-color-danger-fill-vivid-alt: var(--wa-color-red-40);
+  --wa-color-danger-fill-muted: var(--wa-color-red-95);
+  --wa-color-danger-fill-muted-alt: var(--wa-color-red-90);
+  --wa-color-danger-outline-vivid: var(--wa-color-red-50);
+  --wa-color-danger-outline-vivid-alt: var(--wa-color-red-30);
+  --wa-color-danger-outline-muted: var(--wa-color-red-90);
+  --wa-color-danger-outline-muted-alt: var(--wa-color-red-80);
   --wa-color-danger-text-on-vivid: var(--wa-color-white);
   --wa-color-danger-text-on-muted: var(--wa-color-red-40);
   --wa-color-danger-text-on-surface: var(--wa-color-red-50);
 
-  --wa-color-neutral-container-fill-vivid: var(--wa-color-neutral-40);
-  --wa-color-neutral-container-fill-muted: var(--wa-color-neutral-95);
-  --wa-color-neutral-container-outline-vivid: var(--wa-color-neutral-30);
-  --wa-color-neutral-container-outline-muted: var(--wa-color-neutral-90);
-  --wa-color-neutral-element-fill-vivid: var(--wa-color-neutral-50);
-  --wa-color-neutral-element-fill-muted: var(--wa-color-neutral-90);
-  --wa-color-neutral-element-outline-vivid: var(--wa-color-neutral-50);
-  --wa-color-neutral-element-outline-muted: var(--wa-color-neutral-80);
+  --wa-color-neutral-fill-vivid: var(--wa-color-neutral-50);
+  --wa-color-neutral-fill-vivid-alt: var(--wa-color-neutral-40);
+  --wa-color-neutral-fill-muted: var(--wa-color-neutral-95);
+  --wa-color-neutral-fill-muted-alt: var(--wa-color-neutral-90);
+  --wa-color-neutral-outline-vivid: var(--wa-color-neutral-50);
+  --wa-color-neutral-outline-vivid-alt: var(--wa-color-neutral-30);
+  --wa-color-neutral-outline-muted: var(--wa-color-neutral-90);
+  --wa-color-neutral-outline-muted-alt: var(--wa-color-neutral-80);
   --wa-color-neutral-text-on-vivid: var(--wa-color-white);
   --wa-color-neutral-text-on-muted: var(--wa-color-neutral-40);
   --wa-color-neutral-text-on-surface: var(--wa-color-neutral-50);
@@ -153,8 +153,9 @@
    */
   --wa-font-family-heading: system-ui;
   --wa-font-family-body: system-ui;
-  --wa-font-family-code: 'Noto Sans Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  --wa-font-family-longform: 'Lora', serif;
+  --wa-font-family-code: "Noto Sans Mono", "SFMono-Regular", Consolas,
+    "Liberation Mono", Menlo, monospace;
+  --wa-font-family-longform: "Lora", serif;
 
   --wa-font-weight-light: 300;
   --wa-font-weight-normal: 400;
@@ -264,7 +265,7 @@
   --wa-form-controls-border-width: var(--wa-border-width-thin);
   --wa-form-controls-corners: var(--wa-corners-1x);
   /* prettier-ignore */
-  --wa-form-controls-color-resting: var(--wa-color-neutral-element-outline-muted); /* rename to --wa-form-controls-border-color-resting? */
+  --wa-form-controls-color-resting: var(--wa-color-neutral-outline-muted-alt); /* rename to --wa-form-controls-border-color-resting? */
   /* prettier-ignore */
   --wa-form-controls-color-activated: var(--wa-color-brand-action-vivid); /* rename to --wa-form-controls-border-color-activated? */
   --wa-form-controls-color-text: var(--wa-color-neutral-text-on-surface);
@@ -281,7 +282,7 @@
   --wa-form-control-toggle-size-s: 0.875rem;
   --wa-form-control-toggle-size-m: 1.125rem;
   --wa-form-control-toggle-size-l: 1.375rem;
-  --wa-form-controls-required-content: '*';
+  --wa-form-controls-required-content: "*";
   --wa-form-controls-required-content-color: inherit;
   --wa-form-controls-required-content-offset: -0.1em;
 

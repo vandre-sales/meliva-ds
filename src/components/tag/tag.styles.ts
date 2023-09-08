@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -27,8 +27,8 @@ export default css`
    */
 
   .tag--brand {
-    background-color: var(--wa-color-brand-container-fill-muted);
-    border-color: var(--wa-color-brand-element-outline-muted);
+    background-color: var(--wa-color-brand-fill-muted);
+    border-color: var(--wa-color-brand-outline-muted-alt);
     color: var(--wa-color-brand-text-on-muted);
   }
 
@@ -37,8 +37,8 @@ export default css`
   }
 
   .tag--success {
-    background-color: var(--wa-color-success-container-fill-muted);
-    border-color: var(--wa-color-success-element-outline-muted);
+    background-color: var(--wa-color-success-fill-muted);
+    border-color: var(--wa-color-success-outline-muted-alt);
     color: var(--wa-color-success-text-on-muted);
   }
 
@@ -47,8 +47,8 @@ export default css`
   }
 
   .tag--neutral {
-    background-color: var(--wa-color-neutral-container-fill-muted);
-    border-color: var(--wa-color-neutral-element-outline-muted);
+    background-color: var(--wa-color-neutral-fill-muted);
+    border-color: var(--wa-color-neutral-outline-muted-alt);
     color: var(--wa-color-neutral-text-on-muted);
   }
 
@@ -57,8 +57,8 @@ export default css`
   }
 
   .tag--warning {
-    background-color: var(--wa-color-warning-container-fill-muted);
-    border-color: var(--wa-color-warning-element-outline-muted);
+    background-color: var(--wa-color-warning-fill-muted);
+    border-color: var(--wa-color-warning-outline-muted-alt);
     color: var(--wa-color-warning-text-on-muted);
   }
 
@@ -67,8 +67,8 @@ export default css`
   }
 
   .tag--danger {
-    background-color: var(--wa-color-danger-container-fill-muted);
-    border-color: var(--wa-color-danger-element-outline-muted);
+    background-color: var(--wa-color-danger-fill-muted);
+    border-color: var(--wa-color-danger-outline-muted-alt);
     color: var(--wa-color-danger-text-on-muted);
   }
 
