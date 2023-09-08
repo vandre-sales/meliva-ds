@@ -3,8 +3,8 @@ import { type HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { type LocalizeController } from '../../utilities/localize.js';
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
-import type WaPopup from '../popup/popup.js';
 import type WaMenuItem from './menu-item.js';
+import type WaPopup from '../popup/popup.js';
 
 /** A reactive controller to manage the registration of event listeners for submenus. */
 export class SubmenuController implements ReactiveController {

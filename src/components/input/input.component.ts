@@ -8,9 +8,9 @@ import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
-import WaIcon from '../icon/icon.component.js';
 import styles from './input.styles.js';
+import WaIcon from '../icon/icon.component.js';
+import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 

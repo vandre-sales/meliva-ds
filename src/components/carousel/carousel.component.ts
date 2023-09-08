@@ -9,10 +9,10 @@ import { property, query, state } from 'lit/decorators.js';
 import { range } from 'lit/directives/range.js';
 import { ScrollController } from './scroll-controller.js';
 import { watch } from '../../internal/watch.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
+import styles from './carousel.styles.js';
 import WaCarouselItem from '../carousel-item/carousel-item.component.js';
 import WaIcon from '../icon/icon.component.js';
-import styles from './carousel.styles.js';
+import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**

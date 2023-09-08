@@ -11,9 +11,9 @@ import { uppercaseFirstLetter } from '../../internal/string.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import Modal from '../../internal/modal.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
-import WaIconButton from '../icon-button/icon-button.component.js';
 import styles from './drawer.styles.js';
+import WaIconButton from '../icon-button/icon-button.component.js';
+import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**

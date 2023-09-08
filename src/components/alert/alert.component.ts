@@ -7,9 +7,9 @@ import { LocalizeController } from '../../utilities/localize.js';
 import { property, query } from 'lit/decorators.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import styles from './alert.styles.js';
 import WaIconButton from '../icon-button/icon-button.component.js';
+import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 const toastStack = Object.assign(document.createElement('div'), { className: 'wa-toast-stack' });

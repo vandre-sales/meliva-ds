@@ -3,10 +3,10 @@ import { getAnimation, setDefaultAnimation } from '../../utilities/animation-reg
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
+import styles from './copy-button.styles.js';
 import WaIcon from '../icon/icon.component.js';
 import WaTooltip from '../tooltip/tooltip.component.js';
-import styles from './copy-button.styles.js';
+import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**

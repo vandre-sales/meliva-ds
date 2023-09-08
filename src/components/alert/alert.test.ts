@@ -4,8 +4,8 @@ import { clickOnElement, moveMouseOnElement } from '../../internal/test.js';
 import { queryByTestId } from '../../internal/test/data-testid-helpers.js';
 import { resetMouse } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type WaIconButton from '../icon-button/icon-button.js';
 import type WaAlert from './alert.js';
+import type WaIconButton from '../icon-button/icon-button.js';
 
 const getAlertContainer = (alert: WaAlert): HTMLElement => {
   return alert.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
