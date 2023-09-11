@@ -1,15 +1,15 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
 
   :host {
-    --size: 128px;
-    --track-width: 4px;
-    --track-color: var(--sl-color-neutral-200);
+    --size: 8rem;
+    --track-width: 0.25rem;
+    --track-color: var(--wa-color-neutral-fill-muted);
     --indicator-width: var(--track-width);
-    --indicator-color: var(--sl-color-primary-600);
+    --indicator-color: var(--wa-color-brand-fill-vivid);
     --indicator-transition-duration: 0.35s;
 
     display: inline-flex;
@@ -31,7 +31,9 @@ export default css`
 
   .progress-ring__track,
   .progress-ring__indicator {
-    --radius: calc(var(--size) / 2 - max(var(--track-width), var(--indicator-width)) * 0.5);
+    --radius: calc(
+      var(--size) / 2 - max(var(--track-width), var(--indicator-width)) * 0.5
+    );
     --circumference: calc(var(--radius) * 2 * 3.141592654);
 
     fill: none;
@@ -52,7 +54,9 @@ export default css`
     transition-property: stroke-dashoffset;
     transition-duration: var(--indicator-transition-duration);
     stroke-dasharray: var(--circumference) var(--circumference);
-    stroke-dashoffset: calc(var(--circumference) - var(--percentage) * var(--circumference));
+    stroke-dashoffset: calc(
+      var(--circumference) - var(--percentage) * var(--circumference)
+    );
   }
 
   .progress-ring__label {

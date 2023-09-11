@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -14,8 +14,8 @@ export default css`
     outline: none;
   }
 
-  slot:not([name])::slotted(sl-icon) {
-    margin-inline-end: var(--sl-spacing-x-small);
+  slot:not([name])::slotted(wa-icon) {
+    margin-inline-end: var(--wa-space-xs);
   }
 
   .tree-item {
@@ -23,7 +23,7 @@ export default css`
     display: flex;
     align-items: stretch;
     flex-direction: column;
-    color: var(--sl-color-neutral-700);
+    color: var(--wa-color-text-normal);
     cursor: pointer;
     user-select: none;
   }
@@ -35,11 +35,10 @@ export default css`
   .tree-item__expand-button,
   .tree-item__checkbox,
   .tree-item__label {
-    font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-medium);
-    font-weight: var(--sl-font-weight-normal);
-    line-height: var(--sl-line-height-dense);
-    letter-spacing: var(--sl-letter-spacing-normal);
+    font-family: var(--wa-font-family-body);
+    font-size: var(--wa-font-size-m);
+    font-weight: var(--wa-font-weight-regular);
+    line-height: var(--wa-line-height-regular);
   }
 
   .tree-item__checkbox::part(base) {
@@ -58,8 +57,8 @@ export default css`
     align-items: center;
     justify-content: center;
     box-sizing: content-box;
-    color: var(--sl-color-neutral-500);
-    padding: var(--sl-spacing-x-small);
+    color: var(--wa-color-neutral-fill-vivid);
+    padding: var(--wa-space-xs);
     width: 1rem;
     height: 1rem;
     flex-shrink: 0;
@@ -67,7 +66,7 @@ export default css`
   }
 
   .tree-item__expand-button {
-    transition: var(--sl-transition-medium) rotate ease;
+    transition: var(--wa-transition-fast) rotate ease;
   }
 
   .tree-item--expanded .tree-item__expand-button {
@@ -78,8 +77,8 @@ export default css`
     rotate: -90deg;
   }
 
-  .tree-item--expanded slot[name='expand-icon'],
-  .tree-item:not(.tree-item--expanded) slot[name='collapse-icon'] {
+  .tree-item--expanded slot[name="expand-icon"],
+  .tree-item:not(.tree-item--expanded) slot[name="collapse-icon"] {
     display: none;
   }
 
@@ -104,29 +103,29 @@ export default css`
   }
 
   :host(:focus-visible) .tree-item__item {
-    outline: var(--sl-focus-ring);
-    outline-offset: var(--sl-focus-ring-offset);
+    outline: var(--wa-focus-ring);
+    outline-offset: var(--wa-focus-ring-offset);
     z-index: 2;
   }
 
-  :host(:not([aria-disabled='true'])) .tree-item--selected .tree-item__item {
-    background-color: var(--sl-color-neutral-100);
-    border-inline-start-color: var(--sl-color-primary-600);
+  :host(:not([aria-disabled="true"])) .tree-item--selected .tree-item__item {
+    background-color: var(--wa-color-neutral-fill-muted);
+    border-inline-start-color: var(--wa-color-brand-outline-vivid);
   }
 
-  :host(:not([aria-disabled='true'])) .tree-item__expand-button {
-    color: var(--sl-color-neutral-600);
+  :host(:not([aria-disabled="true"])) .tree-item__expand-button {
+    color: var(--wa-color-neutral-fill-vivid);
   }
 
   .tree-item__label {
     display: flex;
     align-items: center;
-    transition: var(--sl-transition-fast) color;
+    transition: var(--wa-transition-fast) color;
   }
 
   .tree-item__children {
     display: block;
-    font-size: calc(1em + var(--indent-size, var(--sl-spacing-medium)));
+    font-size: calc(1em + var(--indent-size, var(--wa-space-m)));
   }
 
   /* Indentation lines */
@@ -135,12 +134,13 @@ export default css`
   }
 
   .tree-item__children::before {
-    content: '';
+    content: "";
     position: absolute;
     top: var(--indent-guide-offset);
     bottom: var(--indent-guide-offset);
     left: calc(1em - (var(--indent-guide-width) / 2) - 1px);
-    border-inline-end: var(--indent-guide-width) var(--indent-guide-style) var(--indent-guide-color);
+    border-inline-end: var(--indent-guide-width) var(--indent-guide-style)
+      var(--indent-guide-color);
     z-index: 1;
   }
 
@@ -150,7 +150,7 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    :host(:not([aria-disabled='true'])) .tree-item--selected .tree-item__item {
+    :host(:not([aria-disabled="true"])) .tree-item--selected .tree-item__item {
       outline: dashed 1px SelectedItem;
     }
   }
