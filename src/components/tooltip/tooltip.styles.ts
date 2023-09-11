@@ -14,7 +14,7 @@ export default css`
 
   .tooltip {
     --arrow-size: var(--wa-tooltip-arrow-size);
-    --arrow-color: var(--wa-color-neutral-fill-vivid);
+    --arrow-color: var(--wa-color-neutral-fill-vivid-alt);
   }
 
   .tooltip::part(popup) {
@@ -43,7 +43,7 @@ export default css`
     width: max-content;
     max-width: var(--max-width);
     border-radius: var(--wa-corners-1x);
-    background-color: var(--wa-color-neutral-fill-vivid);
+    background-color: var(--wa-color-neutral-fill-vivid-alt);
     font-family: var(--wa-font-family-body);
     font-size: var(--wa-font-size-s);
     font-weight: var(--wa-font-weight-regular);

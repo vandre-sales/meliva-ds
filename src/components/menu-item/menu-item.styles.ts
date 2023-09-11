@@ -22,7 +22,7 @@ export default css`
     font-size: var(--wa-font-size-m);
     font-weight: var(--wa-font-weight-normal);
     line-height: var(--wa-line-height-regular);
-    color: var(--wa-color-neutral-text-on-surface);
+    color: var(--wa-color-text-normal);
     padding: var(--wa-space-2xs) var(--wa-space-2xs);
     transition: var(--wa-transition-fast) fill;
     user-select: none;
@@ -70,7 +70,7 @@ export default css`
   :host(:hover:not([aria-disabled="true"], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
     background-color: var(--wa-color-neutral-fill-muted);
-    color: var(--wa-color-neutral-text-on-muted);
+    color: var(--wa-color-text-normal);
   }
 
   :host(:focus-visible) .menu-item {
@@ -97,7 +97,7 @@ export default css`
 
   /* Add elevation and z-index to submenus */
   wa-popup::part(popup) {
-    box-shadow: var(--wa-shadow-level-3);
+    box-shadow: var(--wa-shadow-level-2);
     z-index: var(--wa-z-index-dropdown);
     margin-left: var(--submenu-offset);
   }

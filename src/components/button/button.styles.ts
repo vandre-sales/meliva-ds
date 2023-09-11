@@ -18,7 +18,7 @@ export default css`
     width: 100%;
     border: none;
     font-family: var(--wa-font-family-body);
-    font-weight: var(--wa-font-weight-normal);
+    font-weight: var(--wa-font-weight-action);
     text-decoration: none;
     user-select: none;
     white-space: nowrap;

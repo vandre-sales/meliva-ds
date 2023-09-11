@@ -74,6 +74,7 @@
 
   --wa-color-text-normal: var(--wa-color-neutral-10);
   --wa-color-text-quiet: var(--wa-color-neutral-40);
+  --wa-color-text-inverse: var(--wa-color-white);
 
   --wa-color-text-link: var(--wa-color-brand-text-on-surface);
 
@@ -88,6 +89,9 @@
   /**
    * Semantic color variants
    */
+   /* TODO: Add comments for semantic color tokens and usage expectations */
+   /* TODO: Add tokens for hover and active tints */
+   /* CONSIDER: Change -alt naming to -tint or -shade? */
   --wa-color-brand-fill-vivid: var(--wa-color-blue-50);
   --wa-color-brand-fill-vivid-alt: var(--wa-color-blue-40);
   --wa-color-brand-fill-muted: var(--wa-color-blue-95);
@@ -96,7 +100,7 @@
   --wa-color-brand-outline-vivid-alt: var(--wa-color-blue-30);
   --wa-color-brand-outline-muted: var(--wa-color-blue-90);
   --wa-color-brand-outline-muted-alt: var(--wa-color-blue-80);
-  --wa-color-brand-text-on-vivid: var(--wa-color-white);
+  --wa-color-brand-text-on-vivid: var(--wa-color-text-inverse);
   --wa-color-brand-text-on-muted: var(--wa-color-blue-40);
   --wa-color-brand-text-on-surface: var(--wa-color-blue-50);
 
@@ -108,7 +112,7 @@
   --wa-color-success-outline-vivid-alt: var(--wa-color-green-30);
   --wa-color-success-outline-muted: var(--wa-color-green-90);
   --wa-color-success-outline-muted-alt: var(--wa-color-green-80);
-  --wa-color-success-text-on-vivid: var(--wa-color-white);
+  --wa-color-success-text-on-vivid: var(--wa-color-text-inverse);
   --wa-color-success-text-on-muted: var(--wa-color-green-40);
   --wa-color-success-text-on-surface: var(--wa-color-green-50);
 
@@ -120,7 +124,7 @@
   --wa-color-warning-outline-vivid-alt: var(--wa-color-yellow-30);
   --wa-color-warning-outline-muted: var(--wa-color-yellow-90);
   --wa-color-warning-outline-muted-alt: var(--wa-color-yellow-80);
-  --wa-color-warning-text-on-vivid: var(--wa-color-white);
+  --wa-color-warning-text-on-vivid: var(--wa-color-text-inverse);
   --wa-color-warning-text-on-muted: var(--wa-color-yellow-40);
   --wa-color-warning-text-on-surface: var(--wa-color-yellow-50);
 
@@ -132,7 +136,7 @@
   --wa-color-danger-outline-vivid-alt: var(--wa-color-red-30);
   --wa-color-danger-outline-muted: var(--wa-color-red-90);
   --wa-color-danger-outline-muted-alt: var(--wa-color-red-80);
-  --wa-color-danger-text-on-vivid: var(--wa-color-white);
+  --wa-color-danger-text-on-vivid: var(--wa-color-text-inverse);
   --wa-color-danger-text-on-muted: var(--wa-color-red-40);
   --wa-color-danger-text-on-surface: var(--wa-color-red-50);
 
@@ -144,7 +148,7 @@
   --wa-color-neutral-outline-vivid-alt: var(--wa-color-neutral-30);
   --wa-color-neutral-outline-muted: var(--wa-color-neutral-90);
   --wa-color-neutral-outline-muted-alt: var(--wa-color-neutral-80);
-  --wa-color-neutral-text-on-vivid: var(--wa-color-white);
+  --wa-color-neutral-text-on-vivid: var(--wa-color-text-inverse);
   --wa-color-neutral-text-on-muted: var(--wa-color-neutral-40);
   --wa-color-neutral-text-on-surface: var(--wa-color-neutral-50);
 
@@ -162,8 +166,9 @@
   --wa-font-weight-medium: 500;
   --wa-font-weight-heavy: 600;
 
-  --wa-font-weight-heading: var(--wa-font-weight-medium);
+  --wa-font-weight-heading: var(--wa-font-weight-heavy);
   --wa-font-weight-body: var(--wa-font-weight-normal);
+  --wa-font-weight-action: var(--wa-font-weight-medium);
 
   --wa-font-size-root: 16px;
   --wa-font-size-2xs: 0.625rem; /* 10 */
@@ -237,9 +242,9 @@
    * Shadows
    */
   --wa-shadow-level-0: none;
-  --wa-shadow-level-1: 0 0.0625rem 0.125rem rgb(0 0 0 / 0.2);
-  --wa-shadow-level-2: 0 0.125rem 0.25rem rgb(0 0 0 / 0.18);
-  --wa-shadow-level-3: 0 0.25rem 0.5rem rgb(0 0 0 / 0.16);
+  --wa-shadow-level-1: 0 0.0625rem 0.125rem rgb(0 0 0 / 0.08);
+  --wa-shadow-level-2: 0 0.125rem 0.25rem rgb(0 0 0 / 0.06);
+  --wa-shadow-level-3: 0 0.25rem 0.5rem rgb(0 0 0 / 0.04);
 
   /**
    * Z-index
