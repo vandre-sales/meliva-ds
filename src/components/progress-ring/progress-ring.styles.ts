@@ -1,5 +1,5 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
@@ -31,9 +31,7 @@ export default css`
 
   .progress-ring__track,
   .progress-ring__indicator {
-    --radius: calc(
-      var(--size) / 2 - max(var(--track-width), var(--indicator-width)) * 0.5
-    );
+    --radius: calc(var(--size) / 2 - max(var(--track-width), var(--indicator-width)) * 0.5);
     --circumference: calc(var(--radius) * 2 * 3.141592654);
 
     fill: none;
@@ -54,9 +52,7 @@ export default css`
     transition-property: stroke-dashoffset;
     transition-duration: var(--indicator-transition-duration);
     stroke-dasharray: var(--circumference) var(--circumference);
-    stroke-dashoffset: calc(
-      var(--circumference) - var(--percentage) * var(--circumference)
-    );
+    stroke-dashoffset: calc(var(--circumference) - var(--percentage) * var(--circumference));
   }
 
   .progress-ring__label {

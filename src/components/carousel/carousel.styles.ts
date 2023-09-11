@@ -1,5 +1,5 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
@@ -17,8 +17,8 @@ export default css`
     grid-template-columns: min-content 1fr min-content;
     grid-template-rows: 1fr min-content;
     grid-template-areas:
-      ". slides ."
-      ". pagination .";
+      '. slides .'
+      '. pagination .';
     gap: var(--wa-space-m);
     align-items: center;
     min-height: 100%;
@@ -48,10 +48,7 @@ export default css`
     aspect-ratio: calc(var(--aspect-ratio) * var(--slides-per-page));
     border-radius: var(--wa-corners-1x);
 
-    --slide-size: calc(
-      (100% - (var(--slides-per-page) - 1) * var(--slide-gap)) /
-        var(--slides-per-page)
-    );
+    --slide-size: calc((100% - (var(--slides-per-page) - 1) * var(--slide-gap)) / var(--slides-per-page));
   }
 
   @media (prefers-reduced-motion) {

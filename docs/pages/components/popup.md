@@ -1539,7 +1539,7 @@ const virtualElement = {
   getBoundingClientRect() {
     // ...
     return { width, height, x, y, top, left, right, bottom };
-  },
+  }
 };
 ```
 

@@ -1,6 +1,6 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
-import formControlStyles from "../../styles/form-control.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
   ${componentStyles}
@@ -22,15 +22,13 @@ export default css`
     vertical-align: middle;
     overflow: hidden;
     cursor: text;
-    transition: var(--wa-transition-fast) border,
-      var(--wa-transition-fast) background-color;
+    transition: var(--wa-transition-fast) border, var(--wa-transition-fast) background-color;
   }
 
   /* Standard inputs */
   .input--standard {
     background-color: var(--wa-form-controls-background);
-    border: var(--wa-form-controls-border-style)
-      var(--wa-form-controls-border-width)
+    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width)
       var(--wa-form-controls-border-color-resting);
   }
 
@@ -136,10 +134,7 @@ export default css`
   }
 
   .input--small .input__control {
-    height: calc(
-      var(--wa-form-controls-height-s) - var(--wa-form-controls-border-width) *
-        2
-    );
+    height: calc(var(--wa-form-controls-height-s) - var(--wa-form-controls-border-width) * 2);
     padding: 0 var(--wa-space-s);
   }
 
@@ -163,10 +158,7 @@ export default css`
   }
 
   .input--medium .input__control {
-    height: calc(
-      var(--wa-form-controls-height-m) - var(--wa-form-controls-border-width) *
-        2
-    );
+    height: calc(var(--wa-form-controls-height-m) - var(--wa-form-controls-border-width) * 2);
     padding: 0 var(--wa-space-m);
   }
 
@@ -190,10 +182,7 @@ export default css`
   }
 
   .input--large .input__control {
-    height: calc(
-      var(--wa-form-controls-height-l) - var(--wa-form-controls-border-width) *
-        2
-    );
+    height: calc(var(--wa-form-controls-height-l) - var(--wa-form-controls-border-width) * 2);
     padding: 0 var(--wa-space-l);
   }
 
@@ -268,13 +257,13 @@ export default css`
   }
 
   /* Hide the built-in number spinner */
-  .input--no-spin-buttons input[type="number"]::-webkit-outer-spin-button,
-  .input--no-spin-buttons input[type="number"]::-webkit-inner-spin-button {
+  .input--no-spin-buttons input[type='number']::-webkit-outer-spin-button,
+  .input--no-spin-buttons input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
   }
 
-  .input--no-spin-buttons input[type="number"] {
+  .input--no-spin-buttons input[type='number'] {
     -moz-appearance: textfield;
   }
 `;

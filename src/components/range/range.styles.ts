@@ -1,6 +1,6 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
-import formControlStyles from "../../styles/form-control.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
   ${componentStyles}
@@ -35,12 +35,10 @@ export default css`
     background-image: linear-gradient(
       to right,
       var(--track-color-inactive) 0%,
-      var(--track-color-inactive)
-        min(var(--percent), var(--track-active-offset)),
+      var(--track-color-inactive) min(var(--percent), var(--track-active-offset)),
       var(--track-color-active) min(var(--percent), var(--track-active-offset)),
       var(--track-color-active) max(var(--percent), var(--track-active-offset)),
-      var(--track-color-inactive)
-        max(var(--percent), var(--track-active-offset)),
+      var(--track-color-inactive) max(var(--percent), var(--track-active-offset)),
       var(--track-color-inactive) 100%
     );
   }
@@ -49,12 +47,10 @@ export default css`
     background-image: linear-gradient(
       to left,
       var(--track-color-inactive) 0%,
-      var(--track-color-inactive)
-        min(var(--percent), var(--track-active-offset)),
+      var(--track-color-inactive) min(var(--percent), var(--track-active-offset)),
       var(--track-color-active) min(var(--percent), var(--track-active-offset)),
       var(--track-color-active) max(var(--percent), var(--track-active-offset)),
-      var(--track-color-inactive)
-        max(var(--percent), var(--track-active-offset)),
+      var(--track-color-inactive) max(var(--percent), var(--track-active-offset)),
       var(--track-color-inactive) 100%
     );
   }
@@ -73,8 +69,7 @@ export default css`
     height: var(--thumb-size);
     border-radius: 50%;
     background-color: var(--wa-color-brand-fill-vivid);
-    border: var(--wa-form-controls-border-style)
-      var(--wa-form-controls-border-width) var(--wa-color-brand-fill-vivid);
+    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width) var(--wa-color-brand-fill-vivid);
     -webkit-appearance: none;
     margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
     cursor: pointer;
@@ -115,8 +110,7 @@ export default css`
     border-radius: 50%;
     background-color: var(--wa-color-brand-fill-vivid);
     border-color: var(--wa-color-brand-fill-vivid);
-    transition: var(--wa-transition-fast) border-color,
-      var(--wa-transition-fast) background-color,
+    transition: var(--wa-transition-fast) border-color, var(--wa-transition-fast) background-color,
       var(--wa-transition-fast) color, var(--wa-transition-fast) box-shadow;
     cursor: pointer;
   }
@@ -166,7 +160,7 @@ export default css`
   }
 
   .range__tooltip:after {
-    content: "";
+    content: '';
     position: absolute;
     width: 0;
     height: 0;
@@ -184,8 +178,7 @@ export default css`
   }
 
   .range--tooltip-top .range__tooltip:after {
-    border-top: var(--wa-tooltip-arrow-size) solid
-      var(--wa-color-neutral-fill-vivid);
+    border-top: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-fill-vivid);
     border-left: var(--wa-tooltip-arrow-size) solid transparent;
     border-right: var(--wa-tooltip-arrow-size) solid transparent;
     top: 100%;
@@ -197,8 +190,7 @@ export default css`
   }
 
   .range--tooltip-bottom .range__tooltip:after {
-    border-bottom: var(--wa-tooltip-arrow-size) solid
-      var(--wa-color-neutral-fill-vivid);
+    border-bottom: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-fill-vivid);
     border-left: var(--wa-tooltip-arrow-size) solid transparent;
     border-right: var(--wa-tooltip-arrow-size) solid transparent;
     bottom: 100%;

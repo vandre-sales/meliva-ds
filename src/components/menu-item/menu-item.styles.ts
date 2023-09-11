@@ -1,5 +1,5 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
@@ -67,7 +67,7 @@ export default css`
     outline: none;
   }
 
-  :host(:hover:not([aria-disabled="true"], :focus-visible)) .menu-item,
+  :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
     background-color: var(--wa-color-neutral-fill-muted);
     color: var(--wa-color-text-normal);
@@ -107,7 +107,7 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    :host(:hover:not([aria-disabled="true"])) .menu-item,
+    :host(:hover:not([aria-disabled='true'])) .menu-item,
     :host(:focus-visible) .menu-item {
       outline: dashed 1px SelectedItem;
       outline-offset: -1px;

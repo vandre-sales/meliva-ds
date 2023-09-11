@@ -1,6 +1,6 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
-import formControlStyles from "../../styles/form-control.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
   ${componentStyles}
@@ -20,16 +20,14 @@ export default css`
     color: var(--wa-form-controls-text-color);
     line-height: var(--wa-form-controls-value-line-height);
     vertical-align: middle;
-    transition: var(--wa-transition-fast) border,
-      var(--wa-transition-fast) background-color;
+    transition: var(--wa-transition-fast) border, var(--wa-transition-fast) background-color;
     cursor: text;
   }
 
   /* Standard textareas */
   .textarea--standard {
     background-color: var(--wa-form-controls-background);
-    border: var(--wa-form-controls-border-style)
-      var(--wa-form-controls-border-width)
+    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width)
       var(--wa-form-controls-border-color-resting);
   }
 

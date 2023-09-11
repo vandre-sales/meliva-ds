@@ -1,5 +1,5 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
@@ -22,19 +22,19 @@ export default css`
     z-index: var(--wa-z-index-tooltip);
   }
 
-  .tooltip[placement^="top"]::part(popup) {
+  .tooltip[placement^='top']::part(popup) {
     transform-origin: bottom;
   }
 
-  .tooltip[placement^="bottom"]::part(popup) {
+  .tooltip[placement^='bottom']::part(popup) {
     transform-origin: top;
   }
 
-  .tooltip[placement^="left"]::part(popup) {
+  .tooltip[placement^='left']::part(popup) {
     transform-origin: right;
   }
 
-  .tooltip[placement^="right"]::part(popup) {
+  .tooltip[placement^='right']::part(popup) {
     transform-origin: left;
   }
 

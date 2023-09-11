@@ -1,6 +1,6 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
-import formControlStyles from "../../styles/form-control.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
   ${componentStyles}
@@ -23,11 +23,11 @@ export default css`
     z-index: var(--wa-z-index-dropdown);
   }
 
-  .select[data-current-placement^="top"]::part(popup) {
+  .select[data-current-placement^='top']::part(popup) {
     transform-origin: bottom;
   }
 
-  .select[data-current-placement^="bottom"]::part(popup) {
+  .select[data-current-placement^='bottom']::part(popup) {
     transform-origin: top;
   }
 
@@ -45,8 +45,7 @@ export default css`
     vertical-align: middle;
     overflow: hidden;
     cursor: pointer;
-    transition: var(--wa-transition-fast) color,
-      var(--wa-transition-fast) border, var(--wa-transition-fast) box-shadow,
+    transition: var(--wa-transition-fast) color, var(--wa-transition-fast) border, var(--wa-transition-fast) box-shadow,
       var(--wa-transition-fast) background-color;
   }
 
@@ -112,8 +111,7 @@ export default css`
   /* Standard selects */
   .select--standard .select__combobox {
     background-color: var(--wa-form-controls-background);
-    border: var(--wa-form-controls-border-style)
-      var(--wa-form-controls-border-width)
+    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width)
       var(--wa-form-controls-border-color-resting);
   }
 
@@ -164,8 +162,7 @@ export default css`
     margin-inline-end: var(--wa-space-s);
   }
 
-  .select--small.select--multiple:not(.select--placeholder-visible)
-    .select__combobox {
+  .select--small.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-block: 2px;
     padding-inline-start: 0;
   }
@@ -190,8 +187,7 @@ export default css`
     margin-inline-end: var(--wa-space-m);
   }
 
-  .select--medium.select--multiple:not(.select--placeholder-visible)
-    .select__combobox {
+  .select--medium.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-inline-start: 0;
     padding-block: 3px;
   }
@@ -216,8 +212,7 @@ export default css`
     margin-inline-end: var(--wa-space-l);
   }
 
-  .select--large.select--multiple:not(.select--placeholder-visible)
-    .select__combobox {
+  .select--large.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-inline-start: 0;
     padding-block: 4px;
   }
@@ -292,8 +287,7 @@ export default css`
     font-weight: var(--wa-font-weight-normal);
     box-shadow: var(--wa-shadow-level-3);
     background: var(--wa-color-surface-raised);
-    border: var(--wa-border-style) var(--wa-border-width-thin)
-      var(--wa-color-surface-outline);
+    border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
     border-radius: var(--wa-corners-1x);
     padding-block: var(--wa-space-xs);
     padding-inline: 0;

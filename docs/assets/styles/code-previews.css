@@ -8,21 +8,19 @@
 
 .code-preview__preview {
   position: relative;
-  border: var(--wa-border-style) var(--wa-border-width-thin)
-    var(--wa-color-surface-outline);
+  border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
   border-bottom: none;
   border-top-left-radius: var(--wa-corners-1x);
   border-top-right-radius: var(--wa-corners-1x);
   background-color: var(--wa-color-surface-default);
   min-width: 20rem;
   max-width: 100%;
-  padding: var(--wa-space-xl) var(--wa-space-3xl) var(--wa-space-xl)
-    var(--wa-space-xl);
+  padding: var(--wa-space-xl) var(--wa-space-3xl) var(--wa-space-xl) var(--wa-space-xl);
 }
 
 /* Block the preview while dragging to prevent iframes from intercepting drag events */
 .code-preview__preview--dragging:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -44,8 +42,7 @@
   font-size: 20px;
   color: var(--wa-color-text-quiet);
   background-color: var(--wa-color-surface-default);
-  border-left: var(--wa-border-style) var(--wa-border-width-thin)
-    var(--wa-color-surface-outline);
+  border-left: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
   border-top-right-radius: var(--wa-corners-1x);
   cursor: ew-resize;
 }
@@ -61,8 +58,7 @@
 }
 
 .code-preview__source {
-  border: var(--wa-border-style) var(--wa-border-width-thin)
-    var(--wa-color-surface-outline);
+  border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
   border-bottom: none;
   border-radius: 0 !important;
   display: none;
@@ -78,8 +74,7 @@
 
 .code-preview__buttons {
   position: relative;
-  border: var(--wa-border-style) var(--wa-border-width-thin)
-    var(--wa-color-surface-outline);
+  border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
   border-bottom-left-radius: var(--wa-corners-1x);
   border-bottom-right-radius: var(--wa-corners-1x);
   display: flex;
@@ -102,8 +97,7 @@
 }
 
 .code-preview__button:not(:last-of-type) {
-  border-right: var(--wa-border-style) var(--wa-border-width-thin)
-    var(--wa-color-surface-outline);
+  border-right: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
 }
 
 .code-preview__button--html,
@@ -135,8 +129,7 @@
 
 .code-preview__button:hover,
 .code-preview__button:active {
-  box-shadow: 0 0 0 var(--wa-border-width-thin)
-    var(--wa-color-brand-outline-muted);
+  box-shadow: 0 0 0 var(--wa-border-width-thin) var(--wa-color-brand-outline-muted);
   border-right-color: transparent;
   background-color: var(--wa-color-brand-fill-muted);
   color: var(--wa-color-brand-text-on-surface);
@@ -171,10 +164,10 @@
 }
 
 /* We can apply data-flavor="html|react" to any element on the page to toggle it when the flavor changes */
-.flavor-html [data-flavor]:not([data-flavor="html"]) {
+.flavor-html [data-flavor]:not([data-flavor='html']) {
   display: none;
 }
 
-.flavor-react [data-flavor]:not([data-flavor="react"]) {
+.flavor-react [data-flavor]:not([data-flavor='react']) {
   display: none;
 }

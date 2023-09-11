@@ -1,5 +1,5 @@
-import { css } from "lit";
-import componentStyles from "../../styles/component.styles.js";
+import { css } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
@@ -22,8 +22,7 @@ export default css`
     font-weight: var(--wa-font-weight-normal);
     line-height: var(--wa-line-height-regular);
     color: var(--wa-color-neutral-text-on-surface);
-    padding: var(--wa-space-xs) var(--wa-space-m) var(--wa-space-xs)
-      var(--wa-space-xs);
+    padding: var(--wa-space-xs) var(--wa-space-m) var(--wa-space-xs) var(--wa-space-xs);
     transition: var(--wa-transition-fast) fill;
     cursor: pointer;
   }
@@ -81,7 +80,7 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    :host(:hover:not([aria-disabled="true"])) .option {
+    :host(:hover:not([aria-disabled='true'])) .option {
       outline: dashed 1px SelectedItem;
       outline-offset: -1px;
     }
