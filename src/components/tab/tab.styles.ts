@@ -13,7 +13,7 @@ export default css`
     align-items: center;
     font-family: var(--wa-font-family-body);
     font-size: var(--wa-font-size-s);
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-action);
     border-radius: var(--wa-corners-1x);
     color: var(--wa-color-neutral-text-on-surface);
     padding: var(--wa-space-m) var(--wa-space-l);

@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -18,7 +18,7 @@ export default css`
     font-family: var(--wa-font-family-body);
     font-size: var(--wa-font-size-m);
     font-weight: var(--wa-font-weight-normal);
-    color: var(--wa-form-controls-color-text);
+    color: var(--wa-form-controls-text-color);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -52,11 +52,13 @@ export default css`
     justify-content: center;
     width: var(--toggle-size);
     height: var(--toggle-size);
-    border: var(--wa-border-style) var(--wa-form-controls-border-width) var(--wa-form-controls-color-resting);
+    border: var(--wa-border-style) var(--wa-form-controls-border-width)
+      var(--wa-form-controls-border-color-resting);
     border-radius: 50%;
     background-color: var(--wa-form-controls-background);
     color: transparent;
-    transition: var(--wa-transition-fast) border-color, var(--wa-transition-fast) background-color,
+    transition: var(--wa-transition-fast) border-color,
+      var(--wa-transition-fast) background-color,
       var(--wa-transition-fast) color, var(--wa-transition-fast) box-shadow;
   }
 
@@ -71,8 +73,8 @@ export default css`
   /* Checked */
   .radio--checked .radio__control {
     color: var(--wa-color-brand-text-on-vivid);
-    border-color: var(--wa-color-brand-element-fill-vivid);
-    background-color: var(--wa-color-brand-element-fill-vivid);
+    border-color: var(--wa-color-brand-fill-vivid);
+    background-color: var(--wa-color-brand-fill-vivid);
   }
 
   /* Checked + focus */
@@ -94,7 +96,7 @@ export default css`
 
   .radio__label {
     display: inline-block;
-    color: var(--wa-form-controls-color-text);
+    color: var(--wa-form-controls-text-color);
     line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;

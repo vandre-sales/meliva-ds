@@ -1,6 +1,6 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
-import formControlStyles from '../../styles/form-control.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
+import formControlStyles from "../../styles/form-control.styles.js";
 
 export default css`
   ${componentStyles}
@@ -22,20 +22,22 @@ export default css`
     vertical-align: middle;
     overflow: hidden;
     cursor: text;
-    transition: var(--wa-transition-fast) border, var(--wa-transition-fast) background-color;
+    transition: var(--wa-transition-fast) border,
+      var(--wa-transition-fast) background-color;
   }
 
   /* Standard inputs */
   .input--standard {
     background-color: var(--wa-form-controls-background);
-    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width)
-      var(--wa-form-controls-color-resting);
+    border: var(--wa-form-controls-border-style)
+      var(--wa-form-controls-border-width)
+      var(--wa-form-controls-border-color-resting);
   }
 
   .input--standard.input--focused:not(.input--disabled) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
-    border-color: var(--wa-form-controls-color-activated);
+    border-color: var(--wa-form-controls-border-color-activated);
   }
 
   .input--standard.input--disabled {
@@ -46,7 +48,7 @@ export default css`
   /* Filled inputs */
   .input--filled {
     border: none;
-    background-color: var(--wa-color-neutral-container-fill-muted);
+    background-color: var(--wa-color-neutral-fill-muted);
     color: var(--wa-color-neutral-text-on-muted);
   }
 
@@ -67,8 +69,8 @@ export default css`
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
-    line-height: var(--wa-form-controls-font-line-height);
-    color: var(--wa-form-controls-color-text);
+    line-height: var(--wa-form-controls-value-line-height);
+    color: var(--wa-form-controls-text-color);
     border: none;
     background: inherit;
     box-shadow: none;
@@ -91,7 +93,7 @@ export default css`
   .input__control:-webkit-autofill:active {
     box-shadow: none;
     -webkit-text-fill-color: var(--wa-color-brand-text-on-muted);
-    caret-color: var(--wa-form-controls-color-text);
+    caret-color: var(--wa-form-controls-text-color);
   }
 
   .input--filled .input__control:-webkit-autofill,
@@ -128,13 +130,16 @@ export default css`
    */
 
   .input--small {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-s);
     height: var(--wa-form-controls-height-s);
   }
 
   .input--small .input__control {
-    height: calc(var(--wa-form-controls-height-s) - var(--wa-form-controls-border-width) * 2);
+    height: calc(
+      var(--wa-form-controls-height-s) - var(--wa-form-controls-border-width) *
+        2
+    );
     padding: 0 var(--wa-space-s);
   }
 
@@ -152,13 +157,16 @@ export default css`
   }
 
   .input--medium {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-m);
     height: var(--wa-form-controls-height-m);
   }
 
   .input--medium .input__control {
-    height: calc(var(--wa-form-controls-height-m) - var(--wa-form-controls-border-width) * 2);
+    height: calc(
+      var(--wa-form-controls-height-m) - var(--wa-form-controls-border-width) *
+        2
+    );
     padding: 0 var(--wa-space-m);
   }
 
@@ -176,13 +184,16 @@ export default css`
   }
 
   .input--large {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-l);
     height: var(--wa-form-controls-height-l);
   }
 
   .input--large .input__control {
-    height: calc(var(--wa-form-controls-height-l) - var(--wa-form-controls-border-width) * 2);
+    height: calc(
+      var(--wa-form-controls-height-l) - var(--wa-form-controls-border-width) *
+        2
+    );
     padding: 0 var(--wa-space-l);
   }
 
@@ -229,7 +240,7 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: inherit;
-    color: var(--wa-color-neutral-element-fill-vivid);
+    color: var(--wa-color-neutral-fill-vivid);
     border: none;
     background: none;
     padding: 0;
@@ -239,7 +250,7 @@ export default css`
 
   .input__clear:active,
   .input__password-toggle:active {
-    color: color-mix(in oklch, var(--wa-color-neutral-element-fill-vivid), black 12%);
+    color: color-mix(in oklch, var(--wa-color-neutral-fill-vivid), black 12%);
   }
 
   .input__clear:focus,
@@ -257,13 +268,13 @@ export default css`
   }
 
   /* Hide the built-in number spinner */
-  .input--no-spin-buttons input[type='number']::-webkit-outer-spin-button,
-  .input--no-spin-buttons input[type='number']::-webkit-inner-spin-button {
+  .input--no-spin-buttons input[type="number"]::-webkit-outer-spin-button,
+  .input--no-spin-buttons input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
   }
 
-  .input--no-spin-buttons input[type='number'] {
+  .input--no-spin-buttons input[type="number"] {
     -moz-appearance: textfield;
   }
 `;

@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -8,7 +8,7 @@ export default css`
     display: inline-block;
   }
 
-  :host([size='small']) {
+  :host([size="small"]) {
     --height: var(--wa-form-control-toggle-size-s);
     --thumb-size: calc(var(--wa-form-control-toggle-size-s) + 4px);
     --width: calc(var(--height) * 2);
@@ -16,7 +16,7 @@ export default css`
     font-size: var(--wa-font-size-s);
   }
 
-  :host([size='medium']) {
+  :host([size="medium"]) {
     --height: var(--wa-form-control-toggle-size-m);
     --thumb-size: calc(var(--wa-form-control-toggle-size-m) + 4px);
     --width: calc(var(--height) * 2);
@@ -24,7 +24,7 @@ export default css`
     font-size: var(--wa-font-size-m);
   }
 
-  :host([size='large']) {
+  :host([size="large"]) {
     --height: var(--wa-form-control-toggle-size-l);
     --thumb-size: calc(var(--wa-form-control-toggle-size-l) + 4px);
     --width: calc(var(--height) * 2);
@@ -39,7 +39,7 @@ export default css`
     font-family: var(--wa-font-family-body);
     font-weight: var(--wa-font-weight-normal);
     font-size: inherit;
-    color: var(--wa-form-controls-color-text);
+    color: var(--wa-form-controls-text-color);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -52,10 +52,11 @@ export default css`
     justify-content: center;
     width: var(--width);
     height: var(--height);
-    background-color: var(--wa-color-neutral-element-fill-vivid);
-    border: solid var(--wa-border-width-thin) var(--wa-color-neutral-container-fill-muted);
+    background-color: var(--wa-color-neutral-fill-vivid);
+    border: solid var(--wa-border-width-thin) var(--wa-color-neutral-fill-muted);
     border-radius: var(--height);
-    transition: var(--wa-transition-fast) border-color, var(--wa-transition-fast) background-color;
+    transition: var(--wa-transition-fast) border-color,
+      var(--wa-transition-fast) background-color;
   }
 
   .switch__control .switch__thumb {
@@ -63,11 +64,13 @@ export default css`
     height: var(--thumb-size);
     background-color: var(--wa-form-controls-background);
     border-radius: 50%;
-    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width)
-      var(--wa-color-neutral-element-outline-vivid);
+    border: var(--wa-form-controls-border-style)
+      var(--wa-form-controls-border-width) var(--wa-color-neutral-outline-vivid);
     translate: calc((var(--width) - var(--height)) / -2);
-    transition: var(--wa-transition-fast) translate ease, var(--wa-transition-fast) background-color,
-      var(--wa-transition-fast) border-color, var(--wa-transition-fast) box-shadow;
+    transition: var(--wa-transition-fast) translate ease,
+      var(--wa-transition-fast) background-color,
+      var(--wa-transition-fast) border-color,
+      var(--wa-transition-fast) box-shadow;
   }
 
   .switch__input {
@@ -79,19 +82,22 @@ export default css`
   }
 
   /* Focus */
-  .switch:not(.switch--checked):not(.switch--disabled) .switch__input:focus-visible ~ .switch__control .switch__thumb {
+  .switch:not(.switch--checked):not(.switch--disabled)
+    .switch__input:focus-visible
+    ~ .switch__control
+    .switch__thumb {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }
 
   /* Checked */
   .switch--checked .switch__control {
-    background-color: var(--wa-color-brand-element-fill-vivid);
-    border-color: var(--wa-color-brand-element-fill-vivid);
+    background-color: var(--wa-color-brand-fill-vivid);
+    border-color: var(--wa-color-brand-fill-vivid);
   }
 
   .switch--checked .switch__control .switch__thumb {
-    border-color: var(--wa-color-brand-element-outline-vivid);
+    border-color: var(--wa-color-brand-outline-vivid);
     translate: calc((var(--width) - var(--height)) / 2);
   }
 
@@ -115,7 +121,9 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    .switch.switch--checked:not(.switch--disabled) .switch__control:hover .switch__thumb,
+    .switch.switch--checked:not(.switch--disabled)
+      .switch__control:hover
+      .switch__thumb,
     .switch--checked .switch__control .switch__thumb {
       background-color: ButtonText;
     }

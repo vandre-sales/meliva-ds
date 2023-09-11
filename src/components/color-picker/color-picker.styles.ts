@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -27,7 +27,8 @@ export default css`
   }
 
   .color-picker--inline {
-    border: var(--wa-form-controls-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
+    border: var(--wa-form-controls-border-style) var(--wa-border-width-thin)
+      var(--wa-color-surface-outline);
   }
 
   .color-picker--inline:focus-visible {
@@ -38,7 +39,11 @@ export default css`
   .color-picker__grid {
     position: relative;
     height: var(--grid-height);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+      ),
       linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
     border-top-left-radius: var(--wa-corners-1x);
     border-top-right-radius: var(--wa-corners-1x);
@@ -143,7 +148,7 @@ export default css`
   }
 
   .color-picker__preview:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -176,7 +181,7 @@ export default css`
 
   @keyframes pulse {
     0% {
-      box-shadow: 0 0 0 0 var(--wa-color-brand-container-fill-vivid);
+      box-shadow: 0 0 0 0 var(--wa-color-brand-fill-vivid-alt);
     }
     70% {
       box-shadow: 0 0 0 0.5rem transparent;
@@ -240,10 +245,26 @@ export default css`
   }
 
   .color-picker__transparent-bg {
-    background-image: linear-gradient(45deg, var(--wa-color-neutral-element-fill-muted) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, var(--wa-color-neutral-element-fill-muted) 75%),
-      linear-gradient(45deg, transparent 75%, var(--wa-color-neutral-element-fill-muted) 75%),
-      linear-gradient(45deg, var(--wa-color-neutral-element-fill-muted) 25%, transparent 25%);
+    background-image: linear-gradient(
+        45deg,
+        var(--wa-color-neutral-fill-muted-alt) 25%,
+        transparent 25%
+      ),
+      linear-gradient(
+        45deg,
+        transparent 75%,
+        var(--wa-color-neutral-fill-muted-alt) 75%
+      ),
+      linear-gradient(
+        45deg,
+        transparent 75%,
+        var(--wa-color-neutral-fill-muted-alt) 75%
+      ),
+      linear-gradient(
+        45deg,
+        var(--wa-color-neutral-fill-muted-alt) 25%,
+        transparent 25%
+      );
     background-size: 10px 10px;
     background-position: 0 0, 0 0, -5px -5px, 5px 5px;
   }
@@ -303,7 +324,7 @@ export default css`
   }
 
   .color-dropdown__trigger:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -311,7 +332,8 @@ export default css`
     height: 100%;
     border-radius: inherit;
     background-color: currentColor;
-    box-shadow: inset 0 0 0 2px var(--wa-form-controls-color-resting), inset 0 0 0 4px var(--wa-color-white);
+    box-shadow: inset 0 0 0 2px var(--wa-form-controls-border-color-resting),
+      inset 0 0 0 4px var(--wa-color-white);
   }
 
   .color-dropdown__trigger--empty:before {
@@ -322,7 +344,9 @@ export default css`
     outline: none;
   }
 
-  .color-dropdown__trigger:focus-visible:not(.color-dropdown__trigger--disabled) {
+  .color-dropdown__trigger:focus-visible:not(
+      .color-dropdown__trigger--disabled
+    ) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }

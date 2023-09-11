@@ -1,12 +1,12 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
 
   :host {
-    --indicator-color: var(--wa-color-brand-element-fill-vivid);
-    --track-color: var(--wa-color-neutral-element-fill-muted);
+    --indicator-color: var(--wa-color-brand-fill-vivid);
+    --track-color: var(--wa-color-neutral-fill-muted-alt);
     --track-width: 2px;
 
     display: block;
@@ -24,7 +24,8 @@ export default css`
 
   .tab-group__indicator {
     position: absolute;
-    transition: var(--wa-transition-fast) translate ease, var(--wa-transition-fast) width ease;
+    transition: var(--wa-transition-fast) translate ease,
+      var(--wa-transition-fast) width ease;
   }
 
   .tab-group--has-scroll-controls .tab-group__nav-container {

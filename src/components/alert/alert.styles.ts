@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -37,32 +37,37 @@ export default css`
   }
 
   .alert--brand {
-    background-color: var(--wa-color-brand-container-fill-muted);
-    border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-brand-container-outline-muted);
+    background-color: var(--wa-color-brand-fill-muted);
+    border: var(--wa-border-style) var(--wa-border-width-thin)
+      var(--wa-color-brand-outline-muted);
     color: var(--wa-color-brand-text-on-muted);
   }
 
   .alert--success {
-    background-color: var(--wa-color-success-container-fill-muted);
-    border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-success-container-outline-muted);
+    background-color: var(--wa-color-success-fill-muted);
+    border: var(--wa-border-style) var(--wa-border-width-thin)
+      var(--wa-color-success-outline-muted);
     color: var(--wa-color-success-text-on-muted);
   }
 
   .alert--neutral {
-    background-color: var(--wa-color-neutral-container-fill-muted);
-    border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-neutral-container-outline-muted);
+    background-color: var(--wa-color-neutral-fill-muted);
+    border: var(--wa-border-style) var(--wa-border-width-thin)
+      var(--wa-color-neutral-outline-muted);
     color: var(--wa-color-neutral-text-on-muted);
   }
 
   .alert--warning {
-    background-color: var(--wa-color-warning-container-fill-muted);
-    border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-warning-container-outline-muted);
+    background-color: var(--wa-color-warning-fill-muted);
+    border: var(--wa-border-style) var(--wa-border-width-thin)
+      var(--wa-color-warning-outline-muted);
     color: var(--wa-color-warning-text-on-muted);
   }
 
   .alert--danger {
-    background-color: var(--wa-color-danger-container-fill-muted);
-    border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-danger-container-outline-muted);
+    background-color: var(--wa-color-danger-fill-muted);
+    border: var(--wa-border-style) var(--wa-border-width-thin)
+      var(--wa-color-danger-outline-muted);
     color: var(--wa-color-danger-text-on-muted);
   }
 

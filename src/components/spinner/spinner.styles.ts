@@ -1,13 +1,13 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
 
   :host {
     --track-width: 2px;
-    --track-color: var(--wa-color-neutral-container-fill-muted);
-    --indicator-color: var(--wa-color-brand-element-fill-vivid);
+    --track-color: var(--wa-color-neutral-fill-muted);
+    --indicator-color: var(--wa-color-brand-fill-vivid);
     --speed: 2s;
 
     display: inline-flex;

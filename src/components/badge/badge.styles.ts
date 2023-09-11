@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -25,27 +25,27 @@ export default css`
 
   /* Variant modifiers */
   .badge--brand {
-    background-color: var(--wa-color-brand-element-fill-vivid);
+    background-color: var(--wa-color-brand-fill-vivid);
     color: var(--wa-color-brand-text-on-vivid);
   }
 
   .badge--success {
-    background-color: var(--wa-color-success-element-fill-vivid);
+    background-color: var(--wa-color-success-fill-vivid);
     color: var(--wa-color-success-text-on-vivid);
   }
 
   .badge--neutral {
-    background-color: var(--wa-color-neutral-element-fill-vivid);
+    background-color: var(--wa-color-neutral-fill-vivid);
     color: var(--wa-color-neutral-text-on-vivid);
   }
 
   .badge--warning {
-    background-color: var(--wa-color-warning-element-fill-vivid);
+    background-color: var(--wa-color-warning-fill-vivid);
     color: var(--wa-color-warning-text-on-vivid);
   }
 
   .badge--danger {
-    background-color: var(--wa-color-danger-element-fill-vivid);
+    background-color: var(--wa-color-danger-fill-vivid);
     color: var(--wa-color-danger-text-on-vivid);
   }
 
@@ -60,23 +60,23 @@ export default css`
   }
 
   .badge--pulse.badge--brand {
-    --pulse-color: var(--wa-color-brand-container-outline-vivid);
+    --pulse-color: var(--wa-color-brand-outline-vivid-alt);
   }
 
   .badge--pulse.badge--success {
-    --pulse-color: var(--wa-color-success-container-outline-vivid);
+    --pulse-color: var(--wa-color-success-outline-vivid-alt);
   }
 
   .badge--pulse.badge--neutral {
-    --pulse-color: var(--wa-color-neutral-container-outline-vivid);
+    --pulse-color: var(--wa-color-neutral-outline-vivid-alt);
   }
 
   .badge--pulse.badge--warning {
-    --pulse-color: var(--wa-color-warning-container-outline-vivid);
+    --pulse-color: var(--wa-color-warning-outline-vivid-alt);
   }
 
   .badge--pulse.badge--danger {
-    --pulse-color: var(--wa-color-danger-container-outline-vivid);
+    --pulse-color: var(--wa-color-danger-outline-vivid-alt);
   }
 
   @keyframes pulse {

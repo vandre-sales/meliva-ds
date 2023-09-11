@@ -1,6 +1,6 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
-import formControlStyles from '../../styles/form-control.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
+import formControlStyles from "../../styles/form-control.styles.js";
 
 export default css`
   ${componentStyles}
@@ -17,24 +17,26 @@ export default css`
     width: 100%;
     font-family: var(--wa-font-family-body);
     font-weight: var(--wa-font-weight-normal);
-    color: var(--wa-form-controls-color-text);
-    line-height: var(--wa-form-controls-font-line-height);
+    color: var(--wa-form-controls-text-color);
+    line-height: var(--wa-form-controls-value-line-height);
     vertical-align: middle;
-    transition: var(--wa-transition-fast) border, var(--wa-transition-fast) background-color;
+    transition: var(--wa-transition-fast) border,
+      var(--wa-transition-fast) background-color;
     cursor: text;
   }
 
   /* Standard textareas */
   .textarea--standard {
     background-color: var(--wa-form-controls-background);
-    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width)
-      var(--wa-form-controls-color-resting);
+    border: var(--wa-form-controls-border-style)
+      var(--wa-form-controls-border-width)
+      var(--wa-form-controls-border-color-resting);
   }
 
   .textarea--standard.textarea--focused:not(.textarea--disabled) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
-    border-color: var(--wa-form-controls-color-activated);
+    border-color: var(--wa-form-controls-border-color-activated);
   }
 
   .textarea--standard.textarea--disabled {
@@ -45,7 +47,7 @@ export default css`
   /* Filled textareas */
   .textarea--filled {
     border: none;
-    background-color: var(--wa-color-neutral-container-fill-muted);
+    background-color: var(--wa-color-neutral-fill-muted);
     color: var(--wa-color-neutral-text-on-muted);
   }
 
@@ -65,7 +67,7 @@ export default css`
     font-size: inherit;
     font-weight: inherit;
     line-height: 1.4;
-    color: var(--wa-form-controls-color-text);
+    color: var(--wa-form-controls-text-color);
     border: none;
     background: none;
     box-shadow: none;
@@ -94,7 +96,7 @@ export default css`
    */
 
   .textarea--small {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-s);
   }
 
@@ -103,7 +105,7 @@ export default css`
   }
 
   .textarea--medium {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-m);
   }
 
@@ -112,7 +114,7 @@ export default css`
   }
 
   .textarea--large {
-    border-radius: var(--wa-corners-1x);
+    border-radius: var(--wa-form-controls-corners);
     font-size: var(--wa-font-size-l);
   }
 

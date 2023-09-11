@@ -1,5 +1,5 @@
-import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles.js";
 
 export default css`
   ${componentStyles}
@@ -22,7 +22,7 @@ export default css`
     font-size: var(--wa-font-size-m);
     font-weight: var(--wa-font-weight-normal);
     line-height: var(--wa-line-height-regular);
-    color: var(--wa-color-neutral-text-on-surface);
+    color: var(--wa-color-text-normal);
     padding: var(--wa-space-2xs) var(--wa-space-2xs);
     transition: var(--wa-transition-fast) fill;
     user-select: none;
@@ -67,15 +67,15 @@ export default css`
     outline: none;
   }
 
-  :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
+  :host(:hover:not([aria-disabled="true"], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
-    background-color: var(--wa-color-neutral-container-fill-muted);
-    color: var(--wa-color-neutral-text-on-muted);
+    background-color: var(--wa-color-neutral-fill-muted);
+    color: var(--wa-color-text-normal);
   }
 
   :host(:focus-visible) .menu-item {
     outline: none;
-    background-color: var(--wa-color-brand-element-fill-vivid);
+    background-color: var(--wa-color-brand-fill-vivid);
     color: var(--wa-color-brand-text-on-vivid);
     opacity: 1;
   }
@@ -97,7 +97,7 @@ export default css`
 
   /* Add elevation and z-index to submenus */
   wa-popup::part(popup) {
-    box-shadow: var(--wa-shadow-level-3);
+    box-shadow: var(--wa-shadow-level-2);
     z-index: var(--wa-z-index-dropdown);
     margin-left: var(--submenu-offset);
   }
@@ -107,7 +107,7 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    :host(:hover:not([aria-disabled='true'])) .menu-item,
+    :host(:hover:not([aria-disabled="true"])) .menu-item,
     :host(:focus-visible) .menu-item {
       outline: dashed 1px SelectedItem;
       outline-offset: -1px;
