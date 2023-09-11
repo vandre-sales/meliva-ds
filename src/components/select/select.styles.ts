@@ -261,7 +261,7 @@ export default css`
   }
 
   .select__clear:active {
-    color: color-mix(in oklch, var(--wa-color-neutral-fill-vivid), black 12%);
+    color: color-mix(in oklab, var(--wa-color-neutral-fill-vivid), var(--wa-color-tint-active));
   }
 
   /* Expand icon */
