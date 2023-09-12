@@ -11,9 +11,7 @@ export default css`
   .tab {
     display: inline-flex;
     align-items: center;
-    font-family: var(--wa-font-family-body);
-    font-size: var(--wa-font-size-s);
-    font-weight: var(--wa-font-weight-action);
+    font: inherit;
     border-radius: var(--wa-corners-1x);
     color: var(--wa-color-neutral-text-on-surface);
     padding: var(--wa-space-m) var(--wa-space-l);

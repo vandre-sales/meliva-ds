@@ -1095,14 +1095,26 @@ html.sidebar-open #menu-toggle {
 }
 
 .repo-button--github wa-icon {
+  color: var(--wa-color-black);
+}
+
+.repo-button--github:hover wa-icon {
   color: var(--wa-color-white);
 }
 
 .repo-button--star wa-icon {
+  color: var(--wa-color-yellow-70);
+}
+
+.repo-button--star:hover wa-icon {
   color: var(--wa-color-yellow-80);
 }
 
 .repo-button--twitter wa-icon {
+  color: var(--wa-color-blue-60);
+}
+
+.repo-button--twitter:hover wa-icon {
   color: var(--wa-color-blue-70);
 }
 

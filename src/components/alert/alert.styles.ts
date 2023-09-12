@@ -16,10 +16,7 @@ export default css`
     display: flex;
     align-items: stretch;
     border-radius: var(--wa-corners-1x);
-    font-family: var(--wa-font-family-body);
-    font-size: var(--wa-font-size-m);
-    font-weight: var(--wa-font-size-normal);
-    line-height: var(--wa-font-line-height-regular);
+    font: inherit;
     margin: inherit;
   }
 

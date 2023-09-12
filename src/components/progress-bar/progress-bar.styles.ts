@@ -24,9 +24,7 @@ export default css`
 
   .progress-bar__indicator {
     height: 100%;
-    font-family: var(--wa-font-family-body);
-    font-size: var(--wa-font-size-xs);
-    font-weight: var(--wa-font-weight-regular);
+    font: inherit;
     background-color: var(--indicator-color);
     color: var(--label-color);
     text-align: center;

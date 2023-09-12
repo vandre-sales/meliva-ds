@@ -36,9 +36,7 @@ export default css`
     position: relative;
     display: inline-flex;
     align-items: center;
-    font-family: var(--wa-font-family-body);
-    font-weight: var(--wa-font-weight-normal);
-    font-size: inherit;
+    font: inherit;
     color: var(--wa-form-controls-text-color);
     vertical-align: middle;
     cursor: pointer;
