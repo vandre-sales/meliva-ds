@@ -86,11 +86,13 @@
   --wa-color-tint-white: rgb(255 255 255 / 0.2);
   --wa-color-tint-black: rgb(0 0 0 / 0.2);
 
+  --wa-color-tint-hover: black 8%;
+  --wa-color-tint-active: black 16%;
+
   /**
    * Semantic color variants
    */
   /* TODO: Add comments for semantic color tokens and usage expectations */
-  /* TODO: Add tokens for hover and active tints */
   /* CONSIDER: Change -alt naming to -tint or -shade? */
   --wa-color-brand-fill-vivid: var(--wa-color-blue-50);
   --wa-color-brand-fill-vivid-alt: var(--wa-color-blue-40);
