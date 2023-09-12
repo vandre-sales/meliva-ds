@@ -1095,11 +1095,11 @@ html.sidebar-open #menu-toggle {
 }
 
 .repo-button--github wa-icon {
-  color: var(--wa-color-black);
+  color: var(--wa-color-text-normal);
 }
 
 .repo-button--github:hover wa-icon {
-  color: var(--wa-color-white);
+  color: var(--wa-color-text-inverse);
 }
 
 .repo-button--star wa-icon {

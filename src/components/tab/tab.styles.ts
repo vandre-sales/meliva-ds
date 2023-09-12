@@ -12,6 +12,7 @@ export default css`
     display: inline-flex;
     align-items: center;
     font: inherit;
+    font-weight: var(--wa-font-weight-action);
     border-radius: var(--wa-corners-1x);
     color: var(--wa-color-neutral-text-on-surface);
     padding: var(--wa-space-m) var(--wa-space-l);

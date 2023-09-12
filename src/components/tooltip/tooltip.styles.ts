@@ -45,7 +45,6 @@ export default css`
     border-radius: var(--wa-corners-1x);
     background-color: var(--wa-color-neutral-fill-vivid-alt);
     font: inherit;
-    font-size: var(--wa-font-size-s);
     line-height: var(--wa-line-height-regular);
     color: var(--wa-color-neutral-text-on-vivid);
     padding: var(--wa-space-2xs) var(--wa-space-xs);
