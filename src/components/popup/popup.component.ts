@@ -198,6 +198,7 @@ export default class WaPopup extends WebAwesomeElement {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     this.stop();
   }
 
