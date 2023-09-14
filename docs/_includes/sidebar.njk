@@ -4,15 +4,14 @@
     <ul>
       <li><a href="/experimental/themer">Themer</a></li>
       <li style="margin-top: .5rem;"><wa-switch id="theme-toggle">Dark mode</wa-switch></li>
-      <script>
-        document.getElementById('theme-toggle').checked = document.documentElement.classList.contains('wa-theme-default-dark');
+      <script type="module">
+        // Temporary dark toggle
+        const toggle = document.getElementById('theme-toggle');
+        toggle.checked = document.documentElement.classList.contains('wa-theme-default-dark');
 
-        // Quick hack to show light/dark themes
-        document.addEventListener('wa-change', event => {
-          if (event.target.closest('wa-switch') === document.getElementById('theme-toggle')) {
-            document.documentElement.classList.toggle('wa-theme-default-dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('wa-theme-default-dark') ? 'dark' : 'light')
-          }
+        toggle.addEventListener('wa-change', () => {
+          document.documentElement.classList.toggle('wa-theme-default-dark');
+          localStorage.setItem('theme', toggle.checked ? 'dark' : 'light');
         });
       </script>
     </ul>
