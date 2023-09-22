@@ -190,6 +190,7 @@
   /**
    * Spacing
    */
+
   --wa-space-3xs: 0.125rem; /* 2 */
   --wa-space-2xs: 0.25rem; /* 4 */
   --wa-space-xs: 0.5rem; /* 8 */
@@ -227,6 +228,7 @@
 
   --wa-border-style: solid;
 
+  /* TODO - add base tokens and make scales relative to those  */
   --wa-corners-half: calc(var(--wa-corners-1x) * 0.5);
   --wa-corners-1x: 0.25rem;
   --wa-corners-2x: calc(var(--wa-corners-1x) * 2);
@@ -306,7 +308,8 @@
   --wa-tooltip-arrow-size: 0.375rem;
 }
 
-:root.wa-theme-default-dark {
+.wa-theme-default-dark,
+.wa-theme-default-dark :host {
   color-scheme: dark;
 
   /**

@@ -5,6 +5,73 @@ meta:
 toc: false
 ---
 
+<!-- Knobs -->
+<div id="knobs">
+  <div class="space-vertically">
+    <h3>Make it awesome</h3>
+    <wa-select name="theme" label="Theme" value="default">
+      <wa-option value="default">Default</wa-option>
+      <wa-option value="mellow">Mellow</wa-option>
+    </wa-select> 
+    <wa-select name="heading-text" label="Heading" value="serif">
+      <wa-option value="serif">Serif</wa-option>
+      <wa-option value="sans-serif">Sans-serif</wa-option>
+      <wa-option value="monospace">Monospace</wa-option>
+      <wa-option value="cursive">Cursive</wa-option>
+    </wa-select>
+    <wa-select name="body-text" label="Body" value="sans-serif">
+      <wa-option value="serif">Serif</wa-option>
+      <wa-option value="sans-serif">Sans-serif</wa-option>
+      <wa-option value="monospace">Monospace</wa-option>
+      <wa-option value="cursive">Cursive</wa-option>
+    </wa-select>
+    <h3>Borders</h3>
+    <wa-range name="corners" label="Corners" min="0" max="3" value="1"></wa-range>
+    <wa-range name="border-width" label="Width" min="1" max="3" value="1"></wa-range>
+    <wa-range name="border-style" label="Style" min="1" max="3" value="1"></wa-range>
+    <h3>Other</h3>
+    <wa-range name="shadows" label="Shadows" min="0" max="3" value="1"></wa-range>
+    <wa-range name="shadows" label="Spacing" min="0" max="10" value="5"></wa-range>
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById('knobs');
+  const themeStylesheet = document.getElementById('theme-stylesheet');
+  const themeSelector = container.querySelector('[name="theme"]');
+
+  // Change theme
+  themeSelector.addEventListener('wa-change', () => {
+    themeStylesheet.href = `/dist/themes/${themeSelector.value}.css`;
+  });
+</script>
+
+<style>
+  :root {
+    --knobs-width: 400px;
+  }
+
+  #knobs {
+    position: fixed;
+    z-index: 10;
+    top: 2rem;
+    right: 2rem;
+    background: var(--wa-color-surface-default);
+    border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
+    border-radius: var(--wa-corners-2x);
+    box-shadow: var(--wa-shadow-level-2);
+    max-width: var(--knobs-width);
+    padding: 2rem;
+    margin-inline: auto;
+    margin-block: 0 4rem;
+  }
+
+  #knobs h3 {
+    margin: 0;
+  }
+</style>
+
+<!-- Preview -->
 <div class="preview-container">
   <section class="overlap">
     <h1>Make it Awesome</h1>
@@ -90,6 +157,7 @@ toc: false
   </section>
 </div>
 
+<!-- Preview -->
 <style>
   html {
     background: white;
@@ -108,6 +176,7 @@ toc: false
     background: var(--wa-color-surface-lowered);
     padding-inline: var(--wa-space-xl);
     padding-block-end: var(--wa-space-2xl);
+    translate: calc((var(--knobs-width) - 4rem) / -2);
   }
 
   .overlap {
