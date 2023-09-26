@@ -26,8 +26,8 @@ toc: false
       <wa-option value="cursive">Cursive</wa-option>
     </wa-select>
     <h3>Borders</h3>
-    <wa-range name="corners" label="Corners" min="0" max="2" value=".25" step=".125"></wa-range>
-    <wa-range name="border-width" label="Width" min="1" max="8" value="1" step="1"></wa-range>
+    <wa-range name="corners" label="Corners" min="0" max="1.5" value=".25" step=".125" tooltip="none"></wa-range>
+    <wa-range name="border-width" label="Width" min="1" max="8" value="1" step="1" tooltip="none"></wa-range>
     <wa-select name="border-style" label="Style" value="solid">
       <wa-option value="solid">Solid</wa-option>
       <wa-option value="dashed">Dashed</wa-option>
@@ -35,8 +35,7 @@ toc: false
       <wa-option value="double">Double</wa-option>
     </wa-select>
     <h3>Other</h3>
-    <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125"></wa-range>
-    <wa-range name="shadows" label="Shadows" min="0" max="3" value="1"></wa-range>
+    <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125" tooltip="none"></wa-range>
   </div>
 </div>
 
@@ -295,7 +294,7 @@ toc: false
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
     gap: 1rem;
-    margin-block-start: 1rem;
+    margin-block-start: var(--wa-space-m);
   }
 
   .cards wa-card::part(base) {
