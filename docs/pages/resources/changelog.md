@@ -19,11 +19,11 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
 
-## Next
+## 2.9.0
 
 - Added the `modal` property to `<sl-dialog>` and `<sl-drawer>` to support third-party modals [#1571]
 - Fixed a bug in the autoloader causing it to register non-Shoelace elements [#1563]
-- Fixed a bug in `<wa-switch>` that resulted in improper spacing between the label and the required asterisk [#1540]
+- Fixed a bug in `<sl-switch>` that resulted in improper spacing between the label and the required asterisk [#1540]
 - Fixed a bug in `<sl-icon>` that caused icons to not load when the default library used a sprite [#1572]
 - Removed error when a missing popup anchor is provided [#1548]
 - Updated `@ctrl/tinycolor` to 4.0.1 [#1542]
