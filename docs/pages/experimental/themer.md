@@ -55,7 +55,7 @@ toc: false
     position: fixed;
     z-index: 10;
     top: 2rem;
-    right: 2rem;
+    left: 2rem;
     background: var(--wa-color-surface-default);
     border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
     border-radius: var(--wa-corners-2x);
@@ -167,6 +167,15 @@ toc: false
     min-height: 100vh;
   }
 
+  main {
+    margin-left: 0;
+  }
+
+  #menu-toggle,
+  #sidebar {
+    display: none;
+  }
+
   .content {
     max-width: 1024px;
     gap: 0;
@@ -176,7 +185,7 @@ toc: false
     background: var(--wa-color-surface-lowered);
     padding-inline: var(--wa-space-xl);
     padding-block-end: var(--wa-space-2xl);
-    translate: calc((var(--knobs-width) - 4rem) / -2);
+    translate: calc((var(--knobs-width) - 4rem) / 2);
   }
 
   .overlap {
