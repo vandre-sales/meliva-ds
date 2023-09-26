@@ -13,7 +13,7 @@ toc: false
       <wa-option value="default">Default</wa-option>
       <wa-option value="mellow">Mellow</wa-option>
     </wa-select> 
-    <wa-select name="heading-text" label="Heading" value="serif">
+    <wa-select name="heading-text" label="Heading" value="sans-serif">
       <wa-option value="serif">Serif</wa-option>
       <wa-option value="sans-serif">Sans-serif</wa-option>
       <wa-option value="monospace">Monospace</wa-option>
@@ -26,29 +26,64 @@ toc: false
       <wa-option value="cursive">Cursive</wa-option>
     </wa-select>
     <h3>Borders</h3>
-    <wa-range name="corners" label="Corners" min="0" max="3" value="1"></wa-range>
-    <wa-range name="border-width" label="Width" min="1" max="3" value="1"></wa-range>
-    <wa-range name="border-style" label="Style" min="1" max="3" value="1"></wa-range>
+    <wa-range name="corners" label="Corners" min="0" max="2" value=".25" step=".125"></wa-range>
+    <wa-range name="border-width" label="Width" min="1" max="8" value="1" step="1"></wa-range>
+    <wa-select name="border-style" label="Style" value="solid">
+      <wa-option value="solid">Solid</wa-option>
+      <wa-option value="dashed">Dashed</wa-option>
+      <wa-option value="dotted">Dotted</wa-option>
+      <wa-option value="double">Double</wa-option>
+    </wa-select>
     <h3>Other</h3>
+    <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125"></wa-range>
     <wa-range name="shadows" label="Shadows" min="0" max="3" value="1"></wa-range>
-    <wa-range name="shadows" label="Spacing" min="0" max="10" value="5"></wa-range>
   </div>
 </div>
 
 <script>
   const container = document.getElementById('knobs');
   const themeStylesheet = document.getElementById('theme-stylesheet');
-  const themeSelector = container.querySelector('[name="theme"]');
 
-  // Change theme
-  themeSelector.addEventListener('wa-change', () => {
-    themeStylesheet.href = `/dist/themes/${themeSelector.value}.css`;
+  // Theme
+  container.querySelector('[name="theme"]').addEventListener('wa-change', event => {
+    themeStylesheet.href = `/dist/themes/${event.target.value}.css`;
   });
+  
+  // Heading text
+  container.querySelector('[name="heading-text"]').addEventListener('wa-input', event => {
+    document.documentElement.style.setProperty('--wa-font-family-heading', event.target.value);
+  });
+
+  // Body text
+  container.querySelector('[name="body-text"]').addEventListener('wa-input', event => {
+    document.documentElement.style.setProperty('--wa-font-family-body', event.target.value);
+  });
+
+  // Corners
+  container.querySelector('[name="corners"]').addEventListener('wa-input', event => {
+    document.documentElement.style.setProperty('--wa-corners-base', `${event.target.value}rem`);
+  });
+
+  // Border width
+  container.querySelector('[name="border-width"]').addEventListener('wa-input', event => {
+    document.documentElement.style.setProperty('--wa-border-width-base', `${event.target.value / 16}rem`);
+  });
+
+  // Border style
+  container.querySelector('[name="border-style"]').addEventListener('wa-input', event => {
+    document.documentElement.style.setProperty('--wa-border-style', event.target.value);
+  });
+
+  // Spacing style
+  container.querySelector('[name="spacing"]').addEventListener('wa-input', event => {
+    document.documentElement.style.setProperty('--wa-space-base', `${event.target.value}rem`);
+  });
+
 </script>
 
 <style>
   :root {
-    --knobs-width: 400px;
+    --knobs-width: 300px;
   }
 
   #knobs {
@@ -60,7 +95,7 @@ toc: false
     border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-outline);
     border-radius: var(--wa-corners-2x);
     box-shadow: var(--wa-shadow-level-2);
-    max-width: var(--knobs-width);
+    width: var(--knobs-width);
     padding: 2rem;
     margin-inline: auto;
     margin-block: 0 4rem;
@@ -259,8 +294,8 @@ toc: false
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
-    gap: var(--wa-space-m);
-    margin-block-start: var(--wa-space-m);
+    gap: 1rem;
+    margin-block-start: 1rem;
   }
 
   .cards wa-card::part(base) {
@@ -270,7 +305,7 @@ toc: false
   .space-vertically {
     display: flex;
     flex-direction: column;
-    gap: var(--wa-space-xl);
+    gap: 1.25rem;
   }
 
   @media screen and (max-width: 670px) {

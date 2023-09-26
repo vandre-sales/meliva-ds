@@ -190,16 +190,16 @@
   /**
    * Spacing
    */
-
-  --wa-space-3xs: 0.125rem; /* 2 */
-  --wa-space-2xs: 0.25rem; /* 4 */
-  --wa-space-xs: 0.5rem; /* 8 */
-  --wa-space-s: 0.75rem; /* 12 */
-  --wa-space-m: 1rem; /* 16 */
-  --wa-space-l: 1.25rem; /* 20 */
-  --wa-space-xl: 1.5rem; /* 24 */
-  --wa-space-2xl: 2rem; /* 32 */
-  --wa-space-3xl: 3rem; /* 48 */
+  --wa-space-base: 1rem;
+  --wa-space-3xs: calc(var(--wa-space-base) * 0.125); /* 2 */
+  --wa-space-2xs: calc(var(--wa-space-base) * 0.25); /* 4 */
+  --wa-space-xs: calc(var(--wa-space-base) * 0.5); /* 8 */
+  --wa-space-s: calc(var(--wa-space-base) * 0.75); /* 12 */
+  --wa-space-m: var(--wa-space-base); /* 16 */
+  --wa-space-l: calc(var(--wa-space-base) * 1.25); /* 20 */
+  --wa-space-xl: calc(var(--wa-space-base) * 1.5); /* 24 */
+  --wa-space-2xl: calc(var(--wa-space-base) * 2); /* 32 */
+  --wa-space-3xl: calc(var(--wa-space-base) * 3); /* 48 */
 
   --wa-space-square-xs: var(--wa-space-xs);
   --wa-space-square-s: var(--wa-space-s);
@@ -222,17 +222,18 @@
   /**
    * Borders & corners
    */
-  --wa-border-width-thin: 0.0625rem; /* 1px */
-  --wa-border-width-medium: calc(var(--wa-border-width-thin) * 2);
-  --wa-border-width-thick: calc(var(--wa-border-width-thin) * 3);
+  --wa-border-width-base: 0.0625rem; /* 1px */
+  --wa-border-width-thin: var(--wa-border-width-base);
+  --wa-border-width-medium: calc(var(--wa-border-width-base) * 2);
+  --wa-border-width-thick: calc(var(--wa-border-width-base) * 3);
 
   --wa-border-style: solid;
 
-  /* TODO - add base tokens and make scales relative to those  */
-  --wa-corners-half: calc(var(--wa-corners-1x) * 0.5);
-  --wa-corners-1x: 0.25rem;
-  --wa-corners-2x: calc(var(--wa-corners-1x) * 2);
-  --wa-corners-3x: calc(var(--wa-corners-1x) * 3);
+  --wa-corners-base: 0.25rem;
+  --wa-corners-half: calc(var(--wa-corners-base) * 0.5);
+  --wa-corners-1x: var(--wa-corners-base);
+  --wa-corners-2x: calc(var(--wa-corners-base) * 2);
+  --wa-corners-3x: calc(var(--wa-corners-base) * 3);
 
   --wa-corners-pill: 9999px;
   --wa-corners-circle: 50%;
