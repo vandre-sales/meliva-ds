@@ -166,6 +166,10 @@ pre:not(:last-child) {
   margin-bottom: 1.5rem;
 }
 
+pre {
+  position: relative;
+}
+
 pre > code {
   display: block;
   background: none !important;
@@ -249,22 +253,22 @@ pre .token.italic {
   top: 0;
   right: 0;
   white-space: normal;
-  color: var(--wa-color-neutral-text-on-vivid);
+  color: var(--wa-color-neutral-text-on-muted-alt);
   transition: 150ms opacity, 150ms scale;
 }
 
 .copy-code-button::part(button) {
-  background-color: var(--wa-color-neutral-fill-vivid);
+  background-color: var(--wa-color-neutral-fill-muted);
   border-radius: 0 var(--wa-corners-1x) 0 var(--wa-corners-1x);
   padding: 0.75rem;
 }
 
 .copy-code-button::part(button):hover {
-  background-color: color-mix(in oklab, var(--wa-color-neutral-fill-vivid), var(--wa-color-tint-hover));
+  background-color: color-mix(in oklab, var(--wa-color-neutral-fill-muted), var(--wa-color-tint-hover));
 }
 
 .copy-code-button::part(button):active {
-  background-color: color-mix(in oklab, var(--wa-color-neutral-fill-vivid), var(--wa-color-tint-active));
+  background-color: color-mix(in oklab, var(--wa-color-neutral-fill-muted), var(--wa-color-tint-active));
 }
 
 pre .copy-code-button {
