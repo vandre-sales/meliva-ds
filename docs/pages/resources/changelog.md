@@ -19,6 +19,11 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
 
+## Next
+
+- Fixed a bug [in the localize dependency](https://github.com/shoelace-style/localize/issues/20) that caused underscores in language codes to throw a `RangeError`
+- Updated `@shoelace-style/localize` to 3.1.0
+
 ## 2.9.0
 
 - Added the `modal` property to `<sl-dialog>` and `<sl-drawer>` to support third-party modals [#1571]
