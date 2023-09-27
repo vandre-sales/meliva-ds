@@ -15,29 +15,29 @@ toc: false
       <wa-option value="mellow">Mellow</wa-option>
       <wa-option value="playful">Playful</wa-option>
     </wa-select> 
-    <wa-select name="heading-text" label="Heading" value="sans-serif">
+    <wa-select name="heading-text" label="Heading" value="">
+      <wa-option value="">Theme default</wa-option>
       <wa-option value="serif">Serif</wa-option>
       <wa-option value="sans-serif">Sans-serif</wa-option>
       <wa-option value="monospace">Monospace</wa-option>
       <wa-option value="cursive">Cursive</wa-option>
     </wa-select>
-    <wa-select name="body-text" label="Body" value="sans-serif">
+    <wa-select name="body-text" label="Body" value="">
+      <wa-option value="">Theme default</wa-option>
       <wa-option value="serif">Serif</wa-option>
       <wa-option value="sans-serif">Sans-serif</wa-option>
       <wa-option value="monospace">Monospace</wa-option>
       <wa-option value="cursive">Cursive</wa-option>
     </wa-select>
-    <h3>Borders</h3>
+    <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125" tooltip="none"></wa-range>
     <wa-range name="corners" label="Corners" min="0" max="1.5" value=".25" step=".125" tooltip="none"></wa-range>
-    <wa-range name="border-width" label="Width" min="1" max="8" value="1" step="1" tooltip="none"></wa-range>
-    <wa-select name="border-style" label="Style" value="solid">
+    <wa-range name="border-width" label="Border Width" min="1" max="8" value="1" step="1" tooltip="none"></wa-range>
+    <wa-select name="border-style" label="Border Style" value="solid">
       <wa-option value="solid">Solid</wa-option>
       <wa-option value="dashed">Dashed</wa-option>
       <wa-option value="dotted">Dotted</wa-option>
       <wa-option value="double">Double</wa-option>
     </wa-select>
-    <h3>Other</h3>
-    <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125" tooltip="none"></wa-range>
   </div>
 </div>
 
@@ -217,7 +217,7 @@ toc: false
     background: var(--wa-color-surface-lowered);
     padding-inline: var(--wa-space-xl);
     padding-block-end: var(--wa-space-2xl);
-    translate: calc((var(--knobs-width) - 4rem) / 2);
+    translate: calc((var(--knobs-width) + 2rem) / 2);
   }
 
   .overlap {

@@ -172,8 +172,7 @@
     "valuetext",
     "webawesome",
     "WEBP",
-    "Webpacker",
-    "wordmark"
+    "Webpacker"
   ],
   "ignorePaths": [
     "package.json",
