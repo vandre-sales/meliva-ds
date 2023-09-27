@@ -155,7 +155,7 @@ toc: false
             <wa-icon slot="icon" name="check-circle-fill"></wa-icon>
             This is the way.
           </wa-alert>
-          <wa-select label="Signet" help-text="This identifies your clan.">
+          <wa-select label="Signet" help-text="This identifies your clan. You can change this later.">
             <wa-option>Mudhorn</wa-option>
           </wa-select>
           <wa-checkbox checked>I swear on my name and the names of the ancestors</wa-checkbox>
@@ -303,6 +303,10 @@ toc: false
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  wa-select[label="Signet"]::part(form-control-help-text) {
+    line-height: 1.5;
   }
 
   @media screen and (max-width: 670px) {
