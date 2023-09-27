@@ -35,7 +35,7 @@ toc: false
       <wa-option value="dotted">Dotted</wa-option>
       <wa-option value="double">Double</wa-option>
     </wa-select>
-    <wa-range name="border-width" label="Border Width" min="1" max="8" value="1" step="1" tooltip="none"></wa-range>
+    <wa-range name="border-width" label="Border Width" min="1" max="5" value="1" step="1" tooltip="none"></wa-range>
     <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125" tooltip="none"></wa-range>
     <wa-range name="corners" label="Corners" min="0" max="1.5" value=".25" step=".125" tooltip="none"></wa-range>
   </div>
@@ -490,7 +490,7 @@ export function thing() {
       <wa-option>Well, maybe two is OK</wa-option>
     </wa-select>
     <wa-textarea class="wa-valid" label="Bio" help-text="Tell us about yourself" placeholder="Enter a bio"></wa-textarea><br>
-    <wa-range class="wa-valid" value="50" label="Volume" help-text="Crank it up"></wa-range><br>
+    <wa-range class="wa-valid" value="50" label="Volume" help-text="Crank it up" tooltip="none"></wa-range><br>
     <wa-checkbox class="wa-valid" checked>I am awesome</wa-checkbox><br>
     <wa-checkbox class="wa-valid">So am I</wa-checkbox><br><br>
     <wa-switch class="wa-valid" checked>Still awesome</wa-switch><br>
@@ -510,7 +510,7 @@ export function thing() {
       <wa-option>Well, maybe two is OK</wa-option>
     </wa-select>
     <wa-textarea class="wa-invalid" label="Bio" help-text="Tell us about yourself" placeholder="Enter a bio"></wa-textarea><br>
-    <wa-range class="wa-invalid" value="50" label="Volume" help-text="Crank it up"></wa-range><br>
+    <wa-range class="wa-invalid" value="50" label="Volume" help-text="Crank it up" tooltip="none"></wa-range><br>
     <wa-checkbox class="wa-invalid" checked>I am awesome</wa-checkbox><br>
     <wa-checkbox class="wa-invalid">So am I</wa-checkbox><br><br>
     <wa-switch class="wa-invalid" checked>Still awesome</wa-switch><br>
