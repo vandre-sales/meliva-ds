@@ -11,7 +11,9 @@ toc: false
     <h3>Make it awesome</h3>
     <wa-select name="theme" label="Theme" value="default">
       <wa-option value="default">Default</wa-option>
+      <wa-option value="glassy">Glassy</wa-option>
       <wa-option value="mellow">Mellow</wa-option>
+      <wa-option value="playful">Playful</wa-option>
     </wa-select> 
     <wa-select name="heading-text" label="Heading" value="sans-serif">
       <wa-option value="serif">Serif</wa-option>
@@ -488,6 +490,7 @@ export function thing() {
   }
 
   #style-guide wa-card {
-    padding: var(--wa-space-xl);
+    padding-block: var(--wa-space-xl);
+    padding-inline: var(--wa-space-2xl);
   }
 </style>
