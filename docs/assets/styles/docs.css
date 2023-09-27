@@ -371,6 +371,10 @@ pre:hover .copy-code-button,
   margin: 0;
 }
 
+#sidebar > header svg {
+  margin-bottom: var(--wa-space-s);
+}
+
 #sidebar > header a {
   display: block;
 }
@@ -438,8 +442,8 @@ pre:hover .copy-code-button,
   font-size: var(--wa-font-size-s);
   color: var(--wa-color-text-quiet);
   text-align: right;
-  margin-top: -1rem;
-  margin-bottom: -1rem;
+  margin-top: calc(-1 * var(--wa-space-s));
+  margin-bottom: calc(-1 * var(--wa-space-s));
 }
 
 .sidebar-buttons {
@@ -730,6 +734,10 @@ html.sidebar-open #menu-toggle {
   width: 1em;
   height: 1em;
   vertical-align: -2px;
+}
+
+.splash svg {
+  margin-block-end: var(--wa-space-m);
 }
 
 .splash-end {
