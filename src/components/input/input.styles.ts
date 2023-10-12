@@ -21,7 +21,9 @@ export default css`
     vertical-align: middle;
     overflow: hidden;
     cursor: text;
-    transition: var(--wa-transition-fast) border, var(--wa-transition-fast) background-color;
+    transition:
+      var(--wa-transition-fast) border,
+      var(--wa-transition-fast) background-color;
   }
 
   /* Standard inputs */

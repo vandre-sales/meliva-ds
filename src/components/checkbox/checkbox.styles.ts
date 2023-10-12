@@ -45,8 +45,11 @@ export default css`
     border-radius: min(0.375rem, var(--wa-corners-half)); /* min so it doesn't look like a circle/checkbox */
     background-color: var(--wa-form-controls-background);
     color: var(--wa-form-controls-text-color);
-    transition: var(--wa-transition-fast) border-color, var(--wa-transition-fast) background-color,
-      var(--wa-transition-fast) color, var(--wa-transition-fast) box-shadow;
+    transition:
+      var(--wa-transition-fast) border-color,
+      var(--wa-transition-fast) background-color,
+      var(--wa-transition-fast) color,
+      var(--wa-transition-fast) box-shadow;
   }
 
   .checkbox__input {
