@@ -28,6 +28,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Fixed a bug in `<sl-copy-button>` that prevented exported tooltip parts from being styled [#1586]
 - Fixed a bug in `<sl-menu>` that caused it not to fire the `sl-select` event if you clicked an element inside of a `<sl-menu-item>` [#1599]
 - Updated `@shoelace-style/localize` to 3.1.0
+- Updated `@lib-labs/react` to stable `@lit/react`
 - Updated Bootstrap Icons to 1.11.1
 - Updated Lit to 3.0.0
 - Updated TypeScript to 5.2.2
