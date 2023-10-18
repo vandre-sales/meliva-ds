@@ -20,6 +20,10 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
 
+## Next
+
+- Added the Croatian translation [#1656]
+
 ## 2.10.0
 
 - Added the Simplified Chinese translation [#1604]
