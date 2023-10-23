@@ -131,7 +131,7 @@ describe('<wa-menu-item>', () => {
     });
     menu.addEventListener('wa-select', selectHandler);
 
-    const submenu = menu.querySelector('wa-menu-item');
+    const submenu = menu.querySelector<WaMenuItem>('wa-menu-item')!;
     submenu.focus();
     await menu.updateComplete;
     await sendKeys({ press: 'ArrowRight' });
@@ -145,7 +145,7 @@ describe('<wa-menu-item>', () => {
   it('should focus on outer menu if ArrowRight is pressed on nested menuitem', async () => {
     const menu = await fixture<WaMenuItem>(html`
       <wa-menu>
-        <wa-menu-item value="outer-item-1">
+        <wa-menu-item id="outer" value="outer-item-1">
           Submenu
           <wa-menu slot="submenu">
             <wa-menu-item value="inner-item-1"> Nested Item 1 </wa-menu-item>
@@ -161,7 +161,7 @@ describe('<wa-menu-item>', () => {
       expect(relatedTarget.value).to.equal('inner-item-1');
     });
 
-    const outerItem = menu.querySelector<WaMenuItem>('sl-menu-item')!;
+    const outerItem = menu.querySelector<WaMenuItem>('#outer')!;
     outerItem.focus();
     await menu.updateComplete;
     await sendKeys({ press: 'ArrowRight' });
