@@ -155,11 +155,13 @@ describe('<wa-menu-item>', () => {
     `);
 
     const focusHandler = sinon.spy((event: FocusEvent) => {
-      expect(event.target.value).to.equal('outer-item-1');
-      expect(event.relatedTarget.value).to.equal('inner-item-1');
+      const target = event.target as WaMenuItem;
+      const relatedTarget = event.relatedTarget as WaMenuItem;
+      expect(target.value).to.equal('outer-item-1');
+      expect(relatedTarget.value).to.equal('inner-item-1');
     });
 
-    const outerItem = menu.querySelector('wa-menu-item');
+    const outerItem = menu.querySelector<WaMenuItem>('sl-menu-item')!;
     outerItem.focus();
     await menu.updateComplete;
     await sendKeys({ press: 'ArrowRight' });
