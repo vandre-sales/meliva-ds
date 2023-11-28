@@ -1324,7 +1324,7 @@ The component API remains the same except for the changes noted below. Thanks fo
 - 🚨 BREAKING: moved the base stylesheet from `dist/shoelace.css` to `dist/themes/base.css`
 - 🚨 BREAKING: moved `icons` into `assets/icons` to make future assets easier to colocate
 - 🚨 BREAKING: changed `getSymbol` property in `<wa-rating>` to `symbol` (it now accepts a string or a function that returns an icon name)
-- 🚨 BREAKING: renamed `setAssetPath()` to `setBasePath()` and added the ability to set the library's base path with a `data-webawesome` attribute (`setBasePath()` is exported from `utilities/base-path.js`)
+- 🚨 BREAKING: renamed `setAssetPath()` to `setBasePath()` and added the ability to set the library's base path with a `data-web-awesome` attribute (`setBasePath()` is exported from `utilities/base-path.js`)
 - Fixed `min` and `max` types in `<wa-input>` to allow numbers and strings [#330]
 - Fixed a bug where `<wa-checkbox>`, `<wa-radio>`, and `<wa-switch>` controls would shrink with long labels [#325]
 - Fixed a bug in `<wa-select>` where the dropdown menu wouldn't reposition when the box resized [#340]
