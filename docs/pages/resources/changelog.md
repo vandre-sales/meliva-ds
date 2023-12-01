@@ -20,8 +20,9 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
 
-## Next
+## 2.12.0
 
+- Added the Italian translation [#1727]
 - Added the ability to call `form.checkValidity()` and it will use Shoelace's custom `checkValidity()` handler. [#1708]
 - Fixed a bug where nested dialogs were not properly trapping focus. [#1711]
 - Fixed a bug with form controls removing the custom validity handlers from the form. [#1708]
