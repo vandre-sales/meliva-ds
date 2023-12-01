@@ -20,6 +20,12 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
 
+## Next
+
+- Added the `hover-bridge` feature to `<sl-popup>` to support better tooltip accessibility [#1734]
+- Fixed a bug in `<sl-input>` and `<sl-textarea>` that made it work differently from `<input>` and `<textarea>` when using defaults [#1746]
+- Improved the accessibility of `<sl-tooltip>` so they persist when hovering over the tooltip and dismiss when pressing [[Esc]] [#1734]
+
 ## 2.12.0
 
 - Added the Italian translation [#1727]
