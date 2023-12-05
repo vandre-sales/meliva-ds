@@ -205,16 +205,12 @@ await nextTask('Generating themes', () => {
   return execPromise(`node scripts/make-themes.js --outdir "${outdir}"`, { stdio: 'inherit' });
 });
 
-await nextTask('Packaging up icons', () => {
-  return execPromise(`node scripts/make-icons.js --outdir "${outdir}"`, { stdio: 'inherit' });
-});
-
 await nextTask('Running the TypeScript compiler', () => {
   return execPromise(`tsc --project ./tsconfig.prod.json --outdir "${outdir}"`, { stdio: 'inherit' });
 });
 
-// Copy the above steps to the CDN directory directly so we don't need to twice the work for nothing.
-await nextTask(`Themes, Icons, and TS Types to "${cdndir}"`, async () => {
+// Copy the above steps to the CDN directory directly so we don't need to twice the work for nothing
+await nextTask(`Copying CDN files to "${cdndir}"`, async () => {
   await deleteAsync(cdndir);
   await copy(outdir, cdndir);
 });
