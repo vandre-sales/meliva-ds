@@ -33,7 +33,6 @@ async function buildTheDocs(watch = false) {
     const afterSignal = '[eleventy.after]';
     const errorSignal = 'Original error stack trace:';
     const args = ['@11ty/eleventy', '--quiet'];
-    let isEleventyDevServerRunning = false;
 
     if (watch) {
       args.push('--watch');
@@ -55,7 +54,6 @@ async function buildTheDocs(watch = false) {
       // tells us when the first build completes so we can start up Browser Sync. The 11ty dev server will keep running
       // after this.
       if (watch && data.includes(afterSignal)) {
-        isEleventyDevServerRunning = true;
         resolve();
         return;
       }
@@ -161,14 +159,14 @@ function exit() {
 //
 async function nextTask(label, action) {
   try {
-    await action();
     process.stdout.write(`${chalk.yellow('•')} ${label}`);
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
+    await action();
+    if (process.stdout.clearLine) process.stdout.clearLine();
+    if (process.stdout.cursorTo) process.stdout.cursorTo(0);
     process.stdout.write(`${chalk.green('✔')} ${label}\n`);
   } catch (err) {
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
+    if (process.stdout.clearLine) process.stdout.clearLine();
+    if (process.stdout.cursorTo) process.stdout.cursorTo(0);
     process.stdout.write(`${chalk.red('✘')} ${label}\n\n`);
     if (err.stdout) process.stdout.write(`${chalk.red(err.stdout)}\n`);
     if (err.stderr) process.stdout.write(`${chalk.red(err.stderr)}\n`);
