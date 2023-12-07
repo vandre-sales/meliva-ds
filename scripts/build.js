@@ -8,7 +8,6 @@ import copy from 'recursive-copy';
 import esbuild from 'esbuild';
 import fs from 'fs/promises';
 import getPort, { portNumbers } from 'get-port';
-import ora from 'ora';
 import util from 'util';
 import * as path from 'path';
 import { readFileSync } from 'fs';
@@ -18,10 +17,8 @@ const { serve } = commandLineArgs([{ name: 'serve', type: Boolean }]);
 const outdir = 'dist';
 const cdndir = 'cdn';
 const sitedir = '_site';
-const spinner = ora({ hideCursor: false }).start();
 const execPromise = util.promisify(exec);
-let childProcess;
-let buildResults;
+let buildResults = [];
 
 const bundleDirectories = [cdndir, outdir];
 let packageData = JSON.parse(readFileSync(path.join(process.cwd(), 'package.json'), 'utf-8'));
@@ -34,11 +31,9 @@ const shoelaceVersion = JSON.stringify(packageData.version.toString());
 async function buildTheDocs(watch = false) {
   return new Promise(async (resolve, reject) => {
     const afterSignal = '[eleventy.after]';
-
-    // Totally non-scientific way to handle errors. Perhaps its just better to resolve on stderr? :shrug:
     const errorSignal = 'Original error stack trace:';
     const args = ['@11ty/eleventy', '--quiet'];
-    const output = [];
+    let isEleventyDevServerRunning = false;
 
     if (watch) {
       args.push('--watch');
@@ -51,35 +46,31 @@ async function buildTheDocs(watch = false) {
       shell: true // for Windows
     });
 
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
     child.stdout.on('data', data => {
-      if (data.includes(afterSignal)) return; // don't log the signal
-      output.push(data.toString());
-    });
+      console.log(data);
 
-    child.stderr.on('data', data => {
-      output.push(data.toString());
-    });
-
-    if (watch) {
       // The process doesn't terminate in watch mode so, before resolving, we listen for a known signal in stdout that
-      // tells us when the first build completes.
-      child.stdout.on('data', data => {
-        if (data.includes(afterSignal)) {
-          resolve({ child, output });
-        }
-      });
+      // tells us when the first build completes so we can start up Browser Sync. The 11ty dev server will keep running
+      // after this.
+      if (watch && data.includes(afterSignal)) {
+        isEleventyDevServerRunning = true;
+        resolve();
+        return;
+      }
+    });
+    child.stderr.on('data', data => {
+      console.log(data);
 
-      child.stderr.on('data', data => {
-        if (data.includes(errorSignal)) {
-          // Resolve to prevent the dev server from closing
-          resolve(output);
-        }
-      });
-    } else {
-      child.on('close', () => {
-        resolve({ child, output });
-      });
-    }
+      // Look for a known error signal
+      if (data.includes(errorSignal)) {
+        reject({ stderr: data });
+        return;
+      }
+    });
+    child.on('error', error => reject(error));
+    child.on('close', () => resolve());
   });
 }
 
@@ -155,32 +146,33 @@ async function buildTheSource() {
 //
 // Called on SIGINT or SIGTERM to cleanup the build and child processes.
 //
-function handleCleanup() {
-  buildResults.forEach(result => result.dispose());
-
-  if (childProcess) {
-    childProcess.kill('SIGINT');
-  }
+function exit() {
+  buildResults.forEach(result => {
+    if (result.dispose) {
+      result.dispose();
+    }
+  });
 
   process.exit();
 }
 
 //
-// Helper function to draw a spinner while tasks run.
+// Helper function to cleanly log tasks
 //
 async function nextTask(label, action) {
-  spinner.text = label;
-  spinner.start();
-
   try {
     await action();
-    spinner.stop();
-    console.log(`${chalk.green('✔')} ${label}`);
+    process.stdout.write(`${chalk.yellow('•')} ${label}`);
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`${chalk.green('✔')} ${label}\n`);
   } catch (err) {
-    spinner.stop();
-    console.error(`${chalk.red('✘')} ${err}`);
-    if (err.stdout) console.error(chalk.red(err.stdout));
-    if (err.stderr) console.error(chalk.red(err.stderr));
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`${chalk.red('✘')} ${label}\n\n`);
+    if (err.stdout) process.stdout.write(`${chalk.red(err.stdout)}\n`);
+    if (err.stderr) process.stdout.write(`${chalk.red(err.stderr)}\n`);
+    exit();
   }
 }
 
@@ -232,14 +224,10 @@ if (!serve) {
 
 // Launch the dev server
 if (serve) {
-  let result;
-
   // Spin up Eleventy and Wait for the search index to appear before proceeding. The search index is generated during
   // eleventy.after, so it appears after the docs are fully published. This is kinda hacky, but here we are.
   // Kick off the Eleventy dev server with --watch and --incremental
-  await nextTask('Building docs', async () => {
-    result = await buildTheDocs(true);
-  });
+  await nextTask('Building docs', async () => buildTheDocs());
 
   const bs = browserSync.create();
   const port = await getPort({ port: portNumbers(4000, 4999) });
@@ -263,17 +251,7 @@ if (serve) {
   // Launch browser sync
   bs.init(browserSyncConfig, () => {
     const url = `http://localhost:${port}`;
-    console.log(chalk.cyan(`\n🥾 The dev server is available at ${url}`));
-
-    // Log deferred output
-    if (result.output.length > 0) {
-      console.log('\n' + result.output.join('\n'));
-    }
-
-    // Log output that comes later on
-    result.child.stdout.on('data', data => {
-      console.log(data.toString());
-    });
+    console.log(chalk.cyan(`\n🏀 The dev server is available at ${url}\n`));
   });
 
   // Rebuild and reload when source files change
@@ -308,7 +286,7 @@ if (serve) {
 
       bs.reload();
     } catch (err) {
-      console.error(chalk.red(err));
+      console.error(chalk.red(err), '\n');
     }
   });
 
@@ -320,18 +298,9 @@ if (serve) {
 
 // Build for production
 if (!serve) {
-  let result;
-
-  await nextTask('Building the docs', async () => {
-    result = await buildTheDocs();
-  });
-
-  // Log deferred output
-  if (result.output.length > 0) {
-    console.log('\n' + result.output.join('\n'));
-  }
+  await nextTask('Building the docs', async () => buildTheDocs());
 }
 
 // Cleanup on exit
-process.on('SIGINT', handleCleanup);
-process.on('SIGTERM', handleCleanup);
+process.on('SIGINT', exit);
+process.on('SIGTERM', exit);
