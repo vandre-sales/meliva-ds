@@ -207,10 +207,6 @@ await nextTask(`Copying CDN files to "${cdndir}"`, async () => {
   await copy(outdir, cdndir);
 });
 
-await nextTask('Building source files', async () => {
-  buildResults = await buildTheSource();
-});
-
 // Copy the CDN build to the docs (prod only; we use a virtual directory in dev)
 if (!serve) {
   await nextTask(`Copying the build to "${sitedir}"`, async () => {
@@ -227,7 +223,7 @@ if (serve) {
   // Spin up Eleventy and Wait for the search index to appear before proceeding. The search index is generated during
   // eleventy.after, so it appears after the docs are fully published. This is kinda hacky, but here we are.
   // Kick off the Eleventy dev server with --watch and --incremental
-  await nextTask('Building docs', async () => buildTheDocs());
+  await nextTask('Building docs', async () => await buildTheDocs(true));
 
   const bs = browserSync.create();
   const port = await getPort({ port: portNumbers(4000, 4999) });
@@ -298,7 +294,7 @@ if (serve) {
 
 // Build for production
 if (!serve) {
-  await nextTask('Building the docs', async () => buildTheDocs());
+  await nextTask('Building the docs', async () => await buildTheDocs());
 }
 
 // Cleanup on exit
