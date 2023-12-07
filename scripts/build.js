@@ -161,12 +161,16 @@ async function nextTask(label, action) {
   try {
     process.stdout.write(`${chalk.yellow('•')} ${label}`);
     await action();
-    if (process.stdout.clearLine) process.stdout.clearLine();
-    if (process.stdout.cursorTo) process.stdout.cursorTo(0);
+    if (process.stdout.isTTY) {
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+    }
     process.stdout.write(`${chalk.green('✔')} ${label}\n`);
   } catch (err) {
-    if (process.stdout.clearLine) process.stdout.clearLine();
-    if (process.stdout.cursorTo) process.stdout.cursorTo(0);
+    if (process.stdout.isTTY) {
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+    }
     process.stdout.write(`${chalk.red('✘')} ${label}\n\n`);
     if (err.stdout) process.stdout.write(`${chalk.red(err.stdout)}\n`);
     if (err.stderr) process.stdout.write(`${chalk.red(err.stderr)}\n`);
