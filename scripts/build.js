@@ -218,6 +218,10 @@ if (!serve) {
   });
 }
 
+await nextTask('Building source files', async () => {
+  buildResults = await buildTheSource();
+});
+
 // Launch the dev server
 if (serve) {
   // Spin up Eleventy and Wait for the search index to appear before proceeding. The search index is generated during
