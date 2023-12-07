@@ -158,19 +158,22 @@ function exit() {
 // Helper function to cleanly log tasks
 //
 async function nextTask(label, action) {
+  function clearLine() {
+    if (process.stdout.isTTY) {
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+    } else {
+      process.stdout.write('\n');
+    }
+  }
+
   try {
     process.stdout.write(`${chalk.yellow('•')} ${label}`);
     await action();
-    if (process.stdout.isTTY) {
-      process.stdout.clearLine();
-      process.stdout.cursorTo(0);
-    }
+    clearLine();
     process.stdout.write(`${chalk.green('✔')} ${label}\n`);
   } catch (err) {
-    if (process.stdout.isTTY) {
-      process.stdout.clearLine();
-      process.stdout.cursorTo(0);
-    }
+    clearLine();
     process.stdout.write(`${chalk.red('✘')} ${label}\n\n`);
     if (err.stdout) process.stdout.write(`${chalk.red(err.stdout)}\n`);
     if (err.stderr) process.stdout.write(`${chalk.red(err.stderr)}\n`);
