@@ -212,17 +212,6 @@ await nextTask(`Copying CDN files to "${cdndir}"`, async () => {
   await copy(outdir, cdndir);
 });
 
-// Copy the CDN build to the docs (prod only; we use a virtual directory in dev)
-if (!serve) {
-  await nextTask(`Copying the build to "${sitedir}"`, async () => {
-    await deleteAsync(sitedir);
-
-    // We copy the CDN build because that has everything bundled. Yes this looks weird.
-    // But if we do "/cdn" it requires changes all the docs to do /cdn instead of /dist.
-    await copy(cdndir, path.join(sitedir, 'dist'));
-  });
-}
-
 await nextTask('Building source files', async () => {
   buildResults = await buildTheSource();
 });
@@ -303,7 +292,17 @@ if (serve) {
 
 // Build for production
 if (!serve) {
-  await nextTask('Building the docs', async () => await buildTheDocs());
+  // Copy the CDN build to the docs (prod only; we use a virtual directory in dev)
+  await nextTask(`Copying the build to "${sitedir}"`, async () => {
+    await deleteAsync(sitedir);
+
+    // We copy the CDN build because that has everything bundled. Yes this looks weird.
+    // But if we do "/cdn" it requires changes all the docs to do /cdn instead of /dist.
+    await copy(cdndir, path.join(sitedir, 'dist'));
+  });
+  await nextTask('Building the docs', async () => {
+    await buildTheDocs()
+  });
 }
 
 // Cleanup on exit
