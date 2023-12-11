@@ -301,7 +301,7 @@ if (!serve) {
     await copy(cdndir, path.join(sitedir, 'dist'));
   });
   await nextTask('Building the docs', async () => {
-    await buildTheDocs()
+    await buildTheDocs();
   });
 }
 
