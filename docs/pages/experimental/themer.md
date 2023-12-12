@@ -11,7 +11,7 @@ toc: false
     <a href="/">{% include 'logo.njk' %}</a>
     <wa-select name="theme" label="Theme" value="default">
       <wa-option value="default">Default</wa-option>
-      <wa-option value="classic">Classic</wa-option>
+      <wa-option value="default">Classic</wa-option>
       <wa-option value="glassy">Glassy</wa-option>
       <wa-option value="mellow">Mellow</wa-option>
       <wa-option value="playful">Playful</wa-option>
@@ -40,6 +40,7 @@ toc: false
     <wa-range name="border-width" label="Border Width" min="1" max="5" value="1" step="1" tooltip="none"></wa-range>
     <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125" tooltip="none"></wa-range>
     <wa-range name="corners" label="Corners" min="0" max="1.5" value=".25" step=".125" tooltip="none"></wa-range>
+    <wa-switch name="appearance">Toggle Light / Dark</wa-switch>
   </div>
 </div>
 
@@ -80,6 +81,18 @@ toc: false
   // Spacing style
   container.querySelector('[name="spacing"]').addEventListener('wa-input', event => {
     document.documentElement.style.setProperty('--wa-space-base', `${event.target.value}`);
+  });
+
+  // Light & Dark Mode
+  container.querySelector('[name="appearance"]').addEventListener('wa-change', event => {
+    const el = document.documentElement
+    const theme = container.querySelector('[name="theme"]').value
+    if(theme === 'chic') {
+      el.classList.toggle(`wa-theme-${theme}-light`);
+    } else {
+      el.classList.toggle(`wa-theme-${theme}-dark`);
+    }
+    
   });
 
 </script>
