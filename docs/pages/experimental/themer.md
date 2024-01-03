@@ -40,7 +40,7 @@ toc: false
     <wa-range name="border-width" label="Border Width" min="1" max="5" value="1" step="1" tooltip="none"></wa-range>
     <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125" tooltip="none"></wa-range>
     <wa-range name="corners" label="Corners" min="0" max="1.5" value=".25" step=".125" tooltip="none"></wa-range>
-    <wa-switch name="appearance">Toggle Light / Dark</wa-switch>
+    <wa-switch name="appearance">Toggle Dark Mode</wa-switch>
   </div>
 </div>
 
