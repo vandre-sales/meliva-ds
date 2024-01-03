@@ -45,7 +45,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart header - The dialog's header. This element wraps the title and header actions.
  * @csspart header-actions - Optional actions to add to the header. Works best with `<wa-icon-button>`.
  * @csspart title - The dialog's title.
- * @csspart close-button - The close button, an `<wa-icon-button>`.
+ * @csspart close-button - The close button, a `<wa-icon-button>`.
  * @csspart close-button__base - The close button's exported `base` part.
  * @csspart body - The dialog's body.
  * @csspart footer - The dialog's footer.
@@ -289,9 +289,10 @@ export default class WaDialog extends WebAwesomeElement {
                       part="close-button"
                       exportparts="base:close-button__base"
                       class="dialog__close"
-                      name="x-lg"
+                      name="xmark"
                       label=${this.localize.term('close')}
                       library="system"
+                      variant="solid"
                       @click="${() => this.requestClose('close-button')}"
                     ></wa-icon-button>
                   </div>
@@ -299,9 +300,9 @@ export default class WaDialog extends WebAwesomeElement {
               `
             : ''}
           ${
-            '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. */
+            '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. Previously this was just a <slot>, but tabindex="-1" on the slot causes children to not be focusable. https://github.com/shoelace-style/shoelace/issues/1753#issuecomment-1836803277 */
           }
-          <slot part="body" class="dialog__body" tabindex="-1"></slot>
+          <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
 
           <footer part="footer" class="dialog__footer">
             <slot name="footer"></slot>

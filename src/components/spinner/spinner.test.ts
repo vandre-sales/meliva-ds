@@ -1,6 +1,6 @@
 import '../../../dist/webawesome.js';
 import { expect, fixture, html } from '@open-wc/testing';
-import type WaSpinner from './spinner';
+import type WaSpinner from './spinner.js';
 
 describe('<wa-spinner>', () => {
   describe('when provided no parameters', () => {
@@ -26,6 +26,13 @@ describe('<wa-spinner>', () => {
       // Related: https://github.com/shoelace-style/shoelace/issues/1121
       //
       expect(getComputedStyle(indicator).transform).to.equal('matrix(1, 0, 0, 1, 0, 0)');
+    });
+
+    it('should have flex:none to prevent flex re-sizing', async () => {
+      const spinner = await fixture<WaSpinner>(html` <wa-spinner></wa-spinner> `);
+
+      // 0 0 auto is a compiled value for `none`
+      expect(getComputedStyle(spinner).flex).to.equal('0 0 auto');
     });
   });
 });
