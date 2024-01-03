@@ -116,7 +116,7 @@ toc: false
           break;
       case 'roboto-serif':
           fontFamily = `'Roboto Serif', serif`;
-          break;
+          break; 
       case 'roboto-slab':
           fontFamily = `'Roboto Slab', serif`;
           break;
