@@ -17,19 +17,39 @@ toc: false
       <wa-option value="playful">Playful</wa-option>
       <wa-option value="chic">Chic</wa-option>
     </wa-select>
-    <wa-select name="heading-text" label="Heading" value="">
-      <wa-option value="">Theme default</wa-option>
-      <wa-option value="serif">Serif</wa-option>
-      <wa-option value="sans-serif">Sans-serif</wa-option>
-      <wa-option value="monospace">Monospace</wa-option>
-      <wa-option value="cursive">Cursive</wa-option>
+    <wa-select name="heading-text" label="Heading" value="default">
+      <wa-option value="default">Theme default</wa-option>
+      <wa-option value="assistant">Assistant</wa-option>
+      <wa-option value="inter">Inter</wa-option>
+      <wa-option value="lora">Lora</wa-option>
+      <wa-option value="noto-sans">Noto Sans</wa-option>
+      <wa-option value="noto-sans-display">Noto Sans Display</wa-option>
+      <wa-option value="noto-sans-mono">Noto Sans Mono</wa-option>
+      <wa-option value="noto-serif">Noto Serif</wa-option>
+      <wa-option value="open-sans">Open Sans</wa-option>
+      <wa-option value="playfair">Playfair</wa-option>
+      <wa-option value="playfair-display">Playfair Display</wa-option>
+      <wa-option value="quicksand">Quicksand</wa-option>
+      <wa-option value="roboto-flex">Roboto Flex</wa-option>
+      <wa-option value="roboto-mono">Roboto Mono</wa-option>
+      <wa-option value="roboto-serif">Roboto Serif</wa-option>
+      <wa-option value="roboto-slab">Roboto Slab</wa-option>
     </wa-select>
-    <wa-select name="body-text" label="Body" value="">
-      <wa-option value="">Theme default</wa-option>
-      <wa-option value="serif">Serif</wa-option>
-      <wa-option value="sans-serif">Sans-serif</wa-option>
-      <wa-option value="monospace">Monospace</wa-option>
-      <wa-option value="cursive">Cursive</wa-option>
+    <wa-select name="body-text" label="Body" value="default">
+      <wa-option value="default">Theme default</wa-option>
+      <wa-option value="assistant">Assistant</wa-option>
+      <wa-option value="inter">Inter</wa-option>
+      <wa-option value="lora">Lora</wa-option>
+      <wa-option value="noto-sans">Noto Sans</wa-option>
+      <wa-option value="noto-sans-mono">Noto Sans Mono</wa-option>
+      <wa-option value="noto-serif">Noto Serif</wa-option>
+      <wa-option value="open-sans">Open Sans</wa-option>
+      <wa-option value="playfair">Playfair</wa-option>
+      <wa-option value="quicksand">Quicksand</wa-option>
+      <wa-option value="roboto-flex">Roboto Flex</wa-option>
+      <wa-option value="roboto-mono">Roboto Mono</wa-option>
+      <wa-option value="roboto-serif">Roboto Serif</wa-option>
+      <wa-option value="roboto-slab">Roboto Slab</wa-option>
     </wa-select>
     <wa-select name="border-style" label="Border Style" value="solid">
       <wa-option value="solid">Solid</wa-option>
@@ -53,13 +73,105 @@ toc: false
   });
   
   // Heading text
-  container.querySelector('[name="heading-text"]').addEventListener('wa-input', event => {
-    document.documentElement.style.setProperty('--wa-font-family-heading', event.target.value);
+  container.querySelector('[name="heading-text"]').addEventListener('wa-change', event => {
+    let fontFamily;
+    switch(event.target.value) {
+      case 'assistant':
+        fontFamily = `'Assistant', sans-serif`;
+        break;
+      case 'inter':
+        fontFamily = `'inter', sans-serif`;
+        break;
+      case 'lora':
+        fontFamily = `'Lora', serif`  
+      case 'noto-sans':
+          fontFamily = `'Noto Sans', sans-serif`;
+          break;
+      case 'noto-sans-display':
+          fontFamily = `'Noto Sans Display', sans-serif`;
+          break;
+      case 'noto-sans-mono':
+          fontFamily = `'Noto Sans Mono', monospace`;
+          break;
+      case 'noto-serif':
+          fontFamily = `'Noto Serif', serif`;
+          break;
+      case 'open-sans':
+          fontFamily = `'Open Sans', sans-serif`;
+          break;
+      case 'playfair':
+          fontFamily = `'Playfair', serif`;
+          break;
+      case 'playfair-display':
+          fontFamily = `'Playfair Display', serif`;
+          break;
+      case 'quicksand':
+          fontFamily = `'Quicksand', sans-serif`;
+          break;
+      case 'roboto-flex':
+          fontFamily = `'Roboto Flex', sans-serif`;
+          break;
+      case 'roboto-mono':
+          fontFamily = `'Roboto Mono', monospace`;
+          break;
+      case 'roboto-serif':
+          fontFamily = `'Roboto Serif', serif`;
+          break; 
+      case 'roboto-slab':
+          fontFamily = `'Roboto Slab', serif`;
+          break;
+      default:
+        fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+    }
+    document.documentElement.style.setProperty('--wa-font-family-heading', fontFamily);
   });
 
   // Body text
-  container.querySelector('[name="body-text"]').addEventListener('wa-input', event => {
-    document.documentElement.style.setProperty('--wa-font-family-body', event.target.value);
+  container.querySelector('[name="body-text"]').addEventListener('wa-change', event => {
+    let fontFamily;
+    switch(event.target.value) {
+      case 'assistant':
+        fontFamily = `'Assistant', sans-serif`;
+        break;
+      case 'inter':
+        fontFamily = `'inter', sans-serif`;
+        break;
+      case 'lora':
+        fontFamily = `'Lora', serif`  
+      case 'noto-sans':
+          fontFamily = `'Noto Sans', sans-serif`;
+          break;
+      case 'noto-sans-mono':
+          fontFamily = `'Noto Sans Mono', monospace`;
+          break;
+      case 'noto-serif':
+          fontFamily = `'Noto Serif', serif`;
+          break;
+      case 'open-sans':
+          fontFamily = `'Open Sans', sans-serif`;
+          break;
+      case 'playfair':
+          fontFamily = `'Playfair', serif`;
+          break;
+      case 'quicksand':
+          fontFamily = `'Quicksand', sans-serif`;
+          break;
+      case 'roboto-flex':
+          fontFamily = `'Roboto Flex', sans-serif`;
+          break;
+      case 'roboto-mono':
+          fontFamily = `'Roboto Mono', monospace`;
+          break;
+      case 'roboto-serif':
+          fontFamily = `'Roboto Serif', serif`;
+          break;
+      case 'roboto-slab':
+          fontFamily = `'Roboto Slab', serif`;
+          break;
+      default:
+        fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+    }
+    document.documentElement.style.setProperty('--wa-font-family-body', fontFamily);
   });
 
   // Corners
