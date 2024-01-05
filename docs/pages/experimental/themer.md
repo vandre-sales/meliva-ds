@@ -11,7 +11,7 @@ toc: false
     <a href="/">{% include 'logo.njk' %}</a>
     <wa-select name="theme" label="Theme" value="default">
       <wa-option value="default">Default</wa-option>
-      <wa-option value="default">Classic</wa-option>
+      <wa-option value="classic">Classic</wa-option>
       <wa-option value="glassy">Glassy</wa-option>
       <wa-option value="mellow">Mellow</wa-option>
       <wa-option value="playful">Playful</wa-option>
@@ -47,10 +47,21 @@ toc: false
 <script>
   const container = document.getElementById('knobs');
   const themeStylesheet = document.getElementById('theme-stylesheet');
+  const themeSelect = container.querySelector('[name="theme"]');
+  const darkModeSelect = container.querySelector('[name="appearance"]');
 
   // Theme
-  container.querySelector('[name="theme"]').addEventListener('wa-change', event => {
+  themeSelect.addEventListener('wa-change', event => {
+    const el = document.documentElement
+    const theme = themeSelect.value
+  
     themeStylesheet.href = `/dist/themes/${event.target.value}.css`;
+    
+    if (darkModeSelect.checked === true) {
+      darkModeSelect.checked = false
+      el.className = 'flavor-html'
+    }
+    
   });
   
   // Heading text
@@ -84,9 +95,9 @@ toc: false
   });
 
   // Light & Dark Mode
-  container.querySelector('[name="appearance"]').addEventListener('wa-change', event => {
+  darkModeSelect.addEventListener('wa-change', event => {
     const el = document.documentElement
-    const theme = container.querySelector('[name="theme"]').value
+    const theme = themeSelect.value
     if(theme === 'chic') {
       el.classList.toggle(`wa-theme-${theme}-light`);
     } else {
