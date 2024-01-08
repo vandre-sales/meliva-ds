@@ -8,7 +8,7 @@ toc: false
 <style>
 .file-uploader {
   position: relative;
-  border: var(--wa-form-controls-border-width) dashed var(--wa-color-neutral-text-on-surface);
+  border: var(--wa-form-controls-border-width) dashed var(--wa-form-controls-resting-color);
   border-radius: var(--wa-form-controls-corners);
   background: var(--wa-form-controls-background);
   padding: var(--wa-space-xs);
@@ -55,7 +55,7 @@ toc: false
   <div class="space-vertically">
     <a href="/">{% include 'logo.njk' %}</a>
     <wa-input name="project-name" value="" placeholder="Project Name" label="Give us your project's name!"></wa-input>
-    <div style="margin-top: 1rem;">
+    <div>
       <label class="file-uploader" style="display: block;" aria-describedby="file-uploader-description">
         <input name="project-logo" type="file" accept="image/*">
         Add Logo
@@ -64,7 +64,7 @@ toc: false
     </div>
     <div>
       <wa-radio-group label="Need a logo?" name="project-logo-selector" value="p">
-        <wa-radio-button value="p">P</wa-radio-button>
+        <wa-radio-button value="p"><wa-icon name="p"></wa-icon></wa-radio-button>
         <wa-radio-button value="dragon"><wa-icon name="dragon"></wa-icon></wa-radio-button>
         <wa-radio-button value="pizza-slice"><wa-icon name="pizza-slice"></wa-icon></wa-radio-button>
         <wa-radio-button value="fire"><wa-icon name="fire"></wa-icon></wa-radio-button>
@@ -75,7 +75,7 @@ toc: false
         <small slot="help-text" style="display: inline-block; line-height: 1;">It's dangerous to go alone. Take these!</small>
       </wa-radio-group>
     </div>
-    <wa-select name="theme" label="Theme" value="default" style="margin-top: 0.5rem;">
+    <wa-select name="theme" label="Theme" value="default">
       <wa-option value="default">Default</wa-option>
       <wa-option value="classic">Classic</wa-option>
       <wa-option value="glassy">Glassy</wa-option>
@@ -663,15 +663,8 @@ toc: false
 
     let element
 
-    if (value === "p") {
-      element = document.createElement("span")
-      element.style.fontSize = "1.75rem"
-      element.style.lineHeight = "1"
-      element.innerText = "P"
-    } else {
-      element = document.createElement("wa-icon")
-      element.name = value
-    }
+    element = document.createElement("wa-icon")
+    element.name = value
 
     element.id = "project-logo"
 
@@ -863,7 +856,7 @@ toc: false
     border-radius: var(--wa-corners-m);
     box-shadow: var(--wa-shadow-level-2);
     width: var(--knobs-width);
-    padding: .75rem;
+    padding: 1.5rem;
     max-height: calc(100% - 3rem);
     overflow: auto;
     margin-inline: auto;
@@ -884,12 +877,12 @@ toc: false
   <section class="overlap">
     <header class="project-header">
       <div style="display: flex; align-items: center;">
-        <span id="project-logo" style="font-size: 1.75rem; line-height: 1;">P</span>
-        <span id="project-name" style="margin-inline-start: 1rem;">Project Name</span>
+        <wa-icon id="project-logo" name="p"></wa-icon>
+        <span id="project-name" style="margin-inline-start: var(--wa-space-m);">Project Name</span>
       </div>
       <div>
-        <wa-button variant="brand"><wa-icon name="gear"></wa-icon></wa-button>
-        <wa-button variant="brand"><wa-icon name="bell"></wa-icon></wa-button>
+        <wa-icon-button name="gear" label="Settings"></wa-icon-button>
+        <wa-icon-button name="bell" label="Notifications"></wa-icon-button>
       </div>
     </header>
     <h1>Make it Awesome</h1>
@@ -996,11 +989,7 @@ toc: false
   }
 
   #project-logo {
-    font-size: 2rem;
-  }
-
-  #project-name {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .preview-container {
@@ -1103,8 +1092,18 @@ toc: false
     justify-content: space-between;
     border-bottom: 1px solid white;
     color: var(--wa-color-brand-text-on-spot);
-    border-bottom: 1px solid var(--wa-color-brand-text-on-spot);
-    padding-bottom: var(--wa-space-xs);
+    border-bottom: 1px solid color-mix(in oklab, var(--wa-color-brand-text-on-spot), transparent 50%);
+    padding-bottom: var(--wa-space-m);
+  }
+
+  .project-header wa-icon-button {
+    & + * {
+      margin-inline-start: var(--wa-space-m);
+    }
+
+    &::part(base) {
+      color: var(--wa-color-brand-text-on-spot);
+    }
   }
 
   wa-select[label="Signet"]::part(form-control-help-text) {
