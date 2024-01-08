@@ -60,16 +60,28 @@ toc: false
     <wa-range name="border-width" label="Border Width" min="1" max="5" value="1" step="1" tooltip="none"></wa-range>
     <wa-range name="spacing" label="Spacing" min=".5" max="1.5" value="1" step="0.125" tooltip="none"></wa-range>
     <wa-range name="corners" label="Corners" min="0" max="1.5" value=".25" step=".125" tooltip="none"></wa-range>
+    <wa-switch name="appearance">Toggle Dark Mode</wa-switch>
   </div>
 </div>
 
 <script>
   const container = document.getElementById('knobs');
   const themeStylesheet = document.getElementById('theme-stylesheet');
+  const themeSelect = container.querySelector('[name="theme"]');
+  const darkModeSelect = container.querySelector('[name="appearance"]');
 
   // Theme
-  container.querySelector('[name="theme"]').addEventListener('wa-change', event => {
+  themeSelect.addEventListener('wa-change', event => {
+    const el = document.documentElement
+    const theme = themeSelect.value
+  
     themeStylesheet.href = `/dist/themes/${event.target.value}.css`;
+    
+    if (darkModeSelect.checked === true) {
+      darkModeSelect.checked = false
+      el.className = 'flavor-html'
+    }
+    
   });
   
   // Heading text
@@ -192,6 +204,18 @@ toc: false
   // Spacing style
   container.querySelector('[name="spacing"]').addEventListener('wa-input', event => {
     document.documentElement.style.setProperty('--wa-space-base', `${event.target.value}`);
+  });
+
+  // Light & Dark Mode
+  darkModeSelect.addEventListener('wa-change', event => {
+    const el = document.documentElement
+    const theme = themeSelect.value
+    if(theme === 'chic') {
+      el.classList.toggle(`wa-theme-${theme}-light`);
+    } else {
+      el.classList.toggle(`wa-theme-${theme}-dark`);
+    }
+    
   });
 
 </script>
