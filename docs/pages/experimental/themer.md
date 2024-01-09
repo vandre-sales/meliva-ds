@@ -574,12 +574,7 @@ toc: false
             if (darkModeSelect.checked === true) {
               // darkModeSelect.checked = false
               document.documentElement.className = "flavor-html"
-
-              if(theme === 'chic') {
-                document.documentElement.classList.toggle(`wa-theme-${theme}-light`);
-              } else {
-                document.documentElement.classList.toggle(`wa-theme-${theme}-dark`);
-              }
+              document.documentElement.classList.toggle(`wa-theme-${theme}-dark`);
             }
           }, 100)
         })
@@ -694,7 +689,8 @@ toc: false
         fontFamily = `'inter', sans-serif`;
         break;
       case 'lora':
-        fontFamily = `'Lora', serif`
+        fontFamily = `'Lora', serif`;
+        break;
       case 'noto-sans':
           fontFamily = `'Noto Sans', sans-serif`;
           break;
@@ -748,7 +744,8 @@ toc: false
         fontFamily = `'inter', sans-serif`;
         break;
       case 'lora':
-        fontFamily = `'Lora', serif`
+        fontFamily = `'Lora', serif`;
+        break;
       case 'noto-sans':
           fontFamily = `'Noto Sans', sans-serif`;
           break;
@@ -829,11 +826,8 @@ toc: false
   darkModeSelect.addEventListener('wa-change', event => {
     const el = document.documentElement
     const theme = themeSelect.value
-    if(theme === 'chic') {
-      el.classList.toggle(`wa-theme-${theme}-light`);
-    } else {
-      el.classList.toggle(`wa-theme-${theme}-dark`);
-    }
+
+    el.classList.toggle(`wa-theme-${theme}-dark`);
 
   });
 </script>
@@ -927,8 +921,8 @@ toc: false
       <wa-card>
         <div class="space-vertically" style="height: 100%;">
           <wa-alert variant="success" open>
-            <wa-icon slot="icon" name="circle-check" variant="regular"></wa-icon>
-            This is the way.
+            <wa-icon slot="icon" name="circle-check"></wa-icon>
+            This is the Way.
           </wa-alert>
           <wa-select label="Signet" help-text="This identifies your clan. You can change this later.">
             <wa-option>Mudhorn</wa-option>
@@ -940,7 +934,7 @@ toc: false
       <wa-card>
         <div class="space-vertically" style="height: 100%;">
           <wa-alert variant="warning" open>
-            <wa-icon slot="icon" name="circle-check" variant="regular"></wa-icon>
+            <wa-icon slot="icon" name="triangle-exclamation"></wa-icon>
             It's a trap!
           </wa-alert>
           <wa-radio-group label="Faction" value="2">
@@ -954,7 +948,7 @@ toc: false
       <wa-card>
         <div class="space-vertically" style="height: 100%;">
           <wa-alert variant="danger" open>
-            <wa-icon slot="icon" name="circle-check" variant="regular"></wa-icon>
+            <wa-icon slot="icon" name="circle-exclamation"></wa-icon>
             That's no moon.
           </wa-alert>
           <wa-input label="Destination" value="Alderaan"></wa-input>
@@ -967,8 +961,9 @@ toc: false
 
 <style>
   html {
-    background: white;
-    background-image: radial-gradient(rgb(0 0 0 / .1) 1.5px, transparent 0);
+    background: var(--wa-color-surface-default);
+    background-attachment: fixed;
+    background-image: radial-gradient(var(--wa-color-surface-lowered) 1.5px, transparent 0);
     background-size: 28px 28px;
     background-position: -19px -19px;
     min-height: 100vh;
