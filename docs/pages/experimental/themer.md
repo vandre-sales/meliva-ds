@@ -691,6 +691,9 @@ toc: false
       case 'lora':
         fontFamily = `'Lora', serif`;
         break;
+      case 'mulish':
+        fontFamily = `'Mulish', sans-serif`;
+        break;
       case 'noto-sans':
           fontFamily = `'Noto Sans', sans-serif`;
           break;
@@ -745,6 +748,9 @@ toc: false
         break;
       case 'lora':
         fontFamily = `'Lora', serif`;
+        break;
+      case 'mulish':
+        fontFamily = `'Mulish', sans-serif`;
         break;
       case 'noto-sans':
           fontFamily = `'Noto Sans', sans-serif`;

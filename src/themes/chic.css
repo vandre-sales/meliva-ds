@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..600&display=swap');
 @import 'depth_3_punchy.css'; /* depth_0_flat.css, depth_1_semiflat.css, depth_2_chunky.css, depth_3_punchy.css, depth_4_glossy.css */
 @import 'borders_2_light.css'; /* borders_0_minimal.css, borders_1_feather.css, borders_2_light.css, borders_3_medium.css, borders_4_heavy.css */
 
@@ -190,12 +189,12 @@
 
   --wa-font-weight-light: 300;
   --wa-font-weight-normal: 400;
-  --wa-font-weight-medium: 500;
-  --wa-font-weight-heavy: 600;
+  --wa-font-weight-medium: 550;
+  --wa-font-weight-heavy: 650;
 
-  --wa-font-weight-heading: var(--wa-font-weight-medium);
+  --wa-font-weight-heading: var(--wa-font-weight-heavy);
   --wa-font-weight-body: var(--wa-font-weight-normal);
-  --wa-font-weight-action: var(--wa-font-weight-heavy);
+  --wa-font-weight-action: var(--wa-font-weight-medium);
 
   /* The default typescale is based on the Major Second scale (x1.125). 
    * Every other step on the scale is skipped for larger sizes in order to maximize variation. */
@@ -243,7 +242,7 @@
    */
   /* Corners are designed to scale according to a single base value.
    * The base value is intended for calculations and is not used by components directly. */
-  --wa-corners-base: 0.5;
+  --wa-corners-base: 0.75;
   --wa-corners-xs: calc(var(--wa-corners-base) * 0.75rem);
   --wa-corners-s: calc(var(--wa-corners-base) * 1rem);
   --wa-corners-m: calc(var(--wa-corners-base) * 2rem);
