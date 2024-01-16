@@ -225,7 +225,7 @@
    */
   /* Space is designed to scale according to a single base value.
    * The base value is intended for calculations and is not used by components directly. */
-  --wa-space-base: 1;
+  --wa-space-base: 1.125;
   --wa-space-3xs: calc(var(--wa-space-base) * 0.125rem); /* 2px */
   --wa-space-2xs: calc(var(--wa-space-base) * 0.25rem); /* 4px */
   --wa-space-xs: calc(var(--wa-space-base) * 0.5rem); /* 8px */
