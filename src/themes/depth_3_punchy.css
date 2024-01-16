@@ -75,3 +75,9 @@ wa-switch {
     inset 0 -0.0625rem 0.0625rem 0 rgb(0 0 0 / 0.1) /* inner shadow */, var(--wa-shadow-level-1) /* outer shadow */;
 }
 /* #endregion */
+
+/* #region Progress bar */
+wa-progress-bar {
+  --box-shadow: var(--wa-shadow-inset);
+}
+/* #endregion */
