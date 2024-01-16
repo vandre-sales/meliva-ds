@@ -852,7 +852,7 @@ toc: false
     top: 2rem;
     left: 2rem;
     background: var(--wa-color-surface-default);
-    border: var(--wa-border-style) var(--wa-border-width-thin) var(--wa-color-surface-border);
+    border: var(--wa-border-style) var(--wa-border-width-s) var(--wa-color-surface-border);
     border-radius: var(--wa-corners-m);
     box-shadow: var(--wa-shadow-level-2);
     width: var(--knobs-width);
