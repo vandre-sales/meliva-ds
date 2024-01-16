@@ -237,6 +237,7 @@
   --wa-space-xl: calc(var(--wa-space-base) * 1.5rem); /* 24px */
   --wa-space-2xl: calc(var(--wa-space-base) * 2rem); /* 32px */
   --wa-space-3xl: calc(var(--wa-space-base) * 3rem); /* 48px */
+
   /**
    * Corners
    */
@@ -261,6 +262,12 @@
   --wa-focus-ring: var(--wa-focus-ring-style) var(--wa-focus-ring-width)
     color-mix(in oklab, var(--wa-color-focus) 98%, transparent);
   --wa-focus-ring-offset: 0.0625rem; /* 1px */
+
+  /**
+   * Links
+   */
+  --wa-link-decoration-default: underline var(--wa-color-brand-border-highlight) dotted;
+  --wa-link-decoration-hover: underline;
 
   /**
    * Z-index
@@ -317,8 +324,8 @@
   --wa-flow-spacing: 1.5rem;
 
   /**
-  * From 2.x
-  */
+   * From 2.x
+   */
   --wa-form-control-toggle-size-s: 0.875rem;
   --wa-form-control-toggle-size-m: 1.125rem;
   --wa-form-control-toggle-size-l: 1.375rem;
@@ -336,7 +343,7 @@
   --wa-color-surface-raised: var(--wa-color-base-10);
   --wa-color-surface-default: var(--wa-color-base-05);
   --wa-color-surface-lowered: black;
-  --wa-color-surface-border: var(--wa-color-base-10);
+  --wa-color-surface-border: var(--wa-color-base-20);
 
   --wa-color-text-normal: var(--wa-color-base-95);
   --wa-color-text-quiet: var(--wa-color-base-60);
@@ -355,8 +362,8 @@
   --wa-color-mix-active: black 16%;
 
   /**
-    * Semantic theme colors
-    */
+   * Semantic theme colors
+   */
   --wa-color-brand-spot: var(--wa-color-blue-50);
   --wa-color-brand-spot-darker: var(--wa-color-blue-40);
   --wa-color-brand-fill-subtle: var(--wa-color-blue-10);
