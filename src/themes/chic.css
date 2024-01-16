@@ -1,5 +1,4 @@
 @import 'depth_3_punchy.css'; /* depth_0_flat.css, depth_1_semiflat.css, depth_2_chunky.css, depth_3_punchy.css, depth_4_glossy.css */
-@import 'borders_2_light.css'; /* borders_0_minimal.css, borders_1_feather.css, borders_2_light.css, borders_3_medium.css, borders_4_heavy.css */
 
 :root,
 :host,
@@ -236,6 +235,24 @@
   --wa-space-xl: calc(var(--wa-space-base) * 1.5rem); /* 24px */
   --wa-space-2xl: calc(var(--wa-space-base) * 2rem); /* 32px */
   --wa-space-3xl: calc(var(--wa-space-base) * 3rem); /* 48px */
+
+  /**
+   * Borders
+   */
+  --wa-border-style: solid;
+
+  /* Border widths are designed to scale according to a single base value.
+     * The base value is intended for calculations and is not used by components directly. */
+  --wa-border-width-base: 0.0625;
+  --wa-border-width-thin: calc(var(--wa-border-width-base) * 1rem);
+  --wa-border-width-medium: calc(var(--wa-border-width-base) * 2rem);
+  --wa-border-width-thick: calc(var(--wa-border-width-base) * 3rem);
+
+  --wa-form-controls-border-style: var(--wa-border-style);
+  --wa-form-controls-border-width: var(--wa-border-width-thin);
+
+  --wa-panel-border-style: var(--wa-border-style);
+  --wa-panel-border-width: var(--wa-border-width-thin);
 
   /**
    * Corners

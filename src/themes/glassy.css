@@ -1,5 +1,4 @@
 @import 'depth_4_glossy.css';
-@import 'borders_0_minimal.css';
 
 :root,
 :host,
@@ -238,6 +237,24 @@
   --wa-space-3xl: calc(var(--wa-space-base) * 3rem); /* 48px */
 
   /**
+   * Borders
+   */
+  --wa-border-style: solid;
+
+  /* Border widths are designed to scale according to a single base value.
+     * The base value is intended for calculations and is not used by components directly. */
+  --wa-border-width-base: 0.0625;
+  --wa-border-width-thin: calc(var(--wa-border-width-base) * 1rem);
+  --wa-border-width-medium: calc(var(--wa-border-width-base) * 2rem);
+  --wa-border-width-thick: calc(var(--wa-border-width-base) * 3rem);
+
+  --wa-form-controls-border-style: var(--wa-border-style);
+  --wa-form-controls-border-width: var(--wa-border-width-thin);
+
+  --wa-panel-border-style: hidden;
+  --wa-panel-border-width: var(--wa-border-width-thin);
+
+  /**
    * Corners
    */
   /* Corners are designed to scale according to a single base value.
@@ -412,5 +429,29 @@
   --wa-color-neutral-text-on-fill: var(--wa-color-base-70);
   --wa-color-neutral-text-on-surface: var(--wa-color-base-60);
 }
+
+/* #region Custom styles */
+wa-button[outline] {
+  &[variant='brand'] {
+    --border-color: var(--wa-color-brand-border-highlight);
+  }
+
+  &[variant='success'] {
+    --border-color: var(--wa-color-success-border-highlight);
+  }
+
+  &[variant='neutral'] {
+    --border-color: var(--wa-color-neutral-border-highlight);
+  }
+
+  &[variant='warning'] {
+    --border-color: var(--wa-color-warning-border-highlight);
+  }
+
+  &[variant='danger'] {
+    --border-color: var(--wa-color-danger-border-highlight);
+  }
+}
+/* #endregion */
 
 /* _utility.css */
