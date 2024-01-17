@@ -257,6 +257,24 @@ wa-textarea:not(:focus) {
   }
 }
 
+wa-checkbox {
+  --background-checked: linear-gradient(
+    to bottom,
+    var(--wa-form-controls-activated-color),
+    var(--wa-color-brand-spot-darker)
+  );
+
+  &:not([checked]):not([indeterminate]) {
+    --box-shadow: var(--wa-shadow-inset);
+  }
+
+  &[checked] {
+    --box-shadow: inset 0 0.0625rem 0 0 rgb(255 255 255 / 0.2) /* shine */,
+      inset 0 0.125rem 0 0 rgb(255 255 255 / 0.05) /* top highlight */,
+      inset 0 -0.0625rem 0 0 rgb(0 0 0 / 0.2) /* bottom highlight */, var(--wa-shadow-level-1) /* outer shadow */;
+  }
+}
+
 wa-switch {
   --box-shadow: var(--wa-shadow-inset);
   --thumb-shadow: inset 0 0.0625rem 0 0 rgb(255 255 255 / 0.2) /* shine */,
