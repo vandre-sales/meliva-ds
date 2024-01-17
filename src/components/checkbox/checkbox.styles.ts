@@ -5,10 +5,12 @@ export default css`
   ${componentStyles}
 
   :host {
+    --background: var(--wa-form-controls-background);
     --border-color: var(--wa-form-controls-resting-color);
     --border-radius: min(0.375rem, var(--wa-corners-xs)); /* min so it doesn't look like a circle/radio */
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-form-controls-border-width);
+
     display: inline-block;
   }
 
@@ -49,7 +51,7 @@ export default css`
     border-radius: var(--border-radius);
     border-style: var(--border-style);
     border-width: var(--border-width);
-    background-color: var(--wa-form-controls-background);
+    background: var(--background);
     color: var(--wa-form-controls-value-color);
     transition:
       var(--wa-transition-fast) border-color,
