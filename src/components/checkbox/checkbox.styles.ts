@@ -5,6 +5,10 @@ export default css`
   ${componentStyles}
 
   :host {
+    --border-color: var(--wa-form-controls-resting-color);
+    --border-radius: min(0.375rem, var(--wa-corners-xs)); /* min so it doesn't look like a circle/radio */
+    --border-style: var(--wa-border-style);
+    --border-width: var(--wa-form-controls-border-width);
     display: inline-block;
   }
 
@@ -41,8 +45,10 @@ export default css`
     justify-content: center;
     width: var(--toggle-size);
     height: var(--toggle-size);
-    border: var(--wa-border-style) var(--wa-form-controls-border-width) var(--wa-form-controls-resting-color);
-    border-radius: min(0.375rem, var(--wa-corners-xs)); /* min so it doesn't look like a circle/checkbox */
+    border-color: var(--border-color);
+    border-radius: var(--border-radius);
+    border-style: var(--border-style);
+    border-width: var(--border-width);
     background-color: var(--wa-form-controls-background);
     color: var(--wa-form-controls-value-color);
     transition:
