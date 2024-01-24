@@ -28,6 +28,7 @@ import type WaRadioButton from '../radio-button/radio-button.js';
  * @slot - The default slot where `<wa-radio>` or `<wa-radio-button>` elements are placed.
  * @slot label - The radio group's label. Required for proper accessibility. Alternatively, you can use the `label`
  *  attribute.
+ * @slot help-text - Text that describes how to use the radio group. Alternatively, you can use the `help-text` attribute.
  *
  * @event wa-change - Emitted when the radio group's selected value changes.
  * @event wa-input - Emitted when the radio group receives user input.
