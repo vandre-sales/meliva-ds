@@ -23,6 +23,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 
 ## Next
 
+- Added the Arabic translation [#1852]
 - Fixed a bug in `<sl-option>` that caused HTML tags to be included in `getTextLabel()`
 
 ## 2.13.1
