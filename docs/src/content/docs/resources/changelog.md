@@ -27,6 +27,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Added help text to `<sl-checkbox>` [#1860]
 - Added help text to `<sl-switch>` [#1800]
 - Fixed a bug in `<sl-option>` that caused HTML tags to be included in `getTextLabel()`
+- Fixed a bug in `<sl-carousel>` that caused slides to not switch correctly [#1862]
 
 ## 2.13.1
 
