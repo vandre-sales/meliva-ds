@@ -27,6 +27,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Fixed a bug in `<sl-rating>` that caused the rating to not reset in some circumstances [#1877]
 - Fixed a bug in `<sl-select>` that caused the menu to not close when rendered in a shadow root [#1878]
 - Fixed a bug in `<sl-tree>` that caused a new stacking context resulting in tooltips being clipped [#1709]
+- Fixed a bug in `<sl-tab-group>` that caused the scroll controls to toggle indefinitely when zoomed in Safari [#1839]
 
 ## 2.14.0
 
