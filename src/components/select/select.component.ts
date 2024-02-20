@@ -88,6 +88,7 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
   private readonly localize = new LocalizeController(this);
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
+  private closeWatcher: CloseWatcher | null;
 
   @query('.select') popup: WaPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
@@ -236,6 +237,17 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
     if (this.getRootNode() !== document) {
       this.getRootNode().addEventListener('focusin', this.handleDocumentFocusIn);
     }
+
+    if ('CloseWatcher' in window) {
+      this.closeWatcher?.destroy();
+      this.closeWatcher = new CloseWatcher();
+      this.closeWatcher.onclose = () => {
+        if (this.open) {
+          this.hide();
+          this.displayInput.focus({ preventScroll: true });
+        }
+      };
+    }
   }
 
   private removeOpenListeners() {
@@ -246,6 +258,8 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
     if (this.getRootNode() !== document) {
       this.getRootNode().removeEventListener('focusin', this.handleDocumentFocusIn);
     }
+
+    this.closeWatcher?.destroy();
   }
 
   private handleFocus() {
