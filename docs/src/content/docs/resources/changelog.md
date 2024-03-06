@@ -23,11 +23,21 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 
 ## Next
 
+- Added support for `contextElement` to `VirtualElements` in `<sl-popup>` [#1874]
+- Fixed a bug in `<sl-rating>` that caused the rating to not reset in some circumstances [#1877]
+- Fixed a bug in `<sl-select>` that caused the menu to not close when rendered in a shadow root [#1878]
+- Fixed a bug in `<sl-tree>` that caused a new stacking context resulting in tooltips being clipped [#1709]
+- Fixed a bug in `<sl-tab-group>` that caused the scroll controls to toggle indefinitely when zoomed in Safari [#1839]
+- Fixed a bug in the submenu controller that allowed two submenus to be open at the same time [#1880]
+
+## 2.14.0
+
 - Added the Arabic translation [#1852]
 - Added help text to `<sl-checkbox>` [#1860]
 - Added help text to `<sl-switch>` [#1800]
 - Fixed a bug in `<sl-option>` that caused HTML tags to be included in `getTextLabel()`
 - Fixed a bug in `<sl-carousel>` that caused slides to not switch correctly [#1862]
+- Refactored component styles to be consumed more efficiently [#1692]
 
 ## 2.13.1
 
