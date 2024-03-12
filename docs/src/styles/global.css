@@ -22,6 +22,10 @@
   --docs-shadow-x-large: 0 4px 16px hsl(240 3.8% 46.1% / 24%);
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 /* Utils */
 html.wa-theme-dark .only-light,
 html:not(.wa-theme-dark) .only-dark {

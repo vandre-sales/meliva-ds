@@ -42,10 +42,17 @@ export async function generateSearch() {
   return json;
 }
 
-export async function GET() {
+let json: Record<string, unknown> = {};
+
+if (process.env.DEV_SEARCH !== 'generated') {
   await generateSearch();
 
-  return new Response(JSON.stringify({}), {
+  // If you're debugging search, comment the next line.
+  process.env.DEV_SEARCH = 'generated';
+}
+
+export async function GET() {
+  return new Response(JSON.stringify(json), {
     status: 200,
     headers: {
       'Content-Type': 'application/json'

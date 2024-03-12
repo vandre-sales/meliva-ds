@@ -44,7 +44,7 @@ export default defineConfig({
     plugins: [
       FullReload([
         path.relative(__dirname, '../dist/custom-elements.json'),
-        path.relative(__dirname, './public/**/*.*')
+        // path.relative(__dirname, './public/**/*.*')
       ])
     ]
   },
