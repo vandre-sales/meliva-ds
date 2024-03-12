@@ -57,6 +57,7 @@ html:not(.wa-theme-dark) .only-dark {
 
 .sidebar-content summary {
   text-indent: 0.5rem;
+  padding: 0.2em var(--sl-sidebar-item-padding-inline);
   margin-block: 0.5rem;
 }
 
