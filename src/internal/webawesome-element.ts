@@ -1,4 +1,4 @@
-import { LitElement } from 'lit';
+import { LitElement, type PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 
 // Match event type name strings that are registered on GlobalEventHandlersEventMap...
@@ -140,14 +140,49 @@ export default class WebAwesomeElement extends LitElement {
   }
 }
 
-export interface WebAwesomeFormControl extends WebAwesomeElement {
+type Validator<T extends HTMLElement & { value: string | null | File | FormData } = HTMLElement & { value: string | null | File | FormData }> = {
+  observedAttributes: string[]
+  checkValidity: (element: T) => {message: string, isValid: boolean, invalidKeys: Array<Exclude<keyof ValidityState, "valid">>}
+}
+
+// setFormValue omitted so that we can use `setValue`
+export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<ElementInternals, "setFormValue"> {
+  static formAssociated = true
+
+  static shadowRootOptions = {...LitElement.shadowRootOptions, delegatesFocus: true }
+
+  /**
+    * Validators are static because they have `observedAttributes`, essentially attributes to "watch"
+    * for changes. Whenever these attributes change, we want to be notified and update the validator.
+    */
+  static get validators (): Array<Validator> {
+    return [
+      // ValueMissingValidator
+    ]
+  }
+
+  // Append all Validator "observedAttributes" into the "observedAttributes" so they can run.
+  static get observedAttributes () {
+    const parentAttrs = new Set(/** @type {string[]} */ (super.observedAttributes) || [])
+
+    for (const validator of this.validators) {
+      if (!validator.observedAttributes) { continue }
+
+      for (const attr of validator.observedAttributes) {
+        parentAttrs.add(attr)
+      }
+    }
+
+    return [...parentAttrs]
+  }
+
   // Form attributes
+  // These should properly just use `@property` accessors.
   name: string;
-  value: unknown;
+  value: string | FormData | null | File;
   disabled?: boolean;
-  defaultValue?: unknown;
+  defaultValue: string | FormData | null | File;
   defaultChecked?: boolean;
-  form?: string;
 
   // Constraint validation attributes
   pattern?: string;
@@ -158,13 +193,243 @@ export interface WebAwesomeFormControl extends WebAwesomeElement {
   minlength?: number;
   maxlength?: number;
 
-  // Form validation properties
-  readonly validity: ValidityState;
-  readonly validationMessage: string;
-
   // Form validation methods
-  checkValidity: () => boolean;
-  getForm: () => HTMLFormElement | null;
-  reportValidity: () => boolean;
-  setCustomValidity: (message: string) => void;
+  internals: ElementInternals
+
+  // Additional
+  formControl?: HTMLElement & { value: string | FormData | null | File }
+
+  validators: Validator[] = []
+
+  // Should these be private?
+  valueHasChanged: boolean = false
+  hasInteracted: boolean = false
+
+  constructor () {
+    super()
+
+    try {
+      this.internals = this.attachInternals()
+    } catch (_e) {
+      console.error("Element internals are not supported in your browser. Consider using a polyfill")
+    }
+
+  }
+
+  get labels () {
+    return this.internals.labels
+  }
+
+  get form () {
+    return this.internals.form
+  }
+
+  get validity () {
+    return this.internals.validity
+  }
+
+  // Not sure if this supports `novalidate`. Will need to test.
+  get willValidate () {
+    return this.internals.willValidate
+  }
+
+  get validationMessage () {
+    return this.internals.validationMessage
+  }
+
+  checkValidity () {
+    this.runValidators()
+    return this.internals.checkValidity()
+  }
+
+  reportValidity () {
+    this.runValidators()
+    return this.internals.reportValidity()
+  }
+
+  /**
+   * Override this to change where constraint validation popups are anchored.
+   */
+  get validationTarget () {
+    return this.formControl
+  }
+
+  setValidity (...args: Parameters<typeof this.internals.setValidity>) {
+    let [flags, message, anchor] = args
+
+    if (!anchor) {
+      anchor = this.validationTarget
+    }
+
+    this.internals.setValidity(flags, message, anchor)
+  }
+
+  setCustomValidity (message: string) {
+    if (!message) {
+      this.setValidity({})
+      return
+    }
+    this.setValidity({ customError: true }, message)
+  }
+
+  formResetCallback() {
+    if ("formControl" in this && this.formControl) {
+      this.formControl.value = this.defaultValue
+    }
+
+    this.setValidity({})
+    this.value = this.defaultValue
+    this.hasInteracted = false
+    this.valueHasChanged = false
+    this.runValidators()
+    this.setValue(this.defaultValue, this.defaultValue)
+  }
+
+  formDisabledCallback(isDisabled: boolean) {
+    this.disabled = isDisabled
+    this.setValidity({})
+  }
+
+  /**
+    * Called when the browser is trying to restore element’s state to state in which case reason is “restore”, or when the browser is trying to fulfill autofill on behalf of user in which case reason is “autocomplete”. In the case of “restore”, state is a string, File, or FormData object previously set as the second argument to setFormValue.
+    */
+  formStateRestoreCallback(state: string | File | FormData | null, _reason: string) {
+    this.value = state
+
+    this.setValidity({})
+    if (this.formControl) {
+      this.formControl.value = state
+    }
+  }
+
+  setValue (...args: Parameters<typeof this.internals.setFormValue>) {
+    const [value, state] = args
+
+    // Dirty tracking of values.
+    if (this.value !== this.defaultValue) {
+      this.valueHasChanged = true
+    }
+
+    this.internals.setFormValue(value, state)
+  }
+
+  get allValidators () {
+    const staticValidators = (this.constructor as typeof WebAwesomeFormControl).validators || []
+
+    const validators = this.validators || []
+    return [...staticValidators, ...validators]
+  }
+
+  runValidators () {
+    const element = this
+
+    if (element.disabled || element.getAttribute("disabled")) {
+      element.setValidity({})
+      // We don't run validators on disabled elements to be inline with native HTMLElements.
+      // https://codepen.io/paramagicdev/pen/PoLogeL
+      return
+    }
+
+    const validators = /** @type {{allValidators?: Array<import("../types.js").Validator>}} */ (/** @type {unknown} */ (element)).allValidators
+
+    if (!validators) {
+      element.setValidity({})
+      return
+    }
+
+    const flags = {
+      customError: element.validity.customError
+    }
+
+    const formControl = element.formControl || undefined
+
+    let finalMessage = ""
+
+    for (const validator of validators) {
+      const { isValid, message, invalidKeys } = validator.checkValidity(element)
+
+      if (isValid) { continue }
+
+      if (!finalMessage) {
+        finalMessage = message
+      }
+
+      if (invalidKeys?.length >= 0) {
+        // @ts-expect-error
+        invalidKeys.forEach((str) => flags[str] = true)
+      }
+    }
+
+    // This is a workaround for preserving custom errors
+    if (!finalMessage) {
+      finalMessage = element.validationMessage
+    }
+    element.setValidity(flags, finalMessage, formControl)
+  }
+
+  // Custom states
+  addCustomState (state: string) {
+    try {
+      // @ts-expect-error
+      this.internals.states.add(state)
+    } catch (_) {
+      // Without this, test suite errors.
+    } finally {
+      this.setAttribute(`data-${state}`, "")
+    }
+  }
+
+  deleteCustomState (state: string) {
+    try {
+      // @ts-expect-error
+      this.internals.states.delete(state)
+    } catch (_) {
+      // Without this, test suite errors.
+    } finally {
+      this.removeAttribute(`data-${state}`)
+    }
+  }
+
+  toggleCustomState (state: string, force: boolean) {
+    if (force === true) {
+      this.addCustomState(state)
+      return
+    }
+
+    if (force === false) {
+      this.deleteCustomState(state)
+      return
+    }
+
+    this.toggleCustomState(state, !this.hasCustomState(state))
+  }
+
+  hasCustomState (state: string) {
+    try {
+      // @ts-expect-error
+      return this.internals.states.has(state)
+    } catch (_) {
+      // Without this, test suite errors.
+    } finally {
+      return this.hasAttribute(`data-${state}`)
+    }
+  }
+
+  protected willUpdate(changedProperties: PropertyValueMap<typeof this>): void {
+    // if (changedProperties.has("formControl")) {
+    //   this.formControl?.addEventListener("focusout", this.handleInteraction)
+    //   this.formControl?.addEventListener("blur", this.handleInteraction)
+    //   this.formControl?.addEventListener("click", this.handleInteraction)
+    // }
+
+    if (
+      changedProperties.has("formControl")
+      || changedProperties.has("defaultValue")
+      || changedProperties.has("value")
+    ) {
+      this.setValue(this.value, this.value)
+    }
+
+    super.willUpdate(changedProperties)
+  }
 }
