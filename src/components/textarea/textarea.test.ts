@@ -205,7 +205,7 @@ describe('<wa-textarea>', () => {
     });
 
     it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
-      const textarea = await fixture<HTMLFormElement>(html` <wa-textarea></wa-textarea> `);
+      const textarea = await fixture<HTMLFormElement>(html`<wa-textarea></wa-textarea>`);
 
       textarea.setCustomValidity('Invalid selection');
       await textarea.updateComplete;

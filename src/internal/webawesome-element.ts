@@ -1,4 +1,4 @@
-import { LitElement, type PropertyValueMap } from 'lit';
+import { LitElement, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 
 // Match event type name strings that are registered on GlobalEventHandlersEventMap...
@@ -140,12 +140,12 @@ export default class WebAwesomeElement extends LitElement {
   }
 }
 
-interface Validator<
+export interface Validator<
   T extends HTMLElement & { value: string | null | File | FormData } = HTMLElement & {
     value: string | null | File | FormData;
   }
 > {
-  observedAttributes: string[];
+  observedAttributes?: string[];
   checkValidity: (element: T) => {
     message: string;
     isValid: boolean;
@@ -153,8 +153,40 @@ interface Validator<
   };
 }
 
+export interface WebAwesomeFormControl extends WebAwesomeElement {
+  // Form attributes
+  name: string;
+  value: unknown;
+  disabled?: boolean;
+  defaultValue?: unknown;
+  defaultChecked?: boolean;
+  form?: string;
+
+  // Constraint validation attributes
+  pattern?: string;
+  min?: number | string | Date;
+  max?: number | string | Date;
+  step?: number | 'any';
+  required?: boolean;
+  minlength?: number;
+  maxlength?: number;
+
+  // Form validation properties
+  readonly validity: ValidityState;
+  readonly validationMessage: string;
+
+  // Form validation methods
+  checkValidity: () => boolean;
+  getForm: () => HTMLFormElement | null;
+  reportValidity: () => boolean;
+  setCustomValidity: (message: string) => void;
+}
+
 // setFormValue omitted so that we can use `setValue`
-export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<ElementInternals, 'setFormValue'> {
+export class WebAwesomeFormAssociated
+  extends WebAwesomeElement
+  implements Omit<ElementInternals, 'form' | 'setFormValue'>, WebAwesomeFormControl
+{
   static formAssociated = true;
 
   static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
@@ -188,23 +220,16 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
 
   // Form attributes
   // These should properly just use `@property` accessors.
-  name: string;
-  value: string | FormData | null | File;
-  disabled?: boolean;
-  defaultValue: string | FormData | null | File;
-  defaultChecked?: boolean;
-
-  // Constraint validation attributes
-  pattern?: string;
-  min?: number | string | Date;
-  max?: number | string | Date;
-  step?: number | 'any';
-  required?: boolean;
-  minlength?: number;
-  maxlength?: number;
+  name: string = '';
+  value: string | FormData | null | File = null;
+  defaultValue: string | FormData | null | File = null;
+  disabled: boolean = false;
+  required: boolean = false;
 
   // Form validation methods
   internals: ElementInternals;
+
+  assumeInteractionOn: string[] = ['wa-input'];
 
   // Additional
   formControl?: HTMLElement & { value: string | FormData | null | File };
@@ -215,6 +240,8 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
   valueHasChanged: boolean = false;
   hasInteracted: boolean = false;
 
+  private emittedEvents: string[] = [];
+
   constructor() {
     super();
 
@@ -223,13 +250,62 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
     } catch (_e) {
       console.error('Element internals are not supported in your browser. Consider using a polyfill');
     }
+
+    const ctor = this.constructor as typeof LitElement;
+
+    if (ctor.properties?.disabled?.reflect === true) {
+      console.warn(`The following element has their "disabled" property set to reflect.`);
+      console.warn(this);
+      console.warn('For further reading: https://github.com/whatwg/html/issues/8365');
+    }
+
+    this.addEventListener('invalid', this.emitInvalid);
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    // Lazily evaluate after the constructor.
+    this.assumeInteractionOn.forEach(event => {
+      this.addEventListener(event, this.handleInteraction);
+    });
+  }
+
+  emitInvalid = (e: Event) => {
+    if (e.target !== this) return;
+
+    this.emit('wa-invalid');
+  };
+
+  protected willUpdate(changedProperties: PropertyValues<this>) {
+    if (
+      changedProperties.has('formControl') ||
+      changedProperties.has('defaultValue') ||
+      changedProperties.has('value')
+    ) {
+      this.setValue(this.value, this.value);
+    }
+
+    super.willUpdate(changedProperties);
+  }
+
+  private handleInteraction = (event: Event) => {
+    const emittedEvents = this.emittedEvents;
+    if (!emittedEvents.includes(event.type)) {
+      emittedEvents.push(event.type);
+    }
+
+    // Mark it as user-interacted as soon as all associated events have been emitted
+    if (emittedEvents.length === this.assumeInteractionOn?.length) {
+      this.hasInteracted = true;
+    }
+  };
 
   get labels() {
     return this.internals.labels;
   }
 
-  get form() {
+  getForm() {
     return this.internals.form;
   }
 
@@ -264,13 +340,26 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
   }
 
   setValidity(...args: Parameters<typeof this.internals.setValidity>) {
-    let [flags, message, anchor] = args;
+    const flags = args[0];
+    const message = args[1]
+    let anchor = args[2]
 
     if (!anchor) {
       anchor = this.validationTarget;
     }
 
-    this.internals.setValidity(flags, message, anchor);
+    this.internals.setValidity(flags, message, anchor || undefined);
+
+    const required = Boolean(this.required);
+    const isValid = this.internals.validity.valid;
+    const hasInteracted = this.hasInteracted;
+
+    this.toggleAttribute('data-required', required);
+    this.toggleAttribute('data-optional', !required);
+    this.toggleAttribute('data-invalid', !isValid);
+    this.toggleAttribute('data-valid', isValid);
+    this.toggleAttribute('data-user-invalid', !isValid && hasInteracted);
+    this.toggleAttribute('data-user-valid', isValid && hasInteracted);
   }
 
   setCustomValidity(message: string) {
@@ -278,7 +367,8 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
       this.setValidity({});
       return;
     }
-    this.setValidity({ customError: true }, message);
+
+    this.setValidity({ customError: true }, message, this.validationTarget);
   }
 
   formResetCallback() {
@@ -290,6 +380,7 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
     this.value = this.defaultValue;
     this.hasInteracted = false;
     this.valueHasChanged = false;
+    this.emittedEvents = [];
     this.runValidators();
     this.setValue(this.defaultValue, this.defaultValue);
   }
@@ -323,40 +414,40 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
   }
 
   get allValidators() {
-    const staticValidators = (this.constructor as typeof WebAwesomeFormControl).validators || [];
+    const staticValidators = (this.constructor as typeof WebAwesomeFormAssociated).validators || [];
 
     const validators = this.validators || [];
     return [...staticValidators, ...validators];
   }
 
   runValidators() {
-    const element = this;
-
-    if (element.disabled || element.getAttribute('disabled')) {
-      element.setValidity({});
-      // We don't run validators on disabled elements to be inline with native HTMLElements.
+    if (this.disabled || this.getAttribute('disabled')) {
+      this.setValidity({});
+      // We don't run validators on disabled thiss to be inline with native HTMLElements.
       // https://codepen.io/paramagicdev/pen/PoLogeL
       return;
     }
 
     const validators =
-      /** @type {{allValidators?: Array<import("../types.js").Validator>}} */ /** @type {unknown} */ element.allValidators;
+      /** @type {{allValidators?: Array<import("../types.js").Validator>}} */ /** @type {unknown} */ this.allValidators;
 
     if (!validators) {
-      element.setValidity({});
+      this.setValidity({});
       return;
     }
 
-    const flags = {
-      customError: element.validity.customError
+    type ValidityKey = { -readonly [P in keyof ValidityState]: ValidityState[P] }
+
+    const flags: Partial<ValidityKey> = {
+      customError: this.validity.customError
     };
 
-    const formControl = element.formControl || undefined;
+    const formControl = this.validationTarget || this.formControl || undefined;
 
     let finalMessage = '';
 
     for (const validator of validators) {
-      const { isValid, message, invalidKeys } = validator.checkValidity(element);
+      const { isValid, message, invalidKeys } = validator.checkValidity(this);
 
       if (isValid) {
         continue;
@@ -367,23 +458,23 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
       }
 
       if (invalidKeys?.length >= 0) {
-        // @ts-expect-error
-        invalidKeys.forEach(str => (flags[str] = true));
+        (invalidKeys as (keyof ValidityState)[]).forEach(str => (flags[str] = true));
       }
     }
 
     // This is a workaround for preserving custom errors
     if (!finalMessage) {
-      finalMessage = element.validationMessage;
+      finalMessage = this.validationMessage;
     }
-    element.setValidity(flags, finalMessage, formControl);
+
+    this.setValidity(flags, finalMessage, formControl);
   }
 
   // Custom states
   addCustomState(state: string) {
     try {
-      // @ts-expect-error
-      this.internals.states.add(state);
+      // @ts-expect-error CustomStateSet doesn't exist in TS yet.
+      (this.internals.states as Set<string>).add(state);
     } catch (_) {
       // Without this, test suite errors.
     } finally {
@@ -393,8 +484,8 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
 
   deleteCustomState(state: string) {
     try {
-      // @ts-expect-error
-      this.internals.states.delete(state);
+      // @ts-expect-error CustomStateSet doesn't exist in TS yet.
+      (this.internals.states as Set<string>).delete(state);
     } catch (_) {
       // Without this, test suite errors.
     } finally {
@@ -417,31 +508,19 @@ export class WebAwesomeFormControl extends WebAwesomeElement implements Omit<Ele
   }
 
   hasCustomState(state: string) {
+    let bool = false
+
     try {
-      // @ts-expect-error
-      return this.internals.states.has(state);
+      // @ts-expect-error CustomStateSet doesn't exist in TS yet.
+      bool = (this.internals.states as Set<string>).has(state);
     } catch (_) {
       // Without this, test suite errors.
     } finally {
-      return this.hasAttribute(`data-${state}`);
-    }
-  }
-
-  protected willUpdate(changedProperties: PropertyValueMap<typeof this>): void {
-    // if (changedProperties.has("formControl")) {
-    //   this.formControl?.addEventListener("focusout", this.handleInteraction)
-    //   this.formControl?.addEventListener("blur", this.handleInteraction)
-    //   this.formControl?.addEventListener("click", this.handleInteraction)
-    // }
-
-    if (
-      changedProperties.has('formControl') ||
-      changedProperties.has('defaultValue') ||
-      changedProperties.has('value')
-    ) {
-      this.setValue(this.value, this.value);
+      if (!bool) {
+        bool = this.hasAttribute(`data-${state}`);
+      }
     }
 
-    super.willUpdate(changedProperties);
+    return bool
   }
 }

@@ -5,7 +5,39 @@ layout: ../../../layouts/ComponentLayout.astro
 ---
 
 ```html:preview
-<wa-textarea></wa-textarea>
+<form id="form-textarea">
+  <wa-textarea required></wa-textarea>
+
+  <button type="reset">Reset</button>
+  <button>Submit</submit>
+</form>
+
+<script>
+  document.querySelector("#form-textarea wa-textarea").addEventListener("invalid", () => {
+    console.log("invalid")
+  })
+
+  document.querySelector("#form-textarea wa-textarea").addEventListener("wa-invalid", () => {
+    console.log("wa-invalid")
+  })
+
+  const control = document.querySelector("wa-textarea")
+
+  setTimeout(async () => {
+    control.setCustomValidity('error');
+    control.disabled = false;
+    await control.updateComplete;
+    const emittedEvents = [];
+
+    control.addEventListener('wa-invalid', e => emittedEvents.push(e));
+
+    control.reportValidity();
+
+    await new Promise((resolve) => setTimeout(resolve, 1))
+
+    console.log(emittedEvents)
+  }, 1000)
+</script>
 ```
 
 ```jsx:react

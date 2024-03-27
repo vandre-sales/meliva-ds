@@ -1,18 +1,17 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
-import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './textarea.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.
@@ -43,16 +42,19 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  * @cssproperty --border-width - The width of the textarea's borders.
  * @cssproperty --box-shadow - The shadow effects around the edges of the textarea.
  */
-export default class WaTextarea extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaTextarea extends WebAwesomeFormAssociated {
+  static formAssociated = true;
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static get validators() {
+    return [MirrorValidator];
+  }
 
-  private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['wa-blur', 'wa-input']
-  });
+  assumeInteractionOn = ['wa-blur', 'wa-input'];
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private resizeObserver: ResizeObserver;
 
   @query('.textarea__control') input: HTMLTextAreaElement;
+  @query('.textarea__control') formControl: HTMLTextAreaElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -95,7 +97,7 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
+  @property({ reflect: true }) form = null;
 
   /** Makes the textarea a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
@@ -144,16 +146,6 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue() defaultValue = '';
 
-  /** Gets the validity state object */
-  get validity() {
-    return this.input.validity;
-  }
-
-  /** Gets the validation message */
-  get validationMessage() {
-    return this.input.validationMessage;
-  }
-
   connectedCallback() {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver(() => this.setTextareaHeight());
@@ -165,7 +157,7 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
   }
 
   firstUpdated() {
-    this.formControlController.updateValidity();
+    this.checkValidity();
   }
 
   disconnectedCallback() {
@@ -176,27 +168,26 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
   private handleBlur() {
     this.hasFocus = false;
     this.emit('wa-blur');
+    this.checkValidity();
   }
 
   private handleChange() {
     this.value = this.input.value;
     this.setTextareaHeight();
     this.emit('wa-change');
+    this.checkValidity();
   }
 
   private handleFocus() {
     this.hasFocus = true;
     this.emit('wa-focus');
+    this.checkValidity();
   }
 
   private handleInput() {
     this.value = this.input.value;
     this.emit('wa-input');
-  }
-
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
+    this.checkValidity();
   }
 
   private setTextareaHeight() {
@@ -208,12 +199,6 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
     }
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid
-    this.formControlController.setValidity(this.disabled);
-  }
-
   @watch('rows', { waitUntilFirstUpdate: true })
   handleRowsChange() {
     this.setTextareaHeight();
@@ -222,7 +207,7 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
   @watch('value', { waitUntilFirstUpdate: true })
   async handleValueChange() {
     await this.updateComplete;
-    this.formControlController.updateValidity();
+    this.checkValidity();
     this.setTextareaHeight();
   }
 
@@ -234,6 +219,7 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
   /** Removes focus from the textarea. */
   blur() {
     this.input.blur();
+    // this.checkValidity();
   }
 
   /** Selects all the text in the textarea. */
@@ -280,27 +266,6 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
       this.value = this.input.value;
       this.setTextareaHeight();
     }
-  }
-
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    return this.input.checkValidity();
-  }
-
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
-  }
-
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity() {
-    return this.input.reportValidity();
-  }
-
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
-  setCustomValidity(message: string) {
-    this.input.setCustomValidity(message);
-    this.formControlController.updateValidity();
   }
 
   render() {
@@ -371,7 +336,6 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
               aria-describedby="help-text"
               @change=${this.handleChange}
               @input=${this.handleInput}
-              @invalid=${this.handleInvalid}
               @focus=${this.handleFocus}
               @blur=${this.handleBlur}
             ></textarea>

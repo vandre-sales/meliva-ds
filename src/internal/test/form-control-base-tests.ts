@@ -1,4 +1,4 @@
-import { expect, fixture } from '@open-wc/testing';
+import { aTimeout, expect, fixture } from '@open-wc/testing';
 import type { WebAwesomeFormControl } from '../webawesome-element.js';
 
 type CreateControlFn = () => Promise<WebAwesomeFormControl>;
@@ -274,7 +274,11 @@ function runSpecialTests_standard(createControl: CreateControlFn) {
     control.disabled = false;
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
-    expect(emittedEvents.length).to.equal(1);
+
+    control.reportValidity();
+
+    // 2 is the expected amount. Calling `reportValidity()` will focus the textarea causing a second invalid event to fire.
+    expect(emittedEvents.length).to.equal(2);
   });
 }
 
