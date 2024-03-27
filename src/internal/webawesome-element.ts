@@ -393,7 +393,7 @@ export class WebAwesomeFormAssociated
   /**
    * Called when the browser is trying to restore element’s state to state in which case reason is “restore”, or when the browser is trying to fulfill autofill on behalf of user in which case reason is “autocomplete”. In the case of “restore”, state is a string, File, or FormData object previously set as the second argument to setFormValue.
    */
-  formStateRestoreCallback(state: string | File | FormData | null, _reason: string) {
+  formStateRestoreCallback(state: string | File | FormData | null) {
     this.value = state;
 
     this.setValidity({});

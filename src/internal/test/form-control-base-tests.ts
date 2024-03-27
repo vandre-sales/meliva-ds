@@ -1,4 +1,4 @@
-import { aTimeout, expect, fixture } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import type { WebAwesomeFormControl } from '../webawesome-element.js';
 
 type CreateControlFn = () => Promise<WebAwesomeFormControl>;
