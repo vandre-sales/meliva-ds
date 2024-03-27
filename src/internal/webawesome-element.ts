@@ -341,8 +341,8 @@ export class WebAwesomeFormAssociated
 
   setValidity(...args: Parameters<typeof this.internals.setValidity>) {
     const flags = args[0];
-    const message = args[1]
-    let anchor = args[2]
+    const message = args[1];
+    let anchor = args[2];
 
     if (!anchor) {
       anchor = this.validationTarget;
@@ -436,7 +436,7 @@ export class WebAwesomeFormAssociated
       return;
     }
 
-    type ValidityKey = { -readonly [P in keyof ValidityState]: ValidityState[P] }
+    type ValidityKey = { -readonly [P in keyof ValidityState]: ValidityState[P] };
 
     const flags: Partial<ValidityKey> = {
       customError: this.validity.customError
@@ -508,7 +508,7 @@ export class WebAwesomeFormAssociated
   }
 
   hasCustomState(state: string) {
-    let bool = false
+    let bool = false;
 
     try {
       // @ts-expect-error CustomStateSet doesn't exist in TS yet.
@@ -521,6 +521,6 @@ export class WebAwesomeFormAssociated
       }
     }
 
-    return bool
+    return bool;
   }
 }
