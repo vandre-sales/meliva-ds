@@ -275,8 +275,7 @@ function runSpecialTests_standard(createControl: CreateControlFn) {
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
 
-    // 2 is the expected amount. Calling `reportValidity()` will focus the textarea causing a second invalid event to fire.
-    expect(emittedEvents.length).to.equal(2);
+    expect(emittedEvents.length).to.equal(1);
   });
 }
 

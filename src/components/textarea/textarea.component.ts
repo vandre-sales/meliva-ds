@@ -181,13 +181,11 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
   private handleFocus() {
     this.hasFocus = true;
     this.emit('wa-focus');
-    this.checkValidity();
   }
 
   private handleInput() {
     this.value = this.input.value;
     this.emit('wa-input');
-    this.checkValidity();
   }
 
   private setTextareaHeight() {
