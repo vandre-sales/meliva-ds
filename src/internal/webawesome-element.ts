@@ -286,6 +286,12 @@ export class WebAwesomeFormAssociated
       this.setValue(this.value, this.value);
     }
 
+    if (changedProperties.has("disabled")) {
+      if (!this.disabled) {
+        this.removeAttribute("disabled")
+      }
+    }
+    this.runValidators()
     super.willUpdate(changedProperties);
   }
 

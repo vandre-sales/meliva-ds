@@ -1,7 +1,7 @@
 import { aTimeout, elementUpdated, expect, fixture } from '@open-wc/testing';
 
 import { activeElements, getDeepestActiveElement } from './active-elements.js';
-import { clickOnElement } from './test.js';
+import { clickOnElement, isSafari } from './test.js';
 import { html } from 'lit';
 import { sendKeys } from '@web/test-runner-commands';
 import type { WaDialog } from '../webawesome.js';
@@ -14,8 +14,7 @@ async function holdShiftKey(callback: () => Promise<void>) {
   await sendKeys({ up: 'Shift' });
 }
 
-const tabKey =
-  navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('HeadlessChrome') ? 'Alt+Tab' : 'Tab';
+const tabKey = isSafari ? 'Alt+Tab' : 'Tab';
 
 // Simple helper to turn the activeElements generator into an array
 function activeElementsArray() {

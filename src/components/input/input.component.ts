@@ -1,20 +1,19 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
-import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './input.styles.js';
 import WaIcon from '../icon/icon.component.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 
 /**
  * @summary Inputs collect data from the user.
@@ -57,17 +56,23 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  * @cssproperty --border-width - The width of the input's borders. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the input.
  */
-export default class WaInput extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaInput extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static dependencies = { 'wa-icon': WaIcon };
+  static formAssociated = true
 
-  private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['wa-blur', 'wa-input']
-  });
+  static get validators () {
+    return [
+      MirrorValidator
+    ]
+  }
+
+  assumeInteractionOn = ['wa-blur', 'wa-input']
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
 
   @query('.input__control') input: HTMLInputElement;
+  @query('.input__control') formControl: HTMLInputElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -119,7 +124,7 @@ export default class WaInput extends WebAwesomeElement implements WebAwesomeForm
   @property({ type: Boolean }) clearable = false;
 
   /** Disables the input. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /** Placeholder text to show as a hint when the input is empty. */
   @property() placeholder = '';
@@ -141,7 +146,7 @@ export default class WaInput extends WebAwesomeElement implements WebAwesomeForm
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
+  @property({ reflect: true }) form = null
 
   /** Makes the input a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
@@ -233,18 +238,8 @@ export default class WaInput extends WebAwesomeElement implements WebAwesomeForm
     this.value = this.__numberInput.value;
   }
 
-  /** Gets the validity state object */
-  get validity() {
-    return this.input.validity;
-  }
-
-  /** Gets the validation message */
-  get validationMessage() {
-    return this.input.validationMessage;
-  }
-
   firstUpdated() {
-    this.formControlController.updateValidity();
+    this.checkValidity()
   }
 
   private handleBlur() {
@@ -274,13 +269,7 @@ export default class WaInput extends WebAwesomeElement implements WebAwesomeForm
 
   private handleInput() {
     this.value = this.input.value;
-    this.formControlController.updateValidity();
     this.emit('wa-input');
-  }
-
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
   }
 
   private handleKeyDown(event: KeyboardEvent) {
@@ -297,7 +286,7 @@ export default class WaInput extends WebAwesomeElement implements WebAwesomeForm
         // See https://github.com/shoelace-style/shoelace/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
-          this.formControlController.submit();
+          this.getForm()?.requestSubmit(null)
         }
       });
     }
@@ -307,24 +296,12 @@ export default class WaInput extends WebAwesomeElement implements WebAwesomeForm
     this.passwordVisible = !this.passwordVisible;
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid
-    this.formControlController.setValidity(this.disabled);
-  }
-
   @watch('step', { waitUntilFirstUpdate: true })
   handleStepChange() {
     // If step changes, the value may become invalid so we need to recheck after the update. We set the new step
     // imperatively so we don't have to wait for the next render to report the updated validity.
     this.input.step = String(this.step);
-    this.formControlController.updateValidity();
-  }
-
-  @watch('value', { waitUntilFirstUpdate: true })
-  async handleValueChange() {
-    await this.updateComplete;
-    this.formControlController.updateValidity();
+    this.runValidators()
   }
 
   /** Sets focus on the input. */
@@ -389,27 +366,6 @@ export default class WaInput extends WebAwesomeElement implements WebAwesomeForm
     if (this.value !== this.input.value) {
       this.value = this.input.value;
     }
-  }
-
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    return this.input.checkValidity();
-  }
-
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
-  }
-
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity() {
-    return this.input.reportValidity();
-  }
-
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
-  setCustomValidity(message: string) {
-    this.input.setCustomValidity(message);
-    this.formControlController.updateValidity();
   }
 
   render() {
@@ -494,7 +450,6 @@ export default class WaInput extends WebAwesomeElement implements WebAwesomeForm
               aria-describedby="help-text"
               @change=${this.handleChange}
               @input=${this.handleInput}
-              @invalid=${this.handleInvalid}
               @keydown=${this.handleKeyDown}
               @focus=${this.handleFocus}
               @blur=${this.handleBlur}
