@@ -259,16 +259,22 @@ export class WebAwesomeFormAssociated
       console.warn('For further reading: https://github.com/whatwg/html/issues/8365');
     }
 
-    this.addEventListener('invalid', this.emitInvalid);
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    // Lazily evaluate after the constructor.
+    this.addEventListener('invalid', this.emitInvalid);
+
+    // Lazily evaluate after the constructor to allow people to override the `assumeInteractionOn`
     this.assumeInteractionOn.forEach(event => {
       this.addEventListener(event, this.handleInteraction);
     });
+  }
+
+  firstUpdated (...args: Parameters<LitElement["firstUpdated"]>) {
+    super.firstUpdated(...args)
+    this.updateValidity()
   }
 
   emitInvalid = (e: Event) => {
@@ -291,7 +297,7 @@ export class WebAwesomeFormAssociated
         this.removeAttribute("disabled")
       }
     }
-    this.runValidators()
+    this.updateValidity()
     super.willUpdate(changedProperties);
   }
 
@@ -329,12 +335,12 @@ export class WebAwesomeFormAssociated
   }
 
   checkValidity() {
-    this.runValidators();
+    this.updateValidity();
     return this.internals.checkValidity();
   }
 
   reportValidity() {
-    this.runValidators();
+    this.updateValidity();
     return this.internals.reportValidity();
   }
 
@@ -387,7 +393,7 @@ export class WebAwesomeFormAssociated
     this.hasInteracted = false;
     this.valueHasChanged = false;
     this.emittedEvents = [];
-    this.runValidators();
+    this.updateValidity();
     this.setValue(this.defaultValue, this.defaultValue);
   }
 
@@ -426,7 +432,9 @@ export class WebAwesomeFormAssociated
     return [...staticValidators, ...validators];
   }
 
-  runValidators() {
+  updateValidity() {
+    const parentForm = this.getForm()
+
     if (this.disabled || this.getAttribute('disabled')) {
       this.setValidity({});
       // We don't run validators on disabled thiss to be inline with native HTMLElements.

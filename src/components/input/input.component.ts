@@ -301,7 +301,7 @@ export default class WaInput extends WebAwesomeFormAssociated {
     // If step changes, the value may become invalid so we need to recheck after the update. We set the new step
     // imperatively so we don't have to wait for the next render to report the updated validity.
     this.input.step = String(this.step);
-    this.runValidators()
+    this.updateValidity()
   }
 
   /** Sets focus on the input. */

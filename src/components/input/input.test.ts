@@ -364,7 +364,7 @@ describe('<wa-input>', () => {
       expect(form.reportValidity()).to.be.false;
     });
 
-    it('should be valid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
+    it('should be invalid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form novalidate>
           <wa-input required value=""></wa-input>
@@ -372,7 +372,10 @@ describe('<wa-input>', () => {
         </form>
       `);
 
-      expect(form.reportValidity()).to.be.true;
+      // Yes, this is a "breakage" from previous overloads, but this is how the browser works :shrug:
+      // https://codepen.io/paramagicdev/pen/rNbpqje
+
+      expect(form.reportValidity()).to.be.false;
     });
 
     it('should be invalid when a native input is empty and form.reportValidity() is called', async () => {

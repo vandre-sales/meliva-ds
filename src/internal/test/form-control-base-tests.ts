@@ -175,32 +175,32 @@ function runSpecialTests_slButtonOfTypeButton(createControl: CreateControlFn) {
   it('should make sure that calling `.checkValidity()` will still return `true` when custom error has been set', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
-    expect(control.checkValidity()).to.equal(true);
+    expect(control.checkValidity()).to.equal(false);
   });
 
   it('should make sure that calling `.reportValidity()` will still return `true` when custom error has been set', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
-    expect(control.reportValidity()).to.equal(true);
+    expect(control.reportValidity()).to.equal(false);
   });
 
-  it('should not emit an `wa-invalid` event when `.checkValidity()` is called in custom error case, and not disabled', async () => {
+  it('should emit an `wa-invalid` event when `.checkValidity()` is called in custom error case, and not disabled', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     control.disabled = false;
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.checkValidity());
-    expect(emittedEvents.length).to.equal(0);
+    expect(emittedEvents.length).to.equal(1);
   });
 
-  it('should not emit an `wa-invalid` event when `.reportValidity()` is called in custom error case, and not disabled', async () => {
+  it('should emit an `wa-invalid` event when `.reportValidity()` is called in custom error case, and not disabled', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     control.disabled = false;
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
 
-    expect(emittedEvents.length).to.equal(0);
+    expect(emittedEvents.length).to.equal(1);
   });
 }
 
@@ -208,16 +208,16 @@ function runSpecialTests_slButtonOfTypeButton(createControl: CreateControlFn) {
 // Special tests for <wa-button href="...">
 //
 function runSpecialTests_slButtonWithHref(createControl: CreateControlFn) {
-  it('should make sure that calling `.checkValidity()` will return `true` in custom error case', async () => {
+  it('should make sure that calling `.checkValidity()` will return `false` in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
-    expect(control.checkValidity()).to.equal(true);
+    expect(control.checkValidity()).to.equal(false);
   });
 
-  it('should make sure that calling `.reportValidity()` will return `true` in custom error case', async () => {
+  it('should make sure that calling `.reportValidity()` will return `false` in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
-    expect(control.reportValidity()).to.equal(true);
+    expect(control.reportValidity()).to.equal(false);
   });
 
   it('should not emit an `wa-invalid` event when `.checkValidity()` is called in custom error case', async () => {
