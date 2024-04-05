@@ -1,7 +1,7 @@
+import * as path from 'node:path';
+import * as url from 'node:url';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import * as url from 'node:url';
-import * as path from 'node:path';
 // const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -9,9 +9,9 @@ import FullReload from 'vite-plugin-full-reload';
 
 import { customElementsManifest } from './src/js/cem.js';
 import { RemarkPluginFindAndReplace } from 'remark-plugin-find-and-replace';
+import GithubAutolink from './src/plugins/github-autolink.ts';
 import rehypeExternalLinks from 'rehype-external-links';
 import remarkCodeHighlighter from './src/plugins/prism';
-import GithubAutolink from './src/plugins/github-autolink.ts';
 
 const version = customElementsManifest().package.version;
 const cdndir = 'cdn';
@@ -126,6 +126,7 @@ export default defineConfig({
           label: 'Components',
           autogenerate: { directory: 'components' }
         },
+        { label: 'Patterns', autogenerate: { directory: 'patterns' } },
         {
           label: 'Design Tokens',
           autogenerate: { directory: 'tokens' }
