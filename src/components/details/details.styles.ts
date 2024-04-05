@@ -1,9 +1,6 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
-  ${componentStyles}
-
   :host {
     --background: var(--wa-color-surface-default);
     --border-color: var(--wa-color-surface-border);
@@ -87,7 +84,8 @@ export default css`
     display: none;
   }
 
-  .details__body {
+  /* Overflows get clipped during the closing animation if we don't wait until the close is gone. */
+  :not(.details--open) .details__body {
     overflow: hidden;
   }
 
