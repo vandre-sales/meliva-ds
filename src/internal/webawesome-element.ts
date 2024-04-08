@@ -433,8 +433,6 @@ export class WebAwesomeFormAssociated
   }
 
   updateValidity() {
-    const parentForm = this.getForm()
-
     if (this.disabled || this.getAttribute('disabled')) {
       this.setValidity({});
       // We don't run validators on disabled thiss to be inline with native HTMLElements.

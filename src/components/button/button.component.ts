@@ -6,12 +6,12 @@ import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './button.styles.js';
 import WaIcon from '../icon/icon.component.js';
 import WaSpinner from '../spinner/spinner.component.js';
 import type { CSSResultGroup } from 'lit';
-import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 
 /**
  * @summary Buttons represent actions that are available to the user.
@@ -133,7 +133,7 @@ export default class WaButton extends WebAwesomeFormAssociated {
    * The "form owner" to associate the button with. If omitted, the closest containing form will be used instead. The
    * value of this attribute must be an id of a form in the same document or shadow root as the button.
    */
-  @property() form: null | string;
+  @property({ reflect: true }) form: string | null = null
 
   /** Used to override the form owner's `action` attribute. */
   @property({ attribute: 'formaction' }) formAction: string;

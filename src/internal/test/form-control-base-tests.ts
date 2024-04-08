@@ -220,20 +220,20 @@ function runSpecialTests_slButtonWithHref(createControl: CreateControlFn) {
     expect(control.reportValidity()).to.equal(false);
   });
 
-  it('should not emit an `wa-invalid` event when `.checkValidity()` is called in custom error case', async () => {
+  it('should emit an `wa-invalid` event when `.checkValidity()` is called in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.checkValidity());
-    expect(emittedEvents.length).to.equal(0);
+    expect(emittedEvents.length).to.equal(1);
   });
 
-  it('should not emit an `wa-invalid` event when `.reportValidity()` is called in custom error case', async () => {
+  it('should emit an `wa-invalid` event when `.reportValidity()` is called in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
-    expect(emittedEvents.length).to.equal(0);
+    expect(emittedEvents.length).to.equal(1);
   });
 }
 
