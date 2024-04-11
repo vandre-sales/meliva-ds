@@ -7,12 +7,11 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './checkbox.styles.js';
 import WaIcon from '../icon/icon.component.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
@@ -51,15 +50,15 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  * @cssproperty --toggle-size - The size of the checkbox.
 
  */
-export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaCheckbox extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'wa-icon': WaIcon };
 
-  private readonly formControlController = new FormControlController(this, {
-    value: (control: WaCheckbox) => (control.checked ? control.value || 'on' : undefined),
-    defaultValue: (control: WaCheckbox) => control.defaultChecked,
-    setValue: (control: WaCheckbox, checked: boolean) => (control.checked = checked)
-  });
+  // private readonly formControlController = new FormControlController(this, {
+  //   value: (control: WaCheckbox) => (control.checked ? control.value || 'on' : undefined),
+  //   defaultValue: (control: WaCheckbox) => control.defaultChecked,
+  //   setValue: (control: WaCheckbox, checked: boolean) => (control.checked = checked)
+  // });
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
@@ -72,7 +71,7 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
   @property() name = '';
 
   /** The current value of the checkbox, submitted as a name/value pair with form data. */
-  @property() value: string;
+  @property() value: null | string;
 
   /** The checkbox's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -90,14 +89,14 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue('checked') defaultChecked = false;
+  @property({ type: Boolean, reflect: true, attribute: "checked" }) defaultChecked = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
+  @property({ reflect: true }) form = null;
 
   /** Makes the checkbox a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
@@ -105,18 +104,8 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
   /** The checkbox's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
-  /** Gets the validity state object */
-  get validity() {
-    return this.input.validity;
-  }
-
-  /** Gets the validation message */
-  get validationMessage() {
-    return this.input.validationMessage;
-  }
-
   firstUpdated() {
-    this.formControlController.updateValidity();
+    this.updateValidity();
   }
 
   private handleClick() {
@@ -134,27 +123,32 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
     this.emit('wa-input');
   }
 
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
-  }
+  // private handleInvalid(event: Event) {
+  //   this.formControlController.setValidity(false);
+  //   this.formControlController.emitInvalidEvent(event);
+  // }
 
   private handleFocus() {
     this.hasFocus = true;
     this.emit('wa-focus');
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid
-    this.formControlController.setValidity(this.disabled);
+  // @watch('disabled', { waitUntilFirstUpdate: true })
+  // handleDisabledChange() {
+  //   // Disabled form controls are always valid
+  //   this.formControlController.setValidity(this.disabled);
+  // }
+
+  @watch(["value", "checked"], { waitUntilFirstUpdate: true })
+  handleValueOrCheckedChange () {
+    this.value = this.checked ? this.value || 'on' : null
   }
 
   @watch(['checked', 'indeterminate'], { waitUntilFirstUpdate: true })
   handleStateChange() {
     this.input.checked = this.checked; // force a sync update
     this.input.indeterminate = this.indeterminate; // force a sync update
-    this.formControlController.updateValidity();
+    this.updateValidity();
   }
 
   /** Simulates a click on the checkbox. */
