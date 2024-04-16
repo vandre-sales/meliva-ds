@@ -238,10 +238,6 @@ export default class WaInput extends WebAwesomeFormAssociated {
     this.value = this.__numberInput.value;
   }
 
-  firstUpdated() {
-    this.checkValidity()
-  }
-
   private handleBlur() {
     this.hasFocus = false;
     this.emit('wa-blur');

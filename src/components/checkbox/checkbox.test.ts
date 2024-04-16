@@ -16,7 +16,7 @@ describe('<wa-checkbox>', () => {
     const el = await fixture<WaCheckbox>(html` <wa-checkbox></wa-checkbox> `);
 
     expect(el.name).to.equal('');
-    expect(el.value).to.be.undefined;
+    expect(el.value).to.be.null;
     expect(el.title).to.equal('');
     expect(el.disabled).to.be.false;
     expect(el.required).to.be.false;
@@ -176,6 +176,9 @@ describe('<wa-checkbox>', () => {
 
       await clickOnElement(checkbox);
       await checkbox.updateComplete;
+      await aTimeout(0);
+
+      console.log(checkbox.hasInteracted)
 
       expect(checkbox.hasAttribute('data-user-invalid')).to.be.true;
       expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
@@ -188,6 +191,7 @@ describe('<wa-checkbox>', () => {
 
     it('should be valid when required and checked', async () => {
       const checkbox = await fixture<HTMLFormElement>(html` <wa-checkbox required checked></wa-checkbox> `);
+      await checkbox.updateComplete
       expect(checkbox.checkValidity()).to.be.true;
     });
 

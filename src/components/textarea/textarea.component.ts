@@ -46,7 +46,9 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
   static formAssociated = true;
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static get validators() {
-    return [MirrorValidator];
+    return [
+      MirrorValidator
+    ];
   }
 
   assumeInteractionOn = ['wa-blur', 'wa-input'];
@@ -154,10 +156,6 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
       this.setTextareaHeight();
       this.resizeObserver.observe(this.input);
     });
-  }
-
-  firstUpdated() {
-    this.checkValidity();
   }
 
   disconnectedCallback() {

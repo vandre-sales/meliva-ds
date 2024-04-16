@@ -59,9 +59,9 @@ The form will not be submitted if a required field is incomplete.
 
 ```html:preview
 <form class="input-validation-required">
-  <wa-input name="name" label="Name" required></wa-input>
+  <wa-input name="my-name" label="Name" required></wa-input>
   <br />
-  <wa-select label="Favorite Animal" clearable required>
+  <wa-select label="Favorite Animal" clearable required name="animal" value="cats">
     <wa-option value="birds">Birds</wa-option>
     <wa-option value="cats">Cats</wa-option>
     <wa-option value="dogs">Dogs</wa-option>

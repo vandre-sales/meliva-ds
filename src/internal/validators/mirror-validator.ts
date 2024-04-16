@@ -1,28 +1,29 @@
 import type { Validator } from '../webawesome-element.js';
 
-type ValidatorElement = HTMLElement & {
-  value: string | null | File | FormData;
-  formControl?: HTMLElement & ElementInternals;
-};
-
 /**
  * This validator is for if you have an exact copy of your element in the shadow DOM. Rather than needing
  *   custom translations and error messages, you can simply rely on the element "formControl" in your shadow dom.
  */
-export const MirrorValidator: Validator<ValidatorElement> = {
+export const MirrorValidator: Validator = {
   checkValidity(element) {
     const formControl = element.formControl;
 
-    const validity: ReturnType<Validator<ValidatorElement>['checkValidity']> = {
+    const validity: ReturnType<Validator['checkValidity']> = {
       message: '',
       isValid: true,
       invalidKeys: []
     };
 
-    if (!formControl) return validity;
+    if (!formControl) {
+      // element.setValidity({})
+      return validity
+    }
 
     const isValid = formControl.checkValidity();
-    if (isValid) return validity;
+    if (isValid) {
+      // element.setValidity({})
+      return validity;
+    }
 
     validity.isValid = false;
     validity.message = formControl.validationMessage;

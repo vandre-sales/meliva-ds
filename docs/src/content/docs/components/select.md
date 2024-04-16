@@ -5,7 +5,8 @@ layout: ../../../layouts/ComponentLayout.astro
 ---
 
 ```html:preview
-<wa-select>
+<form>
+<wa-select value="option-1">
   <wa-option value="option-1">Option 1</wa-option>
   <wa-option value="option-2">Option 2</wa-option>
   <wa-option value="option-3">Option 3</wa-option>
@@ -13,6 +14,7 @@ layout: ../../../layouts/ComponentLayout.astro
   <wa-option value="option-5">Option 5</wa-option>
   <wa-option value="option-6">Option 6</wa-option>
 </wa-select>
+</form>
 ```
 
 ```jsx:react

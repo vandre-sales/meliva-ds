@@ -118,6 +118,11 @@ describe('<wa-select>', () => {
           <wa-option value="option-3">Option 3</wa-option>
         </wa-select>
       `);
+
+      expect(el.value).to.equal("option-1")
+      expect(el.defaultValue).to.equal("option-1")
+      expect(el.displayInput.value).to.equal("Option 1")
+
       const secondOption = el.querySelectorAll<WaOption>('wa-option')[1];
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
@@ -419,6 +424,7 @@ describe('<wa-select>', () => {
           </wa-select>
         </form>
       `);
+
       const json = serialize(form);
       expect(JSON.stringify(json)).to.equal(JSON.stringify({ a: ['option-2', 'option-3'] }));
     });
