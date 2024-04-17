@@ -20,7 +20,6 @@ import process from 'process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const isDeveloping = process.argv.includes('--develop');
-const iconDir = join(distDir, 'assets/icons');
 const spinner = ora({ text: 'Web Awesome', color: 'cyan' }).start();
 const packageData = JSON.parse(await readFile(join(rootDir, 'package.json'), 'utf-8'));
 const version = JSON.stringify(packageData.version.toString());
