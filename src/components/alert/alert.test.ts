@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { aTimeout, expect, fixture, html, oneEvent } from '@open-wc/testing';
 import { clickOnElement, moveMouseOnElement } from '../../internal/test.js';
 import { queryByTestId } from '../../internal/test/data-testid-helpers.js';

@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { clickOnElement } from '../../internal/test.js';
 import { expect, fixture, html, oneEvent } from '@open-wc/testing';
 import type WaAnimatedImage from './animated-image.js';

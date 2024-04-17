@@ -6,8 +6,6 @@ import { html } from 'lit';
 import { sendKeys } from '@web/test-runner-commands';
 import type { WaDialog } from '../webawesome.js';
 
-import '../../../dist/webawesome.js';
-
 async function holdShiftKey(callback: () => Promise<void>) {
   await sendKeys({ down: 'Shift' });
   await callback();

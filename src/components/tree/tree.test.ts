@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { aTimeout, expect, fixture, html, triggerBlurFor, triggerFocusFor } from '@open-wc/testing';
 import { clickOnElement } from '../../internal/test.js';
 import { sendKeys } from '@web/test-runner-commands';

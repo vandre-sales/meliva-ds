@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import type WaFormatDate from './format-date.js';

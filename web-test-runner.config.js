@@ -35,6 +35,7 @@ export default {
           window.process = {env: { NODE_ENV: "production" }}
         </script>
         <script type="module" src="${testFramework}"></script>
+        <script type="module" src="/dist/webawesome.loader.js"></script>
       </body>
     </html>
   `,

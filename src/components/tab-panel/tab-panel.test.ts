@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { aTimeout, expect, fixture, html } from '@open-wc/testing';
 import type WaTabPanel from './tab-panel.js';
 

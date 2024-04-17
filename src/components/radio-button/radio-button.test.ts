@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import type WaRadioButton from './radio-button.js';
 import type WaRadioGroup from '../radio-group/radio-group.js';
