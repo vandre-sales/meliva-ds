@@ -56,7 +56,6 @@ blockquote,
 dd,
 details,
 dl,
-fieldset,
 figure,
 h1,
 h2,
@@ -192,11 +191,15 @@ kbd,
 samp,
 var {
   font-family: var(--wa-font-family-code);
-  font-size: 0.975em;
+  font-size: 0.90625em;
   background-color: var(--wa-color-neutral-fill-subtle);
   border-radius: var(--wa-corners-s);
   padding-block: var(--wa-space-3xs);
   padding-inline: var(--wa-space-2xs);
+}
+
+code {
+  background-color: color-mix(in oklab, var(--wa-color-neutral-spot), transparent 90%);
 }
 
 pre {
@@ -204,24 +207,6 @@ pre {
   border-radius: var(--wa-corners-s);
   padding: var(--wa-space-m);
   white-space: pre;
-  overflow: auto;
-}
-
-pre:has(code) {
-  position: relative;
-  padding: 0;
-  white-space: normal;
-
-  code {
-    display: block;
-    white-space: pre;
-    overflow: auto;
-    padding: var(--wa-space-m);
-  }
-}
-
-pre:not(:has(code)) code {
-  background-color: color-mix(in oklab, var(--wa-color-neutral-spot), transparent 90%);
 }
 
 kbd {
@@ -391,7 +376,7 @@ legend {
 }
 
 /* Images, videos, iframes, etc. */
-img,
+img:not(wa-card *),
 picture,
 svg,
 video {
@@ -414,7 +399,6 @@ iframe {
 a {
   color: var(--wa-color-text-link);
   text-decoration: var(--wa-link-decoration-default);
-  text-underline-offset: 0.2em;
   -webkit-text-decoration: var(--wa-link-decoration-default);
 }
 
