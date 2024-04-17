@@ -1,0 +1,133 @@
+@import 'code-examples.css';
+@import 'code-highlighter.css';
+@import 'copy-code.css';
+@import 'outline.css';
+@import 'search.css';
+
+wa-page[view='desktop'] [data-toggle-nav] {
+  display: none;
+}
+
+/* Header */
+wa-page::part(header) {
+  background-color: var(--wa-color-surface-default);
+  border-bottom: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+}
+
+wa-page > header {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  height: 60px;
+  padding-inline: 2rem;
+
+  svg {
+    width: auto;
+    max-height: 26px;
+  }
+}
+
+/* Navigation sidebar */
+wa-page[view='desktop']::part(navigation) {
+  border-right: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+}
+
+wa-page[view='desktop'] > #sidebar {
+  min-width: 320px;
+  padding: 2rem;
+}
+
+#sidebar,
+#outline {
+  h2 {
+    font-size: 1.125rem;
+    margin-block-end: 0.5rem;
+  }
+}
+
+#sidebar nav {
+  padding-bottom: 1rem;
+}
+
+/* Main content */
+wa-page > main {
+  max-width: 80ch;
+  padding: 2rem;
+  margin-inline: auto;
+}
+
+/* Current link */
+#sidebar,
+#outline {
+  .current {
+    font-weight: var(--wa-font-weight-heavy);
+    text-decoration-style: solid;
+  }
+}
+
+/* Anchor headings */
+.anchor-heading a {
+  visibility: hidden;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .anchor-heading:hover a {
+    visibility: visible;
+    padding: 0 0.125em;
+  }
+}
+
+/* Callouts */
+.callout {
+  display: flex;
+  gap: 1rem;
+  border: var(--wa-border-style) var(--wa-border-width-m);
+  border-radius: var(--wa-corners-m);
+  padding: 1rem;
+  margin-block-end: var(--wa-flow-spacing);
+
+  :first-child {
+    margin-block-start: 0;
+  }
+
+  :last-child {
+    margin-block-end: 0;
+  }
+}
+
+.callout-icon {
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+}
+
+.callout-content {
+  flex: 1 1 auto;
+}
+
+.callout-info {
+  background-color: var(--wa-color-brand-fill-subtle);
+  border-color: var(--wa-color-brand-border-subtle);
+
+  .callout-icon {
+    color: var(--wa-color-brand-text-on-fill);
+  }
+
+  code {
+    background-color: var(--wa-color-brand-fill-highlight);
+  }
+}
+
+.callout-warning {
+  background-color: var(--wa-color-warning-fill-subtle);
+  border-color: var(--wa-color-warning-border-subtle);
+
+  .callout-icon {
+    color: var(--wa-color-warning-text-on-fill);
+  }
+
+  code {
+    background-color: var(--wa-color-warning-fill-highlight);
+  }
+}

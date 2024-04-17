@@ -1,0 +1,28 @@
+.copy-button {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  font-family: var(--wa-font-family-body);
+  color: var(--wa-color-neutral-text-on-fill);
+  background-color: var(--wa-color-neutral-fill-subtle);
+  border-radius: var(--wa-corners-s);
+  padding: 0.25rem;
+
+  &:hover {
+    background-color: var(--wa-color-neutral-fill-highlight);
+  }
+
+  &:focus-visible {
+    outline: var(--wa-focus-ring);
+  }
+}
+
+@media (hover: hover) {
+  .copy-button:not(:focus-within) {
+    opacity: 0;
+  }
+
+  pre:hover > .copy-button {
+    opacity: 1;
+  }
+}

@@ -42,6 +42,7 @@ module.exports = {
       rules: {
         'default-param-last': 'off',
         '@typescript-eslint/default-param-last': 'error',
+        'no-console': 'warn',
         'no-empty-function': 'off',
         '@typescript-eslint/no-empty-function': 'warn',
         'no-implied-eval': 'off',
