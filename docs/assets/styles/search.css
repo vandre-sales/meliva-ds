@@ -237,6 +237,7 @@ header {
     height: 1.35rem;
     justify-content: center;
     align-items: center;
+    font-weight: var(--wa-font-weight-heavy);
 
     &:last-of-type {
       margin-inline-end: 0.25rem;
