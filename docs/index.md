@@ -6,4 +6,4 @@ layout: page
 
 This is the homepage. It will soon look awesome. Until then, click the button. 👇
 
-<wa-button variant="brand" href="/components/button">Go somewhere</wa-button>
+<wa-button variant="brand" href="/docs/components/button">Go somewhere</wa-button>
