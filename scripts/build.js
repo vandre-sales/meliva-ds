@@ -161,7 +161,7 @@ async function generateBundle() {
     await buildContext.rebuild();
   } else {
     // One-time build for production
-    esbuild.build(config);
+    await esbuild.build(config);
   }
 
   spinner.succeed();
@@ -199,6 +199,11 @@ async function generateDocs() {
 
   // Copy assets
   await copy(join(docsDir, 'assets'), join(siteDir, 'assets'), { overwrite: true });
+
+  // Copy dist (production only)
+  if (!isDeveloping) {
+    await copy(distDir, join(siteDir, 'dist'));
+  }
 
   spinner.succeed(`Writing the docs ${chalk.gray(`(${output}`)})`);
 }
