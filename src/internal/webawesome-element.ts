@@ -234,7 +234,7 @@ export class WebAwesomeFormAssociated
   assumeInteractionOn: string[] = ['wa-input'];
 
   // Additional
-  formControl?: HTMLElement & {value?: unknown};
+  formControl?: HTMLElement & {value: unknown} | HTMLInputElement | HTMLTextAreaElement;
 
   validators: Validator[] = [];
 

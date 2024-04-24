@@ -15,18 +15,32 @@ export const MirrorValidator: Validator = {
     };
 
     if (!formControl) {
-      // element.setValidity({})
       return validity
     }
 
-    const isValid = formControl.checkValidity();
+    let isValid = true
+
+    if ("checkValidity" in formControl) {
+      isValid = formControl.checkValidity();
+    }
+
     if (isValid) {
-      // element.setValidity({})
       return validity;
     }
 
     validity.isValid = false;
-    validity.message = formControl.validationMessage;
+
+    if ("validationMessage" in formControl) {
+      validity.message = formControl.validationMessage;
+    }
+
+
+    // For some reason formControl doesn't have "validity", so chalk it up to customError
+    if (!("validity" in formControl)) {
+      validity.invalidKeys.push("customError");
+      return validity
+    }
+
     for (const key in formControl.validity) {
       if (key === 'valid') {
         continue;
