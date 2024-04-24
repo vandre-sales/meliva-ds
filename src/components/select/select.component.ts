@@ -132,6 +132,7 @@ export default class WaSelect extends WebAwesomeFormAssociated {
       toAttribute: (value: string | string[]) => Array.isArray(value) ? value.join(' ') : value
     }
   })
+  // @ts-expect-error defaultValue () is a property on the host, but is being used a getter / setter here.
   set defaultValue(val: string | string[]) {
     // For some reason this can go off before we've fully updated. So check the attribute too.
     const isMultiple = this.multiple || this.hasAttribute("multiple")

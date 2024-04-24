@@ -100,10 +100,10 @@ export default class WaInput extends WebAwesomeFormAssociated {
   @property() name = '';
 
   /** The current value of the input, submitted as a name/value pair with form data. */
-  @property() value = '';
+  @property({attribute: false}) value = '';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue = '';
+  @property({attribute: "value", reflect: true}) defaultValue = '';
 
   /** The input's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';

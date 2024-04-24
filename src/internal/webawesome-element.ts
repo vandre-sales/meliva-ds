@@ -223,8 +223,8 @@ export class WebAwesomeFormAssociated
   // Form attributes
   // These should properly just use `@property` accessors.
   name: string = '';
-  value: string | null | File | FormData | string[] = null;
-  defaultValue: string | null | File | FormData | string[] = null;
+  value: unknown = null;
+  defaultValue: unknown = null;
   disabled: boolean = false;
   required: boolean = false;
 
@@ -234,7 +234,7 @@ export class WebAwesomeFormAssociated
   assumeInteractionOn: string[] = ['wa-input'];
 
   // Additional
-  formControl?: HTMLInputElement | HTMLButtonElement | HTMLTextAreaElement;
+  formControl?: HTMLElement & {value?: unknown};
 
   validators: Validator[] = [];
 
@@ -291,6 +291,12 @@ export class WebAwesomeFormAssociated
   };
 
   protected willUpdate(changedProperties: PropertyValues<this>) {
+    if (changedProperties.has("defaultValue")) {
+      if (!this.hasInteracted){
+        this.value = this.defaultValue
+      }
+    }
+
     if (
       changedProperties.has('formControl') ||
       changedProperties.has('defaultValue') ||
@@ -302,12 +308,12 @@ export class WebAwesomeFormAssociated
         if (this.name) {
           const formData = new FormData()
           for (const val of value) {
-            formData.append(this.name, val)
+            formData.append(this.name, val as string)
           }
           this.setValue(formData, formData);
         }
       } else {
-        this.setValue(value, value);
+        this.setValue(value as FormData | string | File | null, value as FormData | string | File | null);
       }
     }
 

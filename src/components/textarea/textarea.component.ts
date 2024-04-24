@@ -1,5 +1,4 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { defaultValue } from '../../internal/default-value.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -65,7 +64,7 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
   @property() name = '';
 
   /** The current value of the textarea, submitted as a name/value pair with form data. */
-  @property() value = '';
+  @property({ attribute: false }) value = '';
 
   /** The textarea's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -146,10 +145,12 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue = '';
+  @property({ reflect: true, attribute: "value" }) defaultValue: string = ''
 
   connectedCallback() {
     super.connectedCallback();
+
+    this.value = this.defaultValue
     this.resizeObserver = new ResizeObserver(() => this.setTextareaHeight());
 
     this.updateComplete.then(() => {
