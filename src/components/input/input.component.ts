@@ -62,7 +62,7 @@ export default class WaInput extends WebAwesomeFormAssociated {
 
   static get validators () {
     return [
-      MirrorValidator
+      MirrorValidator()
     ]
   }
 

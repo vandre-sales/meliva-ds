@@ -4,6 +4,7 @@ import { drag } from '../../internal/drag.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { property, query, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { TinyColor } from '@ctrl/tinycolor';
@@ -98,6 +99,12 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
     'wa-input': WaInput,
     'wa-visually-hidden': WaVisuallyHidden
   };
+
+  static get validators() {
+    return [
+      MirrorValidator()
+    ]
+  }
 
   private isSafeValue = false;
   private readonly localize = new LocalizeController(this);
@@ -915,7 +922,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
             @keydown=${this.handleInputKeyDown}
             @wa-change=${this.handleInputChange}
             @wa-input=${this.handleInputInput}
-            @wa-invalid=${this.handleInputInvalid}
             @wa-blur=${this.stopNestedEventPropagation}
             @wa-focus=${this.stopNestedEventPropagation}
           ></wa-input>
