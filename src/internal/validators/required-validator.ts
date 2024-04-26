@@ -4,7 +4,7 @@ export const RequiredValidator = (): Validator => {
   const obj: Validator = {
     observedAttributes: ["required"],
     message: "Please fill out this field", // @TODO: Add a translation.
-    checkValidity (this: typeof RequiredValidator, element) {
+    checkValidity (element) {
       const validity: ReturnType<Validator["checkValidity"]> = {
         message: "",
         isValid: true,
