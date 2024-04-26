@@ -60,7 +60,9 @@ export default class WaButton extends WebAwesomeFormAssociated {
   };
 
   static get validators () {
-    return [ MirrorValidator ]
+    return [
+      MirrorValidator()
+    ]
   }
 
   assumeInteractionOn = ["click"]

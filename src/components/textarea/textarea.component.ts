@@ -46,7 +46,7 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static get validators() {
     return [
-      MirrorValidator
+      MirrorValidator()
     ];
   }
 

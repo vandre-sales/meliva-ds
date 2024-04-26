@@ -4,6 +4,7 @@ import { drag } from '../../internal/drag.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { property, query, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { TinyColor } from '@ctrl/tinycolor';
@@ -20,6 +21,7 @@ import WaVisuallyHidden from '../visually-hidden/visually-hidden.component.js';
 import type { CSSResultGroup } from 'lit';
 import type { WaChangeEvent } from '../../events/wa-change.js';
 import type { WaInputEvent } from '../../events/wa-input.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 
 const hasEyeDropper = 'EyeDropper' in window;
 
@@ -98,6 +100,12 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
     'wa-input': WaInput,
     'wa-visually-hidden': WaVisuallyHidden
   };
+
+  static get validators () {
+    return [
+      RequiredValidator(),
+    ]
+  }
 
   private isSafeValue = false;
   private readonly localize = new LocalizeController(this);
@@ -179,7 +187,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
+  @property({ reflect: true }) form = null;
 
   /** Makes the color picker a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
@@ -597,6 +605,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
     // happens, dragging the grid handle becomes jumpy. After the next update, the usual behavior is restored.
     this.isSafeValue = true;
     this.value = this.inputValue;
+
     await this.updateComplete;
     this.isSafeValue = false;
   }
@@ -670,6 +679,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
   @watch('value')
   handleValueChange(oldValue: string | undefined, newValue: string) {
     this.isEmpty = !newValue;
+
 
     if (!newValue) {
       this.hue = 0;
@@ -915,7 +925,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
             @keydown=${this.handleInputKeyDown}
             @wa-change=${this.handleInputChange}
             @wa-input=${this.handleInputInput}
-            @wa-invalid=${this.handleInputInvalid}
             @wa-blur=${this.stopNestedEventPropagation}
             @wa-focus=${this.stopNestedEventPropagation}
           ></wa-input>

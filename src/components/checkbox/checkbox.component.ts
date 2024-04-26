@@ -54,7 +54,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   static dependencies = { 'wa-icon': WaIcon };
   static get validators () {
     return [
-      GroupRequiredValidator,
+      GroupRequiredValidator(),
     ]
   }
 

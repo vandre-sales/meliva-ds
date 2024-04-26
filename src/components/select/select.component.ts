@@ -85,7 +85,7 @@ export default class WaSelect extends WebAwesomeFormAssociated {
 
   static get validators () {
     return [
-      RequiredValidator
+      RequiredValidator()
     ]
   }
 

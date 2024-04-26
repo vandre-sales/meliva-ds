@@ -462,6 +462,7 @@ describe('<wa-color-picker>', () => {
           <wa-color-picker name="a" value="#ffcc00"></wa-color-picker>
         </form>
       `);
+
       const formData = new FormData(form);
       expect(formData.get('a')).to.equal('#ffcc00');
     });
