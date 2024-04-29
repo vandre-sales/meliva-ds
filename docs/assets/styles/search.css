@@ -99,7 +99,7 @@ header {
 #site-search.has-results,
 #site-search.no-results {
   #site-search-body {
-    border-top: var(--wa-border-style) var(--wa-border-width-m) var(--wa-color-neutral-border-subtle);
+    border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
   }
 }
 
@@ -227,7 +227,7 @@ header {
   justify-content: center;
   gap: 2rem;
   color: var(--wa-color-text-quiet);
-  border-top: var(--wa-border-style) var(--wa-border-width-m) var(--wa-color-neutral-border-subtle);
+  border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
   border-bottom-left-radius: var(--wa-corners-m);
   border-bottom-right-radius: var(--wa-corners-m);
   padding: 1rem;
