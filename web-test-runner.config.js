@@ -1,6 +1,15 @@
 import { esbuildPlugin } from '@web/dev-server-esbuild';
+import { getAllComponents } from './scripts/shared.js';
 import { globbySync } from 'globby';
 import { playwrightLauncher } from '@web/test-runner-playwright';
+import { readFileSync } from 'fs';
+
+// Get a list of all Web Awesome component imports for the test runner
+const metadata = JSON.parse(readFileSync('./dist/custom-elements.json'), 'utf8');
+const componentImports = getAllComponents(metadata).map(component => {
+  const name = component.tagName.replace(/^wa-/, '');
+  return `./dist/components/${name}/${name}.js`;
+});
 
 export default {
   rootDir: '.',
@@ -28,14 +37,14 @@ export default {
   ],
   testRunnerHtml: testFramework => `
     <html lang="en-US">
-      <head></head>
+      <head>
+        <base href="/dist">
+      </head>
       <body>
         <link rel="stylesheet" href="dist/themes/default.css">
-        <script>
-          window.process = {env: { NODE_ENV: "production" }}
-        </script>
+        <script>window.process = {env: { NODE_ENV: "production" }}</script>
+        ${componentImports.map(url => `<script type="module" src="${url}"></script>`)};
         <script type="module" src="${testFramework}"></script>
-        <script type="module" src="/dist/webawesome.loader.js"></script>
       </body>
     </html>
   `,
