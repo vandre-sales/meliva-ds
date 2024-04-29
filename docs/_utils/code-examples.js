@@ -23,7 +23,7 @@ export function codeExamplesPlugin(options = {}) {
       container.querySelectorAll('code.example').forEach(code => {
         const pre = code.closest('pre');
         const adjacentPre = pre.nextElementSibling?.localName === 'pre' ? pre.nextElementSibling : null;
-        const adjacentCode = adjacentPre?.querySelector('code.react') ? adjacentPre.querySelector('code') : null;
+        const adjacentPreForReact = adjacentPre?.querySelector('code.react') ? adjacentPre.querySelector('code') : null;
         const hasButtons = !code.classList.contains('no-buttons');
         const isOpen = code.classList.contains('open') || !hasButtons;
         const noEdit = code.classList.contains('no-edit');
@@ -43,15 +43,15 @@ export function codeExamplesPlugin(options = {}) {
             <div class="code-example-source" id="${id}">
               <wa-tab-group>
                 <wa-tab slot="nav" panel="html">HTML</wa-tab>
-                <wa-tab slot="nav" panel="react">React</wa-tab>
-
-                <wa-tab-panel name="html">
-                  ${pre.outerHTML}
-                </wa-tab-panel>
-
-                <wa-tab-panel name="react">
-                  ${adjacentCode ? adjacentPre.outerHTML : ''}
-                </wa-tab-panel>
+                <wa-tab-panel name="html">${pre.outerHTML}</wa-tab-panel>
+                ${
+                  adjacentPreForReact
+                    ? `
+                      <wa-tab slot="nav" panel="react">React</wa-tab>
+                      <wa-tab-panel name="react">${adjacentPre.outerHTML}</wa-tab-panel>
+                    `
+                    : ''
+                }
               </wa-tab-group>
             </div>
             ${
