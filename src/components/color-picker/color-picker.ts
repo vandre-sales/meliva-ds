@@ -1009,7 +1009,6 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
 
                   // If we can't parse it, skip it
                   if (!parsedColor) {
-                    console.error(`Unable to parse swatch color: "${swatch}"`, this);
                     return '';
                   }
 
