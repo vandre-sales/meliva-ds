@@ -20,6 +20,11 @@ Cras pulvinar mattis nunc sed blandit libero. Facilisis magna etiam tempor orci.
 
 ## Inline Text
 
+```html
+
+Feugiat nisl pretium fusce id. Ipsum dolor sit amet consectetur adipiscing elit. Eget nunc lobortis mattis aliquam faucibus purus. Metus dictum at tempor commodo ullamcorper a lacus vestibulum. Urna condimentum mattis pellentesque id nibh tortor id.
+```
+
 <div class="docs-grid">
   <p><strong>Bold</strong></p>
   <p><em>Italics</em></p>

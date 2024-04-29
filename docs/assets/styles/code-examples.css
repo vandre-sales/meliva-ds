@@ -32,19 +32,9 @@
 
 .code-example-source pre {
   position: relative;
-  background-color: var(--wa-color-neutral-fill-subtle);
   border-radius: 0;
-  padding: 0;
   margin: 0;
   white-space: normal;
-
-  code {
-    display: block;
-    background-color: transparent;
-    padding: var(--wa-space-m);
-    white-space: pre;
-    overflow-x: auto;
-  }
 }
 
 .code-example-source:not(:has(+ .code-example-buttons)) {

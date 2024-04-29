@@ -209,6 +209,21 @@ pre {
   white-space: pre;
 }
 
+pre:has(code) {
+  position: relative;
+  padding: 0;
+  white-space: normal;
+
+  code {
+    display: block;
+    font-size: 1em;
+    background-color: transparent;
+    padding: var(--wa-space-m);
+    white-space: pre;
+    overflow-x: auto;
+  }
+}
+
 kbd {
   border: solid 1px var(--wa-color-neutral-border-subtle);
   box-shadow:
