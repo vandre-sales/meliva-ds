@@ -462,7 +462,7 @@
   }
 
   .hero-background::after {
-    background: url(/assets/images/kitchen-sink/classic/hero.png) 0px 0px no-repeat;
+    background: url(/assets/images/themer/classic/hero.png) 0px 0px no-repeat;
     content: '';
     position: absolute;
     height: 1200px;
@@ -489,7 +489,7 @@
   }
 
   .hero-background::after {
-    background: url(/assets/images/kitchen-sink/classic/hero.png) 50px -170px no-repeat;
+    background: url(/assets/images/themer/classic/hero.png) 50px -170px no-repeat;
     height: 900px;
   }
 

@@ -465,7 +465,7 @@
   }
 
   .hero-background::after {
-    background: url(/assets/images/kitchen-sink/default/hero.png) 10rem bottom no-repeat;
+    background: url(/assets/images/themer/default/hero.png) 10rem bottom no-repeat;
     background-size: 95%;
     content: '';
     position: absolute;

@@ -760,7 +760,7 @@
   }
 
   .hero-background::after {
-    background: url(/assets/images/kitchen-sink/playful/hero.png) 0 50% no-repeat;
+    background: url(/assets/images/themer/playful/hero.png) 0 50% no-repeat;
     content: '';
     position: absolute;
     width: 520px;

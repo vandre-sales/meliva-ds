@@ -674,7 +674,7 @@
   }
 
   .overlap {
-    background: var(--wa-color-surface-lowered) url('/assets/images/kitchen-sink/brutalist/hero.png') 50% 3% no-repeat;
+    background: var(--wa-color-surface-lowered) url('/assets/images/themer/brutalist/hero.png') 50% 3% no-repeat;
   }
 
   .strata.hero {

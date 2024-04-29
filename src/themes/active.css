@@ -470,7 +470,7 @@
       var(--wa-color-base-10) 80.5%,
       var(--wa-color-primary-80) 100%
     );
-    background: url(/assets/images/kitchen-sink/active/hero.png) 50% 0px / cover no-repeat;
+    background: url(/assets/images/themer/active/hero.png) 50% 0px / cover no-repeat;
     height: 40rem;
     position: absolute;
     top: 0;

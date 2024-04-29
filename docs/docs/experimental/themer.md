@@ -1,6 +1,6 @@
 ---
 meta:
-title: Kitchen Sink
+title: Themer
 layout: page.njk
 hasOutline: false
 ---
@@ -358,7 +358,7 @@ hasOutline: false
     }
   }
 
-  /* set up  Kitchen Sink preview area */
+  /* set up themer preview area */
   .content {
     max-width: 1320px;
     gap: 0;
@@ -1071,16 +1071,16 @@ hasOutline: false
         assetFolder = 'default';
     }
 
-    document.querySelector('#product-1').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/morpheus.jpg`);
-    document.querySelector('#product-2').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/seraph.jpg`);
-    document.querySelector('#product-3').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/keymaker.jpg`);
-    document.querySelector('#blog_feature').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/blog_feature.jpg`);
-    document.querySelector('#carousel-1').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/carousel-1.jpg`);
-    document.querySelector('#carousel-2').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/carousel-2.jpg`);
-    document.querySelector('#carousel-3').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/carousel-3.jpg`);
-    document.querySelector('#product_thumb-1').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/morpheus.jpg`);
-    document.querySelector('#product_thumb-2').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/seraph.jpg`);
-    document.querySelector('#product_thumb-3').setAttribute('src', `/assets/images/kitchen-sink/${assetFolder}/keymaker.jpg`);
+    document.querySelector('#product-1').setAttribute('src', `/assets/images/themer/${assetFolder}/morpheus.jpg`);
+    document.querySelector('#product-2').setAttribute('src', `/assets/images/themer/${assetFolder}/seraph.jpg`);
+    document.querySelector('#product-3').setAttribute('src', `/assets/images/themer/${assetFolder}/keymaker.jpg`);
+    document.querySelector('#blog_feature').setAttribute('src', `/assets/images/themer/${assetFolder}/blog_feature.jpg`);
+    document.querySelector('#carousel-1').setAttribute('src', `/assets/images/themer/${assetFolder}/carousel-1.jpg`);
+    document.querySelector('#carousel-2').setAttribute('src', `/assets/images/themer/${assetFolder}/carousel-2.jpg`);
+    document.querySelector('#carousel-3').setAttribute('src', `/assets/images/themer/${assetFolder}/carousel-3.jpg`);
+    document.querySelector('#product_thumb-1').setAttribute('src', `/assets/images/themer/${assetFolder}/morpheus.jpg`);
+    document.querySelector('#product_thumb-2').setAttribute('src', `/assets/images/themer/${assetFolder}/seraph.jpg`);
+    document.querySelector('#product_thumb-3').setAttribute('src', `/assets/images/themer/${assetFolder}/keymaker.jpg`);
   }
 
   // Light & Dark Mode
@@ -1658,7 +1658,7 @@ hasOutline: false
 </script>
 
 <style>
-  /* Kitchen Sink layout and cross-theme styles */
+  /* Themer layout and cross-theme styles */
 
   html {
     background: var(--wa-color-surface-default);
@@ -1700,11 +1700,6 @@ hasOutline: false
   /* general and utility */
   .strata {
     padding: var(--wa-space-3xl) 7%;
-  }
-
-  pre,
-  code {
-    background-color: color-mix(in oklab, var(--wa-color-surface-lowered) 20%, var(--wa-color-neutral-fill-highlight));
   }
 
   pre wa-copy-button {
@@ -2016,7 +2011,7 @@ hasOutline: false
   }
 </style>
 
-<!-- Kitchen Sink Preview -->
+<!-- Themer Preview -->
 <div class="preview-container">
   <section class="overlap">
     <div class="hero-background"></div>
@@ -2044,7 +2039,7 @@ hasOutline: false
       <wa-card class="card-image product-card">
         <wa-badge variant="brand" class="badge-stock">New</wa-badge>
         <div slot="image" class="landscape-frame">
-          <img id="product-1" src="/assets/images/kitchen-sink/default/morpheus.jpg" alt="" />
+          <img id="product-1" src="/assets/images/themer/default/morpheus.jpg" alt="" />
         </div>
         <div class="title-rating">
           <h2 class="title">Morpheus</h2>
@@ -2067,7 +2062,7 @@ hasOutline: false
       <wa-card class="card-image product-card">
         <wa-badge variant="warning" class="badge-stock">Low Stock</wa-badge>
         <div slot="image" class="landscape-frame">
-          <img id="product-2" src="/assets/images/kitchen-sink/default/seraph.jpg" alt="" />
+          <img id="product-2" src="/assets/images/themer/default/seraph.jpg" alt="" />
         </div>
         <div class="title-rating">
           <h2 class="title">Seraph</h2>
@@ -2089,7 +2084,7 @@ hasOutline: false
       </wa-card>
       <wa-card class="card-image product-card">
         <div slot="image" class="landscape-frame">
-          <img id="product-3" src="/assets/images/kitchen-sink/default/keymaker.jpg" alt="" />
+          <img id="product-3" src="/assets/images/themer/default/keymaker.jpg" alt="" />
         </div>
         <div class="title-rating">
           <h2 class="title">Keymaker</h2>
@@ -2117,7 +2112,7 @@ hasOutline: false
           <div class="post-meta">
             <div class="authors">
               <a href="">
-                <wa-avatar image="/assets/images/kitchen-sink/avatar-baudrillard.jpg" label="Jean Baudrillard" shape="rounded"> </wa-avatar>
+                <wa-avatar image="/assets/images/themer/avatar-baudrillard.jpg" label="Jean Baudrillard" shape="rounded"> </wa-avatar>
                 Jean Baudrillard
               </a>
             </div>
@@ -2135,7 +2130,7 @@ hasOutline: false
         <h2>The New Biology of Machines</h2>
         <p>The method used for creating these effects involved a technically expanded version of an old art photography technique known as time-slice photography, in which an array of cameras are placed around an object and triggered simultaneously. Each camera captures a still picture, contributing one frame to the video sequence, which creates the effect of "virtual camera movement"; the illusion of a viewpoint moving around an object that appears frozen in time.</p>
         <div class="landscape-frame" style="margin: 0 0 1rem 0;" >
-          <img id="blog_feature" src="/assets/images/kitchen-sink/default/blog_feature.jpg" alt="blog post example image" />
+          <img id="blog_feature" src="/assets/images/themer/default/blog_feature.jpg" alt="blog post example image" />
         </div>
         <p>For the "real world," the actors' hair was less styled, their clothing had more textile content, and the cinematographers used longer lenses to soften the backgrounds and emphasize the actors.</p>
 <pre class="codeblock">
@@ -2249,13 +2244,13 @@ hasOutline: false
       <div class="product-detail-images">
         <wa-carousel pagination style="--aspect-ratio: 3/4;">
           <wa-carousel-item>
-            <img id="carousel-1" alt="See it for yourself" src="/assets/images/kitchen-sink/default/carousel-1.jpg" />
+            <img id="carousel-1" alt="See it for yourself" src="/assets/images/themer/default/carousel-1.jpg" />
           </wa-carousel-item>
           <wa-carousel-item>
-            <img id="carousel-2" alt="Look through the code" src="/assets/images/kitchen-sink/default/carousel-2.jpg" />
+            <img id="carousel-2" alt="Look through the code" src="/assets/images/themer/default/carousel-2.jpg" />
           </wa-carousel-item>
           <wa-carousel-item>
-            <img id="carousel-3" alt="Free your mind" src="/assets/images/kitchen-sink/default/carousel-3.jpg" />
+            <img id="carousel-3" alt="Free your mind" src="/assets/images/themer/default/carousel-3.jpg" />
           </wa-carousel-item>
         </wa-carousel>
       </div>
@@ -2317,7 +2312,7 @@ hasOutline: false
             <td><wa-checkbox size="large" style="padding-left: var(--wa-space-s)"><wa-visually-hidden>Completed</wa-visually-hidden></wa-checkbox></td>
             <td>Keanu Reeves</td>
             <td class="desc"><span style="font-weight: bold">Am I dead?</span><br><span class="excerpt">Okey dokey... free my mind. Right, no problem, free my mind, free my mind, no problem, right...</span></td>
-            <td><wa-avatar  image="/assets/images/kitchen-sink/avatar-chad.jpg"  label="Chad" style="margin-right: var(--wa-space-xs)"></wa-avatar>  Chad Stahelski</td>
+            <td><wa-avatar  image="/assets/images/themer/avatar-chad.jpg"  label="Chad" style="margin-right: var(--wa-space-xs)"></wa-avatar>  Chad Stahelski</td>
             <td style="text-align: center;"><wa-tag variant="warning" size="small">Pending</wa-tag></td>
             <td>
               <wa-dropdown>
@@ -2347,7 +2342,7 @@ hasOutline: false
             <td><wa-checkbox size="large" style="padding-left: var(--wa-space-s)"><wa-visually-hidden>Completed</wa-visually-hidden></wa-checkbox></td>
             <td>Lawrence Fishburne</td>
             <td class="desc"><span style="font-weight: bold">We have a rule</span><br><span class="excerpt">We never free a mind once it's reached a certain age. It's dangerous, the mind has trouble letting go.</span></td>
-            <td><wa-avatar image="/assets/images/kitchen-sink/avatar-char.jpg"  label="Char" style="margin-right: var(--wa-space-xs)"></wa-avatar>  Char McCoy</td>
+            <td><wa-avatar image="/assets/images/themer/avatar-char.jpg"  label="Char" style="margin-right: var(--wa-space-xs)"></wa-avatar>  Char McCoy</td>
             <td style="text-align: center;"><wa-tag variant="success" size="small">Resolved</wa-tag></td>
             <td>
              <wa-dropdown>
@@ -2437,7 +2432,7 @@ hasOutline: false
             <td><wa-checkbox size="large" style="padding-left: var(--wa-space-s)"><wa-visually-hidden>Completed</wa-visually-hidden></wa-checkbox></td>
             <td>Hugo Weaving</td>
             <td class="desc"><span style="font-weight: bold">I'd like to share a revelation</span><br><span class="excerpt">I need the codes, I have to get inside Zion and you have to tell me how.</span></td>
-            <td><wa-avatar  image="/assets/images/kitchen-sink/avatar-dara.jpg"  label="Dara" style="margin-right: var(--wa-space-xs)"></wa-avatar> Dara Prescott</td>
+            <td><wa-avatar  image="/assets/images/themer/avatar-dara.jpg"  label="Dara" style="margin-right: var(--wa-space-xs)"></wa-avatar> Dara Prescott</td>
             <td style="text-align: center;"><wa-tag variant="neutral" size="small">Expired</wa-tag></td>
             <td>
              <wa-dropdown>
@@ -2506,7 +2501,7 @@ hasOutline: false
           <h2 style="margin-bottom: var(--wa-space-3xl);">Order Summary</h2>
           <div class="order-item grid-12-col">
             <div class="square-frame">
-              <img id="product_thumb-1" src="/assets/images/kitchen-sink/default/morpheus.jpg" alt="Morpheus" />
+              <img id="product_thumb-1" src="/assets/images/themer/default/morpheus.jpg" alt="Morpheus" />
             </div>
             <span class="name">
               <b>Morpheus</b>
@@ -2516,7 +2511,7 @@ hasOutline: false
           </div>
           <div class="order-item grid-12-col">
             <div class="square-frame">
-              <img id="product_thumb-2" src="/assets/images/kitchen-sink/default/seraph.jpg" alt="Seraph" />
+              <img id="product_thumb-2" src="/assets/images/themer/default/seraph.jpg" alt="Seraph" />
             </div>
             <span class="name">
               <b>Seraph</b>
@@ -2527,7 +2522,7 @@ hasOutline: false
           </div>
           <div class="order-item grid-12-col">
             <div class="square-frame">
-              <img id="product_thumb-3" src="/assets/images/kitchen-sink/default/keymaker.jpg" alt="Keymaker II" />
+              <img id="product_thumb-3" src="/assets/images/themer/default/keymaker.jpg" alt="Keymaker II" />
             </div>
             <span class="name">
               <b>Keymaker</b>

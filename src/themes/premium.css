@@ -585,7 +585,7 @@
 
   .strata.hero {
     height: 60rem;
-    background: var(--wa-color-warning-fill-highlight) url('/assets/images/kitchen-sink/premium/hero.png') -4rem 12rem no-repeat;
+    background: var(--wa-color-warning-fill-highlight) url('/assets/images/themer/premium/hero.png') -4rem 12rem no-repeat;
     background-size: cover;
     padding-top: var(--wa-space-2xl);
     padding-left: var(--wa-space-s);
@@ -736,7 +736,7 @@
 /* responsive */
 @container preview (min-width: 1040px) {
   .strata.hero {
-    background: var(--wa-color-warning-fill-highlight) url('/assets/images/kitchen-sink/premium/hero.png') -4rem 35% no-repeat;
+    background: var(--wa-color-warning-fill-highlight) url('/assets/images/themer/premium/hero.png') -4rem 35% no-repeat;
     padding-top: 15rem;
     padding-left: 50%;
   }
