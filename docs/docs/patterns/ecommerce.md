@@ -10,7 +10,7 @@ TODO Page Description
 
 ### Slide Over
 
-```html:preview
+```html {.example}
 <wa-card class="card-header" style="width: 500px;">
   <div slot="header">
     <strong>Shopping Cart</strong>
@@ -115,7 +115,7 @@ TODO Page Description
 
 ### Two Column Cart
 
-```html:preview
+```html {.example}
 <div class="two-column">
   <h1>Shopping Cart</h1>
   <div class="first-column">
@@ -269,7 +269,7 @@ TODO Page Description
 
 ### Single Column Cart
 
-```html:preview
+```html {.example}
 <div class="single-column">
   <h1>Shopping Cart</h1>
   <div class="first-half half">
@@ -369,7 +369,7 @@ TODO Page Description
 
 ### Product Quickview
 
-```html:preview
+```html {.example}
 <wa-card class="card-header">
   <div slot="header">
     <strong>Quickview</strong>
@@ -407,7 +407,7 @@ TODO Page Description
 
 ### Product Review
 
-```html:preview
+```html {.example}
 <div>
   <div>
     <h2>Customer Reviews</h2>
@@ -451,7 +451,7 @@ TODO Page Description
 
 ### Order History
 
-```html:preview
+```html {.example}
 <div>
   <h2>Order History</h2>
   <p>Check the status of recent orders, manage returns, and download invoices.</p>
@@ -546,7 +546,7 @@ TODO Page Description
 
 ### Checkout
 
-```html:preview
+```html {.example}
 <div class="checkout-form">
 <div class="checkout-form-inputs">
   <h4 class="full-row" style="margin-top: 0.5rem;">Contact Info</h4>
