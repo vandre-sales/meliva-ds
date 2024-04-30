@@ -223,6 +223,9 @@ TODO Page Description
 </wa-card>
 
 <style>
+  :root {
+    --border-color: var(--wa-color-surface-border);
+  }
   .two-column {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -244,7 +247,7 @@ TODO Page Description
 
        &:not(:last-of-type) {
       padding-bottom: 1rem;
-      border-bottom: 1px solid rgb(48, 50, 59);
+      border-bottom: 1px solid var(--border-color);
     }
 
 
@@ -336,6 +339,9 @@ TODO Page Description
   </div>
 </div>
 <style>
+  :root {
+    --border-color: var(--wa-color-surface-border);
+  }
   .single-column {
     .cart-item {
       display: grid;
@@ -345,7 +351,7 @@ TODO Page Description
 
        &:not(:last-of-type) {
       padding-bottom: 1rem;
-      border-bottom: 1px solid rgb(48, 50, 59);
+      border-bottom: 1px solid var(--border-color);
     }
 
     img {
@@ -422,21 +428,21 @@ TODO Page Description
   </div>
   <div style="margin-top: 1rem;">
     <div>
-      <div style="border-bottom: 1px solid #eee; margin-bottom: 1rem;">
+      <div class="customer-list-item">
         <span style="display: flex; align-items: center;">
           <wa-avatar image="https://source.unsplash.com/bman-wearing-henley-top-portrait-7YVZYZeITc8" label="man-wearing-henley" style="margin-right: 1rem;"></wa-avatar>
           <span style="display: flex; flex-direction: column">Mark Henry <wa-rating label="Rating" precision="0.5" value="2.5"></wa-rating></span>
         </span>
         <p><em>I initially had my doubts, but once I got the widgets and played around with them, I became a believer.</em></p>
       </div>
-      <div style="border-bottom: 1px solid #eee; margin-bottom: 1rem;">
+      <div class="customer-list-item">
         <span style="display: flex; align-items: center;">
           <wa-avatar image="https://source.unsplash.com/woman-wearing-black-crew-neck-shirt-3TLl_97HNJo" label="lady-in-turtleneck" style="margin-right: 1rem;"></wa-avatar>
           <span style="display: flex; flex-direction: column">Liz Michaels <wa-rating label="Rating" precision="0.5" value="2.5"></wa-rating></span>
         </span>
         <p><em>I'd definitely but these again.</em></p>
       </div>
-      <div style="border-bottom: 1px solid #eee; margin-bottom: 1rem;">
+      <div class="customer-list-item">
         <span style="display: flex; align-items: center;">
           <wa-avatar image="https://source.unsplash.com/man-with-index-finger-on-lips-RukI4qZGlQs" label="man-with-hair" style="margin-right: 1rem;"></wa-avatar>
           <span style="display: flex; flex-direction: column">Todd Smith <wa-rating label="Rating" precision="0.5" value="2.5"></wa-rating></span>
@@ -446,6 +452,17 @@ TODO Page Description
     </div>
   </div>
 </div>
+
+<style>
+  :root {
+    --border-color: var(--wa-color-surface-border);
+  }
+
+  .customer-list-item {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+  }
+</style>
 ```
 
 ### Order History
@@ -521,6 +538,9 @@ TODO Page Description
   </div>
 </div>
 <style>
+   :root {
+    --border-color: var(--wa-color-surface-border);
+  }
   .order-history-meta {
     display: flex;
     justify-content: space-between;
@@ -537,7 +557,7 @@ TODO Page Description
         display: grid;
     grid-template-columns: 18% 79%;
     column-gap: 1rem;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--border-color);
     padding-bottom: 1rem;
   }
 </style>
