@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
 import type WaTreeItem from './tree-item.js';

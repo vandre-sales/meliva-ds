@@ -31,16 +31,14 @@ export function getBasePath(subpath = '') {
     } else {
       // Look for webawesome.js or autoloader.js
       const scripts = [...document.getElementsByTagName('script')] as HTMLScriptElement[];
-      const fallbackScript = scripts.find(s => {
-        return /webawesome\.js($|\?)/.test(s.src) || /autoloader\.js($|\?)/.test(s.src);
-      });
-      let path = '';
+      const waScript = scripts.find(
+        script => script.src.endsWith('webawesome.js') || script.src.endsWith('webawesome.loader.js')
+      );
 
-      if (fallbackScript) {
-        path = fallbackScript.getAttribute('src')!;
+      if (waScript) {
+        const path = String(waScript.getAttribute('src'));
+        setBasePath(path.split('/').slice(0, -1).join('/'));
       }
-
-      setBasePath(path.split('/').slice(0, -1).join('/'));
     }
   }
 

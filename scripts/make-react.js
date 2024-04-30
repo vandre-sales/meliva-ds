@@ -23,7 +23,7 @@ for await (const component of components) {
   const tagWithoutPrefix = component.tagName.replace(/^wa-/, '');
   const componentDir = path.join(reactDir, tagWithoutPrefix);
   const componentFile = path.join(componentDir, 'index.ts');
-  const importPath = component.path.replace(/\.js$/, '.component.js');
+  const importPath = component.path.replace(/\.js$/, '.js');
   const eventImports = (component.events || [])
     .map(event => `import type { ${event.eventName} } from '../../events/events.js';`)
     .join('\n');
@@ -50,7 +50,6 @@ for await (const component of components) {
       ${eventExports}
 
       const tagName = '${component.tagName}'
-      Component.define('${component.tagName}')
 
       ${jsDoc}
       const reactWrapper = createComponent({

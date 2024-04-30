@@ -34,8 +34,8 @@ function getIconUrl(name: string, family: string, variant: string) {
 
   // Use the default CDN
   return isPro
-    ? `https://ka-p.fontawesome.com/releases/v6.4.0/svgs/${folder}/${name}.svg?token=${encodeURIComponent(kitCode)}`
-    : `https://ka-f.fontawesome.com/releases/v6.4.0/svgs/${folder}/${name}.svg`;
+    ? `https://ka-p.fontawesome.com/releases/v6.5.2/svgs/${folder}/${name}.svg?token=${encodeURIComponent(kitCode)}`
+    : `https://ka-f.fontawesome.com/releases/v6.5.2/svgs/${folder}/${name}.svg`;
 }
 
 const library: IconLibrary = {

@@ -2,7 +2,7 @@
 import { expect } from '@open-wc/testing';
 import { readFile } from '@web/test-runner-commands';
 
-import WaButton from '../../dist/components/button/button.component.js';
+import WaButton from '../../dist/components/button/button.js';
 
 // We don't use WebAwesomeElement directly because it shouldn't exist in the final bundle.
 /* eslint-disable */
@@ -44,75 +44,6 @@ function stubCustomElements() {
 beforeEach(() => {
   Sinon.restore();
   stubCustomElements();
-});
-
-it('Should provide a console warning if attempting to register the same tag twice', () => {
-  class MyButton extends WaButton {
-    static version = '0.4.5';
-  }
-
-  const stub = Sinon.stub(console, 'warn');
-
-  expect(Boolean(window.customElements.get('wa-button'))).to.be.false;
-  /* eslint-disable */
-  WaButton.define('wa-button');
-  expect(Boolean(window.customElements.get('wa-button'))).to.be.true;
-  MyButton.define('wa-button');
-  /* eslint-enable */
-
-  expect(stub).calledOnce;
-
-  const warning = stub.getCall(0).args.join('');
-
-  expect(warning).to.match(
-    new RegExp(
-      /* eslint-disable */
-      `Attempted to register <wa-button> v${MyButton.version}, but <wa-button> v${WaButton.version} has already been registered`
-      /* eslint-enable */
-    ),
-    'i'
-  );
-});
-
-it('Should not provide a console warning if versions match', () => {
-  class MyButton extends WaButton {}
-
-  const stub = Sinon.stub(console, 'warn');
-
-  /* eslint-disable */
-  expect(Boolean(window.customElements.get('wa-button'))).to.be.false;
-  WaButton.define('wa-button');
-  expect(Boolean(window.customElements.get('wa-button'))).to.be.true;
-  MyButton.define('wa-button');
-  /* eslint-enable */
-
-  expect(stub).not.called;
-});
-
-it('Should register dependencies when the element is constructed the first time', () => {
-  /* eslint-disable */
-  class MyElement extends WebAwesomeElement {
-    static dependencies = { 'wa-button': WaButton };
-    static version = 'random-version';
-  }
-  /* eslint-enable */
-
-  expect(Boolean(window.customElements.get('wa-button'))).to.be.false;
-
-  // eslint-disable
-  MyElement.define('wa-element');
-  // eslint-enable
-
-  // this should be false until the constructor is called via new
-  expect(Boolean(window.customElements.get('wa-button'))).to.be.false;
-
-  // We can call it directly since we know its registered.
-  /* eslint-disable */
-  // @ts-expect-error If its undefined, error.
-  new (window.customElements.get('wa-element'))();
-  /* eslint-enable */
-
-  expect(Boolean(window.customElements.get('wa-button'))).to.be.true;
 });
 
 // This looks funky here. This grabs all of our components and tests for side effects.

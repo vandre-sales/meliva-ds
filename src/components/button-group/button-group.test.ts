@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
 import type WaButtonGroup from './button-group.js';
 

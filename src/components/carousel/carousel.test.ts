@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { clickOnElement, dragElement, moveMouseOnElement } from '../../internal/test.js';
 import { expect, fixture, html, nextFrame, oneEvent } from '@open-wc/testing';
 import { map } from 'lit/directives/map.js';
