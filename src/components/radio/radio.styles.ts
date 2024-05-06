@@ -3,15 +3,15 @@ import { css } from 'lit';
 export default css`
   :host {
     --background: var(--wa-form-controls-background);
-    --background-checked: var(--wa-form-controls-activated-color);
+    --background-checked: var(--background);
     --border-color: var(--wa-form-controls-resting-color);
     --border-color-checked: var(--wa-form-controls-activated-color);
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-form-controls-border-width);
     --box-shadow: none;
-    --checked-icon-color: var(--wa-color-brand-text-on-spot);
-    --checked-icon-scale: 0.4;
-    --toggle-size: calc(1em * var(--wa-font-line-height-compact) - 0.125rem);
+    --checked-icon-color: var(--wa-form-controls-activated-color);
+    --checked-icon-scale: 0.8;
+    --toggle-size: calc(1em * var(--wa-font-line-height-compact));
 
     display: block;
   }
