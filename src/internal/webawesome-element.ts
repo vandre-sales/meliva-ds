@@ -191,16 +191,12 @@ export class WebAwesomeFormAssociated
 {
   static formAssociated = true;
 
-  // static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
-
   /**
    * Validators are static because they have `observedAttributes`, essentially attributes to "watch"
    * for changes. Whenever these attributes change, we want to be notified and update the validator.
    */
   static get validators(): Validator[] {
-    return [
-      // ValueMissingValidator()
-    ];
+    return [];
   }
 
   // Append all Validator "observedAttributes" into the "observedAttributes" so they can run.

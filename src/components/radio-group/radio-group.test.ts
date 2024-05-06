@@ -213,24 +213,16 @@ describe('when submitting a form', () => {
           <wa-radio id="radio-2" value="2"></wa-radio>
           <wa-radio id="radio-3" value="3"></wa-radio>
         </wa-radio-group>
-        <wa-button type="submit">Submit</wa-button>
       </form>
     `);
-    const button = form.querySelector('wa-button')!;
+
     const radio = form.querySelectorAll('wa-radio')[1];
-    const submitHandler = sinon.spy((event: SubmitEvent) => {
-      formData = new FormData(form);
-
-      event.preventDefault();
-    });
-    let formData: FormData;
-
-    form.addEventListener('submit', submitHandler);
     radio.click();
-    button.click();
-    await waitUntil(() => submitHandler.calledOnce);
 
-    expect(formData!.get('a')).to.equal('2');
+    await form.querySelector("wa-radio-group")?.updateComplete
+
+    const formData = new FormData(form)
+    expect(formData.get('a')).to.equal('2');
   });
 
   it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
@@ -366,7 +358,8 @@ describe('when the value changes', () => {
     await radioGroup.updateComplete;
   });
 
-  it('should relatively position content to prevent visually hidden scroll bugs', async () => {
+  // I think we can delete this?? We no longer need to have a hidden form control to mimic formAssociation.
+  it.skip('should relatively position content to prevent visually hidden scroll bugs', async () => {
     //
     // See https://github.com/shoelace-style/shoelace/issues/1380
     //

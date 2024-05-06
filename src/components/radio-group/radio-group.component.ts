@@ -84,17 +84,18 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
     super()
 
     this.addEventListener("keydown", this.handleKeyDown)
-    this.addEventListener('click', this.handleClick);
+    this.addEventListener('click', this.handleRadioClick);
   }
 
-  private handleClick = (e: Event) => {
+  private handleRadioClick = (e: Event) => {
     const clickedRadio = (e.target as HTMLElement).closest<WaRadio | WaRadioButton>("wa-radio, wa-radio-button")
 
     if (!clickedRadio) return
     if (clickedRadio.disabled) { return }
 
-    clickedRadio.checked = true;
+    const oldValue = this.value
     this.value = clickedRadio.value
+    clickedRadio.checked = true;
 
     const radios = this.getAllRadios()
     const hasButtonGroup = radios.some(radio => radio.tagName.toLowerCase() === 'wa-radio-button');
@@ -106,6 +107,11 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
       if (!hasButtonGroup) {
         radio.tabIndex = -1;
       }
+    }
+
+    if (this.value !== oldValue) {
+      this.emit('wa-change');
+      this.emit('wa-input');
     }
   };
 
@@ -209,19 +215,12 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
     this.syncRadioElements()
   }
 
-  // @TODO: Move this <wa-radio>
   private handleKeyDown(event: KeyboardEvent) {
     if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(event.key)) {
       return;
     }
 
     event.preventDefault()
-
-    if (event.key === " ") {
-      event.preventDefault()
-      this.handleClick(event)
-      return
-    }
 
     const radios = this.getAllRadios().filter(radio => !radio.disabled);
 
