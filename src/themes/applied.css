@@ -191,15 +191,11 @@ kbd,
 samp,
 var {
   font-family: var(--wa-font-family-code);
-  font-size: 0.90625em;
-  background-color: var(--wa-color-neutral-fill-subtle);
-  border-radius: var(--wa-corners-s);
-  padding-block: var(--wa-space-3xs);
-  padding-inline: var(--wa-space-2xs);
-}
-
-code {
-  background-color: color-mix(in oklab, var(--wa-color-neutral-spot), transparent 90%);
+  font-size: 0.875em;
+  background-color: var(--wa-color-overlay-inline);
+  border-radius: var(--wa-corners-xs);
+  padding-block: var(--wa-space-2xs);
+  padding-inline: var(--wa-space-xs);
 }
 
 pre {
