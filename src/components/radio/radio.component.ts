@@ -67,7 +67,6 @@ export default class WaRadio extends WebAwesomeFormAssociated {
     super();
     this.addEventListener('blur', this.handleBlur);
     this.addEventListener('focus', this.handleFocus);
-    this.internals.role = "radio"
   }
 
   connectedCallback() {
@@ -91,12 +90,6 @@ export default class WaRadio extends WebAwesomeFormAssociated {
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
 
-  @watch(["value", "checked"])
-  handleValueOrCheckedChange () {
-    this.setValue(this.value, this.value)
-    this.updateValidity()
-  }
-
   @watch('checked')
   handleCheckedChange() {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
@@ -105,15 +98,9 @@ export default class WaRadio extends WebAwesomeFormAssociated {
 
   /**
    * @override
-   * We only want to set values when checked.
    */
-  setValue(...args: Parameters<WebAwesomeFormAssociated["setValue"]>): void {
-    if (!this.checked) {
-      super.setValue(null, null)
-      return
-    }
-
-    super.setValue(...args)
+  setValue(): void {
+    // We override `setValue` because we don't want to set form values from here. We want to do that in "RadioGroup" itself.
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })

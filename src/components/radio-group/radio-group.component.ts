@@ -1,6 +1,6 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html } from 'lit';
+import { html, LitElement } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { watch } from '../../internal/watch.js';
@@ -12,7 +12,6 @@ import WaButtonGroup from '../button-group/button-group.component.js';
 import type { CSSResultGroup } from 'lit';
 import type WaRadio from '../radio/radio.js';
 import type WaRadioButton from '../radio-button/radio-button.js';
-import { LitElement } from 'lit';
 
 /**
  * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
@@ -77,7 +76,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
 
   /**
    * We need this because if we don't have it, FormValidation yells at us that it's "not focusable".
-   *   If use `this.tabIndex = -1` we can't focus the radio inside.
+   *   If we use `this.tabIndex = -1` we can't focus the radio inside.
    */
   static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true }
 
@@ -186,6 +185,10 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
     }
   }
 
+  /**
+   * We use the first available radio as the validationTarget similar to native HTML that shows the validation popup on
+   *   the first radio element.
+   */
   get validationTarget () {
     return this.querySelector<WaRadio | WaRadioButton>(':is(wa-radio, wa-radio-button):not([disabled])') || undefined;
   }
