@@ -140,7 +140,7 @@ export default css`
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: var(--wa-color-overlay);
+    background-color: var(--wa-color-overlay-modal);
     pointer-events: all;
   }
 
