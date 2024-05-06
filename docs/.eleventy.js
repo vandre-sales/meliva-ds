@@ -21,8 +21,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData('package', packageData);
 
   // Template filters - {{ content | filter }}
-  eleventyConfig.addFilter('inlineMarkdown', content => markdown.renderInline(content));
-  eleventyConfig.addFilter('markdown', content => markdown.render(content));
+  eleventyConfig.addFilter('inlineMarkdown', content => markdown.renderInline(content || ''));
+  eleventyConfig.addFilter('markdown', content => markdown.render(content || ''));
   eleventyConfig.addFilter('stripExtension', string => parse(string).name);
   eleventyConfig.addFilter('stripPrefix', content => content.replace(/^wa-/, ''));
   eleventyConfig.addFilter('trimPipes', content => {
