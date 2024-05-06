@@ -2,12 +2,14 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --thumb-size: 20px;
+    --thumb-color: var(--wa-form-controls-activated-color);
+    --thumb-shadow: 0 0 transparent;
+    --thumb-size: calc(1rem * var(--wa-font-line-height-compact));
     --tooltip-offset: calc(var(--wa-tooltip-arrow-size) * 2.5);
     --track-color-active: var(--wa-color-neutral-fill-highlight);
     --track-color-inactive: var(--wa-color-neutral-fill-highlight);
     --track-active-offset: 0%;
-    --track-height: 6px;
+    --track-height: calc(var(--thumb-size) / 4);
 
     display: block;
   }
@@ -19,7 +21,7 @@ export default css`
   .range__control {
     --percent: 0%;
     -webkit-appearance: none;
-    border-radius: 3px;
+    border-radius: calc(var(--track-height) / 2);
     width: 100%;
     height: var(--track-height);
     background: transparent;
@@ -59,12 +61,13 @@ export default css`
   }
 
   .range__control::-webkit-slider-thumb {
-    border: none;
     width: var(--thumb-size);
     height: var(--thumb-size);
     border-radius: 50%;
-    background-color: var(--wa-color-brand-spot);
-    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width) var(--wa-color-brand-spot);
+    background-color: var(--thumb-color);
+    box-shadow:
+      var(--thumb-shadow),
+      0 0 0 calc(var(--track-height) / 2) var(--wa-color-surface-default);
     -webkit-appearance: none;
     margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
     cursor: pointer;
@@ -99,12 +102,13 @@ export default css`
   }
 
   .range__control::-moz-range-thumb {
-    border: none;
     height: var(--thumb-size);
     width: var(--thumb-size);
     border-radius: 50%;
-    background-color: var(--wa-color-brand-spot);
-    border-color: var(--wa-color-brand-spot);
+    background-color: var(--thumb-color);
+    box-shadow:
+      var(--thumb-shadow),
+      0 0 0 calc(var(--track-height) / 2) var(--wa-color-surface-default);
     transition:
       var(--wa-transition-fast) border-color,
       var(--wa-transition-fast) background-color,
