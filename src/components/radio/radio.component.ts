@@ -2,10 +2,10 @@ import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './radio.styles.js';
 import WaIcon from '../icon/icon.component.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -38,15 +38,21 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --checked-icon-scale - The size of the checked icon relative to the radio.
  * @cssproperty --toggle-size - The size of the radio.
  */
-export default class WaRadio extends WebAwesomeElement {
+export default class WaRadio extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'wa-icon': WaIcon };
 
   @state() checked = false;
   @state() protected hasFocus = false;
 
+  /**
+   * The string pointing to a form's id.
+   */
+  @property({ reflect: true }) form: string | null = null
+
   /** The radio's value. When selected, the radio group will receive this value. */
-  @property() value: string;
+  @property({ attribute: false }) value: string;
+  @property({ reflect: true, attribute: "value" }) defaultValue: string = ""
 
   /**
    * The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this
@@ -55,13 +61,13 @@ export default class WaRadio extends WebAwesomeElement {
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Disables the radio. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   constructor() {
     super();
     this.addEventListener('blur', this.handleBlur);
-    this.addEventListener('click', this.handleClick);
     this.addEventListener('focus', this.handleFocus);
+    this.internals.role = "radio"
   }
 
   connectedCallback() {
@@ -74,12 +80,6 @@ export default class WaRadio extends WebAwesomeElement {
     this.emit('wa-blur');
   };
 
-  private handleClick = () => {
-    if (!this.disabled) {
-      this.checked = true;
-    }
-  };
-
   private handleFocus = () => {
     this.hasFocus = true;
     this.emit('wa-focus');
@@ -87,14 +87,33 @@ export default class WaRadio extends WebAwesomeElement {
 
   private setInitialAttributes() {
     this.setAttribute('role', 'radio');
-    this.setAttribute('tabindex', '-1');
+    this.tabIndex = 0
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+  }
+
+  @watch(["value", "checked"])
+  handleValueOrCheckedChange () {
+    this.setValue(this.value, this.value)
+    this.updateValidity()
   }
 
   @watch('checked')
   handleCheckedChange() {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
-    this.setAttribute('tabindex', this.checked ? '0' : '-1');
+    this.tabIndex = this.checked ? 0 : -1
+  }
+
+  /**
+   * @override
+   * We only want to set values when checked.
+   */
+  setValue(...args: Parameters<WebAwesomeFormAssociated["setValue"]>): void {
+    if (!this.checked) {
+      super.setValue(null, null)
+      return
+    }
+
+    super.setValue(...args)
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })

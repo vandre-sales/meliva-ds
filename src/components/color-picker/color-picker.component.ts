@@ -4,8 +4,8 @@ import { drag } from '../../internal/drag.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
-import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { property, query, state } from 'lit/decorators.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { TinyColor } from '@ctrl/tinycolor';
 import { watch } from '../../internal/watch.js';
@@ -21,7 +21,6 @@ import WaVisuallyHidden from '../visually-hidden/visually-hidden.component.js';
 import type { CSSResultGroup } from 'lit';
 import type { WaChangeEvent } from '../../events/wa-change.js';
 import type { WaInputEvent } from '../../events/wa-input.js';
-import { RequiredValidator } from '../../internal/validators/required-validator.js';
 
 const hasEyeDropper = 'EyeDropper' in window;
 
@@ -112,7 +111,20 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
 
   @query('[part~="base"]') base: HTMLElement;
   @query('[part~="input"]') input: WaInput;
-  @query('[part~="input"]') formControl: WaInput;
+
+  // @TODO: This is a hacky way to show the "Please fill out this field", do we want the old behavior where it opens the dropdown?
+  //   or is the new behavior okay?
+  get validationTarget () {
+    // This puts the popup on the element only if the color picker is expanded.
+    if (!this.inline && this.dropdown?.open) {
+      return this.input
+    }
+
+    // This puts popup on the colorpicker itself without needing to expand it to show the input.
+    // This is necessary because form submissions expect the "anchor" to be currently shown.
+    return this.trigger
+  }
+
   @query('.color-dropdown') dropdown: WaDropdown;
   @query('[part~="preview"]') previewButton: HTMLButtonElement;
   @query('[part~="trigger"]') trigger: HTMLButtonElement;
@@ -612,6 +624,13 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
 
   private handleAfterHide() {
     this.previewButton.classList.remove('color-picker__preview-color--copied');
+    // Update validity so we get a new anchor.
+    this.updateValidity()
+  }
+
+  private handleAfterShow() {
+    // Update validity so we get a new anchor.
+    this.updateValidity()
   }
 
   private handleEyeDropper() {
@@ -764,10 +783,11 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    if (!this.inline && !this.validity.valid) {
+    // This won't get called when a form is submitted. This is only for manual calls.
+    if (!this.inline && !this.validity.valid && !this.dropdown.open) {
       // If the input is inline and invalid, show the dropdown so the browser can focus on it
-      this.dropdown.show();
       this.addEventListener('wa-after-show', () => this.reportValidity(), { once: true });
+      this.dropdown.show();
 
       if (!this.disabled) {
         // By standards we have to emit a `wa-invalid` event here synchronously.
@@ -1026,6 +1046,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
         .containing-element=${this}
         ?disabled=${this.disabled}
         ?hoist=${this.hoist}
+        @wa-after-show=${this.handleAfterShow}
         @wa-after-hide=${this.handleAfterHide}
       >
         <button

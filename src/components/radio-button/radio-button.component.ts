@@ -2,11 +2,12 @@ import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { LitElement } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './radio-button.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -29,7 +30,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart label - The container that wraps the radio button's label.
  * @csspart suffix - The container that wraps the suffix.
  */
-export default class WaRadioButton extends WebAwesomeElement {
+export default class WaRadioButton extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
@@ -44,12 +45,14 @@ export default class WaRadioButton extends WebAwesomeElement {
    * it easier to style in button groups.
    */
   @property({ type: Boolean, reflect: true }) checked = false;
+  @property({ type: Boolean, attribute: "default-checked" }) defaultChecked = false;
 
   /** The radio's value. When selected, the radio group will receive this value. */
-  @property() value: string;
+  @property({ attribute: false }) value: string;
+  @property({ reflect: true, attribute: "value" }) defaultValue: string;
 
   /** Disables the radio button. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /**
    * The radio button's size. When used inside a radio group, the size will be determined by the radio group's size so
@@ -59,6 +62,14 @@ export default class WaRadioButton extends WebAwesomeElement {
 
   /** Draws a pill-style radio button with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
+
+  /**
+   * The string pointing to a form's id.
+   */
+  @property({ reflect: true }) form: string | null = null
+
+  /** Needed for Form Validation. Without it we get a console error. */
+  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true }
 
   connectedCallback() {
     super.connectedCallback();
@@ -125,7 +136,8 @@ export default class WaRadioButton extends WebAwesomeElement {
           })}
           aria-disabled=${this.disabled}
           type="button"
-          value=${ifDefined(this.value)}
+          .value=${ifDefined(this.value)}
+          .defaultValue=${ifDefined(this.defaultValue)}
           tabindex="${this.checked ? '0' : '-1'}"
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}

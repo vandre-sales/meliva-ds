@@ -83,7 +83,7 @@ export class FormControlController implements ReactiveController {
 
         return input.closest('form');
       },
-      name: input => input.name,
+      name: input => input.name || "",
       value: input => input.value,
       defaultValue: input => input.defaultValue,
       disabled: input => input.disabled ?? false,

@@ -154,7 +154,7 @@ export interface Validator<
 
 export interface WebAwesomeFormControl extends WebAwesomeElement {
   // Form attributes
-  name: string;
+  name: null | string;
   value: unknown;
   disabled?: boolean;
   defaultValue?: unknown;
@@ -191,7 +191,7 @@ export class WebAwesomeFormAssociated
 {
   static formAssociated = true;
 
-  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
+  // static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
 
   /**
    * Validators are static because they have `observedAttributes`, essentially attributes to "watch"
@@ -222,7 +222,7 @@ export class WebAwesomeFormAssociated
 
   // Form attributes
   // These should properly just use `@property` accessors.
-  name: string = '';
+  name: null | string = null;
   value: unknown = null;
   defaultValue: unknown = null;
   disabled: boolean = false;
@@ -438,7 +438,8 @@ export class WebAwesomeFormAssociated
 
   formDisabledCallback(isDisabled: boolean) {
     this.disabled = isDisabled;
-    this.setValidity({});
+
+    this.updateValidity()
   }
 
   /**
