@@ -2,19 +2,19 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-resting-color);
+    --background: var(--wa-form-controls-background);
     --background-checked: var(--wa-form-controls-activated-color);
     --border-color: var(--wa-form-controls-resting-color);
     --border-color-checked: var(--background-checked);
     --border-style: var(--wa-form-controls-border-style);
     --border-width: var(--wa-form-controls-border-width);
     --box-shadow: none;
-    --height: calc(1em * var(--wa-font-line-height-compact) - 0.125rem);
-    --thumb-color: var(--wa-form-controls-background);
+    --height: calc(1em * var(--wa-font-line-height-compact));
+    --thumb-color: var(--wa-form-controls-resting-color);
     --thumb-color-checked: var(--wa-form-controls-background);
     --thumb-shadow: none;
-    --thumb-size: calc(var(--height) - var(--border-width) * 2);
-    --width: calc(var(--height) * 2);
+    --thumb-size: calc(var(--height) - var(--border-width) * 4);
+    --width: calc(var(--height) * 1.75);
 
     display: inline-block;
   }
