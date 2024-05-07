@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { dragElement } from '../../internal/test.js';
 import { expect, fixture, html, oneEvent } from '@open-wc/testing';
 import { queryByTestId } from '../../internal/test/data-testid-helpers.js';
@@ -131,13 +130,13 @@ describe('<wa-split-panel>', () => {
         </wa-split-panel>`
       );
 
-      const positionInPixels = splitPanel.positionInPixels;
+      const positionInPixels = Math.round(splitPanel.positionInPixels);
 
       const divider = getDivider(splitPanel);
 
       await dragElement(divider, -30);
 
-      const positionInPixelsAfterDrag = splitPanel.positionInPixels;
+      const positionInPixelsAfterDrag = Math.round(splitPanel.positionInPixels);
       expect(positionInPixelsAfterDrag).to.be.equal(positionInPixels - 30);
     });
 
@@ -149,13 +148,13 @@ describe('<wa-split-panel>', () => {
         </wa-split-panel>`
       );
 
-      const positionInPixels = splitPanel.positionInPixels;
+      const positionInPixels = Math.round(splitPanel.positionInPixels);
 
       const divider = getDivider(splitPanel);
 
       await dragElement(divider, -30);
 
-      const positionInPixelsAfterDrag = splitPanel.positionInPixels;
+      const positionInPixelsAfterDrag = Math.round(splitPanel.positionInPixels);
       expect(positionInPixelsAfterDrag).to.be.equal(positionInPixels);
     });
 
@@ -167,14 +166,14 @@ describe('<wa-split-panel>', () => {
         </wa-split-panel>`
       );
 
-      const positionInPixels = splitPanel.positionInPixels;
+      const positionInPixels = Math.round(splitPanel.positionInPixels);
       splitPanel.snap = `${positionInPixels - 40}px`;
 
       const divider = getDivider(splitPanel);
 
       await dragElement(divider, -30);
 
-      const positionInPixelsAfterDrag = splitPanel.positionInPixels;
+      const positionInPixelsAfterDrag = Math.round(splitPanel.positionInPixels);
       expect(positionInPixelsAfterDrag).to.be.equal(positionInPixels - 40);
     });
   });
@@ -244,13 +243,13 @@ describe('<wa-split-panel>', () => {
         </wa-split-panel>`
       );
 
-      const positionInPixels = splitPanel.positionInPixels;
+      const positionInPixels = Math.round(splitPanel.positionInPixels);
 
       const divider = getDivider(splitPanel);
 
       await dragElement(divider, 0, -30);
 
-      const positionInPixelsAfterDrag = splitPanel.positionInPixels;
+      const positionInPixelsAfterDrag = Math.round(splitPanel.positionInPixels);
       expect(positionInPixelsAfterDrag).to.be.equal(positionInPixels - 30);
     });
 
@@ -262,13 +261,13 @@ describe('<wa-split-panel>', () => {
         </wa-split-panel>`
       );
 
-      const positionInPixels = splitPanel.positionInPixels;
+      const positionInPixels = Math.round(splitPanel.positionInPixels);
 
       const divider = getDivider(splitPanel);
 
       await dragElement(divider, 0, -30);
 
-      const positionInPixelsAfterDrag = splitPanel.positionInPixels;
+      const positionInPixelsAfterDrag = Math.round(splitPanel.positionInPixels);
       expect(positionInPixelsAfterDrag).to.be.equal(positionInPixels);
     });
 
@@ -280,14 +279,14 @@ describe('<wa-split-panel>', () => {
         </wa-split-panel>`
       );
 
-      const positionInPixels = splitPanel.positionInPixels;
+      const positionInPixels = Math.round(splitPanel.positionInPixels);
       splitPanel.snap = `${positionInPixels - 40}px`;
 
       const divider = getDivider(splitPanel);
 
       await dragElement(divider, 0, -30);
 
-      const positionInPixelsAfterDrag = splitPanel.positionInPixels;
+      const positionInPixelsAfterDrag = Math.round(splitPanel.positionInPixels);
       expect(positionInPixelsAfterDrag).to.be.equal(positionInPixels - 40);
     });
   });

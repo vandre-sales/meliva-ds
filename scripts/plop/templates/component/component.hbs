@@ -40,3 +40,9 @@ export default class {{ properCase tag }} extends WebAwesomeElement {
     return html` <slot></slot> `;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    '{{ tag }}': {{ properCase tag }};
+  }
+}

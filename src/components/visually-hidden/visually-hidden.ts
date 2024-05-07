@@ -1,9 +1,26 @@
-import WaVisuallyHidden from './visually-hidden.component.js';
+import { customElement } from 'lit/decorators.js';
+import { html } from 'lit';
+import componentStyles from '../../styles/component.styles.js';
+import styles from './visually-hidden.styles.js';
+import WebAwesomeElement from '../../internal/webawesome-element.js';
+import type { CSSResultGroup } from 'lit';
 
-export * from './visually-hidden.component.js';
-export default WaVisuallyHidden;
+/**
+ * @summary The visually hidden utility makes content accessible to assistive devices without displaying it on the screen.
+ * @documentation https://shoelace.style/components/visually-hidden
+ * @status stable
+ * @since 2.0
+ *
+ * @slot - The content to be visually hidden.
+ */
+@customElement('wa-visually-hidden')
+export default class WaVisuallyHidden extends WebAwesomeElement {
+  static styles: CSSResultGroup = [componentStyles, styles];
 
-WaVisuallyHidden.define('wa-visually-hidden');
+  render() {
+    return html` <slot></slot> `;
+  }
+}
 
 declare global {
   interface HTMLElementTagNameMap {

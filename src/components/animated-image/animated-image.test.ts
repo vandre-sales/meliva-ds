@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { clickOnElement } from '../../internal/test.js';
 import { expect, fixture, html, oneEvent } from '@open-wc/testing';
 import type WaAnimatedImage from './animated-image.js';
@@ -16,7 +15,7 @@ describe('<wa-animated-image>', () => {
     await expect(animatedImage).to.be.accessible();
   });
 
-  const files = ['docs/public/assets/images/walk.gif', 'docs/public/assets/images/tie.webp'];
+  const files = ['docs/assets/images/walk.gif', 'docs/assets/images/tie.webp'];
 
   files.forEach((file: string) => {
     it(`should load a ${file} without errors`, async () => {

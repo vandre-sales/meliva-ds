@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { aTimeout, expect, fixture, html, waitUntil } from '@open-wc/testing';
 import type WaAvatar from './avatar.js';
 

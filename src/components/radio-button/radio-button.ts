@@ -1,12 +1,154 @@
-import WaRadioButton from './radio-button.component.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { HasSlotController } from '../../internal/slot.js';
+import { html } from 'lit/static-html.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { LitElement } from 'lit';
+import { property, query, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import componentStyles from '../../styles/component.styles.js';
+import styles from './radio-button.styles.js';
+import type { CSSResultGroup } from 'lit';
 
-export * from './radio-button.component.js';
-export default WaRadioButton;
+/**
+ * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
+ * @documentation https://shoelace.style/components/radio-button
+ * @status stable
+ * @since 2.0
+ *
+ * @slot - The radio button's label.
+ * @slot prefix - A presentational prefix icon or similar element.
+ * @slot suffix - A presentational suffix icon or similar element.
+ *
+ * @event wa-blur - Emitted when the button loses focus.
+ * @event wa-focus - Emitted when the button gains focus.
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart button - The internal `<button>` element.
+ * @csspart button--checked - The internal button element when the radio button is checked.
+ * @csspart prefix - The container that wraps the prefix.
+ * @csspart label - The container that wraps the radio button's label.
+ * @csspart suffix - The container that wraps the suffix.
+ */
+export default class WaRadioButton extends WebAwesomeFormAssociated {
+  static styles: CSSResultGroup = [componentStyles, styles];
 
-WaRadioButton.define('wa-radio-button');
+  private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
 
-declare global {
-  interface HTMLElementTagNameMap {
-    'wa-radio-button': WaRadioButton;
+  @query('.button') input: HTMLInputElement;
+  @query('.hidden-input') hiddenInput: HTMLInputElement;
+
+  @state() protected hasFocus = false;
+
+  /**
+   * @internal The radio button's checked state. This is exposed as an "internal" attribute so we can reflect it, making
+   * it easier to style in button groups.
+   */
+  @property({ type: Boolean, reflect: true }) checked = false;
+  @property({ type: Boolean, attribute: "default-checked" }) defaultChecked = false;
+
+  /** The radio's value. When selected, the radio group will receive this value. */
+  @property({ attribute: false }) value: string;
+  @property({ reflect: true, attribute: "value" }) defaultValue: string;
+
+  /** Disables the radio button. */
+  @property({ type: Boolean }) disabled = false;
+
+  /**
+   * The radio button's size. When used inside a radio group, the size will be determined by the radio group's size so
+   * this attribute can typically be omitted.
+   */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
+  /** Draws a pill-style radio button with rounded edges. */
+  @property({ type: Boolean, reflect: true }) pill = false;
+
+  /**
+   * The string pointing to a form's id.
+   */
+  @property({ reflect: true }) form: string | null = null
+
+  /** Needed for Form Validation. Without it we get a console error. */
+  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute('role', 'presentation');
+  }
+
+  private handleBlur() {
+    this.hasFocus = false;
+    this.emit('wa-blur');
+  }
+
+  private handleClick(e: MouseEvent) {
+    if (this.disabled) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    this.checked = true;
+  }
+
+  private handleFocus() {
+    this.hasFocus = true;
+    this.emit('wa-focus');
+  }
+
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange() {
+    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+  }
+
+  /** Sets focus on the radio button. */
+  focus(options?: FocusOptions) {
+    this.input.focus(options);
+  }
+
+  /** Removes focus from the radio button. */
+  blur() {
+    this.input.blur();
+  }
+
+  render() {
+    return html`
+      <div part="base" role="presentation">
+        <button
+          part="${`button${this.checked ? ' button--checked' : ''}`}"
+          role="radio"
+          aria-checked="${this.checked}"
+          class=${classMap({
+            button: true,
+            'button--neutral': !this.checked,
+            'button--brand': this.checked,
+            'button--small': this.size === 'small',
+            'button--medium': this.size === 'medium',
+            'button--large': this.size === 'large',
+            'button--checked': this.checked,
+            'button--disabled': this.disabled,
+            'button--focused': this.hasFocus,
+            'button--outline': true,
+            'button--pill': this.pill,
+            'button--has-label': this.hasSlotController.test('[default]'),
+            'button--has-prefix': this.hasSlotController.test('prefix'),
+            'button--has-suffix': this.hasSlotController.test('suffix')
+          })}
+          aria-disabled=${this.disabled}
+          type="button"
+          .value=${ifDefined(this.value)}
+          .defaultValue=${ifDefined(this.defaultValue)}
+          tabindex="${this.checked ? '0' : '-1'}"
+          @blur=${this.handleBlur}
+          @focus=${this.handleFocus}
+          @click=${this.handleClick}
+        >
+          <slot name="prefix" part="prefix" class="button__prefix"></slot>
+          <slot part="label" class="button__label"></slot>
+          <slot name="suffix" part="suffix" class="button__suffix"></slot>
+        </button>
+      </div>
+    `;
   }
 }
+

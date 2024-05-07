@@ -1,9 +1,8 @@
-import '../../../dist/webawesome.js';
 import { aTimeout, expect, fixture, html, triggerBlurFor, triggerFocusFor } from '@open-wc/testing';
 import { clickOnElement } from '../../internal/test.js';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type WaTree from './tree.component.js';
+import type WaTree from './tree.js';
 import type WaTreeItem from '../tree-item/tree-item.js';
 
 describe('<wa-tree>', () => {

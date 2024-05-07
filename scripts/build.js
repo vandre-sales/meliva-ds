@@ -1,280 +1,331 @@
 import { deleteAsync } from 'del';
-import { exec, spawn } from 'child_process';
+import { dirname, join, relative } from 'path';
+import { distDir, docsDir, rootDir, runScript, siteDir } from './utils.js';
+import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
 import { globby } from 'globby';
+import { mkdir, readFile } from 'fs/promises';
+import { replace } from 'esbuild-plugin-replace';
 import browserSync from 'browser-sync';
 import chalk from 'chalk';
-import commandLineArgs from 'command-line-args';
 import copy from 'recursive-copy';
 import esbuild from 'esbuild';
-import fs from 'fs/promises';
 import getPort, { portNumbers } from 'get-port';
-import util from 'util';
-import * as path from 'path';
-import { readFileSync } from 'fs';
-import { replace } from 'esbuild-plugin-replace';
-import { dev, build } from 'astro';
-import chokidar from 'chokidar';
-
-const { serve } = commandLineArgs([{ name: 'serve', type: Boolean }]);
-const outdir = 'dist';
-const cdndir = 'cdn';
-const sitedir = '_site';
-const execPromise = util.promisify(exec);
-let buildResults = [];
-
-const bundleDirectories = [cdndir, outdir];
-let packageData = JSON.parse(readFileSync(path.join(process.cwd(), 'package.json'), 'utf-8'));
-const shoelaceVersion = JSON.stringify(packageData.version.toString());
+import ora from 'ora';
+import process from 'process';
 
 //
-// Runs 11ty and builds the docs. The returned promise resolves after the initial publish has completed. The child
-// process and an array of strings containing any output are included in the resolved promise.
+// TODO - CDN dist and unbundled dist
 //
-async function buildTheDocs(watch = false) {
-  let args = ['astro', 'build'];
 
-  if (watch) {
-    args.pop();
-    args.push('dev');
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const isDeveloping = process.argv.includes('--develop');
+const spinner = ora({ text: 'Web Awesome', color: 'cyan' }).start();
+const packageData = JSON.parse(await readFile(join(rootDir, 'package.json'), 'utf-8'));
+const version = JSON.stringify(packageData.version.toString());
+let buildContext;
 
-    console.log(process.cwd());
+/**
+ * Runs the full build.
+ */
+async function buildAll() {
+  const start = Date.now();
 
-    // Rebuild and reload when source files change
-    chokidar.watch('src/**/!(*.test).*').on('change', async filename => {
-      console.log('[build] File changed: ', filename);
+  try {
+    await cleanup();
+    await generateManifest();
+    await generateReactWrappers();
+    await generateTypes();
+    await generateStyles();
+    await generateBundle();
+    await generateDocs();
 
-      try {
-        const isTheme = /^src\/themes/.test(filename);
-        const isStylesheet = /(\.css|\.styles\.ts)$/.test(filename);
-
-        // Rebuild the source
-        const rebuildResults = buildResults.map(result => result.rebuild());
-        await Promise.all(rebuildResults);
-
-        // Rebuild stylesheets when a theme file changes
-        if (isTheme) {
-          await Promise.all(
-            bundleDirectories.map(dir => {
-              return execPromise(`node scripts/make-themes.js --outdir "${dir}"`, { stdio: 'inherit' });
-            })
-          );
-        }
-
-        // Rebuild metadata (but not when styles are changed)
-        if (!isStylesheet) {
-          await Promise.all(
-            bundleDirectories.map(dir => {
-              return execPromise(`node scripts/make-metadata.js --outdir "${dir}"`, { stdio: 'inherit' });
-            })
-          );
-        }
-
-        const siteDistDir = path.join(process.cwd(), 'docs', 'public', 'dist');
-        // await deleteAsync(siteDistDir);
-
-        // We copy the CDN build because that has everything bundled. Yes this looks weird.
-        // But if we do "/cdn" it requires changes all the docs to do /cdn instead of /dist.
-        console.log(`COPYING ${cdndir} to ${siteDistDir}`);
-        await copy(cdndir, siteDistDir, { overwrite: true });
-      } catch (err) {
-        console.error(chalk.red(err), '\n');
-      }
-    });
+    const time = (Date.now() - start) / 1000 + 's';
+    spinner.succeed(`The build is complete ${chalk.gray(`(finished in ${time})`)}`);
+  } catch (err) {
+    spinner.fail();
+    console.log(chalk.red(`\n${err}`));
   }
-
-  return new Promise(async (resolve, reject) => {
-    const child = spawn('npx', args, {
-      stdio: 'pipe',
-      cwd: 'docs',
-      shell: true // for Windows
-    });
-
-    child.stdout.setEncoding('utf8');
-    child.stderr.setEncoding('utf8');
-    child.stdout.on('data', data => {
-      console.log(data);
-    });
-    child.stderr.on('data', data => {
-      console.error(data);
-    });
-    child.on('error', error => reject(error));
-    child.on('close', () => resolve());
-  });
 }
 
-//
-// Builds the source with esbuild.
-//
-async function buildTheSource() {
-  const alwaysExternal = ['@lit/react', 'react'];
+/** Empties the dist directory. */
+async function cleanup() {
+  spinner.start('Cleaning up dist');
 
-  const cdnConfig = {
+  await deleteAsync(distDir);
+  await mkdir(distDir, { recursive: true });
+
+  spinner.succeed();
+}
+
+/**
+ * Analyzes components and generates the custom elements manifest file.
+ */
+function generateManifest() {
+  spinner.start('Generating CEM');
+
+  try {
+    execSync('cem analyze --config "custom-elements-manifest.js"');
+  } catch (error) {
+    console.error(`\n\n${error.message}`);
+  }
+
+  spinner.succeed();
+
+  return Promise.resolve();
+}
+
+/**
+ * Generates React wrappers for all components.
+ */
+function generateReactWrappers() {
+  spinner.start('Generating React wrappers');
+
+  try {
+    execSync(`node scripts/make-react.js --outdir "${distDir}"`, { stdio: 'inherit' });
+  } catch (error) {
+    console.error(`\n\n${error.message}`);
+  }
+  spinner.succeed();
+
+  return Promise.resolve();
+}
+
+/**
+ * Copies theme stylesheets to the dist.
+ */
+async function generateStyles() {
+  spinner.start('Copying stylesheets');
+
+  await copy(join(rootDir, 'src/themes'), join(distDir, 'themes'), { overwrite: true });
+
+  spinner.succeed();
+
+  return Promise.resolve();
+}
+
+/**
+ * Runs TypeScript to generate types.
+ */
+function generateTypes() {
+  spinner.start('Running the TypeScript compiler');
+
+  try {
+    execSync(`tsc --project ./tsconfig.prod.json --outdir "${distDir}"`);
+  } catch (error) {
+    return Promise.reject(error.stdout);
+  }
+
+  spinner.succeed();
+
+  return Promise.resolve();
+}
+
+/**
+ * Runs esbuild to generate the final dist.
+ */
+async function generateBundle() {
+  spinner.start('Bundling with esbuild');
+
+  const config = {
     format: 'esm',
-    target: 'es2017',
+    target: 'es2020',
     entryPoints: [
       //
-      // NOTE: Entry points must be mapped in package.json > exports, otherwise users won't be able to import them!
+      // IMPORTANT: Entry points MUST be mapped in package.json => exports
       //
-      // The whole shebang
+      // Utilities
       './src/webawesome.ts',
-      // The auto-loader
-      './src/autoloader.ts',
-      // Components
+      // Autoloader + utilities
+      './src/webawesome.loader.ts',
+      // Individual components
       ...(await globby('./src/components/**/!(*.(style|test)).ts')),
       // Translations
       ...(await globby('./src/translations/**/*.ts')),
-      // Public utilities
-      ...(await globby('./src/utilities/**/!(*.(style|test)).ts')),
-      // Theme stylesheets
-      ...(await globby('./src/themes/**/!(*.test).ts')),
       // React wrappers
       ...(await globby('./src/react/**/*.ts'))
     ],
-    outdir: cdndir,
+    outdir: distDir,
     chunkNames: 'chunks/[name].[hash]',
     define: {
-      // Floating UI requires this to be set
-      'process.env.NODE_ENV': '"production"'
+      'process.env.NODE_ENV': '"production"' // required by Floating UI
     },
     bundle: true,
-    //
-    // We don't bundle certain dependencies in the unbundled build. This ensures we ship bare module specifiers,
-    // allowing end users to better optimize when using a bundler. (Only packages that ship ESM can be external.)
-    //
-    // We never bundle React or @lit/react though!
-    //
-    external: alwaysExternal,
     splitting: true,
-    plugins: [
-      replace({
-        __WEBAWESOME_VERSION__: shoelaceVersion
-      })
-    ]
+    plugins: [replace({ __WEBAWESOME_VERSION__: version })]
   };
 
-  const npmConfig = {
-    ...cdnConfig,
-    external: undefined,
-    minify: false,
-    packages: 'external',
-    outdir
-  };
-
-  if (serve) {
-    // Use the context API to allow incremental dev builds
-    const contexts = await Promise.all([esbuild.context(cdnConfig), esbuild.context(npmConfig)]);
-    await Promise.all(contexts.map(context => context.rebuild()));
-    return contexts;
+  if (isDeveloping) {
+    // Incremental builds for dev
+    buildContext = await esbuild.context(config);
+    await buildContext.rebuild();
   } else {
-    // Use the standard API for production builds
-    return await Promise.all([esbuild.build(cdnConfig), esbuild.build(npmConfig)]);
-  }
-}
-
-//
-// Called on SIGINT or SIGTERM to cleanup the build and child processes.
-//
-function exit() {
-  buildResults.forEach(result => {
-    if (result.dispose) {
-      result.dispose();
-    }
-  });
-
-  process.exit(1);
-}
-
-//
-// Helper function to cleanly log tasks
-//
-async function nextTask(label, action) {
-  function clearLine() {
-    if (process.stdout.isTTY) {
-      process.stdout.clearLine();
-      process.stdout.cursorTo(0);
-    } else {
-      process.stdout.write('\n');
-    }
+    // One-time build for production
+    await esbuild.build(config);
   }
 
+  spinner.succeed();
+}
+
+/**
+ * Incrementally rebuilds the source files. Must be called only after `generateBundle()` has been called.
+ */
+async function regenerateBundle() {
   try {
-    process.stdout.write(`${chalk.yellow('•')} ${label}`);
-    await action();
-    clearLine();
-    process.stdout.write(`${chalk.green('✔')} ${label}\n`);
-  } catch (err) {
-    clearLine();
-    process.stdout.write(`${chalk.red('✘')} ${label}\n\n`);
-    if (err.stdout) process.stdout.write(`${chalk.red(err.stdout)}\n`);
-    if (err.stderr) process.stderr.write(`${chalk.red(err.stderr)}\n`);
-    exit();
+    spinner.start('Re-bundling with esbuild');
+    await buildContext.rebuild();
+  } catch (error) {
+    spinner.fail();
+    console.log(chalk.red(`\n${error}`));
   }
+
+  spinner.succeed();
 }
 
-await nextTask('Cleaning up the previous build', async () => {
-  await Promise.all([deleteAsync(sitedir), ...bundleDirectories.map(dir => deleteAsync(dir))]);
-  await fs.mkdir(outdir, { recursive: true });
-});
+/**
+ * Generates the documentation site.
+ */
+async function generateDocs() {
+  spinner.start('Writing the docs');
 
-await nextTask('Generating component metadata', () => {
-  return Promise.all(
-    bundleDirectories.map(dir => {
-      return execPromise(`node scripts/make-metadata.js --outdir "${dir}"`, { stdio: 'inherit' });
-    })
-  );
-});
+  // 11ty
+  const output = (await runScript(join(__dirname, 'docs.js'), isDeveloping ? ['--develop'] : undefined))
+    // Cleanup the output
+    .replace('[11ty]', '')
+    .replace(' seconds', 's')
+    .replace(/\(.*?\)/, '')
+    .toLowerCase()
+    .trim();
 
-await nextTask('Wrapping components for React', () => {
-  return execPromise(`node scripts/make-react.js --outdir "${outdir}"`, { stdio: 'inherit' });
-});
+  // Copy assets
+  await copy(join(docsDir, 'assets'), join(siteDir, 'assets'), { overwrite: true });
 
-await nextTask('Generating themes', () => {
-  return execPromise(`node scripts/make-themes.js --outdir "${outdir}"`, { stdio: 'inherit' });
-});
+  // Copy dist (production only)
+  if (!isDeveloping) {
+    await copy(distDir, join(siteDir, 'dist'));
+  }
 
-await nextTask('Running the TypeScript compiler', () => {
-  return execPromise(`tsc --project ./tsconfig.prod.json --outdir "${outdir}"`, { stdio: 'inherit' });
-});
+  spinner.succeed(`Writing the docs ${chalk.gray(`(${output}`)})`);
+}
 
-// Copy the above steps to the CDN directory directly so we don't need to twice the work for nothing
-await nextTask(`Copying CDN files to "${cdndir}"`, async () => {
-  await deleteAsync(cdndir);
-  await copy(outdir, cdndir);
-});
+// Initial build
+await buildAll();
 
-await nextTask('Building source files', async () => {
-  buildResults = await buildTheSource();
-});
-
-// Copy the CDN build to the docs (prod only; we use a virtual directory in dev)
-await nextTask(`Copying the build to "${sitedir}"`, async () => {
-  const siteDistDir = path.join('docs', 'public', 'dist');
-  await deleteAsync(siteDistDir);
-
-  // We copy the CDN build because that has everything bundled. Yes this looks weird.
-  // But if we do "/cdn" it requires changes all the docs to do /cdn instead of /dist.
-  await copy(cdndir, siteDistDir);
-});
+if (!isDeveloping) {
+  console.log(); // just a newline for readability
+}
 
 // Launch the dev server
-if (serve) {
-  // Spin up Eleventy and Wait for the search index to appear before proceeding. The search index is generated during
-  // eleventy.after, so it appears after the docs are fully published. This is kinda hacky, but here we are.
-  // Kick off the Eleventy dev server with --watch and --incremental
-  await nextTask('Building docs', async () => await buildTheDocs(true));
-}
+if (isDeveloping) {
+  spinner.start('Launching the dev server');
 
-// Build for production
-if (!serve) {
-  await nextTask('Building the docs', async () => {
-    await buildTheDocs();
+  const bs = browserSync.create();
+  const port = await getPort({ port: portNumbers(4000, 4999) });
+  const url = `http://localhost:${port}/`;
+  const reload = () => {
+    spinner.start('Reloading browser');
+    bs.reload();
+    spinner.succeed();
+  };
+
+  // Launch browser sync
+  bs.init(
+    {
+      startPath: '/',
+      port,
+      logLevel: 'silent',
+      logPrefix: '[webawesome]',
+      logFileChanges: true,
+      notify: false,
+      single: false,
+      ghostMode: false,
+      server: {
+        baseDir: siteDir,
+        routes: {
+          '/dist': './dist'
+        }
+      },
+      callbacks: {
+        ready: (_err, instance) => {
+          // 404 errors
+          instance.addMiddleware('*', (req, res) => {
+            if (req.url.toLowerCase().endsWith('.svg')) {
+              // Make sure SVGs error out in dev instead of serve the 404 page
+              res.writeHead(404);
+            } else {
+              res.writeHead(302, { location: '/404.html' });
+            }
+
+            res.end();
+          });
+        }
+      }
+    },
+    () => {
+      spinner.succeed();
+      console.log(`\nThe dev server is running at ${chalk.cyan(url)}\n`);
+    }
+  );
+
+  // Rebuild and reload when source files change
+  bs.watch('src/**/!(*.test).*').on('change', async filename => {
+    spinner.info(`File modified ${chalk.gray(`(${relative(rootDir, filename)})`)}`);
+
+    try {
+      const isTestFile = filename.includes('.test.ts');
+      const isJsStylesheet = filename.includes('.styles.ts');
+      const isCssStylesheet = filename.includes('.css');
+      const isComponent =
+        filename.includes('components/') &&
+        filename.includes('.ts') &&
+        !isJsStylesheet &&
+        !isCssStylesheet &&
+        !isTestFile;
+
+      // Re-bundle when relevant files change
+      if (!isTestFile && !isCssStylesheet) {
+        await regenerateBundle();
+      }
+
+      // Copy stylesheets when CSS files change
+      if (isCssStylesheet) {
+        await generateStyles();
+      }
+
+      // Regenerate metadata when components change
+      if (isComponent) {
+        await generateManifest();
+        await generateDocs();
+      }
+
+      reload();
+    } catch (err) {
+      console.error(chalk.red(err));
+    }
+  });
+
+  // Rebuild the docs and reload when the docs change
+  bs.watch(`${docsDir}/**/*.*`).on('change', async filename => {
+    spinner.info(`File modified ${chalk.gray(`(${relative(rootDir, filename)})`)}`);
+    await generateDocs();
+    reload();
   });
 }
 
-// Cleanup on exit
-process.on('SIGINT', exit);
-process.on('SIGTERM', exit);
-process.on('uncaughtException', function (err) {
-  console.error(err);
-  exit();
-});
+//
+// Cleanup everything when the process terminates
+//
+function terminate() {
+  if (buildContext) {
+    buildContext.dispose();
+  }
+
+  if (spinner) {
+    spinner.stop();
+  }
+
+  process.exit();
+}
+
+process.on('SIGINT', terminate);
+process.on('SIGTERM', terminate);

@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 import { clickOnElement } from '../../internal/test.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';

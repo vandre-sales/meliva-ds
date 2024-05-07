@@ -1,4 +1,3 @@
-import '../../../dist/webawesome.js';
 // cspell:dictionaries lorem-ipsum
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';

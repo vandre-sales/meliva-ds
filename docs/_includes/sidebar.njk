@@ -1,0 +1,231 @@
+{# Getting started #}
+<h2>Getting Started</h2>
+<ul>
+  <li><a href="/docs/installation">Installation</a></li>
+  <li><a href="/docs/usage">Usage</a></li>
+  <li><a href="/docs/themes">Themes</a></li>
+  <li><a href="/docs/customizing">Customizing</a></li>
+  <li><a href="/docs/localization">Localization</a></li>
+</ul>
+
+{# Experimental #}
+<h2>Experimental</h2>
+<ul>
+  <li><a href="/docs/experimental/themer">Theme Builder</a></li>
+  <li><a href="/docs/experimental/style-guide">Style Guide</a></li>
+  <li><a href="/docs/experimental/form-validation">Form Validation Styles</a></li>
+  <li><a href="/docs/experimental/sandbox">Sandbox</a></li>
+  <li style="margin-top: .5rem;"><wa-switch id="theme-toggle">Dark mode</wa-switch></li>
+  <script type="module">
+    // Temporary dark toggle
+    const toggle = document.getElementById('theme-toggle');
+    toggle.checked = document.documentElement.classList.contains('wa-theme-default-dark');
+
+    toggle.addEventListener('wa-change', () => {
+      document.documentElement.classList.toggle('wa-theme-default-dark');
+      localStorage.setItem('theme', toggle.checked ? 'dark' : 'light');
+    });
+  </script>
+</ul>
+
+
+{# Resources #}
+<h2>Resources</h2>
+<ul>
+  <li><a href="https://github.com/shoelace-style/shoelace/discussions">Help &amp; Support</a></li>
+  <li><a href="/docs/resources/community">Community</a></li>
+  <li><a href="/docs/resources/accessibility">Accessibility</a></li>
+  <li><a href="/docs/resources/contributing">Contributing</a></li>
+  <li><a href="/docs/resources/changelog">Changelog</a></li>
+</ul>
+
+{# Components #}
+<h2>Components</h2>
+<ul>
+  <li>
+    <a href="/docs/components/alert">Alert</a>
+  </li>
+  <li>
+    <a href="/docs/components/animated-image">Animated Image</a>
+  </li>
+  <li>
+    <a href="/docs/components/animation">Animation</a>
+  </li>
+  <li>
+    <a href="/docs/components/avatar">Avatar</a>
+  </li>
+  <li>
+    <a href="/docs/components/badge">Badge</a>
+  </li>
+  <li>
+    <a href="/docs/components/breadcrumb">Breadcrumb</a>
+    <ul>
+      <li>
+        <a href="/docs/components/breadcrumb-item">Breadcrumb Item</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/components/button">Button</a>
+  </li>
+  <li>
+    <a href="/docs/components/button-group">Button Group</a>
+  </li>
+  <li>
+    <a href="/docs/components/card">Card</a>
+  </li>
+  <li>
+    <a href="/docs/components/carousel">Carousel</a>
+    <ul>
+      <li>
+        <a href="/docs/components/carousel-item">Carousel Item</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/components/checkbox">Checkbox</a>
+  </li>
+  <li>
+    <a href="/docs/components/color-picker">Color Picker</a>
+  </li>
+  <li>
+    <a href="/docs/components/copy-button">Copy Button</a>
+  </li>
+  <li>
+    <a href="/docs/components/details">Details</a>
+  </li>
+  <li>
+    <a href="/docs/components/dialog">Dialog</a>
+  </li>
+  <li>
+    <a href="/docs/components/divider">Divider</a>
+  </li>
+  <li>
+    <a href="/docs/components/drawer">Drawer</a>
+  </li>
+  <li>
+    <a href="/docs/components/dropdown">Dropdown</a>
+  </li>
+  <li>
+    <a href="/docs/components/format-bytes">Format Bytes</a>
+  </li>
+  <li>
+    <a href="/docs/components/format-date">Format Date</a>
+  </li>
+  <li>
+    <a href="/docs/components/format-number">Format Number</a>
+  </li>
+  <li>
+    <a href="/docs/components/icon">Icon</a>
+  </li>
+  <li>
+    <a href="/docs/components/icon-button">Icon Button</a>
+  </li>
+  <li>
+    <a href="/docs/components/image-comparer">Image Comparer</a>
+  </li>
+  <li>
+    <a href="/docs/components/include">Include</a>
+  </li>
+  <li>
+    <a href="/docs/components/input">Input</a>
+  </li>
+  <li>
+    <a href="/docs/components/menu">Menu</a>
+    <ul>
+      <li>
+        <a href="/docs/components/menu-item">Menu Item</a>
+      </li>
+      <li>
+        <a href="/docs/components/menu-label">Menu Label</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/components/mutation-observer">Mutation Observer</a>
+  </li>
+  <li>
+    <a href="/docs/components/option">Option</a>
+  </li>
+  <li>
+    <a href="/docs/components/popup">Popup</a>
+  </li>
+  <li>
+    <a href="/docs/components/progress-bar">Progress Bar</a>
+  </li>
+  <li>
+    <a href="/docs/components/progress-ring">Progress Ring</a>
+  </li>
+  <li>
+    <a href="/docs/components/qr-code">QR Code</a>
+  </li>
+  <li>
+    <a href="/docs/components/radio-group">Radio Group</a>
+    <ul>
+      <li>
+        <a href="/docs/components/radio">Radio</a>
+      </li>
+      <li>
+        <a href="/docs/components/radio-button">Radio Button</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/components/range">Range</a>
+  </li>
+  <li>
+    <a href="/docs/components/rating">Rating</a>
+  </li>
+  <li>
+    <a href="/docs/components/relative-time">Relative Time</a>
+  </li>
+  <li>
+    <a href="/docs/components/resize-observer">Resize Observer</a>
+  </li>
+  <li>
+    <a href="/docs/components/select">Select</a>
+  </li>
+  <li>
+    <a href="/docs/components/skeleton">Skeleton</a>
+  </li>
+  <li>
+    <a href="/docs/components/spinner">Spinner</a>
+  </li>
+  <li>
+    <a href="/docs/components/split-panel">Split Panel</a>
+  </li>
+  <li>
+    <a href="/docs/components/switch">Switch</a>
+  </li>
+  <li>
+    <a href="/docs/components/tab-group">Tab Group</a>
+    <ul>
+      <li>
+        <a href="/docs/components/tab">Tab</a>
+      </li>
+      <li>
+        <a href="/docs/components/tab-panel">Tab Panel</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/components/tag">Tag</a>
+  </li>
+  <li>
+    <a href="/docs/components/textarea">Textarea</a>
+  </li>
+  <li>
+    <a href="/docs/components/tooltip">Tooltip</a>
+  </li>
+  <li>
+    <a href="/docs/components/tree">Tree</a>
+    <ul>
+      <li>
+        <a href="/docs/components/tree-item">Tree Item</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/components/visually-hidden">Visually Hidden</a>
+  </li>
+</ul>
