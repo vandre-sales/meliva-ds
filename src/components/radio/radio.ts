@@ -1,7 +1,7 @@
 import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { html } from 'lit';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -38,7 +38,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --checked-icon-scale - The size of the checked icon relative to the radio.
  * @cssproperty --toggle-size - The size of the radio.
  */
-@customElement("wa-radio")
+@customElement('wa-radio')
 export default class WaRadio extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
@@ -48,11 +48,11 @@ export default class WaRadio extends WebAwesomeFormAssociated {
   /**
    * The string pointing to a form's id.
    */
-  @property({ reflect: true }) form: string | null = null
+  @property({ reflect: true }) form: string | null = null;
 
   /** The radio's value. When selected, the radio group will receive this value. */
   @property({ attribute: false }) value: string;
-  @property({ reflect: true, attribute: "value" }) defaultValue: string = ""
+  @property({ reflect: true, attribute: 'value' }) defaultValue: string = '';
 
   /**
    * The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this
@@ -86,14 +86,14 @@ export default class WaRadio extends WebAwesomeFormAssociated {
 
   private setInitialAttributes() {
     this.setAttribute('role', 'radio');
-    this.tabIndex = 0
+    this.tabIndex = 0;
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
 
   @watch('checked')
   handleCheckedChange() {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
-    this.tabIndex = this.checked ? 0 : -1
+    this.tabIndex = this.checked ? 0 : -1;
   }
 
   /**
@@ -148,4 +148,3 @@ declare global {
     'wa-radio': WaRadio;
   }
 }
-

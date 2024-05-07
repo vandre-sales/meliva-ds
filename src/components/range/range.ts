@@ -43,14 +43,12 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --track-height - The height of the track.
  * @cssproperty --track-active-offset - The point of origin of the active track.
  */
-@customElement("wa-range")
+@customElement('wa-range')
 export default class WaRange extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  static get validators () {
-    return [
-      MirrorValidator()
-    ]
+  static get validators() {
+    return [MirrorValidator()];
   }
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
@@ -71,7 +69,7 @@ export default class WaRange extends WebAwesomeFormAssociated {
   @property({ attribute: false, type: Number }) value = 0;
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ type: Number, attribute: "value", reflect: true }) defaultValue = 0;
+  @property({ type: Number, attribute: 'value', reflect: true }) defaultValue = 0;
 
   /** The range's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
@@ -191,7 +189,7 @@ export default class WaRange extends WebAwesomeFormAssociated {
     // min, max, and step properly
     this.input.value = this.value.toString();
     this.value = parseFloat(this.input.value);
-    this.updateValidity()
+    this.updateValidity();
 
     this.syncRange();
   }

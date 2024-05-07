@@ -16,12 +16,12 @@ export const MirrorValidator = (): Validator => {
       };
 
       if (!formControl) {
-        return validity
+        return validity;
       }
 
-      let isValid = true
+      let isValid = true;
 
-      if ("checkValidity" in formControl) {
+      if ('checkValidity' in formControl) {
         isValid = formControl.checkValidity();
       }
 
@@ -31,15 +31,14 @@ export const MirrorValidator = (): Validator => {
 
       validity.isValid = false;
 
-      if ("validationMessage" in formControl) {
+      if ('validationMessage' in formControl) {
         validity.message = formControl.validationMessage;
       }
 
-
       // For some reason formControl doesn't have "validity", so chalk it up to customError
-      if (!("validity" in formControl)) {
-        validity.invalidKeys.push("customError");
-        return validity
+      if (!('validity' in formControl)) {
+        validity.invalidKeys.push('customError');
+        return validity;
       }
 
       for (const key in formControl.validity) {
@@ -56,5 +55,5 @@ export const MirrorValidator = (): Validator => {
 
       return validity;
     }
-  }
+  };
 };

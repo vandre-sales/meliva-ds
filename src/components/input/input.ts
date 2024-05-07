@@ -55,17 +55,15 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-width - The width of the input's borders. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the input.
  */
-@customElement("wa-input")
+@customElement('wa-input')
 export default class WaInput extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  static get validators () {
-    return [
-      MirrorValidator()
-    ]
+  static get validators() {
+    return [MirrorValidator()];
   }
 
-  assumeInteractionOn = ['wa-blur', 'wa-input']
+  assumeInteractionOn = ['wa-blur', 'wa-input'];
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
 
@@ -97,10 +95,10 @@ export default class WaInput extends WebAwesomeFormAssociated {
   @property() name = '';
 
   /** The current value of the input, submitted as a name/value pair with form data. */
-  @property({attribute: false}) value = '';
+  @property({ attribute: false }) value = '';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({attribute: "value", reflect: true}) defaultValue = '';
+  @property({ attribute: 'value', reflect: true }) defaultValue = '';
 
   /** The input's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -143,7 +141,7 @@ export default class WaInput extends WebAwesomeFormAssociated {
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = null
+  @property({ reflect: true }) form = null;
 
   /** Makes the input a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
@@ -279,7 +277,7 @@ export default class WaInput extends WebAwesomeFormAssociated {
         // See https://github.com/shoelace-style/shoelace/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
-          this.getForm()?.requestSubmit(null)
+          this.getForm()?.requestSubmit(null);
         }
       });
     }
@@ -294,7 +292,7 @@ export default class WaInput extends WebAwesomeFormAssociated {
     // If step changes, the value may become invalid so we need to recheck after the update. We set the new step
     // imperatively so we don't have to wait for the next render to report the updated validity.
     this.input.step = String(this.step);
-    this.updateValidity()
+    this.updateValidity();
   }
 
   /** Sets focus on the input. */
@@ -361,19 +359,19 @@ export default class WaInput extends WebAwesomeFormAssociated {
     }
   }
 
-  formStateRestoreCallback (...args: Parameters<WebAwesomeFormAssociated["formStateRestoreCallback"]>) {
-    const [value, reason] = args
-    super.formStateRestoreCallback(value, reason)
+  formStateRestoreCallback(...args: Parameters<WebAwesomeFormAssociated['formStateRestoreCallback']>) {
+    const [value, reason] = args;
+    super.formStateRestoreCallback(value, reason);
 
     /** @ts-expect-error Type widening issue due to what a formStateRestoreCallback can accept. */
-    this.input.value = value
+    this.input.value = value;
   }
 
-  formResetCallback () {
+  formResetCallback() {
     this.input.value = this.defaultValue;
     this.value = this.defaultValue;
 
-    super.formResetCallback()
+    super.formResetCallback();
   }
 
   render() {

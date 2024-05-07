@@ -91,14 +91,12 @@ declare const EyeDropper: EyeDropperConstructor;
  * @cssproperty --slider-handle-size - The diameter of the slider's handle.
  * @cssproperty --swatch-size - The size of each predefined color swatch.
  */
-@customElement("wa-color-picker")
+@customElement('wa-color-picker')
 export default class WaColorPicker extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  static get validators () {
-    return [
-      RequiredValidator(),
-    ]
+  static get validators() {
+    return [RequiredValidator()];
   }
 
   private isSafeValue = false;
@@ -109,15 +107,15 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
 
   // @TODO: This is a hacky way to show the "Please fill out this field", do we want the old behavior where it opens the dropdown?
   //   or is the new behavior okay?
-  get validationTarget () {
+  get validationTarget() {
     // This puts the popup on the element only if the color picker is expanded.
     if (!this.inline && this.dropdown?.open) {
-      return this.input
+      return this.input;
     }
 
     // This puts popup on the colorpicker itself without needing to expand it to show the input.
     // This is necessary because form submissions expect the "anchor" to be currently shown.
-    return this.trigger
+    return this.trigger;
   }
 
   @query('.color-dropdown') dropdown: WaDropdown;
@@ -138,10 +136,10 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
    * in a specific format, use the `getFormattedValue()` method. The value is submitted as a name/value pair with form
    * data.
    */
-  @property({attribute: false}) value = '';
+  @property({ attribute: false }) value = '';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({attribute: "value", reflect: true}) defaultValue = '';
+  @property({ attribute: 'value', reflect: true }) defaultValue = '';
 
   /**
    * The color picker's label. This will not be displayed, but it will be announced by assistive devices. If you need to
@@ -620,12 +618,12 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
   private handleAfterHide() {
     this.previewButton.classList.remove('color-picker__preview-color--copied');
     // Update validity so we get a new anchor.
-    this.updateValidity()
+    this.updateValidity();
   }
 
   private handleAfterShow() {
     // Update validity so we get a new anchor.
-    this.updateValidity()
+    this.updateValidity();
   }
 
   private handleEyeDropper() {
@@ -693,7 +691,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
   @watch('value')
   handleValueChange(oldValue: string | undefined, newValue: string) {
     this.isEmpty = !newValue;
-
 
     if (!newValue) {
       this.hue = 0;
@@ -787,13 +784,29 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
       if (!this.disabled) {
         // By standards we have to emit a `wa-invalid` event here synchronously.
         // this.formControlController.emitInvalidEvent();
-        this.emit("wa-invalid")
+        this.emit('wa-invalid');
       }
 
       return false;
     }
 
-    return super.reportValidity()
+    return super.reportValidity();
+  }
+
+  formStateRestoreCallback(...args: Parameters<WebAwesomeFormAssociated['formStateRestoreCallback']>) {
+    const [value, reason] = args;
+    const oldValue = this.value;
+    super.formStateRestoreCallback(value, reason);
+
+    this.handleValueChange(oldValue, this.value);
+  }
+
+  formResetCallback() {
+    const oldValue = this.value;
+    this.value = this.defaultValue;
+    this.handleValueChange(oldValue, this.value);
+
+    super.formResetCallback();
   }
 
   render() {

@@ -3,11 +3,11 @@ import '../popup/popup.js';
 import '../tag/tag.js';
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -74,16 +74,14 @@ import type WaPopup from '../popup/popup.js';
  * @cssproperty --border-width - The width of the select's borders, including the listbox.
  * @cssproperty --box-shadow - The shadow effects around the edges of the select's combobox.
  */
-@customElement("wa-select")
+@customElement('wa-select')
 export default class WaSelect extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  assumeInteractionOn =['wa-blur', 'wa-input']
+  assumeInteractionOn = ['wa-blur', 'wa-input'];
 
-  static get validators () {
-    return [
-      RequiredValidator()
-    ]
+  static get validators() {
+    return [RequiredValidator()];
   }
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
@@ -99,8 +97,8 @@ export default class WaSelect extends WebAwesomeFormAssociated {
   @query('.select__listbox') listbox: HTMLSlotElement;
 
   /** Where to anchor native constraint validation */
-  get validationTarget () {
-    return this.valueInput
+  get validationTarget() {
+    return this.valueInput;
   }
 
   @state() private hasFocus = false;
@@ -122,29 +120,31 @@ export default class WaSelect extends WebAwesomeFormAssociated {
   private _defaultValue: string | string[] = '';
 
   @property({
-    attribute: "value",
+    attribute: 'value',
     reflect: true,
     converter: {
-      fromAttribute: (value: string) => value.split(" "),
-      toAttribute: (value: string | string[]) => Array.isArray(value) ? value.join(' ') : value
+      fromAttribute: (value: string) => value.split(' '),
+      toAttribute: (value: string | string[]) => (Array.isArray(value) ? value.join(' ') : value)
     }
   })
   // @ts-expect-error defaultValue () is a property on the host, but is being used a getter / setter here.
   set defaultValue(val: string | string[]) {
     // For some reason this can go off before we've fully updated. So check the attribute too.
-    const isMultiple = this.multiple || this.hasAttribute("multiple")
+    const isMultiple = this.multiple || this.hasAttribute('multiple');
 
     if (!isMultiple && Array.isArray(val)) {
-      val = val.join(" ")
+      val = val.join(' ');
     }
-    this._defaultValue = val
+    this._defaultValue = val;
 
-    if (!this.hasInteracted)  {
-      this.value = this.defaultValue
+    if (!this.hasInteracted) {
+      this.value = this.defaultValue;
     }
   }
 
-  get defaultValue() { return this._defaultValue; }
+  get defaultValue() {
+    return this._defaultValue;
+  }
 
   /** The select's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -235,12 +235,11 @@ export default class WaSelect extends WebAwesomeFormAssociated {
   connectedCallback() {
     super.connectedCallback();
 
-
     this.updateComplete.then(() => {
-      if (!this.hasInteracted)  {
-        this.value = this.defaultValue
+      if (!this.hasInteracted) {
+        this.value = this.defaultValue;
       }
-    })
+    });
     // Because this is a form control, it shouldn't be opened initially
     this.open = false;
   }
@@ -627,7 +626,7 @@ export default class WaSelect extends WebAwesomeFormAssociated {
 
     // Update validity
     this.updateComplete.then(() => {
-      this.updateValidity()
+      this.updateValidity();
     });
   }
   protected get tags() {
@@ -643,7 +642,7 @@ export default class WaSelect extends WebAwesomeFormAssociated {
         return html`<wa-tag>+${this.selectedOptions.length - index}</wa-tag>`;
       }
       return html``;
-    })
+    });
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -662,7 +661,7 @@ export default class WaSelect extends WebAwesomeFormAssociated {
 
     // Select only the options that match the new value
     this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
-    this.updateValidity()
+    this.updateValidity();
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
@@ -740,10 +739,10 @@ export default class WaSelect extends WebAwesomeFormAssociated {
     this.displayInput.blur();
   }
 
-  formResetCallback () {
+  formResetCallback() {
     this.value = this.defaultValue;
-    super.formResetCallback()
-    this.handleValueChange()
+    super.formResetCallback();
+    this.handleValueChange();
   }
 
   render() {

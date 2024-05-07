@@ -1,4 +1,4 @@
-import { aTimeout, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
+import { aTimeout, expect, fixture, html, oneEvent } from '@open-wc/testing';
 import { clickOnElement } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import { sendKeys } from '@web/test-runner-commands';
@@ -218,9 +218,9 @@ describe('when submitting a form', () => {
     const radio = form.querySelectorAll('wa-radio')[1];
     radio.click();
 
-    await form.querySelector("wa-radio-group")?.updateComplete
+    await form.querySelector('wa-radio-group')?.updateComplete;
 
-    const formData = new FormData(form)
+    const formData = new FormData(form);
     expect(formData.get('a')).to.equal('2');
   });
 

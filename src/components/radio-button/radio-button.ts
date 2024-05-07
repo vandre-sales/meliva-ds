@@ -1,9 +1,9 @@
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LitElement } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -30,7 +30,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart label - The container that wraps the radio button's label.
  * @csspart suffix - The container that wraps the suffix.
  */
-@customElement("wa-radio-button")
+@customElement('wa-radio-button')
 export default class WaRadioButton extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
@@ -46,7 +46,7 @@ export default class WaRadioButton extends WebAwesomeFormAssociated {
    * it easier to style in button groups.
    */
   @property({ type: Boolean, reflect: true }) checked = false;
-  @property({ type: Boolean, attribute: "default-checked" }) defaultChecked = false;
+  @property({ type: Boolean, attribute: 'default-checked' }) defaultChecked = false;
 
   /** The radio's value. When selected, the radio group will receive this value. */
   @property({ attribute: false }) value: string;
@@ -66,10 +66,10 @@ export default class WaRadioButton extends WebAwesomeFormAssociated {
   /**
    * The string pointing to a form's id.
    */
-  @property({ reflect: true }) form: string | null = null
+  @property({ reflect: true }) form: string | null = null;
 
   /** Needed for Form Validation. Without it we get a console error. */
-  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true }
+  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
 
   connectedCallback() {
     super.connectedCallback();
@@ -150,7 +150,6 @@ export default class WaRadioButton extends WebAwesomeFormAssociated {
     `;
   }
 }
-
 
 declare global {
   interface HTMLElementTagNameMap {

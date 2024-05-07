@@ -48,13 +48,11 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --box-shadow - The shadow effects around the edges of the checkbox.
  * @cssproperty --toggle-size - The size of the checkbox.
  */
-@customElement("wa-checkbox")
+@customElement('wa-checkbox')
 export default class WaCheckbox extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
-  static get validators () {
-    return [
-      GroupRequiredValidator(),
-    ]
+  static get validators() {
+    return [GroupRequiredValidator()];
   }
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
@@ -88,7 +86,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ type: Boolean, reflect: true, attribute: "checked" }) defaultChecked = false;
+  @property({ type: Boolean, reflect: true, attribute: 'checked' }) defaultChecked = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -123,24 +121,24 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
     this.emit('wa-focus');
   }
 
-  @watch(["defaultChecked"])
-  handleDefaultCheckedChange () {
+  @watch(['defaultChecked'])
+  handleDefaultCheckedChange() {
     if (!this.hasInteracted && this.checked !== this.defaultChecked) {
-      this.checked = this.defaultChecked
-      this.value = this.checked ? this.value || 'on' : null
+      this.checked = this.defaultChecked;
+      this.value = this.checked ? this.value || 'on' : null;
       // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
       this.setValue(this.value, this.value);
-      this.updateValidity()
+      this.updateValidity();
     }
   }
 
-  @watch(["value", "checked"], { waitUntilFirstUpdate: true })
-  handleValueOrCheckedChange () {
-    this.value = this.checked ? this.value || 'on' : null
+  @watch(['value', 'checked'], { waitUntilFirstUpdate: true })
+  handleValueOrCheckedChange() {
+    this.value = this.checked ? this.value || 'on' : null;
 
     // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
     this.setValue(this.value, this.value);
-    this.updateValidity()
+    this.updateValidity();
   }
 
   @watch(['checked', 'indeterminate'], { waitUntilFirstUpdate: true })
@@ -150,13 +148,13 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
     this.updateValidity();
   }
 
-  formResetCallback () {
+  formResetCallback() {
     // Evaluate checked before the super call because of our watcher on value.
-    super.formResetCallback()
-    this.checked = this.defaultChecked
-    this.value = this.checked ? this.value || 'on' : null
+    super.formResetCallback();
+    this.checked = this.defaultChecked;
+    this.value = this.checked ? this.value || 'on' : null;
     this.setValue(this.value, this.value);
-    this.updateValidity()
+    this.updateValidity();
   }
 
   /** Simulates a click on the checkbox. */

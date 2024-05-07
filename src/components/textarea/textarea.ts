@@ -1,10 +1,10 @@
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -41,14 +41,12 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-width - The width of the textarea's borders.
  * @cssproperty --box-shadow - The shadow effects around the edges of the textarea.
  */
-@customElement("wa-textarea")
+@customElement('wa-textarea')
 export default class WaTextarea extends WebAwesomeFormAssociated {
   static formAssociated = true;
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static get validators() {
-    return [
-      MirrorValidator()
-    ];
+    return [MirrorValidator()];
   }
 
   assumeInteractionOn = ['wa-blur', 'wa-input'];
@@ -146,12 +144,12 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ reflect: true, attribute: "value" }) defaultValue: string = ''
+  @property({ reflect: true, attribute: 'value' }) defaultValue: string = '';
 
   connectedCallback() {
     super.connectedCallback();
 
-    this.value = this.defaultValue
+    this.value = this.defaultValue;
     this.resizeObserver = new ResizeObserver(() => this.setTextareaHeight());
 
     this.updateComplete.then(() => {
@@ -266,19 +264,19 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
     }
   }
 
-  formStateRestoreCallback (...args: Parameters<WebAwesomeFormAssociated["formStateRestoreCallback"]>) {
-    const [value, reason] = args
-    super.formStateRestoreCallback(value, reason)
+  formStateRestoreCallback(...args: Parameters<WebAwesomeFormAssociated['formStateRestoreCallback']>) {
+    const [value, reason] = args;
+    super.formStateRestoreCallback(value, reason);
 
     /** @ts-expect-error Type widening issue due to what a formStateRestoreCallback can accept. */
-    this.input.value = value
+    this.input.value = value;
   }
 
-  formResetCallback () {
+  formResetCallback() {
     this.input.value = this.defaultValue;
     this.value = this.defaultValue;
 
-    super.formResetCallback()
+    super.formResetCallback();
   }
 
   render() {

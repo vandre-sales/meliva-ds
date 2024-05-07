@@ -188,7 +188,7 @@ describe('<wa-checkbox>', () => {
 
     it('should be valid when required and checked', async () => {
       const checkbox = await fixture<HTMLFormElement>(html` <wa-checkbox required checked></wa-checkbox> `);
-      await checkbox.updateComplete
+      await checkbox.updateComplete;
       expect(checkbox.checkValidity()).to.be.true;
     });
 

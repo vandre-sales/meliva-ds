@@ -1,6 +1,6 @@
 import { sendMouse } from '@web/test-runner-commands';
 
-export const isSafari = navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('HeadlessChrome')
+export const isSafari = navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('HeadlessChrome');
 
 function determineMousePosition(el: Element, position: string, offsetX: number, offsetY: number) {
   const { x, y, width, height } = el.getBoundingClientRect();

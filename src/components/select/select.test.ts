@@ -118,9 +118,9 @@ describe('<wa-select>', () => {
         </wa-select>
       `);
 
-      expect(el.value).to.equal("option-1")
-      expect(el.defaultValue).to.equal("option-1")
-      expect(el.displayInput.value).to.equal("Option 1")
+      expect(el.value).to.equal('option-1');
+      expect(el.defaultValue).to.equal('option-1');
+      expect(el.displayInput.value).to.equal('Option 1');
 
       const secondOption = el.querySelectorAll<WaOption>('wa-option')[1];
       const changeHandler = sinon.spy();

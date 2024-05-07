@@ -1,11 +1,11 @@
 // eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
 import { aTimeout, elementUpdated, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import { getFormControls, serialize } from '../../../dist/webawesome.js';
-import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
-import { sendKeys } from '@web/test-runner-commands'; // must come from the same module
+import { isSafari } from '../../internal/test.js';
+import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js'; // must come from the same module
+import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type WaInput from './input.js';
-import { isSafari } from '../../internal/test.js';
 
 describe('<wa-input>', () => {
   it('should pass accessibility tests', async () => {
@@ -168,16 +168,18 @@ describe('<wa-input>', () => {
     });
 
     it('should not add a value to the form if disabled', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><wa-input name="name" disabled required></wa-input></form>`);
-      const el = form.querySelector("wa-input")!
-      el.value = "blah"
+      const form = await fixture<HTMLFormElement>(
+        html` <form><wa-input name="name" disabled required></wa-input></form>`
+      );
+      const el = form.querySelector('wa-input')!;
+      el.value = 'blah';
       await el.updateComplete;
 
-      expect(new FormData(form).get("name")).to.equal(null)
+      expect(new FormData(form).get('name')).to.equal(null);
       el.disabled = false;
       await el.updateComplete;
       // Should be invalid while enabled
-      expect(new FormData(form).get("name")).to.equal("blah")
+      expect(new FormData(form).get('name')).to.equal('blah');
     });
 
     it('should receive the correct validation attributes ("states") when valid', async () => {
@@ -577,25 +579,25 @@ describe('<wa-input>', () => {
     });
   });
 
-  it("Should be invalid if the pattern is invalid", async () => {
+  it('Should be invalid if the pattern is invalid', async () => {
     const el = await fixture<WaInput>(html` <wa-input required pattern="1234"></wa-input> `);
 
     el.formControl.focus();
     await el.updateComplete;
-    expect(el.checkValidity()).to.be.false
+    expect(el.checkValidity()).to.be.false;
 
-    await aTimeout(10)
-    await sendKeys({ type: "1234" })
-    await el.updateComplete
-    await aTimeout(10)
+    await aTimeout(10);
+    await sendKeys({ type: '1234' });
+    await el.updateComplete;
+    await aTimeout(10);
 
     // For some reason this is only required in Safari.
     if (isSafari) {
-      el.setCustomValidity("")
+      el.setCustomValidity('');
     }
 
-    expect(el.checkValidity()).to.be.true
-  })
+    expect(el.checkValidity()).to.be.true;
+  });
 
   runFormControlBaseTests('wa-input');
 });

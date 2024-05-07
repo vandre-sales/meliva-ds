@@ -1,9 +1,9 @@
 import '../button-group/button-group.js';
 import '../radio/radio.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html, LitElement } from 'lit';
-import { property, query, state } from 'lit/decorators.js';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
@@ -38,13 +38,12 @@ import type WaRadioButton from '../radio-button/radio-button.js';
  * @csspart button-group - The button group that wraps radio buttons.
  * @csspart button-group__base - The button group's `base` part.
  */
+@customElement('wa-radio-group')
 export default class WaRadioGroup extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  static get validators () {
-    return [
-      RequiredValidator()
-    ]
+  static get validators() {
+    return [RequiredValidator()];
   }
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
@@ -66,7 +65,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
   @property({ reflect: true }) name = null;
 
   @property({ attribute: false }) value: string | null = null;
-  @property({ attribute: "value", reflect: true }) defaultValue: string | null = null;
+  @property({ attribute: 'value', reflect: true }) defaultValue: string | null = null;
 
   /** The radio group's size. This size will be applied to all child radios and radio buttons. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -78,29 +77,33 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
    * We need this because if we don't have it, FormValidation yells at us that it's "not focusable".
    *   If we use `this.tabIndex = -1` we can't focus the radio inside.
    */
-  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true }
+  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
 
-  constructor () {
-    super()
+  constructor() {
+    super();
 
-    this.addEventListener("keydown", this.handleKeyDown)
+    this.addEventListener('keydown', this.handleKeyDown);
     this.addEventListener('click', this.handleRadioClick);
   }
 
   private handleRadioClick = (e: Event) => {
-    const clickedRadio = (e.target as HTMLElement).closest<WaRadio | WaRadioButton>("wa-radio, wa-radio-button")
+    const clickedRadio = (e.target as HTMLElement).closest<WaRadio | WaRadioButton>('wa-radio, wa-radio-button');
 
-    if (!clickedRadio) return
-    if (clickedRadio.disabled) { return }
+    if (!clickedRadio) return;
+    if (clickedRadio.disabled) {
+      return;
+    }
 
-    const oldValue = this.value
-    this.value = clickedRadio.value
+    const oldValue = this.value;
+    this.value = clickedRadio.value;
     clickedRadio.checked = true;
 
-    const radios = this.getAllRadios()
+    const radios = this.getAllRadios();
     const hasButtonGroup = radios.some(radio => radio.tagName.toLowerCase() === 'wa-radio-button');
     for (const radio of radios) {
-      if (clickedRadio === radio) { continue }
+      if (clickedRadio === radio) {
+        continue;
+      }
 
       radio.checked = false;
 
@@ -114,7 +117,6 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
       this.emit('wa-input');
     }
   };
-
 
   private getAllRadios() {
     return [...this.querySelectorAll<WaRadio | WaRadioButton>('wa-radio, wa-radio-button')];
@@ -141,9 +143,9 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
         radio.size = this.size;
 
         if (!radio.disabled && radio.value === this.value) {
-          radio.checked = true
+          radio.checked = true;
         } else {
-          radio.checked = false
+          radio.checked = false;
         }
       })
     );
@@ -195,13 +197,13 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
    * We use the first available radio as the validationTarget similar to native HTML that shows the validation popup on
    *   the first radio element.
    */
-  get validationTarget () {
+  get validationTarget() {
     return this.querySelector<WaRadio | WaRadioButton>(':is(wa-radio, wa-radio-button):not([disabled])') || undefined;
   }
 
-  @watch("value")
-  handleValueChange () {
-    this.syncRadioElements()
+  @watch('value')
+  handleValueChange() {
+    this.syncRadioElements();
   }
 
   @watch('size', { waitUntilFirstUpdate: true })
@@ -209,12 +211,12 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
     this.syncRadios();
   }
 
-  formResetCallback (...args: Parameters<WebAwesomeFormAssociated["formResetCallback"]>) {
-    this.value = this.defaultValue
+  formResetCallback(...args: Parameters<WebAwesomeFormAssociated['formResetCallback']>) {
+    this.value = this.defaultValue;
 
-    super.formResetCallback(...args)
+    super.formResetCallback(...args);
 
-    this.syncRadioElements()
+    this.syncRadioElements();
   }
 
   private handleKeyDown(event: KeyboardEvent) {
@@ -222,19 +224,21 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
       return;
     }
 
-    event.preventDefault()
+    event.preventDefault();
 
     const radios = this.getAllRadios().filter(radio => !radio.disabled);
 
-    if (radios.length <= 0) { return }
+    if (radios.length <= 0) {
+      return;
+    }
 
-    const oldValue = this.value
+    const oldValue = this.value;
 
     const checkedRadio = radios.find(radio => radio.checked) ?? radios[0];
     const incr = event.key === ' ' ? 0 : ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
     let index = radios.indexOf(checkedRadio) + incr;
 
-    if (!index) index = 0
+    if (!index) index = 0;
 
     if (index < 0) {
       index = radios.length - 1;
@@ -254,7 +258,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
       }
     });
 
-    this.value = radios[index].value
+    this.value = radios[index].value;
     radios[index].checked = true;
 
     if (!hasButtonGroup) {
@@ -277,9 +281,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const defaultSlot = html`
-      <slot @slotchange=${this.syncRadios}></slot>
-    `;
+    const defaultSlot = html` <slot @slotchange=${this.syncRadios}></slot> `;
 
     return html`
       <fieldset
@@ -331,3 +333,8 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
   }
 }
 
+declare global {
+  interface HTMLElementTagNameMap {
+    'wa-radio-group': WaRadioGroup;
+  }
+}
