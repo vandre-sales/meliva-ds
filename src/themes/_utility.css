@@ -6,7 +6,10 @@
 
 @supports (scrollbar-gutter: stable) {
   .wa-scroll-lock {
-    scrollbar-gutter: stable !important;
+    scrollbar-gutter: var(--wa-scroll-lock-gutter) !important;
+  }
+
+  .wa-scroll-lock body {
     overflow: hidden !important;
   }
 }
