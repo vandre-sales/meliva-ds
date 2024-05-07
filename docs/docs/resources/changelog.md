@@ -24,12 +24,18 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 
 ## Next
 
+- Fixed a bug in `<sl-split-panel>` that caused it not to recalculate it's position when going from being `display: none;` to its original display value. [#1942]
+- Fixed a bug in `<dialog>` where when it showed it would cause a layout shift. [#1967]
+- Fixed a bug in `<sl-tooltip>` that allowed unwanted text properties to leak in [#1947]
+- Fixed a bug in `<sl-button-group>` classes [#1974]
+- Fixed a bug in `<sl-textarea>` that may throw errors on `disconnectedCallback` in test environments [#1985]
+
+## 2.15.0
+
 - Added support for `contextElement` to `VirtualElements` in `<sl-popup>` [#1874]
 - Added the `sync` property to `<wa-dropdown>` [#1935]
 - Fixed a bug in `<sl-icon>` that did not properly apply mutators to spritesheets [#1927]
-- Fixed a bug in `<sl-split-panel>` that caused it not to recalculate it's position when going from being `display: none;` to its original display value. [#1942]
 - Fixed a bug in `.sl-scroll-lock` causing layout shifts [#1895]
-- Fixed a bug in `<dialog>` where when it showed it would cause a layout shift. [#1967]
 - Fixed a bug in `<sl-rating>` that caused the rating to not reset in some circumstances [#1877]
 - Fixed a bug in `<sl-select>` that caused the menu to not close when rendered in a shadow root [#1878]
 - Fixed a bug in `<sl-tree>` that caused a new stacking context resulting in tooltips being clipped [#1709]
@@ -37,7 +43,6 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Fixed a bug in the submenu controller that allowed two submenus to be open at the same time [#1880]
 - Fixed a bug in `<sl-input>` that prevented the control from receiving focus when clicking over the clear button
 - Fixed a bug in `<dialog>` where when it showed it would create a layout shift. [#1967]
-- Fixed a bug in `<sl-tooltip>` that allowed unwanted text properties to leak in [#1947]
 
 ## 2.14.0
 
