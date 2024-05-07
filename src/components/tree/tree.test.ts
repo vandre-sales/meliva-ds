@@ -751,4 +751,29 @@ describe('<wa-tree>', () => {
       });
     });
   });
+
+  // https://github.com/shoelace-style/shoelace/issues/1916
+  it("Should not render 'null' if it can't find a custom icon", async () => {
+    const tree = await fixture<WaTree>(html`
+      <wa-tree>
+        <wa-tree-item>
+          Item 1
+          <sl-icon name="1-circle" slot="expand-icon"></sl-icon>
+          <wa-tree-item> Item A </wa-tree-item>
+        </wa-tree-item>
+        <wa-tree-item>
+          Item 2
+          <wa-tree-item>Item A</wa-tree-item>
+          <wa-tree-item>Item B</wa-tree-item>
+        </wa-tree-item>
+        <wa-tree-item>
+          Item 3
+          <wa-tree-item>Item A</wa-tree-item>
+          <wa-tree-item>Item B</wa-tree-item>
+        </wa-tree-item>
+      </wa-tree>
+    `);
+
+    expect(tree.textContent).to.not.includes('null');
+  });
 });
