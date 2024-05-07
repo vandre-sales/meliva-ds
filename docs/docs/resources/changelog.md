@@ -34,6 +34,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Fixed a bug in `<sl-tree>` that caused a new stacking context resulting in tooltips being clipped [#1709]
 - Fixed a bug in `<sl-tab-group>` that caused the scroll controls to toggle indefinitely when zoomed in Safari [#1839]
 - Fixed a bug in the submenu controller that allowed two submenus to be open at the same time [#1880]
+- Fixed a bug in `<sl-input>` that prevented the control from receiving focus when clicking over the clear button
 
 ## 2.14.0
 
