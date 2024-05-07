@@ -35,6 +35,7 @@ export function lockBodyScrolling(lockingEl: HTMLElement) {
     const scrollbarWidth = getScrollbarWidth() + getExistingBodyPadding(); // must be measured before the `sl-scroll-lock` class is applied
     document.documentElement.classList.add('sl-scroll-lock');
     document.documentElement.style.setProperty('--sl-scroll-lock-size', `${scrollbarWidth}px`);
+  }
 }
 
 /**
