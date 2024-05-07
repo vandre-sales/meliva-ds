@@ -25,6 +25,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 ## Next
 
 - Added support for `contextElement` to `VirtualElements` in `<sl-popup>` [#1874]
+- Added the `sync` property to `<wa-dropdown>` [#1935]
 - Fixed a bug in `.sl-scroll-lock` causing layout shifts. [#1895]
 - Fixed a bug in `<sl-rating>` that caused the rating to not reset in some circumstances [#1877]
 - Fixed a bug in `<sl-select>` that caused the menu to not close when rendered in a shadow root [#1878]
