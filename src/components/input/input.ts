@@ -1,12 +1,12 @@
 import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
-import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -55,9 +55,9 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-width - The width of the input's borders. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the input.
  */
+@customElement("wa-input")
 export default class WaInput extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
-  static formAssociated = true
 
   static get validators () {
     return [
@@ -70,7 +70,6 @@ export default class WaInput extends WebAwesomeFormAssociated {
   private readonly localize = new LocalizeController(this);
 
   @query('.input__control') input: HTMLInputElement;
-  @query('.input__control') formControl: HTMLInputElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -362,6 +361,21 @@ export default class WaInput extends WebAwesomeFormAssociated {
     }
   }
 
+  formStateRestoreCallback (...args: Parameters<WebAwesomeFormAssociated["formStateRestoreCallback"]>) {
+    const [value, reason] = args
+    super.formStateRestoreCallback(value, reason)
+
+    /** @ts-expect-error Type widening issue due to what a formStateRestoreCallback can accept. */
+    this.input.value = value
+  }
+
+  formResetCallback () {
+    this.input.value = this.defaultValue;
+    this.value = this.defaultValue;
+
+    super.formResetCallback()
+  }
+
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
@@ -512,3 +526,8 @@ export default class WaInput extends WebAwesomeFormAssociated {
   }
 }
 
+declare global {
+  interface HTMLElementTagNameMap {
+    'wa-input': WaInput;
+  }
+}

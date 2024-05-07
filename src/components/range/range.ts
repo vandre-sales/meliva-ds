@@ -1,5 +1,5 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { eventOptions, property, query, state } from 'lit/decorators.js';
+import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -43,6 +43,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --track-height - The height of the track.
  * @cssproperty --track-active-offset - The point of origin of the active track.
  */
+@customElement("wa-range")
 export default class WaRange extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
@@ -316,3 +317,8 @@ export default class WaRange extends WebAwesomeFormAssociated {
   }
 }
 
+declare global {
+  interface HTMLElementTagNameMap {
+    'wa-range': WaRange;
+  }
+}

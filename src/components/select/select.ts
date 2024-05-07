@@ -7,7 +7,7 @@ import { getAnimation, setDefaultAnimation } from '../../utilities/animation-reg
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query, state } from 'lit/decorators.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -74,6 +74,7 @@ import type WaPopup from '../popup/popup.js';
  * @cssproperty --border-width - The width of the select's borders, including the listbox.
  * @cssproperty --box-shadow - The shadow effects around the edges of the select's combobox.
  */
+@customElement("wa-select")
 export default class WaSelect extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
@@ -664,11 +665,6 @@ export default class WaSelect extends WebAwesomeFormAssociated {
     this.updateValidity()
   }
 
-  formResetCallback () {
-    super.formResetCallback()
-    this.handleValueChange()
-  }
-
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
     if (this.open && !this.disabled) {
@@ -742,6 +738,12 @@ export default class WaSelect extends WebAwesomeFormAssociated {
   /** Removes focus from the control. */
   blur() {
     this.displayInput.blur();
+  }
+
+  formResetCallback () {
+    this.value = this.defaultValue;
+    super.formResetCallback()
+    this.handleValueChange()
   }
 
   render() {
@@ -914,3 +916,8 @@ setDefaultAnimation('select.hide', {
   options: { duration: 100, easing: 'ease' }
 });
 
+declare global {
+  interface HTMLElementTagNameMap {
+    'wa-select': WaSelect;
+  }
+}

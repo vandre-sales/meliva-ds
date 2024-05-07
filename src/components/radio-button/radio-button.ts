@@ -3,7 +3,7 @@ import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LitElement } from 'lit';
-import { property, query, state } from 'lit/decorators.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -30,6 +30,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart label - The container that wraps the radio button's label.
  * @csspart suffix - The container that wraps the suffix.
  */
+@customElement("wa-radio-button")
 export default class WaRadioButton extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
@@ -49,7 +50,6 @@ export default class WaRadioButton extends WebAwesomeFormAssociated {
 
   /** The radio's value. When selected, the radio group will receive this value. */
   @property({ attribute: false }) value: string;
-  @property({ reflect: true, attribute: "value" }) defaultValue: string;
 
   /** Disables the radio button. */
   @property({ type: Boolean }) disabled = false;
@@ -137,7 +137,6 @@ export default class WaRadioButton extends WebAwesomeFormAssociated {
           aria-disabled=${this.disabled}
           type="button"
           .value=${ifDefined(this.value)}
-          .defaultValue=${ifDefined(this.defaultValue)}
           tabindex="${this.checked ? '0' : '-1'}"
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}
@@ -152,3 +151,9 @@ export default class WaRadioButton extends WebAwesomeFormAssociated {
   }
 }
 
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'wa-radio-button': WaRadioButton;
+  }
+}

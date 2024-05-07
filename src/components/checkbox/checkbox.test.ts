@@ -177,8 +177,6 @@ describe('<wa-checkbox>', () => {
       await checkbox.updateComplete;
       await aTimeout(0);
 
-      console.log(checkbox.hasInteracted)
-
       expect(checkbox.hasAttribute('data-user-invalid')).to.be.true;
       expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
     });

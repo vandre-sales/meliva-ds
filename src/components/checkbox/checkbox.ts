@@ -1,11 +1,11 @@
 import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { GroupRequiredValidator } from '../../internal/validators/group-required-validator.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -47,8 +47,8 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-width - The width of the checkbox's borders. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the checkbox.
  * @cssproperty --toggle-size - The size of the checkbox.
-
  */
+@customElement("wa-checkbox")
 export default class WaCheckbox extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
   static get validators () {
@@ -123,12 +123,6 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
     this.emit('wa-focus');
   }
 
-  // @watch('disabled', { waitUntilFirstUpdate: true })
-  // handleDisabledChange() {
-  //   // Disabled form controls are always valid
-  //   this.formControlController.setValidity(this.disabled);
-  // }
-
   @watch(["defaultChecked"])
   handleDefaultCheckedChange () {
     if (!this.hasInteracted && this.checked !== this.defaultChecked) {
@@ -158,11 +152,11 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
 
   formResetCallback () {
     // Evaluate checked before the super call because of our watcher on value.
+    super.formResetCallback()
     this.checked = this.defaultChecked
     this.value = this.checked ? this.value || 'on' : null
     this.setValue(this.value, this.value);
     this.updateValidity()
-    super.formResetCallback()
   }
 
   /** Simulates a click on the checkbox. */
@@ -271,3 +265,8 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   }
 }
 
+declare global {
+  interface HTMLElementTagNameMap {
+    'wa-checkbox': WaCheckbox;
+  }
+}

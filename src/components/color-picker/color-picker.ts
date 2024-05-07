@@ -7,11 +7,11 @@ import '../visually-hidden/visually-hidden.js';
 
 import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { drag } from '../../internal/drag.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query, state } from 'lit/decorators.js';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { TinyColor } from '@ctrl/tinycolor';
@@ -91,6 +91,7 @@ declare const EyeDropper: EyeDropperConstructor;
  * @cssproperty --slider-handle-size - The diameter of the slider's handle.
  * @cssproperty --swatch-size - The size of each predefined color swatch.
  */
+@customElement("wa-color-picker")
 export default class WaColorPicker extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
@@ -999,7 +1000,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
 
                   // If we can't parse it, skip it
                   if (!parsedColor) {
-                    console.error(`Unable to parse swatch color: "${swatch}"`, this);
                     return '';
                   }
 
@@ -1071,3 +1071,8 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
   }
 }
 
+declare global {
+  interface HTMLElementTagNameMap {
+    'wa-color-picker': WaColorPicker;
+  }
+}

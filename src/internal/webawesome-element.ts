@@ -248,12 +248,15 @@ export class WebAwesomeFormAssociated
     }
 
     if (
-      changedProperties.has('formControl') ||
-      changedProperties.has('defaultValue') ||
       changedProperties.has('value')
     ) {
-      // Accounts for the snowflake case on `<wa-select>`
+      if (this.hasInteracted && this.value !== this.defaultValue) {
+        this.valueHasChanged = true
+      }
+
       const value = this.value
+
+      // Accounts for the snowflake case on `<wa-select>`
       if (Array.isArray(value)) {
         if (this.name) {
           const formData = new FormData()
@@ -264,12 +267,6 @@ export class WebAwesomeFormAssociated
         }
       } else {
         this.setValue(value as FormData | string | File | null, value as FormData | string | File | null);
-      }
-    }
-
-    if (changedProperties.has("disabled")) {
-      if (!this.disabled) {
-        this.removeAttribute("disabled")
       }
     }
 
@@ -371,15 +368,7 @@ export class WebAwesomeFormAssociated
   }
 
   formResetCallback() {
-    if ('formControl' in this && this.formControl) {
-      if (typeof this.defaultValue === "string" || this.defaultValue instanceof String) {
-        this.formControl.value = this.defaultValue as string;
-      }
-    }
-
-    this.setValidity({});
-    this.value = this.defaultValue;
-    this.requestUpdate("value")
+    this.resetValidity()
     this.hasInteracted = false;
     this.valueHasChanged = false;
     this.emittedEvents = [];
@@ -395,24 +384,18 @@ export class WebAwesomeFormAssociated
   /**
    * Called when the browser is trying to restore element’s state to state in which case reason is “restore”, or when the browser is trying to fulfill autofill on behalf of user in which case reason is “autocomplete”. In the case of “restore”, state is a string, File, or FormData object previously set as the second argument to setFormValue.
    */
-  formStateRestoreCallback(state: string | File | FormData | null) {
-    this.value = state;
+  formStateRestoreCallback(state: string | File | FormData | null, reason: "autocomplete" | "restore") {
+    this.value = state
 
-    this.setValidity({});
-    if (this.formControl) {
-      if (typeof this.defaultValue === "string" || this.defaultValue instanceof String) {
-        this.formControl.value = state as string;
-      }
+    if (reason === "restore") {
+      this.resetValidity()
     }
+
+    this.updateValidity()
   }
 
   setValue(...args: Parameters<typeof this.internals.setFormValue>) {
     const [value, state] = args;
-
-    // Dirty tracking of values.
-    if (this.value !== this.defaultValue) {
-      this.valueHasChanged = true;
-    }
 
     this.internals.setFormValue(value, state);
   }
@@ -424,19 +407,28 @@ export class WebAwesomeFormAssociated
     return [...staticValidators, ...validators];
   }
 
+  /**
+   * Reset validity is a way of removing manual custom errors and native validation.
+   */
+  resetValidity () {
+    this.setCustomValidity("")
+    this.setValidity({})
+  }
+
   updateValidity() {
-    if (this.disabled || this.getAttribute('disabled')) {
-      this.setValidity({});
-      // We don't run validators on disabled thiss to be inline with native HTMLElements.
-      // https://codepen.io/paramagicdev/pen/PoLogeL
+    if (
+      this.disabled
+      || this.hasAttribute('disabled')
+      || !this.willValidate //
+    ) {
+      this.resetValidity()
       return;
     }
 
-    const validators =
-      /** @type {{allValidators?: Array<import("../types.js").Validator>}} */ /** @type {unknown} */ this.allValidators;
+    const validators = this.allValidators;
 
-    if (!validators) {
-      // this.setValidity({});
+    if (!validators?.length) {
+      // If there's no validators, we do nothing. We also don't want to mess with custom errors, so we just stop here.
       return;
     }
 

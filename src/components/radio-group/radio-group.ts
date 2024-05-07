@@ -210,6 +210,8 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
   }
 
   formResetCallback (...args: Parameters<WebAwesomeFormAssociated["formResetCallback"]>) {
+    this.value = this.defaultValue
+
     super.formResetCallback(...args)
 
     this.syncRadioElements()
@@ -269,8 +271,6 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
 
     event.preventDefault();
   }
-
-
 
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');

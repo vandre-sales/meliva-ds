@@ -1,7 +1,7 @@
 import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -38,6 +38,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --checked-icon-scale - The size of the checked icon relative to the radio.
  * @cssproperty --toggle-size - The size of the radio.
  */
+@customElement("wa-radio")
 export default class WaRadio extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
