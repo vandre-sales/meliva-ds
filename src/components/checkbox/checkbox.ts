@@ -9,6 +9,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './checkbox.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
@@ -52,7 +53,7 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  */
 @customElement('wa-checkbox')
 export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeFormControl {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   private readonly formControlController = new FormControlController(this, {
     value: (control: WaCheckbox) => (control.checked ? control.value || 'on' : undefined),

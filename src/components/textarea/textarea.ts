@@ -171,7 +171,9 @@ export default class WaTextarea extends WebAwesomeElement implements WebAwesomeF
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.resizeObserver.unobserve(this.input);
+    if (this.input) {
+      this.resizeObserver.unobserve(this.input);
+    }
   }
 
   private handleBlur() {
