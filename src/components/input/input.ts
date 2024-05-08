@@ -72,7 +72,6 @@ export default class WaInput extends WebAwesomeFormAssociated {
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
 
-
   /**
    * The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults
    * to `text`.

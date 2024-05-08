@@ -8,7 +8,7 @@ import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './radio-button.styles.js';
-import type { CSSResultGroup, PropertyValues } from 'lit';
+import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
@@ -94,12 +94,6 @@ export default class WaRadioButton extends WebAwesomeFormAssociated {
     this.hasFocus = true;
     this.emit('wa-focus');
   }
-
-  // protected willUpdate(changedProperties: PropertyValues<this>): void {
-  //   if (this.disabled && changedProperties.has("checked")) {
-  //     this.checked = Boolean(changedProperties.get("checked"))
-  //   }
-  // }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {

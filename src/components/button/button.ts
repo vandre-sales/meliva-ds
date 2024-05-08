@@ -1,12 +1,12 @@
 import '../icon/icon.js';
 import '../spinner/spinner.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -52,17 +52,15 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --label-color-active - The color of the button's label when active.
  * @cssproperty --label-color-hover - The color of the button's label on hover.
  */
-@customElement("wa-button")
+@customElement('wa-button')
 export default class WaButton extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  static get validators () {
-    return [
-      MirrorValidator()
-    ]
+  static get validators() {
+    return [MirrorValidator()];
   }
 
-  assumeInteractionOn = ["click"]
+  assumeInteractionOn = ['click'];
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
   private readonly localize = new LocalizeController(this);
 
@@ -132,7 +130,7 @@ export default class WaButton extends WebAwesomeFormAssociated {
    * The "form owner" to associate the button with. If omitted, the closest containing form will be used instead. The
    * value of this attribute must be an id of a form in the same document or shadow root as the button.
    */
-  @property({ reflect: true }) form: string | null = null
+  @property({ reflect: true }) form: string | null = null;
 
   /** Used to override the form owner's `action` attribute. */
   @property({ attribute: 'formaction' }) formAction: string;
@@ -161,19 +159,19 @@ export default class WaButton extends WebAwesomeFormAssociated {
   }
 
   private handleClick() {
-    const form = this.getForm()
+    const form = this.getForm();
 
-    if (!form) return
+    if (!form) return;
 
-    const lightDOMButton = this.constructLightDOMButton()
+    const lightDOMButton = this.constructLightDOMButton();
 
     // form.append(lightDOMButton);
-    this.parentElement?.append(lightDOMButton)
+    this.parentElement?.append(lightDOMButton);
     lightDOMButton.click();
     lightDOMButton.remove();
   }
 
-  private constructLightDOMButton () {
+  private constructLightDOMButton() {
     const button = document.createElement('button');
     button.type = this.type;
     button.style.position = 'absolute';
@@ -191,11 +189,11 @@ export default class WaButton extends WebAwesomeFormAssociated {
       }
     });
 
-    return button
+    return button;
   }
 
   private handleInvalid() {
-    this.emit("wa-invalid");
+    this.emit('wa-invalid');
   }
 
   private isButton() {
@@ -208,11 +206,11 @@ export default class WaButton extends WebAwesomeFormAssociated {
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
-    this.updateValidity()
+    this.updateValidity();
   }
 
   // eslint-disable-next-line
-  setValue (..._args: Parameters<WebAwesomeFormAssociated["setValue"]>) {
+  setValue(..._args: Parameters<WebAwesomeFormAssociated['setValue']>) {
     // This is just a stub. We dont ever actually want to set a value on the form. That happens when the button is clicked and added
     // via the light dom button.
   }

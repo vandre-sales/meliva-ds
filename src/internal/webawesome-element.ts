@@ -244,21 +244,19 @@ export class WebAwesomeFormAssociated
       }
     }
 
-    if (
-      changedProperties.has('value') ||
-      changedProperties.has("disabled")
-    ) {
-
+    if (changedProperties.has('value') || changedProperties.has('disabled')) {
       // this is a hack because of how "disabled" attribute can be set by static HTML, but then changed via property, but we don't
       // want to use reflection because of a bug in "formDisabledCallback"
-      if (!this.disabled) { this.removeAttribute("disabled") }
+      if (!this.disabled) {
+        this.removeAttribute('disabled');
+      }
 
       if (this.hasInteracted && this.value !== this.defaultValue) {
         this.valueHasChanged = true;
       }
 
       if (this.input) {
-        this.input.value = this.value
+        this.input.value = this.value;
       }
 
       const value = this.value;
