@@ -31,7 +31,7 @@
 {# Component API #}
 {% block afterContent %}
   {# Slots #}
-  {% if component.slots.length %}
+  {% if component.slots?.length %}
     <h2>Slots</h2>
 
     <div class="table-scroll">
@@ -61,7 +61,7 @@
   {% endif %}
 
   {# Properties #}
-  {% if component.properties.length %}
+  {% if component.properties?.length %}
     <h2>Properties</h2>
 
     <div class="table-scroll">
@@ -113,7 +113,7 @@
   {% endif %}
 
   {# Methods #}
-  {% if component.methods.length %}
+  {% if component.methods?.length %}
     <h2>Methods</h2>
     <div class="table-scroll">
       <table class="component-table">
@@ -130,7 +130,7 @@
               <td class="table-name"><code>{{ method.name }}()</code></td>
               <td class="table-description">{{ method.description | inlineMarkdown | safe }}</td>
               <td class="table-arguments">
-                {% if method.parameters.length %}
+                {% if method.parameters?.length %}
                   <code>
                     {% for param in method.parameters %}
                       {{ param.name }}: {{ param.type.text | trimPipes }}{% if not loop.last %},{% endif %}
@@ -146,7 +146,7 @@
   {% endif %}
 
   {# States #}
-  {% if component.states.length %}
+  {% if component.states?.length %}
     <h2>States</h2>
     <div class="table-scroll">
       <table class="component-table">
@@ -171,7 +171,7 @@
   {% endif %}
 
   {# Events #}
-  {% if component.events.length %}
+  {% if component.events?.length %}
     <h2>Events</h2>
 
     <div class="table-scroll">
@@ -195,7 +195,7 @@
   {% endif %}
 
   {# Custom Properties #}
-  {% if component.cssProperties.length %}
+  {% if component.cssProperties?.length %}
     <h2>CSS custom properties</h2>
 
     <div class="table-scroll">
@@ -225,7 +225,7 @@
   {% endif %}
 
   {# CSS Parts #}
-  {% if component.cssParts.length %}
+  {% if component.cssParts?.length %}
     <h2>CSS parts</h2>
 
     <div class="table-scroll">
@@ -251,7 +251,7 @@
   {% endif %}
 
   {# Dependencies #}
-  {% if component.dependencies.length %}
+  {% if component.dependencies?.length %}
     <h2>Dependencies</h2>
     <p>
       This component automatically imports the following elements. Subdependencies, if any exist, will also be included in this list.

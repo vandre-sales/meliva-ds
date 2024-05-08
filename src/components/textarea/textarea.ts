@@ -264,16 +264,7 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
     }
   }
 
-  formStateRestoreCallback(...args: Parameters<WebAwesomeFormAssociated['formStateRestoreCallback']>) {
-    const [value, reason] = args;
-    super.formStateRestoreCallback(value, reason);
-
-    /** @ts-expect-error Type widening issue due to what a formStateRestoreCallback can accept. */
-    this.input.value = value;
-  }
-
   formResetCallback() {
-    this.input.value = this.defaultValue;
     this.value = this.defaultValue;
 
     super.formResetCallback();

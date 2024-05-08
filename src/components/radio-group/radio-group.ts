@@ -224,13 +224,13 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
       return;
     }
 
-    event.preventDefault();
-
     const radios = this.getAllRadios().filter(radio => !radio.disabled);
 
     if (radios.length <= 0) {
       return;
     }
+
+    event.preventDefault();
 
     const oldValue = this.value;
 

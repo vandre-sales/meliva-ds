@@ -374,9 +374,6 @@ describe('<wa-input>', () => {
         </form>
       `);
 
-      // Yes, this is a "breakage" from previous overloads, but this is how the browser works :shrug:
-      // https://codepen.io/paramagicdev/pen/rNbpqje
-
       expect(form.reportValidity()).to.be.false;
     });
 
@@ -582,7 +579,7 @@ describe('<wa-input>', () => {
   it('Should be invalid if the pattern is invalid', async () => {
     const el = await fixture<WaInput>(html` <wa-input required pattern="1234"></wa-input> `);
 
-    el.formControl.focus();
+    el.input.focus();
     await el.updateComplete;
     expect(el.checkValidity()).to.be.false;
 

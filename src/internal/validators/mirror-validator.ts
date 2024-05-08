@@ -7,7 +7,7 @@ import type { Validator } from '../webawesome-element.js';
 export const MirrorValidator = (): Validator => {
   return {
     checkValidity(element) {
-      const formControl = element.formControl;
+      const formControl = element.input;
 
       const validity: ReturnType<Validator['checkValidity']> = {
         message: '',

@@ -72,8 +72,6 @@ export default class WaInput extends WebAwesomeFormAssociated {
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
 
-  private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
-  private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
 
   /**
    * The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults
@@ -195,6 +193,9 @@ export default class WaInput extends WebAwesomeFormAssociated {
     }
   })
   spellcheck = true;
+
+  private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
+  private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
 
   /**
    * Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
@@ -359,16 +360,7 @@ export default class WaInput extends WebAwesomeFormAssociated {
     }
   }
 
-  formStateRestoreCallback(...args: Parameters<WebAwesomeFormAssociated['formStateRestoreCallback']>) {
-    const [value, reason] = args;
-    super.formStateRestoreCallback(value, reason);
-
-    /** @ts-expect-error Type widening issue due to what a formStateRestoreCallback can accept. */
-    this.input.value = value;
-  }
-
   formResetCallback() {
-    this.input.value = this.defaultValue;
     this.value = this.defaultValue;
 
     super.formResetCallback();

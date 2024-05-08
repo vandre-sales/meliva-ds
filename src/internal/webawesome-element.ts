@@ -182,7 +182,7 @@ export class WebAwesomeFormAssociated
   assumeInteractionOn: string[] = ['wa-input'];
 
   // Additional
-  formControl?: (HTMLElement & { value: unknown }) | HTMLInputElement | HTMLTextAreaElement;
+  input?: (HTMLElement & { value: unknown }) | HTMLInputElement | HTMLTextAreaElement;
 
   validators: Validator[] = [];
 
@@ -244,9 +244,21 @@ export class WebAwesomeFormAssociated
       }
     }
 
-    if (changedProperties.has('value')) {
+    if (
+      changedProperties.has('value') ||
+      changedProperties.has("disabled")
+    ) {
+
+      // this is a hack because of how "disabled" attribute can be set by static HTML, but then changed via property, but we don't
+      // want to use reflection because of a bug in "formDisabledCallback"
+      if (!this.disabled) { this.removeAttribute("disabled") }
+
       if (this.hasInteracted && this.value !== this.defaultValue) {
         this.valueHasChanged = true;
+      }
+
+      if (this.input) {
+        this.input.value = this.value
       }
 
       const value = this.value;
@@ -316,7 +328,7 @@ export class WebAwesomeFormAssociated
    * Override this to change where constraint validation popups are anchored.
    */
   get validationTarget(): undefined | HTMLElement {
-    return (this.formControl || undefined) as undefined | HTMLElement;
+    return (this.input || undefined) as undefined | HTMLElement;
   }
 
   setValidity(...args: Parameters<typeof this.internals.setValidity>) {
@@ -434,7 +446,7 @@ export class WebAwesomeFormAssociated
       customError: Boolean(this.__manualCustomError)
     };
 
-    const formControl = this.validationTarget || this.formControl || undefined;
+    const formControl = this.validationTarget || this.input || undefined;
 
     let finalMessage = '';
 

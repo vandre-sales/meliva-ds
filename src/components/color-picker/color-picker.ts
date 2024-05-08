@@ -783,7 +783,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
 
       if (!this.disabled) {
         // By standards we have to emit a `wa-invalid` event here synchronously.
-        // this.formControlController.emitInvalidEvent();
         this.emit('wa-invalid');
       }
 
@@ -793,18 +792,8 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
     return super.reportValidity();
   }
 
-  formStateRestoreCallback(...args: Parameters<WebAwesomeFormAssociated['formStateRestoreCallback']>) {
-    const [value, reason] = args;
-    const oldValue = this.value;
-    super.formStateRestoreCallback(value, reason);
-
-    this.handleValueChange(oldValue, this.value);
-  }
-
   formResetCallback() {
-    const oldValue = this.value;
     this.value = this.defaultValue;
-    this.handleValueChange(oldValue, this.value);
 
     super.formResetCallback();
   }
