@@ -9,11 +9,11 @@ export default css`
     --border-style: var(--wa-form-controls-border-style);
     --border-width: var(--wa-form-controls-border-width);
     --box-shadow: none;
-    --height: calc(1em * var(--wa-font-line-height-compact));
+    --height: calc(1em * var(--wa-form-controls-value-line-height));
     --thumb-color: var(--wa-form-controls-resting-color);
     --thumb-color-checked: var(--wa-form-controls-background);
     --thumb-shadow: none;
-    --thumb-size: calc(var(--height) - var(--border-width) * 4);
+    --thumb-size: calc((var(--height) - var(--border-width) * 2) * 0.75);
     --width: calc(var(--height) * 1.75);
 
     display: inline-block;
@@ -65,7 +65,6 @@ export default css`
     height: var(--thumb-size);
     background-color: var(--thumb-color);
     border-radius: 50%;
-    border: solid var(--border-width) var(--thumb-color);
     box-shadow: var(--thumb-shadow);
     translate: calc((var(--width) - var(--height)) / -2);
     transition:
@@ -97,7 +96,6 @@ export default css`
 
   .switch--checked .switch__control .switch__thumb {
     background: var(--thumb-color-checked);
-    border-color: var(--thumb-color-checked);
     translate: calc((var(--width) - var(--height)) / 2);
   }
 

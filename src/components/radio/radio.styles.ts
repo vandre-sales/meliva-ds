@@ -10,8 +10,8 @@ export default css`
     --border-width: var(--wa-form-controls-border-width);
     --box-shadow: none;
     --checked-icon-color: var(--wa-form-controls-activated-color);
-    --checked-icon-scale: 0.8;
-    --toggle-size: calc(1em * var(--wa-font-line-height-compact));
+    --checked-icon-scale: 0.75;
+    --toggle-size: calc(1em * var(--wa-form-controls-value-line-height));
 
     display: block;
   }

@@ -13,7 +13,7 @@ export default css`
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-form-controls-border-width);
     --box-shadow: none;
-    --toggle-size: calc(1em * var(--wa-font-line-height-compact));
+    --toggle-size: calc(1em * var(--wa-form-controls-value-line-height));
 
     display: inline-block;
   }
