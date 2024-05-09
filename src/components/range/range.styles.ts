@@ -3,13 +3,14 @@ import { css } from 'lit';
 export default css`
   :host {
     --thumb-color: var(--wa-form-controls-activated-color);
-    --thumb-shadow: 0 0 transparent;
-    --thumb-size: calc(1rem * var(--wa-font-line-height-compact));
+    --thumb-gap: calc(var(--thumb-size) * 0.125);
+    --thumb-shadow: initial;
+    --thumb-size: calc(1rem * var(--wa-form-controls-value-line-height));
     --tooltip-offset: calc(var(--wa-tooltip-arrow-size) * 2.5);
     --track-color-active: var(--wa-color-neutral-fill-highlight);
     --track-color-inactive: var(--wa-color-neutral-fill-highlight);
     --track-active-offset: 0%;
-    --track-height: calc(var(--thumb-size) / 4);
+    --track-height: calc(var(--thumb-size) * 0.25);
 
     display: block;
   }
@@ -66,8 +67,8 @@ export default css`
     border-radius: 50%;
     background-color: var(--thumb-color);
     box-shadow:
-      var(--thumb-shadow),
-      0 0 0 calc(var(--track-height) / 2) var(--wa-color-surface-default);
+      var(--thumb-shadow, 0 0 transparent),
+      0 0 0 var(--thumb-gap) var(--wa-color-surface-default);
     -webkit-appearance: none;
     margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
     cursor: pointer;
@@ -108,7 +109,7 @@ export default css`
     background-color: var(--thumb-color);
     box-shadow:
       var(--thumb-shadow),
-      0 0 0 calc(var(--track-height) / 2) var(--wa-color-surface-default);
+      0 0 0 var(--thumb-gap) var(--wa-color-surface-default);
     transition:
       var(--wa-transition-fast) border-color,
       var(--wa-transition-fast) background-color,

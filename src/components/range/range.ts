@@ -39,6 +39,7 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  * @csspart tooltip - The range's tooltip.
  *
  * @cssproperty --thumb-color - The color of the thumb.
+ * @cssproperty --thumb-gap - The visual gap between the edges of the thumb and the track.
  * @cssproperty --thumb-shadow - The shadow effects around the edges of the thumb.
  * @cssproperty --thumb-size - The size of the thumb.
  * @cssproperty --tooltip-offset - The vertical distance the tooltip is offset from the track.
