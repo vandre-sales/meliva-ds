@@ -4,6 +4,28 @@ description: TODO
 layout: page.njk
 ---
 
+
+```html {.example}
+<form>
+  <wa-input required name="input" label="Give me a damn name" value="should reset to this"></wa-input>
+  <br>
+  <wa-select required name="select" label="Select something asshole"></wa-select>
+  <br>
+  <wa-radio-group required name="radio-group">
+    <wa-radio value="1">Radio 1</wa-radio>
+    <wa-radio value="2">Radio 2</wa-radio>
+    <wa-radio value="3">Radio 3</wa-radio>
+    <wa-radio value="4">Radio 4</wa-radio>
+  </wa-radio-group>
+  <br>
+  <wa-checkbox checked>Check me</wa-checkbox>
+  <br>
+  <wa-button type="reset">Reset</wa-button>
+</form>
+```
+
+
+
 Adding the `wa-valid` or `wa-invalid` class to a form control will change its appearance. This is useful for applying validation styles to server-rendered form controls.
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">

@@ -2,7 +2,7 @@ import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html } from 'lit';
+import { LitElement, html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -59,8 +59,19 @@ import type { CSSResultGroup } from 'lit';
 export default class WaInput extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
+  static shadowRootOptions = {...LitElement.shadowRootOptions, delegatesFocus: true }
+
   static get validators() {
-    return [MirrorValidator()];
+    return [
+      MirrorValidator()
+    ];
+  }
+
+  constructor () {
+    super()
+    this.addEventListener("invalid", () => {
+      this.addCustomState("user-invalid")
+    })
   }
 
   assumeInteractionOn = ['wa-blur', 'wa-input'];
@@ -277,6 +288,9 @@ export default class WaInput extends WebAwesomeFormAssociated {
         // See https://github.com/shoelace-style/shoelace/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
+          // getForm.elements.find(() => {
+          //   el.getAttribute("type") === "submit"
+          // })
           this.getForm()?.requestSubmit(null);
         }
       });

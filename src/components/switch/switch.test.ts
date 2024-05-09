@@ -14,7 +14,7 @@ describe('<wa-switch>', async () => {
     const el = await fixture<WaSwitch>(html` <wa-switch></wa-switch> `);
 
     expect(el.name).to.equal('');
-    expect(el.value).to.be.undefined;
+    expect(el.value).to.be.null;
     expect(el.title).to.equal('');
     expect(el.disabled).to.be.false;
     expect(el.required).to.be.false;

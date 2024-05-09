@@ -211,14 +211,14 @@ export class WebAwesomeFormAssociated
       // console.warn(this);
       // console.warn('For further reading: https://github.com/whatwg/html/issues/8365');
     }
+
+    // eslint-disable-next-line
+    this.addEventListener('invalid', this.emitInvalid);
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.updateValidity();
-
-    // eslint-disable-next-line
-    this.addEventListener('invalid', this.emitInvalid);
 
     // Lazily evaluate after the constructor to allow people to override the `assumeInteractionOn`
     this.assumeInteractionOn.forEach(event => {
@@ -234,6 +234,8 @@ export class WebAwesomeFormAssociated
   emitInvalid = (e: Event) => {
     if (e.target !== this) return;
 
+    // An "invalid" event counts as interacted, this is usually triggered by a button "submitting"
+    this.hasInteracted = true
     this.emit('wa-invalid');
   };
 

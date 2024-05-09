@@ -1,18 +1,17 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { defaultValue } from '../../internal/default-value.js';
-import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './switch.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
+import type { CSSResultGroup, PropertyValues } from 'lit';
 
 /**
  * @summary Switches allow the user to toggle an option on or off.
@@ -50,14 +49,15 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  * @cssproperty --width - The width of the switch.
  */
 @customElement('wa-switch')
-export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaSwitch extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  private readonly formControlController = new FormControlController(this, {
-    value: (control: WaSwitch) => (control.checked ? control.value || 'on' : undefined),
-    defaultValue: (control: WaSwitch) => control.defaultChecked,
-    setValue: (control: WaSwitch, checked: boolean) => (control.checked = checked)
-  });
+  static get validators () {
+    return [
+      MirrorValidator()
+    ]
+  }
+
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
@@ -69,7 +69,7 @@ export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFor
   @property() name = '';
 
   /** The current value of the switch, submitted as a name/value pair with form data. */
-  @property() value: string;
+  @property() value: null | string;
 
   /** The switch's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -88,7 +88,7 @@ export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFor
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
+  @property({ reflect: true }) form = null;
 
   /** Makes the switch a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
@@ -96,18 +96,10 @@ export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFor
   /** The switch's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
-  /** Gets the validity state object */
-  get validity() {
-    return this.input.validity;
-  }
+  firstUpdated (changedProperties: PropertyValues<typeof this>) {
+    super.firstUpdated(changedProperties)
 
-  /** Gets the validation message */
-  get validationMessage() {
-    return this.input.validationMessage;
-  }
-
-  firstUpdated() {
-    this.formControlController.updateValidity();
+    this.handleValueOrCheckedChange()
   }
 
   private handleBlur() {
@@ -117,11 +109,6 @@ export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFor
 
   private handleInput() {
     this.emit('wa-input');
-  }
-
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
   }
 
   private handleClick() {
@@ -150,16 +137,20 @@ export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFor
     }
   }
 
-  @watch('checked', { waitUntilFirstUpdate: true })
-  handleCheckedChange() {
+  @watch(['value', 'checked'], { waitUntilFirstUpdate: true })
+  handleValueOrCheckedChange() {
+    this.value = this.checked ? this.value || 'on' : null;
+    this.requestUpdate("value")
     this.input.checked = this.checked; // force a sync update
-    this.formControlController.updateValidity();
+    // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
+    this.setValue(this.value, this.value);
+    this.updateValidity();
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Disabled form controls are always valid
-    this.formControlController.setValidity(true);
+    this.updateValidity();
   }
 
   /** Simulates a click on the switch. */
@@ -177,25 +168,24 @@ export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFor
     this.input.blur();
   }
 
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    return this.input.checkValidity();
+  setValue(value: string | File | FormData | null, stateValue?: string | File | FormData | null | undefined): void {
+    if (!this.checked) {
+      this.value = null
+      this.internals.setFormValue(null, null)
+      return
+    }
+
+    if (!value) {
+      value = "on"
+    }
+
+    this.internals.setFormValue(value, stateValue)
   }
 
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
-  }
-
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity() {
-    return this.input.reportValidity();
-  }
-
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
-  setCustomValidity(message: string) {
-    this.input.setCustomValidity(message);
-    this.formControlController.updateValidity();
+  formResetCallback(): void {
+    this.checked = this.defaultChecked
+    this.handleValueOrCheckedChange()
+    super.formResetCallback()
   }
 
   render() {
@@ -238,7 +228,6 @@ export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFor
             aria-describedby="help-text"
             @click=${this.handleClick}
             @input=${this.handleInput}
-            @invalid=${this.handleInvalid}
             @blur=${this.handleBlur}
             @focus=${this.handleFocus}
             @keydown=${this.handleKeyDown}
@@ -263,12 +252,6 @@ export default class WaSwitch extends WebAwesomeElement implements WebAwesomeFor
         </div>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'wa-switch': WaSwitch;
   }
 }
 
