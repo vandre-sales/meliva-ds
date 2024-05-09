@@ -4,7 +4,7 @@ import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type WaSwitch from './switch.js';
 
-describe('<wa-switch>', () => {
+describe('<wa-switch>', async () => {
   it('should pass accessibility tests', async () => {
     const el = await fixture<WaSwitch>(html` <wa-switch>Switch</wa-switch> `);
     await expect(el).to.be.accessible();
@@ -323,5 +323,5 @@ describe('<wa-switch>', () => {
     expect(window.scrollY).to.equal(0);
   });
 
-  runFormControlBaseTests('wa-switch');
+  await runFormControlBaseTests('wa-switch');
 });

@@ -5,7 +5,7 @@ import { serialize } from '../../utilities/form.js';
 import sinon from 'sinon';
 import type WaTextarea from './textarea.js';
 
-describe('<wa-textarea>', () => {
+describe('<wa-textarea>', async () => {
   it('should pass accessibility tests', async () => {
     const el = await fixture<WaTextarea>(html` <wa-textarea label="Name"></wa-textarea> `);
     await expect(el).to.be.accessible();
@@ -306,5 +306,5 @@ describe('<wa-textarea>', () => {
     });
   });
 
-  runFormControlBaseTests('wa-textarea');
+  await runFormControlBaseTests('wa-textarea');
 });

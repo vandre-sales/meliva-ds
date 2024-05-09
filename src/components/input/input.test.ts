@@ -7,7 +7,7 @@ import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type WaInput from './input.js';
 
-describe('<wa-input>', () => {
+describe('<wa-input>', async () => {
   it('should pass accessibility tests', async () => {
     const el = await fixture<WaInput>(html` <wa-input label="Name"></wa-input> `);
     await expect(el).to.be.accessible();
@@ -596,5 +596,7 @@ describe('<wa-input>', () => {
     expect(el.checkValidity()).to.be.true;
   });
 
-  runFormControlBaseTests('wa-input');
+  await runFormControlBaseTests('wa-input');
+
 });
+

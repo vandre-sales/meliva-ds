@@ -7,7 +7,7 @@ import sinon from 'sinon';
 import type WaOption from '../option/option.js';
 import type WaSelect from './select.js';
 
-describe('<wa-select>', () => {
+describe('<wa-select>', async () => {
   describe('accessibility', () => {
     it('should pass accessibility tests when closed', async () => {
       const select = await fixture<WaSelect>(html`
@@ -610,5 +610,5 @@ describe('<wa-select>', () => {
     expect(tag.hasAttribute('pill')).to.be.true;
   });
 
-  runFormControlBaseTests('wa-select');
+  await runFormControlBaseTests('wa-select');
 });

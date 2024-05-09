@@ -353,7 +353,7 @@ describe('<wa-checkbox>', () => {
     });
   });
 
-  describe('indeterminate', () => {
+  describe('indeterminate', async () => {
     it('should render indeterminate icon until checked', async () => {
       const el = await fixture<WaCheckbox>(html`<wa-checkbox indeterminate></wa-checkbox>`);
       let indeterminateIcon = el.shadowRoot!.querySelector('[part~="indeterminate-icon"]')!;
@@ -368,6 +368,6 @@ describe('<wa-checkbox>', () => {
       expect(indeterminateIcon).to.be.null;
     });
 
-    runFormControlBaseTests('wa-checkbox');
+    await runFormControlBaseTests('wa-checkbox');
   });
 });

@@ -5,7 +5,7 @@ import type WaButton from './button.js';
 
 const variants = ['brand', 'success', 'neutral', 'warning', 'danger'];
 
-describe('<wa-button>', () => {
+describe('<wa-button>', async () => {
   describe('accessibility tests', () => {
     variants.forEach(variant => {
       it(`should be accessible when variant is "${variant}"`, async () => {
@@ -277,30 +277,30 @@ describe('<wa-button>', () => {
     });
   });
 
-  runFormControlBaseTests({
-    tagName: 'wa-button',
-    variantName: 'type="button"',
+  await Promise.all([
+    runFormControlBaseTests({
+      tagName: 'wa-button',
+      variantName: 'type="button"',
 
-    init: (control: WaButton) => {
-      control.type = 'button';
-    }
-  });
+      init: (control: WaButton) => {
+        control.type = 'button';
+      }
+    }),
+    runFormControlBaseTests({
+      tagName: 'wa-button',
+      variantName: 'type="submit"',
 
-  runFormControlBaseTests({
-    tagName: 'wa-button',
-    variantName: 'type="submit"',
+      init: (control: WaButton) => {
+        control.type = 'submit';
+      }
+    }),
+    runFormControlBaseTests({
+      tagName: 'wa-button',
+      variantName: 'href="xyz"',
 
-    init: (control: WaButton) => {
-      control.type = 'submit';
-    }
-  });
-
-  runFormControlBaseTests({
-    tagName: 'wa-button',
-    variantName: 'href="xyz"',
-
-    init: (control: WaButton) => {
-      control.href = 'some-url';
-    }
-  });
+      init: (control: WaButton) => {
+        control.href = 'some-url';
+      }
+    })
+  ])
 });

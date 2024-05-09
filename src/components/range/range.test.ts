@@ -6,7 +6,7 @@ import { serialize } from '../../utilities/form.js';
 import sinon from 'sinon';
 import type WaRange from './range.js';
 
-describe('<wa-range>', () => {
+describe('<wa-range>', async () => {
   it('should pass accessibility tests', async () => {
     const el = await fixture<WaRange>(html` <wa-range label="Name"></wa-range> `);
     await expect(el).to.be.accessible();
@@ -231,5 +231,5 @@ describe('<wa-range>', () => {
     });
   });
 
-  runFormControlBaseTests('wa-range');
+  await runFormControlBaseTests('wa-range');
 });

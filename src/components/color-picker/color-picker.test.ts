@@ -6,7 +6,7 @@ import { serialize } from '../../utilities/form.js';
 import sinon from 'sinon';
 import type WaColorPicker from './color-picker.js';
 
-describe('<wa-color-picker>', () => {
+describe('<wa-color-picker>', async () => {
   describe('when the value changes', () => {
     it('should not emit wa-change or wa-input when the value is changed programmatically', async () => {
       const el = await fixture<WaColorPicker>(html` <wa-color-picker></wa-color-picker> `);
@@ -586,5 +586,5 @@ describe('<wa-color-picker>', () => {
     });
   });
 
-  runFormControlBaseTests('wa-color-picker');
+  await runFormControlBaseTests('wa-color-picker');
 });

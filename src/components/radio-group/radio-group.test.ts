@@ -291,7 +291,7 @@ describe('when a size is applied', () => {
   });
 });
 
-describe('when the value changes', () => {
+describe('when the value changes', async () => {
   it('should emit wa-change when toggled with the arrow keys', async () => {
     const radioGroup = await fixture<WaRadioGroup>(html`
       <wa-radio-group>
@@ -406,5 +406,5 @@ describe('when the value changes', () => {
     // expect(radioGroup.querySelector("wa-radio")?.getAttribute("aria-checked")).to.equal("true")
   });
 
-  runFormControlBaseTests('wa-radio-group');
+  await runFormControlBaseTests('wa-radio-group');
 });
