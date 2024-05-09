@@ -126,9 +126,11 @@ layout: page.njk
 <br />
 <wa-switch checked>Switch on</wa-switch>
 <br /><br />
+<wa-range label="Range" help-text="Here's a bit of handy content." min="0" max="100"></wa-range>
+<br /><br />
 <wa-input label="Label" help-text="Super helpful and/or contextual content" placeholder="Placeholder"></wa-input>
 <br />
-<wa-select label="Select">
+<wa-select label="Select" multiple value="option-1 option-2">
   <wa-option value="option-1">Option 1</wa-option>
   <wa-option value="option-2">Option 2</wa-option>
   <wa-option value="option-3">Option 3</wa-option>
