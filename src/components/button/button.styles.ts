@@ -5,8 +5,7 @@ export default css`
     --border-radius: var(--wa-form-controls-corners);
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-form-controls-border-width);
-    --box-shadow: var(--wa-shadow-level-0);
-    --box-shadow-color: var(--wa-color-shadow);
+    --box-shadow: initial;
 
     display: inline-block;
     position: relative;
@@ -118,8 +117,17 @@ export default css`
    */
 
   :host([checked]) {
-    --background: var(--wa-color-brand-spot);
-    --label-color: var(--wa-color-brand-text-on-spot);
+    --background: var(--wa-color-brand-fill-subtle);
+    --background-active: color-mix(in oklab, var(--background-hover), var(--wa-color-surface-default) 30%);
+    --background-hover: var(--background);
+    --border-color: var(--wa-form-controls-activated-color);
+    --border-color-active: var(--border-color);
+    --border-color-hover: var(--border-color);
+    --label-color: var(--wa-color-brand-text-on-fill);
+    --label-color-active: var(--label-color);
+    --label-color-hover: var(--label-color);
+    --indicator-color: var(--border-color);
+    --indicator-width: var(--wa-border-width-s);
   }
 
   /*
@@ -172,6 +180,12 @@ export default css`
     background: var(--background);
     border-color: var(--border-color);
     box-shadow: var(--box-shadow);
+  }
+
+  .button--checked {
+    box-shadow:
+      var(--box-shadow, 0 0 transparent),
+      inset 0 0 0 var(--indicator-width) var(--indicator-color);
   }
 
   .button--outline:not(.button--checked) {
@@ -443,7 +457,7 @@ export default css`
 
   /* All except the first */
   :host(.wa-button-group__button:not(.wa-button-group__button--first)) {
-    margin-inline-start: calc(-1 * var(--wa-border-width-s));
+    margin-inline-start: calc(-1 * var(--border-width));
   }
 
   /* Add a visual separator between solid buttons */

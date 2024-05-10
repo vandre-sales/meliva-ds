@@ -107,6 +107,12 @@ layout: page.njk
 <wa-button variant="danger" outline>Danger</wa-button>
 <br /><br />
 <wa-button variant="text">Brand</wa-button>
+<br /><br />
+<wa-radio-group label="Radio button group" name="a" value="1">
+  <wa-radio-button value="1">Option 1</wa-radio-button>
+  <wa-radio-button value="2">Option 2</wa-radio-button>
+  <wa-radio-button value="3">Option 3</wa-radio-button>
+</wa-radio-group>
 ```
 
 ## Form controls

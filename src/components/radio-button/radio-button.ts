@@ -22,6 +22,22 @@ import type { CSSResultGroup } from 'lit';
  * @event wa-blur - Emitted when the button loses focus.
  * @event wa-focus - Emitted when the button gains focus.
  *
+ * @cssproperty --background - The button's background styles.
+ * @cssproperty --background-active - The color of the button's background when active.
+ * @cssproperty --background-hover - The color of the button's background on hover.
+ * @cssproperty --border-color - The color of the button's border.
+ * @cssproperty --border-color-active - The color of the button's border when active.
+ * @cssproperty --border-color-hover - The color of the button's border on hover.
+ * @cssproperty --border-radius - The radius of the button's corners.
+ * @cssproperty --border-style - The style of the button's border.
+ * @cssproperty --border-width - The width of the button's border. Expects a single value.
+ * @cssproperty --box-shadow - The shadow effects around the edges of the button.
+ * @cssproperty --indicator-color - The color of the checked button indicator.
+ * @cssproperty --indicator-width - The width of the checked button indicator.
+ * @cssproperty --label-color - The color of the button's label.
+ * @cssproperty --label-color-active - The color of the button's label when active.
+ * @cssproperty --label-color-hover - The color of the button's label on hover.
+ *
  * @csspart base - The component's base wrapper.
  * @csspart button - The internal `<button>` element.
  * @csspart button--checked - The internal button element when the radio button is checked.

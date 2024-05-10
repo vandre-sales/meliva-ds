@@ -1895,11 +1895,6 @@ hasOutline: false
     margin-inline-end: var(--wa-space-m);
   }
 
-  .product-detail wa-radio-button[checked] {
-    --background: var(--wa-color-neutral-text-on-surface);
-    --label-color: var(--wa-color-surface-lowered);
-  }
-
   /* strata - support table */
   .support-table {
     font-size: var(--wa-font-size-s);
