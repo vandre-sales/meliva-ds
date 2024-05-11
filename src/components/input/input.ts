@@ -63,15 +63,9 @@ export default class WaInput extends WebAwesomeFormAssociated {
 
   static get validators() {
     return [
+      ...super.validators,
       MirrorValidator()
     ];
-  }
-
-  constructor () {
-    super()
-    this.addEventListener("invalid", () => {
-      this.addCustomState("user-invalid")
-    })
   }
 
   assumeInteractionOn = ['wa-blur', 'wa-input'];

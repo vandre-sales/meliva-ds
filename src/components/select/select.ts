@@ -78,11 +78,16 @@ import type WaPopup from '../popup/popup.js';
 export default class WaSelect extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  assumeInteractionOn = ['wa-blur', 'wa-input'];
-
   static get validators() {
-    return [RequiredValidator()];
+    return [
+      ...super.validators,
+      RequiredValidator({
+        validationElement: Object.assign(document.createElement("select"), {required: true})
+      })
+    ];
   }
+
+  assumeInteractionOn = ['wa-blur', 'wa-input'];
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);

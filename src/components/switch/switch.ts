@@ -54,6 +54,7 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
 
   static get validators () {
     return [
+      ...super.validators,
       MirrorValidator()
     ]
   }

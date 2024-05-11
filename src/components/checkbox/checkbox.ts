@@ -1,6 +1,7 @@
 import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { defaultValue } from '../../internal/default-value.js';
 import { GroupRequiredValidator } from '../../internal/validators/group-required-validator.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
@@ -10,7 +11,8 @@ import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './checkbox.styles.js';
-import type { CSSResultGroup } from 'lit';
+import type { CSSResultGroup, PropertyValues } from 'lit';
+import { CustomErrorValidator } from '../../internal/validators/custom-error-validator.js';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
@@ -52,7 +54,12 @@ import type { CSSResultGroup } from 'lit';
 export default class WaCheckbox extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
   static get validators() {
-    return [GroupRequiredValidator()];
+    return [
+      ...super.validators,
+      GroupRequiredValidator({
+        validationElement: Object.assign(document.createElement("input"), { type: "checkbox", required: true, name: "__validationCheckbox__" })
+      })
+    ];
   }
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
@@ -77,7 +84,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   @property({ type: Boolean }) disabled = false;
 
   /** Draws the checkbox in a checked state. */
-  @property({ type: Boolean }) checked = false;
+  @property({ type: Boolean, reflect: true }) checked = false;
 
   /**
    * Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a "select
@@ -86,7 +93,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ type: Boolean, reflect: true, attribute: 'checked' }) defaultChecked = false;
+  @defaultValue('checked') defaultChecked = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -125,14 +132,11 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   handleDefaultCheckedChange() {
     if (!this.hasInteracted && this.checked !== this.defaultChecked) {
       this.checked = this.defaultChecked;
-      this.value = this.checked ? this.value || 'on' : null;
-      // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
-      this.setValue(this.value, this.value);
-      this.updateValidity();
+      this.handleValueOrCheckedChange()
     }
   }
 
-  @watch(['value', 'checked'], { waitUntilFirstUpdate: true })
+  // @watch(['value', 'checked'], { waitUntilFirstUpdate: true })
   handleValueOrCheckedChange() {
     this.value = this.checked ? this.value || 'on' : null;
 
@@ -148,13 +152,20 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
     this.updateValidity();
   }
 
+  protected willUpdate(changedProperties: PropertyValues<this>): void {
+    super.willUpdate(changedProperties)
+
+    if (changedProperties.has("value") || changedProperties.has("checked")) {
+      this.handleValueOrCheckedChange()
+    }
+
+  }
+
   formResetCallback() {
     // Evaluate checked before the super call because of our watcher on value.
     super.formResetCallback();
     this.checked = this.defaultChecked;
-    this.value = this.checked ? this.value || 'on' : null;
-    this.setValue(this.value, this.value);
-    this.updateValidity();
+    this.handleValueOrCheckedChange()
   }
 
   /** Simulates a click on the checkbox. */

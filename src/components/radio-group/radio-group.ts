@@ -43,7 +43,12 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static get validators() {
-    return [RequiredValidator()];
+    return [
+      ...super.validators,
+      RequiredValidator({
+        validationElement: Object.assign(document.createElement("input"), { required: true, type: "radio", name: "__validationRadio__" })
+      })
+    ];
   }
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
@@ -89,8 +94,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
   private handleRadioClick = (e: Event) => {
     const clickedRadio = (e.target as HTMLElement).closest<WaRadio | WaRadioButton>('wa-radio, wa-radio-button');
 
-    if (!clickedRadio) return;
-    if (clickedRadio.disabled) {
+    if (!clickedRadio || clickedRadio.disabled) {
       return;
     }
 

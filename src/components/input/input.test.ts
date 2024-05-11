@@ -1,6 +1,6 @@
 // eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
 import { aTimeout, elementUpdated, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
-import { getFormControls, serialize } from '../../../dist/webawesome.js';
+import { serialize } from '../../../dist/webawesome.js';
 import { isSafari } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js'; // must come from the same module
 import { sendKeys } from '@web/test-runner-commands';
@@ -509,59 +509,31 @@ describe('<wa-input>', async () => {
     });
   });
 
-  describe('when using FormControlController', () => {
-    it('should submit with the correct form when the form attribute changes', async () => {
-      const el = await fixture<HTMLFormElement>(html`
-        <div>
-          <form id="f1">
-            <input type="hidden" name="b" value="2" />
-            <wa-button type="submit">Submit</wa-button>
-          </form>
-          <form id="f2">
-            <input type="hidden" name="c" value="3" />
-            <wa-button type="submit">Submit</wa-button>
-          </form>
-          <wa-input form="f1" name="a" value="1"></wa-input>
-        </div>
-      `);
-      const form = el.querySelector<HTMLFormElement>('#f2')!;
-      const input = document.querySelector('wa-input')!;
+  it('should submit with the correct form when the form attribute changes', async () => {
+    const el = await fixture<HTMLFormElement>(html`
+      <div>
+        <form id="f1">
+          <input type="hidden" name="b" value="2" />
+          <wa-button type="submit">Submit</wa-button>
+        </form>
+        <form id="f2">
+          <input type="hidden" name="c" value="3" />
+          <wa-button type="submit">Submit</wa-button>
+        </form>
+        <wa-input form="f1" name="a" value="1"></wa-input>
+      </div>
+    `);
+    const form = el.querySelector<HTMLFormElement>('#f2')!;
+    const input = document.querySelector('wa-input')!;
 
-      input.form = 'f2';
-      await input.updateComplete;
+    input.form = 'f2';
+    await input.updateComplete;
 
-      const formData = new FormData(form);
+    const formData = new FormData(form);
 
-      expect(formData.get('a')).to.equal('1');
-      expect(formData.get('b')).to.be.null;
-      expect(formData.get('c')).to.equal('3');
-    });
-  });
-
-  describe('when using the getFormControls() function', () => {
-    it('should return both native and Web Awesome form controls in the correct DOM order', async () => {
-      const el = await fixture<HTMLFormElement>(html`
-        <div>
-          <input type="text" name="a" value="1" form="f1" />
-          <wa-input type="text" name="b" value="2" form="f1"></wa-input>
-          <form id="f1">
-            <input type="hidden" name="c" value="3" />
-            <input type="text" name="d" value="4" />
-            <wa-input name="e" value="5"></wa-input>
-            <textarea name="f">6</textarea>
-            <wa-textarea name="g" value="7"></wa-textarea>
-            <wa-checkbox name="h" value="8"></wa-checkbox>
-          </form>
-          <input type="text" name="i" value="9" form="f1" />
-          <wa-input type="text" name="j" value="10" form="f1"></wa-input>
-        </div>
-      `);
-      const form = el.querySelector<HTMLFormElement>('form')!;
-
-      const formControls = getFormControls(form); // eslint-disable-line
-      expect(formControls.length).to.equal(10); // eslint-disable-line
-      expect(formControls.map((fc: HTMLInputElement) => fc.value).join('')).to.equal('12345678910'); // eslint-disable-line
-    });
+    expect(formData.get('a')).to.equal('1');
+    expect(formData.get('b')).to.be.null;
+    expect(formData.get('c')).to.equal('3');
   });
 
   describe('when using the setRangeText() function', () => {

@@ -9,7 +9,7 @@ import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { drag } from '../../internal/drag.js';
-import { html } from 'lit';
+import { html, LitElement } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
@@ -95,8 +95,13 @@ declare const EyeDropper: EyeDropperConstructor;
 export default class WaColorPicker extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
+  static shadowRootOptions = {...LitElement.shadowRootOptions, delegatesFocus: true }
+
   static get validators() {
-    return [RequiredValidator()];
+    return [
+      ...super.validators,
+      RequiredValidator()
+    ];
   }
 
   private isSafeValue = false;
@@ -109,7 +114,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
   //   or is the new behavior okay?
   get validationTarget() {
     // This puts the popup on the element only if the color picker is expanded.
-    if (!this.inline && this.dropdown?.open) {
+    if (this.inline || this.dropdown?.open) {
       return this.input;
     }
 
@@ -821,7 +826,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
         ${this.inline
           ? html`
               <wa-visually-hidden id="label">
-                <slot name="label">${this.label}</slot>
+                <slot id="label" name="label">${this.label}</slot>
               </wa-visually-hidden>
             `
           : null}

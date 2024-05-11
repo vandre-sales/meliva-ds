@@ -156,6 +156,9 @@ describe('<wa-checkbox>', () => {
 
       await waitUntil(() => submitHandler.calledOnce);
 
+      // console.log(form.querySelector("wa-checkbox").value)
+      // console.log(form.querySelector("wa-checkbox").checked)
+      // console.log(new FormData(form))
       expect(formData!.get('a')).to.equal('on');
     });
 
@@ -170,7 +173,7 @@ describe('<wa-checkbox>', () => {
       expect(checkbox.checkValidity()).to.be.false;
       expect(checkbox.hasAttribute('data-invalid')).to.be.true;
       expect(checkbox.hasAttribute('data-valid')).to.be.false;
-      expect(checkbox.hasAttribute('data-user-invalid')).to.be.false;
+      expect(checkbox.hasAttribute('data-user-invalid')).to.be.true;
       expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
 
       await clickOnElement(checkbox);
@@ -238,7 +241,7 @@ describe('<wa-checkbox>', () => {
       await oneEvent(form, 'reset');
       await checkbox.updateComplete;
 
-      expect(checkbox.checked).to.true;
+      expect(checkbox.checked).to.be.true;
 
       checkbox.defaultChecked = false;
 
@@ -246,7 +249,7 @@ describe('<wa-checkbox>', () => {
       await oneEvent(form, 'reset');
       await checkbox.updateComplete;
 
-      expect(checkbox.checked).to.false;
+      expect(checkbox.checked).to.be.false;
     });
   });
 

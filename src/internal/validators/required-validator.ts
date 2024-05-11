@@ -1,9 +1,20 @@
 import type { Validator } from '../webawesome-element.js';
 
-export const RequiredValidator = (): Validator => {
+export interface RequiredValidatorOptions {
+  /** This is a cheap way for us to get translation strings for the user without having proper translations. */
+  validationElement?: HTMLSelectElement | HTMLInputElement;
+}
+
+export const RequiredValidator = (options: RequiredValidatorOptions = {}): Validator => {
+  let { validationElement } = options
+
+  if (!validationElement) {
+    validationElement = Object.assign(document.createElement("input"), { required: true })
+  }
+
   const obj: Validator = {
     observedAttributes: ['required'],
-    message: 'Please fill out this field', // @TODO: Add a translation.
+    message: validationElement.validationMessage, // @TODO: Add a translation.
     checkValidity(element) {
       const validity: ReturnType<Validator['checkValidity']> = {
         message: '',

@@ -43,10 +43,12 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-textarea')
 export default class WaTextarea extends WebAwesomeFormAssociated {
-  static formAssociated = true;
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static get validators() {
-    return [MirrorValidator()];
+    return [
+      ...super.validators,
+      MirrorValidator()
+    ];
   }
 
   assumeInteractionOn = ['wa-blur', 'wa-input'];

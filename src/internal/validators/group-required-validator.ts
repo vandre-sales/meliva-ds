@@ -1,21 +1,19 @@
 import type { Validator } from '../webawesome-element.js';
 
+
+export interface GroupRequiredValidatorOptions {
+  /** This is a cheap way for us to get translation strings for the user without having proper translations. */
+  validationElement: HTMLInputElement;
+}
+
 // Used to validate groups of elements and not just a single element.
 // https://codepen.io/paramagicdev/pen/eYorwrz
-export const GroupRequiredValidator = (): Validator => {
+export const GroupRequiredValidator = (options: GroupRequiredValidatorOptions): Validator => {
+  const { validationElement } = options
+
   const obj: Validator = {
     observedAttributes: ['required'],
-    message(element) {
-      const tagName = element.tagName.toLowerCase();
-      if (tagName === 'wa-checkbox') {
-        return 'Please check this box if you want to proceed'; // @TODO: Add a translation.
-      }
-      if (tagName === 'wa-radio') {
-        return 'Please select one of these options'; // @TODO: Add a translation.
-      }
-
-      return 'Please provide select a value for this group'; // Not sure what to do here?
-    },
+    message: validationElement.validationMessage,
     checkValidity(this: typeof GroupRequiredValidator, element) {
       const validity: ReturnType<Validator['checkValidity']> = {
         message: '',
