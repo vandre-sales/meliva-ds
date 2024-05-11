@@ -57,10 +57,7 @@ export default class WaButton extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   static get validators() {
-    return [
-      ...super.validators,
-      MirrorValidator()
-    ];
+    return [...super.validators, MirrorValidator()];
   }
 
   assumeInteractionOn = ['click'];

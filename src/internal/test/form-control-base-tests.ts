@@ -1,6 +1,5 @@
 import { expect, fixture } from '@open-wc/testing';
 import type { WebAwesomeFormControl } from '../webawesome-element.js';
-import type WaButton from '../../components/button/button.js';
 
 type CreateControlFn = () => Promise<WebAwesomeFormControl>;
 
@@ -152,20 +151,20 @@ async function runAllValidityTests(
         it('Should be invalid if a `customError` property is passed.', async () => {
           const control = await createControl();
           // expect(control.validity.valid).to.equal(true)
-          control.customError = "MyError"
-          await control.updateComplete
-          expect(control.validity.valid).to.equal(false)
-          expect(control.hasAttribute("data-invalid")).to.equal(true)
-          expect(control.validationMessage).to.equal("MyError")
+          control.customError = 'MyError';
+          await control.updateComplete;
+          expect(control.validity.valid).to.equal(false);
+          expect(control.hasAttribute('data-invalid')).to.equal(true);
+          expect(control.validationMessage).to.equal('MyError');
         });
 
         it('Should be invalid if a `customError` attribute is passed.', async () => {
           const control = await createControl();
           // expect(control.validity.valid).to.equal(true)
-          control.setAttribute("custom-error", "MyError")
-          await control.updateComplete
-          expect(control.hasAttribute("data-invalid")).to.equal(true)
-          expect(control.validationMessage).to.equal("MyError")
+          control.setAttribute('custom-error', 'MyError');
+          await control.updateComplete;
+          expect(control.hasAttribute('data-invalid')).to.equal(true);
+          expect(control.validationMessage).to.equal('MyError');
         });
       }
 
