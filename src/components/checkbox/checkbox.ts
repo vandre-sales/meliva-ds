@@ -10,6 +10,7 @@ import { live } from 'lit/directives/live.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './checkbox.styles.js';
 import type { CSSResultGroup, PropertyValues } from 'lit';
 
@@ -51,7 +52,7 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
  */
 @customElement('wa-checkbox')
 export default class WaCheckbox extends WebAwesomeFormAssociated {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static get validators() {
     return [
       ...super.validators,

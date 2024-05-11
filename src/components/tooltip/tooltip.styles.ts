@@ -42,6 +42,8 @@ export default css`
     background-color: var(--wa-color-neutral-spot);
     font: inherit;
     line-height: var(--wa-line-height-regular);
+    text-align: start;
+    white-space: normal;
     color: var(--wa-color-neutral-text-on-spot);
     padding: var(--wa-space-2xs) var(--wa-space-xs);
     user-select: none;

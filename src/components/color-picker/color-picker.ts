@@ -7,7 +7,7 @@ import '../visually-hidden/visually-hidden.js';
 
 import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
+import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
 import { drag } from '../../internal/drag.js';
 import { html, LitElement } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -479,6 +479,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
     }
   }
 
+  @eventOptions({ passive: false })
   private handleTouchMove(event: TouchEvent) {
     event.preventDefault();
   }

@@ -3,7 +3,6 @@ import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
-import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { waitForEvent } from '../../internal/event.js';
@@ -55,7 +54,6 @@ export default class WaAlert extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   private autoHideTimeout: number;
-  private readonly hasSlotController = new HasSlotController(this, 'icon', 'suffix');
   private readonly localize = new LocalizeController(this);
 
   @query('[part~="base"]') base: HTMLElement;
@@ -198,7 +196,6 @@ export default class WaAlert extends WebAwesomeElement {
           alert: true,
           'alert--open': this.open,
           'alert--closable': this.closable,
-          'alert--has-icon': this.hasSlotController.test('icon'),
           'alert--brand': this.variant === 'brand',
           'alert--success': this.variant === 'success',
           'alert--neutral': this.variant === 'neutral',

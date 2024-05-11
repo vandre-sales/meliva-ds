@@ -201,7 +201,8 @@ export default class WaRange extends WebAwesomeFormAssociated {
     this.syncProgress(percent);
 
     if (this.tooltip !== 'none') {
-      this.syncTooltip(percent);
+      // Ensure updates are drawn before we sync the tooltip
+      this.updateComplete.then(() => this.syncTooltip(percent));
     }
   }
 
