@@ -46,7 +46,11 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
     return [
       ...super.validators,
       RequiredValidator({
-        validationElement: Object.assign(document.createElement("input"), { required: true, type: "radio", name: "__validationRadio__" })
+        validationElement: Object.assign(document.createElement('input'), {
+          required: true,
+          type: 'radio',
+          name: '__validationRadio__'
+        })
       })
     ];
   }

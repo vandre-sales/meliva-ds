@@ -1,6 +1,5 @@
 import { expect, fixture } from '@open-wc/testing';
 import type { WebAwesomeFormControl } from '../webawesome-element.js';
-import WaButton from '../../components/button/button.js';
 
 type CreateControlFn = () => Promise<WebAwesomeFormControl>;
 
@@ -52,7 +51,7 @@ async function runAllValidityTests(
   displayName: string,
   createControl: () => Promise<WebAwesomeFormControl>
 ) {
-  await new Promise<void>((resolve) => {
+  await new Promise<void>(resolve => {
     // will be used later to retrieve meta information about the control
     describe(`Form validity base test for ${displayName}`, async () => {
       it('should have a property `validity` of type `object`', async () => {
@@ -170,7 +169,6 @@ async function runAllValidityTests(
         //   expect(control.hasInteracted).to.equal(false)
         // });
 
-
         // it('Should be invalid if a `customError` property is passed.', async () => {
         //   const control = await createControl();
         //   expect(control.validity.valid).to.equal(true)
@@ -179,7 +177,6 @@ async function runAllValidityTests(
         //   expect(control.validity.valid).to.equal(false)
         //   expect(control.validationMessage).to.equal("MyError")
         // });
-
       }
 
       // Run special tests depending on component type
@@ -195,9 +192,8 @@ async function runAllValidityTests(
       }
     });
 
-    resolve()
-
-  })
+    resolve();
+  });
 }
 
 //

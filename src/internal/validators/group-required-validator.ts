@@ -1,6 +1,5 @@
 import type { Validator } from '../webawesome-element.js';
 
-
 export interface GroupRequiredValidatorOptions {
   /** This is a cheap way for us to get translation strings for the user without having proper translations. */
   validationElement: HTMLInputElement;
@@ -9,7 +8,7 @@ export interface GroupRequiredValidatorOptions {
 // Used to validate groups of elements and not just a single element.
 // https://codepen.io/paramagicdev/pen/eYorwrz
 export const GroupRequiredValidator = (options: GroupRequiredValidatorOptions): Validator => {
-  const { validationElement } = options
+  const { validationElement } = options;
 
   const obj: Validator = {
     observedAttributes: ['required'],

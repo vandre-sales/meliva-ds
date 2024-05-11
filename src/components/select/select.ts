@@ -82,7 +82,7 @@ export default class WaSelect extends WebAwesomeFormAssociated {
     return [
       ...super.validators,
       RequiredValidator({
-        validationElement: Object.assign(document.createElement("select"), {required: true})
+        validationElement: Object.assign(document.createElement('select'), { required: true })
       })
     ];
   }

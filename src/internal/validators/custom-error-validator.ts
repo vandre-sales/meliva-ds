@@ -6,7 +6,7 @@ import type { Validator } from '../webawesome-element.js';
  */
 export const CustomErrorValidator = (): Validator => {
   return {
-    observedAttributes: ["custom-error"],
+    observedAttributes: ['custom-error'],
     checkValidity(element) {
       const validity: ReturnType<Validator['checkValidity']> = {
         message: '',
@@ -15,12 +15,12 @@ export const CustomErrorValidator = (): Validator => {
       };
 
       if (element.customError) {
-        validity.message = element.customError
-        validity.isValid = false
-        validity.invalidKeys = ["customError"]
+        validity.message = element.customError;
+        validity.isValid = false;
+        validity.invalidKeys = ['customError'];
       }
 
-      return validity
+      return validity;
     }
   };
 };

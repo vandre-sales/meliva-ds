@@ -12,7 +12,6 @@ import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './checkbox.styles.js';
 import type { CSSResultGroup, PropertyValues } from 'lit';
-import { CustomErrorValidator } from '../../internal/validators/custom-error-validator.js';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
@@ -57,7 +56,11 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
     return [
       ...super.validators,
       GroupRequiredValidator({
-        validationElement: Object.assign(document.createElement("input"), { type: "checkbox", required: true, name: "__validationCheckbox__" })
+        validationElement: Object.assign(document.createElement('input'), {
+          type: 'checkbox',
+          required: true,
+          name: '__validationCheckbox__'
+        })
       })
     ];
   }
@@ -132,7 +135,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   handleDefaultCheckedChange() {
     if (!this.hasInteracted && this.checked !== this.defaultChecked) {
       this.checked = this.defaultChecked;
-      this.handleValueOrCheckedChange()
+      this.handleValueOrCheckedChange();
     }
   }
 
@@ -153,19 +156,18 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   }
 
   protected willUpdate(changedProperties: PropertyValues<this>): void {
-    super.willUpdate(changedProperties)
+    super.willUpdate(changedProperties);
 
-    if (changedProperties.has("value") || changedProperties.has("checked")) {
-      this.handleValueOrCheckedChange()
+    if (changedProperties.has('value') || changedProperties.has('checked')) {
+      this.handleValueOrCheckedChange();
     }
-
   }
 
   formResetCallback() {
     // Evaluate checked before the super call because of our watcher on value.
     super.formResetCallback();
     this.checked = this.defaultChecked;
-    this.handleValueOrCheckedChange()
+    this.handleValueOrCheckedChange();
   }
 
   /** Simulates a click on the checkbox. */

@@ -48,10 +48,7 @@ export default class WaRange extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static get validators() {
-    return [
-      ...super.validators,
-      MirrorValidator()
-    ];
+    return [...super.validators, MirrorValidator()];
   }
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');

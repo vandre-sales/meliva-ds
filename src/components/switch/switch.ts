@@ -52,11 +52,8 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
 export default class WaSwitch extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  static get validators () {
-    return [
-      ...super.validators,
-      MirrorValidator()
-    ]
+  static get validators() {
+    return [...super.validators, MirrorValidator()];
   }
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
@@ -97,10 +94,10 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
   /** The switch's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
-  firstUpdated (changedProperties: PropertyValues<typeof this>) {
-    super.firstUpdated(changedProperties)
+  firstUpdated(changedProperties: PropertyValues<typeof this>) {
+    super.firstUpdated(changedProperties);
 
-    this.handleValueOrCheckedChange()
+    this.handleValueOrCheckedChange();
   }
 
   private handleBlur() {
@@ -141,7 +138,7 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
   @watch(['value', 'checked'], { waitUntilFirstUpdate: true })
   handleValueOrCheckedChange() {
     this.value = this.checked ? this.value || 'on' : null;
-    this.requestUpdate("value")
+    this.requestUpdate('value');
     this.input.checked = this.checked; // force a sync update
     // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
     this.setValue(this.value, this.value);
@@ -171,22 +168,22 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
 
   setValue(value: string | File | FormData | null, stateValue?: string | File | FormData | null | undefined): void {
     if (!this.checked) {
-      this.value = null
-      this.internals.setFormValue(null, null)
-      return
+      this.value = null;
+      this.internals.setFormValue(null, null);
+      return;
     }
 
     if (!value) {
-      value = "on"
+      value = 'on';
     }
 
-    this.internals.setFormValue(value, stateValue)
+    this.internals.setFormValue(value, stateValue);
   }
 
   formResetCallback(): void {
-    this.checked = this.defaultChecked
-    this.handleValueOrCheckedChange()
-    super.formResetCallback()
+    this.checked = this.defaultChecked;
+    this.handleValueOrCheckedChange();
+    super.formResetCallback();
   }
 
   render() {

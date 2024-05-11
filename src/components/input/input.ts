@@ -2,7 +2,7 @@ import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { LitElement, html } from 'lit';
+import { html, LitElement } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -59,13 +59,10 @@ import type { CSSResultGroup } from 'lit';
 export default class WaInput extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  static shadowRootOptions = {...LitElement.shadowRootOptions, delegatesFocus: true }
+  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
 
   static get validators() {
-    return [
-      ...super.validators,
-      MirrorValidator()
-    ];
+    return [...super.validators, MirrorValidator()];
   }
 
   assumeInteractionOn = ['wa-blur', 'wa-input'];

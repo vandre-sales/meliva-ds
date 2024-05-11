@@ -95,13 +95,10 @@ declare const EyeDropper: EyeDropperConstructor;
 export default class WaColorPicker extends WebAwesomeFormAssociated {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  static shadowRootOptions = {...LitElement.shadowRootOptions, delegatesFocus: true }
+  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
 
   static get validators() {
-    return [
-      ...super.validators,
-      RequiredValidator()
-    ];
+    return [...super.validators, RequiredValidator()];
   }
 
   private isSafeValue = false;

@@ -302,5 +302,5 @@ describe('<wa-button>', async () => {
         control.href = 'some-url';
       }
     })
-  ])
+  ]);
 });

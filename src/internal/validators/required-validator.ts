@@ -6,10 +6,10 @@ export interface RequiredValidatorOptions {
 }
 
 export const RequiredValidator = (options: RequiredValidatorOptions = {}): Validator => {
-  let { validationElement } = options
+  let { validationElement } = options;
 
   if (!validationElement) {
-    validationElement = Object.assign(document.createElement("input"), { required: true })
+    validationElement = Object.assign(document.createElement('input'), { required: true });
   }
 
   const obj: Validator = {
