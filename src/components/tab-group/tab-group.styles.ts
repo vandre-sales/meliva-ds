@@ -106,6 +106,11 @@ export default css`
     order: 2;
   }
 
+  .tab-group--top ::slotted(wa-tab[active]) {
+    border-block-end: solid var(--track-width) var(--indicator-color);
+    margin-block-end: calc(-1 * var(--track-width));
+  }
+
   .tab-group--top ::slotted(wa-tab-panel) {
     --padding: var(--wa-space-m) 0;
   }
@@ -152,6 +157,11 @@ export default css`
     order: 1;
   }
 
+  .tab-group--bottom ::slotted(wa-tab[active]) {
+    border-block-start: solid var(--track-width) var(--indicator-color);
+    margin-block-start: calc(-1 * var(--track-width));
+  }
+
   .tab-group--bottom ::slotted(wa-tab-panel) {
     --padding: var(--wa-space-m) 0;
   }
@@ -189,6 +199,11 @@ export default css`
     order: 2;
   }
 
+  .tab-group--start ::slotted(wa-tab[active]) {
+    border-inline-end: solid var(--track-width) var(--indicator-color);
+    margin-inline-end: calc(-1 * var(--track-width));
+  }
+
   .tab-group--start ::slotted(wa-tab-panel) {
     --padding: 0 var(--wa-space-m);
   }
@@ -224,6 +239,11 @@ export default css`
   .tab-group--end .tab-group__body {
     flex: 1 1 auto;
     order: 1;
+  }
+
+  .tab-group--end ::slotted(wa-tab[active]) {
+    border-inline-start: solid var(--track-width) var(--indicator-color);
+    margin-inline-start: calc(-1 * var(--track-width));
   }
 
   .tab-group--end ::slotted(wa-tab-panel) {

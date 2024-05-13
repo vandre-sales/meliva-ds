@@ -14,13 +14,18 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 
 - Added `setKitCode()` and `getKitCode()` functions as well as support for setting kit codes declaratively with `data-webawesome-kit`
 - Added `family` and `variant` attributes to `<wa-icon>` and `<wa-icon-button>`
+- Added the `active` attribute to `<wa-tab-group>`
 - Changed the attribute for setting the base path declaratively to `data-webawesome` instead of `data-shoelace`; additionally, you can place it on any element now instead of just the associated `<script>` tag
 - `<wa-icon>` icons are no longer fixed width by default to accommodate variable width icons
 - Changed the `sl` prefix to `wa` for Web Awesome, including tags, events, etc.
 - Changed `primary` variants to `brand` in all components
 - Improved submenu selection by implementing the [safe triangle](https://www.smashingmagazine.com/2023/08/better-context-menus-safe-triangles/) method [#1550]
+- Improved tabbing in `<wa-tab-group>` so it uses a roving tab index instead of being able to cycle through each tab
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
+- Removed the `active-tab-indicator` part from `<wa-tab-group>`
+- Removed the `closable` attribute from `<wa-tab>` because you can't nest interactive elements (see the updated example for a better method)
+- Removed the `show()` method from `<wa-tab-group>` (use the `active` attribute instead)
 
 ## Next
 

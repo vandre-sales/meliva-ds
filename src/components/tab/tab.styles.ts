@@ -10,7 +10,6 @@ export default css`
     align-items: center;
     font: inherit;
     font-weight: var(--wa-font-weight-action);
-    border-radius: var(--wa-corners-s);
     color: var(--wa-color-neutral-text-on-surface);
     padding: var(--wa-space-m) var(--wa-space-l);
     white-space: nowrap;
