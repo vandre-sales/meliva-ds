@@ -21,6 +21,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Improved submenu selection by implementing the [safe triangle](https://www.smashingmagazine.com/2023/08/better-context-menus-safe-triangles/) method [#1550]
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
+- Removed the `active-tab-indicator` part from `<wa-tab-group>`
 
 ## Next
 

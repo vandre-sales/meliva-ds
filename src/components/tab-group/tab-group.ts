@@ -29,7 +29,6 @@ import type WaTabPanel from '../tab-panel/tab-panel.js';
  * @csspart base - The component's base wrapper.
  * @csspart nav - The tab group's navigation container where tabs are slotted in.
  * @csspart tabs - The container that wraps the tabs.
- * @csspart active-tab-indicator - The line that highlights the currently selected tab.
  * @csspart body - The tab group's body where tab panels are slotted in.
  * @csspart scroll-button - The previous/next scroll buttons that show when tabs are scrollable, an `<wa-icon-button>`.
  * @csspart scroll-button--start - The starting scroll button.
@@ -55,7 +54,6 @@ export default class WaTabGroup extends WebAwesomeElement {
   @query('.tab-group') tabGroup: HTMLElement;
   @query('.tab-group__body') body: HTMLSlotElement;
   @query('.tab-group__nav') nav: HTMLElement;
-  @query('.tab-group__indicator') indicator: HTMLElement;
 
   @state() private hasScrollControls = false;
 
@@ -80,7 +78,6 @@ export default class WaTabGroup extends WebAwesomeElement {
     super.connectedCallback();
 
     this.resizeObserver = new ResizeObserver(() => {
-      this.repositionIndicator();
       this.updateScrollControls();
     });
 
@@ -255,7 +252,6 @@ export default class WaTabGroup extends WebAwesomeElement {
       // Sync active tab and panel
       this.tabs.forEach(el => (el.active = el === this.activeTab));
       this.panels.forEach(el => (el.active = el.name === this.activeTab?.panel));
-      this.syncIndicator();
 
       if (['top', 'bottom'].includes(this.placement)) {
         scrollIntoView(this.activeTab, this.nav, 'horizontal', options.scrollBehavior);
@@ -283,51 +279,10 @@ export default class WaTabGroup extends WebAwesomeElement {
     });
   }
 
-  private repositionIndicator() {
-    const currentTab = this.getActiveTab();
-
-    if (!currentTab) {
-      return;
-    }
-
-    const width = currentTab.clientWidth;
-    const height = currentTab.clientHeight;
-    const isRtl = this.localize.dir() === 'rtl';
-
-    // We can't used offsetLeft/offsetTop here due to a shadow parent issue where neither can getBoundingClientRect
-    // because it provides invalid values for animating elements: https://bugs.chromium.org/p/chromium/issues/detail?id=920069
-    const allTabs = this.getAllTabs();
-    const precedingTabs = allTabs.slice(0, allTabs.indexOf(currentTab));
-    const offset = precedingTabs.reduce(
-      (previous, current) => ({
-        left: previous.left + current.clientWidth,
-        top: previous.top + current.clientHeight
-      }),
-      { left: 0, top: 0 }
-    );
-
-    switch (this.placement) {
-      case 'top':
-      case 'bottom':
-        this.indicator.style.width = `${width}px`;
-        this.indicator.style.height = 'auto';
-        this.indicator.style.translate = isRtl ? `${-1 * offset.left}px` : `${offset.left}px`;
-        break;
-
-      case 'start':
-      case 'end':
-        this.indicator.style.width = 'auto';
-        this.indicator.style.height = `${height}px`;
-        this.indicator.style.translate = `0 ${offset.top}px`;
-        break;
-    }
-  }
-
   // This stores tabs and panels so we can refer to a cache instead of calling querySelectorAll() multiple times.
   private syncTabsAndPanels() {
     this.tabs = this.getAllTabs({ includeDisabled: false });
     this.panels = this.getAllPanels();
-    this.syncIndicator();
 
     // After updating, show or hide scroll controls as needed
     this.updateComplete.then(() => this.updateScrollControls());
@@ -345,18 +300,6 @@ export default class WaTabGroup extends WebAwesomeElement {
       // See https://github.com/shoelace-style/shoelace/issues/1839
       this.hasScrollControls =
         ['top', 'bottom'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth + 1;
-    }
-  }
-
-  @watch('placement', { waitUntilFirstUpdate: true })
-  syncIndicator() {
-    const tab = this.getActiveTab();
-
-    if (tab) {
-      this.indicator.style.display = 'block';
-      this.repositionIndicator();
-    } else {
-      this.indicator.style.display = 'none';
     }
   }
 
@@ -405,7 +348,6 @@ export default class WaTabGroup extends WebAwesomeElement {
 
           <div class="tab-group__nav">
             <div part="tabs" class="tab-group__tabs" role="tablist">
-              <div part="active-tab-indicator" class="tab-group__indicator"></div>
               <slot name="nav" @slotchange=${this.syncTabsAndPanels}></slot>
             </div>
           </div>
