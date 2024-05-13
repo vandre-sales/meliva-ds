@@ -31,7 +31,7 @@ export default css`
     height: var(--control-box-size);
     font-size: calc(var(--icon-size) * 0.75);
     background: none;
-    border: solid 2px currentColor;
+    border: solid var(--wa-border-width-s) currentColor;
     background-color: rgb(0 0 0 / 50%);
     border-radius: var(--wa-corners-circle);
     color: white;
