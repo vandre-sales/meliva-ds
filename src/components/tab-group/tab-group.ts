@@ -1,4 +1,6 @@
 import '../icon-button/icon-button.js';
+import '../tab-panel/tab-panel.js';
+import '../tab/tab.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
@@ -19,6 +21,8 @@ import type WaTabPanel from '../tab-panel/tab-panel.js';
  * @since 2.0
  *
  * @dependency wa-icon-button
+ * @dependency wa-tab
+ * @dependency wa-tab-panel
  *
  * @slot - Used for grouping tab panels in the tab group. Must be `<wa-tab-panel>` elements.
  * @slot nav - Used for grouping tabs in the tab group. Must be `<wa-tab>` elements.
@@ -57,6 +61,9 @@ export default class WaTabGroup extends WebAwesomeElement {
 
   @state() private hasScrollControls = false;
 
+  /** Sets the active tab. */
+  @property({ reflect: true }) active = '';
+
   /** The placement of the tabs. */
   @property() placement: 'top' | 'bottom' | 'start' | 'end' = 'top';
 
@@ -70,11 +77,6 @@ export default class WaTabGroup extends WebAwesomeElement {
   @property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;
 
   connectedCallback() {
-    const whenAllDefined = Promise.all([
-      customElements.whenDefined('wa-tab'),
-      customElements.whenDefined('wa-tab-panel')
-    ]);
-
     super.connectedCallback();
 
     this.resizeObserver = new ResizeObserver(() => {
@@ -99,18 +101,25 @@ export default class WaTabGroup extends WebAwesomeElement {
       this.mutationObserver.observe(this, { attributes: true, childList: true, subtree: true });
       this.resizeObserver.observe(this.nav);
 
-      // Wait for tabs and tab panels to be registered
-      whenAllDefined.then(() => {
-        // Set initial tab state when the tabs become visible
-        const intersectionObserver = new IntersectionObserver((entries, observer) => {
-          if (entries[0].intersectionRatio > 0) {
-            this.setAriaLabels();
+      // Set initial tab state when the tabs become visible
+      const intersectionObserver = new IntersectionObserver((entries, observer) => {
+        if (entries[0].intersectionRatio > 0) {
+          this.setAriaLabels();
+
+          if (this.active) {
+            const tab = this.tabs.find(t => t.panel === this.active);
+
+            if (tab) {
+              this.setActiveTab(tab);
+            }
+          } else {
             this.setActiveTab(this.getActiveTab() ?? this.tabs[0], { emitEvents: false });
-            observer.unobserve(entries[0].target);
           }
-        });
-        intersectionObserver.observe(this.tabGroup);
+
+          observer.unobserve(entries[0].target);
+        }
       });
+      intersectionObserver.observe(this.tabGroup);
     });
   }
 
@@ -247,6 +256,7 @@ export default class WaTabGroup extends WebAwesomeElement {
 
     if (tab !== this.activeTab && !tab.disabled) {
       const previousTab = this.activeTab;
+      this.active = tab.panel;
       this.activeTab = tab;
 
       // Sync active tab and panel
@@ -288,6 +298,15 @@ export default class WaTabGroup extends WebAwesomeElement {
     this.updateComplete.then(() => this.updateScrollControls());
   }
 
+  @watch('active')
+  updateActiveTab() {
+    const tab = this.tabs.find(el => el.panel === this.active);
+
+    if (tab) {
+      this.setActiveTab(tab, { scrollBehavior: 'smooth' });
+    }
+  }
+
   @watch('noScrollControls', { waitUntilFirstUpdate: true })
   updateScrollControls() {
     if (this.noScrollControls) {
@@ -300,15 +319,6 @@ export default class WaTabGroup extends WebAwesomeElement {
       // See https://github.com/shoelace-style/shoelace/issues/1839
       this.hasScrollControls =
         ['top', 'bottom'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth + 1;
-    }
-  }
-
-  /** Shows the specified tab panel. */
-  show(panel: string) {
-    const tab = this.tabs.find(el => el.panel === panel);
-
-    if (tab) {
-      this.setActiveTab(tab, { scrollBehavior: 'smooth' });
     }
   }
 

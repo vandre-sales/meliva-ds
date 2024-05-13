@@ -52,6 +52,22 @@ const App = () => (
 
 ## Examples
 
+### Setting the Active Tab
+
+To make a tab active, set the `active` attribute to the name of the appropriate panel.
+
+```html {.example}
+<wa-tab-group active="advanced">
+  <wa-tab slot="nav" panel="general">General</wa-tab>
+  <wa-tab slot="nav" panel="custom">Custom</wa-tab>
+  <wa-tab slot="nav" panel="advanced">Advanced</wa-tab>
+
+  <wa-tab-panel name="general">This is the general tab panel.</wa-tab-panel>
+  <wa-tab-panel name="custom">This is the custom tab panel.</wa-tab-panel>
+  <wa-tab-panel name="advanced">This is the advanced tab panel.</wa-tab-panel>
+</wa-tab-group>
+```
+
 ### Tabs on Bottom
 
 Tabs can be shown on the bottom by setting `placement` to `bottom`.
@@ -198,37 +214,51 @@ const App = () => (
 
 ### Closable Tabs
 
-Add the `closable` attribute to a tab to show a close button. This example shows how you can dynamically remove tabs from the DOM when the close button is activated.
+You can make a tab closable by adding a close button next to the tab and inside the `nav` slot. You can position the button to your liking with CSS and handle close/restore behaviors by removing/appending the tab as desired. Note the use of `tabindex="-1"`, which prevents the close button from interfering with the tab order. The close button is still recognizable to the virtual cursor in screen readers.
 
 ```html {.example}
 <wa-tab-group class="tabs-closable">
   <wa-tab slot="nav" panel="general">General</wa-tab>
-  <wa-tab slot="nav" panel="closable-1" closable>Closable 1</wa-tab>
-  <wa-tab slot="nav" panel="closable-2" closable>Closable 2</wa-tab>
-  <wa-tab slot="nav" panel="closable-3" closable>Closable 3</wa-tab>
+  <wa-tab slot="nav" panel="closable">Closable</wa-tab>
+  <wa-icon-button slot="nav" tabindex="-1" name="xmark" label="Close the closable tab"></wa-icon-button>
+  <wa-tab slot="nav" panel="closable-2">Advanced</wa-tab>
 
   <wa-tab-panel name="general">This is the general tab panel.</wa-tab-panel>
-  <wa-tab-panel name="closable-1">This is the first closable tab panel.</wa-tab-panel>
-  <wa-tab-panel name="closable-2">This is the second closable tab panel.</wa-tab-panel>
-  <wa-tab-panel name="closable-3">This is the third closable tab panel.</wa-tab-panel>
+  <wa-tab-panel name="closable">This is the closable tab panel.</wa-tab-panel>
+  <wa-tab-panel name="advanced">This is the advanced tab panel.</wa-tab-panel>
 </wa-tab-group>
+
+<br>
+
+<wa-button disabled>Restore tab</wa-button>
+
+<style>
+  .tabs-closable wa-icon-button {
+    position: relative;
+    left: -1rem;
+    top: .75rem;  }
+</style>
 
 <script>
   const tabGroup = document.querySelector('.tabs-closable');
-
-  tabGroup.addEventListener('wa-close', async event => {
-    const tab = event.target;
-    const panel = tabGroup.querySelector(`wa-tab-panel[name="${tab.panel}"]`);
-
-    // Show the previous tab if the tab is currently active
-    if (tab.active) {
-      tabGroup.show(tab.previousElementSibling.panel);
-    }
-
-    // Remove the tab + panel
-    tab.remove();
-    panel.remove();
+  const generalTab = tabGroup.querySelectorAll('wa-tab')[0];
+  const closableTab = tabGroup.querySelectorAll('wa-tab')[1];
+  const closeButton = tabGroup.querySelector('wa-icon-button[slot="nav"]');
+  const restoreButton = tabGroup.nextElementSibling.nextElementSibling;
+  
+  // Remove the tab when the close button is clicked
+  closeButton.addEventListener('click', () => {
+    closableTab.remove();
+    closeButton.remove();
+    restoreButton.disabled = false;
   });
+
+  // Restore the tab
+  restoreButton.addEventListener('click', () => {
+    restoreButton.disabled = true;
+    generalTab.insertAdjacentElement('afterend', closeButton);
+    generalTab.insertAdjacentElement('afterend', closableTab);
+  })
 </script>
 ```
 
