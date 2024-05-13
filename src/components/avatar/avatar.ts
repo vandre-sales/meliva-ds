@@ -23,6 +23,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart initials - The container that wraps the avatar's initials.
  * @csspart image - The avatar image. Only shown when the `image` attribute is set.
  *
+ * @cssproperty --background - The avatar's background styles.
+ * @cssproperty --content-color - The color of the avatar's content.
  * @cssproperty --size - The size of the avatar.
  */
 @customElement('wa-avatar')

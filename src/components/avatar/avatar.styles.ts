@@ -2,9 +2,11 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    display: inline-block;
-
+    --background: var(--wa-color-neutral-fill-highlight);
+    --content-color: var(--wa-color-neutral-text-on-fill);
     --size: 3rem;
+
+    display: inline-block;
   }
 
   .avatar {
@@ -14,10 +16,10 @@ export default css`
     position: relative;
     width: var(--size);
     height: var(--size);
-    background-color: var(--wa-color-neutral-spot);
+    background: var(--background);
     font: inherit;
-    font-size: calc(var(--size) * 0.5);
-    color: var(--wa-color-neutral-text-on-spot);
+    font-size: calc(var(--size) * 0.4);
+    color: var(--content-color);
     user-select: none;
     -webkit-user-select: none;
     vertical-align: middle;
