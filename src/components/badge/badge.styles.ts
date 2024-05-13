@@ -62,27 +62,9 @@ export default css`
 
   /* Pulse modifier */
   .badge--pulse {
+    --pulse-color: var(--background);
+
     animation: pulse 1.5s infinite;
-  }
-
-  .badge--pulse.badge--brand {
-    --pulse-color: var(--wa-color-brand-spot);
-  }
-
-  .badge--pulse.badge--success {
-    --pulse-color: var(--wa-color-success-spot);
-  }
-
-  .badge--pulse.badge--neutral {
-    --pulse-color: var(--wa-color-neutral-spot);
-  }
-
-  .badge--pulse.badge--warning {
-    --pulse-color: var(--wa-color-warning-spot);
-  }
-
-  .badge--pulse.badge--danger {
-    --pulse-color: var(--wa-color-danger-spot);
   }
 
   @keyframes pulse {
