@@ -1,8 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import sinon from 'sinon';
-import type WaIconButton from '../icon-button/icon-button.js';
 import type WaTab from './tab.js';
-import type WaTabGroup from '../tab-group/tab-group.js';
 
 describe('<wa-tab>', () => {
   it('passes accessibility test', async () => {
