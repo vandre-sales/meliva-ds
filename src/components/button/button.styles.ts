@@ -368,70 +368,25 @@ export default css`
    * Button spacing
    */
 
-  .button--has-label.button--small .button__label {
+  .button--small {
     padding: 0 var(--wa-space-s);
   }
 
-  .button--has-label.button--medium .button__label {
+  .button--medium {
     padding: 0 var(--wa-space-m);
   }
 
-  .button--has-label.button--large .button__label {
+  .button--large {
     padding: 0 var(--wa-space-l);
   }
 
-  .button--has-prefix.button--small {
-    padding-inline-start: var(--wa-space-xs);
+  .button--has-label.button--has-prefix .button__label {
+    padding-inline-start: 0.75em;
   }
 
-  .button--has-prefix.button--small .button__label {
-    padding-inline-start: var(--wa-space-xs);
-  }
-
-  .button--has-prefix.button--medium {
-    padding-inline-start: var(--wa-space-s);
-  }
-
-  .button--has-prefix.button--medium .button__label {
-    padding-inline-start: var(--wa-space-s);
-  }
-
-  .button--has-prefix.button--large {
-    padding-inline-start: var(--wa-space-m);
-  }
-
-  .button--has-prefix.button--large .button__label {
-    padding-inline-start: var(--wa-space-m);
-  }
-
-  .button--has-suffix.button--small,
-  .button--caret.button--small {
-    padding-inline-end: var(--wa-space-xs);
-  }
-
-  .button--has-suffix.button--small .button__label,
-  .button--caret.button--small .button__label {
-    padding-inline-end: var(--wa-space-xs);
-  }
-
-  .button--has-suffix.button--medium,
-  .button--caret.button--medium {
-    padding-inline-end: var(--wa-space-s);
-  }
-
-  .button--has-suffix.button--medium .button__label,
-  .button--caret.button--medium .button__label {
-    padding-inline-end: var(--wa-space-s);
-  }
-
-  .button--has-suffix.button--large,
-  .button--caret.button--large {
-    padding-inline-end: var(--wa-space-m);
-  }
-
-  .button--has-suffix.button--large .button__label,
-  .button--caret.button--large .button__label {
-    padding-inline-end: var(--wa-space-m);
+  .button--has-label.button--has-suffix .button__label,
+  .button--has-label.button--caret .button__label {
+    padding-inline-end: 0.75em;
   }
 
   /*
@@ -461,14 +416,18 @@ export default css`
   }
 
   /* Add a visual separator between solid buttons */
-  :host(.wa-button-group__button:not(.wa-button-group__button--first, .wa-button-group__button--radio):not(:hover))
+  :host(
+      .wa-button-group__button:not(.wa-button-group__button--first, .wa-button-group__button--radio, [outline]):not(
+          :hover
+        )
+    )
     .button:after {
     content: '';
     position: absolute;
     top: 0;
     inset-inline-start: 0;
     bottom: 0;
-    border-left: solid 1px rgb(0 0 0 / 0.2);
+    border-left: solid max(var(--border-width), 1px) var(--border-color);
     mix-blend-mode: multiply;
   }
 
