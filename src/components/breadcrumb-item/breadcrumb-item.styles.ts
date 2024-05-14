@@ -11,7 +11,7 @@ export default css`
     font: inherit;
     font-weight: var(--wa-font-weight-action);
     color: var(--wa-color-neutral-text-on-surface);
-    line-height: var(--wa-line-height-regular);
+    line-height: var(--wa-font-line-height-regular);
     white-space: nowrap;
   }
 
@@ -26,19 +26,19 @@ export default css`
     padding: 0;
     margin: 0;
     cursor: pointer;
-    transition: var(--wa-transition-fast) --color;
+    transition: var(--wa-transition-fast) color;
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label {
-    color: var(--wa-color-brand-text-on-surface);
+    color: var(--wa-color-text-link);
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label:hover {
-    color: color-mix(in oklab, var(--wa-color-brand-text-on-surface), var(--wa-color-mix-hover));
+    color: color-mix(in oklab, var(--wa-color-text-link), var(--wa-color-mix-hover));
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label:active {
-    color: var(--wa-color-brand-text-on-surface);
+    color: var(--wa-color-text-link);
   }
 
   .breadcrumb-item__label:focus {
