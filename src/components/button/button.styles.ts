@@ -299,21 +299,6 @@ export default css`
     align-items: center;
   }
 
-  .button--small .button__caret {
-    margin-inline-start: calc(-0.5 * var(--wa-space-xs));
-    margin-inline-end: var(--wa-space-xs);
-  }
-
-  .button--medium .button__caret {
-    margin-inline-start: calc(-0.5 * var(--wa-space-s));
-    margin-inline-end: var(--wa-space-s);
-  }
-
-  .button--large .button__caret {
-    margin-inline-start: calc(-0.5 * var(--wa-space-m));
-    margin-inline-end: var(--wa-space-m);
-  }
-
   .button--caret .button__caret::part(svg) {
     width: 0.875em;
     height: 0.875em;
@@ -380,13 +365,13 @@ export default css`
     padding: 0 var(--wa-space-l);
   }
 
-  .button--has-label.button--has-prefix .button__label {
-    padding-inline-start: 0.75em;
+  .button ::slotted([slot='prefix']) {
+    margin-inline-end: 0.75em;
   }
 
-  .button--has-label.button--has-suffix .button__label,
-  .button--has-label.button--caret .button__label {
-    padding-inline-end: 0.75em;
+  .button ::slotted([slot='suffix']),
+  .button .button__caret {
+    margin-inline-start: 0.75em;
   }
 
   /*
