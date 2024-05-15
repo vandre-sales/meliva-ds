@@ -4,8 +4,8 @@ export default css`
   :host {
     --aspect-ratio: 16 / 9;
     --navigation-color: var(--wa-color-text-quiet);
-    --pagination-color-activated: var(--wa-form-controls-activated-color);
-    --pagination-color-resting: var(--wa-form-controls-resting-color);
+    --pagination-color: var(--wa-form-controls-resting-color);
+    --pagination-color-active: var(--wa-form-controls-activated-color);
     --scroll-hint: 0px;
     --slide-gap: var(--wa-space-m, 1rem);
 
@@ -140,14 +140,14 @@ export default css`
     border-radius: var(--wa-corners-circle);
     width: var(--wa-space-s);
     height: var(--wa-space-s);
-    background-color: var(--pagination-color-resting);
+    background-color: var(--pagination-color);
     padding: 0;
     margin: 0;
     transition: transform var(--wa-transition-normal);
   }
 
   .carousel__pagination-item--active {
-    background-color: var(--pagination-color-activated);
+    background-color: var(--pagination-color-active);
     transform: scale(1.25);
   }
 
