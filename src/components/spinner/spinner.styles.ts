@@ -12,6 +12,7 @@ export default css`
     --indicator-color: var(--wa-color-brand-spot);
     --speed: 2s;
 
+    flex: none;
     display: inline-flex;
     width: 1em;
     height: 1em;
