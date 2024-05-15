@@ -27,9 +27,16 @@ export default class WaSpinner extends WebAwesomeElement {
 
   render() {
     return html`
-      <svg part="base" class="spinner" role="progressbar" aria-label=${this.localize.term('loading')}>
-        <circle class="spinner__track"></circle>
-        <circle class="spinner__indicator"></circle>
+      <svg
+        part="base"
+        role="progressbar"
+        aria-label=${this.localize.term('loading')}
+        fill="none"
+        viewBox="0 0 50 50"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle class="spinner__track" cx="25" cy="25" r="20" fill="none" stroke-width="5" />
+        <circle class="spinner__indicator" cx="25" cy="25" r="20" fill="none" stroke-width="5" />
       </svg>
     `;
   }

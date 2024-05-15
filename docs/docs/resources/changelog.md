@@ -19,6 +19,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - `<wa-icon>` icons are no longer fixed width by default to accommodate variable width icons
 - Changed the `sl` prefix to `wa` for Web Awesome, including tags, events, etc.
 - Changed `primary` variants to `brand` in all components
+- Fixed a bug in `<wa-spinner>` that caused it to display incorrectly when zooming in Safari
 - Improved submenu selection by implementing the [safe triangle](https://www.smashingmagazine.com/2023/08/better-context-menus-safe-triangles/) method [#1550]
 - Improved tabbing in `<wa-tab-group>` so it uses a roving tab index instead of being able to cycle through each tab
 - Removed `default` from `<wa-button>` and made `neutral` the new default
