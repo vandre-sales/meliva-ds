@@ -14,19 +14,6 @@ describe('<wa-spinner>', () => {
       expect(base).have.attribute('role', 'progressbar');
     });
 
-    it('should use "transform: rotate(x)" instead of "rotate: x" when animating', async () => {
-      const spinner = await fixture<WaSpinner>(html` <wa-spinner></wa-spinner> `);
-      const indicator = spinner.shadowRoot!.querySelector('.spinner__indicator')!;
-
-      //
-      // This matrix is the computed value when using `transform: rotate(x)` on the indicator. When using `rotate: x`,
-      // it will be "none" instead.
-      //
-      // Related: https://github.com/shoelace-style/shoelace/issues/1121
-      //
-      expect(getComputedStyle(indicator).transform).to.equal('matrix(1, 0, 0, 1, 0, 0)');
-    });
-
     it('should have flex:none to prevent flex re-sizing', async () => {
       const spinner = await fixture<WaSpinner>(html` <wa-spinner></wa-spinner> `);
 

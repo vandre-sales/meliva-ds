@@ -46,6 +46,8 @@ import type { CSSResultGroup, PropertyValueMap } from 'lit';
  * @csspart item--selected - Applied when the tree item is selected.
  * @csspart indentation - The tree item's indentation container.
  * @csspart expand-button - The container that wraps the tree item's expand button and spinner.
+ * @csspart spinner - The spinner that shows when a lazy tree item is in the loading state.
+ * @csspart spinner__base - The spinner's base part.
  * @csspart label - The tree item's label.
  * @csspart children - The container that wraps the tree item's nested children.
  * @csspart checkbox - The checkbox that shows when using multiselect.
@@ -253,7 +255,10 @@ export default class WaTreeItem extends WebAwesomeElement {
             })}
             aria-hidden="true"
           >
-            ${when(this.loading, () => html` <wa-spinner></wa-spinner> `)}
+            ${when(
+              this.loading,
+              () => html` <wa-spinner part="spinner" exportparts="base:spinner__base"></wa-spinner> `
+            )}
             <slot class="tree-item__expand-icon-slot" name="expand-icon">
               <wa-icon name=${isRtl ? 'chevron-left' : 'chevron-right'} library="system" variant="solid"></wa-icon>
             </slot>

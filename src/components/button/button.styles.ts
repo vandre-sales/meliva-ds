@@ -212,13 +212,13 @@ export default css`
     pointer-events: none;
   }
 
-  .button:hover:not(.button--disabled) {
+  .button:hover:not(.button--disabled, .button--loading) {
     background: var(--background-hover, var(--background, none));
     border-color: var(--border-color-hover, var(--border-color, var(--background-hover)));
     color: var(--label-color-hover, var(--label-color));
   }
 
-  .button:active:not(.button--disabled) {
+  .button:active:not(.button--disabled, .button--loading) {
     background: var(--background-active, var(--background, none));
     border-color: var(--border-color-active, var(--border-color, var(--background-active)));
     color: var(--label-color-active, var(--label-color));
@@ -297,6 +297,21 @@ export default css`
     display: flex;
     align-self: center;
     align-items: center;
+  }
+
+  .button--small .button__caret {
+    margin-inline-start: calc(-0.5 * var(--wa-space-xs));
+    margin-inline-end: var(--wa-space-xs);
+  }
+
+  .button--medium .button__caret {
+    margin-inline-start: calc(-0.5 * var(--wa-space-s));
+    margin-inline-end: var(--wa-space-s);
+  }
+
+  .button--large .button__caret {
+    margin-inline-start: calc(-0.5 * var(--wa-space-m));
+    margin-inline-end: var(--wa-space-m);
   }
 
   .button--caret .button__caret::part(svg) {

@@ -3,7 +3,6 @@ import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
-import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -69,7 +68,6 @@ import type { CSSResultGroup } from 'lit';
 export default class WaDialog extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  private readonly hasSlotController = new HasSlotController(this, 'footer');
   private readonly localize = new LocalizeController(this);
   private originalTrigger: HTMLElement | null;
   public modal = new Modal(this);
@@ -86,16 +84,16 @@ export default class WaDialog extends WebAwesomeElement {
   @property({ type: Boolean, reflect: true }) open = false;
 
   /**
-   * The dialog's label as displayed in the header. You should always include a relevant label even when using
-   * `no-header`, as it is required for proper accessibility. If you need to display HTML, use the `label` slot instead.
+   * The dialog's label as displayed in the header. You should always include a relevant label, as it is required for
+   * proper accessibility. If you need to display HTML, use the `label` slot instead.
    */
   @property({ reflect: true }) label = '';
 
-  /**
-   * Disables the header. This will also remove the default close button, so please ensure you provide an easy,
-   * accessible way for users to dismiss the dialog.
-   */
-  @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
+  /** Renders the dialog with a header. */
+  @property({ attribute: 'with-header', type: Boolean, reflect: true }) withHeader = false;
+
+  /** Renders the dialog with a footer. */
+  @property({ attribute: 'with-footer', type: Boolean, reflect: true }) withFooter = false;
 
   firstUpdated() {
     this.dialog.hidden = !this.open;
@@ -270,7 +268,8 @@ export default class WaDialog extends WebAwesomeElement {
         class=${classMap({
           dialog: true,
           'dialog--open': this.open,
-          'dialog--has-footer': this.hasSlotController.test('footer')
+          'dialog--with-header': this.withHeader,
+          'dialog--with-footer': this.withFooter
         })}
       >
         <div part="overlay" class="dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
@@ -281,11 +280,11 @@ export default class WaDialog extends WebAwesomeElement {
           role="dialog"
           aria-modal="true"
           aria-hidden=${this.open ? 'false' : 'true'}
-          aria-label=${ifDefined(this.noHeader ? this.label : undefined)}
-          aria-labelledby=${ifDefined(!this.noHeader ? 'title' : undefined)}
+          aria-label=${ifDefined(this.withHeader ? undefined : this.label)}
+          aria-labelledby=${ifDefined(this.withHeader ? 'title' : undefined)}
           tabindex="-1"
         >
-          ${!this.noHeader
+          ${this.withHeader
             ? html`
                 <header part="header" class="dialog__header">
                   <h2 part="title" class="dialog__title" id="title">
@@ -312,9 +311,13 @@ export default class WaDialog extends WebAwesomeElement {
           }
           <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
 
-          <footer part="footer" class="dialog__footer">
-            <slot name="footer"></slot>
-          </footer>
+          ${this.withFooter
+            ? html`
+                <footer part="footer" class="dialog__footer">
+                  <slot name="footer"></slot>
+                </footer>
+              `
+            : ''}
         </div>
       </div>
     `;

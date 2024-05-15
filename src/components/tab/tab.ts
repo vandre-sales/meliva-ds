@@ -1,8 +1,6 @@
-import '../icon-button/icon-button.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './tab.styles.js';
@@ -17,11 +15,7 @@ let id = 0;
  * @status stable
  * @since 2.0
  *
- * @dependency wa-icon-button
- *
  * @slot - The tab's label.
- *
- * @event wa-close - Emitted when the tab is closable and the close button is activated.
  *
  * @csspart base - The component's base wrapper.
  * @csspart close-button - The close button, an `<wa-icon-button>`.
@@ -31,8 +25,6 @@ let id = 0;
 export default class WaTab extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  private readonly localize = new LocalizeController(this);
-
   private readonly attrId = ++id;
   private readonly componentId = `wa-tab-${this.attrId}`;
 
@@ -41,11 +33,8 @@ export default class WaTab extends WebAwesomeElement {
   /** The name of the tab panel this tab is associated with. The panel must be located in the same tab group. */
   @property({ reflect: true }) panel = '';
 
-  /** Draws the tab in an active state. */
+  /** @internal Draws the tab in an active state. */
   @property({ type: Boolean, reflect: true }) active = false;
-
-  /** Makes the tab closable and shows a close button. */
-  @property({ type: Boolean }) closable = false;
 
   /** Disables the tab and prevents selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -53,11 +42,6 @@ export default class WaTab extends WebAwesomeElement {
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'tab');
-  }
-
-  private handleCloseClick(event: Event) {
-    event.stopPropagation();
-    this.emit('wa-close');
   }
 
   @watch('active')
@@ -90,27 +74,11 @@ export default class WaTab extends WebAwesomeElement {
         class=${classMap({
           tab: true,
           'tab--active': this.active,
-          'tab--closable': this.closable,
           'tab--disabled': this.disabled
         })}
-        tabindex=${this.disabled ? '-1' : '0'}
+        tabindex=${this.active && !this.disabled ? '0' : '-1'}
       >
         <slot></slot>
-        ${this.closable
-          ? html`
-              <wa-icon-button
-                part="close-button"
-                exportparts="base:close-button__base"
-                name="xmark"
-                library="system"
-                variant="solid"
-                label=${this.localize.term('close')}
-                class="tab__close-button"
-                @click=${this.handleCloseClick}
-                tabindex="-1"
-              ></wa-icon-button>
-            `
-          : ''}
       </div>
     `;
   }

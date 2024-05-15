@@ -8,7 +8,7 @@ import type WaDialog from './dialog.js';
 describe('<wa-dialog>', () => {
   it('should be visible with the open attribute', async () => {
     const el = await fixture<WaDialog>(html`
-      <wa-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
+      <wa-dialog with-header open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
@@ -17,7 +17,7 @@ describe('<wa-dialog>', () => {
 
   it('should not be visible without the open attribute', async () => {
     const el = await fixture<WaDialog>(html`
-      <wa-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
+      <wa-dialog with-header>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
@@ -26,7 +26,7 @@ describe('<wa-dialog>', () => {
 
   it('should emit wa-show and wa-after-show when calling show()', async () => {
     const el = await fixture<WaDialog>(html`
-      <wa-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
+      <wa-dialog with-header>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
     const showHandler = sinon.spy();
@@ -46,7 +46,7 @@ describe('<wa-dialog>', () => {
 
   it('should emit wa-hide and wa-after-hide when calling hide()', async () => {
     const el = await fixture<WaDialog>(html`
-      <wa-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
+      <wa-dialog with-header open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
     const hideHandler = sinon.spy();
@@ -66,7 +66,7 @@ describe('<wa-dialog>', () => {
 
   it('should emit wa-show and wa-after-show when setting open = true', async () => {
     const el = await fixture<WaDialog>(html`
-      <wa-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
+      <wa-dialog with-header>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
     const showHandler = sinon.spy();
@@ -86,7 +86,7 @@ describe('<wa-dialog>', () => {
 
   it('should emit wa-hide and wa-after-hide when setting open = false', async () => {
     const el = await fixture<WaDialog>(html`
-      <wa-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
+      <wa-dialog with-header open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
     const hideHandler = sinon.spy();
@@ -106,7 +106,7 @@ describe('<wa-dialog>', () => {
 
   it('should not close when wa-request-close is prevented', async () => {
     const el = await fixture<WaDialog>(html`
-      <wa-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
+      <wa-dialog with-header open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</wa-dialog>
     `);
     const overlay = el.shadowRoot!.querySelector<HTMLElement>('[part~="overlay"]')!;
 
@@ -119,7 +119,7 @@ describe('<wa-dialog>', () => {
   });
 
   it('should allow initial focus to be set', async () => {
-    const el = await fixture<WaDialog>(html` <wa-dialog><input /></wa-dialog> `);
+    const el = await fixture<WaDialog>(html` <wa-dialog with-header><input /></wa-dialog> `);
     const input = el.querySelector('input')!;
     const initialFocusHandler = sinon.spy((event: Event) => {
       event.preventDefault();
@@ -136,7 +136,7 @@ describe('<wa-dialog>', () => {
   });
 
   it('should close when pressing Escape', async () => {
-    const el = await fixture<WaDialog>(html` <wa-dialog open></wa-dialog> `);
+    const el = await fixture<WaDialog>(html` <wa-dialog with-header open></wa-dialog> `);
     const hideHandler = sinon.spy();
 
     el.addEventListener('wa-hide', hideHandler);
@@ -161,7 +161,7 @@ describe('<wa-dialog>', () => {
       render() {
         return html`
           <h1>Dialog Example</h1>
-          <wa-dialog label="Dialog" class="dialog-overview">
+          <wa-dialog label="Dialog" with-header class="dialog-overview">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             <br />
             <label><input type="checkbox" />A</label>

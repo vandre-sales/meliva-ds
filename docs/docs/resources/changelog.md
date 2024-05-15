@@ -14,22 +14,44 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 
 - Added `setKitCode()` and `getKitCode()` functions as well as support for setting kit codes declaratively with `data-webawesome-kit`
 - Added `family` and `variant` attributes to `<wa-icon>` and `<wa-icon-button>`
+- Added the `active` attribute to `<wa-tab-group>`
 - Changed the attribute for setting the base path declaratively to `data-webawesome` instead of `data-shoelace`; additionally, you can place it on any element now instead of just the associated `<script>` tag
 - `<wa-icon>` icons are no longer fixed width by default to accommodate variable width icons
 - Changed the `sl` prefix to `wa` for Web Awesome, including tags, events, etc.
 - Changed `primary` variants to `brand` in all components
+- Fixed a bug in `<wa-spinner>` that caused it to display incorrectly when zooming in Safari
 - Improved submenu selection by implementing the [safe triangle](https://www.smashingmagazine.com/2023/08/better-context-menus-safe-triangles/) method [#1550]
+- Improved tabbing in `<wa-tab-group>` so it uses a roving tab index instead of being able to cycle through each tab
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
+- Removed the `active-tab-indicator` part from `<wa-tab-group>`
+- Removed the `closable` attribute from `<wa-tab>` because you can't nest interactive elements (see the updated example for a better method)
+- Removed the `show()` method from `<wa-tab-group>` (use the `active` attribute instead)
 
 ## Next
 
+- Fixed a bug in `<sl-split-panel>` that caused it not to recalculate it's position when going from being `display: none;` to its original display value. [#1942]
+- Fixed a bug in `<dialog>` where when it showed it would cause a layout shift. [#1967]
+- Fixed a bug in `<sl-tooltip>` that allowed unwanted text properties to leak in [#1947]
+- Fixed a bug in `<sl-button-group>` classes [#1974]
+- Fixed a bug in `<sl-textarea>` that may throw errors on `disconnectedCallback` in test environments [#1985]
+- Fixed a bug in `<sl-color-picker>` that would log a non-passive event listener warning [#2005]
+- Fixed a bug in the submenu controller that allowed submenus to go offscreen and not be scrollable [#2001]
+- Fixed a bug in `<sl-range>` that caused the tooltip position to be incorrect in some cases [#1979]
+
+## 2.15.0
+
 - Added support for `contextElement` to `VirtualElements` in `<sl-popup>` [#1874]
+- Added the `sync` property to `<wa-dropdown>` [#1935]
+- Fixed a bug in `<sl-icon>` that did not properly apply mutators to spritesheets [#1927]
+- Fixed a bug in `.sl-scroll-lock` causing layout shifts [#1895]
 - Fixed a bug in `<sl-rating>` that caused the rating to not reset in some circumstances [#1877]
 - Fixed a bug in `<sl-select>` that caused the menu to not close when rendered in a shadow root [#1878]
 - Fixed a bug in `<sl-tree>` that caused a new stacking context resulting in tooltips being clipped [#1709]
 - Fixed a bug in `<sl-tab-group>` that caused the scroll controls to toggle indefinitely when zoomed in Safari [#1839]
 - Fixed a bug in the submenu controller that allowed two submenus to be open at the same time [#1880]
+- Fixed a bug in `<sl-input>` that prevented the control from receiving focus when clicking over the clear button
+- Fixed a bug in `<dialog>` where when it showed it would create a layout shift. [#1967]
 
 ## 2.14.0
 
@@ -49,6 +71,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Added the `hover-bridge` feature to `<sl-popup>` to support better tooltip accessibility [#1734]
 - Added the `loading` attribute and the `spinner` and `spinner__base` part to `<sl-menu-item>` [#1700]
 - Fixed files that did not have `.js` extensions. [#1770]
+- Fixed a bug in `<sl-tree>` when providing custom expand / collapse icons [#1922]
 - Fixed `<sl-dialog>` not accounting for elements with hidden dialog controls like `<video>` [#1755]
 - Fixed focus trapping not scrolling elements into view. [#1750]
 - Fixed more performance issues with focus trapping performance. [#1750]

@@ -7,7 +7,7 @@ layout: component.njk
 <!-- cspell:dictionaries lorem-ipsum -->
 
 ```html {.example}
-<wa-dialog label="Dialog" class="dialog-overview">
+<wa-dialog label="Dialog" with-header with-footer class="dialog-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <wa-button slot="footer" variant="brand">Close</wa-button>
 </wa-dialog>
@@ -35,7 +35,7 @@ const App = () => {
 
   return (
     <>
-      <WaDialog label="Dialog" open={open} onWaAfterHide={() => setOpen(false)}>
+      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         <WaButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
@@ -56,7 +56,7 @@ const App = () => {
 Use the `--width` custom property to set the dialog's width.
 
 ```html {.example}
-<wa-dialog label="Dialog" class="dialog-width" style="--width: 50vw;">
+<wa-dialog label="Dialog" with-header with-footer class="dialog-width" style="--width: 50vw;">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <wa-button slot="footer" variant="brand">Close</wa-button>
 </wa-dialog>
@@ -84,7 +84,7 @@ const App = () => {
 
   return (
     <>
-      <WaDialog label="Dialog" open={open} style={{ '--width': '50vw' }} onWaAfterHide={() => setOpen(false)}>
+      <WaDialog label="Dialog" with-header with-footer open={open} style={{ '--width': '50vw' }} onWaAfterHide={() => setOpen(false)}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         <WaButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
@@ -103,7 +103,7 @@ const App = () => {
 By design, a dialog's height will never exceed that of the viewport. As such, dialogs will not scroll with the page ensuring the header and footer are always accessible to the user.
 
 ```html {.example}
-<wa-dialog label="Dialog" class="dialog-scrolling">
+<wa-dialog label="Dialog" with-header with-footer class="dialog-scrolling">
   <div style="height: 150vh; border: dashed 2px var(--wa-color-surface-border); padding: 0 1rem;">
     <p>Scroll down and give it a try! 👇</p>
   </div>
@@ -133,7 +133,7 @@ const App = () => {
 
   return (
     <>
-      <WaDialog label="Dialog" open={open} onWaAfterHide={() => setOpen(false)}>
+      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
         <div
           style={{
             height: '150vh',
@@ -161,7 +161,7 @@ const App = () => {
 The header shows a functional close button by default. You can use the `header-actions` slot to add additional [icon buttons](/components/icon-button) if needed.
 
 ```html {.example}
-<wa-dialog label="Dialog" class="dialog-header-actions">
+<wa-dialog label="Dialog" with-header with-footer class="dialog-header-actions">
   <wa-icon-button class="new-window" slot="header-actions" name="arrow-up-right-from-square" variant="solid"></wa-icon-button>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <wa-button slot="footer" variant="brand">Close</wa-button>
@@ -193,7 +193,7 @@ const App = () => {
 
   return (
     <>
-      <WaDialog label="Dialog" open={open} onWaAfterHide={() => setOpen(false)}>
+      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
         <WaIconButton
           class="new-window"
           slot="header-actions"
@@ -222,7 +222,7 @@ To keep the dialog open in such cases, you can cancel the `wa-request-close` eve
 You can use `event.detail.source` to determine what triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or [[Escape]] to dismiss it.
 
 ```html {.example}
-<wa-dialog label="Dialog" class="dialog-deny-close">
+<wa-dialog label="Dialog" with-header with-footer class="dialog-deny-close">
   This dialog will not close when you click on the overlay.
   <wa-button slot="footer" variant="brand">Close</wa-button>
 </wa-dialog>
@@ -264,7 +264,7 @@ const App = () => {
 
   return (
     <>
-      <WaDialog label="Dialog" open={open} onWaRequestClose={handleRequestClose} onWaAfterHide={() => setOpen(false)}>
+      <WaDialog label="Dialog" with-header with-footer open={open} onWaRequestClose={handleRequestClose} onWaAfterHide={() => setOpen(false)}>
         This dialog will not close when you click on the overlay.
         <WaButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close
@@ -283,7 +283,7 @@ const App = () => {
 By default, the dialog's panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the `autofocus` attribute to it as shown below.
 
 ```html {.example}
-<wa-dialog label="Dialog" class="dialog-focus">
+<wa-dialog label="Dialog" with-header with-footer class="dialog-focus">
   <wa-input autofocus placeholder="I will have focus when the dialog is opened"></wa-input>
   <wa-button slot="footer" variant="brand">Close</wa-button>
 </wa-dialog>
@@ -313,7 +313,7 @@ const App = () => {
 
   return (
     <>
-      <WaDialog label="Dialog" open={open} onWaAfterHide={() => setOpen(false)}>
+      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
         <WaInput autofocus placeholder="I will have focus when the dialog is opened" />
         <WaButton slot="footer" variant="brand" onClick={() => setOpen(false)}>
           Close

@@ -3,7 +3,7 @@ import '../popup/popup.js';
 import '../spinner/spinner.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getTextContent, HasSlotController } from '../../internal/slot.js';
+import { getTextContent } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { SubmenuController } from './submenu-controller.js';
@@ -63,8 +63,7 @@ export default class WaMenuItem extends WebAwesomeElement {
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   private readonly localize = new LocalizeController(this);
-  private readonly hasSlotController = new HasSlotController(this, 'submenu');
-  private submenuController: SubmenuController = new SubmenuController(this, this.hasSlotController, this.localize);
+  private submenuController: SubmenuController = new SubmenuController(this, this.localize);
 
   connectedCallback() {
     super.connectedCallback();
@@ -145,7 +144,7 @@ export default class WaMenuItem extends WebAwesomeElement {
   }
 
   isSubmenu() {
-    return this.hasSlotController.test('submenu');
+    return this.querySelector(`:scope > [slot="submenu"]`) !== null;
   }
 
   render() {

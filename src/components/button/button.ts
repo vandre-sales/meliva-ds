@@ -3,7 +3,6 @@ import '../spinner/spinner.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { FormControlController, validValidityState } from '../../internal/form.js';
-import { HasSlotController } from '../../internal/slot.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -59,7 +58,6 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['click']
   });
-  private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
   private readonly localize = new LocalizeController(this);
 
   @query('.button') button: HTMLButtonElement | HTMLLinkElement;
@@ -77,7 +75,7 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
   /** Draws the button with a caret. Used to indicate that the button triggers a dropdown menu or similar behavior. */
   @property({ type: Boolean, reflect: true }) caret = false;
 
-  /** Disables the button. */
+  /** Disables the button. Does not apply to link buttons. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** Draws the button in a loading state. */
@@ -284,10 +282,7 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
           'button--standard': !this.outline,
           'button--outline': this.outline,
           'button--pill': this.pill,
-          'button--rtl': this.localize.dir() === 'rtl',
-          'button--has-label': this.hasSlotController.test('[default]'),
-          'button--has-prefix': this.hasSlotController.test('prefix'),
-          'button--has-suffix': this.hasSlotController.test('suffix')
+          'button--rtl': this.localize.dir() === 'rtl'
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
