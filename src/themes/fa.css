@@ -547,6 +547,10 @@
     --background-active: var(--border-color);
     --label-color-active: var(--background);
 
+    &[outline] {
+      --background: var(--wa-color-surface-default);
+    }
+
     .wa-theme-fa-dark & {
       &[variant='brand'] {
         --border-color: var(--wa-color-brand-spot-darker);

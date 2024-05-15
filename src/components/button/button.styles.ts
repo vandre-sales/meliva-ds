@@ -45,9 +45,9 @@ export default css`
   :host(:not([variant='text'])) {
     --background-hover: color-mix(in oklab, var(--background), var(--wa-color-mix-hover));
     --background-active: color-mix(in oklab, var(--background), var(--wa-color-mix-active));
-    --border-color: var(--background);
-    --border-color-hover: var(--background-hover);
-    --border-color-active: var(--background-active);
+    --border-color: initial;
+    --border-color-hover: initial;
+    --border-color-active: initial;
     --label-color-hover: var(--label-color);
     --label-color-active: var(--label-color);
   }
@@ -89,6 +89,7 @@ export default css`
 
   :host([outline]),
   :host(.wa-button-group__button--radio:not([checked])) {
+    --background: transparent;
     --background-active: color-mix(in oklab, var(--background-hover), var(--wa-color-surface-default) 30%);
     --border-color: color-mix(in oklab, var(--label-color), var(--wa-color-surface-default) 30%);
     --border-color-hover: var(--border-color);
@@ -151,9 +152,12 @@ export default css`
    */
 
   .button {
+    background: var(--background);
+    border-color: var(--border-color, var(--background));
     border-radius: var(--border-radius);
     border-style: var(--border-style);
     border-width: max(1px, var(--border-width));
+    box-shadow: var(--box-shadow);
     color: var(--label-color);
     display: inline-flex;
     align-items: stretch;
@@ -175,29 +179,10 @@ export default css`
     cursor: inherit;
   }
 
-  .button--standard,
-  .button--checked {
-    background: var(--background);
-    border-color: var(--border-color);
-    box-shadow: var(--box-shadow);
-  }
-
   .button--checked {
     box-shadow:
       var(--box-shadow, 0 0 transparent),
       inset 0 0 0 var(--indicator-width) var(--indicator-color);
-  }
-
-  .button--outline:not(.button--checked) {
-    background: none;
-    border-color: var(--border-color);
-    box-shadow: var(--box-shadow);
-  }
-
-  .button--text {
-    background: none;
-    border-color: transparent;
-    box-shadow: none;
   }
 
   /*
@@ -229,13 +214,13 @@ export default css`
 
   .button:hover:not(.button--disabled) {
     background: var(--background-hover, var(--background, none));
-    border-color: var(--border-color-hover, var(--border-color, transparent));
+    border-color: var(--border-color-hover, var(--border-color, var(--background-hover)));
     color: var(--label-color-hover, var(--label-color));
   }
 
   .button:active:not(.button--disabled) {
     background: var(--background-active, var(--background, none));
-    border-color: var(--border-color-active, var(--border-color, transparent));
+    border-color: var(--border-color-active, var(--border-color, var(--background-active)));
     color: var(--label-color-active, var(--label-color));
   }
 
@@ -416,19 +401,14 @@ export default css`
   }
 
   /* Add a visual separator between solid buttons */
-  :host(
-      .wa-button-group__button:not(.wa-button-group__button--first, .wa-button-group__button--radio, [outline]):not(
-          :hover
-        )
-    )
-    .button:after {
+  :host(.wa-button-group__button:not(.wa-button-group__button--first, .wa-button-group__button--radio)) .button:after {
     content: '';
     position: absolute;
     top: 0;
     inset-inline-start: 0;
     bottom: 0;
-    border-left: solid max(var(--border-width), 1px) var(--border-color);
-    mix-blend-mode: multiply;
+    border-left: solid max(var(--border-width), 1px) var(--border-color, rgb(0 0 0 / 0.3));
+    z-index: 2; /* Keep separators visible on hover */
   }
 
   /* Bump hovered, focused, and checked buttons up so their focus ring isn't clipped */
