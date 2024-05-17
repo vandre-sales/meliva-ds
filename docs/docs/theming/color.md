@@ -13,6 +13,7 @@ layout: page.njk
     display: flex;
     align-items: start;
     gap: 0.25em;
+    flex-wrap: nowrap;
     margin-block-end: var(--wa-space-xl);
   }
   .color-preview {
@@ -23,19 +24,22 @@ layout: page.njk
     border-radius: var(--wa-corners-s);
     height: 3em;
   }
+  .text-swatch {
+    font-size: var(--wa-font-size-xl);
+  }
 </style>
 
-intro
+Web Awesome's color system includes a range of CSS custom properties to purposefully and consistently thread your color choices throughout your project.
 
 ## Literal colors
 
-Literal colors are the lowest-level color properties in your theme. Each color is identified by a name, like red or gray, and a number that roughly corresponds to the color's perceived lightness. On this scale, 100 is the equivalent of pure white and 0 is the equivalent of pure black. Web Awesome defines 10 colors each with 11 lightness steps using the format `--wa-color-{name}-{#}`.
+Literal colors are the lowest level color properties in your theme. Each color is identified by a name, like red or gray, and a number that roughly corresponds to the color's perceived lightness. On this scale, 100 is equal to pure white and 0 is equal to pure black. Web Awesome defines 10 literal colors each with 11 lightness steps using the format `--wa-color-{name}-{#}`.
 
-For easy WCAG 2.1 conformance, the lightness values between colors have a strong correlation to [relative luminance](https://www.w3.org/WAI/GL/wiki/Relative_luminance). To achieve accessible contrast ratios, even across hues, calculate the difference between the lightness values of any two colors:
+For easy WCAG 2.1 conformance, the lightness values between colors have a strong correlation to [relative luminance](https://www.w3.org/WAI/GL/wiki/Relative_luminance). For accessible contrast ratios, even across hues, calculate the difference between the lightness values of any two colors:
 
-- A difference of 40 between lightness values guarantees a minimum 3:1 contrast ratio, sufficient for large text and icons (AA).
-- A difference of 50 between lightness values guarantees a minimum 4.5:1 contrast ratio, sufficient for normal text (AA) and large text (AAA).
-- A difference of 60 between lightness values guarantees a minimum 7:1 contrast ratio, sufficient for all text (AAA).
+- A difference of 40 between lightness values ensures a minimum 3:1 contrast ratio, suitable for large text and icons (AA).
+- A difference of 50 between lightness values ensures a minimum 4.5:1 contrast ratio, suitable for normal text (AA) and large text (AAA).
+- A difference of 60 between lightness values ensures a minimum 7:1 contrast ratio, suitable for all text (AAA).
 
 <div class="color-name">Rose</div>
 <div class="color-group">
@@ -517,12 +521,12 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
   </div>
 </div>
 
-### Primary and Base Colors
+### Key Colors
 
-We extend the palette of literal colors with two pseudo-literal color groups:
+We extend the palette of literal colors with two additional color groups to aid changing the key colors of your project:
 
-- **Primary** is your key brand color used to draw attention and designate actions.
-- **Base** makes up the your content's body and structure.
+- **Primary** is color you use to draw attention and signify actions.
+- **Base** makes up your project's body and structure.
 
 The primary and base color groups reference another literal color group. By default, `--wa-color-primary-{#}` maps to `--wa-color-blue-{#}` and `--wa-color-base-{#}` maps to `--wa-color-gray-{#}`.
 
@@ -624,7 +628,74 @@ The primary and base color groups reference another literal color group. By defa
 
 ## Foundational Colors
 
-content - describe surfaces, overlays, text, etc. - all the colors to build the foundation of your theme
+Foundational colors lay the groundwork for your project's content. These colors are grouped by their distinct roles.
+
+### Surfaces
+
+Surfaces help establish basic hierarchy, consisting of background layers that other components and content rest on. Surface colors support the concept of elevation, where `--wa-color-surface-raised` would be the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` would be the farthest away (e.g., backdrops and wells).
+
+| Name                          |  Preview                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-color-surface-raised`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-raised)"></div></div> |
+| `--wa-color-surface-default`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-default)"></div></div> |
+| `--wa-color-surface-lowered`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-lowered)"></div></div> |
+| `--wa-color-surface-border`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-surface-border)"></div></div> |
+
+### Text
+
+Text colors are used for standard text elements. We recommend a minimum 4.5:1 contrast ratio between text colors and surface colors.
+
+| Name                          |  Preview                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-color-text-normal`   | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-text-normal)">AaBbCc</div></div> |
+| `--wa-color-text-quiet`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-text-quiet)">AaBbCc</div></div> |
+| `--wa-color-text-link`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-text-link)">AaBbCc</div></div> |
+
+### Selection
+
+Selection colors are used for selected text. We recommend a minimum 4.5:1 contrast ratio between the background color and the text color.
+
+| Name                          |  Preview                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-color-selection-background`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-selection-background)"></div></div> |
+| `--wa-color-selection-text`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-selection-text)">AaBbCc</div></div> |
+
+### Focus
+
+Focus is used for the color of your project's focus ring. Using a single, consistent color allows for predictable keyboard navigation. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
+
+| Name                          |  Preview                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-color-focus`   | <div class="color-preview"><div class="color-swatch" style="outline: var(--wa-focus-ring)"></div></div> |
+
+### Overlays
+
+Overlays provide a backdrop to isolate content, often allowing background colors or content to show through to preserve overall context. 
+
+`--wa-color-overlay-modal` is meant for use behind modal content, like dialogs and drawers. `--wa-color-overlay-inline` is meant for use behind inline content where background colors of parent elements should show through to avoid conflicting colors.
+
+| Name                          |  Preview                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-color-overlay-modal`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-overlay-modal)"></div></div> |
+| `--wa-color-overlay-inline`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-overlay-inline)"></div></div> |
+
+### Shadow
+
+Shadow is used to indicate elevation. `--wa-color-shadow` is used in your theme's preset shadows.
+
+| Name                          |  Preview                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-color-shadow`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-shadow)"></div></div> |
+
+### Interactive Mix
+
+Mix colors are used in `color-mix()` functions to achieve consistent interaction effects across components. We recommend using a color that is the inverse of your standard button labels to minimize any adverse effects on color contrast.
+
+| Name                          |  Preview                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-color-mix-hover`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-hover))"></div></div></div> |
+| `--wa-color-mix-active`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-active))"></div></div></div> |
+
 
 ## Semantic Colors
 
