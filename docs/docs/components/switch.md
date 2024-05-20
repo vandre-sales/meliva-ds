@@ -5,22 +5,6 @@ layout: component.njk
 ---
 
 ```html {.example}
-<form>
-  <wa-switch name="a" checked>Switch</wa-switch>
-  <br><br>
-  <wa-button type="reset">Reset</wa-button>
-</form>
-```
-
-{% raw %}
-```jsx {.react}
-import WaSwitch from '@shoelace-style/shoelace/dist/react/switch';
-
-const App = () => <WaSwitch>Switch</WaSwitch>;
-```
-{% endraw %}
-
-```html {.example}
 <wa-switch>Switch</wa-switch>
 ```
 
