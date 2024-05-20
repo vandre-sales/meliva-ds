@@ -282,9 +282,6 @@ export default class WaInput extends WebAwesomeFormAssociated {
         // See https://github.com/shoelace-style/shoelace/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
-          // getForm.elements.find(() => {
-          //   el.getAttribute("type") === "submit"
-          // })
           this.getForm()?.requestSubmit(null);
         }
       });

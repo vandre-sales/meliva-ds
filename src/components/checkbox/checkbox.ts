@@ -132,7 +132,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
     this.emit('wa-focus');
   }
 
-  @watch(['defaultChecked'])
+  @watch('defaultChecked')
   handleDefaultCheckedChange() {
     if (!this.hasInteracted && this.checked !== this.defaultChecked) {
       this.checked = this.defaultChecked;
@@ -140,7 +140,6 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
     }
   }
 
-  // @watch(['value', 'checked'], { waitUntilFirstUpdate: true })
   handleValueOrCheckedChange() {
     this.value = this.checked ? this.value || 'on' : null;
 

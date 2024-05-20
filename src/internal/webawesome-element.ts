@@ -147,8 +147,7 @@ export interface WebAwesomeFormControl extends WebAwesomeElement {
 // setFormValue omitted so that we can use `setValue`
 export class WebAwesomeFormAssociated
   extends WebAwesomeElement
-  implements Omit<ElementInternals, 'form' | 'setFormValue'>, WebAwesomeFormControl
-{
+  implements Omit<ElementInternals, 'form' | 'setFormValue'>, WebAwesomeFormControl {
   static formAssociated = true;
 
   /**

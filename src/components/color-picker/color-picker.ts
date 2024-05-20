@@ -4,7 +4,6 @@ import '../dropdown/dropdown.js';
 import '../icon/icon.js';
 import '../input/input.js';
 import '../visually-hidden/visually-hidden.js';
-
 import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
