@@ -14,7 +14,9 @@ layout: page.njk
     align-items: start;
     gap: 0.25em;
     flex-wrap: nowrap;
-    margin-block-end: var(--wa-space-xl);
+  }
+  .color-group + * {
+    margin-block-start: var(--wa-space-xl);
   }
   .color-preview {
     flex: 1 1 auto;
@@ -31,7 +33,7 @@ layout: page.njk
 
 Web Awesome's color system includes a range of CSS custom properties to purposefully and consistently thread your color choices throughout your project.
 
-## Literal colors
+## Literal Colors
 
 Literal colors are the lowest level color properties in your theme. Each color is identified by a name, like red or gray, and a number that roughly corresponds to the color's perceived lightness. On this scale, 100 is equal to pure white and 0 is equal to pure black. Web Awesome defines 10 literal colors each with 11 lightness steps using the format `--wa-color-{name}-{#}`.
 
@@ -634,7 +636,7 @@ Foundational colors lay the groundwork for your project's content. These colors 
 
 Surfaces help establish basic hierarchy, consisting of background layers that other components and content rest on. Surface colors support the concept of elevation, where `--wa-color-surface-raised` would be the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` would be the farthest away (e.g., backdrops and wells).
 
-| Name                          |  Preview                        |
+| Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-surface-raised`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-raised)"></div></div> |
 | `--wa-color-surface-default`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-default)"></div></div> |
@@ -645,7 +647,7 @@ Surfaces help establish basic hierarchy, consisting of background layers that ot
 
 Text colors are used for standard text elements. We recommend a minimum 4.5:1 contrast ratio between text colors and surface colors.
 
-| Name                          |  Preview                        |
+| Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-text-normal`   | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-text-normal)">AaBbCc</div></div> |
 | `--wa-color-text-quiet`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-text-quiet)">AaBbCc</div></div> |
@@ -655,7 +657,7 @@ Text colors are used for standard text elements. We recommend a minimum 4.5:1 co
 
 Selection colors are used for selected text. We recommend a minimum 4.5:1 contrast ratio between the background color and the text color.
 
-| Name                          |  Preview                        |
+| Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-selection-background`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-selection-background)"></div></div> |
 | `--wa-color-selection-text`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-selection-text)">AaBbCc</div></div> |
@@ -664,7 +666,7 @@ Selection colors are used for selected text. We recommend a minimum 4.5:1 contra
 
 Focus is used for the color of your project's focus ring. Using a single, consistent color allows for predictable keyboard navigation. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
 
-| Name                          |  Preview                        |
+| Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-focus`   | <div class="color-preview"><div class="color-swatch" style="outline: var(--wa-focus-ring)"></div></div> |
 
@@ -674,7 +676,7 @@ Overlays provide a backdrop to isolate content, often allowing background colors
 
 `--wa-color-overlay-modal` is meant for use behind modal content, like dialogs and drawers. `--wa-color-overlay-inline` is meant for use behind inline content where background colors of parent elements should show through to avoid conflicting colors.
 
-| Name                          |  Preview                        |
+| Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-overlay-modal`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-overlay-modal)"></div></div> |
 | `--wa-color-overlay-inline`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-overlay-inline)"></div></div> |
@@ -683,7 +685,7 @@ Overlays provide a backdrop to isolate content, often allowing background colors
 
 Shadow is used to indicate elevation. `--wa-color-shadow` is used in your theme's preset shadows.
 
-| Name                          |  Preview                        |
+| Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-shadow`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-shadow)"></div></div> |
 
@@ -691,7 +693,7 @@ Shadow is used to indicate elevation. `--wa-color-shadow` is used in your theme'
 
 Mix colors are used in `color-mix()` functions to achieve consistent interaction effects across components. We recommend using a color that is the inverse of your standard button labels to minimize any adverse effects on color contrast.
 
-| Name                          |  Preview                        |
+| Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-mix-hover`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-hover))"></div></div></div> |
 | `--wa-color-mix-active`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-active))"></div></div></div> |
@@ -699,4 +701,21 @@ Mix colors are used in `color-mix()` functions to achieve consistent interaction
 
 ## Semantic Colors
 
-content - describe brand, success, warning, danger, neutral
+Semantic colors help reinforce a specific message, intended usage, or expected results through familiar, meaningful hues. Each specify colors to use for fills, borders, and text so that they can be used across components with predictable results and easily assembled with readable contrast. There are five groups of semantic colors:
+
+- **Brand** to reinforce your project's branding
+- **Success** to express validity or confirmation
+- **Neutral** for content that is idle, inactive, or innocuous
+- **Warning** to express caution or uncertainty
+- **Danger** to express errors or risk
+
+| Custom Property               |  <code>brand</code>             |  <code>success</code>           |  <code>neutral</code>           |  <code>warning</code>           | <code>danger</code>             |
+| ----------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
+| `--wa-color-*-spot`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-spot)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-spot)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-spot)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-spot)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-spot)"></div></div> |
+| `--wa-color-*-fill-subtle`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-subtle)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-subtle)"></div></div> |
+| `--wa-color-*-fill-highlight`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-highlight)"></div></div> |<div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-highlight)"></div></div> |
+| `--wa-color-*-border-subtle`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-subtle)"></div></div> |
+| `--wa-color-*-border-highlight`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-highlight)"></div></div> |
+| `--wa-color-*-text-on-spot`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-brand-text-on-spot)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-success-text-on-spot)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-neutral-text-on-spot)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-warning-text-on-spot)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-danger-text-on-spot)">AaBb</div></div> |
+| `--wa-color-*-text-on-fill`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-brand-text-on-fill)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-success-text-on-fill)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-neutral-text-on-fill)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-warning-text-on-fill)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-danger-text-on-fill)">AaBb</div></div> |
+| `--wa-color-*-text-on-surface`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-brand-text-on-surface)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-success-text-on-surface)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-neutral-text-on-surface)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-warning-text-on-surface)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-danger-text-on-surface)">AaBb</div></div> |
