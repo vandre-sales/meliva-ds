@@ -16,7 +16,7 @@ This image depicts the layout's anatomy, including the default positions of each
 
 Most slots are optional. Slots that have no content will not be shown, allowing you to opt-in to just the sections of the layout you actually need.
 
-[![Screenshot of Layout Anatomy showing various slots](/assets/images/layout.png)](/assets/images/layout.png)
+![Screenshot of Layout Anatomy showing various slots](/assets/images/layout-anatomy.svg)
 
 :::info
 If you're not familiar with how slots work in HTML, you might want to [learn more about slots](/getting-started/usage/#slots) before using this component.
