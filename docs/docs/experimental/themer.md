@@ -35,7 +35,7 @@ hasOutline: false
 
   :root,
   #knobs {
-    scrollbar-color: var(--wa-color-neutral-border-highlight) var(--wa-color-surface-raised);
+    scrollbar-color: var(--wa-color-neutral-border-normal) var(--wa-color-surface-raised);
   }
 
   /* #region Lock theme styles */  
@@ -48,25 +48,23 @@ hasOutline: false
 
     --wa-color-shadow: rgb(0 0 0 / 0.1);
 
-    --wa-color-neutral-spot: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 75%);
-    --wa-color-neutral-spot-darker: color-mix(in oklab, var(--wa-color-neutral-spot), black 5%);
-    --wa-color-neutral-fill-subtle: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 10%);
-    --wa-color-neutral-fill-highlight: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 20%);
-    --wa-color-neutral-border-subtle: color-mix(in oklab, var(--wa-color-text-normal), var(--wa-color-surface-default) 90%);
-    --wa-color-neutral-border-highlight: color-mix(in oklab, var(--wa-color-text-normal), var(--wa-color-surface-default) 70%);
-    --wa-color-neutral-text-on-spot: color-mix(in oklab, var(--wa-color-surface-default) 90%, var(--wa-color-text-normal));
-    --wa-color-neutral-text-on-fill: color-mix(in oklab, var(--wa-color-surface-raised) 10%, var(--wa-color-text-normal));
-    --wa-color-neutral-text-on-surface: var(--wa-color-neutral-spot);
+    --wa-color-neutral-fill-loud: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 75%);
+    --wa-color-neutral-fill-quiet: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 10%);
+    --wa-color-neutral-fill-normal: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 20%);
+    --wa-color-neutral-border-quiet: color-mix(in oklab, var(--wa-color-text-normal), var(--wa-color-surface-default) 90%);
+    --wa-color-neutral-border-normal: color-mix(in oklab, var(--wa-color-text-normal), var(--wa-color-surface-default) 70%);
+    --wa-color-neutral-on-loud: color-mix(in oklab, var(--wa-color-surface-default) 90%, var(--wa-color-text-normal));
+    --wa-color-neutral-on-normal: color-mix(in oklab, var(--wa-color-surface-raised) 10%, var(--wa-color-text-normal));
+    --wa-color-neutral-on-quiet: var(--wa-color-neutral-fill-loud);
 
-    --wa-color-brand-spot: var(--wa-color-neutral-spot);
-    --wa-color-brand-spot-darker: var(--wa-color-neutral-spot-darker);
-    --wa-color-brand-fill-subtle: var(--wa-color-neutral-fill-subtle);
-    --wa-color-brand-fill-highlight: var(--wa-color-neutral-fill-highlight);
-    --wa-color-brand-border-subtle: var(--wa-color-neutral-border-subtle);
-    --wa-color-brand-border-highlight: var(--wa-color-neutral-border-highlight);
-    --wa-color-brand-text-on-spot: var(--wa-color-neutral-text-on-spot);
-    --wa-color-brand-text-on-fill: var(--wa-color-neutral-text-on-fill);
-    --wa-color-brand-text-on-surface: var(--wa-color-neutral-text-on-surface);
+    --wa-color-brand-fill-loud: var(--wa-color-neutral-fill-loud);
+    --wa-color-brand-fill-quiet: var(--wa-color-neutral-fill-quiet);
+    --wa-color-brand-fill-normal: var(--wa-color-neutral-fill-normal);
+    --wa-color-brand-border-quiet: var(--wa-color-neutral-border-quiet);
+    --wa-color-brand-border-normal: var(--wa-color-neutral-border-normal);
+    --wa-color-brand-on-loud: var(--wa-color-neutral-on-loud);
+    --wa-color-brand-on-normal: var(--wa-color-neutral-on-normal);
+    --wa-color-brand-on-quiet: var(--wa-color-neutral-on-quiet);
 
     --wa-font-family-heading: Inconsolata, monospace;
     --wa-font-family-body: Inconsolata, monospace;
@@ -159,8 +157,8 @@ hasOutline: false
 
     --wa-form-controls-corners: var(--wa-corners-s);
 
-    --wa-form-controls-activated-color: var(--wa-color-brand-spot);
-    --wa-form-controls-resting-color: var(--wa-color-neutral-border-highlight);
+    --wa-form-controls-activated-color: var(--wa-color-brand-fill-loud);
+    --wa-form-controls-resting-color: var(--wa-color-neutral-border-normal);
 
     --wa-form-controls-label-color: var(--wa-color-text-normal);
     --wa-form-controls-label-font-weight: var(--wa-font-weight-normal);
@@ -290,7 +288,7 @@ hasOutline: false
 
 
   #knobs wa-radio-group[name="color"] wa-radio {
-    border: 0.0625em solid var(--wa-color-neutral-border-subtle);
+    border: 0.0625em solid var(--wa-color-neutral-border-quiet);
     border-radius: var(--wa-corners-m);
     box-shadow: inset 0 0 0 0 transparent;
     padding: 1em;
@@ -379,7 +377,7 @@ hasOutline: false
   }
 
   .file-uploader:is(:hover) {
-    background-color: var(--wa-color-neutral-fill-subtle);
+    background-color: var(--wa-color-neutral-fill-quiet);
   }
 
   /**
@@ -432,8 +430,8 @@ hasOutline: false
 
   #icon-chooser-trigger {
     --button-group-separator-border: none;
-    --label-color: var(--wa-color-neutral-text-on-surface);
-    --label-color-hover: color-mix(in oklab, var(--wa-color-neutral-text-on-surface), var(--wa-color-mix-hover));
+    --label-color: var(--wa-color-neutral-on-quiet);
+    --label-color-hover: color-mix(in oklab, var(--wa-color-neutral-on-quiet), var(--wa-color-mix-hover));
     --label-color-active: var(--label-color-hover);
   }
 
@@ -723,7 +721,7 @@ hasOutline: false
           border-radius: var(--wa-corners-circle);
         }
         &::part(button--checked) {
-          background: var(--wa-color-brand-spot);
+          background: var(--wa-color-brand-fill-loud);
         }
       }
     }
@@ -1681,7 +1679,7 @@ hasOutline: false
     padding: 0;
     max-inline-size: 1400px;
     margin-inline: auto;
-    border: var(--wa-border-width-s) var(--wa-color-neutral-border-subtle) var(--wa-border-style);
+    border: var(--wa-border-width-s) var(--wa-color-neutral-border-quiet) var(--wa-border-style);
     overflow: clip;
   }
 
@@ -1850,7 +1848,7 @@ hasOutline: false
 
   .message-composer .grouped-buttons:not(:last-of-type) {
     padding-inline-end: var(--wa-space-m);
-    border-right: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-neutral-border-subtle);
+    border-right: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-neutral-border-quiet);
   }
 
   .message-composer wa-card::part(header) {
@@ -2266,6 +2264,16 @@ hasOutline: false
           <wa-icon slot="icon" name="clock" variant="regular"></wa-icon>
           This item will soon be discontinued
         </wa-alert>
+        <wa-button-group label="Alignment">
+  <wa-button>Left</wa-button>
+  <wa-button>Center</wa-button>
+  <wa-button>Right</wa-button>
+</wa-button-group>
+        <wa-button-group label="Alignment">
+  <wa-button variant="warning">Left</wa-button>
+  <wa-button variant="warning">Center</wa-button>
+  <wa-button variant="warning">Right</wa-button>
+</wa-button-group>
         <div>
           <div style="margin: var(--wa-space-3xl) 0">
             <wa-radio-group label="Choose a finish" name="finish" value="Matte" class="product-finish">

@@ -10,7 +10,7 @@ export default css`
     align-items: center;
     font: inherit;
     font-weight: var(--wa-font-weight-action);
-    color: var(--wa-color-neutral-text-on-surface);
+    color: var(--wa-color-neutral-on-quiet);
     line-height: var(--wa-font-line-height-regular);
     white-space: nowrap;
   }

@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-color-neutral-fill-highlight);
-    --content-color: var(--wa-color-neutral-text-on-fill);
+    --background: var(--wa-color-neutral-fill-normal);
+    --content-color: var(--wa-color-neutral-on-normal);
     --size: 3rem;
 
     display: inline-block;

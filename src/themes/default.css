@@ -6,72 +6,96 @@
   color-scheme: light;
 
   /**
-   * Primitive colors
+   * Literal colors
    * Each color is identified by a number that corresponds to its lightness value, where 100 is lightest (white) and 0 is darkest (black).
-   * Lightness on this scale is directly related to relative luminance, so each lightness value has uniform WCAG 2.1 contrast across hues.
+   * Lightness on this scale strongly correlates to relative luminance, so each lightness value has nearly uniform WCAG 2.1 contrast across hues.
    * A difference of 40 between lightness values guarantees a minimum 3:1 contrast ratio.
    * A difference of 50 between lightness values guarantees a minimum 4.5:1 contrast ratio.
    * A difference of 60 between lightness values guarantees a minimum 7:1 contrast ratio.
    */
-  --wa-color-red-95: #fdeef3;
-  --wa-color-red-90: #fcdee7;
-  --wa-color-red-80: #f8b8c8;
-  --wa-color-red-70: #f492a8;
-  --wa-color-red-60: #ef6982;
-  --wa-color-red-50: #df2e45;
-  --wa-color-red-40: #a82431;
-  --wa-color-red-30: #851d23;
-  --wa-color-red-20: #621617;
-  --wa-color-red-10: #3c0c09;
-  --wa-color-red-05: #290601;
+  --wa-color-red-95: #ffefef;
+  --wa-color-red-90: #ffdddc;
+  --wa-color-red-80: #ffb7b6;
+  --wa-color-red-70: #fc9090;
+  --wa-color-red-60: #f2676c;
+  --wa-color-red-50: #de2d44;
+  --wa-color-red-40: #b11036;
+  --wa-color-red-30: #861a2f;
+  --wa-color-red-20: #641122;
+  --wa-color-red-10: #400712;
+  --wa-color-red-05: #2a030a;
 
-  --wa-color-yellow-95: #fbf3c9;
-  --wa-color-yellow-90: #ffe492;
+  --wa-color-yellow-95: #fdf3ba;
+  --wa-color-yellow-90: #fee590;
   --wa-color-yellow-80: #fcc041;
-  --wa-color-yellow-70: #e5a23d;
-  --wa-color-yellow-60: #cc853a;
-  --wa-color-yellow-50: #a86633;
-  --wa-color-yellow-40: #824a2a;
-  --wa-color-yellow-30: #6a3825;
-  --wa-color-yellow-20: #4f281d;
-  --wa-color-yellow-10: #2e1813;
-  --wa-color-yellow-05: #1a0e0a;
+  --wa-color-yellow-70: #f39b00;
+  --wa-color-yellow-60: #e07b00;
+  --wa-color-yellow-50: #bb5a00;
+  --wa-color-yellow-40: #924200;
+  --wa-color-yellow-30: #743200;
+  --wa-color-yellow-20: #572300;
+  --wa-color-yellow-10: #361300;
+  --wa-color-yellow-05: #240b00;
 
-  --wa-color-green-95: #e2f8df;
+  --wa-color-green-95: #e2f9e2;
   --wa-color-green-90: #c2f2c1;
-  --wa-color-green-80: #68e27a;
-  --wa-color-green-70: #00cb50;
-  --wa-color-green-60: #00ae4b;
-  --wa-color-green-50: #008840;
-  --wa-color-green-40: #006834;
-  --wa-color-green-30: #00522c;
-  --wa-color-green-20: #003b22;
-  --wa-color-green-10: #002418;
-  --wa-color-green-05: #001611;
+  --wa-color-green-80: #92da97;
+  --wa-color-green-70: #5dc36f;
+  --wa-color-green-60: #00ac49;
+  --wa-color-green-50: #008825;
+  --wa-color-green-40: #006800;
+  --wa-color-green-30: #005300;
+  --wa-color-green-20: #003c00;
+  --wa-color-green-10: #002400;
+  --wa-color-green-05: #001700;
 
-  --wa-color-blue-95: #e9f3fe;
-  --wa-color-blue-90: #d4e8fc;
-  --wa-color-blue-80: #a2cef9;
-  --wa-color-blue-70: #6eb4f6;
-  --wa-color-blue-60: #259af4;
-  --wa-color-blue-50: #0076f2;
-  --wa-color-blue-40: #005ab7;
-  --wa-color-blue-30: #004790;
-  --wa-color-blue-20: #00346a;
-  --wa-color-blue-10: #001f3f;
-  --wa-color-blue-05: #001427;
+  --wa-color-blue-95: #e8f3ff;
+  --wa-color-blue-90: #d1e8ff;
+  --wa-color-blue-80: #9fceff;
+  --wa-color-blue-70: #6eb3ff;
+  --wa-color-blue-60: #3e96ff;
+  --wa-color-blue-50: #0071ec;
+  --wa-color-blue-40: #0053c0;
+  --wa-color-blue-30: #003f9c;
+  --wa-color-blue-20: #002d77;
+  --wa-color-blue-10: #001a4e;
+  --wa-color-blue-05: #000f35;
 
-  --wa-color-gray-95: #f2f2f4;
-  --wa-color-gray-90: #e5e5e9;
-  --wa-color-gray-80: #c8c9d1;
-  --wa-color-gray-70: #acaebb;
-  --wa-color-gray-60: #9194a4;
-  --wa-color-gray-50: #70758a;
+  --wa-color-indigo-95: #f0f2fe;
+  --wa-color-indigo-90: #e2e4fc;
+  --wa-color-indigo-80: #c2c6f8;
+  --wa-color-indigo-70: #a5a9f2;
+  --wa-color-indigo-60: #8a8beb;
+  --wa-color-indigo-50: #6b65e2;
+  --wa-color-indigo-40: #5246c1;
+  --wa-color-indigo-30: #412eaa;
+  --wa-color-indigo-20: #321393;
+  --wa-color-indigo-10: #1c006a;
+  --wa-color-indigo-05: #130049;
+
+  --wa-color-violet-95: #f9effd;
+  --wa-color-violet-90: #f4defb;
+  --wa-color-violet-80: #e7baf7;
+  --wa-color-violet-70: #d996ef;
+  --wa-color-violet-60: #c674e1;
+  --wa-color-violet-50: #a94dc6;
+  --wa-color-violet-40: #8732a1;
+  --wa-color-violet-30: #6d2283;
+  --wa-color-violet-20: #521564;
+  --wa-color-violet-10: #330940;
+  --wa-color-violet-05: #22042b;
+
+  --wa-color-gray-95: #f1f2f3;
+  --wa-color-gray-90: #e4e5e9;
+  --wa-color-gray-80: #c7c9d0;
+  --wa-color-gray-70: #abaeb9;
+  --wa-color-gray-60: #9194a2;
+  --wa-color-gray-50: #717584;
   --wa-color-gray-40: #545868;
-  --wa-color-gray-30: #424551;
-  --wa-color-gray-20: #30323b;
-  --wa-color-gray-10: #1c1d23;
-  --wa-color-gray-05: #111215;
+  --wa-color-gray-30: #424554;
+  --wa-color-gray-20: #2f323f;
+  --wa-color-gray-10: #1b1d26;
+  --wa-color-gray-05: #101219;
 
   --wa-color-primary-95: var(--wa-color-blue-95);
   --wa-color-primary-90: var(--wa-color-blue-90);
@@ -109,11 +133,10 @@
   --wa-color-surface-border: var(--wa-color-base-90);
 
   /* Text colors are used for standard text elements.
-   * Text should have a minimum 4.5:1 contrast ratio against surfaces.
-   * Inverse text should support appropriate contrast against background colors with opposing lightness. */
+   * Text should have a minimum 4.5:1 contrast ratio against surfaces. */
   --wa-color-text-normal: var(--wa-color-base-10);
   --wa-color-text-quiet: var(--wa-color-base-40);
-  --wa-color-text-link: var(--wa-color-brand-text-on-surface);
+  --wa-color-text-link: var(--wa-color-primary-50);
 
   /* Selection colors apply on content that is highlighted by the user.
    * Selection text should have a minimum 4.5:1 contrast ratio against the selection background. */
@@ -152,57 +175,58 @@
    * Vivid colors should have a minimum 3:1 contrast ratio against surfaces when possible.
    * Muted colors have no contrast requirements.
    * Text colors should have a minimum 4.5:1 contrast ratio on the intended background - vivid, muted, or surface.
+   * Colors are differentiated by how much they contribute to visual noise. It's hard to focus on a conversation in a loud restaurant. In the same way, it's hard for a user to focus their attention when there are many colors competing for it.
   */
 
-  --wa-color-brand-spot: var(--wa-color-primary-50);
-  --wa-color-brand-spot-darker: var(--wa-color-primary-40);
-  --wa-color-brand-fill-subtle: var(--wa-color-primary-95);
-  --wa-color-brand-fill-highlight: var(--wa-color-primary-90);
-  --wa-color-brand-border-subtle: var(--wa-color-primary-90);
-  --wa-color-brand-border-highlight: var(--wa-color-primary-80);
-  --wa-color-brand-text-on-spot: white;
-  --wa-color-brand-text-on-fill: var(--wa-color-primary-40);
-  --wa-color-brand-text-on-surface: var(--wa-color-primary-50);
+  --wa-color-brand-fill-quiet: var(--wa-color-primary-95);
+  --wa-color-brand-fill-normal: var(--wa-color-primary-90);
+  --wa-color-brand-fill-loud: var(--wa-color-primary-50);
+  --wa-color-brand-border-quiet: var(--wa-color-primary-90);
+  --wa-color-brand-border-normal: var(--wa-color-primary-80);
+  --wa-color-brand-border-loud: var(--wa-color-primary-60);
+  --wa-color-brand-on-quiet: var(--wa-color-primary-50);
+  --wa-color-brand-on-normal: var(--wa-color-primary-40);
+  --wa-color-brand-on-loud: white;
 
-  --wa-color-success-spot: var(--wa-color-green-50);
-  --wa-color-success-spot-darker: var(--wa-color-green-40);
-  --wa-color-success-fill-subtle: var(--wa-color-green-95);
-  --wa-color-success-fill-highlight: var(--wa-color-green-90);
-  --wa-color-success-border-subtle: var(--wa-color-green-90);
-  --wa-color-success-border-highlight: var(--wa-color-green-80);
-  --wa-color-success-text-on-spot: white;
-  --wa-color-success-text-on-fill: var(--wa-color-green-40);
-  --wa-color-success-text-on-surface: var(--wa-color-green-50);
+  --wa-color-success-fill-quiet: var(--wa-color-green-95);
+  --wa-color-success-fill-normal: var(--wa-color-green-90);
+  --wa-color-success-fill-loud: var(--wa-color-green-50);
+  --wa-color-success-border-quiet: var(--wa-color-green-90);
+  --wa-color-success-border-normal: var(--wa-color-green-80);
+  --wa-color-success-border-loud: var(--wa-color-green-60);
+  --wa-color-success-on-quiet: var(--wa-color-green-50);
+  --wa-color-success-on-normal: var(--wa-color-green-40);
+  --wa-color-success-on-loud: white;
 
-  --wa-color-warning-spot: var(--wa-color-yellow-50);
-  --wa-color-warning-spot-darker: var(--wa-color-yellow-40);
-  --wa-color-warning-fill-subtle: var(--wa-color-yellow-95);
-  --wa-color-warning-fill-highlight: var(--wa-color-yellow-90);
-  --wa-color-warning-border-subtle: var(--wa-color-yellow-90);
-  --wa-color-warning-border-highlight: var(--wa-color-yellow-80);
-  --wa-color-warning-text-on-spot: white;
-  --wa-color-warning-text-on-fill: var(--wa-color-yellow-40);
-  --wa-color-warning-text-on-surface: var(--wa-color-yellow-50);
+  --wa-color-warning-fill-quiet: var(--wa-color-yellow-95);
+  --wa-color-warning-fill-normal: var(--wa-color-yellow-90);
+  --wa-color-warning-fill-loud: var(--wa-color-yellow-50);
+  --wa-color-warning-border-quiet: var(--wa-color-yellow-90);
+  --wa-color-warning-border-normal: var(--wa-color-yellow-80);
+  --wa-color-warning-border-loud: var(--wa-color-yellow-60);
+  --wa-color-warning-on-quiet: var(--wa-color-yellow-50);
+  --wa-color-warning-on-normal: var(--wa-color-yellow-40);
+  --wa-color-warning-on-loud: white;
 
-  --wa-color-danger-spot: var(--wa-color-red-50);
-  --wa-color-danger-spot-darker: var(--wa-color-red-40);
-  --wa-color-danger-fill-subtle: var(--wa-color-red-95);
-  --wa-color-danger-fill-highlight: var(--wa-color-red-90);
-  --wa-color-danger-border-subtle: var(--wa-color-red-90);
-  --wa-color-danger-border-highlight: var(--wa-color-red-80);
-  --wa-color-danger-text-on-spot: white;
-  --wa-color-danger-text-on-fill: var(--wa-color-red-40);
-  --wa-color-danger-text-on-surface: var(--wa-color-red-50);
+  --wa-color-danger-fill-quiet: var(--wa-color-red-95);
+  --wa-color-danger-fill-normal: var(--wa-color-red-90);
+  --wa-color-danger-fill-loud: var(--wa-color-red-50);
+  --wa-color-danger-border-quiet: var(--wa-color-red-90);
+  --wa-color-danger-border-normal: var(--wa-color-red-80);
+  --wa-color-danger-border-loud: var(--wa-color-red-60);
+  --wa-color-danger-on-quiet: var(--wa-color-red-50);
+  --wa-color-danger-on-normal: var(--wa-color-red-40);
+  --wa-color-danger-on-loud: white;
 
-  --wa-color-neutral-spot: var(--wa-color-base-20);
-  --wa-color-neutral-spot-darker: var(--wa-color-base-40);
-  --wa-color-neutral-fill-subtle: var(--wa-color-base-95);
-  --wa-color-neutral-fill-highlight: var(--wa-color-base-90);
-  --wa-color-neutral-border-subtle: var(--wa-color-base-90);
-  --wa-color-neutral-border-highlight: var(--wa-color-base-80);
-  --wa-color-neutral-text-on-spot: white;
-  --wa-color-neutral-text-on-fill: var(--wa-color-base-40);
-  --wa-color-neutral-text-on-surface: var(--wa-color-base-50);
+  --wa-color-neutral-fill-quiet: var(--wa-color-base-95);
+  --wa-color-neutral-fill-normal: var(--wa-color-base-90);
+  --wa-color-neutral-fill-loud: var(--wa-color-base-20);
+  --wa-color-neutral-border-quiet: var(--wa-color-base-90);
+  --wa-color-neutral-border-normal: var(--wa-color-base-80);
+  --wa-color-neutral-border-loud: var(--wa-color-base-60);
+  --wa-color-neutral-on-quiet: var(--wa-color-base-50);
+  --wa-color-neutral-on-normal: var(--wa-color-base-40);
+  --wa-color-neutral-on-loud: white;
 
   /**
    * Typography
@@ -308,7 +332,7 @@
   /**
    * Links
    */
-  --wa-link-decoration-default: underline var(--wa-color-brand-border-highlight) dotted;
+  --wa-link-decoration-default: underline var(--wa-color-brand-border-normal) dotted;
   --wa-link-decoration-hover: underline;
 
   /**
@@ -334,7 +358,7 @@
 
   --wa-form-controls-corners: var(--wa-corners-s);
 
-  --wa-form-controls-activated-color: var(--wa-color-brand-spot);
+  --wa-form-controls-activated-color: var(--wa-color-brand-fill-loud);
   --wa-form-controls-resting-color: var(--wa-color-base-60);
 
   --wa-form-controls-label-color: var(--wa-color-text-normal);
@@ -385,7 +409,7 @@
 
   --wa-color-text-normal: var(--wa-color-base-95);
   --wa-color-text-quiet: var(--wa-color-base-60);
-  --wa-color-text-link: var(--wa-color-brand-text-on-surface);
+  --wa-color-text-link: var(--wa-color-brand-on-quiet);
 
   --wa-color-selection-background: var(--wa-color-primary-40);
   --wa-color-selection-text: white;
@@ -402,62 +426,57 @@
   /**
    * Semantic theme colors
    */
-  --wa-color-brand-spot: var(--wa-color-primary-50);
-  --wa-color-brand-spot-darker: var(--wa-color-primary-40);
-  --wa-color-brand-fill-subtle: var(--wa-color-primary-10);
-  --wa-color-brand-fill-highlight: var(--wa-color-primary-20);
-  --wa-color-brand-border-subtle: var(--wa-color-primary-20);
-  --wa-color-brand-border-highlight: var(--wa-color-primary-30);
-  --wa-color-brand-text-on-spot: white;
-  --wa-color-brand-text-on-fill: var(--wa-color-primary-70);
-  --wa-color-brand-text-on-surface: var(--wa-color-primary-60);
+  --wa-color-brand-fill-loud: var(--wa-color-primary-50);
+  --wa-color-brand-fill-quiet: var(--wa-color-primary-10);
+  --wa-color-brand-fill-normal: var(--wa-color-primary-20);
+  --wa-color-brand-border-quiet: var(--wa-color-primary-20);
+  --wa-color-brand-border-normal: var(--wa-color-primary-30);
+  --wa-color-brand-on-loud: white;
+  --wa-color-brand-on-normal: var(--wa-color-primary-70);
+  --wa-color-brand-on-quiet: var(--wa-color-primary-60);
 
-  --wa-color-success-spot: var(--wa-color-green-50);
-  --wa-color-success-spot-darker: var(--wa-color-green-40);
-  --wa-color-success-fill-subtle: var(--wa-color-green-10);
-  --wa-color-success-fill-highlight: var(--wa-color-green-20);
-  --wa-color-success-border-subtle: var(--wa-color-green-20);
-  --wa-color-success-border-highlight: var(--wa-color-green-30);
-  --wa-color-success-text-on-spot: white;
-  --wa-color-success-text-on-fill: var(--wa-color-green-70);
-  --wa-color-success-text-on-surface: var(--wa-color-green-60);
+  --wa-color-success-fill-loud: var(--wa-color-green-50);
+  --wa-color-success-fill-quiet: var(--wa-color-green-10);
+  --wa-color-success-fill-normal: var(--wa-color-green-20);
+  --wa-color-success-border-quiet: var(--wa-color-green-20);
+  --wa-color-success-border-normal: var(--wa-color-green-30);
+  --wa-color-success-on-loud: white;
+  --wa-color-success-on-normal: var(--wa-color-green-70);
+  --wa-color-success-on-quiet: var(--wa-color-green-60);
 
-  --wa-color-warning-spot: var(--wa-color-yellow-50);
-  --wa-color-warning-spot-darker: var(--wa-color-yellow-40);
-  --wa-color-warning-fill-subtle: var(--wa-color-yellow-10);
-  --wa-color-warning-fill-highlight: var(--wa-color-yellow-20);
-  --wa-color-warning-border-subtle: var(--wa-color-yellow-20);
-  --wa-color-warning-border-highlight: var(--wa-color-yellow-30);
-  --wa-color-warning-text-on-spot: white;
-  --wa-color-warning-text-on-fill: var(--wa-color-yellow-70);
-  --wa-color-warning-text-on-surface: var(--wa-color-yellow-60);
+  --wa-color-warning-fill-loud: var(--wa-color-yellow-50);
+  --wa-color-warning-fill-quiet: var(--wa-color-yellow-10);
+  --wa-color-warning-fill-normal: var(--wa-color-yellow-20);
+  --wa-color-warning-border-quiet: var(--wa-color-yellow-20);
+  --wa-color-warning-border-normal: var(--wa-color-yellow-30);
+  --wa-color-warning-on-loud: white;
+  --wa-color-warning-on-normal: var(--wa-color-yellow-70);
+  --wa-color-warning-on-quiet: var(--wa-color-yellow-60);
 
-  --wa-color-danger-spot: var(--wa-color-red-50);
-  --wa-color-danger-spot-darker: var(--wa-color-red-40);
-  --wa-color-danger-fill-subtle: var(--wa-color-red-10);
-  --wa-color-danger-fill-highlight: var(--wa-color-red-20);
-  --wa-color-danger-border-subtle: var(--wa-color-red-20);
-  --wa-color-danger-border-highlight: var(--wa-color-red-30);
-  --wa-color-danger-text-on-spot: white;
-  --wa-color-danger-text-on-fill: var(--wa-color-red-70);
-  --wa-color-danger-text-on-surface: var(--wa-color-red-60);
+  --wa-color-danger-fill-loud: var(--wa-color-red-50);
+  --wa-color-danger-fill-quiet: var(--wa-color-red-10);
+  --wa-color-danger-fill-normal: var(--wa-color-red-20);
+  --wa-color-danger-border-quiet: var(--wa-color-red-20);
+  --wa-color-danger-border-normal: var(--wa-color-red-30);
+  --wa-color-danger-on-loud: white;
+  --wa-color-danger-on-normal: var(--wa-color-red-70);
+  --wa-color-danger-on-quiet: var(--wa-color-red-60);
 
-  --wa-color-neutral-spot: var(--wa-color-base-50);
-  --wa-color-neutral-spot-darker: var(--wa-color-base-40);
-  --wa-color-neutral-fill-subtle: var(--wa-color-base-20);
-  --wa-color-neutral-fill-highlight: var(--wa-color-base-30);
-  --wa-color-neutral-border-subtle: var(--wa-color-base-20);
-  --wa-color-neutral-border-highlight: var(--wa-color-base-30);
-  --wa-color-neutral-text-on-spot: white;
-  --wa-color-neutral-text-on-fill: var(--wa-color-base-80);
-  --wa-color-neutral-text-on-surface: var(--wa-color-base-60);
+  --wa-color-neutral-fill-loud: var(--wa-color-base-50);
+  --wa-color-neutral-fill-quiet: var(--wa-color-base-20);
+  --wa-color-neutral-fill-normal: var(--wa-color-base-30);
+  --wa-color-neutral-border-quiet: var(--wa-color-base-20);
+  --wa-color-neutral-border-normal: var(--wa-color-base-30);
+  --wa-color-neutral-on-loud: white;
+  --wa-color-neutral-on-normal: var(--wa-color-base-80);
+  --wa-color-neutral-on-quiet: var(--wa-color-base-60);
 }
 
 /* #region Custom Styles */
 @container preview (min-width: 0) {
   .hero-background {
     height: 47rem;
-    background-color: var(--wa-color-brand-spot-darker);
+    background-color: var(--wa-color-brand-fill-loud);
     position: absolute;
     top: 0;
     left: 0;
@@ -477,12 +496,12 @@
   }
 
   .hero wa-button[variant='brand'] {
-    --background: var(--wa-color-neutral-fill-subtle);
-    --label-color: var(--wa-color-neutral-text-on-fill);
+    --background: var(--wa-color-neutral-fill-quiet);
+    --label-color: var(--wa-color-neutral-on-normal);
   }
 
   .project-header {
-    color: var(--wa-color-brand-text-on-spot);
+    color: var(--wa-color-brand-on-loud);
   }
 
   .strata.hero {
@@ -491,7 +510,7 @@
 
   .hero .title {
     margin-inline-end: 40%;
-    color: var(--wa-color-brand-text-on-spot);
+    color: var(--wa-color-brand-on-loud);
   }
 }
 

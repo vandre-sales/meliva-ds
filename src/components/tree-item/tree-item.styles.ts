@@ -53,7 +53,7 @@ export default css`
     align-items: center;
     justify-content: center;
     box-sizing: content-box;
-    color: var(--wa-color-neutral-spot);
+    color: var(--wa-color-neutral-fill-loud);
     padding: var(--wa-space-xs);
     width: 1rem;
     height: 1rem;
@@ -105,12 +105,12 @@ export default css`
   }
 
   :host(:not([aria-disabled='true'])) .tree-item--selected .tree-item__item {
-    background-color: var(--wa-color-neutral-fill-subtle);
-    border-inline-start-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-neutral-fill-quiet);
+    border-inline-start-color: var(--wa-color-brand-fill-loud);
   }
 
   :host(:not([aria-disabled='true'])) .tree-item__expand-button {
-    color: var(--wa-color-neutral-spot);
+    color: var(--wa-color-neutral-fill-loud);
   }
 
   .tree-item__label {

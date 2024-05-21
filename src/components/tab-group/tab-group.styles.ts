@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --indicator-color: var(--wa-color-brand-spot);
-    --track-color: var(--wa-color-neutral-fill-highlight);
+    --indicator-color: var(--wa-color-brand-fill-loud);
+    --track-color: var(--wa-color-neutral-fill-normal);
     --track-width: 2px;
 
     display: block;

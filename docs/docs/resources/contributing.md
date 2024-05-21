@@ -332,8 +332,8 @@ To expose custom properties as part of a component's API, scope them to the `:ho
 
 ```css
 :host {
-  --color: var(--wa-color-brand-text-on-spot);
-  --background-color: var(--wa-color-brand-spot);
+  --color: var(--wa-color-brand-on-loud);
+  --background-color: var(--wa-color-brand-fill-loud);
 }
 ```
 

@@ -59,7 +59,7 @@
     &[variant='brand'] {
       --background: color-mix(
         in oklab,
-        var(--wa-color-brand-fill-subtle),
+        var(--wa-color-brand-fill-quiet),
         transparent var(--wa-background-transparency-percent)
       );
     }
@@ -67,7 +67,7 @@
     &[variant='success'] {
       --background: color-mix(
         in oklab,
-        var(--wa-color-success-fill-subtle),
+        var(--wa-color-success-fill-quiet),
         transparent var(--wa-background-transparency-percent)
       );
     }
@@ -75,7 +75,7 @@
     &[variant='neutral'] {
       --background: color-mix(
         in oklab,
-        var(--wa-color-neutral-fill-subtle),
+        var(--wa-color-neutral-fill-quiet),
         transparent var(--wa-background-transparency-percent)
       );
     }
@@ -83,7 +83,7 @@
     &[variant='warning'] {
       --background: color-mix(
         in oklab,
-        var(--wa-color-warning-fill-subtle),
+        var(--wa-color-warning-fill-quiet),
         transparent var(--wa-background-transparency-percent)
       );
     }
@@ -91,7 +91,7 @@
     &[variant='danger'] {
       --background: color-mix(
         in oklab,
-        var(--wa-color-danger-fill-subtle),
+        var(--wa-color-danger-fill-quiet),
         transparent var(--wa-background-transparency-percent)
       );
     }
@@ -132,83 +132,88 @@ wa-button:not([variant='text']) {
 
 wa-button:not([outline]) {
   &[variant='brand'] {
-    --background: linear-gradient(var(--wa-color-brand-spot) 25%, var(--wa-color-brand-spot));
+    --background: linear-gradient(var(--wa-color-brand-fill-loud) 25%, var(--wa-color-brand-fill-loud));
     --background-hover: linear-gradient(
-      color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-hover)) 25%,
-      color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-hover))
+      color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)) 25%,
+      color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover))
     );
     --background-active: linear-gradient(
-      color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-active)),
-      var(--wa-color-brand-spot)
+      color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)),
+      var(--wa-color-brand-fill-loud)
     );
-    --border-color: var(--wa-color-brand-spot)
-      color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-brand-spot)) var(--wa-color-brand-spot);
+    --border-color: var(--wa-color-brand-fill-loud)
+      color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-brand-fill-loud))
+      var(--wa-color-brand-fill-loud);
     --border-color-hover: var(--border-color);
-    --border-color-active: var(--wa-color-brand-spot);
+    --border-color-active: var(--wa-color-brand-fill-loud);
   }
 
   &[variant='success'] {
-    --background: linear-gradient(var(--wa-color-success-spot) 25%, var(--wa-color-success-spot));
+    --background: linear-gradient(var(--wa-color-success-fill-loud) 25%, var(--wa-color-success-fill-loud));
     --background-hover: linear-gradient(
-      color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-hover)) 25%,
-      color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-hover))
+      color-mix(in oklab, var(--wa-color-success-fill-loud), var(--wa-color-mix-hover)) 25%,
+      color-mix(in oklab, var(--wa-color-success-fill-loud), var(--wa-color-mix-hover))
     );
     --background-active: linear-gradient(
-      color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-active)),
-      var(--wa-color-success-spot)
+      color-mix(in oklab, var(--wa-color-success-fill-loud), var(--wa-color-mix-active)),
+      var(--wa-color-success-fill-loud)
     );
-    --border-color: var(--wa-color-success-spot)
-      color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-success-spot)) var(--wa-color-success-spot);
+    --border-color: var(--wa-color-success-fill-loud)
+      color-mix(in oklab, var(--wa-color-success-fill-loud), var(--wa-color-success-fill-loud))
+      var(--wa-color-success-fill-loud);
     --border-color-hover: var(--border-color);
-    --border-color-active: var(--wa-color-success-spot);
+    --border-color-active: var(--wa-color-success-fill-loud);
   }
 
   &[variant='neutral'] {
-    --background: linear-gradient(var(--wa-color-neutral-spot) 25%, var(--wa-color-neutral-spot));
+    --background: linear-gradient(var(--wa-color-neutral-fill-loud) 25%, var(--wa-color-neutral-fill-loud));
     --background-hover: linear-gradient(
-      color-mix(in oklab, var(--wa-color-neutral-spot), var(--wa-color-mix-hover)) 25%,
-      color-mix(in oklab, var(--wa-color-neutral-spot), var(--wa-color-mix-hover))
+      color-mix(in oklab, var(--wa-color-neutral-fill-loud), var(--wa-color-mix-hover)) 25%,
+      color-mix(in oklab, var(--wa-color-neutral-fill-loud), var(--wa-color-mix-hover))
     );
     --background-active: linear-gradient(
-      color-mix(in oklab, var(--wa-color-neutral-spot), var(--wa-color-mix-active)),
-      var(--wa-color-neutral-spot)
+      color-mix(in oklab, var(--wa-color-neutral-fill-loud), var(--wa-color-mix-active)),
+      var(--wa-color-neutral-fill-loud)
     );
-    --border-color: var(--wa-color-neutral-spot)
-      color-mix(in oklab, var(--wa-color-neutral-spot), var(--wa-color-neutral-spot)) var(--wa-color-neutral-spot);
+    --border-color: var(--wa-color-neutral-fill-loud)
+      color-mix(in oklab, var(--wa-color-neutral-fill-loud), var(--wa-color-neutral-fill-loud))
+      var(--wa-color-neutral-fill-loud);
     --border-color-hover: var(--border-color);
-    --border-color-active: var(--wa-color-neutral-spot);
+    --border-color-active: var(--wa-color-neutral-fill-loud);
   }
 
   &[variant='warning'] {
-    --background: linear-gradient(var(--wa-color-warning-spot) 25%, var(--wa-color-warning-spot));
+    --background: linear-gradient(var(--wa-color-warning-fill-loud) 25%, var(--wa-color-warning-fill-loud));
     --background-hover: linear-gradient(
-      color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-hover)) 25%,
-      color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-hover))
+      color-mix(in oklab, var(--wa-color-warning-fill-loud), var(--wa-color-mix-hover)) 25%,
+      color-mix(in oklab, var(--wa-color-warning-fill-loud), var(--wa-color-mix-hover))
     );
     --background-active: linear-gradient(
-      color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-active)),
-      var(--wa-color-warning-spot)
+      color-mix(in oklab, var(--wa-color-warning-fill-loud), var(--wa-color-mix-active)),
+      var(--wa-color-warning-fill-loud)
     );
-    --border-color: var(--wa-color-warning-spot)
-      color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-warning-spot)) var(--wa-color-warning-spot);
+    --border-color: var(--wa-color-warning-fill-loud)
+      color-mix(in oklab, var(--wa-color-warning-fill-loud), var(--wa-color-warning-fill-loud))
+      var(--wa-color-warning-fill-loud);
     --border-color-hover: var(--border-color);
-    --border-color-active: var(--wa-color-warning-spot);
+    --border-color-active: var(--wa-color-warning-fill-loud);
   }
 
   &[variant='danger'] {
-    --background: linear-gradient(var(--wa-color-danger-spot) 25%, var(--wa-color-danger-spot));
+    --background: linear-gradient(var(--wa-color-danger-fill-loud) 25%, var(--wa-color-danger-fill-loud));
     --background-hover: linear-gradient(
-      color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-hover)) 25%,
-      color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-hover))
+      color-mix(in oklab, var(--wa-color-danger-fill-loud), var(--wa-color-mix-hover)) 25%,
+      color-mix(in oklab, var(--wa-color-danger-fill-loud), var(--wa-color-mix-hover))
     );
     --background-active: linear-gradient(
-      color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-active)),
-      var(--wa-color-danger-spot)
+      color-mix(in oklab, var(--wa-color-danger-fill-loud), var(--wa-color-mix-active)),
+      var(--wa-color-danger-fill-loud)
     );
-    --border-color: var(--wa-color-danger-spot)
-      color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-danger-spot)) var(--wa-color-danger-spot);
+    --border-color: var(--wa-color-danger-fill-loud)
+      color-mix(in oklab, var(--wa-color-danger-fill-loud), var(--wa-color-danger-fill-loud))
+      var(--wa-color-danger-fill-loud);
     --border-color-hover: var(--border-color);
-    --border-color-active: var(--wa-color-danger-spot);
+    --border-color-active: var(--wa-color-danger-fill-loud);
   }
 }
 /* #endregion */
@@ -262,7 +267,7 @@ wa-checkbox {
   --background-checked: linear-gradient(
     to bottom,
     var(--wa-form-controls-activated-color),
-    var(--wa-color-brand-spot-darker)
+    var(--wa-color-brand-border-loud)
   );
 
   &:not([checked]):not([indeterminate]) {

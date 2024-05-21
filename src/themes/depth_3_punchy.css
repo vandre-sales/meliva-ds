@@ -73,7 +73,7 @@ wa-checkbox {
   --background-checked: linear-gradient(
     to bottom,
     var(--wa-form-controls-activated-color),
-    var(--wa-color-brand-spot-darker)
+    var(--wa-color-brand-border-loud)
   );
 
   &:not([checked]):not([indeterminate]) {

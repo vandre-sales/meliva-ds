@@ -18,28 +18,28 @@ export default css`
    */
 
   :host([variant='brand']) {
-    --background: var(--wa-color-brand-spot);
-    --label-color: var(--wa-color-brand-text-on-spot);
+    --background: var(--wa-color-brand-fill-loud);
+    --label-color: var(--wa-color-brand-on-loud);
   }
 
   :host([variant='success']) {
-    --background: var(--wa-color-success-spot);
-    --label-color: var(--wa-color-success-text-on-spot);
+    --background: var(--wa-color-success-fill-loud);
+    --label-color: var(--wa-color-success-on-loud);
   }
 
   :host([variant='warning']) {
-    --background: var(--wa-color-warning-spot);
-    --label-color: var(--wa-color-warning-text-on-spot);
+    --background: var(--wa-color-warning-fill-loud);
+    --label-color: var(--wa-color-warning-on-loud);
   }
 
   :host([variant='neutral']) {
-    --background: var(--wa-color-neutral-spot);
-    --label-color: var(--wa-color-neutral-text-on-spot);
+    --background: var(--wa-color-neutral-fill-loud);
+    --label-color: var(--wa-color-neutral-on-loud);
   }
 
   :host([variant='danger']) {
-    --background: var(--wa-color-danger-spot);
-    --label-color: var(--wa-color-danger-text-on-spot);
+    --background: var(--wa-color-danger-fill-loud);
+    --label-color: var(--wa-color-danger-on-loud);
   }
 
   :host(:not([variant='text'])) {
@@ -57,34 +57,34 @@ export default css`
    */
 
   :host([variant='brand'][outline]) {
-    --background-hover: var(--wa-color-brand-fill-subtle);
-    --label-color: var(--wa-color-brand-text-on-surface);
-    --label-color-hover: var(--wa-color-brand-text-on-fill);
+    --background-hover: var(--wa-color-brand-fill-quiet);
+    --label-color: var(--wa-color-brand-on-quiet);
+    --label-color-hover: var(--wa-color-brand-on-normal);
   }
 
   :host([variant='success'][outline]) {
-    --background-hover: var(--wa-color-success-fill-subtle);
-    --label-color: var(--wa-color-success-text-on-surface);
-    --label-color-hover: var(--wa-color-success-text-on-fill);
+    --background-hover: var(--wa-color-success-fill-quiet);
+    --label-color: var(--wa-color-success-on-quiet);
+    --label-color-hover: var(--wa-color-success-on-normal);
   }
 
   :host([variant='neutral'][outline]),
   :host(.wa-button-group__button--radio:not([checked])) {
-    --background-hover: var(--wa-color-neutral-fill-subtle);
-    --label-color: var(--wa-color-neutral-text-on-surface);
-    --label-color-hover: var(--wa-color-neutral-text-on-fill);
+    --background-hover: var(--wa-color-neutral-fill-quiet);
+    --label-color: var(--wa-color-neutral-on-quiet);
+    --label-color-hover: var(--wa-color-neutral-on-normal);
   }
 
   :host([variant='warning'][outline]) {
-    --background-hover: var(--wa-color-warning-fill-subtle);
-    --label-color: var(--wa-color-warning-text-on-surface);
-    --label-color-hover: var(--wa-color-warning-text-on-fill);
+    --background-hover: var(--wa-color-warning-fill-quiet);
+    --label-color: var(--wa-color-warning-on-quiet);
+    --label-color-hover: var(--wa-color-warning-on-normal);
   }
 
   :host([variant='danger'][outline]) {
-    --background-hover: var(--wa-color-danger-fill-subtle);
-    --label-color: var(--wa-color-danger-text-on-surface);
-    --label-color-hover: var(--wa-color-danger-text-on-fill);
+    --background-hover: var(--wa-color-danger-fill-quiet);
+    --label-color: var(--wa-color-danger-on-quiet);
+    --label-color-hover: var(--wa-color-danger-on-normal);
   }
 
   :host([outline]),
@@ -118,13 +118,13 @@ export default css`
    */
 
   :host([checked]) {
-    --background: var(--wa-color-brand-fill-subtle);
+    --background: var(--wa-color-brand-fill-quiet);
     --background-active: color-mix(in oklab, var(--background-hover), var(--wa-color-surface-default) 30%);
     --background-hover: var(--background);
     --border-color: var(--wa-form-controls-activated-color);
     --border-color-active: var(--border-color);
     --border-color-hover: var(--border-color);
-    --label-color: var(--wa-color-brand-text-on-fill);
+    --label-color: var(--wa-color-brand-on-normal);
     --label-color-active: var(--label-color);
     --label-color-hover: var(--label-color);
     --indicator-color: var(--border-color);

@@ -10,7 +10,7 @@ export default css`
     align-items: center;
     font: inherit;
     font-weight: var(--wa-font-weight-action);
-    color: var(--wa-color-neutral-text-on-surface);
+    color: var(--wa-color-neutral-on-quiet);
     padding: var(--wa-space-m) var(--wa-space-l);
     white-space: nowrap;
     user-select: none;
@@ -22,7 +22,7 @@ export default css`
   }
 
   .tab:hover:not(.tab--disabled) {
-    color: var(--wa-color-neutral-text-on-surface);
+    color: var(--wa-color-neutral-on-quiet);
   }
 
   .tab:focus {
@@ -35,7 +35,7 @@ export default css`
   }
 
   .tab.tab--active:not(.tab--disabled) {
-    color: var(--wa-color-brand-text-on-surface);
+    color: var(--wa-color-brand-on-quiet);
   }
 
   .tab.tab--closable {

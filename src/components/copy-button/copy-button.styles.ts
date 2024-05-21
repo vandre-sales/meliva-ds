@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --error-color: var(--wa-color-danger-spot);
-    --success-color: var(--wa-color-success-spot);
+    --error-color: var(--wa-color-danger-fill-loud);
+    --success-color: var(--wa-color-success-fill-loud);
 
     display: inline-block;
   }

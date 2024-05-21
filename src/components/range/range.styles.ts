@@ -7,8 +7,8 @@ export default css`
     --thumb-shadow: initial;
     --thumb-size: calc(1rem * var(--wa-form-controls-value-line-height));
     --tooltip-offset: calc(var(--wa-tooltip-arrow-size) * 2.5);
-    --track-color-active: var(--wa-color-neutral-fill-highlight);
-    --track-color-inactive: var(--wa-color-neutral-fill-highlight);
+    --track-color-active: var(--wa-color-neutral-fill-normal);
+    --track-color-inactive: var(--wa-color-neutral-fill-normal);
     --track-active-offset: 0%;
     --track-height: calc(var(--thumb-size) * 0.25);
 
@@ -150,10 +150,10 @@ export default css`
     z-index: var(--wa-z-index-tooltip);
     left: 0;
     border-radius: var(--wa-corners-s);
-    background-color: var(--wa-color-neutral-spot);
+    background-color: var(--wa-color-neutral-fill-loud);
     font: inherit;
     line-height: var(--wa-line-height-regular);
-    color: var(--wa-color-neutral-text-on-spot);
+    color: var(--wa-color-neutral-on-loud);
     opacity: 0;
     padding: var(--wa-space-2xs) var(--wa-space-xs);
     transition: var(--wa-transition-fast) opacity;
@@ -179,7 +179,7 @@ export default css`
   }
 
   .range--tooltip-top .range__tooltip:after {
-    border-top: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-spot);
+    border-top: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-fill-loud);
     border-left: var(--wa-tooltip-arrow-size) solid transparent;
     border-right: var(--wa-tooltip-arrow-size) solid transparent;
     top: 100%;
@@ -191,7 +191,7 @@ export default css`
   }
 
   .range--tooltip-bottom .range__tooltip:after {
-    border-bottom: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-spot);
+    border-bottom: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-fill-loud);
     border-left: var(--wa-tooltip-arrow-size) solid transparent;
     border-right: var(--wa-tooltip-arrow-size) solid transparent;
     bottom: 100%;

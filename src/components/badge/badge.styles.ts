@@ -11,28 +11,28 @@ export default css`
   }
 
   :host([variant='brand']) {
-    --background: var(--wa-color-brand-spot);
-    --content-color: var(--wa-color-brand-text-on-spot);
+    --background: var(--wa-color-brand-fill-loud);
+    --content-color: var(--wa-color-brand-on-loud);
   }
 
   :host([variant='success']) {
-    --background: var(--wa-color-success-spot);
-    --content-color: var(--wa-color-success-text-on-spot);
+    --background: var(--wa-color-success-fill-loud);
+    --content-color: var(--wa-color-success-on-loud);
   }
 
   :host([variant='warning']) {
-    --background: var(--wa-color-warning-spot);
-    --content-color: var(--wa-color-warning-text-on-spot);
+    --background: var(--wa-color-warning-fill-loud);
+    --content-color: var(--wa-color-warning-on-loud);
   }
 
   :host([variant='neutral']) {
-    --background: var(--wa-color-neutral-spot);
-    --content-color: var(--wa-color-neutral-text-on-spot);
+    --background: var(--wa-color-neutral-fill-loud);
+    --content-color: var(--wa-color-neutral-on-loud);
   }
 
   :host([variant='danger']) {
-    --background: var(--wa-color-danger-spot);
-    --content-color: var(--wa-color-danger-text-on-spot);
+    --background: var(--wa-color-danger-fill-loud);
+    --content-color: var(--wa-color-danger-on-loud);
   }
 
   .badge {

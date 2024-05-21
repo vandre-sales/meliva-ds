@@ -16,33 +16,33 @@ export default css`
   }
 
   :host([variant='brand']) {
-    --background: var(--wa-color-brand-fill-subtle);
-    --border-color: var(--wa-color-brand-border-subtle);
-    --content-color: var(--wa-color-brand-text-on-fill);
+    --background: var(--wa-color-brand-fill-quiet);
+    --border-color: var(--wa-color-brand-border-quiet);
+    --content-color: var(--wa-color-brand-on-normal);
   }
 
   :host([variant='success']) {
-    --background: var(--wa-color-success-fill-subtle);
-    --border-color: var(--wa-color-success-border-subtle);
-    --content-color: var(--wa-color-success-text-on-fill);
+    --background: var(--wa-color-success-fill-quiet);
+    --border-color: var(--wa-color-success-border-quiet);
+    --content-color: var(--wa-color-success-on-normal);
   }
 
   :host([variant='neutral']) {
-    --background: var(--wa-color-neutral-fill-subtle);
-    --border-color: var(--wa-color-neutral-border-subtle);
-    --content-color: var(--wa-color-neutral-text-on-fill);
+    --background: var(--wa-color-neutral-fill-quiet);
+    --border-color: var(--wa-color-neutral-border-quiet);
+    --content-color: var(--wa-color-neutral-on-normal);
   }
 
   :host([variant='warning']) {
-    --background: var(--wa-color-warning-fill-subtle);
-    --border-color: var(--wa-color-warning-border-subtle);
-    --content-color: var(--wa-color-warning-text-on-fill);
+    --background: var(--wa-color-warning-fill-quiet);
+    --border-color: var(--wa-color-warning-border-quiet);
+    --content-color: var(--wa-color-warning-on-normal);
   }
 
   :host([variant='danger']) {
-    --background: var(--wa-color-danger-fill-subtle);
-    --border-color: var(--wa-color-danger-border-subtle);
-    --content-color: var(--wa-color-danger-text-on-fill);
+    --background: var(--wa-color-danger-fill-quiet);
+    --border-color: var(--wa-color-danger-border-quiet);
+    --content-color: var(--wa-color-danger-on-normal);
   }
 
   .alert {

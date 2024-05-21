@@ -11,7 +11,7 @@ wa-page[view='desktop'] [data-toggle-nav] {
 /* Header */
 wa-page::part(header) {
   background-color: var(--wa-color-surface-default);
-  border-bottom: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+  border-bottom: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
 }
 
 wa-page > header {
@@ -30,7 +30,7 @@ wa-page > header {
 
 /* Navigation sidebar */
 wa-page[view='desktop']::part(navigation) {
-  border-right: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+  border-right: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
 }
 
 wa-page[view='desktop'] > #sidebar {
@@ -107,27 +107,27 @@ wa-page > main {
 }
 
 .callout-info {
-  background-color: var(--wa-color-brand-fill-subtle);
-  border-color: var(--wa-color-brand-border-subtle);
+  background-color: var(--wa-color-brand-fill-quiet);
+  border-color: var(--wa-color-brand-border-quiet);
 
   .callout-icon {
-    color: var(--wa-color-brand-text-on-fill);
+    color: var(--wa-color-brand-on-normal);
   }
 
   code {
-    background-color: var(--wa-color-brand-fill-highlight);
+    background-color: var(--wa-color-brand-fill-normal);
   }
 }
 
 .callout-warning {
-  background-color: var(--wa-color-warning-fill-subtle);
-  border-color: var(--wa-color-warning-border-subtle);
+  background-color: var(--wa-color-warning-fill-quiet);
+  border-color: var(--wa-color-warning-border-quiet);
 
   .callout-icon {
-    color: var(--wa-color-warning-text-on-fill);
+    color: var(--wa-color-warning-on-normal);
   }
 
   code {
-    background-color: var(--wa-color-warning-fill-highlight);
+    background-color: var(--wa-color-warning-fill-normal);
   }
 }

@@ -20,11 +20,13 @@ layout: page.njk
   }
   .color-preview {
     flex: 1 1 auto;
-    font-size: var(--wa-font-size-xs);
   }
   .color-swatch {
     border-radius: var(--wa-corners-s);
-    height: 3em;
+    line-height: 2;
+    height: 2em;
+    padding-inline: var(--wa-space-xs);
+    text-align: center;
   }
   .text-swatch {
     font-size: var(--wa-font-size-xl);
@@ -43,99 +45,51 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
 - A difference of 50 between lightness values ensures a minimum 4.5:1 contrast ratio, suitable for normal text (AA) and large text (AAA).
 - A difference of 60 between lightness values ensures a minimum 7:1 contrast ratio, suitable for all text (AAA).
 
-<div class="color-name">Rose</div>
-<div class="color-group">
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-95)"></div>
-    95
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-90)"></div>
-    90
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-80)"></div>
-    80
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-70)"></div>
-    70
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-60)"></div>
-    60
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-50)"></div>
-    50
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-40)"></div>
-    40
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-30)"></div>
-    30
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-20)"></div>
-    20
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-10)"></div>
-    10
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-rose-05)"></div>
-    05
-  </div>
-</div>
-
 <div class="color-name">Red</div>
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-red-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -143,95 +97,47 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-yellow-05)"></div>
-    05
-  </div>
-</div>
-
-<div class="color-name">Lime</div>
-<div class="color-group">
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-95)"></div>
-    95
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-90)"></div>
-    90
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-80)"></div>
-    80
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-70)"></div>
-    70
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-60)"></div>
-    60
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-50)"></div>
-    50
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-40)"></div>
-    40
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-30)"></div>
-    30
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-20)"></div>
-    20
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-10)"></div>
-    10
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-lime-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -239,95 +145,47 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-green-05)"></div>
-    05
-  </div>
-</div>
-
-<div class="color-name">Teal</div>
-<div class="color-group">
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-95)"></div>
-    95
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-90)"></div>
-    90
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-80)"></div>
-    80
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-70)"></div>
-    70
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-60)"></div>
-    60
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-50)"></div>
-    50
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-40)"></div>
-    40
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-30)"></div>
-    30
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-20)"></div>
-    20
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-10)"></div>
-    10
-  </div>
-  <div class="color-preview">
-    <div class="color-swatch" style="background-color: var(--wa-color-teal-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -335,47 +193,47 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-blue-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -383,47 +241,47 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-indigo-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -431,47 +289,47 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-violet-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -479,47 +337,47 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-gray-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -536,47 +394,47 @@ The primary and base color groups reference another literal color group. By defa
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-primary-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -584,47 +442,47 @@ The primary and base color groups reference another literal color group. By defa
 <div class="color-group">
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-95)"></div>
-    95
+    <small>95</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-90)"></div>
-    90
+    <small>90</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-80)"></div>
-    80
+    <small>80</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-70)"></div>
-    70
+    <small>70</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-60)"></div>
-    60
+    <small>60</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-50)"></div>
-    50
+    <small>50</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-40)"></div>
-    40
+    <small>40</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-30)"></div>
-    30
+    <small>30</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-20)"></div>
-    20
+    <small>20</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-10)"></div>
-    10
+    <small>10</small>
   </div>
   <div class="color-preview">
     <div class="color-swatch" style="background-color: var(--wa-color-base-05)"></div>
-    05
+    <small>05</small>
   </div>
 </div>
 
@@ -695,8 +553,8 @@ Mix colors are used in `color-mix()` functions to achieve consistent interaction
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
-| `--wa-color-mix-hover`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-hover))"></div></div></div> |
-| `--wa-color-mix-active`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-spot), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-spot), var(--wa-color-mix-active))"></div></div></div> |
+| `--wa-color-mix-hover`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-fill-loud), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-fill-loud), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-fill-loud), var(--wa-color-mix-hover))"></div></div></div> |
+| `--wa-color-mix-active`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-fill-loud), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-fill-loud), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-fill-loud), var(--wa-color-mix-active))"></div></div></div> |
 
 
 ## Semantic Colors
@@ -711,11 +569,12 @@ Semantic colors help reinforce a specific message, intended usage, or expected r
 
 | Custom Property               |  <code>brand</code>             |  <code>success</code>           |  <code>neutral</code>           |  <code>warning</code>           | <code>danger</code>             |
 | ----------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| `--wa-color-*-spot`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-spot)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-spot)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-spot)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-spot)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-spot)"></div></div> |
-| `--wa-color-*-fill-subtle`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-subtle)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-subtle)"></div></div> |
-| `--wa-color-*-fill-highlight`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-highlight)"></div></div> |<div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-highlight)"></div></div> |
-| `--wa-color-*-border-subtle`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-subtle)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-subtle)"></div></div> |
-| `--wa-color-*-border-highlight`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-highlight)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-highlight)"></div></div> |
-| `--wa-color-*-text-on-spot`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-brand-text-on-spot)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-success-text-on-spot)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-neutral-text-on-spot)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-warning-text-on-spot)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-danger-text-on-spot)">AaBb</div></div> |
-| `--wa-color-*-text-on-fill`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-brand-text-on-fill)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-success-text-on-fill)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-neutral-text-on-fill)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-warning-text-on-fill)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-danger-text-on-fill)">AaBb</div></div> |
-| `--wa-color-*-text-on-surface`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-brand-text-on-surface)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-success-text-on-surface)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-neutral-text-on-surface)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-warning-text-on-surface)">AaBb</div></div> | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-danger-text-on-surface)">AaBb</div></div> |
+| `--wa-color-*-fill-quiet`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-quiet)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-quiet)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-quiet)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-quiet)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-quiet)"></div></div> |
+| `--wa-color-*-fill-normal`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-normal)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-normal)"></div></div> |<div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-normal)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-normal)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-normal)"></div></div> |
+| `--wa-color-*-fill-loud`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-loud)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-loud)"></div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-loud)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-loud)"></div></div> |  <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-loud)"></div></div> |
+| `--wa-color-*-border-quiet`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-quiet)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-quiet)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-quiet)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-quiet)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-quiet)"></div></div> |
+| `--wa-color-*-border-normal`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-normal)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-normal)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-normal)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-normal)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-normal)"></div></div> |
+| `--wa-color-*-border-loud`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-loud)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-loud)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-loud)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-loud)"></div></div> | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-loud)"></div></div> |
+| `--wa-color-*-on-quiet`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-quiet); color: var(--wa-color-brand-on-quiet)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-quiet); color: var(--wa-color-success-on-quiet)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-quiet); color: var(--wa-color-neutral-on-quiet)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-quiet); color: var(--wa-color-warning-on-quiet)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-quiet); color: var(--wa-color-danger-on-quiet)">AaBb</div></div> |
+| `--wa-color-*-on-normal`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-normal); color: var(--wa-color-brand-on-normal)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-normal); color: var(--wa-color-success-on-normal)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-normal); color: var(--wa-color-neutral-on-normal)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-normal); color: var(--wa-color-warning-on-normal)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-normal); color: var(--wa-color-danger-on-normal)">AaBb</div></div> |
+| `--wa-color-*-on-loud`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-brand-fill-loud); color: var(--wa-color-brand-on-loud)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-success-fill-loud); color: var(--wa-color-success-on-loud)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-neutral-fill-loud); color: var(--wa-color-neutral-on-loud)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-warning-fill-loud); color: var(--wa-color-warning-on-loud)">AaBb</div></div> | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-danger-fill-loud); color: var(--wa-color-danger-on-loud)">AaBb</div></div> |

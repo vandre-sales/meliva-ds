@@ -3,9 +3,9 @@ import { css } from 'lit';
 export default css`
   :host {
     --height: 1.25rem;
-    --track-color: var(--wa-color-neutral-fill-highlight);
-    --indicator-color: var(--wa-color-brand-spot);
-    --label-color: var(--wa-color-brand-text-on-spot);
+    --track-color: var(--wa-color-neutral-fill-normal);
+    --indicator-color: var(--wa-color-brand-fill-loud);
+    --label-color: var(--wa-color-brand-on-loud);
     --box-shadow: none;
 
     display: block;

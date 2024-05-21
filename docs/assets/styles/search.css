@@ -99,7 +99,7 @@ header {
 #site-search.has-results,
 #site-search.no-results {
   #site-search-body {
-    border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+    border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
   }
 }
 
@@ -126,15 +126,15 @@ header {
   @media (hover: hover) {
     li a:hover,
     li a:hover small {
-      background-color: var(--wa-color-neutral-fill-highlight);
+      background-color: var(--wa-color-neutral-fill-normal);
     }
   }
 
   li[data-selected='true'] a,
   li[data-selected='true'] a * {
     outline: none;
-    background-color: var(--wa-color-brand-spot);
-    color: var(--wa-color-brand-text-on-spot);
+    background-color: var(--wa-color-brand-fill-loud);
+    color: var(--wa-color-brand-on-loud);
   }
 
   h3 {
@@ -165,7 +165,7 @@ header {
 
     wa-icon {
       font-size: 1.75rem;
-      color: var(--wa-color-neutral-spot);
+      color: var(--wa-color-neutral-fill-loud);
     }
   }
 
@@ -185,7 +185,7 @@ header {
   .site-search-result-title {
     font-size: 1.25rem;
     font-weight: var(--wa-font-weight-medium);
-    color: var(--wa-color-brand-text-on-fill);
+    color: var(--wa-color-brand-on-normal);
   }
 
   .site-search-result-description {
@@ -227,7 +227,7 @@ header {
   justify-content: center;
   gap: 2rem;
   color: var(--wa-color-text-quiet);
-  border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+  border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
   border-bottom-left-radius: var(--wa-corners-m);
   border-bottom-right-radius: var(--wa-corners-m);
   padding: 1rem;

@@ -10,7 +10,7 @@ export default css`
     display: inline-block;
     font: inherit;
     font-weight: var(--wa-font-weight-medium);
-    color: var(--wa-color-neutral-text-on-surface);
+    color: var(--wa-color-neutral-on-quiet);
     padding: var(--wa-space-2xs) calc(var(--wa-space-2xs) + var(--wa-space-xl));
     user-select: none;
     -webkit-user-select: none;

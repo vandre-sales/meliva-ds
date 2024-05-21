@@ -3,13 +3,13 @@
   top: 0.25rem;
   right: 0.25rem;
   font-family: var(--wa-font-family-body);
-  color: var(--wa-color-neutral-text-on-fill);
-  background-color: var(--wa-color-neutral-fill-subtle);
+  color: var(--wa-color-neutral-on-normal);
+  background-color: var(--wa-color-neutral-fill-quiet);
   border-radius: var(--wa-corners-s);
   padding: 0.25rem;
 
   &:hover {
-    background-color: var(--wa-color-neutral-fill-highlight);
+    background-color: var(--wa-color-neutral-fill-normal);
   }
 
   &:focus-visible {

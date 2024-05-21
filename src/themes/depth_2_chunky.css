@@ -60,23 +60,23 @@ wa-button {
     }
   }
   &[variant='brand'] {
-    --box-shadow-color: var(--wa-color-brand-spot-darker);
+    --box-shadow-color: var(--wa-color-brand-border-loud);
   }
 
   &[variant='success'] {
-    --box-shadow-color: var(--wa-color-success-spot-darker);
+    --box-shadow-color: var(--wa-color-success-border-loud);
   }
 
   &[variant='neutral'] {
-    --box-shadow-color: var(--wa-color-neutral-spot-darker);
+    --box-shadow-color: var(--wa-color-neutral-border-loud);
   }
 
   &[variant='warning'] {
-    --box-shadow-color: var(--wa-color-warning-spot-darker);
+    --box-shadow-color: var(--wa-color-warning-border-loud);
   }
 
   &[variant='danger'] {
-    --box-shadow-color: var(--wa-color-danger-spot-darker);
+    --box-shadow-color: var(--wa-color-danger-border-loud);
   }
 }
 /* #endregion */

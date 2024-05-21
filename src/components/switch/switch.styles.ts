@@ -8,11 +8,11 @@ export default css`
     --border-color-checked: var(--background-checked);
     --border-style: var(--wa-form-controls-border-style);
     --border-width: var(--wa-form-controls-border-width);
-    --box-shadow: none;
+    --box-shadow: initial;
     --height: calc(1em * var(--wa-form-controls-value-line-height));
     --thumb-color: var(--wa-form-controls-resting-color);
     --thumb-color-checked: var(--wa-form-controls-background);
-    --thumb-shadow: none;
+    --thumb-shadow: initial;
     --thumb-size: calc((var(--height) - var(--border-width) * 2) * 0.75);
     --width: calc(var(--height) * 1.75);
 

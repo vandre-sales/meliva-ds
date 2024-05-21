@@ -99,14 +99,14 @@ export default css`
 
   :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
-    background-color: var(--wa-color-neutral-fill-subtle);
+    background-color: var(--wa-color-neutral-fill-quiet);
     color: var(--wa-color-text-normal);
   }
 
   :host(:focus-visible) .menu-item {
     outline: none;
-    background-color: var(--wa-color-brand-spot);
-    color: var(--wa-color-brand-text-on-spot);
+    background-color: var(--wa-color-brand-fill-loud);
+    color: var(--wa-color-brand-on-loud);
     opacity: 1;
   }
 

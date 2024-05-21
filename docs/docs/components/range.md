@@ -125,8 +125,8 @@ You can customize the active and inactive portions of the track using the `--tra
 ```html {.example}
 <wa-range
   style="
-  --track-color-active: var(--wa-color-brand-spot);
-  --track-color-inactive: var(--wa-color-brand-fill-highlight);
+  --track-color-active: var(--wa-color-brand-fill-loud);
+  --track-color-inactive: var(--wa-color-brand-fill-normal);
 "
 ></wa-range>
 ```
@@ -138,8 +138,8 @@ import WaRange from '@shoelace-style/shoelace/dist/react/range';
 const App = () => (
   <WaRange
     style={{
-      '--track-color-active': 'var(--wa-color-brand-spot)',
-      '--track-color-inactive': 'var(--wa-color-brand-fill-highlight)'
+      '--track-color-active': 'var(--wa-color-brand-fill-loud)',
+      '--track-color-inactive': 'var(--wa-color-brand-fill-normal)'
     }}
   />
 );
@@ -155,8 +155,8 @@ You can customize the initial offset of the active track using the `--track-acti
   min="-100"
   max="100"
   style="
-  --track-color-active: var(--wa-color-brand-spot);
-  --track-color-inactive: var(--wa-color-brand-fill-highlight);
+  --track-color-active: var(--wa-color-brand-fill-loud);
+  --track-color-inactive: var(--wa-color-brand-fill-normal);
   --track-active-offset: 50%;
 "
 ></wa-range>
@@ -171,8 +171,8 @@ const App = () => (
     min={-100}
     max={100}
     style={{
-      '--track-color-active': 'var(--wa-color-brand-spot)',
-      '--track-color-inactive': 'var(--wa-color-brand-fill-highlight)',
+      '--track-color-active': 'var(--wa-color-brand-fill-loud)',
+      '--track-color-inactive': 'var(--wa-color-brand-fill-normal)',
       '--track-active-offset': '50%'
     }}
   />

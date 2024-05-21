@@ -172,7 +172,7 @@ export default css`
 
   @keyframes pulse {
     0% {
-      box-shadow: 0 0 0 0 var(--wa-color-brand-spot);
+      box-shadow: 0 0 0 0 var(--wa-color-brand-fill-loud);
     }
     70% {
       box-shadow: 0 0 0 0.5rem transparent;
@@ -236,10 +236,10 @@ export default css`
   }
 
   .color-picker__transparent-bg {
-    background-image: linear-gradient(45deg, var(--wa-color-neutral-fill-highlight) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, var(--wa-color-neutral-fill-highlight) 75%),
-      linear-gradient(45deg, transparent 75%, var(--wa-color-neutral-fill-highlight) 75%),
-      linear-gradient(45deg, var(--wa-color-neutral-fill-highlight) 25%, transparent 25%);
+    background-image: linear-gradient(45deg, var(--wa-color-neutral-fill-normal) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--wa-color-neutral-fill-normal) 75%),
+      linear-gradient(45deg, transparent 75%, var(--wa-color-neutral-fill-normal) 75%),
+      linear-gradient(45deg, var(--wa-color-neutral-fill-normal) 25%, transparent 25%);
     background-size: 10px 10px;
     background-position:
       0 0,

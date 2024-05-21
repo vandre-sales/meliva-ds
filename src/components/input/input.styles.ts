@@ -13,7 +13,7 @@ export default css`
   }
 
   :host([filled]) {
-    --background: var(--wa-color-neutral-fill-subtle);
+    --background: var(--wa-color-neutral-fill-quiet);
     --border-color: var(--background);
   }
 
@@ -92,7 +92,7 @@ export default css`
   .input__control:-webkit-autofill:focus,
   .input__control:-webkit-autofill:active {
     box-shadow: none;
-    -webkit-text-fill-color: var(--wa-color-brand-text-on-fill);
+    -webkit-text-fill-color: var(--wa-color-brand-on-normal);
     caret-color: var(--wa-form-controls-value-color);
   }
 
@@ -123,7 +123,7 @@ export default css`
 
   .input__prefix ::slotted(wa-icon),
   .input__suffix ::slotted(wa-icon) {
-    color: var(--wa-color-neutral-spot);
+    color: var(--wa-color-neutral-fill-loud);
   }
 
   /*
@@ -225,7 +225,7 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: inherit;
-    color: var(--wa-color-neutral-spot);
+    color: var(--wa-color-neutral-fill-loud);
     border: none;
     background: none;
     padding: 0;
@@ -235,7 +235,7 @@ export default css`
 
   .input__clear:active,
   .input__password-toggle:active {
-    color: color-mix(in oklab, var(--wa-color-neutral-spot), var(--wa-color-mix-active));
+    color: color-mix(in oklab, var(--wa-color-neutral-fill-loud), var(--wa-color-mix-active));
   }
 
   .input__clear:focus,
