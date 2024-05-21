@@ -73,7 +73,7 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Disables the switch. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /** Draws the switch in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;

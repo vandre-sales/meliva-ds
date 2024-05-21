@@ -158,18 +158,18 @@ describe('<wa-range>', async () => {
       await range.updateComplete;
 
       expect(range.checkValidity()).to.be.false;
-      expect(range.hasAttribute('data-invalid')).to.be.true;
-      expect(range.hasAttribute('data-valid')).to.be.false;
-      expect(range.hasAttribute('data-user-invalid')).to.be.false;
-      expect(range.hasAttribute('data-user-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(range.hasAttribute('data-wa-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(range);
       await range.updateComplete;
       range.blur();
       await range.updateComplete;
 
-      expect(range.hasAttribute('data-user-invalid')).to.be.true;
-      expect(range.hasAttribute('data-user-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
@@ -179,10 +179,10 @@ describe('<wa-range>', async () => {
       range.setCustomValidity('Invalid value');
       await range.updateComplete;
 
-      expect(range.hasAttribute('data-invalid')).to.be.true;
-      expect(range.hasAttribute('data-valid')).to.be.false;
-      expect(range.hasAttribute('data-user-invalid')).to.be.false;
-      expect(range.hasAttribute('data-user-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(range.hasAttribute('data-wa-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should be present in form data when using the form attribute and located outside of a <form>', async () => {

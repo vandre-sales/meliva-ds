@@ -224,12 +224,12 @@ describe('<wa-switch>', async () => {
       const el = await fixture<HTMLFormElement>(html` <form novalidate><wa-switch required></wa-switch></form> `);
       const slSwitch = el.querySelector<WaSwitch>('wa-switch')!;
 
-      expect(slSwitch.hasAttribute('data-required')).to.be.true;
-      expect(slSwitch.hasAttribute('data-optional')).to.be.false;
-      expect(slSwitch.hasAttribute('data-invalid')).to.be.true;
-      expect(slSwitch.hasAttribute('data-valid')).to.be.false;
-      expect(slSwitch.hasAttribute('data-user-invalid')).to.be.false;
-      expect(slSwitch.hasAttribute('data-user-valid')).to.be.false;
+      expect(slSwitch.hasAttribute('data-wa-required')).to.be.true;
+      expect(slSwitch.hasAttribute('data-wa-optional')).to.be.false;
+      expect(slSwitch.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(slSwitch.hasAttribute('data-wa-valid')).to.be.false;
+      expect(slSwitch.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(slSwitch.hasAttribute('data-wa-user-valid')).to.be.false;
     });
   });
 

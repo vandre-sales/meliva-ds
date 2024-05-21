@@ -94,19 +94,19 @@ describe('<wa-radio-group>', () => {
       const secondRadio = radioGroup.querySelectorAll('wa-radio')[1];
 
       expect(radioGroup.checkValidity()).to.be.true;
-      expect(radioGroup.hasAttribute('data-required')).to.be.true;
-      expect(radioGroup.hasAttribute('data-optional')).to.be.false;
-      expect(radioGroup.hasAttribute('data-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-valid')).to.be.true;
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-required')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-optional')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-valid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(secondRadio);
       await secondRadio.updateComplete;
 
       expect(radioGroup.checkValidity()).to.be.true;
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.true;
     });
 
     it('should receive the correct validation attributes ("states") when invalid', async () => {
@@ -118,19 +118,19 @@ describe('<wa-radio-group>', () => {
       `);
       const secondRadio = radioGroup.querySelectorAll('wa-radio')[1];
 
-      expect(radioGroup.hasAttribute('data-required')).to.be.true;
-      expect(radioGroup.hasAttribute('data-optional')).to.be.false;
-      expect(radioGroup.hasAttribute('data-invalid')).to.be.true;
-      expect(radioGroup.hasAttribute('data-valid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-required')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-optional')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(secondRadio);
       radioGroup.value = '';
       await radioGroup.updateComplete;
 
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.true;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
@@ -144,12 +144,12 @@ describe('<wa-radio-group>', () => {
       `);
       const radioGroup = el.querySelector<WaRadioGroup>('wa-radio-group')!;
 
-      expect(radioGroup.hasAttribute('data-required')).to.be.true;
-      expect(radioGroup.hasAttribute('data-optional')).to.be.false;
-      expect(radioGroup.hasAttribute('data-invalid')).to.be.true;
-      expect(radioGroup.hasAttribute('data-valid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-required')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-optional')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should show a constraint validation error when setCustomValidity() is called', async () => {

@@ -86,7 +86,7 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
   @property() resize: 'none' | 'vertical' | 'auto' = 'vertical';
 
   /** Disables the textarea. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /** Makes the textarea readonly. */
   @property({ type: Boolean, reflect: true }) readonly = false;

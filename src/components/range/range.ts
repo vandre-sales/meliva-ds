@@ -78,7 +78,7 @@ export default class WaRange extends WebAwesomeFormAssociated {
   @property({ attribute: 'help-text' }) helpText = '';
 
   /** Disables the range. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /** The minimum acceptable value of the range. */
   @property({ type: Number }) min = 0;

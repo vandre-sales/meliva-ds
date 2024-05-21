@@ -138,12 +138,12 @@ describe('<wa-textarea>', async () => {
       const el = await fixture<WaTextarea>(html` <wa-textarea required value="a"></wa-textarea> `);
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-required')).to.be.true;
-      expect(el.hasAttribute('data-optional')).to.be.false;
-      expect(el.hasAttribute('data-invalid')).to.be.false;
-      expect(el.hasAttribute('data-valid')).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-required')).to.be.true;
+      expect(el.hasAttribute('data-wa-optional')).to.be.false;
+      expect(el.hasAttribute('data-wa-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
 
       el.focus();
       await sendKeys({ press: 'b' });
@@ -152,19 +152,19 @@ describe('<wa-textarea>', async () => {
       await el.updateComplete;
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.true;
     });
 
     it('should receive the correct validation attributes ("states") when invalid', async () => {
       const el = await fixture<WaTextarea>(html` <wa-textarea required></wa-textarea> `);
 
-      expect(el.hasAttribute('data-required')).to.be.true;
-      expect(el.hasAttribute('data-optional')).to.be.false;
-      expect(el.hasAttribute('data-invalid')).to.be.true;
-      expect(el.hasAttribute('data-valid')).to.be.false;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-required')).to.be.true;
+      expect(el.hasAttribute('data-wa-optional')).to.be.false;
+      expect(el.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(el.hasAttribute('data-wa-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
 
       el.focus();
       await sendKeys({ press: 'a' });
@@ -173,20 +173,20 @@ describe('<wa-textarea>', async () => {
       el.blur();
       await el.updateComplete;
 
-      expect(el.hasAttribute('data-user-invalid')).to.be.true;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
       const el = await fixture<HTMLFormElement>(html` <form novalidate><wa-textarea required></wa-textarea></form> `);
       const textarea = el.querySelector<WaTextarea>('wa-textarea')!;
 
-      expect(textarea.hasAttribute('data-required')).to.be.true;
-      expect(textarea.hasAttribute('data-optional')).to.be.false;
-      expect(textarea.hasAttribute('data-invalid')).to.be.true;
-      expect(textarea.hasAttribute('data-valid')).to.be.false;
-      expect(textarea.hasAttribute('data-user-invalid')).to.be.false;
-      expect(textarea.hasAttribute('data-user-valid')).to.be.false;
+      expect(textarea.hasAttribute('data-wa-required')).to.be.true;
+      expect(textarea.hasAttribute('data-wa-optional')).to.be.false;
+      expect(textarea.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(textarea.hasAttribute('data-wa-valid')).to.be.false;
+      expect(textarea.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(textarea.hasAttribute('data-wa-user-valid')).to.be.false;
     });
   });
 
@@ -210,10 +210,10 @@ describe('<wa-textarea>', async () => {
       await textarea.updateComplete;
 
       expect(textarea.checkValidity()).to.be.false;
-      expect(textarea.hasAttribute('data-invalid')).to.be.true;
-      expect(textarea.hasAttribute('data-valid')).to.be.false;
-      expect(textarea.hasAttribute('data-user-invalid')).to.be.false;
-      expect(textarea.hasAttribute('data-user-valid')).to.be.false;
+      expect(textarea.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(textarea.hasAttribute('data-wa-valid')).to.be.false;
+      expect(textarea.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(textarea.hasAttribute('data-wa-user-valid')).to.be.false;
 
       textarea.focus();
       await sendKeys({ type: 'test' });
@@ -221,8 +221,8 @@ describe('<wa-textarea>', async () => {
       textarea.blur();
       await textarea.updateComplete;
 
-      expect(textarea.hasAttribute('data-user-invalid')).to.be.true;
-      expect(textarea.hasAttribute('data-user-valid')).to.be.false;
+      expect(textarea.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(textarea.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should be present in form data when using the form attribute and located outside of a <form>', async () => {

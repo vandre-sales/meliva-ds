@@ -1,4 +1,5 @@
 import { expect, fixture } from '@open-wc/testing';
+import { html } from 'lit'
 import type { WebAwesomeFormControl } from '../webawesome-element.js';
 
 type CreateControlFn = () => Promise<WebAwesomeFormControl>;
@@ -45,6 +46,7 @@ export async function runFormControlBaseTests<T extends WebAwesomeFormControl = 
 //   - `.reportValidity()`
 //   - `.setCustomValidity(msg)`
 //   - `.getForm()`
+//   - `:disabled`
 //
 async function runAllValidityTests(
   tagName: string, //
@@ -154,7 +156,7 @@ async function runAllValidityTests(
           control.customError = 'MyError';
           await control.updateComplete;
           expect(control.validity.valid).to.equal(false);
-          expect(control.hasAttribute('data-invalid')).to.equal(true);
+          expect(control.hasAttribute('data-wa-invalid')).to.equal(true);
           expect(control.validationMessage).to.equal('MyError');
         });
 
@@ -163,9 +165,69 @@ async function runAllValidityTests(
           // expect(control.validity.valid).to.equal(true)
           control.setAttribute('custom-error', 'MyError');
           await control.updateComplete;
-          expect(control.hasAttribute('data-invalid')).to.equal(true);
+          expect(control.hasAttribute('data-wa-invalid')).to.equal(true);
           expect(control.validationMessage).to.equal('MyError');
         });
+
+        it("Should properly move into and out of `:disabled` when using a <fieldset>", async () => {
+          const control = await createControl();
+          const fieldset = await fixture<HTMLFieldSetElement>(html`<fieldset></fieldset>`)
+          expect(control.disabled).to.equal(false)
+          fieldset.append(control)
+          fieldset.disabled = true
+          await control.updateComplete
+          expect(control.disabled).to.equal(true)
+          // expect(control.hasAttribute("disabled")).to.equal(false)
+          expect(control.matches(":disabled")).to.equal(true)
+          expect(control.hasAttribute("data-wa-disabled")).to.equal(true)
+
+          fieldset.disabled = false
+
+          await control.updateComplete
+          expect(control.disabled).to.equal(false)
+          expect(control.hasAttribute("disabled")).to.equal(false)
+          expect(control.matches(":disabled")).to.equal(false)
+          expect(control.hasAttribute("data-wa-disabled")).to.equal(false)
+        })
+
+        // it("This is the one edge case with ':disabled'. If you disable a fieldset, and then disable the element directly, it will not reflect the disabled attribute.", async () => {
+        //   const control = await createControl();
+        //   const fieldset = await fixture<HTMLFieldSetElement>(html`<fieldset></fieldset>`)
+        //   expect(control.disabled).to.equal(false)
+        //   fieldset.append(control)
+        //   fieldset.disabled = true
+        //   await control.updateComplete
+        //   expect(control.disabled).to.equal(true)
+        //   expect(control.hasAttribute("disabled")).to.equal(false)
+        //   expect(control.matches(":disabled")).to.equal(true)
+
+        //   control.disabled = true // This wont set the `disabled` attribute.
+        //   fieldset.disabled = false
+
+        //   await control.updateComplete
+        //   expect(control.disabled).to.equal(true)
+        //   expect(control.hasAttribute("disabled")).to.equal(true)
+        //   expect(control.matches(":disabled")).to.equal(true)
+        // })
+
+        it("Should reflect the disabled attribute if its attribute is directly added", async () => {
+          const control = await createControl();
+          expect(control.disabled).to.equal(false)
+          control.disabled = true
+          await control.updateComplete
+          expect(control.disabled).to.equal(true)
+          expect(control.hasAttribute("disabled")).to.equal(true)
+          expect(control.matches(":disabled")).to.equal(true)
+          expect(control.hasAttribute("data-wa-disabled")).to.equal(true)
+
+          control.disabled = false
+          await control.updateComplete
+
+          expect(control.disabled).to.equal(false)
+          expect(control.hasAttribute("disabled")).to.equal(false)
+          expect(control.matches(":disabled")).to.equal(false)
+          expect(control.hasAttribute("data-wa-disabled")).to.equal(false)
+        })
       }
 
       // Run special tests depending on component type

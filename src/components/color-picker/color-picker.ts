@@ -167,7 +167,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
   @property() name = '';
 
   /** Disables the color picker. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /**
    * Enable this option to prevent the panel from being clipped when the component is placed inside a container with

@@ -69,7 +69,7 @@ export default class WaIconButton extends WebAwesomeElement {
   @property() label = '';
 
   /** Disables the button. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   private handleBlur() {
     this.hasFocus = false;

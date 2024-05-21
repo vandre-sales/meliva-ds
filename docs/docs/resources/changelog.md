@@ -14,6 +14,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 
 - Disabled form controls will no longer have a `disabled` attribute set when they are disabled via property. IE: `el.disabled = true`. Instead use `:disabled` to style them.
 - Checkboxes will no longer have a `checked` attribute set when their `checked` property is changed. IE: `el.checked = true`. Instead, use the `:state(:checked)` and for unsupported browsers, use `[data-checked]`
+- `data-optional`, `data-required`, `data-invalid`, `data-valid`, `data-user-invalid`, and `data-user-valid` have all been renamed to have a `data-wa-*` prefix. Like so: `data-wa-valid`, `data-wa-invalid`, to avoid any conflicts with user provided attributes.
 
 - Added `setKitCode()` and `getKitCode()` functions as well as support for setting kit codes declaratively with `data-webawesome-kit`
 - Added `family` and `variant` attributes to `<wa-icon>` and `<wa-icon-button>`

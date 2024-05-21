@@ -5,7 +5,17 @@ layout: component.njk
 ---
 
 ```html {.example}
-<wa-input></wa-input>
+<wa-input id="disabled-input"></wa-input>
+
+<style>
+wa-input:disabled::part(input) {
+  background-color: blue;
+}
+</style>
+
+<script type="module">
+document.querySelector("#disabled-input").disabled = true
+</script>
 ```
 
 {% raw %}
