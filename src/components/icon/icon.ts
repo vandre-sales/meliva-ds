@@ -165,7 +165,7 @@ export default class WaIcon extends WebAwesomeElement {
     }
   }
 
-  @watch(['name', 'src', 'library'])
+  @watch(['family', 'name', 'library', 'variant', 'src'])
   async setIcon() {
     const { url, fromLibrary } = this.getIconSource();
     const library = fromLibrary ? getIconLibrary(this.library) : undefined;
