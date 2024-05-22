@@ -6,46 +6,67 @@ export default css`
     --header-spacing: var(--wa-space-l);
     --body-spacing: var(--wa-space-l);
     --footer-spacing: var(--wa-space-l);
+    --show-duration: 200ms;
 
-    display: contents;
+    display: none;
+  }
+
+  :host([open]) {
+    display: block;
   }
 
   .dialog {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: var(--wa-z-index-dialog);
-  }
-
-  .dialog__panel {
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
     width: var(--width);
     max-width: calc(100% - var(--wa-space-2xl));
     max-height: calc(100% - var(--wa-space-2xl));
     background-color: var(--wa-color-surface-default);
     border-radius: var(--wa-panel-corners);
+    border: none;
     box-shadow: var(--wa-shadow-level-3);
+    padding: 0;
+    margin: auto;
+
+    &.show {
+      animation: show-dialog var(--show-duration) ease;
+
+      &::backdrop {
+        animation: show-backdrop var(--show-duration, 200ms) ease;
+      }
+    }
+
+    &.hide {
+      animation: show-dialog var(--show-duration) ease reverse;
+
+      &::backdrop {
+        animation: show-backdrop var(--show-duration, 200ms) ease reverse;
+      }
+    }
+
+    &.pulse {
+      --pulse-size: 1.01;
+      animation: pulse 250ms ease;
+    }
   }
 
-  .dialog__panel:focus {
+  .dialog:focus {
     outline: none;
   }
 
   /* Ensure there's enough vertical padding for phones that don't update vh when chrome appears (e.g. iPhone) */
   @media screen and (max-width: 420px) {
-    .dialog__panel {
+    .dialog {
       max-height: 80vh;
     }
   }
 
-  .dialog--open .dialog__panel {
+  .dialog--open {
     display: flex;
     opacity: 1;
   }
@@ -91,12 +112,22 @@ export default css`
 
   .dialog__footer {
     flex: 0 0 auto;
-    text-align: right;
+    display: flex;
+    gap: var(--wa-space-xs);
+    justify-content: end;
     padding: var(--footer-spacing);
   }
 
   .dialog__footer ::slotted(wa-button:not(:first-of-type)) {
     margin-inline-start: var(--wa-spacing-xs);
+  }
+
+  .dialog::backdrop {
+    /*
+      NOTE: the ::backdrop element doesn't inherit properly in Safari yet, but it will in 17.4! At that time, we can
+      remove the fallback values here.
+    */
+    background-color: var(--wa-color-overlay, rgb(0 0 0 / 0.25));
   }
 
   .dialog__overlay {
@@ -105,11 +136,43 @@ export default css`
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: var(--wa-color-overlay);
+    background-color:;
+  }
+
+  @keyframes pulse {
+    0% {
+      scale: 1;
+    }
+    50% {
+      scale: 1.02;
+    }
+    100% {
+      scale: 1;
+    }
+  }
+
+  @keyframes show-dialog {
+    from {
+      opacity: 0;
+      scale: 0.8;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes show-backdrop {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @media (forced-colors: active) {
-    .dialog__panel {
+    .dialog {
       border: solid 1px white;
     }
   }

@@ -1,4 +1,4 @@
-export type WaRequestCloseEvent = CustomEvent<{ source: 'close-button' | 'keyboard' | 'overlay' }>;
+export type WaRequestCloseEvent = CustomEvent<{ source: Element }>;
 
 declare global {
   interface GlobalEventHandlersEventMap {

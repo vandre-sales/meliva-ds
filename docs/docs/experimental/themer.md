@@ -437,7 +437,7 @@ hasOutline: false
     --label-color-active: var(--label-color-hover);
   }
 
-  #icon-chooser::part(panel) {
+  #icon-chooser::part(dialog) {
     width: 100%;
     height: 80%;
     max-width: 700px;
@@ -470,7 +470,7 @@ hasOutline: false
   }
 
   @media screen and (max-width: 768px) {
-    #icon-chooser::part(panel) {
+    #icon-chooser::part(dialog) {
       width: 100%;
       max-height: 80%;
       max-width: 90vw;
