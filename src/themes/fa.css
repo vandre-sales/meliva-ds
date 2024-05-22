@@ -116,11 +116,6 @@
   --wa-color-text-quiet: var(--wa-color-base-40);
   --wa-color-text-link: var(--wa-color-brand-on-quiet);
 
-  /* Selection colors apply on content that is highlighted by the user.
-   * Selection text should have a minimum 4.5:1 contrast ratio against the selection background. */
-  --wa-color-selection-background: var(--wa-color-primary-80);
-  --wa-color-selection-text: black;
-
   /* Focus specifies the default color of the focus ring for predictable keyboard navigation.
    * Focus should have a minimum 3:1 contrast ratio against surfaces and background colors whenever possible. */
   --wa-color-focus: var(--wa-color-primary-60);
@@ -385,9 +380,6 @@
   --wa-color-text-normal: var(--wa-color-base-95);
   --wa-color-text-quiet: var(--wa-color-base-60);
   --wa-color-text-link: var(--wa-color-brand-on-quiet);
-
-  --wa-color-selection-background: var(--wa-color-primary-40);
-  --wa-color-selection-text: white;
 
   --wa-color-focus: var(--wa-color-primary-60);
 

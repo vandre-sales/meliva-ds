@@ -32,12 +32,6 @@ body {
   -webkit-text-size-adjust: none;
 }
 
-/* Text selection */
-::selection {
-  background-color: var(--wa-color-selection-background);
-  color: var(--wa-color-selection-text);
-}
-
 /* Show custom elements only after they're registered */
 :not(:defined),
 :not(:defined) * {

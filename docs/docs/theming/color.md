@@ -510,15 +510,6 @@ Text colors are used for standard text elements. We recommend a minimum 4.5:1 co
 | `--wa-color-text-quiet`  | <div class="color-preview"><div class="color-swatch text-only" style="color: var(--wa-color-text-quiet)">AaBb</div></div> |
 | `--wa-color-text-link`  | <div class="color-preview"><div class="color-swatch text-only" style="color: var(--wa-color-text-link)">AaBb</div></div> |
 
-### Selection
-
-Selection colors are used for selected text. We recommend a minimum 4.5:1 contrast ratio between the background color and the text color.
-
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-color-selection-background`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-selection-background)"></div></div> |
-| `--wa-color-selection-text`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-selection-background); color: var(--wa-color-selection-text)">AaBb</div></div> |
-
 ### Focus
 
 Focus is used for the color of your project's focus ring. Using a single, consistent color allows for predictable keyboard navigation. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
