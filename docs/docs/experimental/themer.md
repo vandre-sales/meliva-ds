@@ -91,9 +91,9 @@ hasOutline: false
     --wa-font-size-3xl: var(--wa-font-size-root) * 2.5625;
     --wa-font-size-4xl: var(--wa-font-size-root) * 3.25;
 
-    --wa-font-line-height-compact: 1.25;
-    --wa-font-line-height-regular: 1.6;
-    --wa-font-line-height-comfortable: 2;
+    --wa-line-height-compact: 1.25;
+    --wa-line-height-regular: 1.6;
+    --wa-line-height-expanded: 2;
 
     --wa-space-base: 1;
     --wa-space-3xs: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.125);
@@ -162,11 +162,11 @@ hasOutline: false
 
     --wa-form-controls-label-color: var(--wa-color-text-normal);
     --wa-form-controls-label-font-weight: var(--wa-font-weight-normal);
-    --wa-form-controls-label-line-height: var(--wa-font-line-height-regular);
+    --wa-form-controls-label-line-height: var(--wa-line-height-regular);
 
     --wa-form-controls-value-color: var(--wa-color-text-normal);
     --wa-form-controls-value-font-weight: var(--wa-font-weight-body);
-    --wa-form-controls-value-line-height: var(--wa-font-line-height-compact);
+    --wa-form-controls-value-line-height: var(--wa-line-height-compact);
 
     --wa-form-controls-placeholder-color: color-mix(in oklab, var(--wa-color-text-normal), transparent);
 
@@ -189,7 +189,7 @@ hasOutline: false
     font-family: var(--wa-font-family-code);
     font-size: var(--wa-font-size-root);
     font-weight: var(--wa-font-weight-normal);
-    line-height: var(--wa-font-line-height-regular);
+    line-height: var(--wa-line-height-regular);
 
     & wa-button,
     & wa-input,
@@ -404,7 +404,7 @@ hasOutline: false
 
   #file-uploader-description {
     display: block;
-    line-height: var(--wa-font-line-height-compact);
+    line-height: var(--wa-line-height-compact);
     color: var(--wa-color-text-quiet);
     margin-top: var(--wa-space-2xs);
   }
@@ -541,7 +541,7 @@ hasOutline: false
             <wa-visually-hidden>Browse icons</wa-visually-hidden>
           </wa-button>
         </wa-tooltip>
-        <small slot="help-text" style="display: inline-block; line-height: var(--wa-font-line-height-compact);">It's dangerous to go alone. Take these!</small>
+        <small slot="help-text" style="display: inline-block; line-height: var(--wa-line-height-compact);">It's dangerous to go alone. Take these!</small>
       </wa-radio-group>
     </div>
   </wa-details>

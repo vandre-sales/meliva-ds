@@ -64,7 +64,7 @@ export default css`
   .textarea__control {
     flex: 1 1 auto;
     font: inherit;
-    line-height: var(--wa-font-line-height-comfortable);
+    line-height: var(--wa-line-height-expanded);
     color: var(--wa-form-controls-value-color);
     border: none;
     background: none;

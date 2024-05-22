@@ -231,9 +231,9 @@
   --wa-font-size-3xl: 2.5625rem; /* 41px */
   --wa-font-size-4xl: 3.25rem; /* 52px */
 
-  --wa-font-line-height-compact: 1.25;
-  --wa-font-line-height-regular: 1.6;
-  --wa-font-line-height-comfortable: 2;
+  --wa-line-height-compact: 1.25;
+  --wa-line-height-regular: 1.6;
+  --wa-line-height-expanded: 2;
 
   /**
    * Spacing
@@ -335,11 +335,11 @@
 
   --wa-form-controls-label-color: var(--wa-color-text-normal);
   --wa-form-controls-label-font-weight: var(--wa-font-weight-normal);
-  --wa-form-controls-label-line-height: var(--wa-font-line-height-regular);
+  --wa-form-controls-label-line-height: var(--wa-line-height-regular);
 
   --wa-form-controls-value-color: var(--wa-color-text-normal);
   --wa-form-controls-value-font-weight: var(--wa-font-weight-body);
-  --wa-form-controls-value-line-height: var(--wa-font-line-height-compact);
+  --wa-form-controls-value-line-height: var(--wa-line-height-compact);
 
   --wa-form-controls-placeholder-color: var(--wa-color-base-60);
 

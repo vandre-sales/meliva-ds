@@ -21,7 +21,7 @@ body {
   font-family: var(--wa-font-family-body);
   font-size: var(--wa-font-size-m);
   font-weight: var(--wa-font-weight-body);
-  line-height: var(--wa-font-line-height-regular);
+  line-height: var(--wa-line-height-regular);
   text-size-adjust: none;
   color: var(--wa-color-text-normal);
   padding: 0;
@@ -82,7 +82,7 @@ h5,
 h6 {
   font-family: var(--wa-font-family-heading);
   font-weight: var(--wa-font-weight-heading);
-  line-height: var(--wa-font-line-height-compact);
+  line-height: var(--wa-line-height-compact);
   text-wrap: balance;
 }
 
@@ -196,6 +196,10 @@ var {
   border-radius: var(--wa-corners-xs);
   padding-block: var(--wa-space-2xs);
   padding-inline: var(--wa-space-xs);
+}
+
+code {
+  white-space: pre;
 }
 
 pre {
