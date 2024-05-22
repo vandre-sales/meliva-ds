@@ -1,4 +1,4 @@
-@import 'depth_1_semiflat.css'; /* depth_0_flat.css, depth_1_semiflat.css, depth_2_chunky.css, depth_3_punchy.css, depth_4_glossy.css */
+@import 'depth_1_semiflat.css';
 
 :root,
 :host,
@@ -6,12 +6,12 @@
   color-scheme: light;
 
   /**
-   * Literal colors
-   * Each color is identified by a number that corresponds to its lightness value, where 100 is lightest (white) and 0 is darkest (black).
+   * Literal Colors
+   * Each color is identified by a number that corresponds to its perceived lightness, where 100 is equal to white and 0 is equal to black.
    * Lightness on this scale strongly correlates to relative luminance, so each lightness value has nearly uniform WCAG 2.1 contrast across hues.
-   * A difference of 40 between lightness values guarantees a minimum 3:1 contrast ratio.
-   * A difference of 50 between lightness values guarantees a minimum 4.5:1 contrast ratio.
-   * A difference of 60 between lightness values guarantees a minimum 7:1 contrast ratio.
+   * A difference of 40 between lightness values ensures a minimum 3:1 contrast ratio.
+   * A difference of 50 between lightness values ensures a minimum 4.5:1 contrast ratio.
+   * A difference of 60 between lightness values ensures a minimum 7:1 contrast ratio.
    */
   --wa-color-red-95: #ffefef;
   --wa-color-red-90: #ffdddc;
@@ -49,17 +49,17 @@
   --wa-color-green-10: #002400;
   --wa-color-green-05: #001700;
 
-  --wa-color-blue-95: #e8f3ff;
-  --wa-color-blue-90: #d1e8ff;
-  --wa-color-blue-80: #9fceff;
-  --wa-color-blue-70: #6eb3ff;
-  --wa-color-blue-60: #3e96ff;
-  --wa-color-blue-50: #0071ec;
-  --wa-color-blue-40: #0053c0;
-  --wa-color-blue-30: #003f9c;
-  --wa-color-blue-20: #002d77;
-  --wa-color-blue-10: #001a4e;
-  --wa-color-blue-05: #000f35;
+  --wa-color-blue-95: #ebf4ff;
+  --wa-color-blue-90: #d4e7ff;
+  --wa-color-blue-80: #a6ccff;
+  --wa-color-blue-70: #77b1ff;
+  --wa-color-blue-60: #4895fd;
+  --wa-color-blue-50: #0070ef;
+  --wa-color-blue-40: #0055b8;
+  --wa-color-blue-30: #004390;
+  --wa-color-blue-20: #00306c;
+  --wa-color-blue-10: #001c45;
+  --wa-color-blue-05: #00112f;
 
   --wa-color-indigo-95: #f0f2fe;
   --wa-color-indigo-90: #e2e4fc;
@@ -97,6 +97,12 @@
   --wa-color-gray-10: #1b1d26;
   --wa-color-gray-05: #101219;
 
+  /**
+   * Foundational Colors
+   */
+
+  /* Primary is a key color used to provide branding, draw attention, and signify actions.
+    * Primary colors should be a 1-to-1 map with colors in a literal color group. */
   --wa-color-primary-95: var(--wa-color-blue-95);
   --wa-color-primary-90: var(--wa-color-blue-90);
   --wa-color-primary-80: var(--wa-color-blue-80);
@@ -109,6 +115,8 @@
   --wa-color-primary-10: var(--wa-color-blue-10);
   --wa-color-primary-05: var(--wa-color-blue-05);
 
+  /* Base is a key color that makes up your project's body and structure.
+    * Base colors should be a 1-to-1 map with colors in a literal color group, usually gray. */
   --wa-color-base-95: var(--wa-color-gray-95);
   --wa-color-base-90: var(--wa-color-gray-90);
   --wa-color-base-80: var(--wa-color-gray-80);
@@ -121,37 +129,33 @@
   --wa-color-base-10: var(--wa-color-gray-10);
   --wa-color-base-05: var(--wa-color-gray-05);
 
-  /**
-   * Foundational theme colors
-   */
-
-  /* Surfaces are background layers that UI components and other content rest on.
-   * Surface colors support elevation, where raised is closest to the user and lowered is farthest away. */
+  /* Surfaces are layers that other components and content rest on.
+   * Surface colors help convey hierarchy through elevation, where raised is closest to the user and lowered is farthest away. */
   --wa-color-surface-raised: white;
   --wa-color-surface-default: white;
   --wa-color-surface-lowered: var(--wa-color-base-95);
   --wa-color-surface-border: var(--wa-color-base-90);
 
   /* Text colors are used for standard text elements.
-   * Text should have a minimum 4.5:1 contrast ratio against surfaces. */
+   * Recommended: minimum 4.5:1 contrast ratio between text colors and surface colors. */
   --wa-color-text-normal: var(--wa-color-base-10);
   --wa-color-text-quiet: var(--wa-color-base-40);
-  --wa-color-text-link: var(--wa-color-primary-50);
+  --wa-color-text-link: var(--wa-color-primary-40);
 
   /* Selection colors apply on content that is highlighted by the user.
-   * Selection text should have a minimum 4.5:1 contrast ratio against the selection background. */
+   * Recommended: minimum 4.5:1 contrast ratio against the selection background. */
   --wa-color-selection-background: var(--wa-color-primary-80);
   --wa-color-selection-text: black;
 
-  /* Focus specifies the default color of the focus ring for predictable keyboard navigation.
-   * Focus should have a minimum 3:1 contrast ratio against surfaces and background colors whenever possible. */
+  /* Focus color provides the default color of the focus ring for predictable keyboard navigation.
+   * Recommended: minimum 3:1 contrast ratio against surfaces and background colors. */
   --wa-color-focus: var(--wa-color-primary-60);
 
   /* Overlays provide a backdrop for isolated content, often allowing background colors or content to show through. */
   --wa-color-overlay-modal: color-mix(in oklab, var(--wa-color-base-10) 32%, transparent);
   --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-50) 8%, transparent);
 
-  /* Shadow specifies the default color for box shadows that indicate elevation. */
+  /* Shadow color provides the default color for box shadows that indicate elevation. */
   --wa-color-shadow: color-mix(
     in oklab,
     var(--wa-color-base-05) calc(var(--wa-shadow-blur-base) * 8% + 6%),
@@ -163,19 +167,18 @@
   --wa-color-mix-active: black 20%;
 
   /**
-   * Semantic theme colors
-   * Five semantic groups reinforce a component's message, intended usage, or expected results through meaningful hues -
-   *  *  Brand to reinforce product branding
-   *  *  Success to express validity or confirmation
-   *  *  Warning to express caution or uncertainty
-   *  *  Danger to express errors or risk
-   *  *  Neutral for elements that are innocuous or inert
-   * Each semantic group specifies colors to use as fills, outlines, and text content with vivid and muted variations.
-   * Vivid colors are the most noticeable against base theme colors, whereas muted colors draw less attention.
-   * Vivid colors should have a minimum 3:1 contrast ratio against surfaces when possible.
-   * Muted colors have no contrast requirements.
-   * Text colors should have a minimum 4.5:1 contrast ratio on the intended background - vivid, muted, or surface.
-   * Colors are differentiated by how much they contribute to visual noise. It's hard to focus on a conversation in a loud restaurant. In the same way, it's hard for a user to focus their attention when there are many colors competing for it.
+   * Semantic Colors
+   * Five semantic groups help reinforce a component's message, intended usage, or expected results through meaningful hues -
+   *  *  Brand for product branding
+   *  *  Success for validity or confirmation
+   *  *  Neutral for ordinary or inactive content
+   *  *  Warning for caution or uncertainty
+   *  *  Danger for errors or risk
+   * Within these groups, each color specifies a role -
+   *  *  Fill for background colors or areas larger than a few pixels
+   *  *  Border for borders, dividers, and other stroke-width elements
+   *  *  On for content displayed on a fill with the corresponding intensity
+   * Each role has three options for attention - quiet, normal, and loud - where quiet draws the least attention and loud draws the most.
   */
 
   --wa-color-brand-fill-quiet: var(--wa-color-primary-95);

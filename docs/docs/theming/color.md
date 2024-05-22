@@ -380,9 +380,13 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
   </div>
 </div>
 
+## Foundational Colors
+
+Foundational colors lay the groundwork for your project's content. These colors are grouped by their distinct roles.
+
 ### Key Colors
 
-We extend the palette of literal colors with two additional color groups to aid changing the key colors of your project:
+We provide aliases for a pair of literal colors through two additional color groups to aid changing the key colors of your project:
 
 - **Primary** is color you use to draw attention and signify actions.
 - **Base** makes up your project's body and structure.
@@ -485,13 +489,9 @@ The primary and base color groups reference another literal color group. By defa
   </div>
 </div>
 
-## Foundational Colors
-
-Foundational colors lay the groundwork for your project's content. These colors are grouped by their distinct roles.
-
 ### Surfaces
 
-Surfaces help establish basic hierarchy, consisting of background layers that other components and content rest on. Surface colors support the concept of elevation, where `--wa-color-surface-raised` would be the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` would be the farthest away (e.g., backdrops and wells).
+Surfaces are background layers that other components and content rest on. Surface colors help convey hierarchy through a sense of elevation, where `--wa-color-surface-raised` would be the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` would be the farthest away (e.g., wells).
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
@@ -546,7 +546,7 @@ Shadow is used to indicate elevation. `--wa-color-shadow` is used in your theme'
 | ----------------------------- | ------------------------------- |
 | `--wa-color-shadow`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-shadow)"></div></div> |
 
-### Interactive Mix
+### Mix (Interactions)
 
 Mix colors are used in `color-mix()` functions to achieve consistent interaction effects across components. We recommend using a color that is the inverse of your standard button labels to minimize any adverse effects on color contrast.
 
@@ -558,13 +558,28 @@ Mix colors are used in `color-mix()` functions to achieve consistent interaction
 
 ## Semantic Colors
 
-Semantic colors help reinforce a specific message, intended usage, or expected results through familiar, meaningful hues. Each specify colors to use for fills, borders, and text so that they can be used across components with predictable results and easily assembled with readable contrast. There are five groups of semantic colors:
+Semantic colors help reinforce a specific message, intended usage, or expected results through familiar, meaningful hues. Each color is identified by its semantic group, role, and attention using the format `--wa-color-{group}-{role}-{attention}`. There are five groups of semantic colors:
 
 - **Brand** to reinforce your project's branding
 - **Success** to express validity or confirmation
-- **Neutral** for content that is idle, inactive, or innocuous
+- **Neutral** for ordinary or inactive content
 - **Warning** to express caution or uncertainty
 - **Danger** to express errors or risk
+
+Each group defines colors for specific roles so that colors can be easily assembled with predictable results and readable contrast. There are three roles:
+
+- **Fill** for background colors or areas larger than a few pixels
+- **Border** for borders, dividers, and other stroke-width elements
+- **On** for content displayed on a fill. We recommend a minimum 4.5:1 contrast ratio against fills with the corresponding attention.
+
+Finally, each color is named according to how much attention it draws. We use noise as an analogy to describe attention: a loud noise draws more attention than a quiet one. Too much noise can be distracting and make it hard to concentrate. There are three levels of attention:
+
+- **Quiet** draws the least attention
+- **Normal** draws some attention
+- **Loud** draws the most attention
+
+For colors with the `on` role, `quiet`, `normal`, and `loud` describe the attention of the fill they are meant to be paired with.
+
 
 | Custom Property               |  <code>brand</code>             |  <code>success</code>           |  <code>neutral</code>           |  <code>warning</code>           | <code>danger</code>             |
 | ----------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
