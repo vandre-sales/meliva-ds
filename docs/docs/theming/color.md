@@ -26,10 +26,9 @@ layout: page.njk
     line-height: 2;
     height: 2em;
     padding-inline: var(--wa-space-xs);
-    text-align: center;
   }
-  .text-swatch {
-    font-size: var(--wa-font-size-xl);
+  .color-swatch.text-only {
+    padding-inline: 0;
   }
 </style>
 
@@ -507,9 +506,9 @@ Text colors are used for standard text elements. We recommend a minimum 4.5:1 co
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
-| `--wa-color-text-normal`   | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-text-normal)">AaBbCc</div></div> |
-| `--wa-color-text-quiet`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-text-quiet)">AaBbCc</div></div> |
-| `--wa-color-text-link`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-text-link)">AaBbCc</div></div> |
+| `--wa-color-text-normal`   | <div class="color-preview"><div class="color-swatch text-only" style="color: var(--wa-color-text-normal)">AaBb</div></div> |
+| `--wa-color-text-quiet`  | <div class="color-preview"><div class="color-swatch text-only" style="color: var(--wa-color-text-quiet)">AaBb</div></div> |
+| `--wa-color-text-link`  | <div class="color-preview"><div class="color-swatch text-only" style="color: var(--wa-color-text-link)">AaBb</div></div> |
 
 ### Selection
 
@@ -518,7 +517,7 @@ Selection colors are used for selected text. We recommend a minimum 4.5:1 contra
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-selection-background`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-selection-background)"></div></div> |
-| `--wa-color-selection-text`  | <div class="color-preview"><div class="text-swatch" style="color: var(--wa-color-selection-text)">AaBbCc</div></div> |
+| `--wa-color-selection-text`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-selection-background); color: var(--wa-color-selection-text)">AaBb</div></div> |
 
 ### Focus
 
