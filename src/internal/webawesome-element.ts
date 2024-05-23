@@ -95,7 +95,7 @@ export default class WebAwesomeElement extends LitElement {
   }
 }
 
-export interface Validator<T extends WebAwesomeFormAssociated = WebAwesomeFormAssociated> {
+export interface Validator<T extends WebAwesomeFormAssociatedElement = WebAwesomeFormAssociatedElement> {
   observedAttributes?: string[];
   checkValidity: (element: T) => {
     message: string;
@@ -145,7 +145,7 @@ export interface WebAwesomeFormControl extends WebAwesomeElement {
 }
 
 // setFormValue omitted so that we can use `setValue`
-export class WebAwesomeFormAssociated
+export class WebAwesomeFormAssociatedElement
   extends WebAwesomeElement
   implements Omit<ElementInternals, 'form' | 'setFormValue'>, WebAwesomeFormControl
 {
@@ -424,7 +424,7 @@ export class WebAwesomeFormAssociated
   }
 
   get allValidators() {
-    const staticValidators = (this.constructor as typeof WebAwesomeFormAssociated).validators || [];
+    const staticValidators = (this.constructor as typeof WebAwesomeFormAssociatedElement).validators || [];
 
     const validators = this.validators || [];
     return [...staticValidators, ...validators];

@@ -15,7 +15,7 @@ import { RequiredValidator } from '../../internal/validators/required-validator.
 import { styleMap } from 'lit/directives/style-map.js';
 import { TinyColor } from '@ctrl/tinycolor';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './color-picker.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -91,10 +91,10 @@ declare const EyeDropper: EyeDropperConstructor;
  * @cssproperty --swatch-size - The size of each predefined color swatch.
  */
 @customElement('wa-color-picker')
-export default class WaColorPicker extends WebAwesomeFormAssociated {
+export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
+  static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
   static get validators() {
     return [...super.validators, RequiredValidator()];
@@ -137,10 +137,10 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
    * in a specific format, use the `getFormattedValue()` method. The value is submitted as a name/value pair with form
    * data.
    */
-  @property({ attribute: false }) value = '';
+  @property({ attribute: false }) value = this.getAttribute("value") || ''
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ attribute: 'value', reflect: true }) defaultValue = '';
+  @property({ attribute: 'value', reflect: true }) defaultValue = this.getAttribute("value") || ''
 
   /**
    * The color picker's label. This will not be displayed, but it will be announced by assistive devices. If you need to
@@ -164,7 +164,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
   @property({ attribute: 'no-format-toggle', type: Boolean }) noFormatToggle = false;
 
   /** The name of the form control, submitted as a name/value pair with form data. */
-  @property() name = '';
+  @property({ reflect: true }) name: string | null = null;
 
   /** Disables the color picker. */
   @property({ type: Boolean }) disabled = false;
@@ -823,7 +823,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociated {
         ${this.inline
           ? html`
               <wa-visually-hidden id="label">
-                <slot id="label" name="label">${this.label}</slot>
+                <slot name="label">${this.label}</slot>
               </wa-visually-hidden>
             `
           : null}

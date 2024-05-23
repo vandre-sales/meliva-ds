@@ -156,9 +156,6 @@ describe('<wa-checkbox>', () => {
 
       await waitUntil(() => submitHandler.calledOnce);
 
-      // console.log(form.querySelector("wa-checkbox").value)
-      // console.log(form.querySelector("wa-checkbox").checked)
-      // console.log(new FormData(form))
       expect(formData!.get('a')).to.equal('on');
     });
 

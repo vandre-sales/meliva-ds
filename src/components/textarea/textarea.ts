@@ -6,7 +6,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './textarea.styles.js';
@@ -42,7 +42,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --box-shadow - The shadow effects around the edges of the textarea.
  */
 @customElement('wa-textarea')
-export default class WaTextarea extends WebAwesomeFormAssociated {
+export default class WaTextarea extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static get validators() {
     return [...super.validators, MirrorValidator()];
@@ -53,13 +53,12 @@ export default class WaTextarea extends WebAwesomeFormAssociated {
   private resizeObserver: ResizeObserver;
 
   @query('.textarea__control') input: HTMLTextAreaElement;
-  @query('.textarea__control') formControl: HTMLTextAreaElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
 
   /** The name of the textarea, submitted as a name/value pair with form data. */
-  @property() name = '';
+  @property({ reflect: true }) name: string | null = null;
 
   /** The current value of the textarea, submitted as a name/value pair with form data. */
   @property({ attribute: false }) value = '';

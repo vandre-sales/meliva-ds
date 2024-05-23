@@ -5,7 +5,10 @@ layout: component.njk
 ---
 
 ```html {.example}
-<wa-color-picker label="Select a color"></wa-color-picker>
+<form>
+<wa-color-picker required label="Select a color"></wa-color-picker>
+<wa-button type="submit">Submit</wa-button>
+</form>
 ```
 
 {% raw %}

@@ -3,10 +3,11 @@ import '../radio/radio.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
+import { uuidv4 } from '../../internal/uuid.js';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './radio-group.styles.js';
@@ -39,7 +40,7 @@ import type WaRadioButton from '../radio-button/radio-button.js';
  * @csspart button-group__base - The button group's `base` part.
  */
 @customElement('wa-radio-group')
-export default class WaRadioGroup extends WebAwesomeFormAssociated {
+export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static get validators() {
@@ -49,7 +50,8 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
         validationElement: Object.assign(document.createElement('input'), {
           required: true,
           type: 'radio',
-          name: '__validationRadio__'
+          // use a uuid because we want this to be guaranteed unique. Users will never see this.
+          name: `__wa-radio-${uuidv4()}`
         })
       })
     ];
@@ -71,10 +73,10 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
   @property({ attribute: 'help-text' }) helpText = '';
 
   /** The name of the radio group, submitted as a name/value pair with form data. */
-  @property({ reflect: true }) name = null;
+  @property({ reflect: true }) name: string | null = null;
 
-  @property({ attribute: false }) value: string | null = null;
-  @property({ attribute: 'value', reflect: true }) defaultValue: string | null = null;
+  @property({ attribute: false }) value = '';
+  @property({ attribute: 'value', reflect: true }) defaultValue = '';
 
   /** The radio group's size. This size will be applied to all child radios and radio buttons. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -86,7 +88,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
    * We need this because if we don't have it, FormValidation yells at us that it's "not focusable".
    *   If we use `this.tabIndex = -1` we can't focus the radio inside.
    */
-  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
+  static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
   constructor() {
     super();
@@ -219,7 +221,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
     this.syncRadios();
   }
 
-  formResetCallback(...args: Parameters<WebAwesomeFormAssociated['formResetCallback']>) {
+  formResetCallback(...args: Parameters<WebAwesomeFormAssociatedElement['formResetCallback']>) {
     this.value = this.defaultValue;
 
     super.formResetCallback(...args);

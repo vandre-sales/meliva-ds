@@ -3,7 +3,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './radio.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -39,7 +39,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --toggle-size - The size of the radio.
  */
 @customElement('wa-radio')
-export default class WaRadio extends WebAwesomeFormAssociated {
+export default class WaRadio extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   @state() checked = false;

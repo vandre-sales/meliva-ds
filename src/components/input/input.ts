@@ -2,17 +2,18 @@ import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './input.styles.js';
 import type { CSSResultGroup } from 'lit';
+import type WaButton from '../button/button.js';
 
 /**
  * @summary Inputs collect data from the user.
@@ -56,10 +57,10 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --box-shadow - The shadow effects around the edges of the input.
  */
 @customElement('wa-input')
-export default class WaInput extends WebAwesomeFormAssociated {
+export default class WaInput extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
+  static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
   static get validators() {
     return [...super.validators, MirrorValidator()];
@@ -91,7 +92,7 @@ export default class WaInput extends WebAwesomeFormAssociated {
     | 'url' = 'text';
 
   /** The name of the input, submitted as a name/value pair with form data. */
-  @property() name = '';
+  @property({ reflect: true }) name: string | null = null;
 
   /** The current value of the input, submitted as a name/value pair with form data. */
   @property({ attribute: false }) value = '';
@@ -195,6 +196,7 @@ export default class WaInput extends WebAwesomeFormAssociated {
   })
   spellcheck = true;
 
+  // @TODO: remove these.
   private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
   private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
 
@@ -282,7 +284,21 @@ export default class WaInput extends WebAwesomeFormAssociated {
         // See https://github.com/shoelace-style/shoelace/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
-          this.getForm()?.requestSubmit(null);
+          const form = this.getForm()
+
+          if (!form) { return }
+
+          const button = [...form.elements].find((el: HTMLButtonElement) => el.type === "submit" && !el.disabled) as undefined | HTMLButtonElement | WaButton
+
+          if (!button) return
+
+          if (button.tagName.toLowerCase() === "button") {
+            form.requestSubmit(button)
+          } else {
+            // requestSubmit() wont work with `<wa-button>`
+            button.click()
+          }
+
         }
       });
     }

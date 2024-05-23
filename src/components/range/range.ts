@@ -7,7 +7,7 @@ import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './range.styles.js';
@@ -44,7 +44,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --track-active-offset - The point of origin of the active track.
  */
 @customElement('wa-range')
-export default class WaRange extends WebAwesomeFormAssociated {
+export default class WaRange extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static get validators() {

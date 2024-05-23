@@ -7,7 +7,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './button.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -52,7 +52,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --label-color-hover - The color of the button's label on hover.
  */
 @customElement('wa-button')
-export default class WaButton extends WebAwesomeFormAssociated {
+export default class WaButton extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   static get validators() {
@@ -99,7 +99,7 @@ export default class WaButton extends WebAwesomeFormAssociated {
    * The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.
    * This attribute is ignored when `href` is present.
    */
-  @property() name = '';
+  @property({ reflect: true }) name: string | null = null;
 
   /**
    * The value of the button, submitted as a pair with the button's name as part of the form data, but only when this
@@ -178,7 +178,9 @@ export default class WaButton extends WebAwesomeFormAssociated {
     button.style.clipPath = 'inset(50%)';
     button.style.overflow = 'hidden';
     button.style.whiteSpace = 'nowrap';
-    button.name = this.name;
+    if (this.name) {
+      button.name = this.name;
+    }
     button.value = this.value;
 
     ['form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget'].forEach(attr => {
@@ -208,7 +210,7 @@ export default class WaButton extends WebAwesomeFormAssociated {
   }
 
   // eslint-disable-next-line
-  setValue(..._args: Parameters<WebAwesomeFormAssociated['setValue']>) {
+  setValue(..._args: Parameters<WebAwesomeFormAssociatedElement['setValue']>) {
     // This is just a stub. We dont ever actually want to set a value on the form. That happens when the button is clicked and added
     // via the light dom button.
   }

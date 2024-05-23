@@ -1,14 +1,13 @@
 import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { defaultValue } from '../../internal/default-value.js';
-import { GroupRequiredValidator } from '../../internal/validators/group-required-validator.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './checkbox.styles.js';
@@ -51,16 +50,16 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
  * @cssproperty --toggle-size - The size of the checkbox.
  */
 @customElement('wa-checkbox')
-export default class WaCheckbox extends WebAwesomeFormAssociated {
+export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static get validators() {
     return [
       ...super.validators,
-      GroupRequiredValidator({
+      RequiredValidator({
+        // Use a checkbox so we get "free" translation strings.
         validationElement: Object.assign(document.createElement('input'), {
           type: 'checkbox',
           required: true,
-          name: '__validationCheckbox__'
         })
       })
     ];
@@ -69,7 +68,6 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
-  @query('input[type="checkbox"]') formControl: HTMLInputElement;
 
   @state() private hasFocus = false;
 
@@ -87,17 +85,18 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   /** Disables the checkbox. */
   @property({ type: Boolean }) disabled = false;
 
-  /** Draws the checkbox in a checked state. */
-  @property({ type: Boolean, reflect: true }) checked = false;
-
   /**
    * Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a "select
    * all/none" behavior when associated checkboxes have a mix of checked and unchecked states.
    */
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
+
+  /** Draws the checkbox in a checked state. */
+  @property({ type: Boolean, attribute: false }) checked = this.hasAttribute("checked");
+
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue('checked') defaultChecked = false;
+  @property({ type: Boolean, reflect: true, attribute: "checked" }) defaultChecked = this.hasAttribute("checked");
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -141,6 +140,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
   }
 
   handleValueOrCheckedChange() {
+    this.toggleCustomState("checked", this.checked)
     this.value = this.checked ? this.value || 'on' : null;
 
     // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
@@ -165,8 +165,8 @@ export default class WaCheckbox extends WebAwesomeFormAssociated {
 
   formResetCallback() {
     // Evaluate checked before the super call because of our watcher on value.
-    super.formResetCallback();
     this.checked = this.defaultChecked;
+    super.formResetCallback();
     this.handleValueOrCheckedChange();
   }
 

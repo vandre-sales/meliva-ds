@@ -7,7 +7,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './switch.styles.js';
@@ -49,7 +49,7 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
  * @cssproperty --width - The width of the switch.
  */
 @customElement('wa-switch')
-export default class WaSwitch extends WebAwesomeFormAssociated {
+export default class WaSwitch extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static get validators() {
@@ -64,7 +64,7 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
   @property() title = ''; // make reactive to pass through
 
   /** The name of the switch, submitted as a name/value pair with form data. */
-  @property() name = '';
+  @property({ reflect: true }) name: string | null = null;
 
   /** The current value of the switch, submitted as a name/value pair with form data. */
   @property() value: null | string;
@@ -76,10 +76,10 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
   @property({ type: Boolean }) disabled = false;
 
   /** Draws the switch in a checked state. */
-  @property({ type: Boolean, reflect: true }) checked = false;
+  @property({ type: Boolean, attribute: false }) checked = this.hasAttribute("checked");
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue('checked') defaultChecked = false;
+  @property({ type: Boolean, attribute: "checked", reflect: true }) defaultChecked = this.hasAttribute("checked");
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -138,12 +138,20 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
   @watch(['value', 'checked'], { waitUntilFirstUpdate: true })
   handleValueOrCheckedChange() {
     this.value = this.checked ? this.value || 'on' : null;
-    this.requestUpdate('value');
     this.input.checked = this.checked; // force a sync update
     // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
     this.setValue(this.value, this.value);
     this.updateValidity();
   }
+
+  @watch('defaultChecked')
+  handleDefaultCheckedChange() {
+    if (!this.hasInteracted && this.checked !== this.defaultChecked) {
+      this.checked = this.defaultChecked;
+      this.handleValueOrCheckedChange();
+    }
+  }
+
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
@@ -182,8 +190,8 @@ export default class WaSwitch extends WebAwesomeFormAssociated {
 
   formResetCallback(): void {
     this.checked = this.defaultChecked;
-    this.handleValueOrCheckedChange();
     super.formResetCallback();
+    this.handleValueOrCheckedChange();
   }
 
   render() {

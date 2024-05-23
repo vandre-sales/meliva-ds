@@ -13,7 +13,7 @@ import { scrollIntoView } from '../../internal/scroll.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './select.styles.js';
@@ -75,7 +75,7 @@ import type WaPopup from '../popup/popup.js';
  * @cssproperty --box-shadow - The shadow effects around the edges of the select's combobox.
  */
 @customElement('wa-select')
-export default class WaSelect extends WebAwesomeFormAssociated {
+export default class WaSelect extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static get validators() {

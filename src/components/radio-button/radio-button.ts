@@ -5,7 +5,7 @@ import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LitElement } from 'lit';
 import { watch } from '../../internal/watch.js';
-import { WebAwesomeFormAssociated } from '../../internal/webawesome-element.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './radio-button.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -31,7 +31,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart suffix - The container that wraps the suffix.
  */
 @customElement('wa-radio-button')
-export default class WaRadioButton extends WebAwesomeFormAssociated {
+export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
@@ -68,7 +68,7 @@ export default class WaRadioButton extends WebAwesomeFormAssociated {
   @property({ reflect: true }) form: string | null = null;
 
   /** Needed for Form Validation. Without it we get a console error. */
-  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
+  static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
   connectedCallback() {
     super.connectedCallback();
