@@ -32,17 +32,24 @@ layout: page.njk
   }
 </style>
 
-Web Awesome's color system includes a range of CSS custom properties to purposefully and consistently thread your color choices throughout your project.
+Web Awesome's color system is made up of CSS custom properties to thread your color choices consistently throughout your theme.
+
+Color is organized by three main categories:
+
+- [Literal colors](/#literal-colors) that give familiar names to your starting color palette
+- [Foundational colors](/#foundational-colors) that define colors for essential content and structure
+- [Semantic colors](/#semantic-colors) that draw attention and convey meaning
+
 
 ## Literal Colors
 
-Literal colors are the lowest level color properties in your theme. Each color is identified by a name, like red or gray, and a number that roughly corresponds to the color's perceived lightness. On this scale, 100 is equal to pure white and 0 is equal to pure black. Web Awesome defines 10 literal colors each with 11 lightness steps using the format `--wa-color-{name}-{#}`.
+Literal colors are the lowest level color properties in your theme. Each color is identified by a name, like red or gray, and a number that roughly corresponds to the color's perceived lightness, where 100 is equal to pure white and 0 is equal to pure black. Web Awesome defines seven literal colors each with 11 lightness values using the format `--wa-color-{name}-{#}`.
 
-For easy WCAG 2.1 conformance, the lightness values between colors have a strong correlation to [relative luminance](https://www.w3.org/WAI/GL/wiki/Relative_luminance). For accessible contrast ratios, even across hues, calculate the difference between the lightness values of any two colors:
+Lightness values on this scale have a strong correlation to [relative luminance](https://www.w3.org/WAI/GL/wiki/Relative_luminance), which is used to calculate color contrast. To meet [WCAG 2.1 success criteria for minimum or enhanced contrast](https://www.w3.org/TR/WCAG21/#contrast-minimum), even across hues, calculate the difference between the lightness values of any two colors:
 
-- A difference of 40 between lightness values ensures a minimum 3:1 contrast ratio, suitable for large text and icons (AA).
-- A difference of 50 between lightness values ensures a minimum 4.5:1 contrast ratio, suitable for normal text (AA) and large text (AAA).
-- A difference of 60 between lightness values ensures a minimum 7:1 contrast ratio, suitable for all text (AAA).
+- A difference of 40 ensures a minimum 3:1 contrast ratio, suitable for large text and icons (AA)
+- A difference of 50 ensures a minimum 4.5:1 contrast ratio, suitable for normal text (AA) and large text (AAA)
+- A difference of 60 ensures a minimum 7:1 contrast ratio, suitable for all text (AAA)
 
 <div class="color-name">Red</div>
 <div class="color-group">
@@ -382,16 +389,16 @@ For easy WCAG 2.1 conformance, the lightness values between colors have a strong
 
 ## Foundational Colors
 
-Foundational colors lay the groundwork for your project's content. These colors are grouped by their distinct roles.
+Foundational colors lay the groundwork for the content and structure of your project. These colors are named according to their role in your theme.
 
 ### Key Colors
 
-We provide aliases for a pair of literal colors through two additional color groups to aid changing the key colors of your project:
+We provide aliases for a pair of literal color groups to aid changing the key colors of your project:
 
-- **Primary** is color you use to draw attention and signify actions.
-- **Base** makes up your project's body and structure.
+- **Primary** is used to draw attention and signify actions
+- **Base** makes up your project's body and structure
 
-The primary and base color groups reference another literal color group. By default, `--wa-color-primary-{#}` maps to `--wa-color-blue-{#}` and `--wa-color-base-{#}` maps to `--wa-color-gray-{#}`.
+By default, `--wa-color-primary-{#}` references `--wa-color-blue-{#}` and `--wa-color-base-{#}` references `--wa-color-gray-{#}`.
 
 <div class="color-name">Primary</div>
 <div class="color-group">
@@ -491,7 +498,7 @@ The primary and base color groups reference another literal color group. By defa
 
 ### Surfaces
 
-Surfaces are background layers that other components and content rest on. Surface colors help convey hierarchy through a sense of elevation, where `--wa-color-surface-raised` would be the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` would be the farthest away (e.g., wells).
+Surfaces are background layers that other components and content rest on. Surface colors help convey hierarchy through a sense of elevation, where `--wa-color-surface-raised` is the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` is the farthest away (e.g., wells).
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
@@ -510,17 +517,9 @@ Text colors are used for standard text elements. We recommend a minimum 4.5:1 co
 | `--wa-color-text-quiet`  | <div class="color-preview"><div class="color-swatch text-only" style="color: var(--wa-color-text-quiet)">AaBb</div></div> |
 | `--wa-color-text-link`  | <div class="color-preview"><div class="color-swatch text-only" style="color: var(--wa-color-text-link)">AaBb</div></div> |
 
-### Focus
-
-Focus is used for the color of your project's focus ring. Using a single, consistent color allows for predictable keyboard navigation. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
-
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-color-focus`   | <div class="color-preview"><div class="color-swatch" style="outline: var(--wa-focus-ring)"></div></div> |
-
 ### Overlays
 
-Overlays provide a backdrop to isolate content, often allowing background colors or content to show through to preserve overall context. 
+Overlays provide a backdrop to isolate content, often allowing background context to show through. 
 
 `--wa-color-overlay-modal` is meant for use behind modal content, like dialogs and drawers. `--wa-color-overlay-inline` is meant for use behind inline content where background colors of parent elements should show through to avoid conflicting colors.
 
@@ -531,46 +530,53 @@ Overlays provide a backdrop to isolate content, often allowing background colors
 
 ### Shadow
 
-Shadow is used to indicate elevation. `--wa-color-shadow` is used in your theme's preset shadows.
+Shadows indicate elevation. `--wa-color-shadow` is used in your theme's constructed shadow properties.
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-shadow`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-shadow)"></div></div> |
 
-### Mix (Interactions)
+### Interactions
 
-Mix colors are used in `color-mix()` functions to achieve consistent interaction effects across components. We recommend using a color that is the inverse of your standard button labels to minimize any adverse effects on color contrast.
+#### Focus
+
+Web Awesome uses a single, consistent focus color for predictable keyboard navigation. This is used alongside your focus custom properties to construct `--wa-focus-ring`. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
-| `--wa-color-mix-hover`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-fill-loud), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-fill-loud), var(--wa-color-mix-hover))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-fill-loud), var(--wa-color-mix-hover))"></div></div></div> |
-| `--wa-color-mix-active`   | <div class="color-group"><div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-color: color-mix(in oklab, transparent, var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-success-fill-loud), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-warning-fill-loud), var(--wa-color-mix-active))"></div></div><div class="color-preview"><div class="color-swatch" style="background-color: color-mix(in oklab, var(--wa-color-danger-fill-loud), var(--wa-color-mix-active))"></div></div></div> |
+| `--wa-color-focus`   | <div class="color-preview"><div class="color-swatch" style="outline: var(--wa-focus-ring)"></div></div> |
+
+#### Hover and Active
+
+We leverage `color-mix()` to achieve consistent hover and active states across components without the need for dozens of handpicked colors. These custom properties are used in `color-mix()` functions to contextually generate hover and active colors based on the color of the component.
+
+| Custom Property               |  Preview                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-color-mix-hover`   | <div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-image: linear-gradient(135deg, color-mix(in oklab, transparent, var(--wa-color-mix-hover)), color-mix(in oklab, transparent, var(--wa-color-mix-hover)) 70%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)) 70%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)))"></div></div> |
+| `--wa-color-mix-active`   | <div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-image: linear-gradient(135deg, color-mix(in oklab, transparent, var(--wa-color-mix-active)), color-mix(in oklab, transparent, var(--wa-color-mix-active)) 70%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)) 70%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)))"></div></div> |
 
 
 ## Semantic Colors
 
 Semantic colors help reinforce a specific message, intended usage, or expected results through familiar, meaningful hues. Each color is identified by its semantic group, role, and attention using the format `--wa-color-{group}-{role}-{attention}`. There are five groups of semantic colors:
 
-- **Brand** to reinforce your project's branding
-- **Success** to express validity or confirmation
+- **Brand** to reinforce your brand color
+- **Success** for validity or confirmation
 - **Neutral** for ordinary or inactive content
-- **Warning** to express caution or uncertainty
-- **Danger** to express errors or risk
+- **Warning** for caution or uncertainty
+- **Danger** for errors or risk
 
 Each group defines colors for specific roles so that colors can be easily assembled with predictable results and readable contrast. There are three roles:
 
 - **Fill** for background colors or areas larger than a few pixels
-- **Border** for borders, dividers, and other stroke-width elements
-- **On** for content displayed on a fill. We recommend a minimum 4.5:1 contrast ratio against fills with the corresponding attention.
+- **Border** for borders, dividers, and other stroke-like elements
+- **On** for content displayed on a fill (e.g., pair `--wa-color-danger-on-loud` with `--wa-color-danger-fill-loud`)
 
-Finally, each color is named according to how much attention it draws. We use noise as an analogy to describe attention: a loud noise draws more attention than a quiet one. Too much noise can be distracting and make it hard to concentrate. There are three levels of attention:
+Finally, each color is named according to how much attention it draws. Here, we use noise as an analogy: a loud noise draws more attention than a quiet one. There are three levels of attention:
 
 - **Quiet** draws the least attention
 - **Normal** draws some attention
 - **Loud** draws the most attention
-
-For colors with the `on` role, `quiet`, `normal`, and `loud` describe the attention of the fill they are meant to be paired with.
-
 
 | Custom Property               |  <code>brand</code>             |  <code>success</code>           |  <code>neutral</code>           |  <code>warning</code>           | <code>danger</code>             |
 | ----------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |

@@ -101,7 +101,7 @@
    * Foundational Colors
    */
 
-  /* Primary is a key color used to provide branding, draw attention, and signify actions.
+  /* Primary is a key color used to draw attention and signify actions.
     * Primary colors should be a 1-to-1 map with colors in a literal color group. */
   --wa-color-primary-95: var(--wa-color-blue-95);
   --wa-color-primary-90: var(--wa-color-blue-90);
@@ -129,7 +129,7 @@
   --wa-color-base-10: var(--wa-color-gray-10);
   --wa-color-base-05: var(--wa-color-gray-05);
 
-  /* Surfaces are layers that other components and content rest on.
+  /* Surfaces are background layers that other components and content rest on.
    * Surface colors help convey hierarchy through elevation, where raised is closest to the user and lowered is farthest away. */
   --wa-color-surface-raised: white;
   --wa-color-surface-default: white;
@@ -142,37 +142,37 @@
   --wa-color-text-quiet: var(--wa-color-base-40);
   --wa-color-text-link: var(--wa-color-primary-40);
 
-  /* Focus color provides the default color of the focus ring for predictable keyboard navigation.
-   * Recommended: minimum 3:1 contrast ratio against surfaces and background colors. */
-  --wa-color-focus: var(--wa-color-primary-60);
-
   /* Overlays provide a backdrop for isolated content, often allowing background colors or content to show through. */
-  --wa-color-overlay-modal: color-mix(in oklab, var(--wa-color-base-10) 32%, transparent);
-  --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-50) 8%, transparent);
+  --wa-color-overlay-modal: color-mix(in oklab, var(--wa-color-base-10) 40%, transparent);
+  --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-50) 10%, transparent);
 
-  /* Shadow color provides the default color for box shadows that indicate elevation. */
+  /* Shadows indicate elevation. Shadow color is used in your theme's shadow properties. */
   --wa-color-shadow: color-mix(
     in oklab,
     var(--wa-color-base-05) calc(var(--wa-shadow-blur-base) * 8% + 6%),
     transparent
   );
 
-  /* Mix colors are used in color-mix() to achieve consistent interaction effects across components. */
-  --wa-color-mix-hover: black 12%;
-  --wa-color-mix-active: black 20%;
+  /* Focus color provides the default color of the focus ring for predictable keyboard navigation.
+   * Recommended: minimum 3:1 contrast ratio against surfaces and background colors. */
+  --wa-color-focus: var(--wa-color-primary-60);
+
+  /* Hover and active colors are intended to be used in color-mix() to achieve consistent effects across components. */
+  --wa-color-mix-hover: black 16%;
+  --wa-color-mix-active: black 24%;
 
   /**
    * Semantic Colors
    * Five semantic groups help reinforce a component's message, intended usage, or expected results through meaningful hues -
-   *  *  Brand for product branding
+   *  *  Brand for your brand color
    *  *  Success for validity or confirmation
    *  *  Neutral for ordinary or inactive content
    *  *  Warning for caution or uncertainty
    *  *  Danger for errors or risk
    * Within these groups, each color specifies a role -
    *  *  Fill for background colors or areas larger than a few pixels
-   *  *  Border for borders, dividers, and other stroke-width elements
-   *  *  On for content displayed on a fill with the corresponding intensity
+   *  *  Border for borders, dividers, and other stroke-like elements
+   *  *  On for content displayed on a fill with the corresponding attention
    * Each role has three options for attention - quiet, normal, and loud - where quiet draws the least attention and loud draws the most.
   */
 
@@ -183,7 +183,7 @@
   --wa-color-brand-border-normal: var(--wa-color-primary-80);
   --wa-color-brand-border-loud: var(--wa-color-primary-60);
   --wa-color-brand-on-quiet: var(--wa-color-primary-40);
-  --wa-color-brand-on-normal: var(--wa-color-primary-40);
+  --wa-color-brand-on-normal: var(--wa-color-primary-30);
   --wa-color-brand-on-loud: white;
 
   --wa-color-success-fill-quiet: var(--wa-color-green-95);
@@ -193,7 +193,7 @@
   --wa-color-success-border-normal: var(--wa-color-green-80);
   --wa-color-success-border-loud: var(--wa-color-green-60);
   --wa-color-success-on-quiet: var(--wa-color-green-40);
-  --wa-color-success-on-normal: var(--wa-color-green-40);
+  --wa-color-success-on-normal: var(--wa-color-green-30);
   --wa-color-success-on-loud: white;
 
   --wa-color-warning-fill-quiet: var(--wa-color-yellow-95);
@@ -203,7 +203,7 @@
   --wa-color-warning-border-normal: var(--wa-color-yellow-80);
   --wa-color-warning-border-loud: var(--wa-color-yellow-60);
   --wa-color-warning-on-quiet: var(--wa-color-yellow-40);
-  --wa-color-warning-on-normal: var(--wa-color-yellow-40);
+  --wa-color-warning-on-normal: var(--wa-color-yellow-30);
   --wa-color-warning-on-loud: white;
 
   --wa-color-danger-fill-quiet: var(--wa-color-red-95);
@@ -213,7 +213,7 @@
   --wa-color-danger-border-normal: var(--wa-color-red-80);
   --wa-color-danger-border-loud: var(--wa-color-red-60);
   --wa-color-danger-on-quiet: var(--wa-color-red-40);
-  --wa-color-danger-on-normal: var(--wa-color-red-40);
+  --wa-color-danger-on-normal: var(--wa-color-red-30);
   --wa-color-danger-on-loud: white;
 
   --wa-color-neutral-fill-quiet: var(--wa-color-base-95);
@@ -223,7 +223,7 @@
   --wa-color-neutral-border-normal: var(--wa-color-base-80);
   --wa-color-neutral-border-loud: var(--wa-color-base-60);
   --wa-color-neutral-on-quiet: var(--wa-color-base-40);
-  --wa-color-neutral-on-normal: var(--wa-color-base-40);
+  --wa-color-neutral-on-normal: var(--wa-color-base-30);
   --wa-color-neutral-on-loud: white;
 
   /**
@@ -330,7 +330,7 @@
   /**
    * Links
    */
-  --wa-link-decoration-default: underline var(--wa-color-brand-border-normal) dotted;
+  --wa-link-decoration-default: underline color-mix(in oklab, var(--wa-color-text-link), transparent 24%) dotted;
   --wa-link-decoration-hover: underline;
 
   /**
@@ -398,73 +398,79 @@
   color-scheme: dark;
 
   /**
-   * Base theme colors
+   * Foundational Colors
    */
-  --wa-color-surface-raised: var(--wa-color-base-20);
-  --wa-color-surface-default: var(--wa-color-base-10);
+  --wa-color-surface-raised: var(--wa-color-base-10);
+  --wa-color-surface-default: var(--wa-color-base-05);
   --wa-color-surface-lowered: var(--wa-color-base-05);
   --wa-color-surface-border: var(--wa-color-base-20);
 
   --wa-color-text-normal: var(--wa-color-base-95);
   --wa-color-text-quiet: var(--wa-color-base-60);
-  --wa-color-text-link: var(--wa-color-brand-on-quiet);
-
-  --wa-color-focus: var(--wa-color-primary-60);
+  --wa-color-text-link: var(--wa-color-primary-70);
 
   --wa-color-overlay-modal: color-mix(in oklab, black 50%, transparent);
+  --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-50) 10%, transparent);
 
   --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-base) * 32% + 40%), transparent);
+
+  --wa-color-focus: var(--wa-color-primary-60);
 
   --wa-color-mix-hover: black 8%;
   --wa-color-mix-active: black 16%;
 
   /**
-   * Semantic theme colors
+   * Semantic Colors
    */
-  --wa-color-brand-fill-loud: var(--wa-color-primary-50);
   --wa-color-brand-fill-quiet: var(--wa-color-primary-10);
   --wa-color-brand-fill-normal: var(--wa-color-primary-20);
+  --wa-color-brand-fill-loud: var(--wa-color-primary-50);
   --wa-color-brand-border-quiet: var(--wa-color-primary-20);
   --wa-color-brand-border-normal: var(--wa-color-primary-30);
-  --wa-color-brand-on-loud: white;
-  --wa-color-brand-on-normal: var(--wa-color-primary-70);
+  --wa-color-brand-border-loud: var(--wa-color-primary-40);
   --wa-color-brand-on-quiet: var(--wa-color-primary-60);
+  --wa-color-brand-on-normal: var(--wa-color-primary-70);
+  --wa-color-brand-on-loud: white;
 
-  --wa-color-success-fill-loud: var(--wa-color-green-50);
   --wa-color-success-fill-quiet: var(--wa-color-green-10);
   --wa-color-success-fill-normal: var(--wa-color-green-20);
+  --wa-color-success-fill-loud: var(--wa-color-green-50);
   --wa-color-success-border-quiet: var(--wa-color-green-20);
   --wa-color-success-border-normal: var(--wa-color-green-30);
-  --wa-color-success-on-loud: white;
-  --wa-color-success-on-normal: var(--wa-color-green-70);
+  --wa-color-success-border-loud: var(--wa-color-green-40);
   --wa-color-success-on-quiet: var(--wa-color-green-60);
+  --wa-color-success-on-normal: var(--wa-color-green-70);
+  --wa-color-success-on-loud: white;
 
-  --wa-color-warning-fill-loud: var(--wa-color-yellow-50);
   --wa-color-warning-fill-quiet: var(--wa-color-yellow-10);
   --wa-color-warning-fill-normal: var(--wa-color-yellow-20);
+  --wa-color-warning-fill-loud: var(--wa-color-yellow-50);
   --wa-color-warning-border-quiet: var(--wa-color-yellow-20);
   --wa-color-warning-border-normal: var(--wa-color-yellow-30);
-  --wa-color-warning-on-loud: white;
-  --wa-color-warning-on-normal: var(--wa-color-yellow-70);
+  --wa-color-warning-border-loud: var(--wa-color-yellow-40);
   --wa-color-warning-on-quiet: var(--wa-color-yellow-60);
+  --wa-color-warning-on-normal: var(--wa-color-yellow-70);
+  --wa-color-warning-on-loud: white;
 
-  --wa-color-danger-fill-loud: var(--wa-color-red-50);
   --wa-color-danger-fill-quiet: var(--wa-color-red-10);
   --wa-color-danger-fill-normal: var(--wa-color-red-20);
+  --wa-color-danger-fill-loud: var(--wa-color-red-50);
   --wa-color-danger-border-quiet: var(--wa-color-red-20);
   --wa-color-danger-border-normal: var(--wa-color-red-30);
-  --wa-color-danger-on-loud: white;
-  --wa-color-danger-on-normal: var(--wa-color-red-70);
+  --wa-color-danger-border-loud: var(--wa-color-red-40);
   --wa-color-danger-on-quiet: var(--wa-color-red-60);
+  --wa-color-danger-on-normal: var(--wa-color-red-70);
+  --wa-color-danger-on-loud: white;
 
-  --wa-color-neutral-fill-loud: var(--wa-color-base-50);
-  --wa-color-neutral-fill-quiet: var(--wa-color-base-20);
-  --wa-color-neutral-fill-normal: var(--wa-color-base-30);
+  --wa-color-neutral-fill-quiet: var(--wa-color-base-10);
+  --wa-color-neutral-fill-normal: var(--wa-color-base-20);
+  --wa-color-neutral-fill-loud: var(--wa-color-base-90);
   --wa-color-neutral-border-quiet: var(--wa-color-base-20);
   --wa-color-neutral-border-normal: var(--wa-color-base-30);
-  --wa-color-neutral-on-loud: white;
-  --wa-color-neutral-on-normal: var(--wa-color-base-80);
+  --wa-color-neutral-border-loud: var(--wa-color-base-40);
   --wa-color-neutral-on-quiet: var(--wa-color-base-60);
+  --wa-color-neutral-on-normal: var(--wa-color-base-70);
+  --wa-color-neutral-on-loud: var(--wa-color-base-05);
 }
 
 /* #region Custom Styles */
