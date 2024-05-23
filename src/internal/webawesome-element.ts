@@ -115,7 +115,7 @@ export interface WebAwesomeFormControl extends WebAwesomeElement {
   checked?: boolean;
   defaultSelected?: boolean;
   selected?: boolean;
-  form?: string;
+  form?: string | null;
 
   // Constraint validation attributes
   pattern?: string;

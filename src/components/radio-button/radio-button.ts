@@ -3,7 +3,6 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { LitElement } from 'lit';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -135,7 +134,7 @@ export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
           })}
           aria-disabled=${this.disabled}
           type="button"
-          .value=${ifDefined(this.value)}
+          value=${ifDefined(this.value)}
           tabindex="${this.checked ? '0' : '-1'}"
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}

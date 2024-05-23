@@ -64,6 +64,7 @@ export default class WaRadio extends WebAwesomeFormAssociatedElement {
 
   constructor() {
     super();
+    this.addEventListener("click", this.handleClick)
     this.addEventListener('blur', this.handleBlur);
     this.addEventListener('focus', this.handleFocus);
   }
@@ -106,6 +107,12 @@ export default class WaRadio extends WebAwesomeFormAssociatedElement {
   handleDisabledChange() {
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
+
+  private handleClick = () => {
+    if (!this.disabled) {
+      this.checked = true;
+    }
+  };
 
   render() {
     return html`

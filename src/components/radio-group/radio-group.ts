@@ -183,26 +183,6 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
     }
   }
 
-  private syncRadios() {
-    if (customElements.get('wa-radio') && customElements.get('wa-radio-button')) {
-      this.syncRadioElements();
-      return;
-    }
-
-    if (customElements.get('wa-radio')) {
-      this.syncRadioElements();
-    } else {
-      customElements.whenDefined('wa-radio').then(() => this.syncRadios());
-    }
-
-    if (customElements.get('wa-radio-button')) {
-      this.syncRadioElements();
-    } else {
-      // Rerun this handler when <wa-radio> or <wa-radio-button> is registered
-      customElements.whenDefined('wa-radio-button').then(() => this.syncRadios());
-    }
-  }
-
   /**
    * We use the first available radio as the validationTarget similar to native HTML that shows the validation popup on
    * the first radio element.
@@ -218,7 +198,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
 
   @watch('size', { waitUntilFirstUpdate: true })
   handleSizeChange() {
-    this.syncRadios();
+    this.syncRadioElements();
   }
 
   formResetCallback(...args: Parameters<WebAwesomeFormAssociatedElement['formResetCallback']>) {
@@ -291,7 +271,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const defaultSlot = html` <slot @slotchange=${this.syncRadios}></slot> `;
+    const defaultSlot = html` <slot @slotchange=${this.syncRadioElements}></slot> `;
 
     return html`
       <fieldset

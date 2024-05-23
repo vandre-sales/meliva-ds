@@ -8,7 +8,7 @@ import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
 import { drag } from '../../internal/drag.js';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';

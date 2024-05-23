@@ -13,7 +13,7 @@ export default css`
     --checked-icon-scale: 0.4;
     --toggle-size: calc(1em * var(--wa-font-line-height-compact) - 0.125rem);
 
-    display: block;
+    display: inline-block;
   }
 
   :host(:focus-visible) {

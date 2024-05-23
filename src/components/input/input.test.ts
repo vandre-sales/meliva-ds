@@ -18,7 +18,7 @@ describe('<wa-input>', async () => {
 
     expect(el.type).to.equal('text');
     expect(el.size).to.equal('medium');
-    expect(el.name).to.equal('');
+    expect(el.name).to.equal(null);
     expect(el.value).to.equal('');
     expect(el.defaultValue).to.equal('');
     expect(el.title).to.equal('');

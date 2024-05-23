@@ -290,7 +290,10 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
 
           const button = [...form.elements].find((el: HTMLButtonElement) => el.type === "submit" && !el.disabled) as undefined | HTMLButtonElement | WaButton
 
-          if (!button) return
+          if (!button) {
+            form.requestSubmit(null)
+            return
+          }
 
           if (button.tagName.toLowerCase() === "button") {
             form.requestSubmit(button)

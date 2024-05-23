@@ -61,7 +61,10 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
   @property({ reflect: true }) name: string | null = null;
 
   /** The current value of the textarea, submitted as a name/value pair with form data. */
-  @property({ attribute: false }) value = '';
+  @property({ attribute: false }) value: null | string = '';
+
+  /** The default value of the form control. Primarily used for resetting the form control. */
+  @property({ reflect: true, attribute: 'value' }) defaultValue: null | string = '';
 
   /** The textarea's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -141,9 +144,6 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
    */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
-  /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ reflect: true, attribute: 'value' }) defaultValue: string = '';
-
   connectedCallback() {
     super.connectedCallback();
 
@@ -215,7 +215,6 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
   /** Removes focus from the textarea. */
   blur() {
     this.input.blur();
-    // this.checkValidity();
   }
 
   /** Selects all the text in the textarea. */

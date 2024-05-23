@@ -411,6 +411,9 @@ Form controls should support submission and validation through the following con
 - All form controls must have an `invalid` property that reflects their validity
 - All form controls should mirror their native validation attributes such as `required`, `pattern`, `minlength`, `maxlength`, etc. when possible and use the `MirrorValidator`.
 - All form controls must be tested to work with the standard `<form>` element
+- Form controls that **DO NOT** have an editable value such as a button only need `@property({ reflect: true }) value`
+- Form controls that **DO** have an editable value such as an input or textarea should have: `@property({ attribute: false }) value` and `@property({ attribute: "value", reflect: true }) defaultValue`. We do this to align with how native form controls work.
+- Form controls which have an editable property such as `checked` or `selected` should also have a `defaultSelected` and `defaultChecked` property respectively for use when the form is "reset".
 
 ### System Icons
 

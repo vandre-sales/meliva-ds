@@ -16,6 +16,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Checkboxes will no longer have a `checked` attribute set when their `checked` property is changed. IE: `el.checked = true`. Instead, use the `:state(:checked)` and for unsupported browsers, use `[data-checked]`
 - `data-optional`, `data-required`, `data-invalid`, `data-valid`, `data-user-invalid`, and `data-user-valid` have all been renamed to have a `data-wa-*` prefix. Like so: `data-wa-valid`, `data-wa-invalid`, to avoid any conflicts with user provided attributes.
 - `<wa-checkbox>` and `<wa-switch>` now use `:state(checked)` and `[data-wa-checked]` for CSS styling their "checked" state. The "checked" attribute now maps to `defaultChecked` just like native HTML checkboxes.
+- `getFormControls()` has been removed. We use Form Associated Custom Elements now and can reliably grab Web Awesome Elements via `formElement.elements`.
 
 
 - Added `setKitCode()` and `getKitCode()` functions as well as support for setting kit codes declaratively with `data-webawesome-kit`
