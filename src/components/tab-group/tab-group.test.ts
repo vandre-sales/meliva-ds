@@ -443,7 +443,7 @@ describe('<wa-tab-group>', () => {
       `);
 
       return expectCustomTabToBeActiveAfter(tabGroup, () => {
-        tabGroup.show('custom');
+        tabGroup.active = 'custom';
         return aTimeout(0);
       });
     });
