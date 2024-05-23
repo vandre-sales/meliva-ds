@@ -1,6 +1,6 @@
 ---
 title: Color
-description: Ensure consistent color usage with readable contrast with color properties.
+description: Ensure consistent use of color and readable contrast with Web Awesome's color properties.
 layout: page.njk
 ---
 
@@ -530,7 +530,7 @@ Overlays provide a backdrop to isolate content, often allowing background contex
 
 ### Shadow
 
-Shadows indicate elevation. `--wa-color-shadow` is used in your theme's constructed shadow properties.
+Shadows indicate elevation. `--wa-color-shadow` is used to construct your theme's [shadow properties](/docs/theming/shadows).
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
@@ -540,7 +540,7 @@ Shadows indicate elevation. `--wa-color-shadow` is used in your theme's construc
 
 #### Focus
 
-Web Awesome uses a single, consistent focus color for predictable keyboard navigation. This is used alongside your focus custom properties to construct `--wa-focus-ring`. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
+Web Awesome uses a single, consistent focus color for predictable keyboard navigation. This is used alongside your [focus properties](/docs/theming/extras) to construct `--wa-focus-ring`. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
