@@ -203,7 +203,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociated {
 
   /**
    * We use the first available radio as the validationTarget similar to native HTML that shows the validation popup on
-   *   the first radio element.
+   * the first radio element.
    */
   get validationTarget() {
     return this.querySelector<WaRadio | WaRadioButton>(':is(wa-radio, wa-radio-button):not([disabled])') || undefined;
