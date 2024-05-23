@@ -3,7 +3,6 @@ import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js';
 import { watch } from '../../internal/watch.js';
@@ -35,7 +34,6 @@ import type { CSSResultGroup } from 'lit';
  *  dialog has been closed programmatically. Avoid using this unless closing the dialog will result in destructive
  *  behavior such as data loss.
  *
- * @csspart overlay - The overlay that covers the screen behind the dialog.
  * @csspart header - The dialog's header. This element wraps the title and header actions.
  * @csspart header-actions - Optional actions to add to the header. Works best with `<wa-icon-button>`.
  * @csspart title - The dialog's title.
@@ -95,12 +93,12 @@ export default class WaDialog extends WebAwesomeElement {
   }
 
   private async requestClose(source: Element) {
-    const slRequestClose = this.emit('wa-request-close', {
+    const waRequestClose = this.emit('wa-request-close', {
       cancelable: true,
       detail: { source }
     });
 
-    if (slRequestClose.defaultPrevented) {
+    if (waRequestClose.defaultPrevented) {
       this.open = true;
       animateWithClass(this.dialog, 'pulse');
     } else {
@@ -224,10 +222,6 @@ export default class WaDialog extends WebAwesomeElement {
           'dialog--with-header': this.withHeader,
           'dialog--with-footer': this.withFooter
         })}
-        aria-modal="true"
-        aria-hidden=${this.open ? 'false' : 'true'}
-        aria-label=${ifDefined(this.withHeader ? undefined : this.label)}
-        aria-labelledby=${ifDefined(this.withHeader ? 'title' : undefined)}
         @cancel=${this.handleDialogCancel}
         @click=${this.handleDialogClick}
         @pointerdown=${this.handleDialogPointerDown}
@@ -236,6 +230,7 @@ export default class WaDialog extends WebAwesomeElement {
           ? html`
               <header part="header" class="dialog__header">
                 <h2 part="title" class="dialog__title" id="title">
+                  <!-- If there's no label, use an invisible character to prevent the header from collapsing -->
                   <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                 </h2>
                 <div part="header-actions" class="dialog__header-actions">
@@ -254,10 +249,8 @@ export default class WaDialog extends WebAwesomeElement {
               </header>
             `
           : ''}
-        ${
-          '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. Previously this was just a <slot>, but tabindex="-1" on the slot causes children to not be focusable. https://github.com/shoelace-style/shoelace/issues/1753#issuecomment-1836803277 */
-        }
-        <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
+
+        <div part="body" class="dialog__body"><slot></slot></div>
 
         ${this.withFooter
           ? html`

@@ -18,7 +18,6 @@ export default css`
   .dialog {
     display: flex;
     flex-direction: column;
-    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -50,7 +49,6 @@ export default css`
     }
 
     &.pulse {
-      --pulse-size: 1.01;
       animation: pulse 250ms ease;
     }
   }
@@ -128,15 +126,6 @@ export default css`
       remove the fallback values here.
     */
     background-color: var(--wa-color-overlay, rgb(0 0 0 / 0.25));
-  }
-
-  .dialog__overlay {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color:;
   }
 
   @keyframes pulse {

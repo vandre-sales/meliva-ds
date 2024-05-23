@@ -377,6 +377,3 @@ const App = () => {
 ```
 {% endraw %}
 
-:::info
-You can further customize initial focus behavior by canceling the `wa-initial-focus` event and setting focus yourself inside the event handler.
-:::
