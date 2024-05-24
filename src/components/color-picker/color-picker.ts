@@ -7,22 +7,20 @@ import '../visually-hidden/visually-hidden.js';
 import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
-import { defaultValue } from '../../internal/default-value.js';
 import { drag } from '../../internal/drag.js';
-import { FormControlController } from '../../internal/form.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { TinyColor } from '@ctrl/tinycolor';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './color-picker.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 import type { WaChangeEvent } from '../../events/wa-change.js';
 import type { WaInputEvent } from '../../events/wa-input.js';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 import type WaDropdown from '../dropdown/dropdown.js';
 import type WaInput from '../input/input.js';
 
@@ -93,15 +91,34 @@ declare const EyeDropper: EyeDropperConstructor;
  * @cssproperty --swatch-size - The size of each predefined color swatch.
  */
 @customElement('wa-color-picker')
-export default class WaColorPicker extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  private readonly formControlController = new FormControlController(this);
+  static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
+
+  static get validators() {
+    return [...super.validators, RequiredValidator()];
+  }
+
   private isSafeValue = false;
   private readonly localize = new LocalizeController(this);
 
   @query('[part~="base"]') base: HTMLElement;
   @query('[part~="input"]') input: WaInput;
+
+  // @TODO: This is a hacky way to show the "Please fill out this field", do we want the old behavior where it opens the dropdown?
+  //   or is the new behavior okay?
+  get validationTarget() {
+    // This puts the popup on the element only if the color picker is expanded.
+    if (this.inline || this.dropdown?.open) {
+      return this.input;
+    }
+
+    // This puts popup on the colorpicker itself without needing to expand it to show the input.
+    // This is necessary because form submissions expect the "anchor" to be currently shown.
+    return this.trigger;
+  }
+
   @query('.color-dropdown') dropdown: WaDropdown;
   @query('[part~="preview"]') previewButton: HTMLButtonElement;
   @query('[part~="trigger"]') trigger: HTMLButtonElement;
@@ -120,10 +137,10 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
    * in a specific format, use the `getFormattedValue()` method. The value is submitted as a name/value pair with form
    * data.
    */
-  @property() value = '';
+  @property({ attribute: false }) value = this.getAttribute("value") || ''
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue = '';
+  @property({ attribute: 'value', reflect: true }) defaultValue = this.getAttribute("value") || ''
 
   /**
    * The color picker's label. This will not be displayed, but it will be announced by assistive devices. If you need to
@@ -147,10 +164,10 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
   @property({ attribute: 'no-format-toggle', type: Boolean }) noFormatToggle = false;
 
   /** The name of the form control, submitted as a name/value pair with form data. */
-  @property() name = '';
+  @property({ reflect: true }) name: string | null = null;
 
   /** Disables the color picker. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /**
    * Enable this option to prevent the panel from being clipped when the component is placed inside a container with
@@ -176,31 +193,15 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
+  @property({ reflect: true }) form = null;
 
   /** Makes the color picker a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
-
-  /** Gets the validity state object */
-  get validity() {
-    return this.input.validity;
-  }
-
-  /** Gets the validation message */
-  get validationMessage() {
-    return this.input.validationMessage;
-  }
 
   constructor() {
     super();
     this.addEventListener('focusin', this.handleFocusIn);
     this.addEventListener('focusout', this.handleFocusOut);
-  }
-
-  firstUpdated() {
-    this.input.updateComplete.then(() => {
-      this.formControlController.updateValidity();
-    });
   }
 
   private handleCopy() {
@@ -451,7 +452,7 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
   }
 
   private handleInputInput(event: WaInputEvent) {
-    this.formControlController.updateValidity();
+    this.updateValidity();
 
     // Prevent the <wa-input>'s wa-input event from bubbling up
     event.stopPropagation();
@@ -475,11 +476,6 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
         this.hue = 0;
       }
     }
-  }
-
-  private handleInputInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
   }
 
   @eventOptions({ passive: false })
@@ -616,12 +612,20 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
     // happens, dragging the grid handle becomes jumpy. After the next update, the usual behavior is restored.
     this.isSafeValue = true;
     this.value = this.inputValue;
+
     await this.updateComplete;
     this.isSafeValue = false;
   }
 
   private handleAfterHide() {
     this.previewButton.classList.remove('color-picker__preview-color--copied');
+    // Update validity so we get a new anchor.
+    this.updateValidity();
+  }
+
+  private handleAfterShow() {
+    // Update validity so we get a new anchor.
+    this.updateValidity();
   }
 
   private handleEyeDropper() {
@@ -771,38 +775,29 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
     }
   }
 
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    return this.input.checkValidity();
-  }
-
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
-  }
-
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    if (!this.inline && !this.validity.valid) {
+    // This won't get called when a form is submitted. This is only for manual calls.
+    if (!this.inline && !this.validity.valid && !this.dropdown.open) {
       // If the input is inline and invalid, show the dropdown so the browser can focus on it
+      this.addEventListener('wa-after-show', () => this.reportValidity(), { once: true });
       this.dropdown.show();
-      this.addEventListener('wa-after-show', () => this.input.reportValidity(), { once: true });
 
       if (!this.disabled) {
         // By standards we have to emit a `wa-invalid` event here synchronously.
-        this.formControlController.emitInvalidEvent();
+        this.emit('wa-invalid');
       }
 
       return false;
     }
 
-    return this.input.reportValidity();
+    return super.reportValidity();
   }
 
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
-  setCustomValidity(message: string) {
-    this.input.setCustomValidity(message);
-    this.formControlController.updateValidity();
+  formResetCallback() {
+    this.value = this.defaultValue;
+
+    super.formResetCallback();
   }
 
   render() {
@@ -949,7 +944,6 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
             @keydown=${this.handleInputKeyDown}
             @wa-change=${this.handleInputChange}
             @wa-input=${this.handleInputInput}
-            @wa-invalid=${this.handleInputInvalid}
             @wa-blur=${this.stopNestedEventPropagation}
             @wa-focus=${this.stopNestedEventPropagation}
           ></wa-input>
@@ -1050,6 +1044,7 @@ export default class WaColorPicker extends WebAwesomeElement implements WebAweso
         .containing-element=${this}
         ?disabled=${this.disabled}
         ?hoist=${this.hoist}
+        @wa-after-show=${this.handleAfterShow}
         @wa-after-hide=${this.handleAfterHide}
       >
         <button

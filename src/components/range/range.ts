@@ -1,19 +1,17 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
-import { defaultValue } from '../../internal/default-value.js';
-import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './range.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 
 /**
  * @summary Ranges allow the user to select a single value within a given range using a slider.
@@ -46,10 +44,13 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  * @cssproperty --track-active-offset - The point of origin of the active track.
  */
 @customElement('wa-range')
-export default class WaRange extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaRange extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  private readonly formControlController = new FormControlController(this);
+  static get validators() {
+    return [...super.validators, MirrorValidator()];
+  }
+
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
   private resizeObserver: ResizeObserver;
@@ -65,7 +66,10 @@ export default class WaRange extends WebAwesomeElement implements WebAwesomeForm
   @property() name = '';
 
   /** The current value of the range, submitted as a name/value pair with form data. */
-  @property({ type: Number }) value = 0;
+  @property({ attribute: false, type: Number }) value = 0;
+
+  /** The default value of the form control. Primarily used for resetting the form control. */
+  @property({ type: Number, attribute: 'value', reflect: true }) defaultValue = 0;
 
   /** The range's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
@@ -74,7 +78,7 @@ export default class WaRange extends WebAwesomeElement implements WebAwesomeForm
   @property({ attribute: 'help-text' }) helpText = '';
 
   /** Disables the range. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /** The minimum acceptable value of the range. */
   @property({ type: Number }) min = 0;
@@ -99,20 +103,7 @@ export default class WaRange extends WebAwesomeElement implements WebAwesomeForm
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
-
-  /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue = 0;
-
-  /** Gets the validity state object */
-  get validity() {
-    return this.input.validity;
-  }
-
-  /** Gets the validation message */
-  get validationMessage() {
-    return this.input.validationMessage;
-  }
+  @property({ reflect: true }) form: null | string = null;
 
   connectedCallback() {
     super.connectedCallback();
@@ -194,20 +185,13 @@ export default class WaRange extends WebAwesomeElement implements WebAwesomeForm
 
   @watch('value', { waitUntilFirstUpdate: true })
   handleValueChange() {
-    this.formControlController.updateValidity();
-
     // The value may have constraints, so we set the native control's value and sync it back to ensure it adhere's to
     // min, max, and step properly
     this.input.value = this.value.toString();
     this.value = parseFloat(this.input.value);
+    this.updateValidity();
 
     this.syncRange();
-  }
-
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid
-    this.formControlController.setValidity(this.disabled);
   }
 
   @watch('hasTooltip', { waitUntilFirstUpdate: true })
@@ -220,11 +204,6 @@ export default class WaRange extends WebAwesomeElement implements WebAwesomeForm
       // Ensure updates are drawn before we sync the tooltip
       this.updateComplete.then(() => this.syncTooltip(percent));
     }
-  }
-
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
   }
 
   /** Sets focus on the range. */
@@ -253,25 +232,10 @@ export default class WaRange extends WebAwesomeElement implements WebAwesomeForm
     }
   }
 
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    return this.input.checkValidity();
-  }
+  formResetCallback() {
+    this.value = this.defaultValue;
 
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
-  }
-
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity() {
-    return this.input.reportValidity();
-  }
-
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
-  setCustomValidity(message: string) {
-    this.input.setCustomValidity(message);
-    this.formControlController.updateValidity();
+    super.formResetCallback();
   }
 
   render() {
@@ -333,7 +297,6 @@ export default class WaRange extends WebAwesomeElement implements WebAwesomeForm
               @change=${this.handleChange}
               @focus=${this.handleFocus}
               @input=${this.handleInput}
-              @invalid=${this.handleInvalid}
               @blur=${this.handleBlur}
             />
             ${this.tooltip !== 'none' && !this.disabled

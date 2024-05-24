@@ -2,16 +2,15 @@ import '../icon/icon.js';
 import '../spinner/spinner.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { FormControlController, validValidityState } from '../../internal/form.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './button.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 
 /**
  * @summary Buttons represent actions that are available to the user.
@@ -53,12 +52,14 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  * @cssproperty --label-color-hover - The color of the button's label on hover.
  */
 @customElement('wa-button')
-export default class WaButton extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaButton extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['click']
-  });
+  static get validators() {
+    return [...super.validators, MirrorValidator()];
+  }
+
+  assumeInteractionOn = ['click'];
   private readonly localize = new LocalizeController(this);
 
   @query('.button') button: HTMLButtonElement | HTMLLinkElement;
@@ -76,8 +77,8 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
   /** Draws the button with a caret. Used to indicate that the button triggers a dropdown menu or similar behavior. */
   @property({ type: Boolean, reflect: true }) caret = false;
 
-  /** Disables the button. Does not apply to link buttons. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  /** Disables the button. */
+  @property({ type: Boolean }) disabled = false;
 
   /** Draws the button in a loading state. */
   @property({ type: Boolean, reflect: true }) loading = false;
@@ -98,13 +99,13 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
    * The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.
    * This attribute is ignored when `href` is present.
    */
-  @property() name = '';
+  @property({ reflect: true }) name: string | null = null;
 
   /**
    * The value of the button, submitted as a pair with the button's name as part of the form data, but only when this
    * button is the submitter. This attribute is ignored when `href` is present.
    */
-  @property() value = '';
+  @property({ reflect: true }) value = '';
 
   /** When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`. */
   @property() href = '';
@@ -127,7 +128,7 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
    * The "form owner" to associate the button with. If omitted, the closest containing form will be used instead. The
    * value of this attribute must be an id of a form in the same document or shadow root as the button.
    */
-  @property() form: string;
+  @property({ reflect: true }) form: string | null = null;
 
   /** Used to override the form owner's `action` attribute. */
   @property({ attribute: 'formaction' }) formAction: string;
@@ -145,30 +146,6 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
   /** Used to override the form owner's `target` attribute. */
   @property({ attribute: 'formtarget' }) formTarget: '_self' | '_blank' | '_parent' | '_top' | string;
 
-  /** Gets the validity state object */
-  get validity() {
-    if (this.isButton()) {
-      return (this.button as HTMLButtonElement).validity;
-    }
-
-    return validValidityState;
-  }
-
-  /** Gets the validation message */
-  get validationMessage() {
-    if (this.isButton()) {
-      return (this.button as HTMLButtonElement).validationMessage;
-    }
-
-    return '';
-  }
-
-  firstUpdated() {
-    if (this.isButton()) {
-      this.formControlController.updateValidity();
-    }
-  }
-
   private handleBlur() {
     this.hasFocus = false;
     this.emit('wa-blur');
@@ -180,18 +157,43 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
   }
 
   private handleClick() {
-    if (this.type === 'submit') {
-      this.formControlController.submit(this);
-    }
+    const form = this.getForm();
 
-    if (this.type === 'reset') {
-      this.formControlController.reset(this);
-    }
+    if (!form) return;
+
+    const lightDOMButton = this.constructLightDOMButton();
+
+    // form.append(lightDOMButton);
+    this.parentElement?.append(lightDOMButton);
+    lightDOMButton.click();
+    lightDOMButton.remove();
   }
 
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
+  private constructLightDOMButton() {
+    const button = document.createElement('button');
+    button.type = this.type;
+    button.style.position = 'absolute';
+    button.style.width = '0';
+    button.style.height = '0';
+    button.style.clipPath = 'inset(50%)';
+    button.style.overflow = 'hidden';
+    button.style.whiteSpace = 'nowrap';
+    if (this.name) {
+      button.name = this.name;
+    }
+    button.value = this.value;
+
+    ['form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget'].forEach(attr => {
+      if (this.hasAttribute(attr)) {
+        button.setAttribute(attr, this.getAttribute(attr)!);
+      }
+    });
+
+    return button;
+  }
+
+  private handleInvalid() {
+    this.emit('wa-invalid');
   }
 
   private isButton() {
@@ -204,10 +206,13 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
-    if (this.isButton()) {
-      // Disabled form controls are always valid
-      this.formControlController.setValidity(this.disabled);
-    }
+    this.updateValidity();
+  }
+
+  // eslint-disable-next-line
+  setValue(..._args: Parameters<WebAwesomeFormAssociatedElement['setValue']>) {
+    // This is just a stub. We dont ever actually want to set a value on the form. That happens when the button is clicked and added
+    // via the light dom button.
   }
 
   /** Simulates a click on the button. */
@@ -223,37 +228,6 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
   /** Removes focus from the button. */
   blur() {
     this.button.blur();
-  }
-
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    if (this.isButton()) {
-      return (this.button as HTMLButtonElement).checkValidity();
-    }
-
-    return true;
-  }
-
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
-  }
-
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity() {
-    if (this.isButton()) {
-      return (this.button as HTMLButtonElement).reportValidity();
-    }
-
-    return true;
-  }
-
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
-  setCustomValidity(message: string) {
-    if (this.isButton()) {
-      (this.button as HTMLButtonElement).setCustomValidity(message);
-      this.formControlController.updateValidity();
-    }
   }
 
   render() {
@@ -325,7 +299,6 @@ export default class WaButton extends WebAwesomeElement implements WebAwesomeFor
     /* eslint-enable lit/binding-positions */
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     'wa-button': WaButton;

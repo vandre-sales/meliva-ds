@@ -7,7 +7,7 @@ import sinon from 'sinon';
 import type WaOption from '../option/option.js';
 import type WaSelect from './select.js';
 
-describe('<wa-select>', () => {
+describe('<wa-select>', async () => {
   describe('accessibility', () => {
     it('should pass accessibility tests when closed', async () => {
       const select = await fixture<WaSelect>(html`
@@ -117,6 +117,11 @@ describe('<wa-select>', () => {
           <wa-option value="option-3">Option 3</wa-option>
         </wa-select>
       `);
+
+      expect(el.value).to.equal('option-1');
+      expect(el.defaultValue).to.equal('option-1');
+      expect(el.displayInput.value).to.equal('Option 1');
+
       const secondOption = el.querySelectorAll<WaOption>('wa-option')[1];
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
@@ -297,12 +302,12 @@ describe('<wa-select>', () => {
       const secondOption = el.querySelectorAll('wa-option')[1];
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-required')).to.be.true;
-      expect(el.hasAttribute('data-optional')).to.be.false;
-      expect(el.hasAttribute('data-invalid')).to.be.false;
-      expect(el.hasAttribute('data-valid')).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-required')).to.be.true;
+      expect(el.hasAttribute('data-wa-optional')).to.be.false;
+      expect(el.hasAttribute('data-wa-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await el.show();
       await clickOnElement(secondOption);
@@ -311,8 +316,8 @@ describe('<wa-select>', () => {
       await el.updateComplete;
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.true;
     });
 
     it('should receive the correct validation attributes ("states") when invalid', async () => {
@@ -325,12 +330,12 @@ describe('<wa-select>', () => {
       `);
       const secondOption = el.querySelectorAll('wa-option')[1];
 
-      expect(el.hasAttribute('data-required')).to.be.true;
-      expect(el.hasAttribute('data-optional')).to.be.false;
-      expect(el.hasAttribute('data-invalid')).to.be.true;
-      expect(el.hasAttribute('data-valid')).to.be.false;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-required')).to.be.true;
+      expect(el.hasAttribute('data-wa-optional')).to.be.false;
+      expect(el.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(el.hasAttribute('data-wa-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await el.show();
       await clickOnElement(secondOption);
@@ -339,8 +344,8 @@ describe('<wa-select>', () => {
       el.blur();
       await el.updateComplete;
 
-      expect(el.hasAttribute('data-user-invalid')).to.be.true;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
@@ -355,12 +360,12 @@ describe('<wa-select>', () => {
       `);
       const select = el.querySelector<WaSelect>('wa-select')!;
 
-      expect(select.hasAttribute('data-required')).to.be.true;
-      expect(select.hasAttribute('data-optional')).to.be.false;
-      expect(select.hasAttribute('data-invalid')).to.be.true;
-      expect(select.hasAttribute('data-valid')).to.be.false;
-      expect(select.hasAttribute('data-user-invalid')).to.be.false;
-      expect(select.hasAttribute('data-user-valid')).to.be.false;
+      expect(select.hasAttribute('data-wa-required')).to.be.true;
+      expect(select.hasAttribute('data-wa-optional')).to.be.false;
+      expect(select.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(select.hasAttribute('data-wa-valid')).to.be.false;
+      expect(select.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(select.hasAttribute('data-wa-user-valid')).to.be.false;
     });
   });
 
@@ -418,6 +423,7 @@ describe('<wa-select>', () => {
           </wa-select>
         </form>
       `);
+
       const json = serialize(form);
       expect(JSON.stringify(json)).to.equal(JSON.stringify({ a: ['option-2', 'option-3'] }));
     });
@@ -604,5 +610,5 @@ describe('<wa-select>', () => {
     expect(tag.hasAttribute('pill')).to.be.true;
   });
 
-  runFormControlBaseTests('wa-select');
+  await runFormControlBaseTests('wa-select');
 });

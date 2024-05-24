@@ -1,10 +1,11 @@
 import { expect, fixture } from '@open-wc/testing';
+import { html } from 'lit'
 import type { WebAwesomeFormControl } from '../webawesome-element.js';
 
 type CreateControlFn = () => Promise<WebAwesomeFormControl>;
 
 /** Runs a set of generic tests for Web Awesome form controls */
-export function runFormControlBaseTests<T extends WebAwesomeFormControl = WebAwesomeFormControl>(
+export async function runFormControlBaseTests<T extends WebAwesomeFormControl = WebAwesomeFormControl>(
   tagNameOrConfig:
     | string
     | {
@@ -34,7 +35,7 @@ export function runFormControlBaseTests<T extends WebAwesomeFormControl = WebAwe
     return control;
   };
 
-  runAllValidityTests(tagName, displayName, createControl);
+  await runAllValidityTests(tagName, displayName, createControl);
 }
 
 //
@@ -45,120 +46,204 @@ export function runFormControlBaseTests<T extends WebAwesomeFormControl = WebAwe
 //   - `.reportValidity()`
 //   - `.setCustomValidity(msg)`
 //   - `.getForm()`
+//   - `:disabled`
 //
-function runAllValidityTests(
+async function runAllValidityTests(
   tagName: string, //
   displayName: string,
   createControl: () => Promise<WebAwesomeFormControl>
 ) {
-  // will be used later to retrieve meta information about the control
-  describe(`Form validity base test for ${displayName}`, async () => {
-    it('should have a property `validity` of type `object`', async () => {
-      const control = await createControl();
-      expect(control).satisfy(() => control.validity !== null && typeof control.validity === 'object');
-    });
-
-    it('should have a property `validationMessage` of type `string`', async () => {
-      const control = await createControl();
-      expect(control).satisfy(() => typeof control.validationMessage === 'string');
-    });
-
-    it('should implement method `checkValidity`', async () => {
-      const control = await createControl();
-      expect(control).satisfies(() => typeof control.checkValidity === 'function');
-    });
-
-    it('should implement method `setCustomValidity`', async () => {
-      const control = await createControl();
-      expect(control).satisfies(() => typeof control.setCustomValidity === 'function');
-    });
-
-    it('should implement method `reportValidity`', async () => {
-      const control = await createControl();
-      expect(control).satisfies(() => typeof control.reportValidity === 'function');
-    });
-
-    it('should be valid initially', async () => {
-      const control = await createControl();
-      expect(control.validity.valid).to.equal(true);
-    });
-
-    it('should make sure that calling `.checkValidity()` will return `true` when valid', async () => {
-      const control = await createControl();
-      expect(control.checkValidity()).to.equal(true);
-    });
-
-    it('should make sure that calling `.reportValidity()` will return `true` when valid', async () => {
-      const control = await createControl();
-      expect(control.reportValidity()).to.equal(true);
-    });
-
-    it('should not emit an `wa-invalid` event when `.checkValidity()` is called while valid', async () => {
-      const control = await createControl();
-      const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.checkValidity());
-      expect(emittedEvents.length).to.equal(0);
-    });
-
-    it('should not emit an `wa-invalid` event when `.reportValidity()` is called while valid', async () => {
-      const control = await createControl();
-      const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
-      expect(emittedEvents.length).to.equal(0);
-    });
-
-    // TODO: As soon as `WaRadioGroup` has a property `disabled` this
-    // condition can be removed
-    if (tagName !== 'wa-radio-group') {
-      it('should not emit an `wa-invalid` event when `.checkValidity()` is called in custom error case while disabled', async () => {
+  await new Promise<void>(resolve => {
+    // will be used later to retrieve meta information about the control
+    describe(`Form validity base test for ${displayName}`, async () => {
+      it('should have a property `validity` of type `object`', async () => {
         const control = await createControl();
-        control.setCustomValidity('error');
-        control.disabled = true;
-        await control.updateComplete;
+        expect(control).satisfy(() => control.validity !== null && typeof control.validity === 'object');
+      });
+
+      it('should have a property `validationMessage` of type `string`', async () => {
+        const control = await createControl();
+        expect(control).satisfy(() => typeof control.validationMessage === 'string');
+      });
+
+      it('should implement method `checkValidity`', async () => {
+        const control = await createControl();
+        expect(control).satisfies(() => typeof control.checkValidity === 'function');
+      });
+
+      it('should implement method `setCustomValidity`', async () => {
+        const control = await createControl();
+        expect(control).satisfies(() => typeof control.setCustomValidity === 'function');
+      });
+
+      it('should implement method `reportValidity`', async () => {
+        const control = await createControl();
+        expect(control).satisfies(() => typeof control.reportValidity === 'function');
+      });
+
+      it('should be valid initially', async () => {
+        const control = await createControl();
+        expect(control.validity.valid).to.equal(true);
+      });
+
+      it('should make sure that calling `.checkValidity()` will return `true` when valid', async () => {
+        const control = await createControl();
+        expect(control.checkValidity()).to.equal(true);
+      });
+
+      it('should make sure that calling `.reportValidity()` will return `true` when valid', async () => {
+        const control = await createControl();
+        expect(control.reportValidity()).to.equal(true);
+      });
+
+      it('should not emit an `wa-invalid` event when `.checkValidity()` is called while valid', async () => {
+        const control = await createControl();
         const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.checkValidity());
         expect(emittedEvents.length).to.equal(0);
       });
 
-      it('should not emit an `wa-invalid` event when `.reportValidity()` is called in custom error case while disabled', async () => {
+      it('should not emit an `wa-invalid` event when `.reportValidity()` is called while valid', async () => {
         const control = await createControl();
-        control.setCustomValidity('error');
-        control.disabled = true;
-        await control.updateComplete;
         const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
         expect(emittedEvents.length).to.equal(0);
       });
 
-      it('Should find the correct form when given a form property', async () => {
-        const formId = 'test-form';
-        const form = await fixture(`<form id='${formId}'></form>`);
-        const control = await createControl();
-        expect(control.getForm()).to.equal(null);
-        control.form = 'test-form';
-        await control.updateComplete;
-        expect(control.getForm()).to.equal(form);
-      });
+      // TODO: As soon as `WaRadioGroup` has a property `disabled` this
+      // condition can be removed
+      if (tagName !== 'wa-radio-group') {
+        it('should not emit an `wa-invalid` event when `.checkValidity()` is called in custom error case while disabled', async () => {
+          const control = await createControl();
+          control.setCustomValidity('error');
+          control.disabled = true;
+          await control.updateComplete;
+          const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.checkValidity());
+          expect(emittedEvents.length).to.equal(0);
+        });
 
-      it('Should find the correct form when given a form attribute', async () => {
-        const formId = 'test-form';
-        const form = await fixture(`<form id='${formId}'></form>`);
-        const control = await createControl();
-        expect(control.getForm()).to.equal(null);
-        control.setAttribute('form', 'test-form');
+        it('should not emit an `wa-invalid` event when `.reportValidity()` is called in custom error case while disabled', async () => {
+          const control = await createControl();
+          control.setCustomValidity('error');
+          control.disabled = true;
+          await control.updateComplete;
+          const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
+          expect(emittedEvents.length).to.equal(0);
+        });
 
-        await control.updateComplete;
-        expect(control.getForm()).to.equal(form);
-      });
-    }
+        it('Should find the correct form when given a form property', async () => {
+          const formId = 'test-form';
+          const form = await fixture(`<form id='${formId}'></form>`);
+          const control = await createControl();
+          expect(control.getForm()).to.equal(null);
+          control.form = 'test-form';
+          await control.updateComplete;
+          expect(control.getForm()).to.equal(form);
+        });
 
-    // Run special tests depending on component type
+        it('Should find the correct form when given a form attribute', async () => {
+          const formId = 'test-form';
+          const form = await fixture(`<form id='${formId}'></form>`);
+          const control = await createControl();
+          expect(control.getForm()).to.equal(null);
+          control.setAttribute('form', 'test-form');
 
-    const mode = getMode(await createControl());
+          await control.updateComplete;
+          expect(control.getForm()).to.equal(form);
+        });
 
-    if (mode === 'slButtonOfTypeButton') {
-      runSpecialTests_slButtonOfTypeButton(createControl);
-    } else if (mode === 'slButtonWithHRef') {
-      runSpecialTests_slButtonWithHref(createControl);
-    } else {
-      runSpecialTests_standard(createControl);
-    }
+        it('Should be invalid if a `customError` property is passed.', async () => {
+          const control = await createControl();
+          // expect(control.validity.valid).to.equal(true)
+          control.customError = 'MyError';
+          await control.updateComplete;
+          expect(control.validity.valid).to.equal(false);
+          expect(control.hasAttribute('data-wa-invalid')).to.equal(true);
+          expect(control.validationMessage).to.equal('MyError');
+        });
+
+        it('Should be invalid if a `customError` attribute is passed.', async () => {
+          const control = await createControl();
+          // expect(control.validity.valid).to.equal(true)
+          control.setAttribute('custom-error', 'MyError');
+          await control.updateComplete;
+          expect(control.hasAttribute('data-wa-invalid')).to.equal(true);
+          expect(control.validationMessage).to.equal('MyError');
+        });
+
+        it("Should properly move into and out of `:disabled` when using a <fieldset>", async () => {
+          const control = await createControl();
+          const fieldset = await fixture<HTMLFieldSetElement>(html`<fieldset></fieldset>`)
+          expect(control.disabled).to.equal(false)
+          fieldset.append(control)
+          fieldset.disabled = true
+          await control.updateComplete
+          expect(control.disabled).to.equal(true)
+          // expect(control.hasAttribute("disabled")).to.equal(false)
+          expect(control.matches(":disabled")).to.equal(true)
+          expect(control.hasAttribute("data-wa-disabled")).to.equal(true)
+
+          fieldset.disabled = false
+
+          await control.updateComplete
+          expect(control.disabled).to.equal(false)
+          expect(control.hasAttribute("disabled")).to.equal(false)
+          expect(control.matches(":disabled")).to.equal(false)
+          expect(control.hasAttribute("data-wa-disabled")).to.equal(false)
+        })
+
+        // it("This is the one edge case with ':disabled'. If you disable a fieldset, and then disable the element directly, it will not reflect the disabled attribute.", async () => {
+        //   const control = await createControl();
+        //   const fieldset = await fixture<HTMLFieldSetElement>(html`<fieldset></fieldset>`)
+        //   expect(control.disabled).to.equal(false)
+        //   fieldset.append(control)
+        //   fieldset.disabled = true
+        //   await control.updateComplete
+        //   expect(control.disabled).to.equal(true)
+        //   expect(control.hasAttribute("disabled")).to.equal(false)
+        //   expect(control.matches(":disabled")).to.equal(true)
+
+        //   control.disabled = true // This wont set the `disabled` attribute.
+        //   fieldset.disabled = false
+
+        //   await control.updateComplete
+        //   expect(control.disabled).to.equal(true)
+        //   expect(control.hasAttribute("disabled")).to.equal(true)
+        //   expect(control.matches(":disabled")).to.equal(true)
+        // })
+
+        it("Should reflect the disabled attribute if its attribute is directly added", async () => {
+          const control = await createControl();
+          expect(control.disabled).to.equal(false)
+          control.disabled = true
+          await control.updateComplete
+          expect(control.disabled).to.equal(true)
+          expect(control.hasAttribute("disabled")).to.equal(true)
+          expect(control.matches(":disabled")).to.equal(true)
+          expect(control.hasAttribute("data-wa-disabled")).to.equal(true)
+
+          control.disabled = false
+          await control.updateComplete
+
+          expect(control.disabled).to.equal(false)
+          expect(control.hasAttribute("disabled")).to.equal(false)
+          expect(control.matches(":disabled")).to.equal(false)
+          expect(control.hasAttribute("data-wa-disabled")).to.equal(false)
+        })
+      }
+
+      // Run special tests depending on component type
+
+      const mode = getMode(await createControl());
+
+      if (mode === 'slButtonOfTypeButton') {
+        runSpecialTests_slButtonOfTypeButton(createControl);
+      } else if (mode === 'slButtonWithHRef') {
+        runSpecialTests_slButtonWithHref(createControl);
+      } else {
+        runSpecialTests_standard(createControl);
+      }
+
+      resolve();
+    });
   });
 }
 
@@ -175,32 +260,32 @@ function runSpecialTests_slButtonOfTypeButton(createControl: CreateControlFn) {
   it('should make sure that calling `.checkValidity()` will still return `true` when custom error has been set', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
-    expect(control.checkValidity()).to.equal(true);
+    expect(control.checkValidity()).to.equal(false);
   });
 
   it('should make sure that calling `.reportValidity()` will still return `true` when custom error has been set', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
-    expect(control.reportValidity()).to.equal(true);
+    expect(control.reportValidity()).to.equal(false);
   });
 
-  it('should not emit an `wa-invalid` event when `.checkValidity()` is called in custom error case, and not disabled', async () => {
+  it('should emit an `wa-invalid` event when `.checkValidity()` is called in custom error case, and not disabled', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     control.disabled = false;
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.checkValidity());
-    expect(emittedEvents.length).to.equal(0);
+    expect(emittedEvents.length).to.equal(1);
   });
 
-  it('should not emit an `wa-invalid` event when `.reportValidity()` is called in custom error case, and not disabled', async () => {
+  it('should emit an `wa-invalid` event when `.reportValidity()` is called in custom error case, and not disabled', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     control.disabled = false;
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
 
-    expect(emittedEvents.length).to.equal(0);
+    expect(emittedEvents.length).to.equal(1);
   });
 }
 
@@ -208,32 +293,32 @@ function runSpecialTests_slButtonOfTypeButton(createControl: CreateControlFn) {
 // Special tests for <wa-button href="...">
 //
 function runSpecialTests_slButtonWithHref(createControl: CreateControlFn) {
-  it('should make sure that calling `.checkValidity()` will return `true` in custom error case', async () => {
+  it('should make sure that calling `.checkValidity()` will return `false` in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
-    expect(control.checkValidity()).to.equal(true);
+    expect(control.checkValidity()).to.equal(false);
   });
 
-  it('should make sure that calling `.reportValidity()` will return `true` in custom error case', async () => {
+  it('should make sure that calling `.reportValidity()` will return `false` in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
-    expect(control.reportValidity()).to.equal(true);
+    expect(control.reportValidity()).to.equal(false);
   });
 
-  it('should not emit an `wa-invalid` event when `.checkValidity()` is called in custom error case', async () => {
+  it('should emit an `wa-invalid` event when `.checkValidity()` is called in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.checkValidity());
-    expect(emittedEvents.length).to.equal(0);
+    expect(emittedEvents.length).to.equal(1);
   });
 
-  it('should not emit an `wa-invalid` event when `.reportValidity()` is called in custom error case', async () => {
+  it('should emit an `wa-invalid` event when `.reportValidity()` is called in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
-    expect(emittedEvents.length).to.equal(0);
+    expect(emittedEvents.length).to.equal(1);
   });
 }
 
@@ -274,6 +359,7 @@ function runSpecialTests_standard(createControl: CreateControlFn) {
     control.disabled = false;
     await control.updateComplete;
     const emittedEvents = checkEventEmissions(control, 'wa-invalid', () => control.reportValidity());
+
     expect(emittedEvents.length).to.equal(1);
   });
 }

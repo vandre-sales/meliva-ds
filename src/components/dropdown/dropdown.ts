@@ -3,7 +3,6 @@ import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
-import { getTabbableBoundary } from '../../internal/tabbable.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -281,19 +280,9 @@ export default class WaDropdown extends WebAwesomeElement {
     this.updateAccessibleTrigger();
   }
 
-  //
-  // Slotted triggers can be arbitrary content, but we need to link them to the dropdown panel with `aria-haspopup` and
-  // `aria-expanded`. These must be applied to the "accessible trigger" (the tabbable portion of the trigger element
-  // that gets slotted in) so screen readers will understand them. The accessible trigger could be the slotted element,
-  // a child of the slotted element, or an element in the slotted element's shadow root.
-  //
-  // For example, the accessible trigger of an <wa-button> is a <button> located inside its shadow root.
-  //
-  // To determine this, we assume the first tabbable element in the trigger slot is the "accessible trigger."
-  //
   updateAccessibleTrigger() {
     const assignedElements = this.trigger.assignedElements({ flatten: true }) as HTMLElement[];
-    const accessibleTrigger = assignedElements.find(el => getTabbableBoundary(el).start);
+    const accessibleTrigger = assignedElements[0];
     let target: HTMLElement;
 
     if (accessibleTrigger) {

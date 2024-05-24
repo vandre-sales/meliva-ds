@@ -1,19 +1,17 @@
 import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { defaultValue } from '../../internal/default-value.js';
-import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './checkbox.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
+import type { CSSResultGroup, PropertyValues } from 'lit';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
@@ -52,14 +50,21 @@ import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js
  * @cssproperty --toggle-size - The size of the checkbox.
  */
 @customElement('wa-checkbox')
-export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static get validators() {
+    return [
+      ...super.validators,
+      RequiredValidator({
+        // Use a checkbox so we get "free" translation strings.
+        validationElement: Object.assign(document.createElement('input'), {
+          type: 'checkbox',
+          required: true,
+        })
+      })
+    ];
+  }
 
-  private readonly formControlController = new FormControlController(this, {
-    value: (control: WaCheckbox) => (control.checked ? control.value || 'on' : undefined),
-    defaultValue: (control: WaCheckbox) => control.defaultChecked,
-    setValue: (control: WaCheckbox, checked: boolean) => (control.checked = checked)
-  });
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
@@ -69,19 +74,16 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
   @property() title = ''; // make reactive to pass through
 
   /** The name of the checkbox, submitted as a name/value pair with form data. */
-  @property() name = '';
+  @property({ reflect: true }) name = '';
 
   /** The current value of the checkbox, submitted as a name/value pair with form data. */
-  @property() value: string;
+  @property() value: null | string;
 
   /** The checkbox's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Disables the checkbox. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
-
-  /** Draws the checkbox in a checked state. */
-  @property({ type: Boolean, reflect: true }) checked = false;
+  @property({ type: Boolean }) disabled = false;
 
   /**
    * Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a "select
@@ -89,35 +91,25 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
    */
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
+
+  /** Draws the checkbox in a checked state. */
+  @property({ type: Boolean, attribute: false }) checked = this.hasAttribute("checked");
+
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue('checked') defaultChecked = false;
+  @property({ type: Boolean, reflect: true, attribute: "checked" }) defaultChecked = this.hasAttribute("checked");
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
+  @property({ reflect: true }) form = null;
 
   /** Makes the checkbox a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
 
   /** The checkbox's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
-
-  /** Gets the validity state object */
-  get validity() {
-    return this.input.validity;
-  }
-
-  /** Gets the validation message */
-  get validationMessage() {
-    return this.input.validationMessage;
-  }
-
-  firstUpdated() {
-    this.formControlController.updateValidity();
-  }
 
   private handleClick() {
     this.checked = !this.checked;
@@ -134,27 +126,48 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
     this.emit('wa-input');
   }
 
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
-  }
-
   private handleFocus() {
     this.hasFocus = true;
     this.emit('wa-focus');
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid
-    this.formControlController.setValidity(this.disabled);
+  @watch('defaultChecked')
+  handleDefaultCheckedChange() {
+    if (!this.hasInteracted && this.checked !== this.defaultChecked) {
+      this.checked = this.defaultChecked;
+      this.handleValueOrCheckedChange();
+    }
+  }
+
+  handleValueOrCheckedChange() {
+    this.toggleCustomState("checked", this.checked)
+    this.value = this.checked ? this.value || 'on' : null;
+
+    // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
+    this.setValue(this.value, this.value);
+    this.updateValidity();
   }
 
   @watch(['checked', 'indeterminate'], { waitUntilFirstUpdate: true })
   handleStateChange() {
     this.input.checked = this.checked; // force a sync update
     this.input.indeterminate = this.indeterminate; // force a sync update
-    this.formControlController.updateValidity();
+    this.updateValidity();
+  }
+
+  protected willUpdate(changedProperties: PropertyValues<this>): void {
+    super.willUpdate(changedProperties);
+
+    if (changedProperties.has('value') || changedProperties.has('checked')) {
+      this.handleValueOrCheckedChange();
+    }
+  }
+
+  formResetCallback() {
+    // Evaluate checked before the super call because of our watcher on value.
+    this.checked = this.defaultChecked;
+    super.formResetCallback();
+    this.handleValueOrCheckedChange();
   }
 
   /** Simulates a click on the checkbox. */
@@ -170,30 +183,6 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
   /** Removes focus from the checkbox. */
   blur() {
     this.input.blur();
-  }
-
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    return this.input.checkValidity();
-  }
-
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
-  }
-
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity() {
-    return this.input.reportValidity();
-  }
-
-  /**
-   * Sets a custom validation message. The value provided will be shown to the user when the form is submitted. To clear
-   * the custom validation message, call this method with an empty string.
-   */
-  setCustomValidity(message: string) {
-    this.input.setCustomValidity(message);
-    this.formControlController.updateValidity();
   }
 
   render() {
@@ -228,31 +217,30 @@ export default class WaCheckbox extends WebAwesomeElement implements WebAwesomeF
             'checkbox--large': this.size === 'large'
           })}
         >
-          <input
-            class="checkbox__input"
-            type="checkbox"
-            title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
-            name=${this.name}
-            value=${ifDefined(this.value)}
-            .indeterminate=${live(this.indeterminate)}
-            .checked=${live(this.checked)}
-            .disabled=${this.disabled}
-            .required=${this.required}
-            aria-checked=${this.checked ? 'true' : 'false'}
-            aria-describedby="help-text"
-            @click=${this.handleClick}
-            @input=${this.handleInput}
-            @invalid=${this.handleInvalid}
-            @blur=${this.handleBlur}
-            @focus=${this.handleFocus}
-          />
-
           <span
             part="control${this.checked ? ' control--checked' : ''}${this.indeterminate
               ? ' control--indeterminate'
               : ''}"
             class="checkbox__control"
           >
+            <input
+              class="checkbox__input"
+              type="checkbox"
+              title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
+              name=${this.name}
+              value=${ifDefined(this.value)}
+              .indeterminate=${live(this.indeterminate)}
+              .checked=${live(this.checked)}
+              .disabled=${this.disabled}
+              .required=${this.required}
+              aria-checked=${this.checked ? 'true' : 'false'}
+              aria-describedby="help-text"
+              @click=${this.handleClick}
+              @input=${this.handleInput}
+              @blur=${this.handleBlur}
+              @focus=${this.handleFocus}
+            />
+
             ${this.checked
               ? html`
                   <wa-icon part="checked-icon" class="checkbox__checked-icon" library="system" name="check"></wa-icon>

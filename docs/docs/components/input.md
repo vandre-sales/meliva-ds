@@ -5,7 +5,7 @@ layout: component.njk
 ---
 
 ```html {.example}
-<wa-input></wa-input>
+<form><wa-input></wa-input></form>
 ```
 
 {% raw %}
