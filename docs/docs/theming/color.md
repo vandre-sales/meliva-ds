@@ -32,24 +32,26 @@ layout: page.njk
   }
 </style>
 
-Web Awesome's color system is made up of CSS custom properties to thread your color choices consistently throughout your theme.
+Web Awesome's color system is made up of CSS custom properties to help ensure consistent color use throughout your project.
 
 Color is organized by three main categories:
 
 - [Literal colors](/#literal-colors) that give familiar names to your starting color palette
-- [Foundational colors](/#foundational-colors) that define colors for essential content and structure
+- [Foundational colors](/#foundational-colors) that lay the groundwork for your theme
 - [Semantic colors](/#semantic-colors) that draw attention and convey meaning
 
 
 ## Literal Colors
 
-Literal colors are the lowest level color properties in your theme. Each color is identified by a name, like red or gray, and a number that roughly corresponds to the color's perceived lightness, where 100 is equal to pure white and 0 is equal to pure black. Web Awesome defines seven literal colors each with 11 lightness values using the format `--wa-color-{name}-{#}`.
+Literal colors are the lowest level color properties in your theme. Each color is identified by a name, like red or gray, and a number that roughly corresponds to the color's perceived lightness. On this scale, 100 is equal to pure white and 0 is equal to pure black.
 
 Lightness values on this scale have a strong correlation to [relative luminance](https://www.w3.org/WAI/GL/wiki/Relative_luminance), which is used to calculate color contrast. To meet [WCAG 2.1 success criteria for minimum or enhanced contrast](https://www.w3.org/TR/WCAG21/#contrast-minimum), even across hues, calculate the difference between the lightness values of any two colors:
 
 - A difference of 40 ensures a minimum 3:1 contrast ratio, suitable for large text and icons (AA)
 - A difference of 50 ensures a minimum 4.5:1 contrast ratio, suitable for normal text (AA) and large text (AAA)
 - A difference of 60 ensures a minimum 7:1 contrast ratio, suitable for all text (AAA)
+
+Web Awesome defines seven literal colors each with 11 lightness values using the format `--wa-color-{name}-{#}`.
 
 <div class="color-name">Red</div>
 <div class="color-group">
@@ -521,8 +523,6 @@ Text colors are used for standard text elements. We recommend a minimum 4.5:1 co
 
 Overlays provide a backdrop to isolate content, often allowing background context to show through. 
 
-`--wa-color-overlay-modal` is meant for use behind modal content, like dialogs and drawers. `--wa-color-overlay-inline` is meant for use behind inline content where background colors of parent elements should show through to avoid conflicting colors.
-
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
 | `--wa-color-overlay-modal`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-overlay-modal)"></div></div> |
@@ -569,7 +569,7 @@ Semantic colors help reinforce a specific message, intended usage, or expected r
 Each group defines colors for specific roles so that colors can be easily assembled with predictable results and readable contrast. There are three roles:
 
 - **Fill** for background colors or areas larger than a few pixels
-- **Border** for borders, dividers, and other stroke-like elements
+- **Border** for borders, dividers, and other stroke-width elements
 - **On** for content displayed on a fill (e.g., pair `--wa-color-danger-on-loud` with `--wa-color-danger-fill-loud`)
 
 Finally, each color is named according to how much attention it draws. Here, we use noise as an analogy: a loud noise draws more attention than a quiet one. There are three levels of attention:
