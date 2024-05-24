@@ -504,9 +504,9 @@ Surfaces are background layers that other components and content rest on. Surfac
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
-| `--wa-color-surface-raised`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-raised)"></div></div> |
+| `--wa-color-surface-raised`   | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-raised); box-shadow:var(--wa-shadow-level-1)"></div></div> |
 | `--wa-color-surface-default`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-default)"></div></div> |
-| `--wa-color-surface-lowered`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-lowered)"></div></div> |
+| `--wa-color-surface-lowered`  | <div class="color-preview"><div class="color-swatch" style="background-color: var(--wa-color-surface-lowered); box-shadow:var(--wa-shadow-inset)"></div></div> |
 | `--wa-color-surface-border`   | <div class="color-preview"><div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-surface-border)"></div></div> |
 
 ### Text
@@ -552,8 +552,8 @@ We leverage `color-mix()` to achieve consistent hover and active states across c
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
-| `--wa-color-mix-hover`   | <div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-image: linear-gradient(135deg, color-mix(in oklab, transparent, var(--wa-color-mix-hover)), color-mix(in oklab, transparent, var(--wa-color-mix-hover)) 70%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)) 70%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)))"></div></div> |
-| `--wa-color-mix-active`   | <div class="color-preview" style="flex: 2 0 auto"><div class="color-swatch" style="background-image: linear-gradient(135deg, color-mix(in oklab, transparent, var(--wa-color-mix-active)), color-mix(in oklab, transparent, var(--wa-color-mix-active)) 70%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)) 70%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)))"></div></div> |
+| `--wa-color-mix-hover`   | <div class="color-preview"><div class="color-swatch" style="text-align: center; background-image: linear-gradient(to right, color-mix(in oklab, transparent, var(--wa-color-mix-hover)) 25%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)) 25%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)) 75%, var(--wa-color-brand-fill-loud) 75%, var(--wa-color-brand-fill-loud))"><small style="color:var(--wa-color-brand-on-loud)">mixed</small></div></div> |
+| `--wa-color-mix-active`   | <div class="color-preview"><div class="color-swatch" style="text-align: center; background-image: linear-gradient(to right, color-mix(in oklab, transparent, var(--wa-color-mix-active)) 25%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)) 25%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)) 75%, var(--wa-color-brand-fill-loud) 75%, var(--wa-color-brand-fill-loud))"><small style="color:var(--wa-color-brand-on-loud);">mixed</small></div></div> |
 
 
 ## Semantic Colors
