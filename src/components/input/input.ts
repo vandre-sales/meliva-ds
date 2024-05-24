@@ -284,24 +284,28 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
         // See https://github.com/shoelace-style/shoelace/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
-          const form = this.getForm()
+          const form = this.getForm();
 
-          if (!form) { return }
+          if (!form) {
+            return;
+          }
 
-          const button = [...form.elements].find((el: HTMLButtonElement) => el.type === "submit" && !el.disabled) as undefined | HTMLButtonElement | WaButton
+          const button = [...form.elements].find((el: HTMLButtonElement) => el.type === 'submit' && !el.disabled) as
+            | undefined
+            | HTMLButtonElement
+            | WaButton;
 
           if (!button) {
-            form.requestSubmit(null)
-            return
+            form.requestSubmit(null);
+            return;
           }
 
-          if (button.tagName.toLowerCase() === "button") {
-            form.requestSubmit(button)
+          if (button.tagName.toLowerCase() === 'button') {
+            form.requestSubmit(button);
           } else {
             // requestSubmit() wont work with `<wa-button>`
-            button.click()
+            button.click();
           }
-
         }
       });
     }

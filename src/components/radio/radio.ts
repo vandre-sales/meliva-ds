@@ -64,7 +64,7 @@ export default class WaRadio extends WebAwesomeFormAssociatedElement {
 
   constructor() {
     super();
-    this.addEventListener("click", this.handleClick)
+    this.addEventListener('click', this.handleClick);
     this.addEventListener('blur', this.handleBlur);
     this.addEventListener('focus', this.handleFocus);
   }

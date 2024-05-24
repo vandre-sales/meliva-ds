@@ -59,7 +59,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
         // Use a checkbox so we get "free" translation strings.
         validationElement: Object.assign(document.createElement('input'), {
           type: 'checkbox',
-          required: true,
+          required: true
         })
       })
     ];
@@ -91,12 +91,11 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
    */
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
-
   /** Draws the checkbox in a checked state. */
-  @property({ type: Boolean, attribute: false }) checked = this.hasAttribute("checked");
+  @property({ type: Boolean, attribute: false }) checked = this.hasAttribute('checked');
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ type: Boolean, reflect: true, attribute: "checked" }) defaultChecked = this.hasAttribute("checked");
+  @property({ type: Boolean, reflect: true, attribute: 'checked' }) defaultChecked = this.hasAttribute('checked');
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -140,7 +139,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
   }
 
   handleValueOrCheckedChange() {
-    this.toggleCustomState("checked", this.checked)
+    this.toggleCustomState('checked', this.checked);
     this.value = this.checked ? this.value || 'on' : null;
 
     // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()

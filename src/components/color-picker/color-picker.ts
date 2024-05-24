@@ -137,10 +137,10 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
    * in a specific format, use the `getFormattedValue()` method. The value is submitted as a name/value pair with form
    * data.
    */
-  @property({ attribute: false }) value = this.getAttribute("value") || ''
+  @property({ attribute: false }) value = this.getAttribute('value') || '';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ attribute: 'value', reflect: true }) defaultValue = this.getAttribute("value") || ''
+  @property({ attribute: 'value', reflect: true }) defaultValue = this.getAttribute('value') || '';
 
   /**
    * The color picker's label. This will not be displayed, but it will be announced by assistive devices. If you need to
