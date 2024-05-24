@@ -82,7 +82,7 @@ export default css`
     flex: 1 1 auto;
     font: inherit;
     font-size: var(--wa-font-size-l);
-    line-height: var(--wa-line-height-compact);
+    line-height: var(--wa-line-height-condensed);
     padding: var(--header-spacing);
     margin: 0;
   }

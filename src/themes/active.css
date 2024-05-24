@@ -203,13 +203,13 @@
 
   --wa-font-weight-light: 300;
   --wa-font-weight-normal: 400;
-  --wa-font-weight-medium: 550;
-  --wa-font-weight-heavy: 650;
+  --wa-font-weight-semibold: 550;
+  --wa-font-weight-bold: 650;
   --wa-font-weight-black: 900;
 
-  --wa-font-weight-heading: var(--wa-font-weight-heavy);
+  --wa-font-weight-heading: var(--wa-font-weight-bold);
   --wa-font-weight-body: var(--wa-font-weight-normal);
-  --wa-font-weight-action: var(--wa-font-weight-medium);
+  --wa-font-weight-action: var(--wa-font-weight-semibold);
 
   /* The default typescale is based on the Major Second scale (x1.125).
    * Every other step on the scale is skipped for larger sizes in order to maximize variation. */
@@ -224,8 +224,8 @@
   --wa-font-size-3xl: 2.5625rem; /* 41px */
   --wa-font-size-4xl: 3.25rem; /* 52px */
 
-  --wa-line-height-compact: 1.25;
-  --wa-line-height-regular: 1.6;
+  --wa-line-height-condensed: 1.25;
+  --wa-line-height-normal: 1.6;
   --wa-line-height-expanded: 2;
 
   /**
@@ -328,11 +328,11 @@
 
   --wa-form-controls-label-color: var(--wa-color-text-normal);
   --wa-form-controls-label-font-weight: var(--wa-font-weight-normal);
-  --wa-form-controls-label-line-height: var(--wa-line-height-regular);
+  --wa-form-controls-label-line-height: var(--wa-line-height-normal);
 
   --wa-form-controls-value-color: var(--wa-color-text-normal);
   --wa-form-controls-value-font-weight: var(--wa-font-weight-body);
-  --wa-form-controls-value-line-height: var(--wa-line-height-compact);
+  --wa-form-controls-value-line-height: var(--wa-line-height-condensed);
 
   --wa-form-controls-placeholder-color: var(--wa-color-base-60);
 

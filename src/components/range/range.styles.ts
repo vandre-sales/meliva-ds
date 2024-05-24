@@ -152,7 +152,7 @@ export default css`
     border-radius: var(--wa-corners-s);
     background-color: var(--wa-color-neutral-fill-loud);
     font: inherit;
-    line-height: var(--wa-line-height-regular);
+    line-height: var(--wa-line-height-normal);
     color: var(--wa-color-neutral-on-loud);
     opacity: 0;
     padding: var(--wa-space-2xs) var(--wa-space-xs);

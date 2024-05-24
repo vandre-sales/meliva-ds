@@ -6,7 +6,7 @@ layout: page.njk
 
 <style>
   .color-name {
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-semibold);
     margin-block-end: var(--wa-space-2xs);
   }
   .color-group {

@@ -43,7 +43,7 @@ export default css`
   .option__label {
     flex: 1 1 auto;
     display: inline-block;
-    line-height: var(--wa-line-height-compact);
+    line-height: var(--wa-line-height-condensed);
   }
 
   .option .option__check {

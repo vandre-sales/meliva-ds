@@ -41,7 +41,7 @@ export default css`
     border-radius: var(--wa-corners-s);
     background-color: var(--wa-color-neutral-fill-loud);
     font: inherit;
-    line-height: var(--wa-line-height-regular);
+    line-height: var(--wa-line-height-normal);
     text-align: start;
     white-space: normal;
     color: var(--wa-color-neutral-on-loud);

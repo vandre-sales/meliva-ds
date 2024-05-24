@@ -73,45 +73,45 @@ hasOutline: false
 
     --wa-font-weight-light: 300;
     --wa-font-weight-normal: 400;
-    --wa-font-weight-medium: 600;
-    --wa-font-weight-heavy: 800;
+    --wa-font-weight-semibold: 600;
+    --wa-font-weight-bold: 800;
 
-    --wa-font-weight-heading: var(--wa-font-weight-heavy);
+    --wa-font-weight-heading: var(--wa-font-weight-bold);
     --wa-font-weight-body: var(--wa-font-weight-normal);
-    --wa-font-weight-action: var(--wa-font-weight-medium);
+    --wa-font-weight-action: var(--wa-font-weight-semibold);
 
     --wa-font-size-root: 16px;
-    --wa-font-size-2xs: var(--wa-font-size-root) * 0.6875;
-    --wa-font-size-xs: var(--wa-font-size-root) * 0.75;
-    --wa-font-size-s: var(--wa-font-size-root) * 0.875;
-    --wa-font-size-m: var(--wa-font-size-root) * 1;
-    --wa-font-size-l: var(--wa-font-size-root) * 1.25;
-    --wa-font-size-xl: var(--wa-font-size-root) * 1.625;
-    --wa-font-size-2xl: var(--wa-font-size-root) * 2;
-    --wa-font-size-3xl: var(--wa-font-size-root) * 2.5625;
-    --wa-font-size-4xl: var(--wa-font-size-root) * 3.25;
+    --wa-font-size-2xs: 1rem * 0.6875;
+    --wa-font-size-xs: 1rem * 0.75;
+    --wa-font-size-s: 1rem * 0.875;
+    --wa-font-size-m: 1rem * 1;
+    --wa-font-size-l: 1rem * 1.25;
+    --wa-font-size-xl: 1rem * 1.625;
+    --wa-font-size-2xl: 1rem * 2;
+    --wa-font-size-3xl: 1rem * 2.5625;
+    --wa-font-size-4xl: 1rem * 3.25;
 
-    --wa-line-height-compact: 1.25;
-    --wa-line-height-regular: 1.6;
+    --wa-line-height-condensed: 1.25;
+    --wa-line-height-normal: 1.6;
     --wa-line-height-expanded: 2;
 
     --wa-space-base: 1;
-    --wa-space-3xs: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.125);
-    --wa-space-2xs: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.25);
-    --wa-space-xs: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.5);
-    --wa-space-s: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.75);
-    --wa-space-m: calc(var(--wa-space-base) * var(--wa-font-size-root) * 1);
-    --wa-space-l: calc(var(--wa-space-base) * var(--wa-font-size-root) * 1.25);
-    --wa-space-xl: calc(var(--wa-space-base) * var(--wa-font-size-root) * 1.5);
-    --wa-space-2xl: calc(var(--wa-space-base) * var(--wa-font-size-root) * 2);
-    --wa-space-3xl: calc(var(--wa-space-base) * var(--wa-font-size-root) * 3);
+    --wa-space-3xs: calc(var(--wa-space-base) * 1rem * 0.125);
+    --wa-space-2xs: calc(var(--wa-space-base) * 1rem * 0.25);
+    --wa-space-xs: calc(var(--wa-space-base) * 1rem * 0.5);
+    --wa-space-s: calc(var(--wa-space-base) * 1rem * 0.75);
+    --wa-space-m: calc(var(--wa-space-base) * 1rem * 1);
+    --wa-space-l: calc(var(--wa-space-base) * 1rem * 1.25);
+    --wa-space-xl: calc(var(--wa-space-base) * 1rem * 1.5);
+    --wa-space-2xl: calc(var(--wa-space-base) * 1rem * 2);
+    --wa-space-3xl: calc(var(--wa-space-base) * 1rem * 3);
 
     --wa-border-style: solid;
 
     --wa-border-width-base: 0.0625;
-    --wa-border-width-s: calc(var(--wa-border-width-base) * var(--wa-font-size-root) * 1);
-    --wa-border-width-m: calc(var(--wa-border-width-base) * var(--wa-font-size-root) * 2);
-    --wa-border-width-l: calc(var(--wa-border-width-base) * var(--wa-font-size-root) * 3);
+    --wa-border-width-s: calc(var(--wa-border-width-base) * 1rem * 1);
+    --wa-border-width-m: calc(var(--wa-border-width-base) * 1rem * 2);
+    --wa-border-width-l: calc(var(--wa-border-width-base) * 1rem * 3);
 
     --wa-form-controls-border-style: var(--wa-border-style);
     --wa-form-controls-border-width: var(--wa-border-width-s);
@@ -120,10 +120,10 @@ hasOutline: false
     --wa-panel-border-width: var(--wa-border-width-s);
 
     --wa-corners-base: 0.375;
-    --wa-corners-xs: calc(var(--wa-corners-base) * var(--wa-font-size-root) * 0.75);
-    --wa-corners-s: calc(var(--wa-corners-base) * var(--wa-font-size-root) * 1);
-    --wa-corners-m: calc(var(--wa-corners-base) * var(--wa-font-size-root) * 2);
-    --wa-corners-l: calc(var(--wa-corners-base) * var(--wa-font-size-root) * 3);
+    --wa-corners-xs: calc(var(--wa-corners-base) * 1rem * 0.75);
+    --wa-corners-s: calc(var(--wa-corners-base) * 1rem * 1);
+    --wa-corners-m: calc(var(--wa-corners-base) * 1rem * 2);
+    --wa-corners-l: calc(var(--wa-corners-base) * 1rem * 3);
 
     --wa-shadow-blur-base: 0.125;
     --wa-shadow-blur-inset: calc(var(--wa-shadow-blur-base) * 0.75rem);
@@ -162,11 +162,11 @@ hasOutline: false
 
     --wa-form-controls-label-color: var(--wa-color-text-normal);
     --wa-form-controls-label-font-weight: var(--wa-font-weight-normal);
-    --wa-form-controls-label-line-height: var(--wa-line-height-regular);
+    --wa-form-controls-label-line-height: var(--wa-line-height-normal);
 
     --wa-form-controls-value-color: var(--wa-color-text-normal);
     --wa-form-controls-value-font-weight: var(--wa-font-weight-body);
-    --wa-form-controls-value-line-height: var(--wa-line-height-compact);
+    --wa-form-controls-value-line-height: var(--wa-line-height-condensed);
 
     --wa-form-controls-placeholder-color: color-mix(in oklab, var(--wa-color-text-normal), transparent);
 
@@ -187,9 +187,9 @@ hasOutline: false
     --wa-panel-corners: var(--wa-corners-m);
 
     font-family: var(--wa-font-family-code);
-    font-size: var(--wa-font-size-root);
+    font-size: 1rem;
     font-weight: var(--wa-font-weight-normal);
-    line-height: var(--wa-line-height-regular);
+    line-height: var(--wa-line-height-normal);
 
     & wa-button,
     & wa-input,
@@ -230,7 +230,7 @@ hasOutline: false
       position: relative;
 
       &::part(summary) {
-        font-weight: var(--wa-font-weight-medium);
+        font-weight: var(--wa-font-weight-semibold);
       }
       &::part(summary-icon) {
         rotate: 0deg;
@@ -404,7 +404,7 @@ hasOutline: false
 
   #file-uploader-description {
     display: block;
-    line-height: var(--wa-line-height-compact);
+    line-height: var(--wa-line-height-condensed);
     color: var(--wa-color-text-quiet);
     margin-top: var(--wa-space-2xs);
   }
@@ -541,7 +541,7 @@ hasOutline: false
             <wa-visually-hidden>Browse icons</wa-visually-hidden>
           </wa-button>
         </wa-tooltip>
-        <small slot="help-text" style="display: inline-block; line-height: var(--wa-line-height-compact);">It's dangerous to go alone. Take these!</small>
+        <small slot="help-text" style="display: inline-block; line-height: var(--wa-line-height-condensed);">It's dangerous to go alone. Take these!</small>
       </wa-radio-group>
     </div>
   </wa-details>

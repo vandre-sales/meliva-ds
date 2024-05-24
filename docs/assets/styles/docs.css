@@ -61,7 +61,7 @@ wa-page > main {
 #sidebar,
 #outline {
   .current {
-    font-weight: var(--wa-font-weight-heavy);
+    font-weight: var(--wa-font-weight-bold);
     text-decoration-style: solid;
   }
 }

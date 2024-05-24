@@ -138,7 +138,7 @@ header {
   }
 
   h3 {
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-semibold);
     margin: 0;
   }
 
@@ -184,7 +184,7 @@ header {
 
   .site-search-result-title {
     font-size: 1.25rem;
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-semibold);
     color: var(--wa-color-brand-on-normal);
   }
 
@@ -237,7 +237,7 @@ header {
     height: 1.35rem;
     justify-content: center;
     align-items: center;
-    font-weight: var(--wa-font-weight-heavy);
+    font-weight: var(--wa-font-weight-bold);
 
     &:last-of-type {
       margin-inline-end: 0.25rem;

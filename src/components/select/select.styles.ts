@@ -307,7 +307,7 @@ export default css`
 
   .select__listbox ::slotted(small) {
     font-size: var(--wa-font-size-s);
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-semibold);
     color: var(--wa-color-text-quiet);
     padding-block: var(--wa-space-xs);
     padding-inline: var(--wa-space-xl);

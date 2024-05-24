@@ -11,7 +11,7 @@ export default css`
     font: inherit;
     font-weight: var(--wa-font-weight-action);
     color: var(--wa-color-neutral-on-quiet);
-    line-height: var(--wa-line-height-regular);
+    line-height: var(--wa-line-height-normal);
     white-space: nowrap;
   }
 

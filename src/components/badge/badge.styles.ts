@@ -40,7 +40,7 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: max(12px, 0.75em);
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-semibold);
     line-height: 1;
     background: var(--background);
     border-color: var(--border-color);
