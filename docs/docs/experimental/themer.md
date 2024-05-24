@@ -437,7 +437,7 @@ hasOutline: false
     --label-color-active: var(--label-color-hover);
   }
 
-  #icon-chooser::part(panel) {
+  #icon-chooser::part(dialog) {
     width: 100%;
     height: 80%;
     max-width: 700px;
@@ -470,7 +470,7 @@ hasOutline: false
   }
 
   @media screen and (max-width: 768px) {
-    #icon-chooser::part(panel) {
+    #icon-chooser::part(dialog) {
       width: 100%;
       max-height: 80%;
       max-width: 90vw;
@@ -680,7 +680,7 @@ hasOutline: false
 <wa-dialog id="icon-chooser" label="Browse Icons" with-header>
   <div style="display: grid; grid-template-rows: minmax(0, auto) minmax(0, 1fr); height: 100%; gap: 1rem;">
     <div style="display: flex; gap: 1.25rem;">
-      <wa-input name="icon-search" placeholder="Search Icons" clearable style="flex: 1 1 auto;">
+      <wa-input name="icon-search" autofocus placeholder="Search Icons" clearable style="flex: 1 1 auto;">
         <wa-icon slot="prefix" name="magnifying-glass"></wa-icon>
       </wa-input>
       <wa-select name="icon-variant" value="solid" style="flex: 0 1 auto;">
@@ -812,10 +812,6 @@ hasOutline: false
   const iconList = chooser.querySelector('.icon-list');
   const queue = [];
   let inputTimeout;
-
-  chooser.addEventListener('wa-initial-focus', () => {
-    requestAnimationFrame(() => input.focus());
-  })
 
   variantInput.addEventListener('wa-change', () => {
     iconList.dataset.variant = variantInput.value;

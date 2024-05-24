@@ -1,17 +1,12 @@
 import '../icon-button/icon-button.js';
-import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js';
-import { uppercaseFirstLetter } from '../../internal/string.js';
-import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
-import Modal from '../../internal/modal.js';
 import styles from './drawer.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
@@ -33,16 +28,12 @@ import type { CSSResultGroup } from 'lit';
  * @event wa-after-show - Emitted after the drawer opens and all animations are complete.
  * @event wa-hide - Emitted when the drawer closes.
  * @event wa-after-hide - Emitted after the drawer closes and all animations are complete.
- * @event wa-initial-focus - Emitted when the drawer opens and is ready to receive focus. Calling
- *   `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
- * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} wa-request-close - Emitted when the user attempts to
- *   close the drawer by clicking the close button, clicking the overlay, or pressing escape. Calling
- *   `event.preventDefault()` will keep the drawer open. Avoid using this unless closing the drawer will result in
- *   destructive behavior such as data loss.
+ * @event {{ source: Element }} wa-request-close - Emitted when the user attempts to close the drawer. Calling
+ *  `event.preventDefault()` will keep the drawer open. You can inspect `event.detail.source` to see which element
+ *  caused the drawer to close. If the source is the drawer element itself, the user has pressed [[Escape]] or the
+ *  drawer has been closed programmatically. Avoid using this unless closing the drawer will result in destructive
+ *  behavior such as data loss.
  *
- * @csspart base - The component's base wrapper.
- * @csspart overlay - The overlay that covers the screen behind the drawer.
- * @csspart panel - The drawer's panel (where the drawer and its content are rendered).
  * @csspart header - The drawer's header. This element wraps the title and header actions.
  * @csspart header-actions - Optional actions to add to the header. Works best with `<wa-icon-button>`.
  * @csspart title - The drawer's title.
@@ -57,18 +48,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --body-spacing - The amount of padding to use for the body.
  * @cssproperty --footer-spacing - The amount of padding to use for the footer.
  *
- * @animation drawer.showTop - The animation to use when showing a drawer with `top` placement.
- * @animation drawer.showEnd - The animation to use when showing a drawer with `end` placement.
- * @animation drawer.showBottom - The animation to use when showing a drawer with `bottom` placement.
- * @animation drawer.showStart - The animation to use when showing a drawer with `start` placement.
- * @animation drawer.hideTop - The animation to use when hiding a drawer with `top` placement.
- * @animation drawer.hideEnd - The animation to use when hiding a drawer with `end` placement.
- * @animation drawer.hideBottom - The animation to use when hiding a drawer with `bottom` placement.
- * @animation drawer.hideStart - The animation to use when hiding a drawer with `start` placement.
- * @animation drawer.denyClose - The animation to use when a request to close the drawer is denied.
- * @animation drawer.overlay.show - The animation to use when showing the drawer's overlay.
- * @animation drawer.overlay.hide - The animation to use when hiding the drawer's overlay.
- *
  * @property modal - Exposes the internal modal utility that controls focus trapping. To temporarily disable focus
  *   trapping and allow third-party modals spawned from an active Shoelace modal, call `modal.activateExternal()` when
  *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Shoelace's focus trapping.
@@ -79,12 +58,9 @@ export default class WaDrawer extends WebAwesomeElement {
 
   private readonly localize = new LocalizeController(this);
   private originalTrigger: HTMLElement | null;
-  public modal = new Modal(this);
   private closeWatcher: CloseWatcher | null;
 
-  @query('.drawer') drawer: HTMLElement;
-  @query('.drawer__panel') panel: HTMLElement;
-  @query('.drawer__overlay') overlay: HTMLElement;
+  @query('.drawer') drawer: HTMLDialogElement;
 
   /**
    * Indicates whether or not the drawer is open. You can toggle this attribute to show and hide the drawer, or you can
@@ -107,13 +83,13 @@ export default class WaDrawer extends WebAwesomeElement {
   /** Renders the drawer with a footer. */
   @property({ attribute: 'with-footer', type: Boolean, reflect: true }) withFooter = false;
 
-  firstUpdated() {
-    this.drawer.hidden = !this.open;
+  /** When enabled, the drawer will be closed when the user clicks outside of it. */
+  @property({ attribute: 'light-dismiss', type: Boolean }) lightDismiss = false;
 
+  firstUpdated() {
     if (this.open) {
       this.addOpenListeners();
-
-      this.modal.activate();
+      this.drawer.showModal();
       lockBodyScrolling(this);
     }
   }
@@ -124,128 +100,25 @@ export default class WaDrawer extends WebAwesomeElement {
     this.closeWatcher?.destroy();
   }
 
-  private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
-    const slRequestClose = this.emit('wa-request-close', {
+  private async requestClose(source: Element) {
+    const waRequestClose = this.emit('wa-request-close', {
       cancelable: true,
       detail: { source }
     });
 
-    if (slRequestClose.defaultPrevented) {
-      const animation = getAnimation(this, 'drawer.denyClose', { dir: this.localize.dir() });
-      animateTo(this.panel, animation.keyframes, animation.options);
-      return;
-    }
-
-    this.hide();
-  }
-
-  private addOpenListeners() {
-    if ('CloseWatcher' in window) {
-      this.closeWatcher?.destroy();
-      this.closeWatcher = new CloseWatcher();
-      this.closeWatcher.onclose = () => this.requestClose('keyboard');
-    } else {
-      document.addEventListener('keydown', this.handleDocumentKeyDown);
-      this.closeWatcher?.destroy();
-    }
-  }
-
-  private removeOpenListeners() {
-    document.removeEventListener('keydown', this.handleDocumentKeyDown);
-  }
-
-  private handleDocumentKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Escape' && this.modal.isActive() && this.open) {
-      event.stopImmediatePropagation();
-      this.requestClose('keyboard');
-    }
-  };
-
-  @watch('open', { waitUntilFirstUpdate: true })
-  async handleOpenChange() {
-    if (this.open) {
-      // Show
-      this.emit('wa-show');
-      this.addOpenListeners();
-      this.originalTrigger = document.activeElement as HTMLElement;
-
-      // Lock body scrolling only if the drawer isn't contained
-      this.modal.activate();
-      lockBodyScrolling(this);
-
-      // When the drawer is shown, Safari will attempt to set focus on whatever element has autofocus. This causes the
-      // drawer's animation to jitter, so we'll temporarily remove the attribute, call `focus({ preventScroll: true })`
-      // ourselves, and add the attribute back afterwards.
-      //
-      // Related: https://github.com/shoelace-style/shoelace/issues/693
-      //
-      const autoFocusTarget = this.querySelector('[autofocus]');
-      if (autoFocusTarget) {
-        autoFocusTarget.removeAttribute('autofocus');
-      }
-
-      await Promise.all([stopAnimations(this.drawer), stopAnimations(this.overlay)]);
-      this.drawer.hidden = false;
-
-      // Set initial focus
-      requestAnimationFrame(() => {
-        const slInitialFocus = this.emit('wa-initial-focus', { cancelable: true });
-
-        if (!slInitialFocus.defaultPrevented) {
-          // Set focus to the autofocus target and restore the attribute
-          if (autoFocusTarget) {
-            (autoFocusTarget as HTMLInputElement).focus({ preventScroll: true });
-          } else {
-            this.panel.focus({ preventScroll: true });
-          }
-        }
-
-        // Restore the autofocus attribute
-        if (autoFocusTarget) {
-          autoFocusTarget.setAttribute('autofocus', '');
-        }
-      });
-
-      const panelAnimation = getAnimation(this, `drawer.show${uppercaseFirstLetter(this.placement)}`, {
-        dir: this.localize.dir()
-      });
-      const overlayAnimation = getAnimation(this, 'drawer.overlay.show', { dir: this.localize.dir() });
-      await Promise.all([
-        animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options),
-        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
-      ]);
-
-      this.emit('wa-after-show');
+    if (waRequestClose.defaultPrevented) {
+      this.open = true;
+      animateWithClass(this.drawer, 'pulse');
     } else {
       // Hide
       this.emit('wa-hide');
       this.removeOpenListeners();
-      this.modal.deactivate();
+
+      await animateWithClass(this.drawer, 'hide');
+
+      this.open = false;
+      this.drawer.close();
       unlockBodyScrolling(this);
-
-      await Promise.all([stopAnimations(this.drawer), stopAnimations(this.overlay)]);
-      const panelAnimation = getAnimation(this, `drawer.hide${uppercaseFirstLetter(this.placement)}`, {
-        dir: this.localize.dir()
-      });
-      const overlayAnimation = getAnimation(this, 'drawer.overlay.hide', { dir: this.localize.dir() });
-
-      // Animate the overlay and the panel at the same time. Because animation durations might be different, we need to
-      // hide each one individually when the animation finishes, otherwise the first one that finishes will reappear
-      // unexpectedly. We'll unhide them after all animations have completed.
-      await Promise.all([
-        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options).then(() => {
-          this.overlay.hidden = true;
-        }),
-        animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options).then(() => {
-          this.panel.hidden = true;
-        })
-      ]);
-
-      this.drawer.hidden = true;
-
-      // Now that the dialog is hidden, restore the overlay and panel for next time
-      this.overlay.hidden = false;
-      this.panel.hidden = false;
 
       // Restore focus to the original trigger
       const trigger = this.originalTrigger;
@@ -257,30 +130,100 @@ export default class WaDrawer extends WebAwesomeElement {
     }
   }
 
-  /** Shows the drawer. */
-  async show() {
-    if (this.open) {
-      return undefined;
+  private addOpenListeners() {
+    if ('CloseWatcher' in window) {
+      this.closeWatcher?.destroy();
+      this.closeWatcher = new CloseWatcher();
+      this.closeWatcher.onclose = () => {
+        this.requestClose(this.drawer);
+      };
+    } else {
+      this.closeWatcher?.destroy();
+      document.addEventListener('keydown', this.handleDocumentKeyDown);
     }
-
-    this.open = true;
-    return waitForEvent(this, 'wa-after-show');
   }
 
-  /** Hides the drawer */
-  async hide() {
-    if (!this.open) {
-      return undefined;
-    }
+  private removeOpenListeners() {
+    document.removeEventListener('keydown', this.handleDocumentKeyDown);
+  }
 
-    this.open = false;
-    return waitForEvent(this, 'wa-after-hide');
+  private handleDialogCancel(event: Event) {
+    event.preventDefault();
+
+    if (!this.drawer.classList.contains('hide')) {
+      this.requestClose(this.drawer);
+    }
+  }
+
+  private handleDialogClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const button = target.closest('[data-drawer="dismiss"]');
+
+    // Close when a button with [data-drawer="dismiss"] is clicked
+    if (button) {
+      event.stopPropagation();
+      this.requestClose(button);
+    }
+  }
+
+  private async handleDialogPointerDown(event: PointerEvent) {
+    // Detect when the backdrop is clicked
+    if (event.target === this.drawer) {
+      if (this.lightDismiss) {
+        this.requestClose(this.drawer);
+      } else {
+        await animateWithClass(this.drawer, 'pulse');
+      }
+    }
+  }
+
+  private handleDocumentKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape' && this.open) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.requestClose(this.drawer);
+    }
+  };
+
+  @watch('open', { waitUntilFirstUpdate: true })
+  handleOpenChange() {
+    // Open or close the drawer
+    if (this.open && !this.drawer.open) {
+      this.show();
+    } else if (this.drawer.open) {
+      this.open = true;
+      this.requestClose(this.drawer);
+    }
+  }
+
+  /** Shows the drawer. */
+  private async show() {
+    // Show
+    this.emit('wa-show');
+    this.addOpenListeners();
+    this.originalTrigger = document.activeElement as HTMLElement;
+    this.open = true;
+    this.drawer.showModal();
+
+    lockBodyScrolling(this);
+
+    // Set focus on autocomplete if it exists
+    requestAnimationFrame(() => {
+      const elementToFocus = this.querySelector<HTMLButtonElement>('[autofocus]');
+      if (elementToFocus && typeof elementToFocus.focus === 'function') {
+        elementToFocus.focus();
+      }
+    });
+
+    await animateWithClass(this.drawer, 'show');
+
+    this.emit('wa-after-show');
   }
 
   render() {
     return html`
-      <div
-        part="base"
+      <dialog
+        part="dialog"
         class=${classMap({
           drawer: true,
           'drawer--open': this.open,
@@ -292,158 +235,47 @@ export default class WaDrawer extends WebAwesomeElement {
           'drawer--with-header': this.withHeader,
           'drawer--with-footer': this.withFooter
         })}
+        @cancel=${this.handleDialogCancel}
+        @click=${this.handleDialogClick}
+        @pointerdown=${this.handleDialogPointerDown}
       >
-        <div part="overlay" class="drawer__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
+        ${this.withHeader
+          ? html`
+              <header part="header" class="drawer__header">
+                <h2 part="title" class="drawer__title" id="title">
+                  <!-- If there's no label, use an invisible character to prevent the header from collapsing -->
+                  <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
+                </h2>
+                <div part="header-actions" class="drawer__header-actions">
+                  <slot name="header-actions"></slot>
+                  <wa-icon-button
+                    part="close-button"
+                    exportparts="base:close-button__base"
+                    class="drawer__close"
+                    name="xmark"
+                    label=${this.localize.term('close')}
+                    library="system"
+                    variant="solid"
+                    @click="${(event: PointerEvent) => this.requestClose(event.target as Element)}"
+                  ></wa-icon-button>
+                </div>
+              </header>
+            `
+          : ''}
 
-        <div
-          part="panel"
-          class="drawer__panel"
-          role="dialog"
-          aria-modal="true"
-          aria-hidden=${this.open ? 'false' : 'true'}
-          aria-label=${ifDefined(this.withHeader ? undefined : this.label)}
-          aria-labelledby=${ifDefined(this.withHeader ? 'title' : undefined)}
-          tabindex="0"
-        >
-          ${this.withHeader
-            ? html`
-                <header part="header" class="drawer__header">
-                  <h2 part="title" class="drawer__title" id="title">
-                    <!-- If there's no label, use an invisible character to prevent the header from collapsing -->
-                    <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
-                  </h2>
-                  <div part="header-actions" class="drawer__header-actions">
-                    <slot name="header-actions"></slot>
-                    <wa-icon-button
-                      part="close-button"
-                      exportparts="base:close-button__base"
-                      class="drawer__close"
-                      name="xmark"
-                      label=${this.localize.term('close')}
-                      library="system"
-                      variant="solid"
-                      @click=${() => this.requestClose('close-button')}
-                    ></wa-icon-button>
-                  </div>
-                </header>
-              `
-            : ''}
+        <div part="body" class="drawer__body"><slot></slot></div>
 
-          <slot part="body" class="drawer__body"></slot>
-
-          ${this.withFooter
-            ? html`
-                <footer part="footer" class="drawer__footer">
-                  <slot name="footer"></slot>
-                </footer>
-              `
-            : ''}
-        </div>
-      </div>
+        ${this.withFooter
+          ? html`
+              <footer part="footer" class="drawer__footer">
+                <slot name="footer"></slot>
+              </footer>
+            `
+          : ''}
+      </dialog>
     `;
   }
 }
-
-// Top
-setDefaultAnimation('drawer.showTop', {
-  keyframes: [
-    { opacity: 0, translate: '0 -100%' },
-    { opacity: 1, translate: '0 0' }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-setDefaultAnimation('drawer.hideTop', {
-  keyframes: [
-    { opacity: 1, translate: '0 0' },
-    { opacity: 0, translate: '0 -100%' }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-// End
-setDefaultAnimation('drawer.showEnd', {
-  keyframes: [
-    { opacity: 0, translate: '100%' },
-    { opacity: 1, translate: '0' }
-  ],
-  rtlKeyframes: [
-    { opacity: 0, translate: '-100%' },
-    { opacity: 1, translate: '0' }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-setDefaultAnimation('drawer.hideEnd', {
-  keyframes: [
-    { opacity: 1, translate: '0' },
-    { opacity: 0, translate: '100%' }
-  ],
-  rtlKeyframes: [
-    { opacity: 1, translate: '0' },
-    { opacity: 0, translate: '-100%' }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-// Bottom
-setDefaultAnimation('drawer.showBottom', {
-  keyframes: [
-    { opacity: 0, translate: '0 100%' },
-    { opacity: 1, translate: '0 0' }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-setDefaultAnimation('drawer.hideBottom', {
-  keyframes: [
-    { opacity: 1, translate: '0 0' },
-    { opacity: 0, translate: '0 100%' }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-// Start
-setDefaultAnimation('drawer.showStart', {
-  keyframes: [
-    { opacity: 0, translate: '-100%' },
-    { opacity: 1, translate: '0' }
-  ],
-  rtlKeyframes: [
-    { opacity: 0, translate: '100%' },
-    { opacity: 1, translate: '0' }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-setDefaultAnimation('drawer.hideStart', {
-  keyframes: [
-    { opacity: 1, translate: '0' },
-    { opacity: 0, translate: '-100%' }
-  ],
-  rtlKeyframes: [
-    { opacity: 1, translate: '0' },
-    { opacity: 0, translate: '100%' }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-// Deny close
-setDefaultAnimation('drawer.denyClose', {
-  keyframes: [{ scale: 1 }, { scale: 1.01 }, { scale: 1 }],
-  options: { duration: 250 }
-});
-
-// Overlay
-setDefaultAnimation('drawer.overlay.show', {
-  keyframes: [{ opacity: 0 }, { opacity: 1 }],
-  options: { duration: 250 }
-});
-
-setDefaultAnimation('drawer.overlay.hide', {
-  keyframes: [{ opacity: 1 }, { opacity: 0 }],
-  options: { duration: 250 }
-});
 
 declare global {
   interface HTMLElementTagNameMap {
