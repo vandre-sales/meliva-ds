@@ -260,7 +260,8 @@ export default class WaPopup extends WebAwesomeElement {
       this.anchorEl = this.querySelector<HTMLElement>('[slot="anchor"]');
     }
 
-    // If the anchor is a <slot>, we'll use the first assigned element as the target since slots use `display: contents`
+    // If the anchor is a `<slot>`, we'll use the first assigned element as the target since slots use
+    // `display: contents`
     // and positioning can't be calculated on them
     if (this.anchorEl instanceof HTMLSlotElement) {
       this.anchorEl = this.anchorEl.assignedElements({ flatten: true })[0] as HTMLElement;

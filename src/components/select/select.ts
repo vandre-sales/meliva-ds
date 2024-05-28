@@ -214,8 +214,8 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
 
   /**
    * A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second
-   * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
-   * the specified value.
+   * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted
+   * HTML of the symbol to render at the specified value.
    */
   @property() getTag: (option: WaOption, index: number) => TemplateResult | string | HTMLElement = option => {
     return html`
@@ -312,7 +312,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     const isClearButton = target.closest('.select__clear') !== null;
     const isIconButton = target.closest('wa-icon-button') !== null;
 
-    // Ignore presses when the target is an icon button (e.g. the remove button in <wa-tag>)
+    // Ignore presses when the target is an icon button (e.g. the remove button in `<wa-tag>`)
     if (isClearButton || isIconButton) {
       return;
     }
@@ -531,7 +531,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       // Select only the options that match the new value
       this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
     } else {
-      // Rerun this handler when <wa-option> is registered
+      // Rerun this handler when `<wa-option>` is registered
       customElements.whenDefined('wa-option').then(() => this.handleDefaultSlotChange());
     }
   }
@@ -550,12 +550,12 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     }
   }
 
-  // Gets an array of all <wa-option> elements
+  // Gets an array of all `<wa-option>` elements
   private getAllOptions() {
     return [...this.querySelectorAll<WaOption>('wa-option')];
   }
 
-  // Gets the first <wa-option> element
+  // Gets the first `<wa-option>` element
   private getFirstOption() {
     return this.querySelector<WaOption>('wa-option');
   }

@@ -435,7 +435,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
     const target = event.target as HTMLInputElement;
     const oldValue = this.value;
 
-    // Prevent the <wa-input>'s wa-change event from bubbling up
+    // Prevent the `<wa-input>` element's `wa-change` event from bubbling up
     event.stopPropagation();
 
     if (this.input.value) {
@@ -454,7 +454,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   private handleInputInput(event: WaInputEvent) {
     this.updateValidity();
 
-    // Prevent the <wa-input>'s wa-input event from bubbling up
+    // Prevent the `<wa-input>` element's `wa-input` event from bubbling up
     event.stopPropagation();
   }
 
@@ -732,8 +732,8 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
 
     if (this.hasFocus) {
       // We don't know which element in the color picker has focus, so we'll move it to the trigger or base (inline) and
-      // blur that instead. This results in document.activeElement becoming the <body>. This doesn't cause another focus
-      // event because we're using focusin and something inside the color picker already has focus.
+      // blur that instead. This results in document.activeElement becoming the `<body>`. This doesn't cause another
+      // focus event because we're using focusin and something inside the color picker already has focus.
       elementToBlur.focus({ preventScroll: true });
       elementToBlur.blur();
     }
