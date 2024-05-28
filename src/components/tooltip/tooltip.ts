@@ -1,4 +1,4 @@
-import { animateWithClass } from '../../internal/animate.js';
+import { animateWithClass, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
@@ -195,6 +195,7 @@ export default class WaTooltip extends WebAwesomeElement {
 
       this.body.hidden = false;
       this.popup.active = true;
+      await stopAnimations(this.popup.popup);
       await animateWithClass(this.popup.popup, 'show-with-scale');
       this.popup.reposition();
 
@@ -205,6 +206,7 @@ export default class WaTooltip extends WebAwesomeElement {
       this.closeWatcher?.destroy();
       document.removeEventListener('keydown', this.handleDocumentKeyDown);
 
+      await stopAnimations(this.popup.popup);
       await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.popup.active = false;
       this.body.hidden = true;
