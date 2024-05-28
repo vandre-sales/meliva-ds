@@ -30,6 +30,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Changed `primary` variants to `brand` in all components
 - Changed the internal structure of `<wa-checkbox>` so that the internal checkbox now takes up the full height and width of its wrapping container.
 - Fixed a bug in `<wa-spinner>` that caused it to display incorrectly when zooming in Safari
+- Fixed a bug in the submenu controller that prevented submenus from rendering in RTL without explicitly setting `dir` on the parent menu item [#1992]
 - Improved submenu selection by implementing the [safe triangle](https://www.smashingmagazine.com/2023/08/better-context-menus-safe-triangles/) method [#1550]
 - Improved tabbing in `<wa-tab-group>` so it uses a roving tab index instead of being able to cycle through each tab
 - Removed `default` from `<wa-button>` and made `neutral` the new default

@@ -81,7 +81,7 @@ export default class WaRating extends WebAwesomeElement {
   }
 
   private getValueFromXCoordinate(coordinate: number) {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
     const { left, right, width } = this.rating.getBoundingClientRect();
     const value = isRtl
       ? this.roundToPrecision(((right - coordinate) / width) * this.max, this.precision)
@@ -109,8 +109,8 @@ export default class WaRating extends WebAwesomeElement {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    const isLtr = this.localize.dir() === 'ltr';
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
+    const isLtr = !isRtl;
     const oldValue = this.value;
 
     if (this.disabled || this.readonly) {
@@ -215,7 +215,7 @@ export default class WaRating extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
     const counter = Array.from(Array(this.max).keys());
     let displayValue = 0;
 

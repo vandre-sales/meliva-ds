@@ -227,8 +227,8 @@ export default class WaTree extends WebAwesomeElement {
     }
 
     const items = this.getFocusableItems();
-    const isLtr = this.localize.dir() === 'ltr';
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
+    const isLtr = !isRtl;
 
     if (items.length > 0) {
       event.preventDefault();
