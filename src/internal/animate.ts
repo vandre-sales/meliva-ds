@@ -1,23 +1,4 @@
 /**
- * Animates an element using keyframes. Returns a promise that resolves after the animation completes or gets canceled.
- */
-export function animateTo(el: HTMLElement, keyframes: Keyframe[], options?: KeyframeAnimationOptions) {
-  return new Promise(resolve => {
-    if (options?.duration === Infinity) {
-      throw new Error('Promise-based animations must be finite.');
-    }
-
-    const animation = el.animate(keyframes, {
-      ...options,
-      duration: prefersReducedMotion() ? 0 : options!.duration
-    });
-
-    animation.addEventListener('cancel', resolve, { once: true });
-    animation.addEventListener('finish', resolve, { once: true });
-  });
-}
-
-/**
  * Applies a class to the specified element to animate it. The class is removed after the animation finishes and then
  * the promise resolves. If a timeout is provided, the class will be removed and the animation will
  */
