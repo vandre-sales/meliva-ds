@@ -225,8 +225,8 @@ export default class WaTree extends WebAwesomeElement {
     }
 
     const items = this.getFocusableItems();
+    const isLtr = this.matches(':dir(ltr)');
     const isRtl = this.matches(':dir(rtl)');
-    const isLtr = !isRtl;
 
     if (items.length > 0) {
       event.preventDefault();

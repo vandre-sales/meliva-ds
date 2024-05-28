@@ -106,8 +106,8 @@ export default class WaRating extends WebAwesomeElement {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
+    const isLtr = this.matches(':dir(ltr)');
     const isRtl = this.matches(':dir(rtl)');
-    const isLtr = !isRtl;
     const oldValue = this.value;
 
     if (this.disabled || this.readonly) {
