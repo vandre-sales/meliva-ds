@@ -23,8 +23,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Added the `active` attribute to `<wa-tab-group>`
 - Added an easier way to close dialogs by applying `data-dialog="dismiss"` to any button in the dialog
 - Added an easier way to close drawers by applying `data-dialog="dismiss"` to any button in the drawer
-- Added the `--show-duration` and `--hide-duration` custom properties to `<wa-details>`
-- Added the `--show-duration` and `--hide-duration` custom properties to `<wa-popup>`
+- Added the `--show-duration` and `--hide-duration` custom properties to `<wa-details>`, `<wa-dialog>`, `<wa-drawer>`, `<sl-tree-item>`, and `<wa-popup>`
 - Changed the attribute for setting the base path declaratively to `data-webawesome` instead of `data-shoelace`; additionally, you can place it on any element now instead of just the associated `<script>` tag
 - `<wa-icon>` icons are no longer fixed width by default to accommodate variable width icons
 - Changed the `sl` prefix to `wa` for Web Awesome, including tags, events, etc.
