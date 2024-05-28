@@ -1,10 +1,9 @@
 import '../icon/icon.js';
 import '../popup/popup.js';
 import '../tag/tag.js';
-import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -679,7 +678,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       this.emit('wa-show');
       this.addOpenListeners();
 
-      await stopAnimations(this);
       this.listbox.hidden = false;
       this.popup.active = true;
 
@@ -688,8 +686,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
         this.setCurrentOption(this.currentOption);
       });
 
-      const { keyframes, options } = getAnimation(this, 'select.show', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'show');
 
       // Make sure the current option is scrolled into view (required for Safari)
       if (this.currentOption) {
@@ -702,9 +699,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       this.emit('wa-hide');
       this.removeOpenListeners();
 
-      await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'select.hide', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'hide');
       this.listbox.hidden = true;
       this.popup.active = false;
 
@@ -903,22 +898,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     `;
   }
 }
-
-setDefaultAnimation('select.show', {
-  keyframes: [
-    { opacity: 0, scale: 0.9 },
-    { opacity: 1, scale: 1 }
-  ],
-  options: { duration: 100, easing: 'ease' }
-});
-
-setDefaultAnimation('select.hide', {
-  keyframes: [
-    { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.9 }
-  ],
-  options: { duration: 100, easing: 'ease' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {
