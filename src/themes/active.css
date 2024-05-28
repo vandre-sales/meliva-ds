@@ -1,3 +1,4 @@
+@import '_utility.css';
 @import 'depth_3_punchy.css'; /* depth_0_flat.css, depth_1_semiflat.css, depth_2_chunky.css, depth_3_punchy.css, depth_4_glossy.css */
 
 :root,
@@ -519,5 +520,3 @@
   }
 }
 /* #endregion */
-
-/* _utility.css */

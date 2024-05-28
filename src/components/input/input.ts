@@ -212,7 +212,8 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
   //
 
   /**
-   * Gets or sets the current value as a `Date` object. Returns `null` if the value can't be converted. This will use the native `<input type="{{type}}">` implementation and may result in an error.
+   * Gets or sets the current value as a `Date` object. Returns `null` if the value can't be converted. This will use
+   * the native `<input type="type">` implementation and may result in an error.
    */
   get valueAsDate() {
     this.__dateInput.type = this.type;

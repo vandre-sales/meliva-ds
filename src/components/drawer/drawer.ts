@@ -47,6 +47,8 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --header-spacing - The amount of padding to use for the header.
  * @cssproperty --body-spacing - The amount of padding to use for the body.
  * @cssproperty --footer-spacing - The amount of padding to use for the footer.
+ * @cssproperty [--show-duration=200ms] - The animation duration when showing the drawer.
+ * @cssproperty [--hide-duration=200ms] - The animation duration when hiding the drawer.
  *
  * @property modal - Exposes the internal modal utility that controls focus trapping. To temporarily disable focus
  *   trapping and allow third-party modals spawned from an active Shoelace modal, call `modal.activateExternal()` when

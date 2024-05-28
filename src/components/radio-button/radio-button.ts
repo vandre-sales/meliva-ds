@@ -66,7 +66,7 @@ export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
    */
   @property({ reflect: true }) form: string | null = null;
 
-  /** Needed for Form Validation. Without it we get a console error. */
+  // Needed for Form Validation. Without it we get a console error.
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
   connectedCallback() {

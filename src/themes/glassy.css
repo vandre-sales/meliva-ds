@@ -1,3 +1,4 @@
+@import '_utility.css';
 @import 'depth_4_glossy.css';
 
 :root,
@@ -520,5 +521,3 @@
 }
 
 /* #endregion */
-
-/* _utility.css */

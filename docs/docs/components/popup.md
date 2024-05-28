@@ -1859,3 +1859,10 @@ const App = () => {
 };
 ```
 {% endraw %}
+
+### Built-in Animations
+
+The following classes can be applied to the popup's `popup` part to animate it in or out programmatically. You can control the animation duration with the `--show-duration` and `--hide-duration` custom properties.
+
+- `show` / `hide` - Shows or hides the popover with a fade
+- `show-with-scale` / `hide-with-scale` - Shows or hides the popover with a fade and subtle scale effect

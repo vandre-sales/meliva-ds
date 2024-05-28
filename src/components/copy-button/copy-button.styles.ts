@@ -43,4 +43,23 @@ export default css`
   slot {
     display: inline-flex;
   }
+
+  .show {
+    animation: show 100ms ease;
+  }
+
+  .hide {
+    animation: show 100ms ease reverse;
+  }
+
+  @keyframes show {
+    from {
+      scale: 0.25;
+      opacity: 0.25;
+    }
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
 `;

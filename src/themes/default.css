@@ -1,3 +1,4 @@
+@import '_utility.css';
 @import 'depth_1_semiflat.css'; /* depth_0_flat.css, depth_1_semiflat.css, depth_2_chunky.css, depth_3_punchy.css, depth_4_glossy.css */
 
 :root,
@@ -291,8 +292,7 @@
   --wa-corners-l: calc(var(--wa-corners-base) * 3rem);
 
   /* Semantic corner properties create specific shapes beyond the theme's preferred corner styles. */
-  --wa-corners-pill: 9999px;
-  --wa-corners-circle: 50%;
+  --wa-corners-pill: 9999 --wa-corners-circle: 50%;
   --wa-corners-sharp: 0;
 
   /**
@@ -315,6 +315,7 @@
    */
   --wa-z-index-dropdown: 900;
   --wa-z-index-alert-group: 950;
+  --wa-z-index-toast: 990;
   --wa-z-index-tooltip: 1000;
 
   /**
@@ -500,5 +501,3 @@
   }
 }
 /* #endregion */
-
-/* _utility.css */

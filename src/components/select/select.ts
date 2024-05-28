@@ -1,10 +1,9 @@
 import '../icon/icon.js';
 import '../popup/popup.js';
 import '../tag/tag.js';
-import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -214,8 +213,8 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
 
   /**
    * A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second
-   * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
-   * the specified value.
+   * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted
+   * HTML of the symbol to render at the specified value.
    */
   @property() getTag: (option: WaOption, index: number) => TemplateResult | string | HTMLElement = option => {
     return html`
@@ -312,7 +311,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     const isClearButton = target.closest('.select__clear') !== null;
     const isIconButton = target.closest('wa-icon-button') !== null;
 
-    // Ignore presses when the target is an icon button (e.g. the remove button in <wa-tag>)
+    // Ignore presses when the target is an icon button (e.g. the remove button in `<wa-tag>`)
     if (isClearButton || isIconButton) {
       return;
     }
@@ -531,7 +530,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       // Select only the options that match the new value
       this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
     } else {
-      // Rerun this handler when <wa-option> is registered
+      // Rerun this handler when `<wa-option>` is registered
       customElements.whenDefined('wa-option').then(() => this.handleDefaultSlotChange());
     }
   }
@@ -550,12 +549,12 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     }
   }
 
-  // Gets an array of all <wa-option> elements
+  // Gets an array of all `<wa-option>` elements
   private getAllOptions() {
     return [...this.querySelectorAll<WaOption>('wa-option')];
   }
 
-  // Gets the first <wa-option> element
+  // Gets the first `<wa-option>` element
   private getFirstOption() {
     return this.querySelector<WaOption>('wa-option');
   }
@@ -679,7 +678,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       this.emit('wa-show');
       this.addOpenListeners();
 
-      await stopAnimations(this);
       this.listbox.hidden = false;
       this.popup.active = true;
 
@@ -688,8 +686,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
         this.setCurrentOption(this.currentOption);
       });
 
-      const { keyframes, options } = getAnimation(this, 'select.show', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'show');
 
       // Make sure the current option is scrolled into view (required for Safari)
       if (this.currentOption) {
@@ -702,9 +699,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       this.emit('wa-hide');
       this.removeOpenListeners();
 
-      await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'select.hide', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'hide');
       this.listbox.hidden = true;
       this.popup.active = false;
 
@@ -903,22 +898,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     `;
   }
 }
-
-setDefaultAnimation('select.show', {
-  keyframes: [
-    { opacity: 0, scale: 0.9 },
-    { opacity: 1, scale: 1 }
-  ],
-  options: { duration: 100, easing: 'ease' }
-});
-
-setDefaultAnimation('select.hide', {
-  keyframes: [
-    { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.9 }
-  ],
-  options: { duration: 100, easing: 'ease' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

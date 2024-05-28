@@ -1,3 +1,4 @@
+@import '_utility.css';
 @import 'depth_0_flat.css';
 
 :root,
@@ -219,7 +220,7 @@
   --wa-font-weight-body: var(--wa-font-weight-normal);
   --wa-font-weight-action: var(--wa-font-weight-medium);
 
-  /* The default typescale is based on the Major Second scale (x1.125). 
+  /* The default typescale is based on the Major Second scale (x1.125).
    * Every other step on the scale is skipped for larger sizes in order to maximize variation. */
   --wa-font-size-root: 16px;
   --wa-font-size-2xs: 0.6875rem; /* 11px */
@@ -473,5 +474,3 @@ wa-button[outline] {
   }
 }
 /* #endregion */
-
-/* _utility.css */

@@ -265,7 +265,7 @@ export class SubmenuController implements ReactiveController {
   renderSubmenu() {
     const isLtr = this.localize.dir() === 'ltr';
 
-    // Always render the slot, but conditionally render the outer <wa-popup>
+    // Always render the slot, but conditionally render the outer `<wa-popup>`
     if (!this.isConnected) {
       return html` <slot name="submenu" hidden></slot> `;
     }

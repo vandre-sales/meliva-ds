@@ -189,7 +189,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
     //
-    // NOTE: we use a <div> around the label slot because of this Chrome bug.
+    // NOTE: we use a `<div>` around the label slot because of this Chrome bug.
     //
     // https://bugs.chromium.org/p/chromium/issues/detail?id=1413733
     //

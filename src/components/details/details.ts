@@ -1,10 +1,9 @@
 import '../icon/icon.js';
-import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
+import { parseDuration, stopAnimations } from '../../internal/animate.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -43,9 +42,8 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-width - The width of the details' borders. Expects a single value.
  * @cssproperty --icon-color - The color of the details' icon.
  * @cssproperty --padding - The padding with the details. Expects a single value.
- *
- * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
- * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
+ * @cssproperty [--show-duration=200ms] - The show duration to use when applying built-in animation classes.
+ * @cssproperty [--hide-duration=200ms] - The hide duration to use when applying built-in animation classes.
  */
 @customElement('wa-details')
 export default class WaDetails extends WebAwesomeElement {
@@ -145,9 +143,18 @@ export default class WaDetails extends WebAwesomeElement {
       }
 
       await stopAnimations(this.body);
-
-      const { keyframes, options } = getAnimation(this, 'details.show', { dir: this.localize.dir() });
-      await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
+      const duration = parseDuration(getComputedStyle(this.body).getPropertyValue('--show-duration'));
+      // We can't animate to 'auto', so use the scroll height for now
+      await this.body.animate(
+        [
+          { height: '0', opacity: '0' },
+          { height: `${this.body.scrollHeight}px`, opacity: '1' }
+        ],
+        {
+          duration,
+          easing: 'linear'
+        }
+      ).finished;
       this.body.style.height = 'auto';
 
       this.emit('wa-after-show');
@@ -161,9 +168,15 @@ export default class WaDetails extends WebAwesomeElement {
       }
 
       await stopAnimations(this.body);
-
-      const { keyframes, options } = getAnimation(this, 'details.hide', { dir: this.localize.dir() });
-      await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
+      const duration = parseDuration(getComputedStyle(this.body).getPropertyValue('--hide-duration'));
+      // We can't animate from 'auto', so use the scroll height for now
+      await this.body.animate(
+        [
+          { height: `${this.body.scrollHeight}px`, opacity: '1' },
+          { height: '0', opacity: '0' }
+        ],
+        { duration, easing: 'linear' }
+      ).finished;
       this.body.style.height = 'auto';
 
       this.details.open = false;
@@ -235,22 +248,6 @@ export default class WaDetails extends WebAwesomeElement {
     `;
   }
 }
-
-setDefaultAnimation('details.show', {
-  keyframes: [
-    { height: '0', opacity: '0' },
-    { height: 'auto', opacity: '1' }
-  ],
-  options: { duration: 250, easing: 'linear' }
-});
-
-setDefaultAnimation('details.hide', {
-  keyframes: [
-    { height: 'auto', opacity: '1' },
-    { height: '0', opacity: '0' }
-  ],
-  options: { duration: 250, easing: 'linear' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {
