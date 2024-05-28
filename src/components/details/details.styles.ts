@@ -9,6 +9,8 @@ export default css`
     --border-width: var(--wa-panel-border-width);
     --icon-color: var(--wa-color-text-quiet);
     --padding: var(--wa-space-m);
+    --show-duration: 250ms;
+    --hide-duration: 250ms;
 
     display: block;
   }
@@ -92,5 +94,18 @@ export default css`
   .details__content {
     display: block;
     padding: var(--padding);
+  }
+
+  .show {
+  }
+
+  .hide {
+  }
+
+  @keyframes show {
+    from {
+    }
+    to {
+    }
   }
 `;
