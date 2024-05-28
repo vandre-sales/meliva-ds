@@ -3,8 +3,6 @@ import { css } from 'lit';
 export default css`
   :host {
     --max-width: 20rem;
-    --hide-delay: 0ms;
-    --show-delay: 150ms;
 
     display: contents;
   }

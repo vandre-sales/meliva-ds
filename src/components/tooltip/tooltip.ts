@@ -1,9 +1,7 @@
-import { animateTo, parseDuration, stopAnimations } from '../../internal/animate.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -46,7 +44,6 @@ export default class WaTooltip extends WebAwesomeElement {
   static dependencies = { 'wa-popup': WaPopup };
 
   private hoverTimeout: number;
-  private readonly localize = new LocalizeController(this);
   private closeWatcher: CloseWatcher | null;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
@@ -85,6 +82,12 @@ export default class WaTooltip extends WebAwesomeElement {
 
   /** The distance in pixels from which to offset the tooltip along its target. */
   @property({ type: Number }) skidding = 0;
+
+  /** The amount of time to wait before showing the tooltip when the user mouses in. */
+  @property({ attribute: 'show-delay', type: Number }) showDelay = 150;
+
+  /** The amount of time to wait before hiding the tooltip when the user mouses out.. */
+  @property({ attribute: 'hide-delay', type: Number }) hideDelay = 0;
 
   /**
    * Controls how the tooltip is activated. Possible options include `click`, `hover`, `focus`, and `manual`. Multiple
@@ -157,17 +160,15 @@ export default class WaTooltip extends WebAwesomeElement {
 
   private handleMouseOver = () => {
     if (this.hasTrigger('hover')) {
-      const delay = parseDuration(getComputedStyle(this).getPropertyValue('--show-delay'));
       clearTimeout(this.hoverTimeout);
-      this.hoverTimeout = window.setTimeout(() => this.show(), delay);
+      this.hoverTimeout = window.setTimeout(() => this.show(), this.showDelay);
     }
   };
 
   private handleMouseOut = () => {
     if (this.hasTrigger('hover')) {
-      const delay = parseDuration(getComputedStyle(this).getPropertyValue('--hide-delay'));
       clearTimeout(this.hoverTimeout);
-      this.hoverTimeout = window.setTimeout(() => this.hide(), delay);
+      this.hoverTimeout = window.setTimeout(() => this.hide(), this.hideDelay);
     }
   };
 
@@ -195,11 +196,9 @@ export default class WaTooltip extends WebAwesomeElement {
         document.addEventListener('keydown', this.handleDocumentKeyDown);
       }
 
-      await stopAnimations(this.body);
       this.body.hidden = false;
       this.popup.active = true;
-      const { keyframes, options } = getAnimation(this, 'tooltip.show', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'show-with-scale');
       this.popup.reposition();
 
       this.emit('wa-after-show');
@@ -209,9 +208,7 @@ export default class WaTooltip extends WebAwesomeElement {
       this.closeWatcher?.destroy();
       document.removeEventListener('keydown', this.handleDocumentKeyDown);
 
-      await stopAnimations(this.body);
-      const { keyframes, options } = getAnimation(this, 'tooltip.hide', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.popup.active = false;
       this.body.hidden = true;
 
@@ -292,22 +289,6 @@ export default class WaTooltip extends WebAwesomeElement {
     `;
   }
 }
-
-setDefaultAnimation('tooltip.show', {
-  keyframes: [
-    { opacity: 0, scale: 0.8 },
-    { opacity: 1, scale: 1 }
-  ],
-  options: { duration: 150, easing: 'ease' }
-});
-
-setDefaultAnimation('tooltip.hide', {
-  keyframes: [
-    { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.8 }
-  ],
-  options: { duration: 150, easing: 'ease' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {
