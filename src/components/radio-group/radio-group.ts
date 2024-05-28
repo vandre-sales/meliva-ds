@@ -5,7 +5,6 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
-import { uuidv4 } from '../../internal/uuid.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -51,7 +50,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
           required: true,
           type: 'radio',
           // use a uuid because we want this to be guaranteed unique. Users will never see this.
-          name: `__wa-radio-${uuidv4()}`
+          name: `__wa-radio-${crypto.randomUUID()}`
         })
       })
     ];
