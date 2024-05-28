@@ -34,9 +34,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --max-width - The maximum width of the tooltip before its content will wrap.
  * @cssproperty --hide-delay - The amount of time to wait before hiding the tooltip when hovering.
  * @cssproperty --show-delay - The amount of time to wait before showing the tooltip when hovering.
- *
- * @animation tooltip.show - The animation to use when showing the tooltip.
- * @animation tooltip.hide - The animation to use when hiding the tooltip.
  */
 @customElement('wa-tooltip')
 export default class WaTooltip extends WebAwesomeElement {
