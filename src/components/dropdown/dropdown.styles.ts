@@ -6,8 +6,6 @@ export default css`
   }
 
   .dropdown::part(popup) {
-    --show-duration: 100ms;
-    --hide-duration: 100ms;
     z-index: var(--wa-z-index-dropdown);
   }
 

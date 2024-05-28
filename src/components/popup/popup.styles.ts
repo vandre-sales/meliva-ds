@@ -4,8 +4,8 @@ export default css`
   :host {
     --arrow-color: black;
     --arrow-size: var(--wa-tooltip-arrow-size);
-    --show-duration: 150ms;
-    --hide-duration: 150ms;
+    --show-duration: 100ms;
+    --hide-duration: 100ms;
 
     /*
      * These properties are computed to account for the arrow's dimensions after being rotated 45º. The constant
