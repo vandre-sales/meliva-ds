@@ -42,11 +42,8 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-width - The width of the details' borders. Expects a single value.
  * @cssproperty --icon-color - The color of the details' icon.
  * @cssproperty --padding - The padding with the details. Expects a single value.
- * @cssproperty [--show-duration=250ms] - The show duration to use when applying built-in animation classes.
- * @cssproperty [--hide-duration=250ms] - The hide duration to use when applying built-in animation classes.
- *
- * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
- * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
+ * @cssproperty [--show-duration=200ms] - The show duration to use when applying built-in animation classes.
+ * @cssproperty [--hide-duration=200ms] - The hide duration to use when applying built-in animation classes.
  */
 @customElement('wa-details')
 export default class WaDetails extends WebAwesomeElement {
@@ -154,7 +151,7 @@ export default class WaDetails extends WebAwesomeElement {
           { height: `${this.body.scrollHeight}px`, opacity: '1' }
         ],
         {
-          duration: duration,
+          duration,
           easing: 'linear'
         }
       ).finished;
@@ -178,7 +175,7 @@ export default class WaDetails extends WebAwesomeElement {
           { height: `${this.body.scrollHeight}px`, opacity: '1' },
           { height: '0', opacity: '0' }
         ],
-        { duration: duration, easing: 'linear' }
+        { duration, easing: 'linear' }
       ).finished;
       this.body.style.height = 'auto';
 
