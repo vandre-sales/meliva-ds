@@ -1,7 +1,6 @@
 import { clamp } from '../../internal/math.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './tree.styles.js';
@@ -91,7 +90,6 @@ export default class WaTree extends WebAwesomeElement {
   // automatically updated when the underlying document is changed.
   //
   private lastFocusedItem: WaTreeItem | null;
-  private readonly localize = new LocalizeController(this);
   private mutationObserver: MutationObserver;
   private clickTarget: WaTreeItem | null = null;
 

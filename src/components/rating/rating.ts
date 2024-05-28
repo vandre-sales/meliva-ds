@@ -3,7 +3,6 @@ import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { watch } from '../../internal/watch.js';
@@ -35,8 +34,6 @@ import type { CSSResultGroup } from 'lit';
 @customElement('wa-rating')
 export default class WaRating extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
-
-  private readonly localize = new LocalizeController(this);
 
   @query('.rating') rating: HTMLElement;
 
