@@ -84,10 +84,10 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
   /** Ensures a child radio is checked before allowing the containing form to submit. */
   @property({ type: Boolean, reflect: true }) required = false;
 
-  /**
-   * We need this because if we don't have it, FormValidation yells at us that it's "not focusable".
-   *   If we use `this.tabIndex = -1` we can't focus the radio inside.
-   */
+  //
+  // We need this because if we don't have it, FormValidation yells at us that it's "not focusable".
+  //   If we use `this.tabIndex = -1` we can't focus the radio inside.
+  //
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
   constructor() {
