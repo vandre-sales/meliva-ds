@@ -183,7 +183,7 @@ export default class WaTabGroup extends WebAwesomeElement {
     // Move focus left or right
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       const activeEl = this.tabs.find(t => t.matches(':focus'));
-      const isRtl = this.localize.dir() === 'rtl';
+      const isRtl = this.matches(':dir(rtl)');
 
       if (activeEl?.tagName.toLowerCase() === 'wa-tab') {
         let index = this.tabs.indexOf(activeEl);
@@ -323,7 +323,7 @@ export default class WaTabGroup extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
 
     return html`
       <div
@@ -334,7 +334,7 @@ export default class WaTabGroup extends WebAwesomeElement {
           'tab-group--bottom': this.placement === 'bottom',
           'tab-group--start': this.placement === 'start',
           'tab-group--end': this.placement === 'end',
-          'tab-group--rtl': this.localize.dir() === 'rtl',
+          'tab-group--rtl': isRtl,
           'tab-group--has-scroll-controls': this.hasScrollControls
         })}
         @click=${this.handleClick}

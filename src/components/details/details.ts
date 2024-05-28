@@ -2,7 +2,6 @@ import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { parseDuration, stopAnimations } from '../../internal/animate.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
@@ -48,8 +47,6 @@ import type { CSSResultGroup } from 'lit';
 @customElement('wa-details')
 export default class WaDetails extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
-
-  private readonly localize = new LocalizeController(this);
 
   @query('.details') details: HTMLDetailsElement;
   @query('.details__header') header: HTMLElement;
@@ -205,7 +202,7 @@ export default class WaDetails extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
 
     return html`
       <details
