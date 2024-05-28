@@ -44,15 +44,15 @@ export default css`
     display: inline-flex;
   }
 
-  .in {
-    animation: show-icon 100ms ease;
+  .show {
+    animation: show 100ms ease;
   }
 
-  .out {
-    animation: show-icon 100ms ease reverse;
+  .hide {
+    animation: show 100ms ease reverse;
   }
 
-  @keyframes show-icon {
+  @keyframes show {
     from {
       scale: 0.25;
       opacity: 0.25;

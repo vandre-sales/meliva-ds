@@ -166,19 +166,19 @@ export default class WaCopyButton extends WebAwesomeElement {
     this.tooltip.content = status === 'success' ? successLabel : errorLabel;
 
     // Show the feedback icon
-    await animateWithClass(this.copyIcon, 'out');
+    await animateWithClass(this.copyIcon, 'hide');
     this.copyIcon.hidden = true;
     this.status = status;
     iconToShow.hidden = false;
-    await animateWithClass(iconToShow, 'in');
+    await animateWithClass(iconToShow, 'show');
 
     // After a brief delay, restore the original state
     setTimeout(async () => {
-      await animateWithClass(iconToShow, 'out');
+      await animateWithClass(iconToShow, 'hide');
       iconToShow.hidden = true;
       this.status = 'rest';
       this.copyIcon.hidden = false;
-      await animateWithClass(this.copyIcon, 'in');
+      await animateWithClass(this.copyIcon, 'show');
 
       this.tooltip.content = copyLabel;
       this.isCopying = false;
