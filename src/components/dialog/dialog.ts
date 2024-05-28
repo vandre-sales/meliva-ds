@@ -46,6 +46,8 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --header-spacing - The amount of padding to use for the header.
  * @cssproperty --body-spacing - The amount of padding to use for the body.
  * @cssproperty --footer-spacing - The amount of padding to use for the footer.
+ * @cssproperty [--show-duration=200ms] - The animation duration when showing the dialog.
+ * @cssproperty [--hide-duration=200ms] - The animation duration when hiding the dialog.
  */
 @customElement('wa-dialog')
 export default class WaDialog extends WebAwesomeElement {

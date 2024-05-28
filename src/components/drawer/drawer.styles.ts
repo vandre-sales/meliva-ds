@@ -7,6 +7,7 @@ export default css`
     --body-spacing: var(--wa-space-l);
     --footer-spacing: var(--wa-space-l);
     --show-duration: 200ms;
+    --hide-duration: 200ms;
 
     display: none;
   }
@@ -39,7 +40,7 @@ export default css`
     }
 
     &.hide::backdrop {
-      animation: show-backdrop var(--show-duration, 200ms) ease reverse;
+      animation: show-backdrop var(--hide-duration, 200ms) ease reverse;
     }
 
     &.show.drawer--top {
@@ -47,7 +48,7 @@ export default css`
     }
 
     &.hide.drawer--top {
-      animation: show-drawer-from-top var(--show-duration) ease reverse;
+      animation: show-drawer-from-top var(--hide-duration) ease reverse;
     }
 
     &.show.drawer--end {
@@ -59,7 +60,7 @@ export default css`
     }
 
     &.hide.drawer--end {
-      animation: show-drawer-from-end var(--show-duration) ease reverse;
+      animation: show-drawer-from-end var(--hide-duration) ease reverse;
 
       &.drawer--rtl {
         animation-name: show-drawer-from-start;
@@ -71,7 +72,7 @@ export default css`
     }
 
     &.hide.drawer--bottom {
-      animation: show-drawer-from-bottom var(--show-duration) ease reverse;
+      animation: show-drawer-from-bottom var(--hide-duration) ease reverse;
     }
 
     &.show.drawer--start {
@@ -83,7 +84,7 @@ export default css`
     }
 
     &.hide.drawer--start {
-      animation: show-drawer-from-start var(--show-duration) ease reverse;
+      animation: show-drawer-from-start var(--hide-duration) ease reverse;
 
       &.drawer--rtl {
         animation-name: show-drawer-from-end;

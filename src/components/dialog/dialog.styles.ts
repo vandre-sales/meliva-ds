@@ -7,6 +7,7 @@ export default css`
     --body-spacing: var(--wa-space-l);
     --footer-spacing: var(--wa-space-l);
     --show-duration: 200ms;
+    --hide-duration: 200ms;
 
     display: none;
   }
@@ -41,10 +42,10 @@ export default css`
     }
 
     &.hide {
-      animation: show-dialog var(--show-duration) ease reverse;
+      animation: show-dialog var(--hide-duration) ease reverse;
 
       &::backdrop {
-        animation: show-backdrop var(--show-duration, 200ms) ease reverse;
+        animation: show-backdrop var(--hide-duration, 200ms) ease reverse;
       }
     }
 
