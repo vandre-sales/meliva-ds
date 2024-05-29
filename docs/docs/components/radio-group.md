@@ -132,6 +132,7 @@ The size of [Radios](/components/radio) and [Radio Buttons](/components/radio-bu
 </script>
 ```
 
+{% raw %}
 ```jsx react
 import { useState } from 'react';
 import WaRadio from '@shoelace-style/shoelace/dist/react/radio';
@@ -157,6 +158,7 @@ const App = () => {
   );
 };
 ```
+{% endraw %}
 
 :::info
 [Radios](/components/radio) and [Radio Buttons](/components/radio-button) also have a `size` attribute. This can be useful in certain compositions, but it will be ignored when used inside of a Radio Group.
@@ -244,7 +246,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
   const errorMessage = 'You must choose the last option';
 
   // Set initial validity as soon as the element is defined
-  customElements.whenDefined('wa-radio').then(() => {
+  customElements.whenDefined('wa-radio-group').then(() => {
     radioGroup.setCustomValidity(errorMessage);
   });
 

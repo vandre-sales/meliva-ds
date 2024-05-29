@@ -1,11 +1,11 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { aTimeout, expect, fixture, html, waitUntil } from '@open-wc/testing';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import sinon from 'sinon';
 import type WaButton from './button.js';
 
 const variants = ['brand', 'success', 'neutral', 'warning', 'danger'];
 
-describe('<wa-button>', () => {
+describe('<wa-button>', async () => {
   describe('accessibility tests', () => {
     variants.forEach(variant => {
       it(`should be accessible when variant is "${variant}"`, async () => {
@@ -205,6 +205,45 @@ describe('<wa-button>', () => {
       expect(submitter.formTarget).to.equal('_blank');
       expect(submitter.formNoValidate).to.be.true;
     });
+
+    it('should only submit button name / value pair when the form is submitted', async () => {
+      const form = await fixture<HTMLFormElement>(
+        html`<form>
+          <wa-button type="submit" name="btn-1" value="value-1">Button 1</wa-button>
+          <wa-button type="submit" name="btn-2" value="value-2">Button 2</wa-button>
+        </form>`
+      );
+
+      let formData = new FormData(form);
+      let submitter: null | HTMLButtonElement = document.createElement('button');
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        formData = new FormData(form);
+        submitter = e.submitter as HTMLButtonElement;
+      });
+
+      expect(formData.get('btn-1')).to.be.null;
+      expect(formData.get('btn-2')).to.be.null;
+
+      form.querySelector('wa-button')?.click();
+      await aTimeout(0);
+
+      expect(formData.get('btn-1')).to.be.null;
+      expect(formData.get('btn-2')).to.be.null;
+
+      expect(submitter.name).to.equal('btn-1');
+      expect(submitter.value).to.equal('value-1');
+
+      form.querySelectorAll('wa-button')[1]?.click();
+      await aTimeout(0);
+
+      expect(formData.get('btn-1')).to.be.null;
+      expect(formData.get('btn-2')).to.be.null;
+
+      expect(submitter.name).to.equal('btn-2');
+      expect(submitter.value).to.equal('value-2');
+    });
   });
 
   describe('when using methods', () => {
@@ -238,30 +277,30 @@ describe('<wa-button>', () => {
     });
   });
 
-  runFormControlBaseTests({
-    tagName: 'wa-button',
-    variantName: 'type="button"',
+  await Promise.all([
+    runFormControlBaseTests({
+      tagName: 'wa-button',
+      variantName: 'type="button"',
 
-    init: (control: WaButton) => {
-      control.type = 'button';
-    }
-  });
+      init: (control: WaButton) => {
+        control.type = 'button';
+      }
+    }),
+    runFormControlBaseTests({
+      tagName: 'wa-button',
+      variantName: 'type="submit"',
 
-  runFormControlBaseTests({
-    tagName: 'wa-button',
-    variantName: 'type="submit"',
+      init: (control: WaButton) => {
+        control.type = 'submit';
+      }
+    }),
+    runFormControlBaseTests({
+      tagName: 'wa-button',
+      variantName: 'href="xyz"',
 
-    init: (control: WaButton) => {
-      control.type = 'submit';
-    }
-  });
-
-  runFormControlBaseTests({
-    tagName: 'wa-button',
-    variantName: 'href="xyz"',
-
-    init: (control: WaButton) => {
-      control.href = 'some-url';
-    }
-  });
+      init: (control: WaButton) => {
+        control.href = 'some-url';
+      }
+    })
+  ]);
 });

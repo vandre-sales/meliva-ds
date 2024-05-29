@@ -2,6 +2,9 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --show-duration: 200ms;
+    --hide-duration: 200ms;
+
     display: block;
     outline: 0;
     z-index: 0;
@@ -21,7 +24,7 @@ export default css`
     align-items: stretch;
     flex-direction: column;
     color: var(--wa-color-text-normal);
-    cursor: pointer;
+    cursor: default;
     user-select: none;
     -webkit-user-select: none;
   }

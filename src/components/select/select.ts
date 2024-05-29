@@ -1,26 +1,23 @@
 import '../icon/icon.js';
 import '../popup/popup.js';
 import '../tag/tag.js';
-import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { defaultValue } from '../../internal/default-value.js';
-import { FormControlController } from '../../internal/form.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './select.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup, TemplateResult } from 'lit';
 import type { WaRemoveEvent } from '../../events/wa-remove.js';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 import type WaOption from '../option/option.js';
 import type WaPopup from '../popup/popup.js';
 
@@ -77,12 +74,20 @@ import type WaPopup from '../popup/popup.js';
  * @cssproperty --box-shadow - The shadow effects around the edges of the select's combobox.
  */
 @customElement('wa-select')
-export default class WaSelect extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaSelect extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['wa-blur', 'wa-input']
-  });
+  static get validators() {
+    return [
+      ...super.validators,
+      RequiredValidator({
+        validationElement: Object.assign(document.createElement('select'), { required: true })
+      })
+    ];
+  }
+
+  assumeInteractionOn = ['wa-blur', 'wa-input'];
+
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
   private typeToSelectString = '';
@@ -94,6 +99,11 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
   @query('.select__display-input') displayInput: HTMLInputElement;
   @query('.select__value-input') valueInput: HTMLInputElement;
   @query('.select__listbox') listbox: HTMLSlotElement;
+
+  /** Where to anchor native constraint validation */
+  get validationTarget() {
+    return this.valueInput;
+  }
 
   @state() private hasFocus = false;
   @state() displayLabel = '';
@@ -108,16 +118,37 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
    * value attribute will be a space-delimited list of values based on the options selected, and the value property will
    * be an array. **For this reason, values must not contain spaces.**
    */
-  @property({
-    converter: {
-      fromAttribute: (value: string) => value.split(' '),
-      toAttribute: (value: string[]) => value.join(' ')
-    }
-  })
+  @property({ attribute: false })
   value: string | string[] = '';
 
-  /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue: string | string[] = '';
+  private _defaultValue: string | string[] = '';
+
+  @property({
+    attribute: 'value',
+    reflect: true,
+    converter: {
+      fromAttribute: (value: string) => value.split(' '),
+      toAttribute: (value: string | string[]) => (Array.isArray(value) ? value.join(' ') : value)
+    }
+  })
+  // @ts-expect-error defaultValue () is a property on the host, but is being used a getter / setter here.
+  set defaultValue(val: string | string[]) {
+    // For some reason this can go off before we've fully updated. So check the attribute too.
+    const isMultiple = this.multiple || this.hasAttribute('multiple');
+
+    if (!isMultiple && Array.isArray(val)) {
+      val = val.join(' ');
+    }
+    this._defaultValue = val;
+
+    if (!this.hasInteracted) {
+      this.value = this.defaultValue;
+    }
+  }
+
+  get defaultValue() {
+    return this._defaultValue;
+  }
 
   /** The select's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -135,7 +166,7 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
   @property({ attribute: 'max-options-visible', type: Number }) maxOptionsVisible = 3;
 
   /** Disables the select control. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /** Adds a clear button when the select is not empty. */
   @property({ type: Boolean }) clearable = false;
@@ -175,15 +206,15 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form = '';
+  @property({ reflect: true }) form = null;
 
   /** The select's required attribute. */
   @property({ type: Boolean, reflect: true }) required = false;
 
   /**
    * A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second
-   * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
-   * the specified value.
+   * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted
+   * HTML of the symbol to render at the specified value.
    */
   @property() getTag: (option: WaOption, index: number) => TemplateResult | string | HTMLElement = option => {
     return html`
@@ -205,19 +236,14 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
     `;
   };
 
-  /** Gets the validity state object */
-  get validity() {
-    return this.valueInput.validity;
-  }
-
-  /** Gets the validation message */
-  get validationMessage() {
-    return this.valueInput.validationMessage;
-  }
-
   connectedCallback() {
     super.connectedCallback();
 
+    this.updateComplete.then(() => {
+      if (!this.hasInteracted) {
+        this.value = this.defaultValue;
+      }
+    });
     // Because this is a form control, it shouldn't be opened initially
     this.open = false;
   }
@@ -285,7 +311,7 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
     const isClearButton = target.closest('.select__clear') !== null;
     const isIconButton = target.closest('wa-icon-button') !== null;
 
-    // Ignore presses when the target is an icon button (e.g. the remove button in <wa-tag>)
+    // Ignore presses when the target is an icon button (e.g. the remove button in `<wa-tag>`)
     if (isClearButton || isIconButton) {
       return;
     }
@@ -504,7 +530,7 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
       // Select only the options that match the new value
       this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
     } else {
-      // Rerun this handler when <wa-option> is registered
+      // Rerun this handler when `<wa-option>` is registered
       customElements.whenDefined('wa-option').then(() => this.handleDefaultSlotChange());
     }
   }
@@ -523,12 +549,12 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
     }
   }
 
-  // Gets an array of all <wa-option> elements
+  // Gets an array of all `<wa-option>` elements
   private getAllOptions() {
     return [...this.querySelectorAll<WaOption>('wa-option')];
   }
 
-  // Gets the first <wa-option> element
+  // Gets the first `<wa-option>` element
   private getFirstOption() {
     return this.querySelector<WaOption>('wa-option');
   }
@@ -604,7 +630,7 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
 
     // Update validity
     this.updateComplete.then(() => {
-      this.formControlController.updateValidity();
+      this.updateValidity();
     });
   }
   protected get tags() {
@@ -623,11 +649,6 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
     });
   }
 
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
-  }
-
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Close the listbox when the control is disabled
@@ -644,6 +665,7 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
 
     // Select only the options that match the new value
     this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
+    this.updateValidity();
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
@@ -656,7 +678,6 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
       this.emit('wa-show');
       this.addOpenListeners();
 
-      await stopAnimations(this);
       this.listbox.hidden = false;
       this.popup.active = true;
 
@@ -665,8 +686,7 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
         this.setCurrentOption(this.currentOption);
       });
 
-      const { keyframes, options } = getAnimation(this, 'select.show', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'show');
 
       // Make sure the current option is scrolled into view (required for Safari)
       if (this.currentOption) {
@@ -679,9 +699,7 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
       this.emit('wa-hide');
       this.removeOpenListeners();
 
-      await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'select.hide', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'hide');
       this.listbox.hidden = true;
       this.popup.active = false;
 
@@ -711,27 +729,6 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
     return waitForEvent(this, 'wa-after-hide');
   }
 
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    return this.valueInput.checkValidity();
-  }
-
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
-  }
-
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity() {
-    return this.valueInput.reportValidity();
-  }
-
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
-  setCustomValidity(message: string) {
-    this.valueInput.setCustomValidity(message);
-    this.formControlController.updateValidity();
-  }
-
   /** Sets focus on the control. */
   focus(options?: FocusOptions) {
     this.displayInput.focus(options);
@@ -740,6 +737,12 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
   /** Removes focus from the control. */
   blur() {
     this.displayInput.blur();
+  }
+
+  formResetCallback() {
+    this.value = this.defaultValue;
+    super.formResetCallback();
+    this.handleValueChange();
   }
 
   render() {
@@ -841,7 +844,6 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
                 tabindex="-1"
                 aria-hidden="true"
                 @focus=${() => this.focus()}
-                @invalid=${this.handleInvalid}
               />
 
               ${hasClearIcon
@@ -896,22 +898,6 @@ export default class WaSelect extends WebAwesomeElement implements WebAwesomeFor
     `;
   }
 }
-
-setDefaultAnimation('select.show', {
-  keyframes: [
-    { opacity: 0, scale: 0.9 },
-    { opacity: 1, scale: 1 }
-  ],
-  options: { duration: 100, easing: 'ease' }
-});
-
-setDefaultAnimation('select.hide', {
-  keyframes: [
-    { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.9 }
-  ],
-  options: { duration: 100, easing: 'ease' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -1,8 +1,8 @@
 import '../icon/icon.js';
 import '../tooltip/tooltip.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -38,9 +38,6 @@ import type WaTooltip from '../tooltip/tooltip.js';
  *
  * @cssproperty --success-color - The color to use for success feedback.
  * @cssproperty --error-color - The color to use for error feedback.
- *
- * @animation copy.in - The animation to use when feedback icons animate in.
- * @animation copy.out - The animation to use when feedback icons animate out.
  */
 @customElement('wa-copy-button')
 export default class WaCopyButton extends WebAwesomeElement {
@@ -165,25 +162,23 @@ export default class WaCopyButton extends WebAwesomeElement {
     const successLabel = this.successLabel || this.localize.term('copied');
     const errorLabel = this.errorLabel || this.localize.term('error');
     const iconToShow = status === 'success' ? this.successIcon : this.errorIcon;
-    const showAnimation = getAnimation(this, 'copy.in', { dir: 'ltr' });
-    const hideAnimation = getAnimation(this, 'copy.out', { dir: 'ltr' });
 
     this.tooltip.content = status === 'success' ? successLabel : errorLabel;
 
     // Show the feedback icon
-    await this.copyIcon.animate(hideAnimation.keyframes, hideAnimation.options).finished;
+    await animateWithClass(this.copyIcon, 'hide');
     this.copyIcon.hidden = true;
     this.status = status;
     iconToShow.hidden = false;
-    await iconToShow.animate(showAnimation.keyframes, showAnimation.options).finished;
+    await animateWithClass(iconToShow, 'show');
 
     // After a brief delay, restore the original state
     setTimeout(async () => {
-      await iconToShow.animate(hideAnimation.keyframes, hideAnimation.options).finished;
+      await animateWithClass(iconToShow, 'hide');
       iconToShow.hidden = true;
       this.status = 'rest';
       this.copyIcon.hidden = false;
-      await this.copyIcon.animate(showAnimation.keyframes, showAnimation.options).finished;
+      await animateWithClass(this.copyIcon, 'show');
 
       this.tooltip.content = copyLabel;
       this.isCopying = false;
@@ -232,22 +227,6 @@ export default class WaCopyButton extends WebAwesomeElement {
     `;
   }
 }
-
-setDefaultAnimation('copy.in', {
-  keyframes: [
-    { scale: '.25', opacity: '.25' },
-    { scale: '1', opacity: '1' }
-  ],
-  options: { duration: 100 }
-});
-
-setDefaultAnimation('copy.out', {
-  keyframes: [
-    { scale: '1', opacity: '1' },
-    { scale: '.25', opacity: '0' }
-  ],
-  options: { duration: 100 }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

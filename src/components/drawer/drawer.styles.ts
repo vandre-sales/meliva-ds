@@ -6,39 +6,101 @@ export default css`
     --header-spacing: var(--wa-space-l);
     --body-spacing: var(--wa-space-l);
     --footer-spacing: var(--wa-space-l);
+    --show-duration: 200ms;
+    --hide-duration: 200ms;
 
-    display: contents;
+    display: none;
+  }
+
+  :host([open]) {
+    display: block;
   }
 
   .drawer {
-    position: fixed;
-    z-index: var(--wa-z-index-drawer);
+    display: flex;
+    flex-direction: column;
     top: 0;
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .drawer__panel {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
     max-width: 100%;
     max-height: 100%;
+    overflow: hidden;
     background-color: var(--wa-color-surface-raised);
+    border: none;
     box-shadow: var(--wa-shadow-level-3);
     overflow: auto;
-    pointer-events: all;
+    padding: 0;
+    margin: 0;
+    animation-duration: var(--show-duration);
+    animation-timing-function: ease;
+
+    &.show::backdrop {
+      animation: show-backdrop var(--show-duration, 200ms) ease;
+    }
+
+    &.hide::backdrop {
+      animation: show-backdrop var(--hide-duration, 200ms) ease reverse;
+    }
+
+    &.show.drawer--top {
+      animation: show-drawer-from-top var(--show-duration) ease;
+    }
+
+    &.hide.drawer--top {
+      animation: show-drawer-from-top var(--hide-duration) ease reverse;
+    }
+
+    &.show.drawer--end {
+      animation: show-drawer-from-end var(--show-duration) ease;
+
+      &.drawer--rtl {
+        animation-name: show-drawer-from-start;
+      }
+    }
+
+    &.hide.drawer--end {
+      animation: show-drawer-from-end var(--hide-duration) ease reverse;
+
+      &.drawer--rtl {
+        animation-name: show-drawer-from-start;
+      }
+    }
+
+    &.show.drawer--bottom {
+      animation: show-drawer-from-bottom var(--show-duration) ease;
+    }
+
+    &.hide.drawer--bottom {
+      animation: show-drawer-from-bottom var(--hide-duration) ease reverse;
+    }
+
+    &.show.drawer--start {
+      animation: show-drawer-from-start var(--show-duration) ease;
+
+      &.drawer--rtl {
+        animation-name: show-drawer-from-end;
+      }
+    }
+
+    &.hide.drawer--start {
+      animation: show-drawer-from-start var(--hide-duration) ease reverse;
+
+      &.drawer--rtl {
+        animation-name: show-drawer-from-end;
+      }
+    }
+
+    &.pulse {
+      animation: pulse 250ms ease;
+    }
   }
 
-  .drawer__panel:focus {
+  .drawer:focus {
     outline: none;
   }
 
-  .drawer--top .drawer__panel {
+  .drawer--top {
     top: 0;
     inset-inline-end: auto;
     bottom: auto;
@@ -47,7 +109,7 @@ export default css`
     height: var(--size);
   }
 
-  .drawer--end .drawer__panel {
+  .drawer--end {
     top: 0;
     inset-inline-end: 0;
     bottom: auto;
@@ -56,7 +118,7 @@ export default css`
     height: 100%;
   }
 
-  .drawer--bottom .drawer__panel {
+  .drawer--bottom {
     top: auto;
     inset-inline-end: auto;
     bottom: 0;
@@ -65,7 +127,7 @@ export default css`
     height: var(--size);
   }
 
-  .drawer--start .drawer__panel {
+  .drawer--start {
     top: 0;
     inset-inline-end: auto;
     bottom: auto;
@@ -113,7 +175,9 @@ export default css`
   }
 
   .drawer__footer {
-    text-align: right;
+    display: flex;
+    gap: var(--wa-space-xs);
+    justify-content: end;
     padding: var(--footer-spacing);
   }
 
@@ -121,19 +185,92 @@ export default css`
     margin-inline-end: var(--wa-spacing-xs);
   }
 
-  .drawer__overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: var(--wa-color-overlay-modal);
-    pointer-events: all;
+  .drawer::backdrop {
+    /*
+      NOTE: the ::backdrop element doesn't inherit properly in Safari yet, but it will in 17.4! At that time, we can
+      remove the fallback values here.
+    */
+    background-color: var(--wa-color-overlay-modal, rgb(0 0 0 / 0.25));
+  }
+
+  @keyframes pulse {
+    0% {
+      scale: 1;
+    }
+    50% {
+      scale: 1.01;
+    }
+    100% {
+      scale: 1;
+    }
+  }
+
+  @keyframes show-drawer {
+    from {
+      opacity: 0;
+      scale: 0.8;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes show-drawer-from-top {
+    from {
+      opacity: 0;
+      translate: 0 -100%;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes show-drawer-from-end {
+    from {
+      opacity: 0;
+      translate: 100%;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes show-drawer-from-bottom {
+    from {
+      opacity: 0;
+      translate: 0 100%;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes show-drawer-from-start {
+    from {
+      opacity: 0;
+      translate: -100% 0;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes show-backdrop {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @media (forced-colors: active) {
-    .drawer__panel {
+    .drawer {
       border: solid 1px white;
     }
   }

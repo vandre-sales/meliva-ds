@@ -15,7 +15,6 @@ export type { WaFinishEvent } from './wa-finish.js';
 export type { WaFocusEvent } from './wa-focus.js';
 export type { WaHideEvent } from './wa-hide.js';
 export type { WaHoverEvent } from './wa-hover.js';
-export type { WaInitialFocusEvent } from './wa-initial-focus.js';
 export type { WaInputEvent } from './wa-input.js';
 export type { WaInvalidEvent } from './wa-invalid.js';
 export type { WaLazyChangeEvent } from './wa-lazy-change.js';

@@ -1,4 +1,3 @@
-import * as path from 'path';
 import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integration';
 import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
 import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
@@ -44,7 +43,7 @@ export default {
           case ts.SyntaxKind.ClassDeclaration: {
             const className = node.name.getText();
             const classDoc = moduleDoc?.declarations?.find(declaration => declaration.name === className);
-            const customTags = ['animation', 'dependency', 'documentation', 'since', 'status', 'title'];
+            const customTags = ['dependency', 'documentation', 'since', 'status', 'title'];
             let customComments = '/**';
 
             node.jsDoc?.forEach(jsDoc => {
@@ -63,17 +62,6 @@ export default {
             const parsed = parse(`${customComments}\n */`);
             parsed[0].tags?.forEach(t => {
               switch (t.tag) {
-                // Animations
-                case 'animation':
-                  if (!Array.isArray(classDoc['animations'])) {
-                    classDoc['animations'] = [];
-                  }
-                  classDoc['animations'].push({
-                    name: t.name,
-                    description: noDash(t.description)
-                  });
-                  break;
-
                 // Dependencies
                 case 'dependency':
                   if (!Array.isArray(classDoc['dependencies'])) {

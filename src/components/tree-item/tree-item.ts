@@ -1,13 +1,12 @@
 import '../checkbox/checkbox.js';
 import '../icon/icon.js';
 import '../spinner/spinner.js';
-import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { parseDuration, stopAnimations } from '../../internal/animate.js';
 import { watch } from '../../internal/watch.js';
 import { when } from 'lit/directives/when.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -58,6 +57,9 @@ import type { CSSResultGroup, PropertyValueMap } from 'lit';
  * @csspart checkbox__checked-icon - The checkbox's exported `checked-icon` part.
  * @csspart checkbox__indeterminate-icon - The checkbox's exported `indeterminate-icon` part.
  * @csspart checkbox__label - The checkbox's exported `label` part.
+ *
+ * @cssproperty [--show-duration=200ms] - The animation duration when expanding tree items.
+ * @cssproperty [--hide-duration=200ms] - The animation duration when collapsing tree items.
  */
 @customElement('wa-tree-item')
 export default class WaTreeItem extends WebAwesomeElement {
@@ -115,13 +117,15 @@ export default class WaTreeItem extends WebAwesomeElement {
     this.emit('wa-collapse');
 
     await stopAnimations(this.childrenContainer);
-
-    const { keyframes, options } = getAnimation(this, 'tree-item.collapse', { dir: this.localize.dir() });
-    await animateTo(
-      this.childrenContainer,
-      shimKeyframesHeightAuto(keyframes, this.childrenContainer.scrollHeight),
-      options
-    );
+    // We can't animate from 'auto', so use the scroll height for now
+    const duration = parseDuration(getComputedStyle(this.childrenContainer).getPropertyValue('--hide-duration'));
+    await this.childrenContainer.animate(
+      [
+        { height: `${this.childrenContainer.scrollHeight}px`, opacity: '1', overflow: 'hidden' },
+        { height: '0', opacity: '0', overflow: 'hidden' }
+      ],
+      { duration, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' }
+    ).finished;
     this.childrenContainer.hidden = true;
 
     this.emit('wa-after-collapse');
@@ -149,13 +153,18 @@ export default class WaTreeItem extends WebAwesomeElement {
 
     await stopAnimations(this.childrenContainer);
     this.childrenContainer.hidden = false;
-
-    const { keyframes, options } = getAnimation(this, 'tree-item.expand', { dir: this.localize.dir() });
-    await animateTo(
-      this.childrenContainer,
-      shimKeyframesHeightAuto(keyframes, this.childrenContainer.scrollHeight),
-      options
-    );
+    // We can't animate to 'auto', so use the scroll height for now
+    const duration = parseDuration(getComputedStyle(this.childrenContainer).getPropertyValue('--show-duration'));
+    await this.childrenContainer.animate(
+      [
+        { height: '0', opacity: '0', overflow: 'hidden' },
+        { height: `${this.childrenContainer.scrollHeight}px`, opacity: '1', overflow: 'hidden' }
+      ],
+      {
+        duration,
+        easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)'
+      }
+    ).finished;
     this.childrenContainer.style.height = 'auto';
 
     this.emit('wa-after-expand');
@@ -219,7 +228,7 @@ export default class WaTreeItem extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
     const showExpandButton = !this.loading && (!this.isLeaf || this.lazy);
 
     return html`
@@ -300,22 +309,6 @@ export default class WaTreeItem extends WebAwesomeElement {
     `;
   }
 }
-
-setDefaultAnimation('tree-item.expand', {
-  keyframes: [
-    { height: '0', opacity: '0', overflow: 'hidden' },
-    { height: 'auto', opacity: '1', overflow: 'hidden' }
-  ],
-  options: { duration: 250, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' }
-});
-
-setDefaultAnimation('tree-item.collapse', {
-  keyframes: [
-    { height: 'auto', opacity: '1', overflow: 'hidden' },
-    { height: '0', opacity: '0', overflow: 'hidden' }
-  ],
-  options: { duration: 200, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

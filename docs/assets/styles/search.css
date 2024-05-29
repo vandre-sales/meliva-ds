@@ -1,7 +1,7 @@
 #site-search {
   --width: 38rem;
 
-  &::part(panel) {
+  &::part(dialog) {
     position: absolute;
     top: 0;
     border-radius: var(--wa-corners-m);
@@ -27,7 +27,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  #site-search::part(panel) {
+  #site-search::part(dialog) {
     max-width: calc(100% - 2rem);
     margin-block: 1rem;
   }

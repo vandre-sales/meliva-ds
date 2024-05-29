@@ -68,6 +68,8 @@ export default css`
     padding: 0;
     margin: 0;
     pointer-events: none;
+    height: 100%;
+    width: 100%;
   }
 
   .checkbox__checked-icon,
@@ -79,7 +81,7 @@ export default css`
   }
 
   /* Focus */
-  .checkbox:not(.checkbox--checked):not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control {
+  .checkbox:not(.checkbox--checked):not(.checkbox--disabled) .checkbox__control:has(> input:focus-visible) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }
@@ -93,8 +95,8 @@ export default css`
   }
 
   /* Checked/indeterminate + focus */
-  .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control,
-  .checkbox.checkbox--indeterminate:not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control {
+  .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__control:has(> input:focus-visible),
+  .checkbox.checkbox--indeterminate:not(.checkbox--disabled) .checkbox__control:has(> input:focus-visible) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }

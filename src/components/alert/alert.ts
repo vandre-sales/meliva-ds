@@ -1,8 +1,6 @@
 import '../icon-button/icon-button.js';
-import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { waitForEvent } from '../../internal/event.js';
@@ -45,9 +43,6 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'wa
  * @cssproperty --icon-color - The color of the alert's icon.
  * @cssproperty --icon-size - The size of the alert's icon.
  * @cssproperty --padding - The padding within the alert. Expects a single value.
- *
- * @animation alert.show - The animation to use when showing the alert.
- * @animation alert.hide - The animation to use when hiding the alert.
  */
 @customElement('wa-alert')
 export default class WaAlert extends WebAwesomeElement {
@@ -97,7 +92,7 @@ export default class WaAlert extends WebAwesomeElement {
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
-  async handleOpenChange() {
+  handleOpenChange() {
     if (this.open) {
       // Show
       this.emit('wa-show');
@@ -106,11 +101,7 @@ export default class WaAlert extends WebAwesomeElement {
         this.restartAutoHide();
       }
 
-      await stopAnimations(this.base);
       this.base.hidden = false;
-      const { keyframes, options } = getAnimation(this, 'alert.show', { dir: this.localize.dir() });
-      await animateTo(this.base, keyframes, options);
-
       this.emit('wa-after-show');
     } else {
       // Hide
@@ -118,11 +109,7 @@ export default class WaAlert extends WebAwesomeElement {
 
       clearTimeout(this.autoHideTimeout);
 
-      await stopAnimations(this.base);
-      const { keyframes, options } = getAnimation(this, 'alert.hide', { dir: this.localize.dir() });
-      await animateTo(this.base, keyframes, options);
       this.base.hidden = true;
-
       this.emit('wa-after-hide');
     }
   }
@@ -232,22 +219,6 @@ export default class WaAlert extends WebAwesomeElement {
     `;
   }
 }
-
-setDefaultAnimation('alert.show', {
-  keyframes: [
-    { opacity: 0, scale: 0.8 },
-    { opacity: 1, scale: 1 }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
-
-setDefaultAnimation('alert.hide', {
-  keyframes: [
-    { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.8 }
-  ],
-  options: { duration: 250, easing: 'ease' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

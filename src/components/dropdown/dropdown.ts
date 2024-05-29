@@ -1,12 +1,9 @@
 import '../popup/popup.js';
-import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
-import { getTabbableBoundary } from '../../internal/tabbable.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { LocalizeController } from '../../utilities/localize.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -38,9 +35,6 @@ import type WaPopup from '../popup/popup.js';
  * @csspart base - The component's base wrapper.
  * @csspart trigger - The container that wraps the trigger.
  * @csspart panel - The panel that gets shown when the dropdown is open.
- *
- * @animation dropdown.show - The animation to use when showing the dropdown.
- * @animation dropdown.hide - The animation to use when hiding the dropdown.
  */
 @customElement('wa-dropdown')
 export default class WaDropdown extends WebAwesomeElement {
@@ -50,7 +44,6 @@ export default class WaDropdown extends WebAwesomeElement {
   @query('.dropdown__trigger') trigger: HTMLSlotElement;
   @query('.dropdown__panel') panel: HTMLSlotElement;
 
-  private readonly localize = new LocalizeController(this);
   private closeWatcher: CloseWatcher | null;
 
   /**
@@ -281,19 +274,9 @@ export default class WaDropdown extends WebAwesomeElement {
     this.updateAccessibleTrigger();
   }
 
-  //
-  // Slotted triggers can be arbitrary content, but we need to link them to the dropdown panel with `aria-haspopup` and
-  // `aria-expanded`. These must be applied to the "accessible trigger" (the tabbable portion of the trigger element
-  // that gets slotted in) so screen readers will understand them. The accessible trigger could be the slotted element,
-  // a child of the slotted element, or an element in the slotted element's shadow root.
-  //
-  // For example, the accessible trigger of an <wa-button> is a <button> located inside its shadow root.
-  //
-  // To determine this, we assume the first tabbable element in the trigger slot is the "accessible trigger."
-  //
   updateAccessibleTrigger() {
     const assignedElements = this.trigger.assignedElements({ flatten: true }) as HTMLElement[];
-    const accessibleTrigger = assignedElements.find(el => getTabbableBoundary(el).start);
+    const accessibleTrigger = assignedElements[0];
     let target: HTMLElement;
 
     if (accessibleTrigger) {
@@ -381,11 +364,9 @@ export default class WaDropdown extends WebAwesomeElement {
       this.emit('wa-show');
       this.addOpenListeners();
 
-      await stopAnimations(this);
       this.panel.hidden = false;
       this.popup.active = true;
-      const { keyframes, options } = getAnimation(this, 'dropdown.show', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'show-with-scale');
 
       this.emit('wa-after-show');
     } else {
@@ -393,9 +374,7 @@ export default class WaDropdown extends WebAwesomeElement {
       this.emit('wa-hide');
       this.removeOpenListeners();
 
-      await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'dropdown.hide', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.panel.hidden = true;
       this.popup.active = false;
 
@@ -440,22 +419,6 @@ export default class WaDropdown extends WebAwesomeElement {
     `;
   }
 }
-
-setDefaultAnimation('dropdown.show', {
-  keyframes: [
-    { opacity: 0, scale: 0.9 },
-    { opacity: 1, scale: 1 }
-  ],
-  options: { duration: 100, easing: 'ease' }
-});
-
-setDefaultAnimation('dropdown.hide', {
-  keyframes: [
-    { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.9 }
-  ],
-  options: { duration: 100, easing: 'ease' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

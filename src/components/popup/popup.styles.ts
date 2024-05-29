@@ -4,6 +4,8 @@ export default css`
   :host {
     --arrow-color: black;
     --arrow-size: var(--wa-tooltip-arrow-size);
+    --show-duration: 100ms;
+    --hide-duration: 100ms;
 
     /*
      * These properties are computed to account for the arrow's dimensions after being rotated 45º. The constant
@@ -57,5 +59,42 @@ export default css`
       var(--hover-bridge-bottom-right-x, 0) var(--hover-bridge-bottom-right-y, 0),
       var(--hover-bridge-bottom-left-x, 0) var(--hover-bridge-bottom-left-y, 0)
     );
+  }
+
+  /* Built-in animations */
+  .show {
+    animation: show var(--show-duration) ease;
+  }
+
+  .hide {
+    animation: show var(--hide-duration) ease reverse;
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .show-with-scale {
+    animation: show-with-scale var(--show-duration) ease;
+  }
+
+  .hide-with-scale {
+    animation: show-with-scale var(--hide-duration) ease reverse;
+  }
+
+  @keyframes show-with-scale {
+    from {
+      opacity: 0;
+      scale: 0.8;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
   }
 `;
