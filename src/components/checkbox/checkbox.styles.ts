@@ -8,7 +8,7 @@ export default css`
     --border-color-checked: var(--wa-form-controls-activated-color);
     --border-radius: min(
       calc(var(--toggle-size) * 0.375),
-      var(--wa-corners-xs)
+      var(--wa-border-radius-xs)
     ); /* min so it doesn't look like a circle/radio */
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-form-controls-border-width);

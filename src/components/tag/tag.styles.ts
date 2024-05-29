@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --border-radius: var(--wa-corners-xs);
+    --border-radius: var(--wa-border-radius-xs);
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-border-width-s);
 
@@ -71,7 +71,7 @@ export default css`
     font-size: var(--wa-font-size-xs);
     height: calc(var(--wa-form-controls-height-s) * 0.8);
     line-height: calc(var(--wa-form-controls-height-s) - var(--wa-form-controls-border-width) * 2);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     padding: 0 var(--wa-space-xs);
   }
 
@@ -79,7 +79,7 @@ export default css`
     font-size: var(--wa-font-size-s);
     height: calc(var(--wa-form-controls-height-m) * 0.8);
     line-height: calc(var(--wa-form-controls-height-m) - var(--wa-form-controls-border-width) * 2);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     padding: 0 var(--wa-space-s);
   }
 
@@ -87,7 +87,7 @@ export default css`
     font-size: var(--wa-font-size-m);
     height: calc(var(--wa-form-controls-height-l) * 0.8);
     line-height: calc(var(--wa-form-controls-height-l) - var(--wa-form-controls-border-width) * 2);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     padding: 0 var(--wa-space-m);
   }
 
@@ -100,6 +100,6 @@ export default css`
    */
 
   .tag--pill {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 `;

@@ -223,15 +223,15 @@ export default css`
 
   /* Pills */
   .select--pill.select--small .select__combobox {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .select--pill.select--medium .select__combobox {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .select--pill.select--large .select__combobox {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   /* Prefix */
@@ -288,7 +288,7 @@ export default css`
     box-shadow: var(--wa-shadow-level-2);
     background: var(--wa-color-surface-raised);
     border-color: var(--border-color);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     border-style: var(--border-style);
     border-width: var(--border-width);
     padding-block: var(--wa-space-xs);

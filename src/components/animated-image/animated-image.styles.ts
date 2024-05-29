@@ -33,7 +33,7 @@ export default css`
     background: none;
     border: solid var(--wa-border-width-s) currentColor;
     background-color: rgb(0 0 0 / 50%);
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
     color: white;
     pointer-events: none;
     transition: var(--wa-transition-fast) opacity;

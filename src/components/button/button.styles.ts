@@ -274,15 +274,15 @@ export default css`
    */
 
   .button--pill.button--small {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .button--pill.button--medium {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .button--pill.button--large {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   /*

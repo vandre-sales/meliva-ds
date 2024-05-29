@@ -4,7 +4,7 @@
   &::part(dialog) {
     position: absolute;
     top: 0;
-    border-radius: var(--wa-corners-m);
+    border-radius: var(--wa-border-radius-m);
     padding: 0;
     margin: 10rem auto;
     overflow: hidden;
@@ -42,12 +42,12 @@ header {
   flex: 0 0 auto;
   align-items: middle;
   /* Fixes an iOS Safari 16.4 bug that draws the parent element's border radius incorrectly when showing/hiding results */
-  border-radius: var(--wa-corners-l);
+  border-radius: var(--wa-border-radius-l);
 }
 
 #site-search.has-results header {
-  border-start-start-radius: var(--wa-corners-l);
-  border-start-end-radius: var(--wa-corners-l);
+  border-start-start-radius: var(--wa-border-radius-l);
+  border-start-end-radius: var(--wa-border-radius-l);
   border-end-start-radius: 0;
   border-end-end-radius: 0;
 }
@@ -228,8 +228,8 @@ header {
   gap: 2rem;
   color: var(--wa-color-text-quiet);
   border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
-  border-bottom-left-radius: var(--wa-corners-m);
-  border-bottom-right-radius: var(--wa-corners-m);
+  border-bottom-left-radius: var(--wa-border-radius-m);
+  border-bottom-right-radius: var(--wa-border-radius-m);
   padding: 1rem;
 
   kbd {

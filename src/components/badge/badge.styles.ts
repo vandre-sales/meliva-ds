@@ -3,7 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     --border-color: var(--wa-color-surface-default);
-    --border-radius: var(--wa-corners-xs);
+    --border-radius: var(--wa-border-radius-xs);
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-border-width-s);
 
@@ -57,7 +57,7 @@ export default css`
 
   /* Pill modifier */
   .badge--pill {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   /* Pulse modifier */

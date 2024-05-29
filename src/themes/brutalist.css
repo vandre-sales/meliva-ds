@@ -242,16 +242,16 @@
    */
   /* Space is designed to scale according to a single base value.
    * The base value is intended for calculations and is not used by components directly. */
-  --wa-space-base: 1;
-  --wa-space-3xs: calc(var(--wa-space-base) * 0.125rem); /* 2px */
-  --wa-space-2xs: calc(var(--wa-space-base) * 0.25rem); /* 4px */
-  --wa-space-xs: calc(var(--wa-space-base) * 0.5rem); /* 8px */
-  --wa-space-s: calc(var(--wa-space-base) * 0.75rem); /* 12px */
-  --wa-space-m: calc(var(--wa-space-base) * 1rem); /* 16px */
-  --wa-space-l: calc(var(--wa-space-base) * 1.25rem); /* 20px */
-  --wa-space-xl: calc(var(--wa-space-base) * 1.5rem); /* 24px */
-  --wa-space-2xl: calc(var(--wa-space-base) * 2rem); /* 32px */
-  --wa-space-3xl: calc(var(--wa-space-base) * 3rem); /* 48px */
+  --wa-space-multiplier: 1;
+  --wa-space-3xs: calc(var(--wa-space-multiplier) * 0.125rem); /* 2px */
+  --wa-space-2xs: calc(var(--wa-space-multiplier) * 0.25rem); /* 4px */
+  --wa-space-xs: calc(var(--wa-space-multiplier) * 0.5rem); /* 8px */
+  --wa-space-s: calc(var(--wa-space-multiplier) * 0.75rem); /* 12px */
+  --wa-space-m: calc(var(--wa-space-multiplier) * 1rem); /* 16px */
+  --wa-space-l: calc(var(--wa-space-multiplier) * 1.25rem); /* 20px */
+  --wa-space-xl: calc(var(--wa-space-multiplier) * 1.5rem); /* 24px */
+  --wa-space-2xl: calc(var(--wa-space-multiplier) * 2rem); /* 32px */
+  --wa-space-3xl: calc(var(--wa-space-multiplier) * 3rem); /* 48px */
 
   /**
    * Borders
@@ -260,10 +260,10 @@
 
   /* Border widths are designed to scale according to a single base value.
      * The base value is intended for calculations and is not used by components directly. */
-  --wa-border-width-base: 0.125;
-  --wa-border-width-s: calc(var(--wa-border-width-base) * 1rem);
-  --wa-border-width-m: calc(var(--wa-border-width-base) * 2rem);
-  --wa-border-width-l: calc(var(--wa-border-width-base) * 3rem);
+  --wa-border-width-multiplier: 0.125;
+  --wa-border-width-s: calc(var(--wa-border-width-multiplier) * 1rem);
+  --wa-border-width-m: calc(var(--wa-border-width-multiplier) * 2rem);
+  --wa-border-width-l: calc(var(--wa-border-width-multiplier) * 3rem);
 
   --wa-form-controls-border-style: var(--wa-border-style);
   --wa-form-controls-border-width: var(--wa-border-width-s);
@@ -276,16 +276,16 @@
    */
   /* Corners are designed to scale according to a single base value.
    * The base value is intended for calculations and is not used by components directly. */
-  --wa-corners-base: 0.001;
-  --wa-corners-xs: calc(var(--wa-corners-base) * 0.75rem);
-  --wa-corners-s: calc(var(--wa-corners-base) * 1rem);
-  --wa-corners-m: calc(var(--wa-corners-base) * 2rem);
-  --wa-corners-l: calc(var(--wa-corners-base) * 3rem);
+  --wa-border-radius-multiplier: 0.001;
+  --wa-border-radius-xs: calc(var(--wa-border-radius-multiplier) * 0.75rem);
+  --wa-border-radius-s: calc(var(--wa-border-radius-multiplier) * 1rem);
+  --wa-border-radius-m: calc(var(--wa-border-radius-multiplier) * 2rem);
+  --wa-border-radius-l: calc(var(--wa-border-radius-multiplier) * 3rem);
 
   /* Semantic corner properties create specific shapes beyond the theme's preferred corner styles. */
-  --wa-corners-pill: 9999px;
-  --wa-corners-circle: 50%;
-  --wa-corners-sharp: 0;
+  --wa-border-radius-pill: 9999px;
+  --wa-border-radius-circle: 50%;
+  --wa-border-radius-sharp: 0;
 
   /**
    * Focus
@@ -323,7 +323,7 @@
    */
   --wa-form-controls-background: var(--wa-color-surface-default);
 
-  --wa-form-controls-corners: var(--wa-corners-s);
+  --wa-form-controls-corners: var(--wa-border-radius-s);
 
   --wa-form-controls-activated-color: var(--wa-color-neutral-fill-loud);
   --wa-form-controls-resting-color: var(--wa-color-neutral-border-normal);
@@ -352,7 +352,7 @@
   --wa-form-controls-required-content-color: inherit;
   --wa-form-controls-required-content-offset: -0.1em;
 
-  --wa-panel-corners: var(--wa-corners-m);
+  --wa-panel-corners: var(--wa-border-radius-m);
 
   --wa-flow-spacing: 1.5rem;
 
@@ -552,13 +552,13 @@
   }
 
   wa-carousel::part(pagination-item) {
-    border-radius: var(--wa-corners-base);
+    border-radius: var(--wa-border-radius-multiplier);
   }
 
   wa-carousel-item {
     border: var(--wa-panel-border-width) var(--wa-panel-border-style) var(--wa-color-surface-border);
     box-shadow: var(--wa-shadow-level-1);
-    border-radius: calc(var(--wa-corners-s) + var(--wa-panel-border-width));
+    border-radius: calc(var(--wa-border-radius-s) + var(--wa-panel-border-width));
   }
 
   wa-badge {
@@ -644,7 +644,7 @@
 
   wa-switch::part(control),
   wa-switch::part(thumb) {
-    border-radius: var(--wa-corners-base);
+    border-radius: var(--wa-border-radius-multiplier);
     --wa-line-height-condensed: 5px;
   }
 
@@ -728,7 +728,7 @@
 
   .blog wa-avatar::part(image) {
     border: var(--wa-border-width-s) solid var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
   }
 
   .blog .landscape-frame {

@@ -160,7 +160,7 @@ layout: page.njk
 <style>
   div.shadow {
     border: var(--wa-border-width-s) solid var(--wa-color-surface-border);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     display: inline-block;
     height: 4rem;
     margin-right: 2rem;

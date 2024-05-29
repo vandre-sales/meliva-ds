@@ -95,23 +95,23 @@ hasOutline: false
     --wa-line-height-normal: 1.6;
     --wa-line-height-expanded: 2;
 
-    --wa-space-base: 1;
-    --wa-space-3xs: calc(var(--wa-space-base) * 1rem * 0.125);
-    --wa-space-2xs: calc(var(--wa-space-base) * 1rem * 0.25);
-    --wa-space-xs: calc(var(--wa-space-base) * 1rem * 0.5);
-    --wa-space-s: calc(var(--wa-space-base) * 1rem * 0.75);
-    --wa-space-m: calc(var(--wa-space-base) * 1rem * 1);
-    --wa-space-l: calc(var(--wa-space-base) * 1rem * 1.25);
-    --wa-space-xl: calc(var(--wa-space-base) * 1rem * 1.5);
-    --wa-space-2xl: calc(var(--wa-space-base) * 1rem * 2);
-    --wa-space-3xl: calc(var(--wa-space-base) * 1rem * 3);
+    --wa-space-multiplier: 1;
+    --wa-space-3xs: calc(var(--wa-space-multiplier) * 1rem * 0.125);
+    --wa-space-2xs: calc(var(--wa-space-multiplier) * 1rem * 0.25);
+    --wa-space-xs: calc(var(--wa-space-multiplier) * 1rem * 0.5);
+    --wa-space-s: calc(var(--wa-space-multiplier) * 1rem * 0.75);
+    --wa-space-m: calc(var(--wa-space-multiplier) * 1rem * 1);
+    --wa-space-l: calc(var(--wa-space-multiplier) * 1rem * 1.25);
+    --wa-space-xl: calc(var(--wa-space-multiplier) * 1rem * 1.5);
+    --wa-space-2xl: calc(var(--wa-space-multiplier) * 1rem * 2);
+    --wa-space-3xl: calc(var(--wa-space-multiplier) * 1rem * 3);
 
     --wa-border-style: solid;
 
-    --wa-border-width-base: 0.0625;
-    --wa-border-width-s: calc(var(--wa-border-width-base) * 1rem * 1);
-    --wa-border-width-m: calc(var(--wa-border-width-base) * 1rem * 2);
-    --wa-border-width-l: calc(var(--wa-border-width-base) * 1rem * 3);
+    --wa-border-width-multiplier: 0.0625;
+    --wa-border-width-s: calc(var(--wa-border-width-multiplier) * 1rem * 1);
+    --wa-border-width-m: calc(var(--wa-border-width-multiplier) * 1rem * 2);
+    --wa-border-width-l: calc(var(--wa-border-width-multiplier) * 1rem * 3);
 
     --wa-form-controls-border-style: var(--wa-border-style);
     --wa-form-controls-border-width: var(--wa-border-width-s);
@@ -119,11 +119,11 @@ hasOutline: false
     --wa-panel-border-style: var(--wa-border-style);
     --wa-panel-border-width: var(--wa-border-width-s);
 
-    --wa-corners-base: 0.375;
-    --wa-corners-xs: calc(var(--wa-corners-base) * 1rem * 0.75);
-    --wa-corners-s: calc(var(--wa-corners-base) * 1rem * 1);
-    --wa-corners-m: calc(var(--wa-corners-base) * 1rem * 2);
-    --wa-corners-l: calc(var(--wa-corners-base) * 1rem * 3);
+    --wa-border-radius-multiplier: 0.375;
+    --wa-border-radius-xs: calc(var(--wa-border-radius-multiplier) * 1rem * 0.75);
+    --wa-border-radius-s: calc(var(--wa-border-radius-multiplier) * 1rem * 1);
+    --wa-border-radius-m: calc(var(--wa-border-radius-multiplier) * 1rem * 2);
+    --wa-border-radius-l: calc(var(--wa-border-radius-multiplier) * 1rem * 3);
 
     --wa-shadow-blur-base: 0.125;
     --wa-shadow-blur-inset: calc(var(--wa-shadow-blur-base) * 0.75rem);
@@ -155,7 +155,7 @@ hasOutline: false
 
     --wa-form-controls-background: var(--wa-color-surface-default);
 
-    --wa-form-controls-corners: var(--wa-corners-s);
+    --wa-form-controls-corners: var(--wa-border-radius-s);
 
     --wa-form-controls-activated-color: var(--wa-color-brand-fill-loud);
     --wa-form-controls-resting-color: var(--wa-color-neutral-border-normal);
@@ -184,7 +184,7 @@ hasOutline: false
     --wa-form-controls-required-content-color: inherit;
     --wa-form-controls-required-content-offset: -0.1em;
 
-    --wa-panel-corners: var(--wa-corners-m);
+    --wa-panel-corners: var(--wa-border-radius-m);
 
     font-family: var(--wa-font-family-code);
     font-size: 1rem;
@@ -289,7 +289,7 @@ hasOutline: false
 
   #knobs wa-radio-group[name="color"] wa-radio {
     border: 0.0625em solid var(--wa-color-neutral-border-quiet);
-    border-radius: var(--wa-corners-m);
+    border-radius: var(--wa-border-radius-m);
     box-shadow: inset 0 0 0 0 transparent;
     padding: 1em;
     transition: box-shadow var(--wa-transition-fast);
@@ -327,7 +327,7 @@ hasOutline: false
   #knobs wa-radio-group[name="brand-color"] wa-radio {
     display: inline-block;
     border: 0.125em solid transparent;
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
     block-size: 2.375em;
     inline-size: 2.375em;
     padding: 0.0625em;
@@ -352,7 +352,7 @@ hasOutline: false
       display: inline-block;
       block-size: 2em;
       inline-size: 2em;
-      border-radius: var(--wa-corners-circle);
+      border-radius: var(--wa-border-radius-circle);
     }
   }
 
@@ -420,7 +420,7 @@ hasOutline: false
   }
 
   wa-radio-group[name="project-logo-selector"] wa-radio-button:last-of-type::part(button) {
-    border-radius: 0 var(--wa-corners-s) var(--wa-corners-s) 0;
+    border-radius: 0 var(--wa-border-radius-s) var(--wa-border-radius-s) 0;
   }
 
   wa-radio-group[name="project-logo-selector"] wa-tooltip {
@@ -448,7 +448,7 @@ hasOutline: false
 
   .icon-search {
     border: solid 1px var(--wa-color-surface-border);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     padding: var(--wa-space-m);
   }
 
@@ -711,14 +711,14 @@ hasOutline: false
     & wa-radio-group {
       &::part(button-group) {
         background: var(--wa-color-surface-raised);
-        border-radius: var(--wa-corners-pill);
+        border-radius: var(--wa-border-radius-pill);
         box-shadow: 0 0.25em 0.25em -0.25em rgb(0 0 0 / 0.8);
         padding: 4px;
       }
       & wa-radio-button {
         &::part(button) {
           border: none;
-          border-radius: var(--wa-corners-circle);
+          border-radius: var(--wa-border-radius-circle);
         }
         &::part(button--checked) {
           background: var(--wa-color-brand-fill-loud);
@@ -930,8 +930,8 @@ hasOutline: false
   }
 
   function resetBorderWidthValue() {
-    document.documentElement.style.removeProperty('--wa-border-width-base')
-    borderWidth.value = getComputedStyle(previewContainer).getPropertyValue("--wa-border-width-base")
+    document.documentElement.style.removeProperty('--wa-border-width-multiplier')
+    borderWidth.value = getComputedStyle(previewContainer).getPropertyValue("--wa-border-width-multiplier")
   }
 
   function resetBorderStyleValue() {
@@ -940,13 +940,13 @@ hasOutline: false
   }
 
   function resetSpacingValue() {
-    document.documentElement.style.removeProperty('--wa-space-base')
-    spacing.value = getComputedStyle(previewContainer).getPropertyValue("--wa-space-base")
+    document.documentElement.style.removeProperty('--wa-space-multiplier')
+    spacing.value = getComputedStyle(previewContainer).getPropertyValue("--wa-space-multiplier")
   }
 
   function resetCornersValue() {
-    document.documentElement.style.removeProperty('--wa-corners-base')
-    corners.value = getComputedStyle(previewContainer).getPropertyValue("--wa-corners-base")
+    document.documentElement.style.removeProperty('--wa-border-radius-multiplier')
+    corners.value = getComputedStyle(previewContainer).getPropertyValue("--wa-border-radius-multiplier")
   }
 
 
@@ -1618,12 +1618,12 @@ hasOutline: false
 
   // Corners
   container.querySelector('[name="corners"]').addEventListener('wa-input', event => {
-    document.documentElement.style.setProperty('--wa-corners-base', `${event.target.value}`);
+    document.documentElement.style.setProperty('--wa-border-radius-multiplier', `${event.target.value}`);
   });
 
   // Border width
   container.querySelector('[name="border-width"]').addEventListener('wa-input', event => {
-    document.documentElement.style.setProperty('--wa-border-width-base', `${event.target.value / 16}`);
+    document.documentElement.style.setProperty('--wa-border-width-multiplier', `${event.target.value / 16}`);
   });
 
   // Border style
@@ -1633,7 +1633,7 @@ hasOutline: false
 
   // Spacing style
   spacing.addEventListener('wa-input', event => {
-    document.documentElement.style.setProperty('--wa-space-base', `${event.target.value}`);
+    document.documentElement.style.setProperty('--wa-space-multiplier', `${event.target.value}`);
   });
 
   // Form validation
@@ -1710,7 +1710,7 @@ hasOutline: false
     overflow: hidden;
 
     &:not(wa-card *) {
-      border-radius: calc(var(--wa-corners-m) - var(--wa-panel-border-width));
+      border-radius: calc(var(--wa-border-radius-m) - var(--wa-panel-border-width));
     }
 
     & > img {

@@ -15,7 +15,7 @@ export default css`
     position: relative;
     background-color: var(--track-color);
     height: var(--height);
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
     box-shadow: var(--box-shadow);
     overflow: hidden;
   }

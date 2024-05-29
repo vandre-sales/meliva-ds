@@ -84,7 +84,7 @@ wa-page > main {
   display: flex;
   gap: 1rem;
   border: var(--wa-border-style) var(--wa-border-width-m);
-  border-radius: var(--wa-corners-m);
+  border-radius: var(--wa-border-radius-m);
   padding: 1rem;
   margin-block-end: var(--wa-flow-spacing);
 

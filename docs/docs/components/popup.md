@@ -77,7 +77,7 @@ Popup is a low-level utility built specifically for positioning elements. Do not
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-overview-options {
@@ -127,7 +127,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-overview-options {
@@ -259,7 +259,7 @@ Popups are inactive and hidden until the `active` attribute is applied. Removing
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 
@@ -291,7 +291,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 `;
 
@@ -343,7 +343,7 @@ By default, anchors are slotted into the popup using the `anchor` slot. If your 
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 ```
@@ -365,7 +365,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 `;
 
@@ -427,7 +427,7 @@ Since placement is preferred when using `flip`, you can observe the popup's curr
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-placement wa-select {
@@ -464,7 +464,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-placement wa-select {
@@ -533,7 +533,7 @@ Use the `distance` attribute to change the distance between the popup and its an
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-distance wa-range {
@@ -569,7 +569,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-distance wa-range {
@@ -632,7 +632,7 @@ The `skidding` attribute is similar to `distance`, but instead allows you to off
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-skidding wa-range {
@@ -668,7 +668,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-skidding wa-range {
@@ -762,7 +762,7 @@ By default, the arrow will be aligned as close to the center of the _anchor_ as 
       width: 100px;
       height: 50px;
       background: var(--wa-color-brand-fill-loud);
-      border-radius: var(--wa-corners-s);
+      border-radius: var(--wa-border-radius-s);
     }
 
     .popup-arrow-options {
@@ -820,7 +820,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-arrow-options {
@@ -935,7 +935,7 @@ Use the `sync` attribute to make the popup the same width or height as the ancho
     min-width: 50px;
     min-height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-sync wa-select {
@@ -975,7 +975,7 @@ const css = `
     min-width: 50px;
     min-height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-sync wa-switch {
@@ -1051,7 +1051,7 @@ Toggle the switch and scroll the container to see the difference.
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-strategy wa-switch {
@@ -1094,7 +1094,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-strategy wa-switch {
@@ -1166,7 +1166,7 @@ Scroll the container to see how the popup flips to prevent clipping.
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 
@@ -1205,7 +1205,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 `;
 
@@ -1275,7 +1275,7 @@ Scroll the container to see how the popup changes it's fallback placement to pre
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 ```
@@ -1304,7 +1304,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 `;
 
@@ -1364,7 +1364,7 @@ Toggle the switch to see the difference.
     width: 300px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 
@@ -1402,7 +1402,7 @@ const css = `
     width: 300px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 `;
 
@@ -1470,7 +1470,7 @@ Scroll the container to see the popup resize as its available space changes.
 
   .popup-auto-size .box {
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
 
     /* This sets the preferred size of the popup's content */
     width: 100px;
@@ -1516,7 +1516,7 @@ const css = `
 
   .popup-auto-size .box {
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
 
     /* This sets the preferred size of the popup's content */
     width: 100px;
@@ -1583,7 +1583,7 @@ When a gap exists between the anchor and the popup element, this option will add
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-hover-bridge wa-range {
@@ -1627,7 +1627,7 @@ const css = `
     width: 100px;
     height: 50px;
     background: var(--wa-color-brand-fill-loud);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-hover-bridge wa-range {

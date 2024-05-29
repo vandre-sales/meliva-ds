@@ -36,7 +36,7 @@ export default css`
     display: block;
     width: max-content;
     max-width: var(--max-width);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     background-color: var(--wa-color-neutral-fill-loud);
     font: inherit;
     line-height: var(--wa-line-height-normal);

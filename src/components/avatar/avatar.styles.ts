@@ -27,12 +27,12 @@ export default css`
 
   .avatar--circle,
   .avatar--circle .avatar__image {
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
   }
 
   .avatar--rounded,
   .avatar--rounded .avatar__image {
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .avatar--square {

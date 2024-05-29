@@ -734,7 +734,7 @@ Here's a more elaborate example that changes the divider's color and width and a
 
   .split-panel-divider wa-icon {
     position: absolute;
-    border-radius: var(--wa-corners-l);
+    border-radius: var(--wa-border-radius-l);
     background: var(--wa-color-red-50);
     color: white;
     padding: 0.5rem 0.25rem;
@@ -767,7 +767,7 @@ const css = `
 
   .split-panel-divider wa-icon {
     position: absolute;
-    border-radius: var(--wa-corners-xs);
+    border-radius: var(--wa-border-radius-xs);
     background: var(--wa-color-red-50);
     color: white;
     padding: .5rem .25rem;

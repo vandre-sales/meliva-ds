@@ -132,14 +132,14 @@ mark {
 ins {
   background-color: var(--wa-color-success-fill-quiet);
   color: var(--wa-color-success-on-normal);
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   text-decoration: none;
 }
 
 del {
   background-color: var(--wa-color-danger-fill-quiet);
   color: var(--wa-color-danger-on-normal);
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   text-decoration: none;
   padding: 0.125em 0.25em;
 }
@@ -147,7 +147,7 @@ del {
 mark {
   background-color: var(--wa-color-warning-fill-quiet);
   color: inherit;
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   padding: 0.125em 0.25em;
 }
 
@@ -186,7 +186,7 @@ var {
   font-family: var(--wa-font-family-code);
   font-size: 0.875em;
   background-color: var(--wa-color-overlay-inline);
-  border-radius: var(--wa-corners-xs);
+  border-radius: var(--wa-border-radius-xs);
   padding-block: var(--wa-space-2xs);
   padding-inline: var(--wa-space-xs);
 }
@@ -197,7 +197,7 @@ code {
 
 pre {
   color: var(--wa-color-text-normal);
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   padding: var(--wa-space-m);
   white-space: pre;
 }
@@ -223,7 +223,7 @@ kbd {
     inset 0 1px 0 1px rgb(255 255 255 / 0.2),
     0 1px 0 0 rgb(0 0 0 / 0.2);
   font-family: var(--wa-font-family-code);
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   color: var(--wa-color-neutral-on-normal);
   padding: 0.125em 0.4em;
 }
@@ -239,7 +239,7 @@ blockquote {
   font-size: var(--wa-font-size-l);
   font-style: italic;
   background-color: var(--wa-color-neutral-fill-quiet);
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   padding: var(--wa-space-xl);
   margin: 0 0 var(--wa-space-xl) 0;
 }
@@ -373,7 +373,7 @@ dd {
 /* Fieldsets */
 fieldset {
   border: solid 1px var(--wa-color-surface-border);
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   padding: var(--wa-space-m);
   padding-block-end: var(--wa-space-xl);
 }
@@ -388,7 +388,7 @@ img:not(wa-card *),
 picture,
 svg,
 video {
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   max-width: 100%;
   height: auto;
 }

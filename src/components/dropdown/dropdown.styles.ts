@@ -32,7 +32,7 @@ export default css`
   .dropdown__panel {
     font: inherit;
     box-shadow: var(--wa-shadow-level-2);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     pointer-events: none;
   }
 

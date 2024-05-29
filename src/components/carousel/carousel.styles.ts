@@ -46,7 +46,7 @@ export default css`
     overscroll-behavior-x: contain;
     scrollbar-width: none;
     aspect-ratio: calc(var(--aspect-ratio) * var(--slides-per-page));
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
 
     --slide-size: calc((100% - (var(--slides-per-page) - 1) * var(--slide-gap)) / var(--slides-per-page));
   }
@@ -104,7 +104,7 @@ export default css`
     align-items: center;
     background: none;
     border: none;
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     font-size: inherit;
     color: var(--navigation-color);
     padding: var(--wa-space-xs);
@@ -137,7 +137,7 @@ export default css`
     cursor: pointer;
     background: none;
     border: 0;
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
     width: var(--wa-space-s);
     height: var(--wa-space-s);
     background-color: var(--pagination-color);

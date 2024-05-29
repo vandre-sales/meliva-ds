@@ -22,7 +22,7 @@ export default css`
     color: inherit;
     background: none;
     border: none;
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     padding: 0;
     margin: 0;
     cursor: pointer;

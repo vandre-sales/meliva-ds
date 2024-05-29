@@ -204,15 +204,15 @@ export default css`
    */
 
   .input--pill.input--small {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .input--pill.input--medium {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .input--pill.input--large {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   /*

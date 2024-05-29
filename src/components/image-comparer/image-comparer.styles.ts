@@ -60,7 +60,7 @@ export default css`
     width: var(--handle-size);
     height: var(--handle-size);
     background-color: var(--wa-color-neutral-fill-quiet);
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
     font-size: calc(var(--handle-size) * 0.5);
     color: var(--wa-color-neutral-on-normal);
     cursor: inherit;

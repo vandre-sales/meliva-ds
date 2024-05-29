@@ -17,7 +17,7 @@ export default css`
     font: inherit;
     color: var(--color);
     background-color: var(--wa-color-surface-raised);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     user-select: none;
     -webkit-user-select: none;
   }
@@ -36,8 +36,8 @@ export default css`
     height: var(--grid-height);
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
       linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
-    border-top-left-radius: var(--wa-corners-s);
-    border-top-right-radius: var(--wa-corners-s);
+    border-top-left-radius: var(--wa-border-radius-s);
+    border-top-right-radius: var(--wa-border-radius-s);
     cursor: crosshair;
     forced-color-adjust: none;
   }
@@ -76,7 +76,7 @@ export default css`
   .color-picker__slider {
     position: relative;
     height: var(--slider-height);
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
     forced-color-adjust: none;
   }
@@ -131,7 +131,7 @@ export default css`
     width: 2.25rem;
     height: 2.25rem;
     border: none;
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
     background: none;
     margin-left: var(--wa-space-s);
     cursor: copy;
@@ -216,7 +216,7 @@ export default css`
     position: relative;
     width: var(--swatch-size);
     height: var(--swatch-size);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .color-picker__swatch .color-picker__swatch-color {
@@ -271,7 +271,7 @@ export default css`
     max-height: none;
     background-color: var(--wa-color-surface-raised);
     border: solid var(--wa-border-width-s) var(--wa-color-surface-border);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     overflow: visible;
   }
 
@@ -287,19 +287,19 @@ export default css`
   .color-dropdown__trigger.color-dropdown__trigger--small {
     width: var(--wa-form-controls-height-s);
     height: var(--wa-form-controls-height-s);
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--medium {
     width: var(--wa-form-controls-height-m);
     height: var(--wa-form-controls-height-m);
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--large {
     width: var(--wa-form-controls-height-l);
     height: var(--wa-form-controls-height-l);
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
   }
 
   .color-dropdown__trigger:before {
