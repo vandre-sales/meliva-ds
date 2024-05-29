@@ -2263,7 +2263,7 @@ hasOutline: false
           <p>It is a pickle, no doubt about it. Bad news is there's no way you can really know if I'm here to help you or not, so it's really up to you. Just have to make up your own damn mind to either accept what I'm going to tell you, or reject it. Candy?</p>
           <p>We're all here to do what we're all here to do. I'm interested in one thing, Neo, the future. And believe me, I know: the only way to get there is together.</p>
         </div>
-        <wa-callout variant="warning" open>
+        <wa-callout variant="warning">
           <wa-icon slot="icon" name="clock" variant="regular"></wa-icon>
           This item will soon be discontinued
         </wa-callout>
