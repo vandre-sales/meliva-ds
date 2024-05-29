@@ -50,6 +50,6 @@ layout: page.njk
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
-| `--wa-line-height-condensed`   | <div style="line-height: var(--wa-line-height-condensed); border-block: 1px solid var(--wa-color-brand-border-loud)">AaBb</div> |
-| `--wa-line-height-normal`   | <div style="line-height: var(--wa-line-height-normal); border-block: 1px solid var(--wa-color-brand-border-loud)">AaBb</div> |
-| `--wa-line-height-expanded`   | <div style="line-height: var(--wa-line-height-expanded); border-block: 1px solid var(--wa-color-brand-border-loud)">AaBb</div> |
+| `--wa-line-height-condensed`   | <div style="line-height: var(--wa-line-height-condensed); border-block: 1px solid var(--wa-color-neutral-border-loud)">AaBb</div> |
+| `--wa-line-height-normal`   | <div style="line-height: var(--wa-line-height-normal); border-block: 1px solid var(--wa-color-neutral-border-loud)">AaBb</div> |
+| `--wa-line-height-expanded`   | <div style="line-height: var(--wa-line-height-expanded); border-block: 1px solid var(--wa-color-neutral-border-loud)">AaBb</div> |

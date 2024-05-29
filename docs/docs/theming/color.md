@@ -22,7 +22,7 @@ layout: page.njk
     flex: 1 1 auto;
   }
   .color-swatch {
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     line-height: 2;
     height: 2em;
     padding-inline: var(--wa-space-xs);
