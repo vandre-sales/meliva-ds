@@ -21,22 +21,3 @@
     overflow: hidden !important;
   }
 }
-
-.wa-toast-stack {
-  position: fixed;
-  top: 0;
-  inset-inline-end: 0;
-  z-index: var(--wa-z-index-toast);
-  width: 28rem;
-  max-width: 100%;
-  max-height: 100%;
-  overflow: auto;
-}
-
-.wa-toast-stack wa-alert {
-  margin: var(--wa-space-m);
-}
-
-.wa-toast-stack wa-alert::part(base) {
-  box-shadow: var(--wa-shadow-level-2);
-}

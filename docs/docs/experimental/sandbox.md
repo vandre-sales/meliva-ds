@@ -44,35 +44,35 @@ layout: page.njk
 ## Alerts
 
 ```html {.example}
-<wa-alert variant="brand" open>
+<wa-callout variant="brand">
   <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
   <strong>This is super informative</strong><br />
   You can tell by how pretty the alert is.
-</wa-alert>
+</wa-callout>
 <br />
-<wa-alert variant="success" open>
+<wa-callout variant="success">
   <wa-icon slot="icon" name="circle-check" variant="regular"></wa-icon>
   <strong>Your changes have been saved</strong><br />
   You can safely exit the app now.
-</wa-alert>
+</wa-callout>
 <br />
-<wa-alert variant="neutral" open>
+<wa-callout variant="neutral">
   <wa-icon slot="icon" name="gear" variant="regular"></wa-icon>
   <strong>Your settings have been updated</strong><br />
   Settings will take affect on next login.
-</wa-alert>
+</wa-callout>
 <br />
-<wa-alert variant="warning" open>
+<wa-callout variant="warning">
   <wa-icon slot="icon" name="triangle-exclamation" variant="regular"></wa-icon>
   <strong>Your session has ended</strong><br />
   Please login again to continue.
-</wa-alert>
+</wa-callout>
 <br />
-<wa-alert variant="danger" open>
+<wa-callout variant="danger">
   <wa-icon slot="icon" name="circle-exclamation" variant="regular"></wa-icon>
   <strong>Your account has been deleted</strong><br />
   We're very sorry to see you go!
-</wa-alert>
+</wa-callout>
 ```
 
 ## Badges and Tags
