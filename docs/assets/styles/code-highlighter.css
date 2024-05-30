@@ -4,7 +4,7 @@
 .code-cdata,
 .code-operator,
 .code-punctuation {
-  color: var(--wa-color-base-50);
+  color: var(--wa-color-base-40);
 }
 
 .code-namespace {
@@ -15,7 +15,7 @@
 .code-keyword,
 .code-tag,
 .code-url {
-  color: #7c3aed; /* violet */
+  color: var(--wa-color-indigo-40);
 }
 
 .code-symbol,
@@ -42,7 +42,7 @@
 .code-function,
 .code-class-name,
 .code-regex {
-  color: var(--wa-color-yellow-40);
+  color: var(--wa-color-blue-40);
 }
 
 .code-important,

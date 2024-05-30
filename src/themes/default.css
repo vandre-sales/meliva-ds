@@ -145,7 +145,7 @@
 
   /* Overlays provide a backdrop for isolated content, often allowing background colors or content to show through. */
   --wa-color-overlay-modal: color-mix(in oklab, var(--wa-color-base-10) 40%, transparent);
-  --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-50) 10%, transparent);
+  --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-80) 20%, transparent);
 
   /* Shadows indicate elevation. Shadow color is used in your theme's shadow properties. */
   --wa-color-shadow: color-mix(
@@ -310,28 +310,26 @@
   /* These common border radius properties can create specific shapes beyond the theme's preferred corner styles. */
   --wa-border-radius-pill: 9999px;
   --wa-border-radius-circle: 50%;
-  --wa-border-radius-sharp: 0;
+  --wa-border-radius-sharp: 0rem;
 
   /**
    * Focus
    */
   --wa-focus-ring-style: solid;
   --wa-focus-ring-width: 0.1875rem; /* 3px */
-  --wa-focus-ring: var(--wa-focus-ring-style) var(--wa-focus-ring-width)
-    color-mix(in oklab, var(--wa-color-focus) 99%, transparent);
+  --wa-focus-ring: var(--wa-focus-ring-style) var(--wa-focus-ring-width) var(--wa-color-focus);
   --wa-focus-ring-offset: 0.0625rem; /* 1px */
 
   /**
    * Links
    */
-  --wa-link-decoration-default: underline color-mix(in oklab, var(--wa-color-text-link), transparent 24%) dotted;
+  --wa-link-decoration-default: underline color-mix(in oklab, var(--wa-color-text-link) 70%, transparent) dotted;
   --wa-link-decoration-hover: underline;
 
   /**
    * Z-index
    */
   --wa-z-index-dropdown: 900;
-  --wa-z-index-alert-group: 950;
   --wa-z-index-toast: 990;
   --wa-z-index-tooltip: 1000;
 
@@ -340,7 +338,7 @@
    */
   --wa-transition-normal: 250ms;
   --wa-transition-fast: 150ms;
-  --wa-transition-faster: 50ms;
+  --wa-transition-faster: 75ms;
 
   /**
    * Component groups
@@ -384,7 +382,7 @@
 
   --wa-panel-corners: var(--wa-border-radius-m);
 
-  --wa-flow-spacing: 1.5rem;
+  --wa-flow-spacing: var(--wa-space-2xl);
 
   /**
    * From 2.x
