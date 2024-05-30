@@ -386,7 +386,7 @@ TODO Page Description
     grid-template-columns: 35% 65%;
     grid-column-gap: 1rem;
 ">
-  <img class="cart-item-image" src="https://source.unsplash.com/white-crew-neck-t-shirt-acn5ERAeSb4" alt="" width="300">
+  <img class="cart-item-image" src="https://source.unsplash.com/white-crew-neck-t-shirt-acn5ERAeSb4" alt="" >
   <div>
     <h3>Quality Cotton Tee</h3>
     <span>$45.00</span>
@@ -462,6 +462,10 @@ TODO Page Description
   .customer-list-item {
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 1rem;
+  }
+
+  .cart-item-image {
+    width: 100%;
   }
 </style>
 ```
@@ -691,6 +695,7 @@ TODO Page Description
 
         img {
           grid-column: 1/4;
+          width: 100%;
         }
 
         .summary-item-info {
