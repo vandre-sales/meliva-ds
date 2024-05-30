@@ -18,26 +18,26 @@ layout: page.njk
 
 ## Style
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-border-style`   | <div class="border-swatch" style="border-style: var(--wa-border-style)"></div> |
+| Custom Property               | Default Value |  Preview                        |
+| ----------------------------- | - | ------------------------------- |
+| `--wa-border-style`   | <code>solid</code> | <div class="border-swatch" style="border-style: var(--wa-border-style)"></div> |
 
 ## Width
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-border-width-s`   | <div class="border-swatch" style="border-width: var(--wa-border-width-s)"></div> |
-| `--wa-border-width-m`   | <div class="border-swatch" style="border-width: var(--wa-border-width-m)"></div> |
-| `--wa-border-width-l`   | <div class="border-swatch" style="border-width: var(--wa-border-width-l)"></div> |
+| Custom Property               | Default Value |  Preview                        |
+| ----------------------------- | - | ------------------------------- |
+| `--wa-border-width-s`   | <code>0.0625rem</code> | <div class="border-swatch" style="border-width: var(--wa-border-width-s)"></div> |
+| `--wa-border-width-m`   | <code>0.125rem</code> | <div class="border-swatch" style="border-width: var(--wa-border-width-m)"></div> |
+| `--wa-border-width-l`   | <code>0.1875rem</code> | <div class="border-swatch" style="border-width: var(--wa-border-width-l)"></div> |
 
 ## Radius
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-border-radius-xs`   | <div class="border-swatch" style="border-radius: var(--wa-border-radius-xs)"></div> |
-| `--wa-border-radius-s`   | <div class="border-swatch" style="border-radius: var(--wa-border-radius-s)"></div> |
-| `--wa-border-radius-m`   | <div class="border-swatch" style="border-radius: var(--wa-border-radius-m)"></div> |
-| `--wa-border-radius-l`   | <div class="border-swatch" style="border-radius: var(--wa-border-radius-l)"></div> |
-| `--wa-border-radius-pill`   | <div class="border-swatch" style="border-radius: var(--wa-border-radius-pill)"></div> |
-| `--wa-border-radius-circle`   | <div class="border-swatch" style="aspect-ratio: 1 / 1; border-radius: var(--wa-border-radius-circle)"></div> |
-| `--wa-border-radius-sharp`   | <div class="border-swatch" style="border-radius: var(--wa-border-radius-sharp)"></div> |
+| Custom Property               | Default Value |  Preview                        |
+| ----------------------------- | - | ------------------------------- |
+| `--wa-border-radius-xs`   | <code>0.28125rem</code> | <div class="border-swatch" style="border-radius: var(--wa-border-radius-xs)"></div> |
+| `--wa-border-radius-s`   | <code>0.375rem</code> | <div class="border-swatch" style="border-radius: var(--wa-border-radius-s)"></div> |
+| `--wa-border-radius-m`   | <code>0.75rem</code> | <div class="border-swatch" style="border-radius: var(--wa-border-radius-m)"></div> |
+| `--wa-border-radius-l`   | <code>1.125rem</code> | <div class="border-swatch" style="border-radius: var(--wa-border-radius-l)"></div> |
+| `--wa-border-radius-pill`   | <code>9999px</code> | <div class="border-swatch" style="border-radius: var(--wa-border-radius-pill)"></div> |
+| `--wa-border-radius-circle`   | <code>50%</code> | <div class="border-swatch" style="aspect-ratio: 1 / 1; border-radius: var(--wa-border-radius-circle)"></div> |
+| `--wa-border-radius-sharp`   | <code>0rem</code> | <div class="border-swatch" style="border-radius: var(--wa-border-radius-sharp)"></div> |

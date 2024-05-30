@@ -8,6 +8,7 @@ layout: page.njk
   .motion-swatch {
     height: 2em;
     background-color: var(--wa-color-neutral-fill-normal);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .motion-swatch:hover {
@@ -17,8 +18,8 @@ layout: page.njk
 
 ## Transitions
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-transition-normal`   | <div class="motion-swatch" style="transition: background-color var(--wa-transition-normal)"></div> |
-| `--wa-transition-fast`   | <div class="motion-swatch" style="transition: background-color var(--wa-transition-fast)"></div> |
-| `--wa-transition-faster`   | <div class="motion-swatch" style="transition: background-color var(--wa-transition-faster)"></div> |
+| Custom Property               | Default Value |  Preview                        |
+| ----------------------------- | - | ------------------------------- |
+| `--wa-transition-normal`   | <code>250ms</code> | <div class="motion-swatch" style="transition: background-color var(--wa-transition-normal)"></div> |
+| `--wa-transition-fast`   | <code>150ms</code> | <div class="motion-swatch" style="transition: background-color var(--wa-transition-fast)"></div> |
+| `--wa-transition-faster`   | <code>75ms</code> | <div class="motion-swatch" style="transition: background-color var(--wa-transition-faster)"></div> |
