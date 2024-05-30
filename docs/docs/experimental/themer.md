@@ -2140,10 +2140,10 @@ hasOutline: false
   &lt;/body&gt;
 &lt;/html&gt;</code>
 </pre>
-        <wa-alert open>
+        <wa-callout>
           <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
           Adam Sternbergh credits The Matrix with reinventing and setting the template for modern superhero blockbusters, and inspiring the superhero renaissance in the early 21st century.
-        </wa-alert>
+        </wa-callout>
       </div>
     </section>
     <section class="strata message-composer">
@@ -2256,20 +2256,10 @@ hasOutline: false
           <p>It is a pickle, no doubt about it. Bad news is there's no way you can really know if I'm here to help you or not, so it's really up to you. Just have to make up your own damn mind to either accept what I'm going to tell you, or reject it. Candy?</p>
           <p>We're all here to do what we're all here to do. I'm interested in one thing, Neo, the future. And believe me, I know: the only way to get there is together.</p>
         </div>
-        <wa-alert variant="warning" open>
+        <wa-callout variant="warning">
           <wa-icon slot="icon" name="clock" variant="regular"></wa-icon>
           This item will soon be discontinued
-        </wa-alert>
-        <wa-button-group label="Alignment">
-  <wa-button>Left</wa-button>
-  <wa-button>Center</wa-button>
-  <wa-button>Right</wa-button>
-</wa-button-group>
-        <wa-button-group label="Alignment">
-  <wa-button variant="warning">Left</wa-button>
-  <wa-button variant="warning">Center</wa-button>
-  <wa-button variant="warning">Right</wa-button>
-</wa-button-group>
+        </wa-callout>
         <div>
           <div style="margin: var(--wa-space-3xl) 0">
             <wa-radio-group label="Choose a finish" name="finish" value="Matte" class="product-finish">

@@ -45,7 +45,7 @@ export default css`
     --content-color: var(--wa-color-danger-on-normal);
   }
 
-  .alert {
+  .callout {
     position: relative;
     display: flex;
     align-items: stretch;
@@ -60,11 +60,7 @@ export default css`
     margin: inherit;
   }
 
-  .alert:not(.alert--closable) .alert__close-button {
-    display: none;
-  }
-
-  .alert__icon {
+  .callout__icon {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -72,26 +68,13 @@ export default css`
     font-size: var(--icon-size);
   }
 
-  .alert__icon ::slotted(*) {
+  .callout__icon ::slotted(*) {
     margin-inline-end: var(--padding) !important;
   }
 
-  .alert__message {
+  .callout__message {
     flex: 1 1 auto;
     display: block;
     overflow: hidden;
-  }
-
-  .alert__close-button {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    color: currentColor;
-    font-size: var(--wa-font-size-m);
-    padding-inline-start: var(--padding);
-  }
-
-  .alert__close-button:hover::part(base) {
-    color: currentColor;
   }
 `;

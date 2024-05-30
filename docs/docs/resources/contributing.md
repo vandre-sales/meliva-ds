@@ -433,7 +433,7 @@ What to test for a given component:
 - Add at least one accessibility test (The accessibility check only covers the parts of the DOM which are currently visible and rendered. Depending on the component, more than one accessibility test is required to cover all scenarios.):
 
 ```ts
-const myComponent = await fixture<WaAlert>(html`<wa-my-component>SomeContent</wa-my-component>`);
+const myComponent = await fixture<WaComponent>(html`<wa-component>...</wa-component>`);
 
 await expect(myComponent).to.be.accessible();
 ```
