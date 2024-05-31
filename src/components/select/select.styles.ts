@@ -2,11 +2,11 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-radius: var(--wa-form-controls-corners);
-    --border-style: var(--wa-form-controls-border-style);
-    --border-width: var(--wa-form-controls-border-width);
+    --background: var(--wa-form-control-background);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-radius: var(--wa-form-control-border-radius);
+    --border-style: var(--wa-form-control-border-style);
+    --border-width: var(--wa-form-control-border-width);
     --box-shadow: var(--wa-shadow-level-0);
 
     display: block;
@@ -71,8 +71,8 @@ export default css`
     font: inherit;
     border: none;
     background: none;
-    line-height: var(--wa-form-controls-value-line-height);
-    color: var(--wa-form-controls-value-color);
+    line-height: var(--wa-form-control-value-line-height);
+    color: var(--wa-form-control-value-color);
     cursor: inherit;
     overflow: hidden;
     padding: 0;
@@ -137,7 +137,7 @@ export default css`
 
   .select--standard:not(.select--disabled).select--open .select__combobox,
   .select--standard:not(.select--disabled).select--focused .select__combobox {
-    border-color: var(--wa-form-controls-activated-color);
+    border-color: var(--wa-form-control-activated-color);
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }
@@ -151,7 +151,7 @@ export default css`
   /* Sizes */
   .select--small .select__combobox {
     font-size: var(--wa-font-size-s);
-    min-height: var(--wa-form-controls-height-s);
+    min-height: var(--wa-form-control-height-s);
     padding-block: 0;
     padding-inline: var(--wa-space-s);
   }
@@ -175,7 +175,7 @@ export default css`
 
   .select--medium .select__combobox {
     font-size: var(--wa-font-size-m);
-    min-height: var(--wa-form-controls-height-m);
+    min-height: var(--wa-form-control-height-m);
     padding-block: 0;
     padding-inline: var(--wa-space-m);
   }
@@ -199,7 +199,7 @@ export default css`
 
   .select--large .select__combobox {
     font-size: var(--wa-font-size-l);
-    min-height: var(--wa-form-controls-height-l);
+    min-height: var(--wa-form-control-height-l);
     padding-block: 0;
     padding-inline: var(--wa-space-l);
   }

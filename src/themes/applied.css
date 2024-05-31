@@ -273,7 +273,7 @@ li > ol {
 /* Details */
 details {
   background-color: var(--wa-color-neutral-fill-quiet);
-  border-radius: var(--wa-panel-corners);
+  border-radius: var(--wa-panel-border-radius);
   padding: 0;
   margin: 0;
   padding-inline: var(--wa-space-m);

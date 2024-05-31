@@ -266,7 +266,7 @@ wa-textarea:not(:focus) {
 wa-checkbox {
   --background-checked: linear-gradient(
     to bottom,
-    var(--wa-form-controls-activated-color),
+    var(--wa-form-control-activated-color),
     var(--wa-color-brand-border-loud)
   );
 

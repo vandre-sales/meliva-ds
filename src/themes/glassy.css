@@ -264,8 +264,8 @@
   --wa-border-width-m: calc(var(--wa-border-width-multiplier) * 2rem);
   --wa-border-width-l: calc(var(--wa-border-width-multiplier) * 3rem);
 
-  --wa-form-controls-border-style: var(--wa-border-style);
-  --wa-form-controls-border-width: var(--wa-border-width-s);
+  --wa-form-control-border-style: var(--wa-border-style);
+  --wa-form-control-border-width: var(--wa-border-width-s);
 
   --wa-panel-border-style: hidden;
   --wa-panel-border-width: var(--wa-border-width-s);
@@ -319,38 +319,38 @@
   /**
    * Component groups
    */
-  --wa-form-controls-background: var(--wa-color-surface-default);
+  --wa-form-control-background: var(--wa-color-surface-default);
 
-  --wa-form-controls-corners: var(--wa-border-radius-s);
+  --wa-form-control-border-radius: var(--wa-border-radius-s);
 
-  --wa-form-controls-activated-color: var(--wa-color-brand-fill-loud);
-  --wa-form-controls-resting-color: var(--wa-color-neutral-border-normal);
+  --wa-form-control-activated-color: var(--wa-color-brand-fill-loud);
+  --wa-form-control-resting-color: var(--wa-color-neutral-border-normal);
 
-  --wa-form-controls-label-color: var(--wa-color-text-normal);
-  --wa-form-controls-label-font-weight: var(--wa-font-weight-normal);
-  --wa-form-controls-label-line-height: var(--wa-line-height-normal);
+  --wa-form-control-label-color: var(--wa-color-text-normal);
+  --wa-form-control-label-font-weight: var(--wa-font-weight-normal);
+  --wa-form-control-label-line-height: var(--wa-line-height-normal);
 
-  --wa-form-controls-value-color: var(--wa-color-text-normal);
-  --wa-form-controls-value-font-weight: var(--wa-font-weight-body);
-  --wa-form-controls-value-line-height: var(--wa-line-height-condensed);
+  --wa-form-control-value-color: var(--wa-color-text-normal);
+  --wa-form-control-value-font-weight: var(--wa-font-weight-body);
+  --wa-form-control-value-line-height: var(--wa-line-height-condensed);
 
-  --wa-form-controls-placeholder-color: var(--wa-color-base-60);
+  --wa-form-control-placeholder-color: var(--wa-color-base-60);
 
-  --wa-form-controls-height-s: calc(
-    var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-controls-value-line-height)
+  --wa-form-control-height-s: calc(
+    var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-control-value-line-height)
   );
-  --wa-form-controls-height-m: calc(
-    var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-controls-value-line-height)
+  --wa-form-control-height-m: calc(
+    var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-control-value-line-height)
   );
-  --wa-form-controls-height-l: calc(
-    var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-controls-value-line-height)
+  --wa-form-control-height-l: calc(
+    var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-control-value-line-height)
   );
 
-  --wa-form-controls-required-content: '*';
-  --wa-form-controls-required-content-color: inherit;
-  --wa-form-controls-required-content-offset: -0.1em;
+  --wa-form-control-required-content: '*';
+  --wa-form-control-required-content-color: inherit;
+  --wa-form-control-required-content-offset: -0.1em;
 
-  --wa-panel-corners: var(--wa-border-radius-m);
+  --wa-panel-border-radius: var(--wa-border-radius-m);
 
   --wa-flow-spacing: 1.5rem;
 

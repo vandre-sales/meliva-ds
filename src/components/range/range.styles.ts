@@ -2,10 +2,10 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --thumb-color: var(--wa-form-controls-activated-color);
+    --thumb-color: var(--wa-form-control-activated-color);
     --thumb-gap: calc(var(--thumb-size) * 0.125);
     --thumb-shadow: initial;
-    --thumb-size: calc(1rem * var(--wa-form-controls-value-line-height));
+    --thumb-size: calc(1rem * var(--wa-form-control-value-line-height));
     --tooltip-offset: calc(var(--wa-tooltip-arrow-size) * 2.5);
     --track-color-active: var(--wa-color-neutral-fill-normal);
     --track-color-inactive: var(--wa-color-neutral-fill-normal);
@@ -26,7 +26,7 @@ export default css`
     width: 100%;
     height: var(--track-height);
     background: transparent;
-    line-height: var(--wa-form-controls-height-m);
+    line-height: var(--wa-form-control-height-m);
     vertical-align: middle;
     margin: 0;
 

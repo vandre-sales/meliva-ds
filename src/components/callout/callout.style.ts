@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --border-radius: var(--wa-panel-corners);
+    --border-radius: var(--wa-panel-border-radius);
     --border-style: var(--wa-panel-border-style);
     --border-width: var(--wa-panel-border-width);
     --icon-color: currentColor;

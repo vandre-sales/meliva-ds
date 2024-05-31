@@ -2,18 +2,18 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
-    --background-checked: var(--wa-form-controls-activated-color);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-color-checked: var(--wa-form-controls-activated-color);
+    --background: var(--wa-form-control-background);
+    --background-checked: var(--wa-form-control-activated-color);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-color-checked: var(--wa-form-control-activated-color);
     --border-radius: min(
       calc(var(--toggle-size) * 0.375),
       var(--wa-border-radius-xs)
     ); /* min so it doesn't look like a circle/radio */
     --border-style: var(--wa-border-style);
-    --border-width: var(--wa-form-controls-border-width);
+    --border-width: var(--wa-form-control-border-width);
     --box-shadow: none;
-    --toggle-size: calc(1em * var(--wa-form-controls-value-line-height));
+    --toggle-size: calc(1em * var(--wa-form-control-value-line-height));
 
     display: inline-block;
   }
@@ -23,7 +23,7 @@ export default css`
     display: inline-flex;
     align-items: flex-start;
     font: inherit;
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -54,7 +54,7 @@ export default css`
     border-width: var(--border-width);
     background: var(--background);
     box-shadow: var(--box-shadow);
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     transition:
       var(--wa-transition-fast) border-color,
       var(--wa-transition-fast) background-color,
@@ -116,8 +116,8 @@ export default css`
   }
 
   :host([required]) .checkbox__label::after {
-    content: var(--wa-form-controls-required-content);
-    color: var(--wa-form-controls-required-content-color);
-    margin-inline-start: var(--wa-form-controls-required-content-offset);
+    content: var(--wa-form-control-required-content);
+    color: var(--wa-form-control-required-content-color);
+    margin-inline-start: var(--wa-form-control-required-content-offset);
   }
 `;

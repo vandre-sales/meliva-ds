@@ -113,8 +113,8 @@ hasOutline: false
     --wa-border-width-m: calc(var(--wa-border-width-multiplier) * 1rem * 2);
     --wa-border-width-l: calc(var(--wa-border-width-multiplier) * 1rem * 3);
 
-    --wa-form-controls-border-style: var(--wa-border-style);
-    --wa-form-controls-border-width: var(--wa-border-width-s);
+    --wa-form-control-border-style: var(--wa-border-style);
+    --wa-form-control-border-width: var(--wa-border-width-s);
 
     --wa-panel-border-style: var(--wa-border-style);
     --wa-panel-border-width: var(--wa-border-width-s);
@@ -153,38 +153,38 @@ hasOutline: false
     --wa-shadow-level-3: var(--wa-shadow-offset-x-level-3) var(--wa-shadow-offset-y-level-3) var(--wa-shadow-blur-level-3)
       calc(var(--wa-shadow-offset-x-level-3) * -1) var(--wa-color-shadow);
 
-    --wa-form-controls-background: var(--wa-color-surface-default);
+    --wa-form-control-background: var(--wa-color-surface-default);
 
-    --wa-form-controls-corners: var(--wa-border-radius-s);
+    --wa-form-control-border-radius: var(--wa-border-radius-s);
 
-    --wa-form-controls-activated-color: var(--wa-color-brand-fill-loud);
-    --wa-form-controls-resting-color: var(--wa-color-neutral-border-normal);
+    --wa-form-control-activated-color: var(--wa-color-brand-fill-loud);
+    --wa-form-control-resting-color: var(--wa-color-neutral-border-normal);
 
-    --wa-form-controls-label-color: var(--wa-color-text-normal);
-    --wa-form-controls-label-font-weight: var(--wa-font-weight-normal);
-    --wa-form-controls-label-line-height: var(--wa-line-height-normal);
+    --wa-form-control-label-color: var(--wa-color-text-normal);
+    --wa-form-control-label-font-weight: var(--wa-font-weight-normal);
+    --wa-form-control-label-line-height: var(--wa-line-height-normal);
 
-    --wa-form-controls-value-color: var(--wa-color-text-normal);
-    --wa-form-controls-value-font-weight: var(--wa-font-weight-body);
-    --wa-form-controls-value-line-height: var(--wa-line-height-condensed);
+    --wa-form-control-value-color: var(--wa-color-text-normal);
+    --wa-form-control-value-font-weight: var(--wa-font-weight-body);
+    --wa-form-control-value-line-height: var(--wa-line-height-condensed);
 
-    --wa-form-controls-placeholder-color: color-mix(in oklab, var(--wa-color-text-normal), transparent);
+    --wa-form-control-placeholder-color: color-mix(in oklab, var(--wa-color-text-normal), transparent);
 
-    --wa-form-controls-height-s: calc(
-      var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-controls-value-line-height)
+    --wa-form-control-height-s: calc(
+      var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-control-value-line-height)
     );
-    --wa-form-controls-height-m: calc(
-      var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-controls-value-line-height)
+    --wa-form-control-height-m: calc(
+      var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-control-value-line-height)
     );
-    --wa-form-controls-height-l: calc(
-      var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-controls-value-line-height)
+    --wa-form-control-height-l: calc(
+      var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-control-value-line-height)
     );
 
-    --wa-form-controls-required-content: '*';
-    --wa-form-controls-required-content-color: inherit;
-    --wa-form-controls-required-content-offset: -0.1em;
+    --wa-form-control-required-content: '*';
+    --wa-form-control-required-content-color: inherit;
+    --wa-form-control-required-content-offset: -0.1em;
 
-    --wa-panel-corners: var(--wa-border-radius-m);
+    --wa-panel-border-radius: var(--wa-border-radius-m);
 
     font-family: var(--wa-font-family-code);
     font-size: 1rem;
@@ -258,9 +258,9 @@ hasOutline: false
         padding-block-end: 0;
 
         & legend {
-          color: var(--wa-form-controls-label-color);
-          font-weight: var(--wa-form-controls-label-font-weight);
-          line-height: var(--wa-form-controls-label-line-height);
+          color: var(--wa-form-control-label-color);
+          font-weight: var(--wa-form-control-label-font-weight);
+          line-height: var(--wa-form-control-label-line-height);
           margin-bottom: var(--wa-space-3xs);
           padding-inline: 0;
         }
@@ -296,7 +296,7 @@ hasOutline: false
 
     &[aria-checked="true"] {
       border-color: transparent;
-      box-shadow: inset 0 0 0 0.125em var(--wa-form-controls-activated-color);
+      box-shadow: inset 0 0 0 0.125em var(--wa-form-control-activated-color);
     }
 
     & + * {
@@ -333,7 +333,7 @@ hasOutline: false
     padding: 0.0625em;
 
     &[aria-checked="true"] {
-      border: 0.125em solid var(--wa-form-controls-activated-color);
+      border: 0.125em solid var(--wa-form-control-activated-color);
     }
 
     &::part(base) {
@@ -366,13 +366,13 @@ hasOutline: false
   /* file uploader styles */
   .file-uploader {
     position: relative;
-    border: var(--wa-form-controls-border-width) dashed var(--wa-form-controls-resting-color);
-    border-radius: var(--wa-form-controls-corners);
-    background: var(--wa-form-controls-background);
+    border: var(--wa-form-control-border-width) dashed var(--wa-form-control-resting-color);
+    border-radius: var(--wa-form-control-border-radius);
+    background: var(--wa-form-control-background);
     cursor: pointer;
     font-weight: var(--wa-font-weight-action);
-    height: calc(var(--wa-form-controls-height-m) + var(--wa-border-width-s) * 2);
-    line-height: var(--wa-form-controls-height-m);
+    height: calc(var(--wa-form-control-height-m) + var(--wa-border-width-s) * 2);
+    line-height: var(--wa-form-control-height-m);
     text-align: center;
   }
 

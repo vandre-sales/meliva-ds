@@ -2,16 +2,16 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
-    --background-checked: var(--wa-form-controls-activated-color);
-    --border-color: var(--wa-form-controls-resting-color);
+    --background: var(--wa-form-control-background);
+    --background-checked: var(--wa-form-control-activated-color);
+    --border-color: var(--wa-form-control-resting-color);
     --border-color-checked: var(--background-checked);
-    --border-style: var(--wa-form-controls-border-style);
-    --border-width: var(--wa-form-controls-border-width);
+    --border-style: var(--wa-form-control-border-style);
+    --border-width: var(--wa-form-control-border-width);
     --box-shadow: initial;
-    --height: calc(1em * var(--wa-form-controls-value-line-height));
-    --thumb-color: var(--wa-form-controls-resting-color);
-    --thumb-color-checked: var(--wa-form-controls-background);
+    --height: calc(1em * var(--wa-form-control-value-line-height));
+    --thumb-color: var(--wa-form-control-resting-color);
+    --thumb-color-checked: var(--wa-form-control-background);
     --thumb-shadow: initial;
     --thumb-size: calc((var(--height) - var(--border-width) * 2) * 0.75);
     --width: calc(var(--height) * 1.75);
@@ -36,7 +36,7 @@ export default css`
     display: inline-flex;
     align-items: center;
     font: inherit;
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -114,9 +114,9 @@ export default css`
   }
 
   :host([required]) .switch__label::after {
-    content: var(--wa-form-controls-required-content);
-    color: var(--wa-form-controls-required-content-color);
-    margin-inline-start: var(--wa-form-controls-required-content-offset);
+    content: var(--wa-form-control-required-content);
+    color: var(--wa-form-control-required-content-color);
+    margin-inline-start: var(--wa-form-control-required-content-offset);
   }
 
   @media (forced-colors: active) {

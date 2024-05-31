@@ -2,11 +2,11 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-radius: var(--wa-form-controls-corners);
-    --border-style: var(--wa-form-controls-border-style);
-    --border-width: var(--wa-form-controls-border-width);
+    --background: var(--wa-form-control-background);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-radius: var(--wa-form-control-border-radius);
+    --border-style: var(--wa-form-control-border-style);
+    --border-width: var(--wa-form-control-border-width);
     --box-shadow: var(--wa-shadow-level-0);
 
     display: block;
@@ -29,7 +29,7 @@ export default css`
     position: relative;
     width: 100%;
     font: inherit;
-    line-height: var(--wa-form-controls-value-line-height);
+    line-height: var(--wa-form-control-value-line-height);
     vertical-align: middle;
     transition:
       var(--wa-transition-fast) background,
@@ -42,7 +42,7 @@ export default css`
   .textarea--standard.textarea--focused:not(.textarea--disabled) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
-    border-color: var(--wa-form-controls-activated-color);
+    border-color: var(--wa-form-control-activated-color);
   }
 
   .textarea--standard.textarea--disabled {
@@ -65,7 +65,7 @@ export default css`
     flex: 1 1 auto;
     font: inherit;
     line-height: var(--wa-line-height-expanded);
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     border: none;
     background: none;
     box-shadow: none;
@@ -81,7 +81,7 @@ export default css`
   }
 
   .textarea__control::placeholder {
-    color: var(--wa-form-controls-placeholder-color);
+    color: var(--wa-form-control-placeholder-color);
     user-select: none;
     -webkit-user-select: none;
   }

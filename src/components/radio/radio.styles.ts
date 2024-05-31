@@ -2,16 +2,16 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
+    --background: var(--wa-form-control-background);
     --background-checked: var(--background);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-color-checked: var(--wa-form-controls-activated-color);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-color-checked: var(--wa-form-control-activated-color);
     --border-style: var(--wa-border-style);
-    --border-width: var(--wa-form-controls-border-width);
+    --border-width: var(--wa-form-control-border-width);
     --box-shadow: none;
-    --checked-icon-color: var(--wa-form-controls-activated-color);
+    --checked-icon-color: var(--wa-form-control-activated-color);
     --checked-icon-scale: 0.75;
-    --toggle-size: calc(1em * var(--wa-form-controls-value-line-height));
+    --toggle-size: calc(1em * var(--wa-form-control-value-line-height));
 
     display: inline-block;
   }
@@ -24,7 +24,7 @@ export default css`
     display: inline-flex;
     align-items: top;
     font: inherit;
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -105,7 +105,7 @@ export default css`
 
   .radio__label {
     display: inline-block;
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;

@@ -4,8 +4,8 @@ export default css`
   :host {
     --aspect-ratio: 16 / 9;
     --navigation-color: var(--wa-color-text-quiet);
-    --pagination-color: var(--wa-form-controls-resting-color);
-    --pagination-color-active: var(--wa-form-controls-activated-color);
+    --pagination-color: var(--wa-form-control-resting-color);
+    --pagination-color-active: var(--wa-form-control-activated-color);
     --scroll-hint: 0px;
     --slide-gap: var(--wa-space-m, 1rem);
 

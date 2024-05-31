@@ -2,9 +2,9 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --border-radius: var(--wa-form-controls-corners);
+    --border-radius: var(--wa-form-control-border-radius);
     --border-style: var(--wa-border-style);
-    --border-width: var(--wa-form-controls-border-width);
+    --border-width: var(--wa-form-control-border-width);
     --box-shadow: initial;
 
     display: inline-block;
@@ -121,7 +121,7 @@ export default css`
     --background: var(--wa-color-brand-fill-quiet);
     --background-active: color-mix(in oklab, var(--background-hover), var(--wa-color-surface-default) 30%);
     --background-hover: var(--background);
-    --border-color: var(--wa-form-controls-activated-color);
+    --border-color: var(--wa-form-control-activated-color);
     --border-color-active: var(--border-color);
     --border-color-hover: var(--border-color);
     --label-color: var(--wa-color-brand-on-normal);
@@ -255,18 +255,18 @@ export default css`
    */
 
   .button--small {
-    height: var(--wa-form-controls-height-s);
-    line-height: calc(var(--wa-form-controls-height-s) - var(--border-width) * 2);
+    height: var(--wa-form-control-height-s);
+    line-height: calc(var(--wa-form-control-height-s) - var(--border-width) * 2);
   }
 
   .button--medium {
-    height: var(--wa-form-controls-height-m);
-    line-height: calc(var(--wa-form-controls-height-m) - var(--border-width) * 2);
+    height: var(--wa-form-control-height-m);
+    line-height: calc(var(--wa-form-control-height-m) - var(--border-width) * 2);
   }
 
   .button--large {
-    height: var(--wa-form-controls-height-l);
-    line-height: calc(var(--wa-form-controls-height-l) - var(--border-width) * 2);
+    height: var(--wa-form-control-height-l);
+    line-height: calc(var(--wa-form-control-height-l) - var(--border-width) * 2);
   }
 
   /*

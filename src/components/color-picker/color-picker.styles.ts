@@ -23,7 +23,7 @@ export default css`
   }
 
   .color-picker--inline {
-    border: var(--wa-form-controls-border-style) var(--wa-border-width-s) var(--wa-color-surface-border);
+    border: var(--wa-form-control-border-style) var(--wa-border-width-s) var(--wa-color-surface-border);
   }
 
   .color-picker--inline:focus-visible {
@@ -285,20 +285,20 @@ export default css`
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--small {
-    width: var(--wa-form-controls-height-s);
-    height: var(--wa-form-controls-height-s);
+    width: var(--wa-form-control-height-s);
+    height: var(--wa-form-control-height-s);
     border-radius: var(--wa-border-radius-circle);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--medium {
-    width: var(--wa-form-controls-height-m);
-    height: var(--wa-form-controls-height-m);
+    width: var(--wa-form-control-height-m);
+    height: var(--wa-form-control-height-m);
     border-radius: var(--wa-border-radius-circle);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--large {
-    width: var(--wa-form-controls-height-l);
-    height: var(--wa-form-controls-height-l);
+    width: var(--wa-form-control-height-l);
+    height: var(--wa-form-control-height-l);
     border-radius: var(--wa-border-radius-circle);
   }
 
@@ -312,7 +312,7 @@ export default css`
     border-radius: inherit;
     background-color: currentColor;
     box-shadow:
-      inset 0 0 0 2px var(--wa-form-controls-resting-color),
+      inset 0 0 0 2px var(--wa-form-control-resting-color),
       inset 0 0 0 4px white;
   }
 
