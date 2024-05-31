@@ -540,7 +540,7 @@ Shadows indicate elevation. `--wa-color-shadow` is used to construct your theme'
 
 #### Focus
 
-Web Awesome uses a single, consistent focus color for predictable keyboard navigation. This is used alongside your [focus properties](/docs/theming/extras) to construct `--wa-focus-ring`. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
+Web Awesome uses a single, consistent focus color for predictable keyboard navigation. This is used alongside your [focus properties](/docs/theming/focus) to construct `--wa-focus-ring`. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |

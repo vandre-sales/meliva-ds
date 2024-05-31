@@ -1,0 +1,35 @@
+---
+title: Focus
+description: Configure recognizable focus states with Web Awesome's focus properties.
+layout: page.njk
+---
+
+A consistent focus ring helps with predictable keyboard navigation. Together with [`--wa-color-focus`](/docs/theming/color/#interactions), these custom properties create a uniform focus state for Web Awesome components.
+
+
+| Custom Property               |  Default Value                        |
+| ----------------------------- | ------------------------------- |
+| `--wa-focus-ring-style`   | <code>solid</code> |
+| `--wa-focus-ring-width`   | <code>0.1875rem</code> |
+| `--wa-focus-ring`   | <code>var(--wa-focus-ring-style) var(--wa-focus-ring-width) var(--wa-color-focus)</code> |
+| `--wa-focus-ring-offset`   | <code>0.0625rem</code> |
+
+Navigate this form example with your keyboard to see your theme's focus ring in action.
+
+```html {.example}
+<form class="wa-block-spacing-m">
+  <wa-input label="Text Input">
+    <span slot="help-text">Press <kbd>Tab</kbd> to move focus to other interactive elements.</span>
+  </wa-input>
+  <wa-checkbox>Checkbox</wa-checkbox>
+  <wa-button>Button</wa-button>
+</form>
+
+<style>
+  form > * + * {
+    display: block;
+    width: fit-content;
+    margin-block-start: var(--wa-space-m);
+  }
+</style>
+```

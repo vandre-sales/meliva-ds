@@ -263,16 +263,12 @@
   --wa-line-height-normal: 1.6;
   --wa-line-height-expanded: 2;
 
+  --wa-link-decoration-default: underline color-mix(in oklab, var(--wa-color-text-link) 70%, transparent) dotted;
+  --wa-link-decoration-hover: underline;
+
   /**
    * Spacing
-   * Used intentionally, space properties yield a predictable rhythm and support effective implementation of the proximity principle.
-   * Space can be organized into three groups with distinct usage -
-   *  *  Small-scale space (3xs, 2xs, and xs) is used for gaps between closely related elements, such as a dropdown button and its menu,
-   *     and padding within small components, such as badges and tooltips
-   *  *  Normal space (s, m, and l) is used for gaps between related elements with distinct purposes or touch targets and padding within
-   *     typical interface elements, such as buttons and inputs
-   *  *  Large-scale space (xl, 2xl, and 3xl) is used for gaps between unrelated elements and padding within larger components,
-   *     such as cards and dialogs
+   * Space properties help create predictable rhythm and meaningful proximity.
    */
   /* Space is designed to scale according to a single base value.
    * The base value is intended for calculations and is not used by components directly. */
@@ -302,7 +298,7 @@
   /* Border radius is designed to scale according to a single base value.
    * The base value is intended for calculations and is not used by components directly. */
   --wa-border-radius-multiplier: 0.375;
-  --wa-border-radius-xs: calc(var(--wa-border-radius-multiplier) * 0.75rem);
+  --wa-border-radius-xs: calc(var(--wa-border-radius-multiplier) * 0.5rem);
   --wa-border-radius-s: calc(var(--wa-border-radius-multiplier) * 1rem);
   --wa-border-radius-m: calc(var(--wa-border-radius-multiplier) * 2rem);
   --wa-border-radius-l: calc(var(--wa-border-radius-multiplier) * 3rem);
@@ -310,7 +306,7 @@
   /* These common border radius properties can create specific shapes beyond the theme's preferred corner styles. */
   --wa-border-radius-pill: 9999px;
   --wa-border-radius-circle: 50%;
-  --wa-border-radius-sharp: 0rem;
+  --wa-border-radius-square: 0rem;
 
   /**
    * Focus
@@ -321,10 +317,11 @@
   --wa-focus-ring-offset: 0.0625rem; /* 1px */
 
   /**
-   * Links
+   * Transitions
    */
-  --wa-link-decoration-default: underline color-mix(in oklab, var(--wa-color-text-link) 70%, transparent) dotted;
-  --wa-link-decoration-hover: underline;
+  --wa-transition-normal: 250ms;
+  --wa-transition-fast: 150ms;
+  --wa-transition-faster: 75ms;
 
   /**
    * Z-index
@@ -332,13 +329,6 @@
   --wa-z-index-dropdown: 900;
   --wa-z-index-toast: 990;
   --wa-z-index-tooltip: 1000;
-
-  /**
-   * Transitions
-   */
-  --wa-transition-normal: 250ms;
-  --wa-transition-fast: 150ms;
-  --wa-transition-faster: 75ms;
 
   /**
    * Component groups

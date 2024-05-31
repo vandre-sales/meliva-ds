@@ -286,7 +286,7 @@
   /* Semantic corner properties create specific shapes beyond the theme's preferred corner styles. */
   --wa-border-radius-pill: 9999px;
   --wa-border-radius-circle: 50%;
-  --wa-border-radius-sharp: 0;
+  --wa-border-radius-square: 0;
 
   /**
    * Focus
