@@ -5,6 +5,11 @@ import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js';
+import { WaAfterHideEvent } from '../../events/after-hide.js';
+import { WaAfterShowEvent } from '../../events/after-show.js';
+import { WaHideEvent } from '../../events/hide.js';
+import { WaRequestCloseEvent } from '../../events/request-close.js';
+import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './drawer.styles.js';
@@ -103,17 +108,15 @@ export default class WaDrawer extends WebAwesomeElement {
   }
 
   private async requestClose(source: Element) {
-    const waRequestClose = this.emit('wa-request-close', {
-      cancelable: true,
-      detail: { source }
-    });
+    const waRequestClose = new WaRequestCloseEvent({ source });
+    this.dispatchEvent(waRequestClose);
 
     if (waRequestClose.defaultPrevented) {
       this.open = true;
       animateWithClass(this.drawer, 'pulse');
     } else {
       // Hide
-      this.emit('wa-hide');
+      this.dispatchEvent(new WaHideEvent());
       this.removeOpenListeners();
 
       await animateWithClass(this.drawer, 'hide');
@@ -128,7 +131,7 @@ export default class WaDrawer extends WebAwesomeElement {
         setTimeout(() => trigger.focus());
       }
 
-      this.emit('wa-after-hide');
+      this.dispatchEvent(new WaAfterHideEvent());
     }
   }
 
@@ -201,7 +204,7 @@ export default class WaDrawer extends WebAwesomeElement {
   /** Shows the drawer. */
   private async show() {
     // Show
-    this.emit('wa-show');
+    this.dispatchEvent(new WaShowEvent());
     this.addOpenListeners();
     this.originalTrigger = document.activeElement as HTMLElement;
     this.open = true;
@@ -219,7 +222,7 @@ export default class WaDrawer extends WebAwesomeElement {
 
     await animateWithClass(this.drawer, 'show');
 
-    this.emit('wa-after-show');
+    this.dispatchEvent(new WaAfterShowEvent());
   }
 
   render() {
