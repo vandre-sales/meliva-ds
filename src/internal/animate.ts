@@ -1,6 +1,8 @@
 /** Same as `el.animate()`, except returns a promise that doesn't throw an error when the animation is canceled. */
 export async function animate(el: Element, keyframes: Keyframe[], options?: KeyframeAnimationOptions) {
-  return el.animate(keyframes, options).finished.catch(() => {});
+  return el.animate(keyframes, options).finished.catch(() => {
+    /* suppress errors in Safari */
+  });
 }
 
 /**
