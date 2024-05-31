@@ -136,9 +136,9 @@ export default class WaDetails extends WebAwesomeElement {
     if (this.open) {
       this.details.open = true;
       // Show
-      const slShow = new WaShowEvent();
-      this.dispatchEvent(slShow);
-      if (slShow.defaultPrevented) {
+      const waShow = new WaShowEvent();
+      this.dispatchEvent(waShow);
+      if (waShow.defaultPrevented) {
         this.open = false;
         this.details.open = false;
         return;
@@ -163,9 +163,9 @@ export default class WaDetails extends WebAwesomeElement {
       this.dispatchEvent(new WaAfterShowEvent());
     } else {
       // Hide
-      const slHide = new WaHideEvent();
-      this.dispatchEvent(slHide);
-      if (slHide.defaultPrevented) {
+      const waHide = new WaHideEvent();
+      this.dispatchEvent(waHide);
+      if (waHide.defaultPrevented) {
         this.details.open = true;
         this.open = true;
         return;
