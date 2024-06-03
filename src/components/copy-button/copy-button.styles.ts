@@ -19,7 +19,7 @@ export default css`
     color: inherit;
     padding: var(--wa-space-xs);
     cursor: pointer;
-    transition: var(--wa-transition-faster) color;
+    transition: var(--wa-transition-fast) color;
   }
 
   .copy-button--success .copy-button__button {

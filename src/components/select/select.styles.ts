@@ -58,11 +58,11 @@ export default css`
     overflow: hidden;
     cursor: pointer;
     transition:
-      var(--wa-transition-fast) background,
-      var(--wa-transition-fast) border,
-      var(--wa-transition-fast) box-shadow,
-      var(--wa-transition-fast) color,
-      var(--wa-transition-faster) outline;
+      var(--wa-transition-normal) background,
+      var(--wa-transition-normal) border,
+      var(--wa-transition-normal) box-shadow,
+      var(--wa-transition-normal) color,
+      var(--wa-transition-fast) outline;
   }
 
   .select__display-input {
@@ -252,7 +252,7 @@ export default css`
     border: none;
     background: none;
     padding: 0;
-    transition: color var(--wa-transition-fast);
+    transition: color var(--wa-transition-normal);
     cursor: pointer;
   }
 
@@ -271,7 +271,7 @@ export default css`
     align-items: center;
     color: var(--wa-color-text-quiet);
     font-size: 0.875em;
-    transition: rotate var(--wa-transition-normal) ease;
+    transition: rotate var(--wa-transition-slow) ease;
     rotate: 0;
     margin-inline-start: var(--wa-space-s);
   }

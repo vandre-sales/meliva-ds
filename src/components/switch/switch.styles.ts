@@ -56,8 +56,8 @@ export default css`
     border-width: var(--border-width);
     box-shadow: var(--box-shadow);
     transition:
-      var(--wa-transition-fast) background,
-      var(--wa-transition-fast) border-color;
+      var(--wa-transition-normal) background,
+      var(--wa-transition-normal) border-color;
   }
 
   .switch__control .switch__thumb {
@@ -68,10 +68,10 @@ export default css`
     box-shadow: var(--thumb-shadow);
     translate: calc((var(--width) - var(--height)) / -2);
     transition:
-      var(--wa-transition-fast) translate ease,
-      var(--wa-transition-fast) background-color,
-      var(--wa-transition-fast) border-color,
-      var(--wa-transition-fast) box-shadow;
+      var(--wa-transition-normal) translate ease,
+      var(--wa-transition-normal) background-color,
+      var(--wa-transition-normal) border-color,
+      var(--wa-transition-normal) box-shadow;
   }
 
   .switch__input {

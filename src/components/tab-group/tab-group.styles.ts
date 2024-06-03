@@ -22,8 +22,8 @@ export default css`
   .tab-group__indicator {
     position: absolute;
     transition:
-      var(--wa-transition-fast) translate ease,
-      var(--wa-transition-fast) width ease;
+      var(--wa-transition-normal) translate ease,
+      var(--wa-transition-normal) width ease;
   }
 
   .tab-group--has-scroll-controls .tab-group__nav-container {

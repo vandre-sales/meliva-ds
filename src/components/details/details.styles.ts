@@ -70,7 +70,7 @@ export default css`
     display: flex;
     align-items: center;
     color: var(--icon-color);
-    transition: var(--wa-transition-fast) rotate ease;
+    transition: var(--wa-transition-normal) rotate ease;
   }
 
   .details--open .details__summary-icon {

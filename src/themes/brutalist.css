@@ -314,9 +314,9 @@
   /**
    * Transitions
    */
-  --wa-transition-normal: 250ms;
-  --wa-transition-fast: 150ms;
-  --wa-transition-faster: 50ms;
+  --wa-transition-slow: 250ms;
+  --wa-transition-normal: 150ms;
+  --wa-transition-fast: 50ms;
 
   /**
    * Component groups
@@ -486,7 +486,7 @@
       bottom: 0;
       height: 50%;
       opacity: 0.7;
-      transition: all var(--wa-transition-faster) ease-in-out;
+      transition: all var(--wa-transition-fast) ease-in-out;
     }
 
     &:hover:before {

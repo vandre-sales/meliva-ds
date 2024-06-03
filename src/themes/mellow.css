@@ -312,9 +312,9 @@
   /**
    * Transitions
    */
-  --wa-transition-normal: 250ms;
-  --wa-transition-fast: 150ms;
-  --wa-transition-faster: 50ms;
+  --wa-transition-slow: 250ms;
+  --wa-transition-normal: 150ms;
+  --wa-transition-fast: 50ms;
 
   /**
    * Component groups

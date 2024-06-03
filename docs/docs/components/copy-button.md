@@ -210,7 +210,7 @@ You can customize the button to your liking with CSS.
     border-right-color: #ad005c;
     border-bottom-color: #ad005c;
     border-radius: 6px;
-    transition: var(--wa-transition-normal) all;
+    transition: var(--wa-transition-slow) all;
   }
 
   .custom-styles::part(button):hover {

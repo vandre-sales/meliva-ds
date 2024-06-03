@@ -65,10 +65,10 @@ export default css`
     box-shadow: var(--box-shadow);
     color: transparent;
     transition:
-      var(--wa-transition-fast) border-color,
-      var(--wa-transition-fast) background-color,
-      var(--wa-transition-fast) color,
-      var(--wa-transition-fast) box-shadow;
+      var(--wa-transition-normal) border-color,
+      var(--wa-transition-normal) background-color,
+      var(--wa-transition-normal) color,
+      var(--wa-transition-normal) box-shadow;
   }
 
   .radio__input {

@@ -35,9 +35,9 @@ export default css`
     overflow: hidden;
     cursor: text;
     transition:
-      var(--wa-transition-fast) background,
-      var(--wa-transition-fast) border,
-      var(--wa-transition-faster) outline;
+      var(--wa-transition-normal) background,
+      var(--wa-transition-normal) border,
+      var(--wa-transition-fast) outline;
   }
 
   /* Standard inputs */
@@ -229,7 +229,7 @@ export default css`
     border: none;
     background: none;
     padding: 0;
-    transition: var(--wa-transition-fast) color;
+    transition: var(--wa-transition-normal) color;
     cursor: pointer;
   }
 

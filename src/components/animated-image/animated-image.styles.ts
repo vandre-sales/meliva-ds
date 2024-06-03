@@ -36,7 +36,7 @@ export default css`
     border-radius: var(--wa-border-radius-circle);
     color: white;
     pointer-events: none;
-    transition: var(--wa-transition-fast) opacity;
+    transition: var(--wa-transition-normal) opacity;
   }
 
   :host([play]:hover) .animated-image__control-box {

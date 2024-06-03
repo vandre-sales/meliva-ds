@@ -172,10 +172,10 @@ export default css`
     vertical-align: middle;
     padding: 0;
     transition:
-      var(--wa-transition-faster) background,
-      var(--wa-transition-faster) border,
-      var(--wa-transition-faster) box-shadow,
-      var(--wa-transition-faster) color;
+      var(--wa-transition-fast) background,
+      var(--wa-transition-fast) border,
+      var(--wa-transition-fast) box-shadow,
+      var(--wa-transition-fast) color;
     cursor: inherit;
   }
 

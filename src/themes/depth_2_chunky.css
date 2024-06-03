@@ -44,9 +44,9 @@
 
 /* #region Buttons */
 wa-button {
+  --wa-transition-slow: 0ms;
   --wa-transition-normal: 0ms;
   --wa-transition-fast: 0ms;
-  --wa-transition-faster: 0ms;
 
   &:not([variant='text']) {
     --box-shadow: var(--wa-shadow-offset-x-level-1) var(--wa-shadow-offset-y-level-1) var(--wa-shadow-blur-level-1)

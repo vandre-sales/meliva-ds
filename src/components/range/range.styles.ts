@@ -111,10 +111,10 @@ export default css`
       var(--thumb-shadow),
       0 0 0 var(--thumb-gap) var(--wa-color-surface-default);
     transition:
-      var(--wa-transition-fast) border-color,
-      var(--wa-transition-fast) background-color,
-      var(--wa-transition-fast) color,
-      var(--wa-transition-fast) box-shadow;
+      var(--wa-transition-normal) border-color,
+      var(--wa-transition-normal) background-color,
+      var(--wa-transition-normal) color,
+      var(--wa-transition-normal) box-shadow;
     cursor: pointer;
   }
 
@@ -156,7 +156,7 @@ export default css`
     color: var(--wa-color-neutral-on-loud);
     opacity: 0;
     padding: var(--wa-space-2xs) var(--wa-space-xs);
-    transition: var(--wa-transition-fast) opacity;
+    transition: var(--wa-transition-normal) opacity;
     pointer-events: none;
   }
 

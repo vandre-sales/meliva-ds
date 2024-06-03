@@ -109,7 +109,7 @@ export default css`
     color: var(--navigation-color);
     padding: var(--wa-space-xs);
     cursor: pointer;
-    transition: var(--wa-transition-fast) color;
+    transition: var(--wa-transition-normal) color;
     appearance: none;
   }
 
@@ -143,7 +143,7 @@ export default css`
     background-color: var(--pagination-color);
     padding: 0;
     margin: 0;
-    transition: transform var(--wa-transition-normal);
+    transition: transform var(--wa-transition-slow);
   }
 
   .carousel__pagination-item--active {

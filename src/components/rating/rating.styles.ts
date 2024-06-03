@@ -56,7 +56,7 @@ export default css`
   }
 
   .rating__symbol {
-    transition: var(--wa-transition-fast) scale;
+    transition: var(--wa-transition-normal) scale;
     pointer-events: none;
   }
 

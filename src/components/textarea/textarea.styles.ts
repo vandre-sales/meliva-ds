@@ -32,9 +32,9 @@ export default css`
     line-height: var(--wa-form-control-value-line-height);
     vertical-align: middle;
     transition:
-      var(--wa-transition-fast) background,
-      var(--wa-transition-fast) border,
-      var(--wa-transition-faster) outline;
+      var(--wa-transition-normal) background,
+      var(--wa-transition-normal) border,
+      var(--wa-transition-fast) outline;
     cursor: text;
   }
 

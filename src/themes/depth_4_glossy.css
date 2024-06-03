@@ -107,7 +107,7 @@ wa-button:not([variant='text']) {
     inset 0 -0.0625rem 0 0 rgb(0 0 0 / 0.2) /* bottom highlight */, var(--wa-shadow-level-1) /* outer shadow */;
 
   margin-bottom: var(--wa-shadow-offset-y-inset);
-  transition: transform var(--wa-transition-faster);
+  transition: transform var(--wa-transition-fast);
 
   &:not([disabled]) {
     &:hover {

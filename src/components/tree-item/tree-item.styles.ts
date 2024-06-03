@@ -65,7 +65,7 @@ export default css`
   }
 
   .tree-item__expand-button {
-    transition: var(--wa-transition-fast) rotate ease;
+    transition: var(--wa-transition-normal) rotate ease;
   }
 
   .tree-item--expanded .tree-item__expand-button {
@@ -119,7 +119,7 @@ export default css`
   .tree-item__label {
     display: flex;
     align-items: center;
-    transition: var(--wa-transition-fast) color;
+    transition: var(--wa-transition-normal) color;
   }
 
   .tree-item__children {
