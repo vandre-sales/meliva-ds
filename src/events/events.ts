@@ -23,7 +23,6 @@ export type { WaLoadEvent } from './load.js';
 export type { WaMutationEvent } from './mutation.js';
 export type { WaRemoveEvent } from './remove.js';
 export type { WaRepositionEvent } from './reposition.js';
-export type { WaRequestCloseEvent } from './request-close.js';
 export type { WaResizeEvent } from './resize.js';
 export type { WaSelectEvent } from './select.js';
 export type { WaSelectionChangeEvent } from './selection-change.js';
