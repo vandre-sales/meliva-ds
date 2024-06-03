@@ -49,6 +49,137 @@ const App = () => {
 
 ## Examples
 
+### Dialog with Header
+
+Headers can be used to display titles and more. Use the `with-header` attribute to add a header to the dialog.
+
+```html {.example}
+<wa-dialog label="Dialog" with-header class="dialog-header">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</wa-dialog>
+
+<wa-button>Open Dialog</wa-button>
+
+<script>
+  const dialog = document.querySelector('.dialog-header');
+  const openButton = dialog.nextElementSibling;
+
+  openButton.addEventListener('click', () => dialog.open = true);
+</script>
+```
+
+{% raw %}
+```jsx {.react}
+import { useState } from 'react';
+import WaButton from '@shoelace-style/shoelace/dist/react/button';
+import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <WaDialog label="Dialog" with-header open={open} onWaAfterHide={() => setOpen(false)}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </WaDialog>
+
+      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
+    </>
+  );
+};
+```
+{% endraw %}
+
+### Dialog with Footer
+
+Footers can be used to display titles and more. Use the `with-footer` attribute to add a footer to the dialog.
+
+```html {.example}
+<wa-dialog label="Dialog" with-footer class="dialog-footer">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  <wa-button slot="footer" variant="brand" data-dialog="dismiss">Close</wa-button>
+</wa-dialog>
+
+<wa-button>Open Dialog</wa-button>
+
+<script>
+  const dialog = document.querySelector('.dialog-footer');
+  const openButton = dialog.nextElementSibling;
+
+  openButton.addEventListener('click', () => dialog.open = true);
+</script>
+```
+
+{% raw %}
+```jsx {.react}
+import { useState } from 'react';
+import WaButton from '@shoelace-style/shoelace/dist/react/button';
+import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <WaDialog label="Dialog" with-footer open={open} onWaAfterHide={() => setOpen(false)}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
+          Close
+        </WaButton>
+      </WaDialog>
+
+      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
+    </>
+  );
+};
+```
+{% endraw %}
+
+### Dismissing Dialogs
+
+You can add the special `data-dialog="dismiss"` attribute to a button inside the dialog to tell it to close without additional JavaScript. Alternatively, you can set the `open` property to `false` to close the dialog programmatically.
+
+```html {.example}
+<wa-dialog label="Dialog" with-header with-footer class="dialog-dismiss">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  <wa-button slot="footer" variant="brand" data-dialog="dismiss">Close</wa-button>
+</wa-dialog>
+
+<wa-button>Open Dialog</wa-button>
+
+<script>
+  const dialog = document.querySelector('.dialog-dismiss');
+  const openButton = dialog.nextElementSibling;
+
+  openButton.addEventListener('click', () => dialog.open = true);
+</script>
+```
+
+{% raw %}
+```jsx {.react}
+import { useState } from 'react';
+import WaButton from '@shoelace-style/shoelace/dist/react/button';
+import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
+          Close
+        </WaButton>
+      </WaDialog>
+
+      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
+    </>
+  );
+};
+```
+{% endraw %}
+
 ### Custom Width
 
 Use the `--width` custom property to set the dialog's width.

@@ -49,6 +49,137 @@ const App = () => {
 
 ## Examples
 
+### Drawer with Header
+
+Headers can be used to display titles and more. Use the `with-header` attribute to add a header to the drawer.
+
+```html {.example}
+<wa-drawer label="Drawer" with-header class="drawer-header">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</wa-drawer>
+
+<wa-button>Open Drawer</wa-button>
+
+<script>
+  const drawer = document.querySelector('.drawer-header');
+  const openButton = drawer.nextElementSibling;
+
+  openButton.addEventListener('click', () => drawer.open = true);
+</script>
+```
+
+{% raw %}
+```jsx {.react}
+import { useState } from 'react';
+import WaButton from '@shoelace-style/shoelace/dist/react/button';
+import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <WaDrawer label="Drawer" with-header open={open} onWaAfterHide={() => setOpen(false)}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </WaDrawer>
+
+      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
+    </>
+  );
+};
+```
+{% endraw %}
+
+### Drawer with Footer
+
+Footers can be used to display titles and more. Use the `with-footer` attribute to add a footer to the drawer.
+
+```html {.example}
+<wa-drawer label="Drawer" with-footer class="drawer-footer">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  <wa-button slot="footer" variant="brand" data-drawer="dismiss">Close</wa-button>
+</wa-drawer>
+
+<wa-button>Open Drawer</wa-button>
+
+<script>
+  const drawer = document.querySelector('.drawer-footer');
+  const openButton = drawer.nextElementSibling;
+
+  openButton.addEventListener('click', () => drawer.open = true);
+</script>
+```
+
+{% raw %}
+```jsx {.react}
+import { useState } from 'react';
+import WaButton from '@shoelace-style/shoelace/dist/react/button';
+import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <WaDrawer label="Drawer" with-footer open={open} onWaAfterHide={() => setOpen(false)}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
+          Close
+        </WaButton>
+      </WaDrawer>
+
+      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
+    </>
+  );
+};
+```
+{% endraw %}
+
+### Dismissing Drawers
+
+You can add the special `data-dialog="dismiss"` attribute to a button inside the drawer to tell it to close without additional JavaScript. Alternatively, you can set the `open` property to `false` to close the drawer programmatically.
+
+```html {.example}
+<wa-drawer label="Drawer" with-header with-footer class="drawer-dismiss">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  <wa-button slot="footer" variant="brand" data-drawer="dismiss">Close</wa-button>
+</wa-drawer>
+
+<wa-button>Open Drawer</wa-button>
+
+<script>
+  const drawer = document.querySelector('.drawer-dismiss');
+  const openButton = drawer.nextElementSibling;
+
+  openButton.addEventListener('click', () => drawer.open = true);
+</script>
+```
+
+{% raw %}
+```jsx {.react}
+import { useState } from 'react';
+import WaButton from '@shoelace-style/shoelace/dist/react/button';
+import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <WaDrawer label="Drawer" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
+          Close
+        </WaButton>
+      </WaDrawer>
+
+      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
+    </>
+  );
+};
+```
+{% endraw %}
+
 ### Slide in From Start
 
 By default, drawers slide in from the end. To make the drawer slide in from the start, set the `placement` attribute to `start`.
