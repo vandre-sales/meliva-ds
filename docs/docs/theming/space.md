@@ -50,7 +50,7 @@ Each space value uses a `calc()` function with `--wa-space-multiplier` to increa
 | `--wa-space-2xl`   | <code>2rem</code> <small>(32px)</small> | <div class="spacing-swatch" style="width: var(--wa-space-2xl)"></div> |
 | `--wa-space-3xl`   | <code>3rem</code> <small>(48px)</small> | <div class="spacing-swatch" style="width: var(--wa-space-3xl)"></div> |
 
-These space properties can be organized into groups with distinct purposes:
+When using these space properties, it may be helpful to conceptualize three distinct groups:
 - Small-scale space (`3xs`, `2xs`, and `xs`) can be used for gaps between cooperating elements, such as a dropdown button and its menu, and padding within small components, such as badges and tooltips
 - Normal space (`s`, `m`, and `l`) can be used for gaps between related elements with distinct touch targets and padding within typical interface elements, such as buttons and inputs
-- Large-scale space (`xl`, `2xl`, and `3xl`) is used for gaps between unrelated elements and padding within larger components, such as cards and dialogs
+- Large-scale space (`xl`, `2xl`, and `3xl`) can be used for gaps between unrelated elements and padding within larger components, such as cards and dialogs

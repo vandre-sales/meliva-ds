@@ -82,10 +82,12 @@ Panels consist of components with larger, contained surface areas like [callout]
 <form class="wa-block-spacing-l">
   <wa-callout>
     <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
-    Hello world
+    This is a simple callout with an icon.
   </wa-callout>
-  <wa-card>Hello again</wa-card>
-  <wa-details summary="Yo">Hiya</wa-details>
+  <wa-card>Here's a basic, no-nonsense card.</wa-card>
+  <wa-details summary="Details">
+    <code>wa-details</code>, at your service.
+  </wa-details>
 </form>
 
 <style>
