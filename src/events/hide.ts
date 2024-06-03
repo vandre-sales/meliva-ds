@@ -1,7 +1,14 @@
 export class WaHideEvent extends Event {
-  constructor() {
+  readonly detail: WaHideEventDetails | undefined;
+
+  constructor(detail?: WaHideEventDetails) {
     super('wa-hide', { bubbles: true, cancelable: true, composed: true });
+    this.detail = detail;
   }
+}
+
+interface WaHideEventDetails {
+  source: Element;
 }
 
 declare global {

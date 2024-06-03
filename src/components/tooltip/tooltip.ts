@@ -186,7 +186,13 @@ export default class WaTooltip extends WebAwesomeElement {
       }
 
       // Show
-      this.dispatchEvent(new WaShowEvent());
+      const waShowEvent = new WaShowEvent();
+      this.dispatchEvent(waShowEvent);
+      if (waShowEvent.defaultPrevented) {
+        this.open = false;
+        return;
+      }
+
       if ('CloseWatcher' in window) {
         this.closeWatcher?.destroy();
         this.closeWatcher = new CloseWatcher();
@@ -206,7 +212,13 @@ export default class WaTooltip extends WebAwesomeElement {
       this.dispatchEvent(new WaAfterShowEvent());
     } else {
       // Hide
-      this.dispatchEvent(new WaHideEvent());
+      const waHideEvent = new WaHideEvent();
+      this.dispatchEvent(waHideEvent);
+      if (waHideEvent.defaultPrevented) {
+        this.open = false;
+        return;
+      }
+
       this.closeWatcher?.destroy();
       document.removeEventListener('keydown', this.handleDocumentKeyDown);
 

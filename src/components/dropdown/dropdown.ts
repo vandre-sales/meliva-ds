@@ -365,23 +365,32 @@ export default class WaDropdown extends WebAwesomeElement {
 
     if (this.open) {
       // Show
-      this.dispatchEvent(new WaShowEvent());
-      this.addOpenListeners();
+      const waShowEvent = new WaShowEvent();
+      this.dispatchEvent(waShowEvent);
+      if (waShowEvent.defaultPrevented) {
+        this.open = false;
+        return;
+      }
 
+      this.addOpenListeners();
       this.panel.hidden = false;
       this.popup.active = true;
       await animateWithClass(this.popup.popup, 'show-with-scale');
-
       this.dispatchEvent(new WaAfterShowEvent());
     } else {
       // Hide
+      const waHideEvent = new WaHideEvent();
+      this.dispatchEvent(waHideEvent);
+      if (waHideEvent.defaultPrevented) {
+        this.open = true;
+        return;
+      }
+
       this.dispatchEvent(new WaHideEvent());
       this.removeOpenListeners();
-
       await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.panel.hidden = true;
       this.popup.active = false;
-
       this.dispatchEvent(new WaAfterHideEvent());
     }
   }

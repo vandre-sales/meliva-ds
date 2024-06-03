@@ -684,9 +684,14 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       this.setCurrentOption(this.selectedOptions[0] || this.getFirstOption());
 
       // Show
-      this.dispatchEvent(new WaShowEvent());
-      this.addOpenListeners();
+      const waShowEvent = new WaShowEvent();
+      this.dispatchEvent(waShowEvent);
+      if (waShowEvent.defaultPrevented) {
+        this.open = false;
+        return;
+      }
 
+      this.addOpenListeners();
       this.listbox.hidden = false;
       this.popup.active = true;
 
@@ -705,9 +710,14 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       this.dispatchEvent(new WaAfterShowEvent());
     } else {
       // Hide
-      this.dispatchEvent(new WaHideEvent());
-      this.removeOpenListeners();
+      const waHideEvent = new WaHideEvent();
+      this.dispatchEvent(waHideEvent);
+      if (waHideEvent.defaultPrevented) {
+        this.open = false;
+        return;
+      }
 
+      this.removeOpenListeners();
       await animateWithClass(this.popup.popup, 'hide');
       this.listbox.hidden = true;
       this.popup.active = false;
