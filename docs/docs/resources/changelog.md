@@ -39,6 +39,12 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Removed the `show()` method from `<wa-tab-group>` (use the `active` attribute instead)
 - Removed the `show()` and `hide()` methods from `<wa-dialog>` and `<wa-drawer`> (toggle the `open` attribute instead)
 - Removed JavaScript-based animation customizations due to high confusion and low usage
+- Removed `valueAsDate` from `<wa-input>`. Instead use the following to mimic browser behavior:
+    setter: `waInput.value = new Date().toLocaleDateString()`
+    getter: `new Date(waInput.value)`
+- Removed `valueAsNumber` from `<wa-input>`. Instead you can use the following to mimic browser behavior:
+    setter: `waInput.value = 5.toString()`
+    getter: `Number(waInput.value)`
 
 ## Next
 
