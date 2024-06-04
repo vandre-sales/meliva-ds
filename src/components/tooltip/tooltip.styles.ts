@@ -2,6 +2,9 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background: var(--wa-tooltip-background);
+    --border-radius: var(--wa-tooltip-border-radius);
+    --content-color: var(--wa-tooltip-content-color);
     --max-width: 20rem;
 
     display: contents;
@@ -9,7 +12,7 @@ export default css`
 
   .tooltip {
     --arrow-size: var(--wa-tooltip-arrow-size);
-    --arrow-color: var(--wa-color-neutral-fill-loud);
+    --arrow-color: var(--wa-tooltip-background);
   }
 
   .tooltip::part(popup) {
@@ -36,14 +39,15 @@ export default css`
     display: block;
     width: max-content;
     max-width: var(--max-width);
-    border-radius: var(--wa-border-radius-s);
-    background-color: var(--wa-color-neutral-fill-loud);
-    font: inherit;
-    line-height: var(--wa-line-height-normal);
+    border-radius: var(--border-radius);
+    background: var(--background);
+    font-family: inherit;
+    font-size: var(--wa-tooltip-content-font-size);
+    line-height: var(--wa-tooltip-content-line-height);
     text-align: start;
     white-space: normal;
-    color: var(--wa-color-neutral-on-loud);
-    padding: var(--wa-space-2xs) var(--wa-space-xs);
+    color: var(--content-color);
+    padding: var(--wa-tooltip-padding);
     user-select: none;
     -webkit-user-select: none;
   }
