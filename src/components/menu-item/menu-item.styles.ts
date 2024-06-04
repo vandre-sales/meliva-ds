@@ -104,9 +104,10 @@ export default css`
   }
 
   :host(:focus-visible) .menu-item {
-    outline: none;
-    background-color: var(--wa-color-brand-spot);
-    color: var(--wa-color-brand-text-on-spot);
+    outline: var(--wa-focus-ring);
+    outline-offset: calc(-1 * var(--wa-focus-ring-width));
+    background-color: var(--wa-color-neutral-fill-subtle);
+    color: var(--wa-color-neutral-text-on-fill);
     opacity: 1;
   }
 
