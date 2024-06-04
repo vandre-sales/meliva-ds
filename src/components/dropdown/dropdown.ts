@@ -386,7 +386,6 @@ export default class WaDropdown extends WebAwesomeElement {
         return;
       }
 
-      this.dispatchEvent(new WaHideEvent());
       this.removeOpenListeners();
       await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.panel.hidden = true;
