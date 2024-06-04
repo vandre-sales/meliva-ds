@@ -124,11 +124,11 @@ export default class WaTreeItem extends WebAwesomeElement {
 
     await stopAnimations(this.childrenContainer);
 
-    // We can't animate from 'auto', so use the scroll height for now
     const duration = parseDuration(getComputedStyle(this.childrenContainer).getPropertyValue('--hide-duration'));
     await animate(
       this.childrenContainer,
       [
+        // We can't animate from 'auto', so use the scroll height for now
         { height: `${this.childrenContainer.scrollHeight}px`, opacity: '1', overflow: 'hidden' },
         { height: '0', opacity: '0', overflow: 'hidden' }
       ],
