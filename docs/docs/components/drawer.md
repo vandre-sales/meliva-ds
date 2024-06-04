@@ -137,7 +137,7 @@ const App = () => {
 
 ### Dismissing Drawers
 
-You can add the special `data-dialog="dismiss"` attribute to a button inside the drawer to tell it to close without additional JavaScript. Alternatively, you can set the `open` property to `false` to close the drawer programmatically.
+You can add the special `data-drawer="dismiss"` attribute to a button inside the drawer to tell it to close without additional JavaScript. Alternatively, you can set the `open` property to `false` to close the drawer programmatically.
 
 ```html {.example}
 <wa-drawer label="Drawer" with-header with-footer class="drawer-dismiss">
@@ -521,13 +521,13 @@ const App = () => {
 
 By default, drawers will close when the user clicks the close button, clicks the overlay, or presses the [[Escape]] key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.
 
-To keep the drawer open in such cases, you can cancel the `wa-request-close` event. When canceled, the drawer will remain open and pulse briefly to draw the user's attention to it.
+To keep the drawer open in such cases, you can cancel the `wa-hide` event. When canceled, the drawer will remain open and pulse briefly to draw the user's attention to it.
 
 You can use `event.detail.source` to determine what triggered the request to close. This example prevents the drawer from closing when the overlay is clicked, but allows the close button or [[Escape]] to dismiss it.
 
 ```html {.example}
 <wa-drawer label="Drawer" with-header with-footer class="drawer-deny-close">
-  This drawer will not close when you click on the overlay.
+  This drawer will only close when you click the button below.
   <wa-button slot="footer" variant="brand" data-drawer="dismiss">Close</wa-button>
 </wa-drawer>
 
@@ -536,12 +536,13 @@ You can use `event.detail.source` to determine what triggered the request to clo
 <script>
   const drawer = document.querySelector('.drawer-deny-close');
   const openButton = drawer.nextElementSibling;
+  const closeButton = drawer.querySelector('wa-button[slot="footer"]');
 
   openButton.addEventListener('click', () => drawer.open = true);
 
-  // Prevent the drawer from closing when the user clicks on the overlay
-  drawer.addEventListener('wa-request-close', event => {
-    if (event.detail.source === 'overlay') {
+  // Prevent the drawer from closing unless the close button is clicked
+  drawer.addEventListener('wa-hide', event => {
+    if (event.detail.source !== closeButton) {
       event.preventDefault();
     }
   });

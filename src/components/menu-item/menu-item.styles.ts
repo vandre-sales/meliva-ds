@@ -145,7 +145,7 @@ export default css`
     }
   }
 
-  ::slotted(sl-menu) {
+  ::slotted(wa-menu) {
     max-width: var(--auto-size-available-width) !important;
     max-height: var(--auto-size-available-height) !important;
   }
