@@ -149,7 +149,7 @@ export default css`
     color: var(--wa-color-text-link);
     text-decoration: none;
     padding: var(--wa-space-s) var(--wa-space-m);
-    box-shadow: var(--wa-shadow-level-3);
+    box-shadow: var(--wa-shadow-l);
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }

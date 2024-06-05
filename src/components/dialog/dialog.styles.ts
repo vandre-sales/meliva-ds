@@ -29,7 +29,7 @@ export default css`
     background-color: var(--wa-color-surface-default);
     border-radius: var(--wa-panel-border-radius);
     border: none;
-    box-shadow: var(--wa-shadow-level-3);
+    box-shadow: var(--wa-shadow-l);
     padding: 0;
     margin: auto;
 

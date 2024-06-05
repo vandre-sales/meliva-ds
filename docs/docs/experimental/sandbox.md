@@ -168,9 +168,9 @@ layout: page.njk
   }
   </style>
 <div class="shadow" style="box-shadow: var(--wa-shadow-inset);"></div>
-<div class="shadow" style="box-shadow: var(--wa-shadow-level-1);"></div>
-<div class="shadow" style="box-shadow: var(--wa-shadow-level-2);"></div>
-<div class="shadow" style="box-shadow: var(--wa-shadow-level-3);"></div>
+<div class="shadow" style="box-shadow: var(--wa-shadow-s);"></div>
+<div class="shadow" style="box-shadow: var(--wa-shadow-m);"></div>
+<div class="shadow" style="box-shadow: var(--wa-shadow-l);"></div>
 ```
 
 ## Tests

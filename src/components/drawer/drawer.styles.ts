@@ -28,7 +28,7 @@ export default css`
     overflow: hidden;
     background-color: var(--wa-color-surface-raised);
     border: none;
-    box-shadow: var(--wa-shadow-level-3);
+    box-shadow: var(--wa-shadow-l);
     overflow: auto;
     padding: 0;
     margin: 0;

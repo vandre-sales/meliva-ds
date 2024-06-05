@@ -1,5 +1,3 @@
-@import 'depth_1_semiflat.css';
-
 :root,
 :host,
 .wa-theme-default-light {
@@ -116,7 +114,7 @@
   --wa-color-primary-05: var(--wa-color-blue-05);
 
   /* Base is a key color that makes up your project's body and structure.
-    * Base colors should be a 1-to-1 map with colors in a literal color group, usually gray. */
+   * Base colors should be a 1-to-1 map with colors in a literal color group, usually gray. */
   --wa-color-base-95: var(--wa-color-gray-95);
   --wa-color-base-90: var(--wa-color-gray-90);
   --wa-color-base-80: var(--wa-color-gray-80);
@@ -149,7 +147,7 @@
   /* Shadows indicate elevation. Shadow color is used in your theme's shadow properties. */
   --wa-color-shadow: color-mix(
     in oklab,
-    var(--wa-color-base-05) calc(var(--wa-shadow-blur-base) * 8% + 6%),
+    var(--wa-color-base-05) calc(var(--wa-shadow-blur-multiplier) * 24% + 8%),
     transparent
   );
 
@@ -307,6 +305,45 @@
   --wa-focus-ring-offset: 0.0625rem; /* 1px */
 
   /**
+   * Shadows
+   * Shadow properties are highly modular to make it easy to create custom shadow effects or transform elements with shadows.
+   * A multiplier is provided for each shadow characteristic to uniformly increase or decrease all related values for realistic effects. 
+   */
+
+  --wa-shadow-blur-multiplier: 0.125;
+  --wa-shadow-blur-inset: calc(var(--wa-shadow-blur-multiplier) * 0.5rem);
+  --wa-shadow-blur-s: calc(var(--wa-shadow-blur-multiplier) * 1rem);
+  --wa-shadow-blur-m: calc(var(--wa-shadow-blur-multiplier) * 2rem);
+  --wa-shadow-blur-l: calc(var(--wa-shadow-blur-multiplier) * 3rem);
+
+  --wa-shadow-offset-y-multiplier: 0.125;
+  --wa-shadow-offset-y-inset: calc(var(--wa-shadow-offset-y-multiplier) * 0.5rem);
+  --wa-shadow-offset-y-s: calc(var(--wa-shadow-offset-y-multiplier) * 1rem);
+  --wa-shadow-offset-y-m: calc(var(--wa-shadow-offset-y-multiplier) * 2rem);
+  --wa-shadow-offset-y-l: calc(var(--wa-shadow-offset-y-multiplier) * 3rem);
+
+  --wa-shadow-offset-x-multiplier: 0;
+  --wa-shadow-offset-x-inset: calc(var(--wa-shadow-offset-x-multiplier) * 0.5rem);
+  --wa-shadow-offset-x-s: calc(var(--wa-shadow-offset-x-multiplier) * 1rem);
+  --wa-shadow-offset-x-m: calc(var(--wa-shadow-offset-x-multiplier) * 2rem);
+  --wa-shadow-offset-x-l: calc(var(--wa-shadow-offset-x-multiplier) * 3rem);
+
+  --wa-shadow-spread-multiplier: -0.0625;
+  --wa-shadow-spread-inset: calc(var(--wa-shadow-spread-multiplier) * 0.5rem);
+  --wa-shadow-spread-s: calc(var(--wa-shadow-spread-multiplier) * 1rem);
+  --wa-shadow-spread-m: calc(var(--wa-shadow-spread-multiplier) * 2rem);
+  --wa-shadow-spread-l: calc(var(--wa-shadow-spread-multiplier) * 3rem);
+
+  --wa-shadow-inset: inset var(--wa-shadow-offset-x-inset) var(--wa-shadow-offset-y-inset) var(--wa-shadow-blur-inset)
+    var(--wa-shadow-spread-inset) var(--wa-color-shadow);
+  --wa-shadow-s: var(--wa-shadow-offset-x-s) var(--wa-shadow-offset-y-s) var(--wa-shadow-blur-s)
+    var(--wa-shadow-spread-s) var(--wa-color-shadow);
+  --wa-shadow-m: var(--wa-shadow-offset-x-m) var(--wa-shadow-offset-y-m) var(--wa-shadow-blur-m)
+    var(--wa-shadow-spread-m) var(--wa-color-shadow);
+  --wa-shadow-l: var(--wa-shadow-offset-x-l) var(--wa-shadow-offset-y-l) var(--wa-shadow-blur-l)
+    var(--wa-shadow-spread-l) var(--wa-color-shadow);
+
+  /**
    * Transitions
    */
   --wa-transition-slow: 300ms;
@@ -396,7 +433,7 @@
   --wa-color-overlay-modal: color-mix(in oklab, black 50%, transparent);
   --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-50) 10%, transparent);
 
-  --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-base) * 32% + 40%), transparent);
+  --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-multiplier) * 32% + 40%), transparent);
 
   --wa-color-focus: var(--wa-color-primary-60);
 

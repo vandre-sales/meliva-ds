@@ -504,7 +504,7 @@ Surfaces are background layers that other components and content rest on. Surfac
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |
-| `--wa-color-surface-raised`   | <div class="color-swatch" style="background-color: var(--wa-color-surface-raised); box-shadow:var(--wa-shadow-level-1)"></div> |
+| `--wa-color-surface-raised`   | <div class="color-swatch" style="background-color: var(--wa-color-surface-raised); box-shadow:var(--wa-shadow-s)"></div> |
 | `--wa-color-surface-default`  | <div class="color-swatch" style="background-color: var(--wa-color-surface-default)"></div> |
 | `--wa-color-surface-lowered`  | <div class="color-swatch" style="background-color: var(--wa-color-surface-lowered); box-shadow:var(--wa-shadow-inset)"></div> |
 | `--wa-color-surface-border`   | <div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-surface-border)"></div> |

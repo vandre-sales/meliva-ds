@@ -127,8 +127,8 @@
   /* Shadow specifies the default color for box shadows that indicate elevation. */
   --wa-color-shadow: rgba(0, 0, 0, 0.2);
 
-  --wa-shadow-offset-y-base: 0.5;
-  --wa-shadow-offset-x-base: 0.5;
+  --wa-shadow-offset-y-multiplier: 0.5;
+  --wa-shadow-offset-x-multiplier: 0.5;
 
   /* Mix colors are used in color-mix() to achieve consistent interaction effects across components. */
   --wa-color-mix-hover: white 12%;
@@ -381,7 +381,7 @@
 
   --wa-color-overlay-modal: color-mix(in oklab, black 50%, transparent);
 
-  --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-base) * 32% + 40%), transparent);
+  --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-multiplier) * 32% + 40%), transparent);
 
   --wa-color-mix-hover: black 8%;
   --wa-color-mix-active: black 16%;
@@ -499,8 +499,8 @@
 
   wa-button {
     --box-shadow: none;
-    --wa-shadow-offset-x-level-1: 0;
-    --wa-shadow-offset-y-level-1: 0;
+    --wa-shadow-offset-x-s: 0;
+    --wa-shadow-offset-y-s: 0;
   }
 
   wa-button:not([outline]) {
@@ -547,7 +547,7 @@
   }
 
   wa-carousel::part(scroll-container) {
-    padding: var(--wa-shadow-offset-y-level-1) var(--wa-shadow-offset-x-level-1); /* make room for the box-shadow */
+    padding: var(--wa-shadow-offset-y-s) var(--wa-shadow-offset-x-s); /* make room for the box-shadow */
   }
 
   wa-carousel::part(pagination-item) {
@@ -556,7 +556,7 @@
 
   wa-carousel-item {
     border: var(--wa-panel-border-width) var(--wa-panel-border-style) var(--wa-color-surface-border);
-    box-shadow: var(--wa-shadow-level-1);
+    box-shadow: var(--wa-shadow-s);
     border-radius: calc(var(--wa-border-radius-s) + var(--wa-panel-border-width));
   }
 
@@ -697,8 +697,8 @@
   }
 
   .product-card::part(footer) {
-    --wa-shadow-offset-x-level-1: 0;
-    --wa-shadow-offset-y-level-1: 0;
+    --wa-shadow-offset-x-s: 0;
+    --wa-shadow-offset-y-s: 0;
     border-width: 0;
     text-align: right;
   }
@@ -731,9 +731,9 @@
   }
 
   .blog .landscape-frame {
-    box-shadow: var(--wa-shadow-level-1);
+    box-shadow: var(--wa-shadow-s);
     border: var(--wa-panel-border-width) var(--wa-panel-border-style) var(--wa-color-surface-border);
-    margin-block-end: var(--wa-shadow-offset-y-level-1);
+    margin-block-end: var(--wa-shadow-offset-y-s);
   }
 
   .post-meta .categories {
@@ -794,7 +794,7 @@
   }
 
   .checkout-form .square-frame {
-    box-shadow: var(--wa-shadow-level-1);
+    box-shadow: var(--wa-shadow-s);
     border: var(--wa-panel-border-width) var(--wa-panel-border-style) var(--wa-color-surface-border);
   }
 

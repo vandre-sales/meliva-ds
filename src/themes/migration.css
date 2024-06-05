@@ -126,7 +126,7 @@
   /* Shadow specifies the default color for box shadows that indicate elevation. */
   --wa-color-shadow: color-mix(
     in oklab,
-    var(--wa-color-base-05) calc(var(--wa-shadow-blur-base) * 8% + 6%),
+    var(--wa-color-base-05) calc(var(--wa-shadow-blur-multiplier) * 8% + 6%),
     transparent
   );
 
@@ -382,7 +382,7 @@
 
   --wa-color-overlay-modal: color-mix(in oklab, black 50%, transparent);
 
-  --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-base) * 16% + 40%), transparent);
+  --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-multiplier) * 16% + 40%), transparent);
 
   --wa-color-mix-hover: var(--wa-color-base-70) 20%;
   --wa-color-mix-active: var(--wa-color-base-70) 10%;
@@ -559,8 +559,7 @@
 
   wa-input,
   wa-select {
-    --box-shadow: var(--wa-shadow-offset-x-level-1) var(--wa-shadow-offset-y-level-1) var(--wa-shadow-blur-level-1) -0.08em
-      var(--wa-color-shadow);
+    --box-shadow: var(--wa-shadow-offset-x-s) var(--wa-shadow-offset-y-s) var(--wa-shadow-blur-s) -0.08em var(--wa-color-shadow);
     & wa-icon {
       color: var(--wa-color-text-quiet);
     }
@@ -577,7 +576,7 @@
     --thumb-color: white;
     --thumb-color-checked: var(--thumb-color);
     --thumb-size: 1em;
-    --thumb-shadow: var(--wa-shadow-level-2);
+    --thumb-shadow: var(--wa-shadow-m);
     --width: calc(var(--thumb-size) * (32 / 14));
   }
 }

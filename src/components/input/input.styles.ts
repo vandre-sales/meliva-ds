@@ -7,7 +7,7 @@ export default css`
     --border-radius: var(--wa-form-control-border-radius);
     --border-style: var(--wa-form-control-border-style);
     --border-width: var(--wa-form-control-border-width);
-    --box-shadow: var(--wa-shadow-level-0);
+    --box-shadow: initial;
 
     display: block;
   }

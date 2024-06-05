@@ -7,7 +7,7 @@ export default css`
     --border-radius: var(--wa-panel-border-radius);
     --border-style: var(--wa-panel-border-style);
     --border-width: var(--wa-panel-border-width);
-    --box-shadow: var(--wa-shadow-level-1);
+    --box-shadow: var(--wa-shadow-s);
     --padding: var(--wa-space-xl);
 
     display: inline-block;
