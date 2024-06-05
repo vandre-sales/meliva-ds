@@ -107,7 +107,6 @@ export default css`
     outline: var(--wa-focus-ring);
     outline-offset: calc(-1 * var(--wa-focus-ring-width));
     background-color: var(--wa-color-neutral-fill-quiet);
-    color: var(--wa-color-neutral-on-quiet);
     opacity: 1;
   }
 
