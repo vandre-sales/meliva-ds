@@ -392,13 +392,13 @@ const App = () => {
 
 By default, dialogs will close when the user clicks the close button, clicks the overlay, or presses the [[Escape]] key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.
 
-To keep the dialog open in such cases, you can cancel the `wa-request-close` event. When canceled, the dialog will remain open and pulse briefly to draw the user's attention to it.
+To keep the dialog open in such cases, you can cancel the `wa-hide` event. When canceled, the dialog will remain open and pulse briefly to draw the user's attention to it.
 
 You can use `event.detail.source` to determine which element triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or [[Escape]] to dismiss it.
 
 ```html {.example}
 <wa-dialog label="Dialog" with-header with-footer class="dialog-deny-close">
-  This dialog will only close when you click the right button.
+  This dialog will only close when you click the button below.
   <wa-button slot="footer" variant="brand" data-dialog="dismiss">Only this button will close it</wa-button>
 </wa-dialog>
 
@@ -412,7 +412,7 @@ You can use `event.detail.source` to determine which element triggered the reque
   openButton.addEventListener('click', () => dialog.open = true);
 
   // Prevent the dialog from closing unless the close button was clicked
-  dialog.addEventListener('wa-request-close', event => {
+  dialog.addEventListener('wa-hide', event => {
     if (event.detail.source !== closeButton) {
       event.preventDefault();
     }

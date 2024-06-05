@@ -104,9 +104,10 @@ export default css`
   }
 
   :host(:focus-visible) .menu-item {
-    outline: none;
-    background-color: var(--wa-color-brand-fill-loud);
-    color: var(--wa-color-brand-on-loud);
+    outline: var(--wa-focus-ring);
+    outline-offset: calc(-1 * var(--wa-focus-ring-width));
+    background-color: var(--wa-color-neutral-fill-quiet);
+    color: var(--wa-color-neutral-on-quiet);
     opacity: 1;
   }
 
@@ -145,7 +146,7 @@ export default css`
     }
   }
 
-  ::slotted(sl-menu) {
+  ::slotted(wa-menu) {
     max-width: var(--auto-size-available-width) !important;
     max-height: var(--auto-size-available-height) !important;
   }
