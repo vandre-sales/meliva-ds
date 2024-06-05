@@ -152,11 +152,11 @@ export default css`
     border-radius: var(--wa-tooltip-border-radius);
     background-color: var(--wa-tooltip-background);
     font-family: inherit;
-    font-size: var(--wa-tooltip-content-font-size);
-    line-height: var(--wa-tooltip-content-line-height);
+    font-size: var(--wa-tooltip-font-size);
+    line-height: var(--wa-tooltip-line-height);
     color: var(--wa-tooltip-content-color);
     opacity: 0;
-    padding: var(--wa-tooltip-padding);
+    padding: var(--wa-space-2xs) var(--wa-space-xs);
     transition: var(--wa-transition-normal) opacity;
     pointer-events: none;
   }

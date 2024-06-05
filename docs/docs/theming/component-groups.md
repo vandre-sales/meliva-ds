@@ -79,7 +79,7 @@ Panels consist of components with larger, contained surface areas like [callout]
 | `--wa-panel-border-radius` | `var(--wa-border-radius-m)` |
 
 ```html {.example}
-<form class="wa-block-spacing-l">
+<div class="wa-block-spacing-l">
   <wa-callout>
     <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
     This is a simple callout with an icon.
@@ -88,7 +88,7 @@ Panels consist of components with larger, contained surface areas like [callout]
   <wa-details summary="Details">
     <code>wa-details</code>, at your service.
   </wa-details>
-</form>
+</div>
 
 <style>
   .wa-block-spacing-l > * + * {
@@ -96,4 +96,25 @@ Panels consist of components with larger, contained surface areas like [callout]
     margin-block-start: var(--wa-space-l);
   }
 </style>
+```
+
+## Tooltips
+
+Tooltip styles are shared between the [tooltip](/docs/components/tooltip) component and the tooltip implementation in [range](/docs/components/range).
+
+| Custom Property              |  Default Value                      |
+| ---------------------------- | ----------------------------------- |
+| `--wa-tooltip-arrow-size`    | `0.375rem`                          |
+| `--wa-tooltip-background`    | `var(--wa-color-neutral-fill-loud)` |
+| `--wa-tooltip-border-radius` | `var(--wa-border-radius-s)`         |
+| `--wa-tooltip-content-color`         | `var(--wa-color-neutral-on-loud)`   |
+| `--wa-tooltip-font-size`     | `var(--wa-font-size-s)`             |
+| `--wa-tooltip-line-height`   | `var(--wa-line-height-normal)`      |
+
+```html {.example}
+<wa-tooltip content="This is a tooltip" open trigger="manual">
+  <wa-icon name="bullseye" style="color: var(--wa-color-text-quiet); font-size: var(--wa-font-size-xl);"></wa-icon>
+</wa-tooltip>
+<br />
+<wa-range label="Range" help-text="Move the slider to take a gander at the tooltip."></wa-range>
 ```

@@ -5,7 +5,8 @@ export default css`
     --background: var(--wa-tooltip-background);
     --border-radius: var(--wa-tooltip-border-radius);
     --content-color: var(--wa-tooltip-content-color);
-    --max-width: 20rem;
+    --max-width: 30ch;
+    --padding: var(--wa-space-2xs) var(--wa-space-xs);
 
     display: contents;
   }
@@ -42,12 +43,12 @@ export default css`
     border-radius: var(--border-radius);
     background: var(--background);
     font-family: inherit;
-    font-size: var(--wa-tooltip-content-font-size);
-    line-height: var(--wa-tooltip-content-line-height);
+    font-size: var(--wa-tooltip-font-size);
+    line-height: var(--wa-tooltip-line-height);
     text-align: start;
     white-space: normal;
     color: var(--content-color);
-    padding: var(--wa-tooltip-padding);
+    padding: var(--padding);
     user-select: none;
     -webkit-user-select: none;
   }
