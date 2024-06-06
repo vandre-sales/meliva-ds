@@ -9,11 +9,16 @@ layout: page.njk
     font-weight: var(--wa-font-weight-semibold);
     margin-block-end: var(--wa-space-2xs);
   }
+  ul.color-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
   .color-group {
-    display: flex;
     align-items: start;
-    gap: 0.25em;
+    display: flex;
     flex-wrap: nowrap;
+    gap: 0.25em;
   }
   .color-group + * {
     margin-block-start: var(--wa-space-xl);
@@ -24,9 +29,21 @@ layout: page.njk
   .swatch {
     border: none;
   }
+  .color-mix-example {
+    background-image: 
+      linear-gradient(to right, 
+      color-mix(in oklab, transparent, var(--mix-color)) 25%, 
+      color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--mix-color)) 25%, 
+      color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--mix-color)) 75%, 
+      var(--wa-color-brand-fill-loud) 75%, 
+      var(--wa-color-brand-fill-loud))
+    ;
+    color: var(--wa-color-brand-on-loud);
+    text-align: center; 
+  }
 </style>
 
-Web Awesome's color system is made up of CSS custom properties to help ensure consistent color use throughout your project.
+Web Awesome's color system is made up of CSS custom properties to help with consistent color use throughout your project.
 
 Color is organized by three main categories:
 
@@ -48,340 +65,340 @@ Lightness values on this scale have a strong correlation to [relative luminance]
 Web Awesome defines seven literal colors each with 11 lightness values using the format `--wa-color-{name}-{#}`.
 
 <div class="color-name">Red</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-red-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 <div class="color-name">Yellow</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-yellow-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 <div class="color-name">Green</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-green-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 <div class="color-name">Blue</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-blue-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 <div class="color-name">Indigo</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-indigo-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 <div class="color-name">Violet</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-violet-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 <div class="color-name">Gray</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-gray-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 ## Foundational Colors
 
@@ -389,7 +406,7 @@ Foundational colors lay the groundwork for the content and structure of your pro
 
 ### Key Colors
 
-We provide aliases for a pair of literal color groups to aid changing the key colors of your project:
+Web Awesome provides aliases for two literal color groups to aid changing the key colors of your project:
 
 - **Primary** is used to draw attention and signify actions
 - **Base** makes up your project's body and structure
@@ -397,177 +414,174 @@ We provide aliases for a pair of literal color groups to aid changing the key co
 By default, `--wa-color-primary-{#}` references `--wa-color-blue-{#}` and `--wa-color-base-{#}` references `--wa-color-gray-{#}`.
 
 <div class="color-name">Primary</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-primary-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 <div class="color-name">Base</div>
-<div class="color-group">
-  <div class="color-preview">
+<ul class="color-group">
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-95)"></div>
     <small>95</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-90)"></div>
     <small>90</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-80)"></div>
     <small>80</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-70)"></div>
     <small>70</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-60)"></div>
     <small>60</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-50)"></div>
     <small>50</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-40)"></div>
     <small>40</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-30)"></div>
     <small>30</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-20)"></div>
     <small>20</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-10)"></div>
     <small>10</small>
-  </div>
-  <div class="color-preview">
+  </li>
+  <li class="color-preview">
     <div class="swatch" style="background-color: var(--wa-color-base-05)"></div>
     <small>05</small>
-  </div>
-</div>
+  </li>
+</ul>
 
 ### Surfaces
 
-Surfaces are background layers that other components and content rest on. Surface colors help convey hierarchy through a sense of elevation, where `--wa-color-surface-raised` is the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` is the farthest away (e.g., wells).
+Surfaces are background layers that other content rests on. Surface colors help convey hierarchy through a sense of elevation, where `--wa-color-surface-raised` is the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` is the farthest away (e.g., wells).
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-color-surface-raised`   | <div class="swatch" style="background-color: var(--wa-color-surface-raised); box-shadow:var(--wa-shadow-s)"></div> |
-| `--wa-color-surface-default`  | <div class="swatch" style="background-color: var(--wa-color-surface-default)"></div> |
-| `--wa-color-surface-lowered`  | <div class="swatch" style="background-color: var(--wa-color-surface-lowered); box-shadow: inset var(--wa-shadow-s)"></div> |
-| `--wa-color-surface-border`   | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-surface-border)"></div> |
+| Custom Property               |  Preview                                                                                                                        |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `--wa-color-surface-raised`   | <div class="swatch" style="background-color: var(--wa-color-surface-raised); box-shadow:var(--wa-shadow-s)"></div>              |
+| `--wa-color-surface-default`  | <div class="swatch" style="background-color: var(--wa-color-surface-default)"></div>                                            |
+| `--wa-color-surface-lowered`  | <div class="swatch" style="background-color: var(--wa-color-surface-lowered); box-shadow: inset var(--wa-shadow-s)"></div>      |
+| `--wa-color-surface-border`   | <div class="swatch" style="border-color: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border)"></div> |
 
 ### Text
 
 Text colors are used for standard text elements. We recommend a minimum 4.5:1 contrast ratio between text colors and surface colors.
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-color-text-normal`   | <span style="color: var(--wa-color-text-normal)">AaBb</span> |
-| `--wa-color-text-quiet`  | <span style="color: var(--wa-color-text-quiet)">AaBb</span> |
-| `--wa-color-text-link`  | <span style="color: var(--wa-color-text-link)">AaBb</span> |
+| Custom Property          |  Preview                                                     |
+| ------------------------ | ------------------------------------------------------------ |
+| `--wa-color-text-normal` | <span style="color: var(--wa-color-text-normal)">AaBb</span> |
+| `--wa-color-text-quiet`  | <span style="color: var(--wa-color-text-quiet)">AaBb</span>  |
+| `--wa-color-text-link`   | <span style="color: var(--wa-color-text-link)">AaBb</span>   |
 
 ### Overlays
 
 Overlays provide a backdrop to isolate content, often allowing background context to show through. 
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-color-overlay-modal`   | <div class="swatch" style="background-color: var(--wa-color-overlay-modal)"></div> |
-| `--wa-color-overlay-inline`  | <div class="swatch" style="background-color: var(--wa-color-overlay-inline)"></div> |
+| Custom Property             |  Preview                                                                            |
+| --------------------------- | ----------------------------------------------------------------------------------- |
+| `--wa-color-overlay-modal`  | <div class="swatch" style="background-color: var(--wa-color-overlay-modal)"></div>  |
+| `--wa-color-overlay-inline` | <div class="swatch" style="background-color: var(--wa-color-overlay-inline)"></div> |
 
 ### Shadow
 
-Shadows indicate elevation and, often, interactivity. `--wa-color-shadow` is used to construct your theme's [shadow properties](/docs/theming/shadows).
+Web Awesome uses a single color for all shadows. This is used alongside other [shadow properties](/docs/theming/shadows) to construct your theme's shadows.
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-color-shadow`   | <div class="swatch" style="background-color: var(--wa-color-shadow)"></div> |
+| Custom Property     |  Preview                                                                    |
+| ------------------- | --------------------------------------------------------------------------- |
+| `--wa-color-shadow` | <div class="swatch" style="background-color: var(--wa-color-shadow)"></div> |
 
 ### Interactions
 
 #### Focus
 
-Web Awesome uses a single, consistent focus color for predictable keyboard navigation. This is used alongside your [focus properties](/docs/theming/focus) to construct `--wa-focus-ring`. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
+Web Awesome uses a single focus color for predictable keyboard navigation. This is used alongside other [focus properties](/docs/theming/focus) to construct `--wa-focus-ring`. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-color-focus`   | <div class="swatch" style="outline: var(--wa-focus-ring-style) var(--wa-focus-ring-width) var(--wa-color-focus)"></div> |
+| Custom Property    |  Preview                                                                                                                |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `--wa-color-focus` | <div class="swatch" style="outline: var(--wa-focus-ring-style) var(--wa-focus-ring-width) var(--wa-color-focus)"></div> |
 
 #### Hover and Active
 
-We leverage `color-mix()` to achieve consistent hover and active states across components without the need for dozens of handpicked colors. These custom properties are used in `color-mix()` functions to contextually generate hover and active colors based on the color of the component.
+Web Awesome leverages `color-mix()` to achieve consistent hover and active states across components without the need for untold numbers of handpicked colors. Through `color-mix()`, these custom properties contextually generate hover and active colors based on the color of the component.
 
-| Custom Property               |  Preview                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-color-mix-hover`   | <div class="swatch" style="text-align: center; background-image: linear-gradient(to right, color-mix(in oklab, transparent, var(--wa-color-mix-hover)) 25%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)) 25%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-hover)) 75%, var(--wa-color-brand-fill-loud) 75%, var(--wa-color-brand-fill-loud))"><small style="color:var(--wa-color-brand-on-loud)">mixed</small></div> |
-| `--wa-color-mix-active`   | <div class="swatch" style="text-align: center; background-image: linear-gradient(to right, color-mix(in oklab, transparent, var(--wa-color-mix-active)) 25%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)) 25%, color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active)) 75%, var(--wa-color-brand-fill-loud) 75%, var(--wa-color-brand-fill-loud))"><small style="color:var(--wa-color-brand-on-loud);">mixed</small></div> |
+| Custom Property         |  Preview                                                                                                         |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `--wa-color-mix-hover`  | <div class="swatch color-mix-example" style="--mix-color: var(--wa-color-mix-hover)"><small>mixed</small></div>  |
+| `--wa-color-mix-active` | <div class="swatch color-mix-example" style="--mix-color: var(--wa-color-mix-active)"><small>mixed</small></div> |
 
 
 ## Semantic Colors
 
-Semantic colors help reinforce a specific message, intended usage, or expected results through familiar, meaningful hues. Each color is identified by its semantic group, role, and attention using the format `--wa-color-{group}-{role}-{attention}`. There are five groups of semantic colors:
-
-- **Brand** to reinforce your brand color
+Semantic colors reinforce a specific message, intended usage, or expected results through familiar, meaningful hues. Each color is identified by its semantic group, role, and attention using the format `--wa-color-{group}-{role}-{attention}`. There are five groups of semantic colors:
+- **Brand** to emphasize your brand color
 - **Success** for validity or confirmation
 - **Neutral** for ordinary or inactive content
 - **Warning** for caution or uncertainty
 - **Danger** for errors or risk
 
 Each group defines colors for specific roles so that colors can be easily assembled with predictable results and readable contrast. There are three roles:
-
 - **Fill** for background colors or areas larger than a few pixels
 - **Border** for borders, dividers, and other stroke-width elements
 - **On** for content displayed on a fill (e.g., pair `--wa-color-danger-on-loud` with `--wa-color-danger-fill-loud`)
 
 Finally, each color is named according to how much attention it draws. Here, we use noise as an analogy: a loud noise draws more attention than a quiet one. There are three levels of attention:
-
 - **Quiet** draws the least attention
 - **Normal** draws some attention
 - **Loud** draws the most attention

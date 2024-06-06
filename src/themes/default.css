@@ -100,7 +100,7 @@
    */
 
   /* Primary is a key color used to draw attention and signify actions.
-    * Primary colors should be a 1-to-1 map with colors in a literal color group. */
+    * Primary colors should be a 1-to-1 map with a literal color group. */
   --wa-color-primary-95: var(--wa-color-blue-95);
   --wa-color-primary-90: var(--wa-color-blue-90);
   --wa-color-primary-80: var(--wa-color-blue-80);
@@ -114,7 +114,7 @@
   --wa-color-primary-05: var(--wa-color-blue-05);
 
   /* Base is a key color that makes up your project's body and structure.
-   * Base colors should be a 1-to-1 map with colors in a literal color group, usually gray. */
+   * Base colors should be a 1-to-1 map with a literal color group, usually gray. */
   --wa-color-base-95: var(--wa-color-gray-95);
   --wa-color-base-90: var(--wa-color-gray-90);
   --wa-color-base-80: var(--wa-color-gray-80);
@@ -127,7 +127,7 @@
   --wa-color-base-10: var(--wa-color-gray-10);
   --wa-color-base-05: var(--wa-color-gray-05);
 
-  /* Surfaces are background layers that other components and content rest on.
+  /* Surfaces are background layers that other content rests on.
    * Surface colors help convey hierarchy through elevation, where raised is closest to the user and lowered is farthest away. */
   --wa-color-surface-raised: white;
   --wa-color-surface-default: white;
@@ -140,11 +140,13 @@
   --wa-color-text-quiet: var(--wa-color-base-40);
   --wa-color-text-link: var(--wa-color-primary-40);
 
-  /* Overlays provide a backdrop for isolated content, often allowing background colors or content to show through. */
+  /* Overlays provide a backdrop for isolated content, often allowing background context to show through. */
   --wa-color-overlay-modal: color-mix(in oklab, var(--wa-color-base-10) 40%, transparent);
   --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-80) 20%, transparent);
 
-  /* Shadows indicate elevation. Shadow color is used in your theme's shadow properties. */
+  /* Shadows indicate elevation. Shadow color is used in your theme's shadow properties. 
+   * By default, the opacity of your shadow color is tied to the blur of shadows in your theme. 
+   * Because solid shadows appear stronger in color than diffused shadows, this helps keep consistent color intensity. */
   --wa-color-shadow: color-mix(
     in oklab,
     var(--wa-color-base-05) calc(var(--wa-shadow-blur-multiplier) * 24% + 8%),
@@ -161,7 +163,7 @@
 
   /**
    * Semantic Colors
-   * Five semantic groups - brand, success, neutral, warning, and danger - help reinforce a component's message, intended usage, or expected results.
+   * Five semantic groups - brand, success, neutral, warning, and danger - reinforce a component's message, intended usage, or expected results.
    * Within these groups, each color specifies a role -
    *  *  Fill for background colors or areas larger than a few pixels
    *  *  Border for borders, dividers, and other stroke-like elements
