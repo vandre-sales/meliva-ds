@@ -506,7 +506,7 @@ Surfaces are background layers that other components and content rest on. Surfac
 | ----------------------------- | ------------------------------- |
 | `--wa-color-surface-raised`   | <div class="color-swatch" style="background-color: var(--wa-color-surface-raised); box-shadow:var(--wa-shadow-s)"></div> |
 | `--wa-color-surface-default`  | <div class="color-swatch" style="background-color: var(--wa-color-surface-default)"></div> |
-| `--wa-color-surface-lowered`  | <div class="color-swatch" style="background-color: var(--wa-color-surface-lowered); box-shadow:var(--wa-shadow-inset)"></div> |
+| `--wa-color-surface-lowered`  | <div class="color-swatch" style="background-color: var(--wa-color-surface-lowered); box-shadow:var(--wa-shadow-xs)"></div> |
 | `--wa-color-surface-border`   | <div class="color-swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-surface-border)"></div> |
 
 ### Text
@@ -530,7 +530,7 @@ Overlays provide a backdrop to isolate content, often allowing background contex
 
 ### Shadow
 
-Shadows indicate elevation. `--wa-color-shadow` is used to construct your theme's [shadow properties](/docs/theming/shadows).
+Shadows indicate elevation and, often, interactivity. `--wa-color-shadow` is used to construct your theme's [shadow properties](/docs/theming/shadows).
 
 | Custom Property               |  Preview                        |
 | ----------------------------- | ------------------------------- |

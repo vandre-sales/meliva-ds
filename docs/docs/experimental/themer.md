@@ -126,25 +126,25 @@ hasOutline: false
     --wa-border-radius-l: calc(var(--wa-border-radius-multiplier) * 1rem * 3);
 
     --wa-shadow-blur-multiplier: 0.125;
-    --wa-shadow-blur-inset: calc(var(--wa-shadow-blur-multiplier) * 0.75rem);
+    --wa-shadow-blur-xs: calc(var(--wa-shadow-blur-multiplier) * 0.75rem);
     --wa-shadow-blur-s: calc(var(--wa-shadow-blur-multiplier) * 1rem);
     --wa-shadow-blur-m: calc(var(--wa-shadow-blur-multiplier) * 1.5rem);
     --wa-shadow-blur-l: calc(var(--wa-shadow-blur-multiplier) * 2rem);
 
     --wa-shadow-offset-y-multiplier: 0.1;
-    --wa-shadow-offset-y-inset: calc(var(--wa-shadow-offset-y-multiplier) * 0.75rem);
+    --wa-shadow-offset-y-xs: calc(var(--wa-shadow-offset-y-multiplier) * 0.75rem);
     --wa-shadow-offset-y-s: calc(var(--wa-shadow-offset-y-multiplier) * 1rem);
     --wa-shadow-offset-y-m: calc(var(--wa-shadow-offset-y-multiplier) * 1.5rem);
     --wa-shadow-offset-y-l: calc(var(--wa-shadow-offset-y-multiplier) * 2rem);
 
     --wa-shadow-offset-x-multiplier: 0;
-    --wa-shadow-offset-x-inset: calc(var(--wa-shadow-offset-x-multiplier) * 0.75rem);
+    --wa-shadow-offset-x-xs: calc(var(--wa-shadow-offset-x-multiplier) * 0.75rem);
     --wa-shadow-offset-x-s: calc(var(--wa-shadow-offset-x-multiplier) * 1rem);
     --wa-shadow-offset-x-m: calc(var(--wa-shadow-offset-x-multiplier) * 1.5rem);
     --wa-shadow-offset-x-l: calc(var(--wa-shadow-offset-x-multiplier) * 2rem);
 
-    --wa-shadow-inset: inset var(--wa-shadow-offset-x-inset) var(--wa-shadow-offset-y-inset) var(--wa-shadow-blur-inset)
-      calc(var(--wa-shadow-offset-x-inset) * -1) var(--wa-color-shadow);
+    --wa-shadow-xs: inset var(--wa-shadow-offset-x-xs) var(--wa-shadow-offset-y-xs) var(--wa-shadow-blur-xs)
+      calc(var(--wa-shadow-offset-x-xs) * -1) var(--wa-color-shadow);
     --wa-shadow-s: var(--wa-shadow-offset-x-s) var(--wa-shadow-offset-y-s) var(--wa-shadow-blur-s)
       calc(var(--wa-shadow-offset-x-s) * -1) var(--wa-color-shadow);
     --wa-shadow-m: var(--wa-shadow-offset-x-m) var(--wa-shadow-offset-y-m) var(--wa-shadow-blur-m)

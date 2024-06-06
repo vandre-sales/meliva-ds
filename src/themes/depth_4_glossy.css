@@ -12,7 +12,7 @@
   /* Shadow blur is designed to scale according to a single base value to ensure consistent and realistic effects.
    * The base value is intended for calculations and is not used by components directly. */
   --wa-shadow-blur-multiplier: 0.375;
-  --wa-shadow-blur-inset: calc(var(--wa-shadow-blur-multiplier) * 0.75rem);
+  --wa-shadow-blur-xs: calc(var(--wa-shadow-blur-multiplier) * 0.75rem);
   --wa-shadow-blur-s: calc(var(--wa-shadow-blur-multiplier) * 1rem);
   --wa-shadow-blur-m: calc(var(--wa-shadow-blur-multiplier) * 1.5rem);
   --wa-shadow-blur-l: calc(var(--wa-shadow-blur-multiplier) * 2rem);
@@ -20,18 +20,18 @@
   /* Offset values are used in pre-constructed shadows and may be used when creating custom shadows
    * or transforming elements with shadows. */
   --wa-shadow-offset-y-multiplier: 0.25;
-  --wa-shadow-offset-y-inset: calc(var(--wa-shadow-offset-y-multiplier) * 0.75rem);
+  --wa-shadow-offset-y-xs: calc(var(--wa-shadow-offset-y-multiplier) * 0.75rem);
   --wa-shadow-offset-y-s: calc(var(--wa-shadow-offset-y-multiplier) * 1rem);
   --wa-shadow-offset-y-m: calc(var(--wa-shadow-offset-y-multiplier) * 1.5rem);
   --wa-shadow-offset-y-l: calc(var(--wa-shadow-offset-y-multiplier) * 2rem);
 
   --wa-shadow-offset-x-multiplier: 0;
-  --wa-shadow-offset-x-inset: calc(var(--wa-shadow-offset-x-multiplier) * 0.75rem);
+  --wa-shadow-offset-x-xs: calc(var(--wa-shadow-offset-x-multiplier) * 0.75rem);
   --wa-shadow-offset-x-s: calc(var(--wa-shadow-offset-x-multiplier) * 1rem);
   --wa-shadow-offset-x-m: calc(var(--wa-shadow-offset-x-multiplier) * 1.5rem);
   --wa-shadow-offset-x-l: calc(var(--wa-shadow-offset-x-multiplier) * 2rem);
 
-  --wa-shadow-inset: inset var(--wa-shadow-offset-x-inset) var(--wa-shadow-offset-y-inset) var(--wa-shadow-blur-inset)
+  --wa-shadow-xs: inset var(--wa-shadow-offset-x-xs) var(--wa-shadow-offset-y-xs) var(--wa-shadow-blur-xs)
     var(--wa-color-shadow);
   --wa-shadow-level-0: none;
   --wa-shadow-s: var(--wa-shadow-offset-x-s) var(--wa-shadow-offset-y-s) var(--wa-shadow-blur-s) var(--wa-color-shadow);
@@ -103,7 +103,7 @@ wa-button:not([variant='text']) {
     inset 0 1.25em 0 0 rgb(255 255 255 / 0.1) /* upper tint */, inset 0 -1.125em 0 0 rgb(0 0 0 / 0.04) /* lower shade */,
     inset 0 -0.0625rem 0 0 rgb(0 0 0 / 0.2) /* bottom highlight */, var(--wa-shadow-s) /* outer shadow */;
 
-  margin-bottom: var(--wa-shadow-offset-y-inset);
+  margin-bottom: var(--wa-shadow-offset-y-xs);
   transition: transform var(--wa-transition-fast);
 
   &:not([disabled]) {
@@ -122,7 +122,7 @@ wa-button:not([variant='text']) {
         inset 0 -1.125em 0 0 rgb(0 0 0 / 0.04) /* lower shade */,
         inset 0 -0.125rem 0 0 rgb(255 255 255 / 0.04) /* bottom highlight */, 0 0 0 0 transparent /* outer shadow */;
 
-      transform: translateY(var(--wa-shadow-offset-y-inset));
+      transform: translateY(var(--wa-shadow-offset-y-xs));
     }
   }
 }
@@ -237,14 +237,14 @@ wa-button:not([outline]) {
 wa-input:not(:focus),
 wa-select {
   &:not([filled]):not([disabled]) {
-    --box-shadow: var(--wa-shadow-inset), inset 0 1.25em 0 0 rgb(0 0 0 / 0.02) /* upper tint */,
+    --box-shadow: var(--wa-shadow-xs), inset 0 1.25em 0 0 rgb(0 0 0 / 0.02) /* upper tint */,
       inset 0 -1.125em 0 0 rgb(255 255 255 / 0.05) /* lower shade */;
   }
 }
 
 wa-textarea:not(:focus) {
   &:not([filled]):not([disabled]) {
-    --box-shadow: var(--wa-shadow-inset);
+    --box-shadow: var(--wa-shadow-xs);
   }
 }
 
@@ -268,7 +268,7 @@ wa-checkbox {
   );
 
   &:not([checked]):not([indeterminate]) {
-    --box-shadow: var(--wa-shadow-inset);
+    --box-shadow: var(--wa-shadow-xs);
   }
 
   &[checked] {
@@ -279,7 +279,7 @@ wa-checkbox {
 }
 
 wa-switch {
-  --box-shadow: var(--wa-shadow-inset);
+  --box-shadow: var(--wa-shadow-xs);
   --thumb-shadow: inset 0 0.0625rem 0 0 rgb(255 255 255 / 0.2) /* shine */,
     inset 0 0.125rem 0 0 rgb(255 255 255 / 0.05) /* top highlight */,
     inset 0 calc(var(--height) * 0.25) 0 0 rgb(255 255 255 / 0.04) /* upper tint */,
@@ -290,6 +290,6 @@ wa-switch {
 
 /* #region Progress bar */
 wa-progress-bar {
-  --box-shadow: var(--wa-shadow-inset);
+  --box-shadow: var(--wa-shadow-xs);
 }
 /* #endregion */

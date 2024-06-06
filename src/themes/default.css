@@ -306,36 +306,36 @@
 
   /**
    * Shadows
-   * Shadow properties are highly modular to make it easy to create custom shadow effects or transform elements with shadows.
-   * A multiplier is provided for each shadow characteristic to uniformly increase or decrease all related values for realistic effects. 
+   * Shadow properties are highly modular to make it easy to create custom shadow effects or transform elements based on specific shadow qualities.
+   * A multiplier is provided for each shadow quality to uniformly scale all related values. 
    */
 
-  --wa-shadow-blur-multiplier: 0.125;
-  --wa-shadow-blur-inset: calc(var(--wa-shadow-blur-multiplier) * 0.5rem);
-  --wa-shadow-blur-s: calc(var(--wa-shadow-blur-multiplier) * 1rem);
-  --wa-shadow-blur-m: calc(var(--wa-shadow-blur-multiplier) * 2rem);
-  --wa-shadow-blur-l: calc(var(--wa-shadow-blur-multiplier) * 3rem);
-
-  --wa-shadow-offset-y-multiplier: 0.125;
-  --wa-shadow-offset-y-inset: calc(var(--wa-shadow-offset-y-multiplier) * 0.5rem);
-  --wa-shadow-offset-y-s: calc(var(--wa-shadow-offset-y-multiplier) * 1rem);
-  --wa-shadow-offset-y-m: calc(var(--wa-shadow-offset-y-multiplier) * 2rem);
-  --wa-shadow-offset-y-l: calc(var(--wa-shadow-offset-y-multiplier) * 3rem);
-
   --wa-shadow-offset-x-multiplier: 0;
-  --wa-shadow-offset-x-inset: calc(var(--wa-shadow-offset-x-multiplier) * 0.5rem);
+  --wa-shadow-offset-x-xs: calc(var(--wa-shadow-offset-x-multiplier) * 0.5rem);
   --wa-shadow-offset-x-s: calc(var(--wa-shadow-offset-x-multiplier) * 1rem);
   --wa-shadow-offset-x-m: calc(var(--wa-shadow-offset-x-multiplier) * 2rem);
-  --wa-shadow-offset-x-l: calc(var(--wa-shadow-offset-x-multiplier) * 3rem);
+  --wa-shadow-offset-x-l: calc(var(--wa-shadow-offset-x-multiplier) * 4rem);
+
+  --wa-shadow-offset-y-multiplier: 0.125;
+  --wa-shadow-offset-y-xs: calc(var(--wa-shadow-offset-y-multiplier) * 0.5rem);
+  --wa-shadow-offset-y-s: calc(var(--wa-shadow-offset-y-multiplier) * 1rem);
+  --wa-shadow-offset-y-m: calc(var(--wa-shadow-offset-y-multiplier) * 2rem);
+  --wa-shadow-offset-y-l: calc(var(--wa-shadow-offset-y-multiplier) * 4rem);
+
+  --wa-shadow-blur-multiplier: 0.125;
+  --wa-shadow-blur-xs: calc(var(--wa-shadow-blur-multiplier) * 0.5rem);
+  --wa-shadow-blur-s: calc(var(--wa-shadow-blur-multiplier) * 1rem);
+  --wa-shadow-blur-m: calc(var(--wa-shadow-blur-multiplier) * 2rem);
+  --wa-shadow-blur-l: calc(var(--wa-shadow-blur-multiplier) * 4rem);
 
   --wa-shadow-spread-multiplier: -0.0625;
-  --wa-shadow-spread-inset: calc(var(--wa-shadow-spread-multiplier) * 0.5rem);
+  --wa-shadow-spread-xs: calc(var(--wa-shadow-spread-multiplier) * 0.5rem);
   --wa-shadow-spread-s: calc(var(--wa-shadow-spread-multiplier) * 1rem);
   --wa-shadow-spread-m: calc(var(--wa-shadow-spread-multiplier) * 2rem);
-  --wa-shadow-spread-l: calc(var(--wa-shadow-spread-multiplier) * 3rem);
+  --wa-shadow-spread-l: calc(var(--wa-shadow-spread-multiplier) * 4rem);
 
-  --wa-shadow-inset: inset var(--wa-shadow-offset-x-inset) var(--wa-shadow-offset-y-inset) var(--wa-shadow-blur-inset)
-    var(--wa-shadow-spread-inset) var(--wa-color-shadow);
+  --wa-shadow-xs: var(--wa-shadow-offset-x-xs) var(--wa-shadow-offset-y-xs) var(--wa-shadow-blur-xs)
+    var(--wa-shadow-spread-xs) var(--wa-color-shadow);
   --wa-shadow-s: var(--wa-shadow-offset-x-s) var(--wa-shadow-offset-y-s) var(--wa-shadow-blur-s)
     var(--wa-shadow-spread-s) var(--wa-color-shadow);
   --wa-shadow-m: var(--wa-shadow-offset-x-m) var(--wa-shadow-offset-y-m) var(--wa-shadow-blur-m)
