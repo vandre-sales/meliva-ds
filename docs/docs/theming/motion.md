@@ -5,13 +5,11 @@ layout: page.njk
 ---
 
 <style>
-  .motion-swatch {
-    height: 2em;
+  .swatch {
     background-color: var(--wa-color-neutral-fill-normal);
-    border-radius: var(--wa-border-radius-s);
+    border: none;
   }
-
-  .motion-swatch:hover {
+  .swatch:hover {
     background-color: var(--wa-color-brand-fill-loud);
   }
 </style>
@@ -24,6 +22,6 @@ Web Awesome uses transitions to ease between component states.
 
 | Custom Property               | Default Value |  Preview                        |
 | ----------------------------- | - | ------------------------------- |
-| `--wa-transition-slow`   | <code>300ms</code> | <div class="motion-swatch" style="transition: background-color var(--wa-transition-slow)"></div> |
-| `--wa-transition-normal`   | <code>150ms</code> | <div class="motion-swatch" style="transition: background-color var(--wa-transition-normal)"></div> |
-| `--wa-transition-fast`   | <code>75ms</code> | <div class="motion-swatch" style="transition: background-color var(--wa-transition-fast)"></div> |
+| `--wa-transition-slow`   | <code>300ms</code> | <div class="swatch" style="transition: background-color var(--wa-transition-slow)"></div> |
+| `--wa-transition-normal`   | <code>150ms</code> | <div class="swatch" style="transition: background-color var(--wa-transition-normal)"></div> |
+| `--wa-transition-fast`   | <code>75ms</code> | <div class="swatch" style="transition: background-color var(--wa-transition-fast)"></div> |

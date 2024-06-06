@@ -4,17 +4,6 @@ description: Elevate your components with Web Awesome's shadow properties.
 layout: page.njk
 ---
 
-<style>
-  div.shadow {
-    border: var(--wa-border-width-s) solid var(--wa-color-surface-border);
-    border-radius: var(--wa-border-radius-s);
-    display: inline-block;
-    height: 4rem;
-    margin-right: 2rem;
-    width: 4rem;
-  }
-</style>
-
 Web Awesome offers highly modular shadow properties to easily create custom shadow effects or transform elements based on specific shadow qualities. Together with [`--wa-color-shadow`](/docs/theming/color/#shadow), these custom properties create realistic shadows for Web Awesome components.
 
 Shadows use a size-based scale where larger shadows have greater offset and blur values to indicate greater distance from the surface below.
@@ -69,7 +58,7 @@ Shadows are constructed using the corresponding offset-x, offset-y, blur, and sp
 
 | Custom Property  |  Default Value                                                      |
 | ---------------- | ------------------------------------------------------------------- |
-| `--wa-shadow-xs` | <div class="shadow" style="box-shadow: var(--wa-shadow-xs);"></div> |
-| `--wa-shadow-s`  | <div class="shadow" style="box-shadow: var(--wa-shadow-s);"></div>  |
-| `--wa-shadow-m`  | <div class="shadow" style="box-shadow: var(--wa-shadow-m);"></div>  |
-| `--wa-shadow-l`  | <div class="shadow" style="box-shadow: var(--wa-shadow-l);"></div>  |
+| `--wa-shadow-xs` | <div class="swatch" style="box-shadow: var(--wa-shadow-xs);"></div> |
+| `--wa-shadow-s`  | <div class="swatch" style="box-shadow: var(--wa-shadow-s);"></div>  |
+| `--wa-shadow-m`  | <div class="swatch" style="box-shadow: var(--wa-shadow-m);"></div>  |
+| `--wa-shadow-l`  | <div class="swatch" style="box-shadow: var(--wa-shadow-l);"></div>  |
