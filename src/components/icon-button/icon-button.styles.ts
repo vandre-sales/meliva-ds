@@ -17,7 +17,7 @@ export default css`
     color: inherit;
     padding: var(--wa-space-xs);
     cursor: pointer;
-    transition: var(--wa-transition-fast) color;
+    transition: color var(--wa-transition-fast) var(--wa-transition-easing);
     -webkit-appearance: none;
   }
 

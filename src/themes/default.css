@@ -348,6 +348,8 @@
   /**
    * Transitions
    */
+  --wa-transition-easing: ease;
+
   --wa-transition-slow: 300ms;
   --wa-transition-normal: 150ms;
   --wa-transition-fast: 75ms;

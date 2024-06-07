@@ -291,7 +291,7 @@ hasOutline: false
     border-radius: var(--wa-border-radius-m);
     box-shadow: inset 0 0 0 0 transparent;
     padding: 1em;
-    transition: box-shadow var(--wa-transition-normal);
+    transition: box-shadow var(--wa-transition-normal) var(--wa-transition-easing);
 
     &[aria-checked="true"] {
       border-color: transparent;

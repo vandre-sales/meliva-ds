@@ -51,7 +51,7 @@ export default css`
     border: solid 2px white;
     margin-top: calc(var(--grid-handle-size) / -2);
     margin-left: calc(var(--grid-handle-size) / -2);
-    transition: var(--wa-transition-normal) scale;
+    transition: scale var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   .color-picker__grid-handle--dragging {

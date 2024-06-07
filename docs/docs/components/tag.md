@@ -107,7 +107,7 @@ Use the `removable` attribute to add a remove button to the tag.
 
 <style>
   .tags-removable wa-tag {
-    transition: var(--wa-transition-normal) opacity;
+    transition: opacity var(--wa-transition-normal);
   }
 </style>
 ```
@@ -118,7 +118,7 @@ import WaTag from '@shoelace-style/shoelace/dist/react/tag';
 
 const css = `
   .tags-removable wa-tag {
-    transition: var(--wa-transition-normal) opacity;
+    transition: opacity var(--wa-transition-normal);
   }
 `;
 

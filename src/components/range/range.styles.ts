@@ -111,10 +111,10 @@ export default css`
       var(--thumb-shadow),
       0 0 0 var(--thumb-gap) var(--wa-color-surface-default);
     transition:
-      var(--wa-transition-normal) border-color,
-      var(--wa-transition-normal) background-color,
-      var(--wa-transition-normal) color,
-      var(--wa-transition-normal) box-shadow;
+      background-color var(--wa-transition-normal) var(--wa-transition-easing),
+      border-color var(--wa-transition-normal) var(--wa-transition-easing),
+      box-shadow var(--wa-transition-normal) var(--wa-transition-easing),
+      color var(--wa-transition-normal) var(--wa-transition-easing);
     cursor: pointer;
   }
 

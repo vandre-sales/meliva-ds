@@ -26,7 +26,7 @@ export default css`
     padding: 0;
     margin: 0;
     cursor: pointer;
-    transition: var(--wa-transition-normal) color;
+    transition: color var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label {

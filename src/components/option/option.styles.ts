@@ -18,7 +18,7 @@ export default css`
     font: inherit;
     color: var(--wa-color-neutral-on-quiet);
     padding: var(--wa-space-xs) var(--wa-space-m) var(--wa-space-xs) var(--wa-space-2xs);
-    transition: var(--wa-transition-normal) fill;
+    transition: fill var(--wa-transition-normal) var(--wa-transition-easing);
     cursor: pointer;
   }
 

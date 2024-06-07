@@ -58,11 +58,11 @@ export default css`
     overflow: hidden;
     cursor: pointer;
     transition:
-      var(--wa-transition-normal) background,
-      var(--wa-transition-normal) border,
-      var(--wa-transition-normal) box-shadow,
-      var(--wa-transition-normal) color,
-      var(--wa-transition-fast) outline;
+      background var(--wa-transition-normal) var(--wa-transition-easing),
+      border var(--wa-transition-normal) var(--wa-transition-easing),
+      box-shadow var(--wa-transition-normal) var(--wa-transition-easing),
+      color var(--wa-transition-normal) var(--wa-transition-easing),
+      outline var(--wa-transition-fast) var(--wa-transition-easing);
   }
 
   .select__display-input {
