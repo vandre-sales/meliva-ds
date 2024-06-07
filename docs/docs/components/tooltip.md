@@ -12,6 +12,12 @@ Tooltips use `display: contents` so they won't interfere with how elements are p
 <wa-tooltip content="This is a tooltip">
   <wa-button>Hover Me</wa-button>
 </wa-tooltip>
+
+<br><br>
+
+<wa-tooltip id="my-tooltip" content="This is a tooltip" selector="#my-button">
+</wa-tooltip>
+<wa-button id="my-button">Hover Me</wa-button>
 ```
 
 {% raw %}

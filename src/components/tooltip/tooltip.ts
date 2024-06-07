@@ -1,6 +1,6 @@
 import { animateWithClass, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
@@ -9,6 +9,7 @@ import styles from './tooltip.styles.js';
 import WaPopup from '../popup/popup.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 /**
  * @summary Tooltips display additional information based on a specific action.
@@ -100,6 +101,12 @@ export default class WaTooltip extends WebAwesomeElement {
    */
   @property({ type: Boolean }) hoist = false;
 
+  @property() selector: null | string = null
+
+  @state() anchor: Element
+
+  rootNode: null | Document | ShadowRoot = null
+
   constructor() {
     super();
     this.addEventListener('blur', this.handleBlur, true);
@@ -109,6 +116,27 @@ export default class WaTooltip extends WebAwesomeElement {
     this.addEventListener('mouseout', this.handleMouseOut);
   }
 
+  connectedCallback () {
+    super.connectedCallback()
+    this.rootNode = this.getRootNode() as Document | ShadowRoot | null
+  }
+
+  @watch("selector")
+  handleSelectorChange () {
+    if (this.rootNode && this.selector) {
+      const elements = this.rootNode.querySelectorAll(this.selector)
+
+      for (const element of elements) {
+        element.setAttribute("aria-labelledby", this.id)
+        element.addEventListener('blur', this.handleBlur, true);
+        element.addEventListener('focus', this.handleFocus, true);
+        element.addEventListener('click', this.handleClick);
+        element.addEventListener('mouseover', this.handleMouseOver);
+        element.addEventListener('mouseout', this.handleMouseOut);
+      }
+    }
+  }
+
   disconnectedCallback() {
     // Cleanup this event in case the tooltip is removed while open
     this.closeWatcher?.destroy();
@@ -116,7 +144,7 @@ export default class WaTooltip extends WebAwesomeElement {
   }
 
   firstUpdated() {
-    this.body.hidden = !this.open;
+    // this.body.hidden = !this.open;
 
     // If the tooltip is visible on init, update its position
     if (this.open) {
@@ -131,19 +159,28 @@ export default class WaTooltip extends WebAwesomeElement {
     }
   };
 
-  private handleClick = () => {
+  private handleClick = (e: Event) => {
     if (this.hasTrigger('click')) {
       if (this.open) {
         this.hide();
       } else {
-        this.show();
+
+        let anchor = undefined
+        if (e.currentTarget !== this) {
+          anchor = e.currentTarget as HTMLElement
+        }
+        this.show(anchor);
       }
     }
   };
 
-  private handleFocus = () => {
+  private handleFocus = (e: Event) => {
     if (this.hasTrigger('focus')) {
-      this.show();
+      let anchor = undefined
+      if (e.currentTarget !== this) {
+        anchor = e.currentTarget as HTMLElement
+      }
+      this.show(anchor);
     }
   };
 
@@ -155,10 +192,15 @@ export default class WaTooltip extends WebAwesomeElement {
     }
   };
 
-  private handleMouseOver = () => {
+  private handleMouseOver = (e: Event) => {
     if (this.hasTrigger('hover')) {
       clearTimeout(this.hoverTimeout);
-      this.hoverTimeout = window.setTimeout(() => this.show(), this.showDelay);
+
+      let anchor = undefined
+      if (e.currentTarget !== this) {
+        anchor = e.currentTarget as HTMLElement
+      }
+      this.hoverTimeout = window.setTimeout(() => this.show(anchor), this.showDelay);
     }
   };
 
@@ -193,7 +235,7 @@ export default class WaTooltip extends WebAwesomeElement {
         document.addEventListener('keydown', this.handleDocumentKeyDown);
       }
 
-      this.body.hidden = false;
+      // this.body.hidden = false;
       this.popup.active = true;
       await stopAnimations(this.popup.popup);
       await animateWithClass(this.popup.popup, 'show-with-scale');
@@ -209,7 +251,7 @@ export default class WaTooltip extends WebAwesomeElement {
       await stopAnimations(this.popup.popup);
       await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.popup.active = false;
-      this.body.hidden = true;
+      // this.body.hidden = true;
 
       this.emit('wa-after-hide');
     }
@@ -231,9 +273,13 @@ export default class WaTooltip extends WebAwesomeElement {
   }
 
   /** Shows the tooltip. */
-  async show() {
+  async show(anchor?: HTMLElement) {
     if (this.open) {
       return undefined;
+    }
+
+    if (anchor) {
+      this.anchor = anchor
     }
 
     this.open = true;
@@ -246,6 +292,7 @@ export default class WaTooltip extends WebAwesomeElement {
       return undefined;
     }
 
+    this.anchor = null
     this.open = false;
     return waitForEvent(this, 'wa-after-hide');
   }
@@ -278,10 +325,12 @@ export default class WaTooltip extends WebAwesomeElement {
         hover-bridge
       >
         ${'' /* eslint-disable-next-line lit-a11y/no-aria-slot */}
-        <slot slot="anchor" aria-describedby="tooltip"></slot>
+        <div slot="anchor" aria-labelledby=${ifDefined(this.anchor ? null : "tooltip")}>
+          <slot></slot>
+        </div>
 
         ${'' /* eslint-disable-next-line lit-a11y/accessible-name */}
-        <div part="body" id="tooltip" class="tooltip__body" role="tooltip" aria-live=${this.open ? 'polite' : 'off'}>
+        <div part="body" id="tooltip" class="tooltip__body">
           <slot name="content">${this.content}</slot>
         </div>
       </wa-popup>
