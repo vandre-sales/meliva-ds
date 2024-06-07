@@ -10,9 +10,9 @@ For components that share similar qualities, Web Awesome includes custom propert
 
 Components such as [input](/docs/components/input), [select](/docs/components/select), [textarea](/docs/components/textarea), [checkbox](/docs/components/checkbox), etc. share a number of styles to give your forms a cohesive appearance. Web Awesome defines custom properties for these styles using the format `--wa-form-control-{style}`.
 
-Not every form control uses all of these custom properties. For example, `<wa-radio>` defines its own height and border radius to achieve its familiar shape but shares many other styles with other components for a cohesive look and feel. Similarly, `<wa-button>` defines many of its own styles but matches the height and border styles of other form controls.
+Not every form control uses all of these custom properties. For example, `<wa-radio>` defines its own height and border radius to achieve its familiar shape but shares many other styles with other components for a cohesive look and feel. Similarly, `<wa-button>` defines many of its own styles but matches the height and border width of other form controls.
 
-| Custom Property                             |  Default Value                                                                                    |
+| Custom Property                             | Default Value                                                                                     |
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `--wa-form-control-background`              | `var(--wa-color-surface-default)`                                                                 |
 | `--wa-form-control-border-style`            | `var(--wa-border-style)`                                                                          |
@@ -72,7 +72,7 @@ Not every form control uses all of these custom properties. For example, `<wa-ra
 
 Panels consist of components with larger, contained surface areas like [callout](/docs/components/callout), [card](/docs/components/card), [details](/docs/components/details), and [dialog](/docs/components/dialog).
 
-| Custom Property            |  Default Value              |
+| Custom Property            | Default Value               |
 | -------------------------- | --------------------------- |
 | `--wa-panel-border-style`  | `var(--wa-border-style)`    |
 | `--wa-panel-border-width`  | `var(--wa-border-width-s)`  |
@@ -102,7 +102,7 @@ Panels consist of components with larger, contained surface areas like [callout]
 
 Tooltip styles are shared between the [tooltip](/docs/components/tooltip) component and the tooltip implementation in [range](/docs/components/range).
 
-| Custom Property              |  Default Value                      |
+| Custom Property              | Default Value                       |
 | ---------------------------- | ----------------------------------- |
 | `--wa-tooltip-arrow-size`    | `0.375rem` <small>(6px)</small>     |
 | `--wa-tooltip-background`    | `var(--wa-color-neutral-fill-loud)` |

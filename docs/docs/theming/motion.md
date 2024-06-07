@@ -20,8 +20,8 @@ Motion like transitions and animations can make interactions more lively and emp
 
 Web Awesome uses transitions to ease between component states.
 
-| Custom Property               | Default Value |  Preview                        |
-| ----------------------------- | - | ------------------------------- |
-| `--wa-transition-slow`   | <code>300ms</code> | <div class="swatch" style="transition: background-color var(--wa-transition-slow)"></div> |
-| `--wa-transition-normal`   | <code>150ms</code> | <div class="swatch" style="transition: background-color var(--wa-transition-normal)"></div> |
-| `--wa-transition-fast`   | <code>75ms</code> | <div class="swatch" style="transition: background-color var(--wa-transition-fast)"></div> |
+| Custom Property          | Default Value |  Preview                                                                                    |
+| ------------------------ | ------------- | ------------------------------------------------------------------------------------------- |
+| `--wa-transition-slow`   | `300ms`       | <div class="swatch" style="transition: background-color var(--wa-transition-slow)"></div>   |
+| `--wa-transition-normal` | `150ms`       | <div class="swatch" style="transition: background-color var(--wa-transition-normal)"></div> |
+| `--wa-transition-fast`   | `75ms`        | <div class="swatch" style="transition: background-color var(--wa-transition-fast)"></div>   |

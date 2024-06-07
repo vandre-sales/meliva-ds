@@ -135,11 +135,12 @@ wa-page > main {
 /* Swatches */
 
 .swatch {
-  background-color: var(--wa-color-surface-default);
+  background-color: transparent;
   border-color: var(--wa-color-neutral-border-normal);
   border-style: var(--wa-border-style);
   border-width: var(--wa-border-width-s);
   border-radius: var(--wa-border-radius-s);
+  box-sizing: border-box;
   line-height: 2.5;
   height: 2.5em;
   padding-inline: var(--wa-space-xs);

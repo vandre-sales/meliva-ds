@@ -7,14 +7,14 @@ layout: page.njk
 A consistent focus ring helps with predictable keyboard navigation. Together with [`--wa-color-focus`](/docs/theming/color/#interactions), these custom properties create a uniform focus state for Web Awesome components.
 
 
-| Custom Property               |  Default Value                        |
-| ----------------------------- | ------------------------------- |
-| `--wa-focus-ring-style`   | <code>solid</code> |
-| `--wa-focus-ring-width`   | <code>0.1875rem</code> |
-| `--wa-focus-ring`   | <code>var(--wa-focus-ring-style) var(--wa-focus-ring-width) var(--wa-color-focus)</code> |
-| `--wa-focus-ring-offset`   | <code>0.0625rem</code> |
+| Custom Property          |  Default Value                                                                |
+| ------------------------ | ----------------------------------------------------------------------------- |
+| `--wa-focus-ring-style`  | `solid`                                                                       |
+| `--wa-focus-ring-width`  | `0.1875rem` <small>(3px)</small>                                              |
+| `--wa-focus-ring`        | `var(--wa-focus-ring-style) var(--wa-focus-ring-width) var(--wa-color-focus)` |
+| `--wa-focus-ring-offset` | `0.0625rem` <small>(1px)</small>                                              |
 
-Navigate this form example with your keyboard to see your theme's focus ring in action.
+See your theme's focus ring in action by navigating this form example with your keyboard.
 
 ```html {.example}
 <form class="wa-block-spacing-m">

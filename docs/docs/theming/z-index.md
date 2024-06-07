@@ -6,11 +6,11 @@ layout: page.njk
 
 Z-index properties make sure that certain Web Awesome components aren't mistakenly obscured. If you have elements with their own z-indices outside of Web Awesome, you can change these z-index properties as needed so that everything stacks appropriately.
 
-| Custom Property         |  Default Value |
-| ----------------------- | -------------- |
-| `--wa-z-index-dropdown` | `900`          |
-| `--wa-z-index-toast`    | `990`          |
-| `--wa-z-index-tooltip`  | `1000`         |
+| Custom Property         | Default Value |
+| ----------------------- | ------------- |
+| `--wa-z-index-dropdown` | `900`         |
+| `--wa-z-index-toast`    | `990`         |
+| `--wa-z-index-tooltip`  | `1000`        |
 
 ```html {.example}
 <div class="z-index-example">

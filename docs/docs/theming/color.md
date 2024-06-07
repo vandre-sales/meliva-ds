@@ -27,7 +27,7 @@ layout: page.njk
     flex: 1 1 auto;
   }
   .swatch {
-    border: none;
+    border-color: transparent;
   }
   .color-mix-example {
     background-image: 
@@ -38,6 +38,7 @@ layout: page.njk
       var(--wa-color-brand-fill-loud) 75%, 
       var(--wa-color-brand-fill-loud))
     ;
+    border: none;
     color: var(--wa-color-brand-on-loud);
     text-align: center; 
   }
@@ -513,28 +514,28 @@ By default, `--wa-color-primary-{#}` references `--wa-color-blue-{#}` and `--wa-
 
 Surfaces are background layers that other content rests on. Surface colors help convey hierarchy through a sense of elevation, where `--wa-color-surface-raised` is the closest to the user (e.g., dialogs and popup menus) and `--wa-color-surface-lowered` is the farthest away (e.g., wells).
 
-| Custom Property               |  Preview                                                                                                                        |
+| Custom Property               | Preview                                                                                                                         |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `--wa-color-surface-raised`   | <div class="swatch" style="background-color: var(--wa-color-surface-raised); box-shadow:var(--wa-shadow-s)"></div>              |
 | `--wa-color-surface-default`  | <div class="swatch" style="background-color: var(--wa-color-surface-default)"></div>                                            |
 | `--wa-color-surface-lowered`  | <div class="swatch" style="background-color: var(--wa-color-surface-lowered); box-shadow: inset var(--wa-shadow-s)"></div>      |
-| `--wa-color-surface-border`   | <div class="swatch" style="border-color: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border)"></div> |
+| `--wa-color-surface-border`   | <div class="swatch" style="border-color: var(--wa-color-surface-border)"></div>                                                 |
 
 ### Text
 
 Text colors are used for standard text elements. We recommend a minimum 4.5:1 contrast ratio between text colors and surface colors.
 
-| Custom Property          |  Preview                                                     |
-| ------------------------ | ------------------------------------------------------------ |
-| `--wa-color-text-normal` | <span style="color: var(--wa-color-text-normal)">AaBb</span> |
-| `--wa-color-text-quiet`  | <span style="color: var(--wa-color-text-quiet)">AaBb</span>  |
-| `--wa-color-text-link`   | <span style="color: var(--wa-color-text-link)">AaBb</span>   |
+| Custom Property          | Preview                                                    |
+| ------------------------ | ---------------------------------------------------------- |
+| `--wa-color-text-normal` | <div style="color: var(--wa-color-text-normal)">AaBb</div> |
+| `--wa-color-text-quiet`  | <div style="color: var(--wa-color-text-quiet)">AaBb</div>  |
+| `--wa-color-text-link`   | <div style="color: var(--wa-color-text-link)">AaBb</div>   |
 
 ### Overlays
 
 Overlays provide a backdrop to isolate content, often allowing background context to show through. 
 
-| Custom Property             |  Preview                                                                            |
+| Custom Property             | Preview                                                                             |
 | --------------------------- | ----------------------------------------------------------------------------------- |
 | `--wa-color-overlay-modal`  | <div class="swatch" style="background-color: var(--wa-color-overlay-modal)"></div>  |
 | `--wa-color-overlay-inline` | <div class="swatch" style="background-color: var(--wa-color-overlay-inline)"></div> |
@@ -543,7 +544,7 @@ Overlays provide a backdrop to isolate content, often allowing background contex
 
 Web Awesome uses a single color for all shadows. This is used alongside other [shadow properties](/docs/theming/shadows) to construct your theme's shadows.
 
-| Custom Property     |  Preview                                                                    |
+| Custom Property     | Preview                                                                     |
 | ------------------- | --------------------------------------------------------------------------- |
 | `--wa-color-shadow` | <div class="swatch" style="background-color: var(--wa-color-shadow)"></div> |
 
@@ -553,7 +554,7 @@ Web Awesome uses a single color for all shadows. This is used alongside other [s
 
 Web Awesome uses a single focus color for predictable keyboard navigation. This is used alongside other [focus properties](/docs/theming/focus) to construct `--wa-focus-ring`. We recommend a minimum 3:1 contrast ratio against surface colors and background colors wherever possible.
 
-| Custom Property    |  Preview                                                                                                                |
+| Custom Property    | Preview                                                                                                                 |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------- |
 | `--wa-color-focus` | <div class="swatch" style="outline: var(--wa-focus-ring-style) var(--wa-focus-ring-width) var(--wa-color-focus)"></div> |
 
@@ -561,7 +562,7 @@ Web Awesome uses a single focus color for predictable keyboard navigation. This 
 
 Web Awesome leverages `color-mix()` to achieve consistent hover and active states across components without the need for untold numbers of handpicked colors. Through `color-mix()`, these custom properties contextually generate hover and active colors based on the color of the component.
 
-| Custom Property         |  Preview                                                                                                         |
+| Custom Property         | Preview                                                                                                          |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `--wa-color-mix-hover`  | <div class="swatch color-mix-example" style="--mix-color: var(--wa-color-mix-hover)"><small>mixed</small></div>  |
 | `--wa-color-mix-active` | <div class="swatch color-mix-example" style="--mix-color: var(--wa-color-mix-active)"><small>mixed</small></div> |
@@ -586,14 +587,14 @@ Finally, each color is named according to how much attention it draws. Here, we 
 - **Normal** draws some attention
 - **Loud** draws the most attention
 
-| Custom Property               |  <code>brand</code>             |  <code>success</code>           |  <code>neutral</code>           |  <code>warning</code>           | <code>danger</code>             |
-| ----------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| `--wa-color-*-fill-quiet`   | <div class="swatch" style="background-color: var(--wa-color-brand-fill-quiet)"></div> |  <div class="swatch" style="background-color: var(--wa-color-success-fill-quiet)"></div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-quiet)"></div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-quiet)"></div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-quiet)"></div> |
+| Custom Property              |  <code>brand</code> |  <code>success</code> |  <code>neutral</code> |  <code>warning</code> | <code>danger</code> |
+| ---------------------------- | ------------------- | --------------------- | --------------------- | --------------------- | ------------------- |
+| `--wa-color-*-fill-quiet`    | <div class="swatch" style="background-color: var(--wa-color-brand-fill-quiet)"></div> |  <div class="swatch" style="background-color: var(--wa-color-success-fill-quiet)"></div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-quiet)"></div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-quiet)"></div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-quiet)"></div> |
 | `--wa-color-*-fill-normal`   | <div class="swatch" style="background-color: var(--wa-color-brand-fill-normal)"></div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-normal)"></div> |<div class="swatch" style="background-color: var(--wa-color-neutral-fill-normal)"></div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-normal)"></div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-normal)"></div> |
-| `--wa-color-*-fill-loud`   | <div class="swatch" style="background-color: var(--wa-color-brand-fill-loud)"></div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-loud)"></div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-loud)"></div> |  <div class="swatch" style="background-color: var(--wa-color-warning-fill-loud)"></div> |  <div class="swatch" style="background-color: var(--wa-color-danger-fill-loud)"></div> |
-| `--wa-color-*-border-quiet`   | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-quiet)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-quiet)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-quiet)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-quiet)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-quiet)"></div> |
-| `--wa-color-*-border-normal`   | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-normal)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-normal)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-normal)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-normal)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-normal)"></div> |
-| `--wa-color-*-border-loud`   | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-brand-border-loud)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-success-border-loud)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-neutral-border-loud)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-warning-border-loud)"></div> | <div class="swatch" style="border: var(--wa-border-width-s) solid var(--wa-color-danger-border-loud)"></div> |
-| `--wa-color-*-on-quiet`  | <div class="swatch" style="background-color: var(--wa-color-brand-fill-quiet); color: var(--wa-color-brand-on-quiet)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-quiet); color: var(--wa-color-success-on-quiet)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-quiet); color: var(--wa-color-neutral-on-quiet)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-quiet); color: var(--wa-color-warning-on-quiet)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-quiet); color: var(--wa-color-danger-on-quiet)">AaBb</div> |
-| `--wa-color-*-on-normal`  | <div class="swatch" style="background-color: var(--wa-color-brand-fill-normal); color: var(--wa-color-brand-on-normal)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-normal); color: var(--wa-color-success-on-normal)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-normal); color: var(--wa-color-neutral-on-normal)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-normal); color: var(--wa-color-warning-on-normal)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-normal); color: var(--wa-color-danger-on-normal)">AaBb</div> |
-| `--wa-color-*-on-loud`  | <div class="swatch" style="background-color: var(--wa-color-brand-fill-loud); color: var(--wa-color-brand-on-loud)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-loud); color: var(--wa-color-success-on-loud)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-loud); color: var(--wa-color-neutral-on-loud)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-loud); color: var(--wa-color-warning-on-loud)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-loud); color: var(--wa-color-danger-on-loud)">AaBb</div> |
+| `--wa-color-*-fill-loud`     | <div class="swatch" style="background-color: var(--wa-color-brand-fill-loud)"></div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-loud)"></div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-loud)"></div> |  <div class="swatch" style="background-color: var(--wa-color-warning-fill-loud)"></div> |  <div class="swatch" style="background-color: var(--wa-color-danger-fill-loud)"></div> |
+| `--wa-color-*-border-quiet`  | <div class="swatch" style="border-color: var(--wa-color-brand-border-quiet)"></div> | <div class="swatch" style="border-color: var(--wa-color-success-border-quiet)"></div> | <div class="swatch" style="border-color: var(--wa-color-neutral-border-quiet)"></div> | <div class="swatch" style="border-color: var(--wa-color-warning-border-quiet)"></div> | <div class="swatch" style="border-color: var(--wa-color-danger-border-quiet)"></div> |
+| `--wa-color-*-border-normal` | <div class="swatch" style="border-color: var(--wa-color-brand-border-normal)"></div> | <div class="swatch" style="border-color: var(--wa-color-success-border-normal)"></div> | <div class="swatch" style="border-color: var(--wa-color-neutral-border-normal)"></div> | <div class="swatch" style="border-color: var(--wa-color-warning-border-normal)"></div> | <div class="swatch" style="border-color: var(--wa-color-danger-border-normal)"></div> |
+| `--wa-color-*-border-loud`   | <div class="swatch" style="border-color: var(--wa-color-brand-border-loud)"></div> | <div class="swatch" style="border-color: var(--wa-color-success-border-loud)"></div> | <div class="swatch" style="border-color: var(--wa-color-neutral-border-loud)"></div> | <div class="swatch" style="border-color: var(--wa-color-warning-border-loud)"></div> | <div class="swatch" style="border-color: var(--wa-color-danger-border-loud)"></div> |
+| `--wa-color-*-on-quiet`      | <div class="swatch" style="background-color: var(--wa-color-brand-fill-quiet); color: var(--wa-color-brand-on-quiet)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-quiet); color: var(--wa-color-success-on-quiet)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-quiet); color: var(--wa-color-neutral-on-quiet)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-quiet); color: var(--wa-color-warning-on-quiet)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-quiet); color: var(--wa-color-danger-on-quiet)">AaBb</div> |
+| `--wa-color-*-on-normal`     | <div class="swatch" style="background-color: var(--wa-color-brand-fill-normal); color: var(--wa-color-brand-on-normal)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-normal); color: var(--wa-color-success-on-normal)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-normal); color: var(--wa-color-neutral-on-normal)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-normal); color: var(--wa-color-warning-on-normal)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-normal); color: var(--wa-color-danger-on-normal)">AaBb</div> |
+| `--wa-color-*-on-loud`       | <div class="swatch" style="background-color: var(--wa-color-brand-fill-loud); color: var(--wa-color-brand-on-loud)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-success-fill-loud); color: var(--wa-color-success-on-loud)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-neutral-fill-loud); color: var(--wa-color-neutral-on-loud)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-warning-fill-loud); color: var(--wa-color-warning-on-loud)">AaBb</div> | <div class="swatch" style="background-color: var(--wa-color-danger-fill-loud); color: var(--wa-color-danger-on-loud)">AaBb</div> |
