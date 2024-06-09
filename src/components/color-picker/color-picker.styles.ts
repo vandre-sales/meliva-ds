@@ -2,28 +2,36 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --grid-width: 280px;
-    --grid-height: 200px;
-    --grid-handle-size: 16px;
-    --slider-height: 15px;
-    --slider-handle-size: 17px;
-    --swatch-size: 25px;
+    --background: var(--wa-color-surface-raised);
+    --border-color: var(--wa-color-surface-border);
+    --border-radius: var(--wa-form-control-border-radius);
+    --border-style: var(--wa-form-control-border-style);
+    --border-width: var(--wa-form-control-border-width);
+    --grid-width: 17rem;
+    --grid-height: 12rem;
+    --grid-handle-size: 1.25rem;
+    --preview-size: 2.25rem;
+    --preview-border-radius: var(--wa-border-radius-circle);
+    --slider-height: 1rem;
+    --slider-handle-size: calc(var(--slider-height) + 0.25rem);
+    --swatch-border-radius: var(--wa-border-radius-s);
+    --trigger-border-radius: var(--wa-border-radius-circle);
 
     display: inline-block;
   }
 
   .color-picker {
-    width: var(--grid-width);
-    font: inherit;
+    background: var(--background);
+    border-radius: var(--border-radius);
     color: var(--color);
-    background-color: var(--wa-color-surface-raised);
-    border-radius: var(--wa-border-radius-s);
+    font: inherit;
     user-select: none;
+    width: var(--grid-width);
     -webkit-user-select: none;
   }
 
   .color-picker--inline {
-    border: var(--wa-form-control-border-style) var(--wa-border-width-s) var(--wa-color-surface-border);
+    border: var(--border-style) var(--border-width) var(--border-color);
   }
 
   .color-picker--inline:focus-visible {
@@ -36,8 +44,8 @@ export default css`
     height: var(--grid-height);
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
       linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
-    border-top-left-radius: var(--wa-border-radius-s);
-    border-top-right-radius: var(--wa-border-radius-s);
+    border-top-left-radius: calc(var(--border-radius) - var(--border-width));
+    border-top-right-radius: calc(var(--border-radius) - var(--border-width));
     cursor: crosshair;
     forced-color-adjust: none;
   }
@@ -46,9 +54,9 @@ export default css`
     position: absolute;
     width: var(--grid-handle-size);
     height: var(--grid-handle-size);
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
-    border: solid 2px white;
+    border-radius: var(--wa-border-radius-circle);
+    box-shadow: 0 0 0 0.0625rem rgba(0, 0, 0, 0.2);
+    border: solid 0.125rem white;
     margin-top: calc(var(--grid-handle-size) / -2);
     margin-left: calc(var(--grid-handle-size) / -2);
     transition: scale var(--wa-transition-normal) var(--wa-transition-easing);
@@ -76,8 +84,8 @@ export default css`
   .color-picker__slider {
     position: relative;
     height: var(--slider-height);
-    border-radius: var(--wa-border-radius-pill);
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+    border-radius: var(--wa-border-radius-xs);
+    box-shadow: inset 0 0 0 0.0625rem rgba(0, 0, 0, 0.2);
     forced-color-adjust: none;
   }
 
@@ -90,10 +98,10 @@ export default css`
     top: calc(50% - var(--slider-handle-size) / 2);
     width: var(--slider-handle-size);
     height: var(--slider-handle-size);
-    background-color: white;
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
-    margin-left: calc(var(--slider-handle-size) / -2);
+    border-radius: var(--wa-border-radius-circle);
+    border: solid 0.125rem white;
+    box-shadow: 0 0 0 0.0625rem rgba(0, 0, 0, 0.2);
+    margin-inline-start: calc(var(--slider-handle-size) / -2);
   }
 
   .color-picker__slider-handle:focus-visible {
@@ -128,12 +136,12 @@ export default css`
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: var(--preview-size);
+    height: var(--preview-size);
     border: none;
-    border-radius: var(--wa-border-radius-circle);
+    border-radius: var(--preview-border-radius);
     background: none;
-    margin-left: var(--wa-space-s);
+    margin-inline-start: var(--wa-space-s);
     cursor: copy;
     forced-color-adjust: none;
   }
@@ -146,7 +154,7 @@ export default css`
     width: 100%;
     height: 100%;
     border-radius: inherit;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 0 0.0625rem rgba(0, 0, 0, 0.2);
 
     /* We use a custom property in lieu of currentColor because of https://bugs.webkit.org/show_bug.cgi?id=216780 */
     background-color: var(--preview-color);
@@ -163,11 +171,11 @@ export default css`
     left: 0;
     width: 100%;
     height: 100%;
-    border: solid 1px rgba(0, 0, 0, 0.125);
+    border: solid 0.0625rem rgba(0, 0, 0, 0.125);
   }
 
   .color-picker__preview-color--copied {
-    animation: pulse 0.75s;
+    animation: pulse 850ms;
   }
 
   @keyframes pulse {
@@ -193,30 +201,30 @@ export default css`
   }
 
   .color-picker__user-input wa-button-group {
-    margin-left: var(--wa-space-s);
+    margin-inline-start: var(--wa-space-s);
   }
 
-  .color-picker__user-input wa-button {
-    min-width: 3.25rem;
-    max-width: 3.25rem;
-    font-size: 1rem;
+  .color-picker__user-input wa-button:first-of-type {
+    min-width: 3rem;
+    max-width: 3rem;
   }
 
   .color-picker__swatches {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-gap: 0.5rem;
+    grid-gap: var(--wa-space-xs);
     justify-items: center;
-    border-top: solid 1px var(--wa-color-surface-border);
+    border-block-start: var(--wa-form-control-border-style) var(--wa-form-control-border-width)
+      var(--wa-color-surface-border);
     padding: var(--wa-space-s);
     forced-color-adjust: none;
   }
 
   .color-picker__swatch {
     position: relative;
-    width: var(--swatch-size);
-    height: var(--swatch-size);
-    border-radius: var(--wa-border-radius-s);
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border-radius: var(--swatch-border-radius);
   }
 
   .color-picker__swatch .color-picker__swatch-color {
@@ -225,7 +233,7 @@ export default css`
     left: 0;
     width: 100%;
     height: 100%;
-    border: solid 1px rgba(0, 0, 0, 0.125);
+    border: solid 0.0625rem rgba(0, 0, 0, 0.125);
     border-radius: inherit;
     cursor: pointer;
   }
@@ -240,12 +248,12 @@ export default css`
       linear-gradient(45deg, transparent 75%, var(--wa-color-neutral-fill-normal) 75%),
       linear-gradient(45deg, transparent 75%, var(--wa-color-neutral-fill-normal) 75%),
       linear-gradient(45deg, var(--wa-color-neutral-fill-normal) 25%, transparent 25%);
-    background-size: 10px 10px;
+    background-size: 0.5rem 0.5rem;
     background-position:
       0 0,
       0 0,
-      -5px -5px,
-      5px 5px;
+      -0.25rem -0.25rem,
+      0.25rem 0.25rem;
   }
 
   .color-picker--disabled {
@@ -269,9 +277,9 @@ export default css`
 
   .color-dropdown::part(panel) {
     max-height: none;
-    background-color: var(--wa-color-surface-raised);
-    border: solid var(--wa-border-width-s) var(--wa-color-surface-border);
-    border-radius: var(--wa-border-radius-s);
+    background: var(--background);
+    border: var(--border-style) var(--border-width) var(--border-color);
+    border-radius: var(--border-radius);
     overflow: visible;
   }
 
@@ -287,19 +295,19 @@ export default css`
   .color-dropdown__trigger.color-dropdown__trigger--small {
     width: var(--wa-form-control-height-s);
     height: var(--wa-form-control-height-s);
-    border-radius: var(--wa-border-radius-circle);
+    border-radius: var(--trigger-border-radius);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--medium {
     width: var(--wa-form-control-height-m);
     height: var(--wa-form-control-height-m);
-    border-radius: var(--wa-border-radius-circle);
+    border-radius: var(--trigger-border-radius);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--large {
     width: var(--wa-form-control-height-l);
     height: var(--wa-form-control-height-l);
-    border-radius: var(--wa-border-radius-circle);
+    border-radius: var(--trigger-border-radius);
   }
 
   .color-dropdown__trigger:before {
@@ -312,8 +320,8 @@ export default css`
     border-radius: inherit;
     background-color: currentColor;
     box-shadow:
-      inset 0 0 0 2px var(--wa-form-control-resting-color),
-      inset 0 0 0 4px white;
+      inset 0 0 0 0.0625rem var(--wa-form-control-resting-color),
+      inset 0 0 0 0.25rem white;
   }
 
   .color-dropdown__trigger--empty:before {

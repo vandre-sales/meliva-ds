@@ -86,12 +86,20 @@ declare const EyeDropper: EyeDropperConstructor;
  * @csspart format-button__suffix - The format button's exported `suffix` part.
  * @csspart format-button__caret - The format button's exported `caret` part.
  *
+ * @cssproperty --background - The color picker's background styles.
+ * @cssproperty --border-color - The color of the color picker's borders.
+ * @cssproperty --border-radius - The corners of the color picker.
+ * @cssproperty --border-style - The style of the color picker's borders.
+ * @cssproperty --border-width - The width of the color picker's borders.
  * @cssproperty --grid-width - The width of the color grid.
  * @cssproperty --grid-height - The height of the color grid.
  * @cssproperty --grid-handle-size - The size of the color grid's handle.
+ * @cssproperty --preview-size - The size of the preview color.
+ * @cssproperty --preview-border-radius - The corners of the preview color.
  * @cssproperty --slider-height - The height of the hue and alpha sliders.
  * @cssproperty --slider-handle-size - The diameter of the slider's handle.
- * @cssproperty --swatch-size - The size of each predefined color swatch.
+ * @cssproperty --swatch-border-radius - The corners of each predefined color swatch.
+ * @cssproperty --trigger-border-radius - The corners of the color picker's dropdown trigger.
  */
 @customElement('wa-color-picker')
 export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
@@ -868,7 +876,8 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
                 part="slider-handle hue-slider-handle"
                 class="color-picker__slider-handle"
                 style=${styleMap({
-                  left: `${this.hue === 0 ? 0 : 100 / (360 / this.hue)}%`
+                  left: `${this.hue === 0 ? 0 : 100 / (360 / this.hue)}%`,
+                  backgroundColor: this.getHexString(this.hue, 100, 100)
                 })}
                 role="slider"
                 aria-label="hue"
@@ -903,7 +912,8 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
                       part="slider-handle opacity-slider-handle"
                       class="color-picker__slider-handle"
                       style=${styleMap({
-                        left: `${this.alpha}%`
+                        left: `${this.alpha}%`,
+                        backgroundColor: this.getHexString(this.hue, this.saturation, this.brightness, this.alpha)
                       })}
                       role="slider"
                       aria-label="alpha"
@@ -936,6 +946,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             part="input"
             type="text"
             name=${this.name}
+            size="small"
             autocomplete="off"
             autocorrect="off"
             autocapitalize="off"
@@ -956,6 +967,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
               ? html`
                   <wa-button
                     part="format-button"
+                    size="small"
                     aria-label=${this.localize.term('toggleColorFormat')}
                     exportparts="
                       base:format-button__base,
@@ -976,6 +988,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
               ? html`
                   <wa-button
                     part="eye-dropper-button"
+                    size="small"
                     exportparts="
                       base:eye-dropper-button__base,
                       prefix:eye-dropper-button__prefix,
