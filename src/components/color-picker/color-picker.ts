@@ -98,7 +98,9 @@ declare const EyeDropper: EyeDropperConstructor;
  * @cssproperty --preview-border-radius - The corners of the preview color.
  * @cssproperty --slider-height - The height of the hue and alpha sliders.
  * @cssproperty --slider-handle-size - The diameter of the slider's handle.
+ * @cssproperty --spacing - The amount of space around and between the color picker's controls.
  * @cssproperty --swatch-border-radius - The corners of each predefined color swatch.
+ * @cssproperty --swatch-size - The size of each predefined color swatch.
  * @cssproperty --trigger-border-radius - The corners of the color picker's dropdown trigger.
  */
 @customElement('wa-color-picker')

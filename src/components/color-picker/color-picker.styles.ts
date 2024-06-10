@@ -10,11 +10,13 @@ export default css`
     --grid-width: 17rem;
     --grid-height: 12rem;
     --grid-handle-size: 1.25rem;
+    --spacing: var(--wa-space-s);
     --preview-size: 2.25rem;
     --preview-border-radius: var(--wa-border-radius-circle);
     --slider-height: 1rem;
     --slider-handle-size: calc(var(--slider-height) + 0.25rem);
     --swatch-border-radius: var(--wa-border-radius-s);
+    --swatch-size: 1.5rem;
     --trigger-border-radius: var(--wa-border-radius-circle);
 
     display: inline-block;
@@ -72,7 +74,7 @@ export default css`
   }
 
   .color-picker__controls {
-    padding: var(--wa-space-s);
+    padding: var(--spacing);
     display: flex;
     align-items: center;
   }
@@ -101,7 +103,7 @@ export default css`
     border-radius: var(--wa-border-radius-circle);
     border: solid 0.125rem white;
     box-shadow: 0 0 0 0.0625rem rgba(0, 0, 0, 0.2);
-    margin-inline-start: calc(var(--slider-handle-size) / -2);
+    margin-left: calc(var(--slider-handle-size) / -2);
   }
 
   .color-picker__slider-handle:focus-visible {
@@ -141,7 +143,7 @@ export default css`
     border: none;
     border-radius: var(--preview-border-radius);
     background: none;
-    margin-inline-start: var(--wa-space-s);
+    margin-inline-start: var(--spacing);
     cursor: copy;
     forced-color-adjust: none;
   }
@@ -192,7 +194,7 @@ export default css`
 
   .color-picker__user-input {
     display: flex;
-    padding: 0 var(--wa-space-s) var(--wa-space-s) var(--wa-space-s);
+    padding: 0 var(--spacing) var(--spacing) var(--spacing);
   }
 
   .color-picker__user-input wa-input {
@@ -201,7 +203,7 @@ export default css`
   }
 
   .color-picker__user-input wa-button-group {
-    margin-inline-start: var(--wa-space-s);
+    margin-inline-start: var(--spacing);
   }
 
   .color-picker__user-input wa-button:first-of-type {
@@ -211,12 +213,12 @@ export default css`
 
   .color-picker__swatches {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--swatch-size), 100%), 1fr));
     grid-gap: var(--wa-space-xs);
     justify-items: center;
     border-block-start: var(--wa-form-control-border-style) var(--wa-form-control-border-width)
       var(--wa-color-surface-border);
-    padding: var(--wa-space-s);
+    padding: var(--spacing);
     forced-color-adjust: none;
   }
 
