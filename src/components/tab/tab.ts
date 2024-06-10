@@ -39,6 +39,8 @@ export default class WaTab extends WebAwesomeElement {
   /** Disables the tab and prevents selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  tabIndex = 0;
+
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'tab');
@@ -52,16 +54,12 @@ export default class WaTab extends WebAwesomeElement {
   @watch('disabled')
   handleDisabledChange() {
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
-  }
 
-  /** Sets focus to the tab. */
-  focus(options?: FocusOptions) {
-    this.tab.focus(options);
-  }
-
-  /** Removes focus from the tab. */
-  blur() {
-    this.tab.blur();
+    if (this.disabled && !this.active) {
+      this.tabIndex = -1;
+    } else {
+      this.tabIndex = 0;
+    }
   }
 
   render() {
@@ -76,17 +74,10 @@ export default class WaTab extends WebAwesomeElement {
           'tab--active': this.active,
           'tab--disabled': this.disabled
         })}
-        tabindex=${this.active && !this.disabled ? '0' : '-1'}
       >
         <slot></slot>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'wa-tab': WaTab;
   }
 }
 
