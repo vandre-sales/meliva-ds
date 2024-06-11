@@ -11,9 +11,9 @@ export async function animate(el: Element, keyframes: Keyframe[], options?: Keyf
  */
 export function animateWithClass(el: Element, className: string) {
   return new Promise<void>(resolve => {
-    el.classList.remove(className)
-    const controller = new AbortController()
-    const { signal } = controller
+    el.classList.remove(className);
+    const controller = new AbortController();
+    const { signal } = controller;
 
     el.classList.add(className);
     el.addEventListener(
@@ -21,7 +21,7 @@ export function animateWithClass(el: Element, className: string) {
       () => {
         el.classList.remove(className);
         resolve();
-        controller.abort()
+        controller.abort();
       },
       { once: true, signal }
     );
@@ -31,7 +31,7 @@ export function animateWithClass(el: Element, className: string) {
       () => {
         el.classList.remove(className);
         resolve();
-        controller.abort()
+        controller.abort();
       },
       { once: true, signal }
     );

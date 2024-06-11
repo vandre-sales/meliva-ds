@@ -105,18 +105,18 @@ export default class WaTooltip extends WebAwesomeElement {
    */
   @property({ type: Boolean }) hoist = false;
 
-  @property() for: null | string = null
+  @property() for: null | string = null;
 
-  @state() anchor: null | Element = null
+  @state() anchor: null | Element = null;
 
-  private eventController = new AbortController()
+  private eventController = new AbortController();
 
-  connectedCallback () {
-    super.connectedCallback()
+  connectedCallback() {
+    super.connectedCallback();
 
     // If the user doesn't give us an id, generate one.
     if (!this.id) {
-      this.id = uniqueId("wa-tooltip-")
+      this.id = uniqueId('wa-tooltip-');
     }
   }
 
@@ -124,14 +124,13 @@ export default class WaTooltip extends WebAwesomeElement {
     // Cleanup this event in case the tooltip is removed while open
     this.closeWatcher?.destroy();
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
-    this.eventController.abort()
+    this.eventController.abort();
 
     if (this.anchor) {
-      const label = (this.anchor.getAttribute("aria-labelledby") || "")
-      this.anchor.setAttribute("aria-labelledby", label.replace(this.id, ""))
+      const label = this.anchor.getAttribute('aria-labelledby') || '';
+      this.anchor.setAttribute('aria-labelledby', label.replace(this.id, ''));
     }
   }
-
 
   firstUpdated() {
     this.body.hidden = !this.open;
@@ -244,28 +243,30 @@ export default class WaTooltip extends WebAwesomeElement {
     }
   }
 
-  @watch("for")
-  handleForChange () {
-    const rootNode = this.getRootNode() as Document | ShadowRoot | null
+  @watch('for')
+  handleForChange() {
+    const rootNode = this.getRootNode() as Document | ShadowRoot | null;
 
-    if (!rootNode) { return }
-
-    const newAnchor = this.for ? rootNode.querySelector(`#${this.for}`) : null
-    const oldAnchor = this.anchor
-
-    if (newAnchor === oldAnchor) {
-      return
+    if (!rootNode) {
+      return;
     }
 
-    const { signal } = this.eventController
+    const newAnchor = this.for ? rootNode.querySelector(`#${this.for}`) : null;
+    const oldAnchor = this.anchor;
+
+    if (newAnchor === oldAnchor) {
+      return;
+    }
+
+    const { signal } = this.eventController;
 
     // "\\b" is a space boundary, used for making sure we dont add the tooltip to aria-labelledby twice.
-    const labelRegex = new RegExp(`\\b${this.id}\\b`)
+    const labelRegex = new RegExp(`\\b${this.id}\\b`);
 
     if (newAnchor) {
-      const currentLabel = (newAnchor.getAttribute("aria-labelledby") || "")
+      const currentLabel = newAnchor.getAttribute('aria-labelledby') || '';
       if (!currentLabel.match(labelRegex)) {
-        newAnchor.setAttribute("aria-labelledby", currentLabel + " " + this.id)
+        newAnchor.setAttribute('aria-labelledby', currentLabel + ' ' + this.id);
       }
 
       newAnchor.addEventListener('blur', this.handleBlur, { capture: true, signal });
@@ -276,8 +277,8 @@ export default class WaTooltip extends WebAwesomeElement {
     }
 
     if (oldAnchor) {
-      const label = (oldAnchor.getAttribute("aria-labelledby") || "")
-      oldAnchor.setAttribute("aria-labelledby", label.replace(labelRegex, ""))
+      const label = oldAnchor.getAttribute('aria-labelledby') || '';
+      oldAnchor.setAttribute('aria-labelledby', label.replace(labelRegex, ''));
       oldAnchor.removeEventListener('blur', this.handleBlur, { capture: true });
       oldAnchor.removeEventListener('focus', this.handleFocus, { capture: true });
       oldAnchor.removeEventListener('click', this.handleClick);
@@ -285,9 +286,8 @@ export default class WaTooltip extends WebAwesomeElement {
       oldAnchor.removeEventListener('mouseout', this.handleMouseOut);
     }
 
-    this.anchor = newAnchor
+    this.anchor = newAnchor;
   }
-
 
   @watch(['distance', 'hoist', 'placement', 'skidding'])
   async handleOptionsChange() {
