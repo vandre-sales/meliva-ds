@@ -8,6 +8,10 @@ export default css`
     box-sizing: content-box !important;
   }
 
+  :host[fixed-width] {
+    width: 1em;
+  }
+
   svg {
     display: block;
     height: 100%;
