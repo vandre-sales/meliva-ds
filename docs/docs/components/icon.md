@@ -4,24 +4,37 @@ description: Icons are symbols that can be used to represent various options wit
 layout: component.njk
 ---
 
-Web Awesome comes bundled with over 1,500 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These icons are part of the `default` icon library. If you prefer, you can register [custom icon libraries](#icon-libraries) as well.
+Web Awesome comes bundled with over 2,000 free icons courtesy of [Font Awesome](https://fontawesome.com/). These icons are part of the `default` icon library. Font Awesome Pro users can unlock additional icon families. Or, if you prefer, you can register your own [custom icon library](#icon-library).
 
 :::info
-Depending on how you're loading Web Awesome, you may need to copy icon assets and/or [set the base path](/getting-started/installation/#setting-the-base-path) so Web Awesome knows where to load them from. Otherwise, icons may not appear and you'll see 404 Not Found errors in the dev console.
+Not sure which icon to use? [Find the perfect icon over at Font Awesome!](https://fontawesome.com/search?o=r&m=free&f=brands%2Cclassic)
 :::
-
-## Default Icons
-
-All available icons in the `default` icon library are shown below. Click or tap on any icon to copy its name, then you can use it in your HTML like this.
-
-```html
-<wa-icon name="icon-name-here"></wa-icon>
-```
 
 ## Examples
 
-TODO - show how to use `family` and `variant` attributes.
-TODO - show how to use FA pro via `data-webawesome-kit="..."`
+### Families & Variants
+
+The default icon library is Font Awesome Free, which comes with two icon families: `classic` and `brands`. Use the `family` attribute to set the icon family.
+
+Many Font Awesome Pro icon families have variants such as `thin`, `light`, `regular`, and `solid`. Font Awesome Pro users can [provide their kit code](/docs/installation) to unlock additional families, including `sharp` and `duotone`. For these icon families, use the `variant` attribute to set the variant.
+
+```html {.example}
+<wa-icon family="brands" name="font-awesome"></wa-icon>
+<wa-icon family="brands" name="web-awesome"></wa-icon>
+```
+
+{% raw %}
+```jsx {.react}
+import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
+
+const App = () => (
+  <>
+    <WaIcon family="brands" name="font-awesome" />
+    <WaIcon family="brands" name="web-awesome" />
+  </>
+);
+```
+{% endraw %}
 
 ### Colors
 
@@ -95,22 +108,12 @@ Icons are sized relative to the current font size. To change their size, set the
 
 ```html {.example}
 <div style="font-size: 32px;">
-  <wa-icon name="exclamation-triangle"></wa-icon>
-  <wa-icon name="archive"></wa-icon>
-  <wa-icon name="battery-three-quarters"></wa-icon>
   <wa-icon name="bell"></wa-icon>
-  <wa-icon name="clock"></wa-icon>
-  <wa-icon name="cloud"></wa-icon>
-  <wa-icon name="download"></wa-icon>
-  <wa-icon name="file"></wa-icon>
-  <wa-icon name="flag"></wa-icon>
   <wa-icon name="heart"></wa-icon>
   <wa-icon name="image"></wa-icon>
-  <wa-icon name="bolt-lightning"></wa-icon>
   <wa-icon name="microphone"></wa-icon>
   <wa-icon name="search"></wa-icon>
   <wa-icon name="star"></wa-icon>
-  <wa-icon name="trash"></wa-icon>
 </div>
 ```
 
@@ -192,14 +195,14 @@ const App = () => <WaIcon name="star" label="Add to favorites" />;
 Custom icons can be loaded individually with the `src` attribute. Only SVGs on a local or CORS-enabled endpoint are supported. If you're using more than one custom icon, it might make sense to register a [custom icon library](#icon-libraries).
 
 ```html {.example}
-<wa-icon src="https://shoelace.style/assets/images/shoe.svg" style="font-size: 8rem;"></wa-icon>
+<wa-icon src="https://shoelace.style/assets/images/shoe.svg" style="font-size: 4rem;"></wa-icon>
 ```
 
 {% raw %}
 ```jsx {.react}
 import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
 
-const App = () => <WaIcon src="https://shoelace.style/assets/images/shoe.svg" style={{ fontSize: '8rem' }}></WaIcon>;
+const App = () => <WaIcon src="https://shoelace.style/assets/images/shoe.svg" style={{ fontSize: '4rem' }}></WaIcon>;
 ```
 {% endraw %}
 
@@ -207,9 +210,9 @@ const App = () => <WaIcon src="https://shoelace.style/assets/images/shoe.svg" st
 
 You can register additional icons to use with the `<wa-icon>` component through icon libraries. Icon files can exist locally or on a CORS-enabled endpoint (e.g. a CDN). There is no limit to how many icon libraries you can register and there is no cost associated with registering them, as individual icons are only requested when they're used.
 
-Web Awesome ships with two built-in icon libraries, `default` and `system`. The [default icon library](#customizing-the-default-library) contains all of the icons in the Bootstrap Icons project. The [system icon library](#customizing-the-system-library) contains only a small subset of icons that are used internally by Web Awesome components.
+Web Awesome ships with two built-in icon libraries, `default` and `system`. The [default icon library](#customizing-the-default-library) is provided courtesy of [Font Awesome](https://fontawesome.com/). The [system icon library](#customizing-the-system-library) contains only a small subset of icons that are used internally by Web Awesome components.
 
-To register an additional icon library, use the `registerIconLibrary()` function that's exported from `utilities/icon-library.js`. At a minimum, you must provide a name and a resolver function. The resolver function translates an icon name to a URL where the corresponding SVG file exists. Refer to the examples below to better understand how it works.
+To register an additional icon library, use the `registerIconLibrary()` function that's exported from `dist/webawesome.js`. At a minimum, you must provide a name and a resolver function. The resolver function translates an icon name to a URL where the corresponding SVG file exists. Refer to the examples below to better understand how it works.
 
 If necessary, a mutator function can be used to mutate the SVG element before rendering. This is necessary for some libraries due to the many possible ways SVGs are crafted. For example, icons should ideally inherit the current text color via `currentColor`, so you may need to apply `fill="currentColor` or `stroke="currentColor"` to the SVG element using this function.
 
@@ -220,7 +223,7 @@ Here's an example that registers an icon library located in the `/assets/icons` 
   import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('my-icons', {
-    resolver: name => `/assets/icons/${name}.svg`,
+    resolver: (name, family, variant) => `/assets/icons/${name}.svg`,
     mutator: svg => svg.setAttribute('fill', 'currentColor')
   });
 </script>
@@ -236,6 +239,25 @@ To display an icon, set the `library` and `name` attributes of an `<wa-icon>` el
 If an icon is used before registration occurs, it will be empty initially but shown when registered.
 
 The following examples demonstrate how to register a number of popular, open source icon libraries via CDN. Feel free to adapt the code as you see fit to use your own origin or naming conventions.
+
+### Bootstrap Icons
+
+This will register the [Bootstrap Icons](https://icons.getbootstrap.com/) library using the jsDelivr CDN. This library has two families: `regular` and `filled`.
+
+Icons in this library are licensed under the [MIT License](https://github.com/twbs/icons/blob/main/LICENSE).
+
+```html
+<script type="module">
+  import { registerIconLibrary } from '/dist/webawesome.js';
+
+  registerIconLibrary('default', {
+    resolver: (name, family) => {
+      const suffix = family === 'filled' ? '-fill' : '';
+      return `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/${name}${suffix}.svg`
+    }  
+  });
+</script>
+```
 
 ### Boxicons
 
@@ -587,16 +609,19 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
 
 ### Customizing the Default Library
 
-The default icon library contains over 1,300 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These are the icons that display when you use `<wa-icon>` without the `library` attribute. If you prefer to have these icons resolve elsewhere or to a different icon library, register an icon library using the `default` name and a custom resolver.
+The default icon library contains over 2,000 icons courtesy of [Font Awesome](https://fontawesome.com/). These are the icons that display when you use `<wa-icon>` without the `library` attribute. If you prefer to have these icons resolve elsewhere or to a different icon library, register an icon library using the `default` name and a custom resolver.
 
-This example will load the same set of icons from the jsDelivr CDN instead of your local assets folder.
+For example, this will change the default icon library to use [Bootstrap Icons](https://icons.getbootstrap.com/) loaded from the jsDelivr CDN.
 
 ```html
 <script type="module">
   import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('default', {
-    resolver: name => `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.0.0/icons/${name}.svg`
+    resolver: (name, family) => {
+      const suffix = family === 'filled' ? '-fill' : '';
+      return `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/${name}${suffix}.svg`
+    }  
   });
 </script>
 ```
