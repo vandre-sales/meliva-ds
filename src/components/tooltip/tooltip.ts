@@ -1,4 +1,4 @@
-import { animateWithClass, stopAnimations } from '../../internal/animate.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
@@ -149,28 +149,19 @@ export default class WaTooltip extends WebAwesomeElement {
     }
   };
 
-  private handleClick = (e: Event) => {
+  private handleClick = () => {
     if (this.hasTrigger('click')) {
       if (this.open) {
         this.hide();
       } else {
-
-        let anchor = undefined
-        if (e.currentTarget !== this) {
-          anchor = e.currentTarget as HTMLElement
-        }
-        this.show(anchor);
+        this.show();
       }
     }
   };
 
-  private handleFocus = (e: Event) => {
+  private handleFocus = () => {
     if (this.hasTrigger('focus')) {
-      let anchor = undefined
-      if (e.currentTarget !== this) {
-        anchor = e.currentTarget as HTMLElement
-      }
-      this.show(anchor);
+      this.show();
     }
   };
 
@@ -182,15 +173,11 @@ export default class WaTooltip extends WebAwesomeElement {
     }
   };
 
-  private handleMouseOver = (e: Event) => {
+  private handleMouseOver = () => {
     if (this.hasTrigger('hover')) {
       clearTimeout(this.hoverTimeout);
 
-      let anchor = undefined
-      if (e.currentTarget !== this) {
-        anchor = e.currentTarget as HTMLElement
-      }
-      this.hoverTimeout = window.setTimeout(() => this.show(anchor), this.showDelay);
+      this.hoverTimeout = window.setTimeout(() => this.show(), this.showDelay);
     }
   };
 
@@ -233,7 +220,6 @@ export default class WaTooltip extends WebAwesomeElement {
 
       this.body.hidden = false;
       this.popup.active = true;
-      await stopAnimations(this.popup.popup);
       await animateWithClass(this.popup.popup, 'show-with-scale');
       this.popup.reposition();
 
@@ -250,7 +236,6 @@ export default class WaTooltip extends WebAwesomeElement {
       this.closeWatcher?.destroy();
       document.removeEventListener('keydown', this.handleDocumentKeyDown);
 
-      await stopAnimations(this.popup.popup);
       await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.popup.active = false;
       this.body.hidden = true;
@@ -320,13 +305,9 @@ export default class WaTooltip extends WebAwesomeElement {
   }
 
   /** Shows the tooltip. */
-  async show(anchor?: HTMLElement) {
+  async show() {
     if (this.open) {
       return undefined;
-    }
-
-    if (anchor) {
-      this.anchor = anchor
     }
 
     this.open = true;

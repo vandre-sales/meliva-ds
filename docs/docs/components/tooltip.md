@@ -207,9 +207,8 @@ const App = () => (
 Set the `trigger` attribute to `click` to toggle the tooltip on click instead of hover.
 
 ```html {.example}
-<wa-tooltip content="Click again to dismiss" trigger="click">
-  <wa-button>Click to Toggle</wa-button>
-</wa-tooltip>
+<wa-button id="toggle-button">Click to Toggle</wa-button>
+<wa-tooltip for="toggle-button" trigger="click">Click again to dismiss</wa-tooltip>
 ```
 
 {% raw %}
@@ -230,9 +229,9 @@ const App = () => (
 Tooltips can be controller programmatically by setting the `trigger` attribute to `manual`. Use the `open` attribute to control when the tooltip is shown.
 
 ```html {.example}
-<wa-button style="margin-right: 4rem;">Toggle Manually</wa-button>
+<wa-button id="manual-trigger" style="margin-right: 4rem;">Toggle Manually</wa-button>
 
-<wa-tooltip content="This is an avatar" trigger="manual" class="manual-tooltip">
+<wa-tooltip for="manual-trigger" trigger="manual" class="manual-tooltip">
   <wa-avatar label="User"></wa-avatar>
 </wa-tooltip>
 
@@ -274,9 +273,8 @@ const App = () => {
 You can control the size of tooltip arrows by overriding the `--wa-tooltip-arrow-size` design token. To remove them, set the value to `0` as shown below.
 
 ```html {.example}
-<wa-tooltip content="This is a tooltip" style="--wa-tooltip-arrow-size: 0;">
-  <wa-button>No Arrow</wa-button>
-</wa-tooltip>
+<wa-button id="no-arrow">No Arrow</wa-button>
+<wa-tooltip for="no-arrow" style="--wa-tooltip-arrow-size: 0;">This is a tooltip with no arrow</wa-tooltip>
 ```
 
 {% raw %}
@@ -311,10 +309,9 @@ To override it globally, set it in a root block in your stylesheet after the Web
 Use the `content` slot to create tooltips with HTML content. Tooltips are designed only for text and presentational elements. Avoid placing interactive content, such as buttons, links, and form controls, in a tooltip.
 
 ```html {.example}
-<wa-tooltip>
-  <div slot="content">I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
-
-  <wa-button>Hover me</wa-button>
+<wa-button id="rich-tooltip">Hover me</wa-button>
+<wa-tooltip for="rich-tooltip">
+  <div>I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
 </wa-tooltip>
 ```
 
@@ -340,9 +337,10 @@ const App = () => (
 Use the `--max-width` custom property to change the width the tooltip can grow to before wrapping occurs.
 
 ```html {.example}
-<wa-tooltip style="--max-width: 80px;" content="This tooltip will wrap after only 80 pixels.">
-  <wa-button>Hover me</wa-button>
+<wa-tooltip for="wrapping-tooltip" style="--max-width: 80px;">
+  This tooltip will wrap after only 80 pixels.
 </wa-tooltip>
+<wa-button id="wrapping-tooltip">Hover me</wa-button>
 ```
 
 {% raw %}
@@ -364,20 +362,20 @@ Tooltips will be clipped if they're inside a container that has `overflow: auto|
 
 ```html {.example}
 <div class="tooltip-hoist">
-  <wa-tooltip content="This is a tooltip">
-    <wa-button>No Hoist</wa-button>
-  </wa-tooltip>
+  <wa-tooltip for="no-hoist">This is a tooltip</wa-tooltip>
+  <wa-button id="no-hoist">No Hoist</wa-button>
 
-  <wa-tooltip content="This is a tooltip" hoist>
-    <wa-button>Hoist</wa-button>
+  <wa-tooltip for="hoist" hoist>
+    This is a tooltip
   </wa-tooltip>
+  <wa-button id="hoist">Hoist</wa-button>
 </div>
 
 <style>
   .tooltip-hoist {
     position: relative;
-    border: solid 2px var(--wa-color-surface-border);
     overflow: hidden;
+    border: solid 2px var(--wa-color-surface-border);
     padding: var(--wa-space-m);
   }
 </style>

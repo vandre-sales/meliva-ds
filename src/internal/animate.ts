@@ -11,14 +11,29 @@ export async function animate(el: Element, keyframes: Keyframe[], options?: Keyf
  */
 export function animateWithClass(el: Element, className: string) {
   return new Promise<void>(resolve => {
+    el.classList.remove(className)
+    const controller = new AbortController()
+    const { signal } = controller
+
     el.classList.add(className);
     el.addEventListener(
       'animationend',
       () => {
         el.classList.remove(className);
         resolve();
+        controller.abort()
       },
-      { once: true }
+      { once: true, signal }
+    );
+
+    el.addEventListener(
+      'animationcancel',
+      () => {
+        el.classList.remove(className);
+        resolve();
+        controller.abort()
+      },
+      { once: true, signal }
     );
   });
 }
@@ -42,21 +57,4 @@ export function parseDuration(duration: number | string) {
 export function prefersReducedMotion() {
   const query = window.matchMedia('(prefers-reduced-motion: reduce)');
   return query.matches;
-}
-
-/**
- * Stops all active animations on the target element. Returns a promise that resolves after all animations are canceled.
- */
-export function stopAnimations(el: HTMLElement) {
-  return Promise.all(
-    el.getAnimations().map(animation => {
-      return new Promise(resolve => {
-        const handleAnimationEvent = requestAnimationFrame(resolve);
-
-        animation.addEventListener('cancel', () => handleAnimationEvent, { once: true });
-        animation.addEventListener('finish', () => handleAnimationEvent, { once: true });
-        animation.cancel();
-      });
-    })
-  );
 }
