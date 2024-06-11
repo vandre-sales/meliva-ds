@@ -187,7 +187,7 @@ Here's an example that registers an icon library located in the `/assets/icons` 
 
 ```html
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('my-icons', {
     resolver: name => `/assets/icons/${name}.svg`,
@@ -215,9 +215,9 @@ Icons in this library are licensed under the [Creative Commons 4.0 License](http
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+import { registerIconLibrary } from '/dist/webawesome.js';
 
-  registerIconLibrary('boxicons', {
+registerIconLibrary('boxicons', {
     resolver: name => {
       let folder = 'regular';
       if (name.substring(0, 4) === 'bxs-') folder = 'solid';
@@ -269,58 +269,12 @@ Icons in this library are licensed under the [MIT License](https://github.com/lu
 </div>
 
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('lucide', {
     resolver: name => `https://cdn.jsdelivr.net/npm/lucide-static@0.16.29/icons/${name}.svg`
   });
 </script>
-```
-
-### Font Awesome
-
-This will register the [Font Awesome Free](https://fontawesome.com/) library using the jsDelivr CDN. This library has three variations: regular (`far-*`), solid (`fas-*`), and brands (`fab-*`). A mutator function is required to set the SVG's `fill` to `currentColor`.
-
-Icons in this library are licensed under the [Font Awesome Free License](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt). Some of the icons that appear on the Font Awesome website require a license and are therefore not available in the CDN.
-
-```html {.example}
-<script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
-
-  registerIconLibrary('fa', {
-    resolver: name => {
-      const filename = name.replace(/^fa[rbs]-/, '');
-      let folder = 'regular';
-      if (name.substring(0, 4) === 'fas-') folder = 'solid';
-      if (name.substring(0, 4) === 'fab-') folder = 'brands';
-      return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/svgs/${folder}/${filename}.svg`;
-    },
-    mutator: svg => svg.setAttribute('fill', 'currentColor')
-  });
-</script>
-
-<div style="font-size: 24px;">
-  <wa-icon library="fa" name="far-bell"></wa-icon>
-  <wa-icon library="fa" name="far-comment"></wa-icon>
-  <wa-icon library="fa" name="far-hand-point-right"></wa-icon>
-  <wa-icon library="fa" name="far-hdd"></wa-icon>
-  <wa-icon library="fa" name="far-heart"></wa-icon>
-  <wa-icon library="fa" name="far-star"></wa-icon>
-  <br />
-  <wa-icon library="fa" name="fas-archive"></wa-icon>
-  <wa-icon library="fa" name="fas-book"></wa-icon>
-  <wa-icon library="fa" name="fas-chess-knight"></wa-icon>
-  <wa-icon library="fa" name="fas-dice"></wa-icon>
-  <wa-icon library="fa" name="fas-pizza-slice"></wa-icon>
-  <wa-icon library="fa" name="fas-scroll"></wa-icon>
-  <br />
-  <wa-icon library="fa" name="fab-apple"></wa-icon>
-  <wa-icon library="fa" name="fab-chrome"></wa-icon>
-  <wa-icon library="fa" name="fab-edge"></wa-icon>
-  <wa-icon library="fa" name="fab-firefox"></wa-icon>
-  <wa-icon library="fa" name="fab-opera"></wa-icon>
-  <wa-icon library="fa" name="fab-microsoft"></wa-icon>
-</div>
 ```
 
 ### Heroicons
@@ -331,7 +285,7 @@ Icons in this library are licensed under the [MIT License](https://github.com/ta
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('heroicons', {
     resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`
@@ -356,7 +310,7 @@ Icons in this library are licensed under the [MIT License](https://github.com/lu
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('iconoir', {
     resolver: name => `https://cdn.jsdelivr.net/gh/lucaburgio/iconoir@latest/icons/${name}.svg`
@@ -381,7 +335,7 @@ Icons in this library are licensed under the [MIT License](https://github.com/io
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('ionicons', {
     resolver: name => `https://cdn.jsdelivr.net/npm/ionicons@5.1.2/dist/ionicons/svg/${name}.svg`,
@@ -426,7 +380,7 @@ Icons in this library are licensed under the [MIT License](https://github.com/mi
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('jam', {
     resolver: name => `https://cdn.jsdelivr.net/npm/jam-icons@2.0.0/svg/${name}.svg`,
@@ -459,7 +413,7 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('material', {
     resolver: name => {
@@ -502,7 +456,7 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('remixicon', {
     resolver: name => {
@@ -539,7 +493,7 @@ Icons in this library are licensed under the [MIT License](https://github.com/ta
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('tabler', {
     resolver: name => `https://cdn.jsdelivr.net/npm/@tabler/icons@1.68.0/icons/${name}.svg`
@@ -571,7 +525,7 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
 
 ```html {.example}
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('unicons', {
     resolver: name => {
@@ -609,7 +563,7 @@ This example will load the same set of icons from the jsDelivr CDN instead of yo
 
 ```html
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('default', {
     resolver: name => `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.0.0/icons/${name}.svg`
@@ -623,15 +577,15 @@ To improve performance you can use a SVG sprites to avoid multiple trips for eac
 
 As always, make sure to benchmark these changes. When using HTTP/2, it may in fact be more bandwidth-friendly to use multiple small requests instead of 1 large sprite sheet.
 
-:::danger
+:::warning
 When using sprite sheets, the `wa-load` and `wa-error` events will not fire.
 
 For security reasons, browsers may apply the same-origin policy on `<use>` elements located in the `<wa-icon>` shadow DOM and may refuse to load a cross-origin URL. There is currently no defined way to set a cross-origin policy for `<use>` elements. For this reason, sprite sheets should only be used if you're self-hosting them.
 :::
 
-```html {.example}
+```html
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('sprite', {
     resolver: name => `/assets/images/sprite.svg#${name}`,
@@ -639,11 +593,6 @@ For security reasons, browsers may apply the same-origin policy on `<use>` eleme
     spriteSheet: true
   });
 </script>
-
-<div style="font-size: 24px;">
-  <wa-icon library="sprite" name="clock"></wa-icon>
-  <wa-icon library="sprite" name="speedometer"></wa-icon>
-</div>
 ```
 
 ### Customizing the System Library
@@ -654,7 +603,7 @@ If you want to change the icons Web Awesome uses internally, you can register an
 
 ```html
 <script type="module">
-  import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+  import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('system', {
     resolver: name => `/path/to/custom/icons/${name}.svg`
