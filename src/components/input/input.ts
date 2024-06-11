@@ -7,6 +7,11 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
+import { WaBlurEvent } from '../../events/blur.js';
+import { WaChangeEvent } from '../../events/change.js';
+import { WaClearEvent } from '../../events/clear.js';
+import { WaFocusEvent } from '../../events/focus.js';
+import { WaInputEvent } from '../../events/input.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -196,56 +201,20 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
   })
   spellcheck = true;
 
-  // @TODO: remove these.
-  private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
-  private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
-
   /**
    * Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
    * keyboard on supportive devices.
    */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
-  //
-  // NOTE: We use an in-memory input for these getters/setters instead of the one in the template because the properties
-  // can be set before the component is rendered.
-  //
-
-  /**
-   * Gets or sets the current value as a `Date` object. Returns `null` if the value can't be converted. This will use
-   * the native `<input type="type">` implementation and may result in an error.
-   */
-  get valueAsDate() {
-    this.__dateInput.type = this.type;
-    this.__dateInput.value = this.value;
-    return this.input?.valueAsDate || this.__dateInput.valueAsDate;
-  }
-
-  set valueAsDate(newValue: Date | null) {
-    this.__dateInput.type = this.type;
-    this.__dateInput.valueAsDate = newValue;
-    this.value = this.__dateInput.value;
-  }
-
-  /** Gets or sets the current value as a number. Returns `NaN` if the value can't be converted. */
-  get valueAsNumber() {
-    this.__numberInput.value = this.value;
-    return this.input?.valueAsNumber || this.__numberInput.valueAsNumber;
-  }
-
-  set valueAsNumber(newValue: number) {
-    this.__numberInput.valueAsNumber = newValue;
-    this.value = this.__numberInput.value;
-  }
-
   private handleBlur() {
     this.hasFocus = false;
-    this.emit('wa-blur');
+    this.dispatchEvent(new WaBlurEvent());
   }
 
   private handleChange() {
     this.value = this.input.value;
-    this.emit('wa-change');
+    this.dispatchEvent(new WaChangeEvent());
   }
 
   private handleClearClick(event: MouseEvent) {
@@ -253,9 +222,9 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
 
     if (this.value !== '') {
       this.value = '';
-      this.emit('wa-clear');
-      this.emit('wa-input');
-      this.emit('wa-change');
+      this.dispatchEvent(new WaClearEvent());
+      this.dispatchEvent(new WaInputEvent());
+      this.dispatchEvent(new WaChangeEvent());
     }
 
     this.input.focus();
@@ -263,12 +232,12 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
 
   private handleFocus() {
     this.hasFocus = true;
-    this.emit('wa-focus');
+    this.dispatchEvent(new WaFocusEvent());
   }
 
   private handleInput() {
     this.value = this.input.value;
-    this.emit('wa-input');
+    this.dispatchEvent(new WaInputEvent());
   }
 
   private handleKeyDown(event: KeyboardEvent) {
