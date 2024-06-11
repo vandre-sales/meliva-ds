@@ -35,6 +35,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart spinner__base - The spinner's base part.
  * @csspart submenu-icon - The submenu icon, visible only when the menu item has a submenu (not yet implemented).
  *
+ * @cssproperty --background-highlight - The menu item's background styles on hover and focus.
+ * @cssproperty --label-color-highlight - The label color on hover and focus.
  * @cssproperty [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
  */
 @customElement('wa-menu-item')

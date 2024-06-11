@@ -2,7 +2,9 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --submenu-offset: -2px;
+    --background-highlight: var(--wa-color-neutral-fill-quiet);
+    --label-color-highlight: var(--wa-color-text-normal);
+    --submenu-offset: -0.125rem;
 
     display: block;
   }
@@ -17,7 +19,8 @@ export default css`
     align-items: stretch;
     font: inherit;
     color: var(--wa-color-text-normal);
-    padding: var(--wa-space-2xs) var(--wa-space-2xs);
+    line-height: var(--wa-line-height-condensed);
+    padding: var(--wa-space-xs) var(--wa-space-2xs);
     transition: fill var(--wa-transition-normal) var(--wa-transition-easing);
     user-select: none;
     -webkit-user-select: none;
@@ -42,11 +45,11 @@ export default css`
 
   .menu-item--loading wa-spinner {
     --indicator-color: currentColor;
-    --track-width: 1px;
+    --track-width: 0.0625rem;
     position: absolute;
-    font-size: 0.75em;
+    font-size: 0.8em;
     top: calc(50% - 0.5em);
-    left: 0.65rem;
+    left: 0.5rem;
     opacity: 1;
   }
 
@@ -99,14 +102,15 @@ export default css`
 
   :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
-    background-color: var(--wa-color-neutral-fill-quiet);
-    color: var(--wa-color-text-normal);
+    background: var(--background-highlight);
+    color: var(--label-color-highlight);
   }
 
   :host(:focus-visible) .menu-item {
     outline: var(--wa-focus-ring);
     outline-offset: calc(-1 * var(--wa-focus-ring-width));
-    background-color: var(--wa-color-neutral-fill-quiet);
+    background: var(--background-highlight);
+    color: var(--label-color-highlight);
     opacity: 1;
   }
 
