@@ -4,9 +4,7 @@ description: Tooltips display additional information based on a specific action.
 layout: component.njk
 ---
 
-A tooltip's target is its _first child element_, so you should only wrap one element inside of the tooltip. If you need the tooltip to show up for multiple elements, nest them inside a container first.
-
-Tooltips use `display: contents` so they won't interfere with how elements are positioned in a flex or grid layout.
+A tooltip's target is based on the `for` attribute which points to an element id.
 
 ```html {.example}
 <wa-tooltip for="my-button">This is a tooltip</wa-tooltip>
