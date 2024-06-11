@@ -2,10 +2,14 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --selection-background-color: var(--wa-color-neutral-fill-quiet);
+    --selection-indicator-color: var(--wa-color-brand-fill-loud);
+    --expand-button-color: var(--wa-color-text-quiet);
     --show-duration: 200ms;
     --hide-duration: 200ms;
 
     display: block;
+    color: var(--wa-color-text-normal);
     outline: 0;
     z-index: 0;
   }
@@ -23,7 +27,6 @@ export default css`
     display: flex;
     align-items: stretch;
     flex-direction: column;
-    color: var(--wa-color-text-normal);
     cursor: default;
     user-select: none;
     -webkit-user-select: none;
@@ -56,7 +59,8 @@ export default css`
     align-items: center;
     justify-content: center;
     box-sizing: content-box;
-    color: var(--wa-color-neutral-fill-loud);
+    color: var(--expand-button-color);
+    font-size: 0.875rem;
     padding: var(--wa-space-xs);
     width: 1rem;
     height: 1rem;
@@ -108,12 +112,12 @@ export default css`
   }
 
   :host(:not([aria-disabled='true'])) .tree-item--selected .tree-item__item {
-    background-color: var(--wa-color-neutral-fill-quiet);
-    border-inline-start-color: var(--wa-color-brand-fill-loud);
+    background-color: var(--selection-background-color);
+    border-inline-start-color: var(--selection-indicator-color);
   }
 
   :host(:not([aria-disabled='true'])) .tree-item__expand-button {
-    color: var(--wa-color-neutral-fill-loud);
+    color: var(--expand-button-color);
   }
 
   .tree-item__label {
