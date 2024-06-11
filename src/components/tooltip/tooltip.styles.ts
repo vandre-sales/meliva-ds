@@ -4,11 +4,13 @@ export default css`
   :host {
     --background: var(--wa-tooltip-background);
     --border-radius: var(--wa-tooltip-border-radius);
-    --content-color: var(--wa-tooltip-content-color);
     --max-width: 30ch;
     --padding: var(--wa-space-2xs) var(--wa-space-xs);
 
     display: contents;
+    color: var(--wa-tooltip-content-color);
+    font-size: var(--wa-tooltip-font-size);
+    line-height: var(--wa-tooltip-line-height);
   }
 
   .tooltip {
@@ -42,12 +44,9 @@ export default css`
     max-width: var(--max-width);
     border-radius: var(--border-radius);
     background: var(--background);
-    font-family: inherit;
-    font-size: var(--wa-tooltip-font-size);
-    line-height: var(--wa-tooltip-line-height);
+    font: inherit;
     text-align: start;
     white-space: normal;
-    color: var(--content-color);
     padding: var(--padding);
     user-select: none;
     -webkit-user-select: none;
