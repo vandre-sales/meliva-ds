@@ -34,6 +34,11 @@ interface IconSource {
  *
  * @csspart svg - The internal SVG element.
  * @csspart use - The `<use>` element generated when using `spriteSheet: true`
+ *
+ * @cssproperty [--primary-color=currentColor] - Sets a duotone icon's primary color.
+ * @cssproperty [--primary-opacity=1] - Sets a duotone icon's primary opacity.
+ * @cssproperty [--secondary-color=currentColor] - Sets a duotone icon's secondary color.
+ * @cssproperty [--secondary-opacity=0.4] - Sets a duotone icon's secondary opacity.
  */
 @customElement('wa-icon')
 export default class WaIcon extends WebAwesomeElement {
