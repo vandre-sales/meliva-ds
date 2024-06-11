@@ -2,6 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --box-shadow: var(--wa-shadow-m);
+
     display: inline-block;
   }
 
@@ -31,7 +33,7 @@ export default css`
 
   .dropdown__panel {
     font: inherit;
-    box-shadow: var(--wa-shadow-m);
+    box-shadow: var(--box-shadow);
     border-radius: var(--wa-border-radius-s);
     pointer-events: none;
   }
