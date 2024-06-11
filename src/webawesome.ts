@@ -1,4 +1,4 @@
-export { getBasePath, setBasePath } from './utilities/base-path.js';
+export { getBasePath, setBasePath, getKitCode, setKitCode } from './utilities/base-path.js';
 export { registerIconLibrary, unregisterIconLibrary } from './components/icon/library.js';
 export { discover } from './utilities/autoloader.js';
 
