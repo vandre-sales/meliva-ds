@@ -125,9 +125,8 @@ const App = () => <WaIconButton name="gear" variant="solid" label="Settings" hre
 Wrap a tooltip around an icon button to provide contextual information to the user.
 
 ```html {.example}
-<wa-tooltip content="Settings">
-  <wa-icon-button name="gear" variant="solid" label="Settings"></wa-icon-button>
-</wa-tooltip>
+<wa-icon-button id="button-group" name="gear" variant="solid" label="Settings"></wa-icon-button>
+<wa-tooltip for="button-group">Settings</wa-tooltip>
 ```
 
 {% raw %}

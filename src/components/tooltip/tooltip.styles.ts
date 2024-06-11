@@ -5,6 +5,10 @@ export default css`
     --max-width: 20rem;
 
     display: inline-block;
+    position: fixed;
+    inset: 0;
+    width: 0px;
+    height: 0px;
   }
 
   .tooltip {

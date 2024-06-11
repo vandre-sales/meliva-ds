@@ -5,9 +5,8 @@ import type WaTooltip from './tooltip.js';
 describe('<wa-tooltip>', () => {
   it('should be visible with the open attribute', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip" open>
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
+      <wa-tooltip open for="wa-button">This is a tooltip</wa-tooltip>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
 
@@ -16,9 +15,8 @@ describe('<wa-tooltip>', () => {
 
   it('should not be visible without the open attribute', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip">
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-tooltip for="wa-button">This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
 
@@ -27,9 +25,8 @@ describe('<wa-tooltip>', () => {
 
   it('should emit wa-show and wa-after-show when calling show()', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip">
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-tooltip for="wa-button">This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
     const showHandler = sinon.spy();
@@ -49,9 +46,8 @@ describe('<wa-tooltip>', () => {
 
   it('should emit wa-hide and wa-after-hide when calling hide()', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip" open>
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-tooltip for="wa-button" open>This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
     const hideHandler = sinon.spy();
@@ -71,9 +67,8 @@ describe('<wa-tooltip>', () => {
 
   it('should emit wa-show and wa-after-show when setting open = true', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip">
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-tooltip for="wa-button">This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
     const showHandler = sinon.spy();
@@ -93,9 +88,8 @@ describe('<wa-tooltip>', () => {
 
   it('should emit wa-hide and wa-after-hide when setting open = false', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip" open>
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-tooltip for="wa-button" open>This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
     const hideHandler = sinon.spy();
@@ -115,9 +109,8 @@ describe('<wa-tooltip>', () => {
 
   it('should hide the tooltip when tooltip is visible and disabled becomes true', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip" open>
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-tooltip for="wa-button" open>This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
     const hideHandler = sinon.spy();
@@ -137,9 +130,8 @@ describe('<wa-tooltip>', () => {
 
   it('should show when open initially', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip" open>
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-tooltip for="wa-button" open>This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
     await el.updateComplete;
@@ -149,9 +141,8 @@ describe('<wa-tooltip>', () => {
 
   it('should not accept user selection on the tooltip', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-tooltip content="This is a tooltip" open>
-        <wa-button>Hover Me</wa-button>
-      </wa-tooltip>
+      <wa-tooltip for="wa-button" open>This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
 
     const tooltipBody = el.shadowRoot!.querySelector('.tooltip__body')!;
