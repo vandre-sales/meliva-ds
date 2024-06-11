@@ -2,7 +2,9 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --divider-width: 2px;
+    --divider-color: var(--wa-color-neutral-fill-quiet);
+    --divider-width: 0.125rem;
+    --handle-color: var(--wa-color-neutral-on-quiet);
     --handle-size: 2.5rem;
 
     display: inline-block;
@@ -46,7 +48,7 @@ export default css`
     top: 0;
     width: var(--divider-width);
     height: 100%;
-    background-color: var(--wa-color-neutral-fill-quiet);
+    background-color: var(--divider-color);
     translate: calc(var(--divider-width) / -2);
     cursor: ew-resize;
   }
@@ -59,10 +61,10 @@ export default css`
     top: calc(50% - (var(--handle-size) / 2));
     width: var(--handle-size);
     height: var(--handle-size);
-    background-color: var(--wa-color-neutral-fill-quiet);
+    background-color: var(--divider-color);
     border-radius: var(--wa-border-radius-circle);
-    font-size: calc(var(--handle-size) * 0.5);
-    color: var(--wa-color-neutral-on-normal);
+    font-size: calc(var(--handle-size) * 0.4);
+    color: var(--handle-color);
     cursor: inherit;
     z-index: 10;
   }

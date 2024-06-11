@@ -2,8 +2,9 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --divider-width: 4px;
-    --divider-hit-area: 12px;
+    --divider-color: var(--wa-color-neutral-border-normal);
+    --divider-width: 0.25rem;
+    --divider-hit-area: 0.75rem;
     --min: 0%;
     --max: 100%;
 
@@ -21,7 +22,7 @@ export default css`
     position: relative;
     align-items: center;
     justify-content: center;
-    background-color: var(--wa-color-neutral-border-normal);
+    background-color: var(--divider-color);
     color: var(--wa-color-neutral-on-normal);
     z-index: 1;
   }
@@ -31,8 +32,7 @@ export default css`
   }
 
   :host(:not([disabled])) .divider:focus-visible {
-    background-color: var(--wa-color-brand-fill-loud);
-    color: var(--wa-color-brand-on-loud);
+    outline: var(--wa-focus-ring);
   }
 
   :host([disabled]) .divider {
