@@ -9,14 +9,7 @@ A tooltip's target is its _first child element_, so you should only wrap one ele
 Tooltips use `display: contents` so they won't interfere with how elements are positioned in a flex or grid layout.
 
 ```html {.example}
-<wa-tooltip content="This is a tooltip">
-  <wa-button>Hover Me</wa-button>
-</wa-tooltip>
-
-<br><br>
-
-<wa-tooltip id="my-tooltip" content="This is a tooltip" selector="#my-button">
-</wa-tooltip>
+<wa-tooltip for="my-button">This is a tooltip</wa-tooltip>
 <wa-button id="my-button">Hover Me</wa-button>
 ```
 
@@ -26,9 +19,8 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaTooltip content="This is a tooltip">
-    <WaButton>Hover Me</WaButton>
-  </WaTooltip>
+  <WaTooltip for="my-button">This is a tooltip</WaTooltip>
+  <WaButton id="my-button">Hover Me</WaButton>
 );
 ```
 {% endraw %}
@@ -42,63 +34,45 @@ Use the `placement` attribute to set the preferred placement of the tooltip.
 ```html {.example}
 <div class="tooltip-placement-example">
   <div class="tooltip-placement-example-row">
-    <wa-tooltip content="top-start" placement="top-start">
-      <wa-button></wa-button>
-    </wa-tooltip>
-
-    <wa-tooltip content="top" placement="top">
-      <wa-button></wa-button>
-    </wa-tooltip>
-
-    <wa-tooltip content="top-end" placement="top-end">
-      <wa-button></wa-button>
-    </wa-tooltip>
+    <wa-button id="tooltip-top-start"></wa-button>
+    <wa-button id="tooltip-top"></wa-button>
+    <wa-button id="tooltip-top-end"></wa-button>
   </div>
 
   <div class="tooltip-placement-example-row">
-    <wa-tooltip content="left-start" placement="left-start">
-      <wa-button></wa-button>
-    </wa-tooltip>
-
-    <wa-tooltip content="right-start" placement="right-start">
-      <wa-button></wa-button>
-    </wa-tooltip>
+    <wa-button id="tooltip-left-start"></wa-button>
+    <wa-button id="tooltip-right-start"></wa-button>
   </div>
 
   <div class="tooltip-placement-example-row">
-    <wa-tooltip content="left" placement="left">
-      <wa-button></wa-button>
-    </wa-tooltip>
-
-    <wa-tooltip content="right" placement="right">
-      <wa-button></wa-button>
-    </wa-tooltip>
+    <wa-button id="tooltip-left"></wa-button>
+    <wa-button id="tooltip-right"></wa-button>
   </div>
 
   <div class="tooltip-placement-example-row">
-    <wa-tooltip content="left-end" placement="left-end">
-      <wa-button></wa-button>
-    </wa-tooltip>
-
-    <wa-tooltip content="right-end" placement="right-end">
-      <wa-button></wa-button>
-    </wa-tooltip>
+    <wa-button id="tooltip-left-end"></wa-button>
+    <wa-button id="tooltip-right-end"></wa-button>
   </div>
 
   <div class="tooltip-placement-example-row">
-    <wa-tooltip content="bottom-start" placement="bottom-start">
-      <wa-button></wa-button>
-    </wa-tooltip>
-
-    <wa-tooltip content="bottom" placement="bottom">
-      <wa-button></wa-button>
-    </wa-tooltip>
-
-    <wa-tooltip content="bottom-end" placement="bottom-end">
-      <wa-button></wa-button>
-    </wa-tooltip>
+    <wa-button id="tooltip-bottom-start"></wa-button>
+    <wa-button id="tooltip-bottom"></wa-button>
+    <wa-button id="tooltip-bottom-end"></wa-button>
   </div>
 </div>
+
+<wa-tooltip for="tooltip-top-start" placement="top-start">top-start</wa-tooltip>
+<wa-tooltip for="tooltip-top" placement="top">top</wa-tooltip>
+<wa-tooltip for="tooltip-top-end" placement="top-end">top-end</wa-tooltip>
+<wa-tooltip for="tooltip-left-start" placement="left-start">left-start</wa-tooltip>
+<wa-tooltip for="tooltip-right-start" placement="right-start">right-start</wa-tooltip>
+<wa-tooltip for="tooltip-left" placement="left">left</wa-tooltip>
+<wa-tooltip for="tooltip-right" placement="right">right</wa-tooltip>
+<wa-tooltip for="tooltip-left-end" placement="left-end">left-end</wa-tooltip>
+<wa-tooltip for="tooltip-right-end" placement="right-end">right-end</wa-tooltip>
+<wa-tooltip for="tooltip-bottom-start" placement="bottom-start">bottom-start</wa-tooltip>
+<wa-tooltip for="tooltip-bottom" placement="bottom">bottom</wa-tooltip>
+<wa-tooltip for="tooltip-bottom-end" placement="bottom-end">bottom-end</wa-tooltip>
 
 <style>
   .tooltip-placement-example {
@@ -106,29 +80,22 @@ Use the `placement` attribute to set the preferred placement of the tooltip.
     margin: 1rem;
   }
 
-  .tooltip-placement-example-row:after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
   .tooltip-placement-example wa-button {
-    float: left;
     width: 2.5rem;
-    margin-right: 0.25rem;
-    margin-bottom: 0.25rem;
   }
 
-  .tooltip-placement-example-row:nth-child(1) wa-tooltip:first-child wa-button,
-  .tooltip-placement-example-row:nth-child(5) wa-tooltip:first-child wa-button {
-    margin-left: calc(40px + 0.25rem);
+  .tooltip-placement-example-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
-  .tooltip-placement-example-row:nth-child(2) wa-tooltip:nth-child(2) wa-button,
-  .tooltip-placement-example-row:nth-child(3) wa-tooltip:nth-child(2) wa-button,
-  .tooltip-placement-example-row:nth-child(4) wa-tooltip:nth-child(2) wa-button {
-    margin-left: calc((40px * 3) + (0.25rem * 3));
+  .tooltip-placement-example-row:nth-child(1),
+  .tooltip-placement-example-row:nth-child(5) {
+    justify-content: center;
   }
+
 </style>
 ```
 

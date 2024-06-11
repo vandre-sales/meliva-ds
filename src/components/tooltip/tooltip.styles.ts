@@ -4,7 +4,7 @@ export default css`
   :host {
     --max-width: 20rem;
 
-    display: contents;
+    display: inline-block;
   }
 
   .tooltip {

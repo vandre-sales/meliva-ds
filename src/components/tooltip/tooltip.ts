@@ -2,6 +2,7 @@ import { animateWithClass, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
+import { uniqueId } from '../../internal/math.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -9,7 +10,6 @@ import styles from './tooltip.styles.js';
 import WaPopup from '../popup/popup.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 /**
  * @summary Tooltips display additional information based on a specific action.
@@ -101,39 +101,18 @@ export default class WaTooltip extends WebAwesomeElement {
    */
   @property({ type: Boolean }) hoist = false;
 
-  @property() selector: null | string = null
+  @property() for: null | string = null
 
-  @state() anchor: Element
+  @state() anchor: null | Element = null
 
-  rootNode: null | Document | ShadowRoot = null
-
-  constructor() {
-    super();
-    this.addEventListener('blur', this.handleBlur, true);
-    this.addEventListener('focus', this.handleFocus, true);
-    this.addEventListener('click', this.handleClick);
-    this.addEventListener('mouseover', this.handleMouseOver);
-    this.addEventListener('mouseout', this.handleMouseOut);
-  }
+  private eventController = new AbortController()
 
   connectedCallback () {
     super.connectedCallback()
-    this.rootNode = this.getRootNode() as Document | ShadowRoot | null
-  }
 
-  @watch("selector")
-  handleSelectorChange () {
-    if (this.rootNode && this.selector) {
-      const elements = this.rootNode.querySelectorAll(this.selector)
-
-      for (const element of elements) {
-        element.setAttribute("aria-labelledby", this.id)
-        element.addEventListener('blur', this.handleBlur, true);
-        element.addEventListener('focus', this.handleFocus, true);
-        element.addEventListener('click', this.handleClick);
-        element.addEventListener('mouseover', this.handleMouseOver);
-        element.addEventListener('mouseout', this.handleMouseOut);
-      }
+    // If the user doesn't give us an id, generate one.
+    if (!this.id) {
+      this.id = uniqueId("wa-tooltip-")
     }
   }
 
@@ -141,10 +120,17 @@ export default class WaTooltip extends WebAwesomeElement {
     // Cleanup this event in case the tooltip is removed while open
     this.closeWatcher?.destroy();
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
+    this.eventController.abort()
+
+    if (this.anchor) {
+      const label = (this.anchor.getAttribute("aria-labelledby") || "")
+      this.anchor.setAttribute("aria-labelledby", label.replace(this.id, ""))
+    }
   }
 
+
   firstUpdated() {
-    // this.body.hidden = !this.open;
+    this.body.hidden = !this.open;
 
     // If the tooltip is visible on init, update its position
     if (this.open) {
@@ -232,10 +218,10 @@ export default class WaTooltip extends WebAwesomeElement {
           this.hide();
         };
       } else {
-        document.addEventListener('keydown', this.handleDocumentKeyDown);
+        document.addEventListener('keydown', this.handleDocumentKeyDown, { signal: this.eventController.signal });
       }
 
-      // this.body.hidden = false;
+      this.body.hidden = false;
       this.popup.active = true;
       await stopAnimations(this.popup.popup);
       await animateWithClass(this.popup.popup, 'show-with-scale');
@@ -251,13 +237,58 @@ export default class WaTooltip extends WebAwesomeElement {
       await stopAnimations(this.popup.popup);
       await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.popup.active = false;
-      // this.body.hidden = true;
+      this.body.hidden = true;
 
       this.emit('wa-after-hide');
     }
   }
 
-  @watch(['content', 'distance', 'hoist', 'placement', 'skidding'])
+  @watch("for")
+  handleForChange () {
+    const rootNode = this.getRootNode() as Document | ShadowRoot | null
+
+    if (!rootNode) { return }
+
+    const newAnchor = this.for ? rootNode.querySelector(`#${this.for}`) : null
+    const oldAnchor = this.anchor
+
+    if (newAnchor === oldAnchor) {
+      return
+    }
+
+    const { signal } = this.eventController
+
+    // "\\b" is a space boundary, used for making sure we dont add the tooltip to aria-labelledby twice.
+    const labelRegex = new RegExp(`\\b${this.id}\\b`)
+
+    if (newAnchor) {
+      const currentLabel = (newAnchor.getAttribute("aria-labelledby") || "")
+      if (!currentLabel.match(labelRegex)) {
+        newAnchor.setAttribute("aria-labelledby", currentLabel + " " + this.id)
+      }
+
+      newAnchor.addEventListener('blur', this.handleBlur, { capture: true, signal });
+      newAnchor.addEventListener('focus', this.handleFocus, { capture: true, signal });
+      newAnchor.addEventListener('click', this.handleClick, { signal });
+      newAnchor.addEventListener('mouseover', this.handleMouseOver, { signal });
+      newAnchor.addEventListener('mouseout', this.handleMouseOut, { signal });
+    }
+
+    if (oldAnchor) {
+      const label = (oldAnchor.getAttribute("aria-labelledby") || "")
+      oldAnchor.setAttribute("aria-labelledby", label.replace(labelRegex, ""))
+      oldAnchor.removeEventListener('blur', this.handleBlur, { capture: true });
+      oldAnchor.removeEventListener('focus', this.handleFocus, { capture: true });
+      oldAnchor.removeEventListener('click', this.handleClick);
+      oldAnchor.removeEventListener('mouseover', this.handleMouseOver);
+      oldAnchor.removeEventListener('mouseout', this.handleMouseOut);
+    }
+
+    this.anchor = newAnchor
+  }
+
+
+  @watch(['distance', 'hoist', 'placement', 'skidding'])
   async handleOptionsChange() {
     if (this.hasUpdated) {
       await this.updateComplete;
@@ -289,11 +320,12 @@ export default class WaTooltip extends WebAwesomeElement {
   /** Hides the tooltip */
   async hide() {
     if (!this.open) {
+      this.anchor = null
       return undefined;
     }
 
-    this.anchor = null
     this.open = false;
+    this.anchor = null
     return waitForEvent(this, 'wa-after-hide');
   }
 
@@ -323,15 +355,10 @@ export default class WaTooltip extends WebAwesomeElement {
         shift
         arrow
         hover-bridge
+        .anchor=${this.anchor}
       >
-        ${'' /* eslint-disable-next-line lit-a11y/no-aria-slot */}
-        <div slot="anchor" aria-labelledby=${ifDefined(this.anchor ? null : "tooltip")}>
+        <div part="body" class="tooltip__body">
           <slot></slot>
-        </div>
-
-        ${'' /* eslint-disable-next-line lit-a11y/accessible-name */}
-        <div part="body" id="tooltip" class="tooltip__body">
-          <slot name="content">${this.content}</slot>
         </div>
       </wa-popup>
     `;
