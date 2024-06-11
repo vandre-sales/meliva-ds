@@ -141,6 +141,36 @@ const App = () => (
 ```
 {% endraw %}
 
+### Fixed Width Icons
+
+By default, icons have a 1em height and a variable width. Use the `fixed-width` attribute to render the host element in a 1em by 1em box.
+
+```html {.example}
+<wa-icon fixed-width name="cloud"></wa-icon>
+<wa-icon fixed-width name="user"></wa-icon>
+<wa-icon fixed-width name="truck"></wa-icon>
+<wa-icon fixed-width name="file"></wa-icon>
+<wa-icon fixed-width name="skating"></wa-icon>
+<wa-icon fixed-width name="snowplow"></wa-icon>
+```
+
+{% raw %}
+```jsx {.react}
+import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
+
+const App = () => (
+  <>
+    <WaIcon fixed-width name="cloud" />
+    <WaIcon fixed-width name="user" />
+    <WaIcon fixed-width name="truck" />
+    <WaIcon fixed-width name="file" />
+    <WaIcon fixed-width name="skating" />
+    <WaIcon fixed-width name="snowplow" />
+  </>
+);
+```
+{% endraw %}
+
 ### Labels
 
 For non-decorative icons, use the `label` attribute to announce it to assistive devices.

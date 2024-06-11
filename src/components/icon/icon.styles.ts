@@ -3,19 +3,33 @@ import { css } from 'lit';
 export default css`
   :host {
     display: inline-block;
-    width: auto;
-    height: 1em;
     box-sizing: content-box !important;
-  }
-
-  :host[fixed-width] {
-    width: 1em;
   }
 
   svg {
     display: block;
-    height: 100%;
-    width: auto;
     fill: currentColor;
+  }
+
+  /* Normal width */
+  :host(:not([fixed-width])) {
+    max-width: auto;
+    height: 1em;
+
+    svg {
+      width: auto;
+      height: 1em;
+    }
+  }
+
+  /* Fixed width */
+  :host([fixed-width]) {
+    width: 1em;
+    height: 1em;
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
   }
 `;
