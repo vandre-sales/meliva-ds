@@ -264,6 +264,13 @@ export default class WaTooltip extends WebAwesomeElement {
     const labelRegex = new RegExp(`\\b${this.id}\\b`);
 
     if (newAnchor) {
+      /**
+       * We use `aria-labelledby` because it seems to have the most consistent screenreader experience.
+       * Particularly for our "special" focusable elements like `<wa-button>`, `<wa-input>` etc.
+       * aria-describedby usually in some screenreaders is required to be on the actually focusable element,
+       * whereas with `aria-labelledby` it'll still read on first focus. The APG does and WAI-ARIA does recommend aria-describedby
+       * so perhaps once we have cross-root aria, we can revisit this decision.
+       */
       const currentLabel = newAnchor.getAttribute('aria-labelledby') || '';
       if (!currentLabel.match(labelRegex)) {
         newAnchor.setAttribute('aria-labelledby', currentLabel + ' ' + this.id);
@@ -324,12 +331,6 @@ export default class WaTooltip extends WebAwesomeElement {
     return waitForEvent(this, 'wa-after-hide');
   }
 
-  //
-  // NOTE: Tooltip is a bit unique in that we're using aria-live instead of aria-labelledby to trick screen readers into
-  // announcing the content. It works really well, but it violates an accessibility rule. We're also adding the
-  // aria-describedby attribute to a slot, which is required by `<wa-popup>` to correctly locate the first assigned
-  // element, otherwise positioning is incorrect.
-  //
   render() {
     return html`
       <wa-popup
