@@ -34,12 +34,84 @@ interface IconSource {
  *
  * @csspart svg - The internal SVG element.
  * @csspart use - The `<use>` element generated when using `spriteSheet: true`
+ *
+ * @cssproperty [--primary-color=currentColor] - Sets a duotone icon's primary color.
+ * @cssproperty [--primary-opacity=1] - Sets a duotone icon's primary opacity.
+ * @cssproperty [--secondary-color=currentColor] - Sets a duotone icon's secondary color.
+ * @cssproperty [--secondary-opacity=0.4] - Sets a duotone icon's secondary opacity.
  */
 @customElement('wa-icon')
 export default class WaIcon extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   private initialRender = false;
+
+  @state() private svg: SVGElement | HTMLTemplateResult | null = null;
+
+  /** The name of the icon to draw. Available names depend on the icon library being used. */
+  @property({ reflect: true }) name?: string;
+
+  /**
+   * The family of icons to choose from. For Font Awesome Free (default), valid options include `classic` and `brands`.
+   * For Font Awesome Pro subscribers, valid options include, `classic`, `sharp`, `duotone`, and `brands`. Custom icon
+   * libraries may or may not use this property.
+   */
+  @property({ reflect: true }) family: string;
+
+  /**
+   * The name of the icon's variant. For Font Awesome, valid options include `thin`, `light`, `regular`, and `solid` for
+   * the `classic` and `sharp` families. Some variants require a Font Awesome Pro subscription. Custom icon libraries
+   * may or may not use this property.
+   */
+  @property({ reflect: true }) variant: string;
+
+  /** Draws the icon in a fixed-width both. */
+  @property({ attribute: 'fixed-width', type: Boolean, reflect: true }) fixedWidth: false;
+
+  /**
+   * An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and
+   * can result in XSS attacks.
+   */
+  @property() src?: string;
+
+  /**
+   * An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and
+   * ignored by assistive devices.
+   */
+  @property() label = '';
+
+  /** The name of a registered custom icon library. */
+  @property({ reflect: true }) library = 'default';
+
+  connectedCallback() {
+    super.connectedCallback();
+    watchIcon(this);
+  }
+
+  firstUpdated() {
+    this.initialRender = true;
+    this.setIcon();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    unwatchIcon(this);
+  }
+
+  private getIconSource(): IconSource {
+    const library = getIconLibrary(this.library);
+    if (this.name && library) {
+      return {
+        url: library.resolver(this.name, this.family, this.variant),
+        fromLibrary: true
+      };
+    }
+
+    return {
+      url: this.src,
+      fromLibrary: false
+    };
+  }
 
   /** Given a URL, this function returns the resulting SVG element or an appropriate error symbol. */
   private async resolveIcon(url: string, library?: IconLibrary): Promise<SVGResult> {
@@ -88,68 +160,6 @@ export default class WaIcon extends WebAwesomeElement {
     } catch {
       return CACHEABLE_ERROR;
     }
-  }
-
-  @state() private svg: SVGElement | HTMLTemplateResult | null = null;
-
-  /** The name of the icon to draw. Available names depend on the icon library being used. */
-  @property({ reflect: true }) name?: string;
-
-  /**
-   * The family of icons to choose from. For Font Awesome, valid options include `classic`, `sharp`, `duotone`, and
-   * `brands`. Custom icon libraries may or may not use this property.
-   */
-  @property({ reflect: true }) family: string;
-
-  /**
-   * The name of the icon's variant. For Font Awesome, valid options include `thin`, `light`, `regular`, and `solid` for
-   * the _classic_ and _sharp_ families. Custom icon libraries may or may not use this property.
-   */
-  @property({ reflect: true }) variant: string;
-
-  /**
-   * An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and
-   * can result in XSS attacks.
-   */
-  @property() src?: string;
-
-  /**
-   * An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and
-   * ignored by assistive devices.
-   */
-  @property() label = '';
-
-  /** The name of a registered custom icon library. */
-  @property({ reflect: true }) library = 'default';
-
-  connectedCallback() {
-    super.connectedCallback();
-    watchIcon(this);
-  }
-
-  firstUpdated() {
-    this.initialRender = true;
-    this.setIcon();
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    unwatchIcon(this);
-  }
-
-  private getIconSource(): IconSource {
-    const library = getIconLibrary(this.library);
-    if (this.name && library) {
-      return {
-        url: library.resolver(this.name, this.family, this.variant),
-        fromLibrary: true
-      };
-    }
-
-    return {
-      url: this.src,
-      fromLibrary: false
-    };
   }
 
   @watch('label')

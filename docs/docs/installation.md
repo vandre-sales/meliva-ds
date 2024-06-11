@@ -96,13 +96,12 @@ However, if you're [cherry picking](#cherry-picking) or [bundling](#bundling) We
 
 ```html
 <!-- Option 1: the data-webawesome attribute -->
-<script src="bundle.js" data-webawesome="/path/to/shoelace/%NPMDIR%"></script>
+<script src="bundle.js" data-webawesome="/path/to/web-awesome/%NPMDIR%"></script>
 
 <!-- Option 2: the setBasePath() method -->
-<script src="bundle.js"></script>
 <script type="module">
-  import { setBasePath } from '@shoelace-style/shoelace/%NPMDIR%/utilities/base-path.js';
-  setBasePath('/path/to/shoelace/%NPMDIR%');
+  import { setBasePath } from '/path/to/web-awesome/%NPMDIR%/webawesome.js';
+  setBasePath('/path/to/web-awesome/%NPMDIR%');
 </script>
 ```
 
@@ -116,7 +115,7 @@ Most of the magic behind assets is handled internally by Web Awesome, but if you
 
 ```html
 <script type="module">
-  import { getBasePath, setBasePath } from '@shoelace-style/shoelace/%NPMDIR%/utilities/base-path.js';
+  import { getBasePath, setBasePath } from '/path/to/web-awesome/%NPMDIR%/webawesome.js';
 
   setBasePath('/path/to/assets');
 
@@ -130,6 +129,21 @@ Most of the magic behind assets is handled internally by Web Awesome, but if you
 </script>
 ```
 
+## Setting a Kit Code
+
+Font Awesome users can set their kit code to unlock Font Awesome Pro icons. You can provide it through the `data-fa-kit-code` attribute or by calling the `setKitCode()` method.
+
+```html
+<!-- Option 1: the data-fa-kit-code attribute -->
+<script src="bundle.js" data-fa-kit-code="abc123"></script>
+
+<!-- Option 2: the setKitCode() method -->
+<script type="module">
+  import { setKitCode } from '/path/to/web-awesome/%NPMDIR%/webawesome.js';
+  setBasePath('/path/to/web-awesome/%NPMDIR%');
+</script>
+```
+
 ## Cherry Picking
 
 Cherry picking can be done from [the CDN](#cdn-installation-easiest) or from [npm](#npm-installation). This approach will load only the components you need up front, while limiting the number of files the browser has to download. The disadvantage is that you need to import each individual component.
@@ -137,10 +151,10 @@ Cherry picking can be done from [the CDN](#cdn-installation-easiest) or from [np
 Here's an example that loads only the button component. Again, if you're not using a module resolver, you'll need to adjust the path to point to the folder Web Awesome is in.
 
 ```html
-<link rel="stylesheet" href="/path/to/shoelace/%NPMDIR%/themes/default.css" />
+<link rel="stylesheet" href="/path/to/web-awesome/%NPMDIR%/themes/default.css" />
 
-<script type="module" data-webawesome="/path/to/shoelace/%NPMDIR%">
-  import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+<script type="module" data-webawesome="/path/to/web-awesome/%NPMDIR%">
+  import '/path/to/web-awesome/%NPMDIR%/components/button/button.js';
 
   // <wa-button> is ready to use!
 </script>
@@ -170,15 +184,15 @@ Now it's time to configure your bundler. Configurations vary for each tool, but 
 Once your bundler is configured, you'll be able to import Web Awesome components and utilities.
 
 ```js
-import '@shoelace-style/webawesome/%NPMDIR%/themes/default.css';
-import '@shoelace-style/webawesome/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/webawesome/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/webawesome/%NPMDIR%/components/input/input.js';
-import '@shoelace-style/webawesome/%NPMDIR%/components/rating/rating.js';
-import { setBasePath } from '@shoelace-style/webawesome/%NPMDIR%/utilities/base-path.js';
+import '/path/to/web-awesome/%NPMDIR%/themes/default.css';
+import '/path/to/web-awesome/%NPMDIR%/components/button/button.js';
+import '/path/to/web-awesome/%NPMDIR%/components/icon/icon.js';
+import '/path/to/web-awesome/%NPMDIR%/components/input/input.js';
+import '/path/to/web-awesome/%NPMDIR%/components/rating/rating.js';
+import { setBasePath } from '/path/to/web-awesome/%NPMDIR%/webawesome.js';
 
 // Set the base path to the folder you copied Web Awesome's assets to
-setBasePath('/path/to/webawesome/%NPMDIR%');
+setBasePath('/path/to/web-awesome/%NPMDIR%');
 
 // <wa-button>, <wa-icon>, <wa-input>, and <wa-rating> are ready to use!
 ```
@@ -189,7 +203,7 @@ You'll notice that the CDN links all start with `/%CDNDIR%/<path>` and npm impor
 
 TL;DR:
 
-- `@shoelace-style/webawesome/%CDNDIR%` is for CDN users
-- `@shoelace-style/webawesome/%NPMDIR%` is for npm users
+- `/path/to/web-awesome/%CDNDIR%` is for CDN users
+- `/path/to/web-awesome/%NPMDIR%` is for npm users
 
 This change was introduced in `v2.5.0` to address issues around installations from npm loading multiple versions of libraries (such as the Lit) that Web Awesome uses internally.
