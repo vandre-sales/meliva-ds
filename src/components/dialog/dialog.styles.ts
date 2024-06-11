@@ -2,10 +2,11 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background: var(--wa-color-surface-raised);
+    --border-radius: var(--wa-panel-border-radius);
+    --box-shadow: var(--wa-shadow-l);
     --width: 31rem;
-    --header-spacing: var(--wa-space-l);
-    --body-spacing: var(--wa-space-l);
-    --footer-spacing: var(--wa-space-l);
+    --spacing: var(--wa-space-xl);
     --show-duration: 200ms;
     --hide-duration: 200ms;
 
@@ -26,10 +27,10 @@ export default css`
     width: var(--width);
     max-width: calc(100% - var(--wa-space-2xl));
     max-height: calc(100% - var(--wa-space-2xl));
-    background-color: var(--wa-color-surface-default);
-    border-radius: var(--wa-panel-border-radius);
+    background: var(--background);
+    border-radius: var(--border-radius);
     border: none;
-    box-shadow: var(--wa-shadow-l);
+    box-shadow: var(--box-shadow);
     padding: 0;
     margin: auto;
 
@@ -73,25 +74,29 @@ export default css`
   .dialog__header {
     flex: 0 0 auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    padding: var(--spacing);
+    padding-block-end: 0;
   }
 
   .dialog__title {
+    align-self: center;
     flex: 1 1 auto;
-    font: inherit;
+    font-family: inherit;
     font-size: var(--wa-font-size-l);
+    font-weight: var(--wa-font-weight-heading);
     line-height: var(--wa-line-height-condensed);
-    padding: var(--header-spacing);
     margin: 0;
   }
 
   .dialog__header-actions {
-    flex-shrink: 0;
+    align-self: start;
     display: flex;
+    flex-shrink: 0;
     flex-wrap: wrap;
     justify-content: end;
     gap: var(--wa-space-2xs);
-    padding: 0 var(--header-spacing);
+    padding-inline-start: var(--spacing);
   }
 
   .dialog__header-actions wa-icon-button,
@@ -105,7 +110,7 @@ export default css`
   .dialog__body {
     flex: 1 1 auto;
     display: block;
-    padding: var(--body-spacing);
+    padding: var(--spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -116,7 +121,8 @@ export default css`
     flex-wrap: wrap;
     gap: var(--wa-space-xs);
     justify-content: end;
-    padding: var(--footer-spacing);
+    padding: var(--spacing);
+    padding-block-start: 0;
   }
 
   .dialog__footer ::slotted(wa-button:not(:first-of-type)) {

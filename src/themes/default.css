@@ -141,7 +141,7 @@
   --wa-color-text-link: var(--wa-color-primary-40);
 
   /* Overlays provide a backdrop for isolated content, often allowing background context to show through. */
-  --wa-color-overlay-modal: color-mix(in oklab, var(--wa-color-base-10) 40%, transparent);
+  --wa-color-overlay-modal: color-mix(in oklab, var(--wa-color-base-05) 50%, transparent);
   --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-80) 20%, transparent);
 
   /* Shadows indicate elevation. Shadow color is used in your theme's shadow properties. 
@@ -434,7 +434,7 @@
   --wa-color-text-quiet: var(--wa-color-base-60);
   --wa-color-text-link: var(--wa-color-primary-70);
 
-  --wa-color-overlay-modal: color-mix(in oklab, black 50%, transparent);
+  --wa-color-overlay-modal: color-mix(in oklab, black 60%, transparent);
   --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-50) 10%, transparent);
 
   --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-multiplier) * 32% + 40%), transparent);
