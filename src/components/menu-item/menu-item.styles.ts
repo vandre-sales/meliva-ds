@@ -2,11 +2,12 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background-highlight: var(--wa-color-neutral-fill-quiet);
-    --label-color-highlight: var(--wa-color-text-normal);
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
+    --label-color-hover: var(--wa-color-text-normal);
     --submenu-offset: -0.125rem;
 
     display: block;
+    color: var(--wa-color-text-normal);
   }
 
   :host([inert]) {
@@ -18,8 +19,6 @@ export default css`
     display: flex;
     align-items: stretch;
     font: inherit;
-    color: var(--wa-color-text-normal);
-    line-height: var(--wa-line-height-condensed);
     padding: var(--wa-space-xs) var(--wa-space-2xs);
     transition: fill var(--wa-transition-normal) var(--wa-transition-easing);
     user-select: none;
@@ -102,15 +101,15 @@ export default css`
 
   :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
-    background: var(--background-highlight);
-    color: var(--label-color-highlight);
+    background: var(--background-color-hover);
+    color: var(--label-color-hover);
   }
 
   :host(:focus-visible) .menu-item {
     outline: var(--wa-focus-ring);
     outline-offset: calc(-1 * var(--wa-focus-ring-width));
-    background: var(--background-highlight);
-    color: var(--label-color-highlight);
+    background: var(--background-color-hover);
+    color: var(--label-color-hover);
     opacity: 1;
   }
 
