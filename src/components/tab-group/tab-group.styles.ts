@@ -4,7 +4,7 @@ export default css`
   :host {
     --indicator-color: var(--wa-color-brand-fill-loud);
     --track-color: var(--wa-color-neutral-fill-normal);
-    --track-width: 2px;
+    --track-width: 0.125rem;
 
     display: block;
   }
@@ -21,9 +21,6 @@ export default css`
 
   .tab-group__indicator {
     position: absolute;
-    transition:
-      translate var(--wa-transition-normal) var(--wa-transition-easing),
-      width var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   .tab-group--has-scroll-controls .tab-group__nav-container {
