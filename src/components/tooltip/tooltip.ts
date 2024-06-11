@@ -23,8 +23,7 @@ import type { CSSResultGroup } from 'lit';
  *
  * @dependency wa-popup
  *
- * @slot - The tooltip's target element. Avoid slotting in more than one element, as subsequent ones will be ignored.
- * @slot content - The content to render in the tooltip. Alternatively, you can use the `content` attribute.
+ * @slot - The tooltip's default slot where any content should live. Interactive content should be avoided.
  *
  * @event wa-show - Emitted when the tooltip begins to show.
  * @event wa-after-show - Emitted after the tooltip has shown and all animations are complete.
@@ -51,9 +50,6 @@ export default class WaTooltip extends WebAwesomeElement {
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
   @query('.tooltip__body') body: HTMLElement;
   @query('wa-popup') popup: WaPopup;
-
-  /** The tooltip's content. If you need to display HTML, use the `content` slot instead. */
-  @property() content = '';
 
   /**
    * The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip
