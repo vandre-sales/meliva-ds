@@ -95,7 +95,6 @@ Use the `placement` attribute to set the preferred placement of the tooltip.
   .tooltip-placement-example-row:nth-child(5) {
     justify-content: center;
   }
-
 </style>
 ```
 
@@ -105,96 +104,72 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const css = `
+<style>
   .tooltip-placement-example {
     width: 250px;
-  }
-
-  .tooltip-placement-example-row:after {
-    content: '';
-    display: table;
-    clear: both;
+    margin: 1rem;
   }
 
   .tooltip-placement-example wa-button {
-    float: left;
     width: 2.5rem;
-    margin-right: 0.25rem;
-    margin-bottom: 0.25rem;
   }
 
-  .tooltip-placement-example-row:nth-child(1) wa-tooltip:first-child wa-button,
-  .tooltip-placement-example-row:nth-child(5) wa-tooltip:first-child wa-button {
-    margin-left: calc(40px + 0.25rem);
+  .tooltip-placement-example-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
-  .tooltip-placement-example-row:nth-child(2) wa-tooltip:nth-child(2) wa-button,
-  .tooltip-placement-example-row:nth-child(3) wa-tooltip:nth-child(2) wa-button,
-  .tooltip-placement-example-row:nth-child(4) wa-tooltip:nth-child(2) wa-button {
-    margin-left: calc((40px * 3) + (0.25rem * 3));
+  .tooltip-placement-example-row:nth-child(1),
+  .tooltip-placement-example-row:nth-child(5) {
+    justify-content: center;
   }
 `;
 
 const App = () => (
   <>
-    <div className="tooltip-placement-example">
-      <div className="tooltip-placement-example-row">
-        <WaTooltip content="top-start" placement="top-start">
-          <WaButton />
-        </WaTooltip>
-
-        <WaTooltip content="top" placement="top">
-          <WaButton />
-        </WaTooltip>
-
-        <WaTooltip content="top-end" placement="top-end">
-          <WaButton />
-        </WaTooltip>
+    <div class="tooltip-placement-example">
+      <div class="tooltip-placement-example-row">
+        <WaButton id="tooltip-top-start"></WaButton>
+        <WaButton id="tooltip-top"></WaButton>
+        <WaButton id="tooltip-top-end"></WaButton>
       </div>
 
-      <div className="tooltip-placement-example-row">
-        <WaTooltip content="left-start" placement="left-start">
-          <WaButton />
-        </WaTooltip>
-
-        <WaTooltip content="right-start" placement="right-start">
-          <WaButton />
-        </WaTooltip>
+      <div class="tooltip-placement-example-row">
+        <WaButton id="tooltip-left-start"></WaButton>
+        <WaButton id="tooltip-right-start"></WaButton>
       </div>
 
-      <div className="tooltip-placement-example-row">
-        <WaTooltip content="left" placement="left">
-          <WaButton />
-        </WaTooltip>
-
-        <WaTooltip content="right" placement="right">
-          <WaButton />
-        </WaTooltip>
+      <div class="tooltip-placement-example-row">
+        <WaButton id="tooltip-left"></WaButton>
+        <WaButton id="tooltip-right"></WaButton>
       </div>
 
-      <div className="tooltip-placement-example-row">
-        <WaTooltip content="left-end" placement="left-end">
-          <WaButton />
-        </WaTooltip>
-
-        <WaTooltip content="right-end" placement="right-end">
-          <WaButton />
-        </WaTooltip>
+      <div class="tooltip-placement-example-row">
+        <WaButton id="tooltip-left-end"></WaButton>
+        <WaButton id="tooltip-right-end"></WaButton>
       </div>
 
-      <div className="tooltip-placement-example-row">
-        <WaTooltip content="bottom-start" placement="bottom-start">
-          <WaButton />
-        </WaTooltip>
-
-        <WaTooltip content="bottom" placement="bottom">
-          <WaButton />
-        </WaTooltip>
-
-        <WaTooltip content="bottom-end" placement="bottom-end">
-          <WaButton />
-        </WaTooltip>
+      <div class="tooltip-placement-example-row">
+        <WaButton id="tooltip-bottom-start"></WaButton>
+        <WaButton id="tooltip-bottom"></WaButton>
+        <WaButton id="tooltip-bottom-end"></WaButton>
       </div>
     </div>
+
+    <WaTooltip for="tooltip-top-start" placement="top-start">top-start</WaTooltip>
+    <WaTooltip for="tooltip-top" placement="top">top</WaTooltip>
+    <WaTooltip for="tooltip-top-end" placement="top-end">top-end</WaTooltip>
+    <WaTooltip for="tooltip-left-start" placement="left-start">left-start</WaTooltip>
+    <WaTooltip for="tooltip-right-start" placement="right-start">right-start</WaTooltip>
+    <WaTooltip for="tooltip-left" placement="left">left</WaTooltip>
+    <WaTooltip for="tooltip-right" placement="right">right</WaTooltip>
+    <WaTooltip for="tooltip-left-end" placement="left-end">left-end</WaTooltip>
+    <WaTooltip for="tooltip-right-end" placement="right-end">right-end</WaTooltip>
+    <WaTooltip for="tooltip-bottom-start" placement="bottom-start">bottom-start</WaTooltip>
+    <WaTooltip for="tooltip-bottom" placement="bottom">bottom</WaTooltip>
+    <WaTooltip for="tooltip-bottom-end" placement="bottom-end">bottom-end</WaTooltip>
 
     <style>{css}</style>
   </>
@@ -217,9 +192,8 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaTooltip content="Click again to dismiss" trigger="click">
-    <WaButton>Click to Toggle</WaButton>
-  </WaTooltip>
+  <WaButton id="toggle-button">Click to Toggle</WaButton>
+  <WaTooltip for="toggle-button" trigger="click">Click again to dismiss</WaTooltip>
 );
 ```
 {% endraw %}
@@ -229,11 +203,10 @@ const App = () => (
 Tooltips can be controller programmatically by setting the `trigger` attribute to `manual`. Use the `open` attribute to control when the tooltip is shown.
 
 ```html {.example}
-<wa-button id="manual-trigger" style="margin-right: 4rem;">Toggle Manually</wa-button>
+<wa-button style="margin-right: 4rem;">Toggle Manually</wa-button>
 
-<wa-tooltip for="manual-trigger" trigger="manual" class="manual-tooltip">
-  <wa-avatar label="User"></wa-avatar>
-</wa-tooltip>
+<wa-tooltip for="manual-trigger-tooltip" trigger="manual" class="manual-tooltip">This is an avatar!</wa-tooltip>
+<wa-avatar id="manual-trigger-tooltip" label="User"></wa-avatar>
 
 <script>
   const tooltip = document.querySelector('.manual-tooltip');
@@ -255,13 +228,10 @@ const App = () => {
 
   return (
     <>
-      <WaButton style={{ marginRight: '4rem' }} onClick={() => setOpen(!open)}>
-        Toggle Manually
-      </WaButton>
+      <WaButton style={{ marginRight: '4rem' }} onClick={() => setOpen(!open)}>Toggle Manually</WaButton>
 
-      <WaTooltip open={open} content="This is an avatar" trigger="manual">
-        <WaAvatar />
-      </WaTooltip>
+      <WaTooltip for="manual-trigger-tooltip" open={open} trigger="manual">This is an avatar!</WaTooltip>
+      <WaAvatar id="manual-trigger-tooltip" label="User" />
     </>
   );
 };
@@ -283,15 +253,8 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <div style={{ '--wa-tooltip-arrow-size': '0' }}>
-    <WaTooltip content="This is a tooltip">
-      <WaButton>Above</WaButton>
-    </WaTooltip>
-
-    <WaTooltip content="This is a tooltip" placement="bottom">
-      <WaButton>Below</WaButton>
-    </WaTooltip>
-  </div>
+  <WaButton id="no-arrow">No Arrow</WaButton>
+  <WaTooltip for="no-arrow" style={{ "--wa-tooltip-arrow-size": "0"; }}>This is a tooltip with no arrow</WaTooltip>
 );
 ```
 {% endraw %}
@@ -306,7 +269,7 @@ To override it globally, set it in a root block in your stylesheet after the Web
 
 ### HTML in Tooltips
 
-Use the `content` slot to create tooltips with HTML content. Tooltips are designed only for text and presentational elements. Avoid placing interactive content, such as buttons, links, and form controls, in a tooltip.
+Use the default slot to create tooltips with HTML content. Tooltips are designed only for text and presentational elements. Avoid placing interactive content, such as buttons, links, and form controls, in a tooltip.
 
 ```html {.example}
 <wa-button id="rich-tooltip">Hover me</wa-button>
@@ -321,12 +284,9 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaTooltip>
-    <div slot="content">
-      I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!
-    </div>
-
-    <WaButton>Hover Me</WaButton>
+  <WaButton id="rich-tooltip">Hover me</WaButton>
+  <WaTooltip for="rich-tooltip">
+    <div>I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
   </WaTooltip>
 );
 ```
@@ -349,8 +309,9 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaTooltip style={{ '--max-width': '80px' }} content="This tooltip will wrap after only 80 pixels.">
-    <WaButton>Hover Me</WaButton>
+  <WaButton id="wrapping-tooltip">Hover me</WaButton>
+  <WaTooltip for="wrapping-tooltip" style={{ '--max-width': '80px' }}>
+    This tooltip will wrap after only 80 pixels.
   </WaTooltip>
 );
 ```
@@ -365,9 +326,7 @@ Tooltips will be clipped if they're inside a container that has `overflow: auto|
   <wa-tooltip for="no-hoist">This is a tooltip</wa-tooltip>
   <wa-button id="no-hoist">No Hoist</wa-button>
 
-  <wa-tooltip for="hoist" hoist>
-    This is a tooltip
-  </wa-tooltip>
+  <wa-tooltip for="hoist" hoist>This is a tooltip</wa-tooltip>
   <wa-button id="hoist">Hoist</wa-button>
 </div>
 
@@ -398,13 +357,11 @@ const css = `
 const App = () => (
   <>
     <div class="tooltip-hoist">
-      <WaTooltip content="This is a tooltip">
-        <WaButton>No Hoist</WaButton>
-      </WaTooltip>
+      <WaTooltip for="no-hoist">This is a tooltip</WaTooltip>
+      <WaButton id="no-hoist">No Hoist</WaButton>
 
-      <WaTooltip content="This is a tooltip" hoist>
-        <WaButton>Hoist</WaButton>
-      </WaTooltip>
+      <WaTooltip for="hoist" hoist>This is a tooltip</WaTooltip>
+      <WaButton id="hoist">Hoist</WaButton>
     </div>
 
     <style>{css}</style>
