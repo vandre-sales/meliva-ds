@@ -2,10 +2,12 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
     --error-color: var(--wa-color-danger-fill-loud);
     --success-color: var(--wa-color-success-fill-loud);
 
     display: inline-block;
+    color: var(--wa-color-text-quiet);
   }
 
   .copy-button__button {
@@ -15,11 +17,25 @@ export default css`
     background: none;
     border: none;
     border-radius: var(--wa-border-radius-s);
-    font-size: inherit;
     color: inherit;
+    font-size: inherit;
     padding: var(--wa-space-xs);
     cursor: pointer;
     transition: color var(--wa-transition-fast) var(--wa-transition-easing);
+  }
+
+  .copy-button__button:hover:not([disabled]),
+  .copy-button__button:focus-visible:not([disabled]) {
+    background-color: var(--background-color-hover);
+  }
+
+  .copy-button:not(.copy-button--success, .copy-button--error) .copy-button__button:hover:not([disabled]),
+  .copy-button:not(.copy-button--success, .copy-button--error) .copy-button__button:focus-visible:not([disabled]) {
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
+  }
+
+  .copy-button:not(.copy-button--success, .copy-button--error) .copy-button__button:active:not([disabled]) {
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
   }
 
   .copy-button--success .copy-button__button {

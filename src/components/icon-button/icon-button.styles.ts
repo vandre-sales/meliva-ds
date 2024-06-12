@@ -2,6 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
+
     display: inline-block;
     color: var(--wa-color-text-quiet);
   }
@@ -23,11 +25,12 @@ export default css`
 
   .icon-button:hover:not(.icon-button--disabled),
   .icon-button:focus-visible:not(.icon-button--disabled) {
-    color: var(--wa-color-brand-fill-loud);
+    background-color: var(--wa-color-neutral-fill-quiet);
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
   }
 
   .icon-button:active:not(.icon-button--disabled) {
-    color: color-mix(in oklab, var(--wa-color-brand-fill-loud), var(--wa-color-mix-active));
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
   }
 
   .icon-button:focus {

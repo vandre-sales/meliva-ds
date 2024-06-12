@@ -8,9 +8,6 @@ export default css`
     --padding: var(--wa-space-2xs) var(--wa-space-xs);
 
     display: contents;
-    color: var(--wa-tooltip-content-color);
-    font-size: var(--wa-tooltip-font-size);
-    line-height: var(--wa-tooltip-line-height);
   }
 
   .tooltip {
@@ -45,6 +42,9 @@ export default css`
     border-radius: var(--border-radius);
     background: var(--background);
     font: inherit;
+    color: var(--wa-tooltip-content-color);
+    font-size: var(--wa-tooltip-font-size);
+    line-height: var(--wa-tooltip-line-height);
     text-align: start;
     white-space: normal;
     padding: var(--padding);
