@@ -336,6 +336,7 @@ export default css`
    */
 
   .button ::slotted(wa-badge) {
+    --border-color: var(--wa-color-surface-default);
     position: absolute;
     top: 0;
     right: 0;
