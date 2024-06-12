@@ -60,7 +60,6 @@ export default css`
     justify-content: center;
     box-sizing: content-box;
     color: var(--expand-button-color);
-    font-size: 0.875rem;
     padding: var(--wa-space-xs);
     width: 1rem;
     height: 1rem;

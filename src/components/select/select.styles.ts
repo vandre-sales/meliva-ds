@@ -270,7 +270,6 @@ export default css`
     display: flex;
     align-items: center;
     color: var(--wa-color-text-quiet);
-    font-size: 0.875em;
     transition: rotate var(--wa-transition-slow) ease;
     rotate: 0;
     margin-inline-start: var(--wa-space-s);

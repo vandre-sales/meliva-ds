@@ -56,7 +56,7 @@ export default css`
     box-shadow: var(--box-shadow);
     color: var(--wa-form-control-value-color);
     transition:
-      background-color var(--wa-transition-normal) var(--wa-transition-easing),
+      background var(--wa-transition-normal) var(--wa-transition-easing),
       border-color var(--wa-transition-fast) var(--wa-transition-easing),
       box-shadow var(--wa-transition-fast) var(--wa-transition-easing),
       color var(--wa-transition-fast) var(--wa-transition-easing);
@@ -75,9 +75,6 @@ export default css`
   .checkbox__checked-icon,
   .checkbox__indeterminate-icon {
     display: inline-flex;
-    width: var(--toggle-size);
-    height: var(--toggle-size);
-    scale: 0.75;
   }
 
   /* Focus */
