@@ -4,6 +4,7 @@ description: Tooltips display additional information based on a specific action.
 layout: component.njk
 ---
 
+
 A tooltip's target is based on the `for` attribute which points to an element id.
 
 ```html {.example}
@@ -17,8 +18,10 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaTooltip for="my-button">This is a tooltip</WaTooltip>
-  <WaButton id="my-button">Hover Me</WaButton>
+  <>
+    <WaTooltip for="my-button">This is a tooltip</WaTooltip>
+    <WaButton id="my-button">Hover Me</WaButton>
+  </>
 );
 ```
 {% endraw %}
@@ -190,8 +193,10 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaButton id="toggle-button">Click to Toggle</WaButton>
-  <WaTooltip for="toggle-button" trigger="click">Click again to dismiss</WaTooltip>
+  <>
+    <WaButton id="toggle-button">Click to Toggle</WaButton>
+    <WaTooltip for="toggle-button" trigger="click">Click again to dismiss</WaTooltip>
+  </>
 );
 ```
 {% endraw %}
@@ -251,8 +256,10 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaButton id="no-arrow">No Arrow</WaButton>
-  <WaTooltip for="no-arrow" style={{ "--wa-tooltip-arrow-size": "0"; }}>This is a tooltip with no arrow</WaTooltip>
+  <>
+    <WaButton id="no-arrow">No Arrow</WaButton>
+    <WaTooltip for="no-arrow" style={{ "--wa-tooltip-arrow-size": "0"; }}>This is a tooltip with no arrow</WaTooltip>
+  </>
 );
 ```
 {% endraw %}
@@ -282,10 +289,12 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaButton id="rich-tooltip">Hover me</WaButton>
-  <WaTooltip for="rich-tooltip">
-    <div>I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
-  </WaTooltip>
+  <>
+    <WaButton id="rich-tooltip">Hover me</WaButton>
+    <WaTooltip for="rich-tooltip">
+      <div>I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
+    </WaTooltip>
+  </>
 );
 ```
 {% endraw %}
@@ -307,10 +316,12 @@ import WaButton from '@shoelace-style/shoelace/dist/react/button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaButton id="wrapping-tooltip">Hover me</WaButton>
-  <WaTooltip for="wrapping-tooltip" style={{ '--max-width': '80px' }}>
-    This tooltip will wrap after only 80 pixels.
-  </WaTooltip>
+  <>
+    <WaButton id="wrapping-tooltip">Hover me</WaButton>
+    <WaTooltip for="wrapping-tooltip" style={{ '--max-width': '80px' }}>
+      This tooltip will wrap after only 80 pixels.
+    </WaTooltip>
+  </>
 );
 ```
 {% endraw %}

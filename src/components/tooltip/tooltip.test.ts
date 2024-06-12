@@ -5,8 +5,8 @@ import type WaTooltip from './tooltip.js';
 describe('<wa-tooltip>', () => {
   it('should be visible with the open attribute', async () => {
     const el = await fixture<WaTooltip>(html`
-      <wa-button id="wa-button">Hover Me</wa-button>
       <wa-tooltip open for="wa-button">This is a tooltip</wa-tooltip>
+      <wa-button id="wa-button">Hover Me</wa-button>
     `);
     const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
 

@@ -366,18 +366,14 @@ Buttons can be wrapped in tooltips to provide more detail when the user interact
 
 ```html {.example}
 <wa-button-group label="Alignment">
-  <wa-tooltip content="I'm on the left">
-    <wa-button>Left</wa-button>
-  </wa-tooltip>
-
-  <wa-tooltip content="I'm in the middle">
-    <wa-button>Center</wa-button>
-  </wa-tooltip>
-
-  <wa-tooltip content="I'm on the right">
-    <wa-button>Right</wa-button>
-  </wa-tooltip>
+  <wa-button id="button-left">Left</wa-button>
+  <wa-button id="button-center">Center</wa-button>
+  <wa-button id="button-right">Right</wa-button>
 </wa-button-group>
+
+<wa-tooltip for="button-left">I'm on the left</wa-tooltip>
+<wa-tooltip for="button-center">I'm in the middle</wa-tooltip>
+<wa-tooltip for="button-right">I'm on the right</wa-tooltip>
 ```
 
 {% raw %}
@@ -388,19 +384,15 @@ import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
   <>
-    <WaButtonGroup label="Alignment">
-      <WaTooltip content="I'm on the left">
-        <WaButton>Left</WaButton>
-      </WaTooltip>
+    <WaButton-group label="Alignment">
+      <WaButton id="button-left">Left</WaButton>
+      <WaButton id="button-center">Center</WaButton>
+      <WaButton id="button-right">Right</WaButton>
+    </WaButton-group>
 
-      <WaTooltip content="I'm in the middle">
-        <WaButton>Center</WaButton>
-      </WaTooltip>
-
-      <WaTooltip content="I'm on the right">
-        <WaButton>Right</WaButton>
-      </WaTooltip>
-    </WaButtonGroup>
+    <WaTooltip for="button-left">I'm on the left</WaTooltip>
+    <WaTooltip for="button-center">I'm in the middle</WaTooltip>
+    <WaTooltip for="button-right">I'm on the right</WaTooltip>
   </>
 );
 ```
@@ -413,38 +405,32 @@ Create interactive toolbars with button groups.
 ```html {.example}
 <div class="button-group-toolbar">
   <wa-button-group label="History">
-    <wa-tooltip content="Undo">
-      <wa-button><wa-icon name="undo" variant="solid" label="Undo"></wa-icon></wa-button>
-    </wa-tooltip>
-    <wa-tooltip content="Redo">
-      <wa-button><wa-icon name="redo" variant="solid" label="Redo"></wa-icon></wa-button>
-    </wa-tooltip>
+    <wa-button id="undo-button"><wa-icon name="undo" variant="solid" label="Undo"></wa-icon></wa-button>
+    <wa-button id="redo-button"><wa-icon name="redo" variant="solid" label="Redo"></wa-icon></wa-button>
   </wa-button-group>
 
   <wa-button-group label="Formatting">
-    <wa-tooltip content="Bold">
-      <wa-button><wa-icon name="bold" variant="solid" label="Bold"></wa-icon></wa-button>
-    </wa-tooltip>
-    <wa-tooltip content="Italic">
-      <wa-button><wa-icon name="italic" variant="solid" label="Italic"></wa-icon></wa-button>
-    </wa-tooltip>
-    <wa-tooltip content="Underline">
-      <wa-button><wa-icon name="underline" variant="solid" label="Underline"></wa-icon></wa-button>
-    </wa-tooltip>
+    <wa-button id="button-bold"><wa-icon name="bold" variant="solid" label="Bold"></wa-icon></wa-button>
+    <wa-button id="button-italic"><wa-icon name="italic" variant="solid" label="Italic"></wa-icon></wa-button>
+    <wa-button id="button-underline"><wa-icon name="underline" variant="solid" label="Underline"></wa-icon></wa-button>
   </wa-button-group>
 
   <wa-button-group label="Alignment">
-    <wa-tooltip content="Align Left">
-      <wa-button><wa-icon name="align-left" variant="solid" label="Align Left"></wa-icon></wa-button>
-    </wa-tooltip>
-    <wa-tooltip content="Align Center">
-      <wa-button><wa-icon name="align-center" variant="solid" label="Align Center"></wa-icon></wa-button>
-    </wa-tooltip>
-    <wa-tooltip content="Align Right">
-      <wa-button><wa-icon name="align-right" variant="solid" label="Align Right"></wa-icon></wa-button>
-    </wa-tooltip>
+    <wa-button id="button-align-left"><wa-icon name="align-left" variant="solid" label="Align Left"></wa-icon></wa-button>
+    <wa-button id="button-align-center"><wa-icon name="align-center" variant="solid" label="Align Center"></wa-icon></wa-button>
+    <wa-button id="button-align-right"><wa-icon name="align-right" variant="solid" label="Align Right"></wa-icon></wa-button>
   </wa-button-group>
 </div>
+
+<wa-tooltip for="undo-button">Undo</wa-tooltip>
+<wa-tooltip for="redo-button">Redo</wa-tooltip>
+<wa-tooltip for="button-bold">Bold</wa-tooltip>
+<wa-tooltip for="button-italic">Italic</wa-tooltip>
+<wa-tooltip for="button-underline">Underline</wa-tooltip>
+
+<wa-tooltip for="button-align-left">Align Left</wa-tooltip>
+<wa-tooltip for="button-align-center">Align Center</wa-tooltip>
+<wa-tooltip for="button-align-right">Align Right</wa-tooltip>
 
 <style>
   .button-group-toolbar wa-button-group:not(:last-of-type) {
@@ -468,56 +454,34 @@ const css = `
 
 const App = () => (
   <>
-    <div className="button-group-toolbar">
-      <WaButtonGroup label="History">
-        <WaTooltip content="Undo">
-          <WaButton>
-            <WaIcon name="undo" variant="solid"></WaIcon>
-          </WaButton>
-        </WaTooltip>
-        <WaTooltip content="Redo">
-          <WaButton>
-            <WaIcon name="redo" variant="solid"></WaIcon>
-          </WaButton>
-        </WaTooltip>
-      </WaButtonGroup>
+    <div class="button-group-toolbar">
+      <WaButton-group label="History">
+        <WaButton id="undo-button"><WaIcon name="undo" variant="solid" label="Undo"></WaIcon></WaButton>
+        <WaButton id="redo-button"><WaIcon name="redo" variant="solid" label="Redo"></WaIcon></WaButton>
+      </WaButton-group>
 
-      <WaButtonGroup label="Formatting">
-        <WaTooltip content="Bold">
-          <WaButton>
-            <WaIcon name="bold" variant="solid"></WaIcon>
-          </WaButton>
-        </WaTooltip>
-        <WaTooltip content="Italic">
-          <WaButton>
-            <WaIcon name="italic" variant="solid"></WaIcon>
-          </WaButton>
-        </WaTooltip>
-        <WaTooltip content="Underline">
-          <WaButton>
-            <WaIcon name="underline" variant="solid"></WaIcon>
-          </WaButton>
-        </WaTooltip>
-      </WaButtonGroup>
+      <WaButton-group label="Formatting">
+        <WaButton id="button-bold"><WaIcon name="bold" variant="solid" label="Bold"></WaIcon></WaButton>
+        <WaButton id="button-italic"><WaIcon name="italic" variant="solid" label="Italic"></WaIcon></WaButton>
+        <WaButton id="button-underline"><WaIcon name="underline" variant="solid" label="Underline"></WaIcon></WaButton>
+      </WaButton-group>
 
-      <WaButtonGroup label="Alignment">
-        <WaTooltip content="Align Left">
-          <WaButton>
-            <WaIcon name="align-left" variant="solid"></WaIcon>
-          </WaButton>
-        </WaTooltip>
-        <WaTooltip content="Align Center">
-          <WaButton>
-            <WaIcon name="align-center" variant="solid"></WaIcon>
-          </WaButton>
-        </WaTooltip>
-        <WaTooltip content="Align Right">
-          <WaButton>
-            <WaIcon name="align-right" variant="solid"></WaIcon>
-          </WaButton>
-        </WaTooltip>
-      </WaButtonGroup>
+      <WaButton-group label="Alignment">
+        <WaButton id="button-align-left"><WaIcon name="align-left" variant="solid" label="Align Left"></WaIcon></WaButton>
+        <WaButton id="button-align-center"><WaIcon name="align-center" variant="solid" label="Align Center"></WaIcon></WaButton>
+        <WaButton id="button-align-right"><WaIcon name="align-right" variant="solid" label="Align Right"></WaIcon></WaButton>
+      </WaButton-group>
     </div>
+
+    <WaTooltip for="undo-button">Undo</WaTooltip>
+    <WaTooltip for="redo-button">Redo</WaTooltip>
+    <WaTooltip for="button-bold">Bold</WaTooltip>
+    <WaTooltip for="button-italic">Italic</WaTooltip>
+    <WaTooltip for="button-underline">Underline</WaTooltip>
+
+    <WaTooltip for="button-align-left"Align Left</WaTooltip>
+    <WaTooltip for="button-align-center">Align Center</WaTooltip>
+    <WaTooltip for="button-align-right">Align Right</WaTooltip>
 
     <style>{css}</style>
   </>
