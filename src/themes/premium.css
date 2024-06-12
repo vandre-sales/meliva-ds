@@ -354,8 +354,6 @@
 
   --wa-panel-border-radius: var(--wa-border-radius-s);
 
-  --wa-flow-spacing: 1.5rem;
-
   /**
    * From 2.x
    */
@@ -593,8 +591,8 @@
 
   .product-card .badge-stock {
     position: absolute;
-    top: var(--wa-flow-spacing);
-    right: var(--wa-flow-spacing);
+    top: var(--wa-space-xl);
+    right: var(--wa-space-xl);
   }
 
   .product-card wa-rating {

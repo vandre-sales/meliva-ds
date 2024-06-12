@@ -4,6 +4,10 @@
 @import 'outline.css';
 @import 'search.css';
 
+wa-page {
+  --wa-flow-spacing: var(--wa-space-xl);
+}
+
 wa-page[view='desktop'] [data-toggle-nav] {
   display: none;
 }

@@ -6,7 +6,7 @@
   /**
    * Literal Colors
    * Each color is identified by a number that corresponds to its perceived lightness, where 100 is equal to white and 0 is equal to black.
-   * Lightness on this scale strongly correlates to relative luminance, so each lightness value has nearly uniform WCAG 2.1 contrast across hues.
+   * Each lightness value has nearly uniform WCAG 2.1 contrast across hues.
    * A difference of 40 between lightness values ensures a minimum 3:1 contrast ratio.
    * A difference of 50 between lightness values ensures a minimum 4.5:1 contrast ratio.
    * A difference of 60 between lightness values ensures a minimum 7:1 contrast ratio.
@@ -414,8 +414,6 @@
   --wa-tooltip-content-color: var(--wa-color-neutral-on-loud);
   --wa-tooltip-font-size: var(--wa-font-size-s);
   --wa-tooltip-line-height: var(--wa-line-height-normal);
-
-  --wa-flow-spacing: var(--wa-space-2xl);
 }
 
 .wa-theme-default-dark,
@@ -497,54 +495,3 @@
   --wa-color-neutral-on-normal: var(--wa-color-base-70);
   --wa-color-neutral-on-loud: var(--wa-color-base-05);
 }
-
-/* #region Custom Styles */
-@container preview (min-width: 0) {
-  .hero-background {
-    height: 47rem;
-    background-color: var(--wa-color-brand-fill-loud);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-  }
-
-  .hero-background::after {
-    background: url(/assets/images/themer/default/hero.png) 10rem bottom no-repeat;
-    background-size: 95%;
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-
-  .hero wa-button[variant='brand'] {
-    --background: var(--wa-color-neutral-fill-quiet);
-    --label-color: var(--wa-color-neutral-on-normal);
-  }
-
-  .project-header {
-    color: var(--wa-color-brand-on-loud);
-  }
-
-  .strata.hero {
-    height: 26rem;
-  }
-
-  .hero .title {
-    margin-inline-end: 40%;
-    color: var(--wa-color-brand-on-loud);
-  }
-}
-
-/* responsive */
-@container preview (min-width: 1040px) {
-  .hero-background::after {
-    background-position: right bottom;
-    background-size: 90%;
-  }
-}
-/* #endregion */
