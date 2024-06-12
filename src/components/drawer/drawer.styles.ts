@@ -2,10 +2,10 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background-color: var(--wa-color-surface-raised);
+    --box-shadow: var(--wa-shadow-l);
     --size: 25rem;
-    --header-spacing: var(--wa-space-l);
-    --body-spacing: var(--wa-space-l);
-    --footer-spacing: var(--wa-space-l);
+    --spacing: var(--wa-space-xl);
     --show-duration: 200ms;
     --hide-duration: 200ms;
 
@@ -26,9 +26,9 @@ export default css`
     max-width: 100%;
     max-height: 100%;
     overflow: hidden;
-    background-color: var(--wa-color-surface-raised);
+    background-color: var(--background-color);
     border: none;
-    box-shadow: var(--wa-shadow-level-3);
+    box-shadow: var(--box-shadow);
     overflow: auto;
     padding: 0;
     margin: 0;
@@ -138,25 +138,29 @@ export default css`
 
   .drawer__header {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    padding: var(--spacing);
+    padding-block-end: 0;
   }
 
   .drawer__title {
+    align-self: center;
     flex: 1 1 auto;
     font: inherit;
     font-size: var(--wa-font-size-l);
-    line-height: var(--wa-line-height-compact);
-    padding: var(--header-spacing);
+    font-weight: var(--wa-font-weight-heading);
+    line-height: var(--wa-line-height-condensed);
     margin: 0;
   }
 
   .drawer__header-actions {
-    flex-shrink: 0;
+    align-self: start;
     display: flex;
+    flex-shrink: 0;
     flex-wrap: wrap;
     justify-content: end;
     gap: var(--wa-space-2xs);
-    padding: 0 var(--header-spacing);
+    padding-inline-start: var(--spacing);
   }
 
   .drawer__header-actions wa-icon-button,
@@ -170,7 +174,7 @@ export default css`
   .drawer__body {
     flex: 1 1 auto;
     display: block;
-    padding: var(--body-spacing);
+    padding: var(--spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -180,7 +184,8 @@ export default css`
     flex-wrap: wrap;
     gap: var(--wa-space-xs);
     justify-content: end;
-    padding: var(--footer-spacing);
+    padding: var(--spacing);
+    padding-block-start: 0;
   }
 
   .drawer__footer ::slotted(wa-button:not(:last-of-type)) {
@@ -192,7 +197,7 @@ export default css`
       NOTE: the ::backdrop element doesn't inherit properly in Safari yet, but it will in 17.4! At that time, we can
       remove the fallback values here.
     */
-    background-color: var(--wa-color-overlay, rgb(0 0 0 / 0.25));
+    background-color: var(--wa-color-overlay-modal, rgb(0 0 0 / 0.25));
   }
 
   @keyframes pulse {

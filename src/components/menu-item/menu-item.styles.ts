@@ -2,9 +2,12 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --submenu-offset: -2px;
+    --background-color-hover: var(--wa-color-neutral-fill-normal);
+    --label-color-hover: var(--wa-color-neutral-on-normal);
+    --submenu-offset: -0.125rem;
 
     display: block;
+    color: var(--wa-color-text-normal);
   }
 
   :host([inert]) {
@@ -16,9 +19,8 @@ export default css`
     display: flex;
     align-items: stretch;
     font: inherit;
-    color: var(--wa-color-text-normal);
-    padding: var(--wa-space-2xs) var(--wa-space-2xs);
-    transition: var(--wa-transition-fast) fill;
+    padding: var(--wa-space-xs) var(--wa-space-2xs);
+    transition: fill var(--wa-transition-normal) var(--wa-transition-easing);
     user-select: none;
     -webkit-user-select: none;
     white-space: nowrap;
@@ -42,11 +44,11 @@ export default css`
 
   .menu-item--loading wa-spinner {
     --indicator-color: currentColor;
-    --track-width: 1px;
+    --track-width: 0.0625rem;
     position: absolute;
-    font-size: 0.75em;
+    font-size: 0.8em;
     top: calc(50% - 0.5em);
-    left: 0.65rem;
+    left: 0.5rem;
     opacity: 1;
   }
 
@@ -81,7 +83,7 @@ export default css`
   .menu-item--submenu-expanded::after {
     content: '';
     position: fixed;
-    z-index: calc(var(--wa-z-index-dropdown) - 1);
+    z-index: 899;
     top: 0;
     right: 0;
     bottom: 0;
@@ -99,15 +101,15 @@ export default css`
 
   :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
-    background-color: var(--wa-color-neutral-fill-subtle);
-    color: var(--wa-color-text-normal);
+    background-color: var(--background-color-hover);
+    color: var(--label-color-hover);
   }
 
   :host(:focus-visible) .menu-item {
     outline: var(--wa-focus-ring);
     outline-offset: calc(-1 * var(--wa-focus-ring-width));
-    background-color: var(--wa-color-neutral-fill-subtle);
-    color: var(--wa-color-neutral-text-on-fill);
+    background: var(--background-color-hover);
+    color: var(--label-color-hover);
     opacity: 1;
   }
 
@@ -129,8 +131,8 @@ export default css`
 
   /* Add elevation and z-index to submenus */
   wa-popup::part(popup) {
-    box-shadow: var(--wa-shadow-level-2);
-    z-index: var(--wa-z-index-dropdown);
+    box-shadow: var(--wa-shadow-m);
+    z-index: 900;
     margin-left: var(--submenu-offset);
   }
 

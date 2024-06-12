@@ -8,8 +8,8 @@ import { css } from 'lit';
 export default css`
   :host {
     --track-width: 2px;
-    --track-color: var(--wa-color-neutral-fill-highlight);
-    --indicator-color: var(--wa-color-brand-spot);
+    --track-color: var(--wa-color-neutral-fill-normal);
+    --indicator-color: var(--wa-color-brand-fill-loud);
     --speed: 2s;
 
     flex: none;

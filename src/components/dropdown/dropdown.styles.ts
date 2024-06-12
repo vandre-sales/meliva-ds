@@ -2,11 +2,13 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --box-shadow: var(--wa-shadow-m);
+
     display: inline-block;
   }
 
   .dropdown::part(popup) {
-    z-index: var(--wa-z-index-dropdown);
+    z-index: 900;
   }
 
   .dropdown[data-current-placement^='top']::part(popup) {
@@ -31,8 +33,8 @@ export default css`
 
   .dropdown__panel {
     font: inherit;
-    box-shadow: var(--wa-shadow-level-2);
-    border-radius: var(--wa-corners-s);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--wa-border-radius-s);
     pointer-events: none;
   }
 

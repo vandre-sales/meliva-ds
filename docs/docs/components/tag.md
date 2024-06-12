@@ -57,7 +57,7 @@ Use the `removable` attribute to add a remove button to the tag.
 
 <style>
   .tags-removable wa-tag {
-    transition: var(--wa-transition-fast) opacity;
+    transition: opacity var(--wa-transition-normal);
   }
 </style>
 ```

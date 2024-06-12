@@ -7,7 +7,7 @@ layout: page.njk
 ## Card
 
 ```html {.example}
-<wa-card with-image class="card-overview">
+<wa-card with-image with-footer class="card-overview">
   <img
     slot="image"
     src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
@@ -107,6 +107,12 @@ layout: page.njk
 <wa-button variant="danger" outline>Danger</wa-button>
 <br /><br />
 <wa-button variant="text">Brand</wa-button>
+<br /><br />
+<wa-radio-group label="Radio button group" name="a" value="1">
+  <wa-radio-button value="1">Option 1</wa-radio-button>
+  <wa-radio-button value="2">Option 2</wa-radio-button>
+  <wa-radio-button value="3">Option 3</wa-radio-button>
+</wa-radio-group>
 ```
 
 ## Form controls
@@ -126,9 +132,11 @@ layout: page.njk
 <br />
 <wa-switch checked>Switch on</wa-switch>
 <br /><br />
+<wa-range label="Range" help-text="Here's a bit of handy content." min="0" max="100"></wa-range>
+<br /><br />
 <wa-input label="Label" help-text="Super helpful and/or contextual content" placeholder="Placeholder"></wa-input>
 <br />
-<wa-select label="Select">
+<wa-select label="Select" multiple value="option-1 option-2">
   <wa-option value="option-1">Option 1</wa-option>
   <wa-option value="option-2">Option 2</wa-option>
   <wa-option value="option-3">Option 3</wa-option>
@@ -151,16 +159,96 @@ layout: page.njk
 ```html {.example}
 <style>
   div.shadow {
-    border: 1px solid var(--wa-color-surface-border);
-    border-radius: var(--wa-corners-s);
+    border: var(--wa-border-width-s) solid var(--wa-color-surface-border);
+    border-radius: var(--wa-border-radius-s);
     display: inline-block;
     height: 4rem;
     margin-right: 2rem;
     width: 4rem;
   }
   </style>
-<div class="shadow" style="box-shadow: var(--wa-shadow-inset);"></div>
-<div class="shadow" style="box-shadow: var(--wa-shadow-level-1);"></div>
-<div class="shadow" style="box-shadow: var(--wa-shadow-level-2);"></div>
-<div class="shadow" style="box-shadow: var(--wa-shadow-level-3);"></div>
+<div class="shadow" style="box-shadow: var(--wa-shadow-xs);"></div>
+<div class="shadow" style="box-shadow: var(--wa-shadow-s);"></div>
+<div class="shadow" style="box-shadow: var(--wa-shadow-m);"></div>
+<div class="shadow" style="box-shadow: var(--wa-shadow-l);"></div>
+```
+
+## Tests
+
+```html {.example}
+<wa-button size="medium" style="width: 100%;" caret>Medium</wa-button>
+<br /><br />
+<wa-select>
+  <wa-option value="option-1">Option 1</wa-option>
+  <wa-option value="option-2">Option 2</wa-option>
+</wa-select>
+<br /><br />
+<wa-input placeholder="Small" size="small">
+  <wa-icon name="house" variant="solid" slot="prefix"></wa-icon>
+  <wa-icon name="comment" variant="solid" slot="suffix"></wa-icon>
+</wa-input>
+<wa-button size="small">
+  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
+  Settings
+</wa-button>
+<br /><br />
+<wa-input placeholder="Medium" size="medium">
+  <wa-icon name="house" variant="solid" slot="prefix"></wa-icon>
+  <wa-icon name="comment" variant="solid" slot="suffix"></wa-icon>
+</wa-input>
+<wa-button size="medium">
+  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
+  Settings
+</wa-button>
+<br /><br />
+<wa-input placeholder="Large" size="large">
+  <wa-icon name="house" variant="solid" slot="prefix"></wa-icon>
+  <wa-icon name="comment" variant="solid" slot="suffix"></wa-icon>
+</wa-input>
+<wa-button size="large">
+  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
+  Settings
+</wa-button>
+<br /><br />
+<wa-button size="medium">
+  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
+</wa-button>
+<br /><br />
+<wa-button-group label="Alignment">
+  <wa-button outline variant="brand">Left</wa-button>
+  <wa-button outline variant="brand">Center</wa-button>
+  <wa-button outline variant="brand">Right</wa-button>
+</wa-button-group>
+
+<br /><br />
+
+<wa-button-group label="Alignment">
+  <wa-button outline variant="success">Left</wa-button>
+  <wa-button outline variant="success">Center</wa-button>
+  <wa-button outline variant="success">Right</wa-button>
+</wa-button-group>
+
+<br /><br />
+
+<wa-button-group label="Alignment">
+  <wa-button outline>Left</wa-button>
+  <wa-button outline>Center</wa-button>
+  <wa-button outline>Right</wa-button>
+</wa-button-group>
+
+<br /><br />
+
+<wa-button-group label="Alignment">
+  <wa-button outline variant="warning">Left</wa-button>
+  <wa-button outline variant="warning">Center</wa-button>
+  <wa-button outline variant="warning">Right</wa-button>
+</wa-button-group>
+
+<br /><br />
+
+<wa-button-group label="Alignment">
+  <wa-button outline variant="danger">Left</wa-button>
+  <wa-button outline variant="danger">Center</wa-button>
+  <wa-button outline variant="danger">Right</wa-button>
+</wa-button-group>
 ```

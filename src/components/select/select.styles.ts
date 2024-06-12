@@ -2,19 +2,19 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-radius: var(--wa-form-controls-corners);
-    --border-style: var(--wa-form-controls-border-style);
-    --border-width: var(--wa-form-controls-border-width);
-    --box-shadow: var(--wa-shadow-level-0);
+    --background-color: var(--wa-form-control-background-color);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-radius: var(--wa-form-control-border-radius);
+    --border-style: var(--wa-form-control-border-style);
+    --border-width: var(--wa-form-control-border-width);
+    --box-shadow: initial;
 
     display: block;
   }
 
   :host([filled]) {
-    --background: var(--wa-color-neutral-fill-subtle);
-    --border-color: var(--background);
+    --background-color: var(--wa-color-neutral-fill-quiet);
+    --border-color: var(--background-color);
   }
 
   /** The popup */
@@ -27,7 +27,7 @@ export default css`
   }
 
   .select::part(popup) {
-    z-index: var(--wa-z-index-dropdown);
+    z-index: 900;
   }
 
   .select[data-current-placement^='top']::part(popup) {
@@ -40,7 +40,7 @@ export default css`
 
   /* Combobox */
   .select__combobox {
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);
@@ -58,11 +58,11 @@ export default css`
     overflow: hidden;
     cursor: pointer;
     transition:
-      var(--wa-transition-fast) background,
-      var(--wa-transition-fast) border,
-      var(--wa-transition-fast) box-shadow,
-      var(--wa-transition-fast) color,
-      var(--wa-transition-faster) outline;
+      background var(--wa-transition-normal) var(--wa-transition-easing),
+      border var(--wa-transition-normal) var(--wa-transition-easing),
+      box-shadow var(--wa-transition-normal) var(--wa-transition-easing),
+      color var(--wa-transition-normal) var(--wa-transition-easing),
+      outline var(--wa-transition-fast) var(--wa-transition-easing);
   }
 
   .select__display-input {
@@ -71,8 +71,8 @@ export default css`
     font: inherit;
     border: none;
     background: none;
-    line-height: var(--wa-form-controls-value-line-height);
-    color: var(--wa-form-controls-value-color);
+    line-height: var(--wa-form-control-value-line-height);
+    color: var(--wa-form-control-value-color);
     cursor: inherit;
     overflow: hidden;
     padding: 0;
@@ -137,7 +137,7 @@ export default css`
 
   .select--standard:not(.select--disabled).select--open .select__combobox,
   .select--standard:not(.select--disabled).select--focused .select__combobox {
-    border-color: var(--wa-form-controls-activated-color);
+    border-color: var(--wa-form-control-activated-color);
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }
@@ -151,7 +151,7 @@ export default css`
   /* Sizes */
   .select--small .select__combobox {
     font-size: var(--wa-font-size-s);
-    min-height: var(--wa-form-controls-height-s);
+    min-height: var(--wa-form-control-height-s);
     padding-block: 0;
     padding-inline: var(--wa-space-s);
   }
@@ -175,7 +175,7 @@ export default css`
 
   .select--medium .select__combobox {
     font-size: var(--wa-font-size-m);
-    min-height: var(--wa-form-controls-height-m);
+    min-height: var(--wa-form-control-height-m);
     padding-block: 0;
     padding-inline: var(--wa-space-m);
   }
@@ -199,7 +199,7 @@ export default css`
 
   .select--large .select__combobox {
     font-size: var(--wa-font-size-l);
-    min-height: var(--wa-form-controls-height-l);
+    min-height: var(--wa-form-control-height-l);
     padding-block: 0;
     padding-inline: var(--wa-space-l);
   }
@@ -223,15 +223,15 @@ export default css`
 
   /* Pills */
   .select--pill.select--small .select__combobox {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .select--pill.select--medium .select__combobox {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .select--pill.select--large .select__combobox {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   /* Prefix */
@@ -239,7 +239,7 @@ export default css`
     flex: 0;
     display: inline-flex;
     align-items: center;
-    color: var(--wa-color-neutral-spot);
+    color: var(--wa-color-neutral-on-quiet);
   }
 
   /* Clear button */
@@ -248,11 +248,11 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: inherit;
-    color: var(--wa-color-neutral-spot);
+    color: var(--wa-color-neutral-on-quiet);
     border: none;
     background: none;
     padding: 0;
-    transition: color var(--wa-transition-fast);
+    transition: color var(--wa-transition-normal);
     cursor: pointer;
   }
 
@@ -260,8 +260,12 @@ export default css`
     outline: none;
   }
 
+  .select__clear:hover {
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
+  }
+
   .select__clear:active {
-    color: color-mix(in oklab, var(--wa-color-neutral-spot), var(--wa-color-mix-active));
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
   }
 
   /* Expand icon */
@@ -269,9 +273,8 @@ export default css`
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    color: var(--wa-color-text-quiet);
-    font-size: 0.875em;
-    transition: rotate var(--wa-transition-normal) ease;
+    color: var(--wa-color-neutral-on-quiet);
+    transition: rotate var(--wa-transition-slow) ease;
     rotate: 0;
     margin-inline-start: var(--wa-space-s);
   }
@@ -285,10 +288,10 @@ export default css`
     display: block;
     position: relative;
     font: inherit;
-    box-shadow: var(--wa-shadow-level-2);
+    box-shadow: var(--wa-shadow-m);
     background: var(--wa-color-surface-raised);
     border-color: var(--border-color);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     border-style: var(--border-style);
     border-width: var(--border-width);
     padding-block: var(--wa-space-xs);
@@ -308,7 +311,7 @@ export default css`
   .select__listbox ::slotted(small) {
     display: block;
     font-size: var(--wa-font-size-s);
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-semibold);
     color: var(--wa-color-text-quiet);
     padding-block: var(--wa-space-xs);
     padding-inline: var(--wa-space-xl);

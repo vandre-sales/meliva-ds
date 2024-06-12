@@ -2,11 +2,10 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --border-radius: var(--wa-form-controls-corners);
+    --border-radius: var(--wa-form-control-border-radius);
     --border-style: var(--wa-border-style);
-    --border-width: var(--wa-form-controls-border-width);
-    --box-shadow: var(--wa-shadow-level-0);
-    --box-shadow-color: var(--wa-color-shadow);
+    --border-width: var(--wa-form-control-border-width);
+    --box-shadow: initial;
 
     display: inline-block;
     position: relative;
@@ -19,36 +18,36 @@ export default css`
    */
 
   :host([variant='brand']) {
-    --background: var(--wa-color-brand-spot);
-    --label-color: var(--wa-color-brand-text-on-spot);
+    --background-color: var(--wa-color-brand-fill-loud);
+    --label-color: var(--wa-color-brand-on-loud);
   }
 
   :host([variant='success']) {
-    --background: var(--wa-color-success-spot);
-    --label-color: var(--wa-color-success-text-on-spot);
+    --background-color: var(--wa-color-success-fill-loud);
+    --label-color: var(--wa-color-success-on-loud);
   }
 
   :host([variant='warning']) {
-    --background: var(--wa-color-warning-spot);
-    --label-color: var(--wa-color-warning-text-on-spot);
+    --background-color: var(--wa-color-warning-fill-loud);
+    --label-color: var(--wa-color-warning-on-loud);
   }
 
   :host([variant='neutral']) {
-    --background: var(--wa-color-neutral-spot);
-    --label-color: var(--wa-color-neutral-text-on-spot);
+    --background-color: var(--wa-color-neutral-fill-loud);
+    --label-color: var(--wa-color-neutral-on-loud);
   }
 
   :host([variant='danger']) {
-    --background: var(--wa-color-danger-spot);
-    --label-color: var(--wa-color-danger-text-on-spot);
+    --background-color: var(--wa-color-danger-fill-loud);
+    --label-color: var(--wa-color-danger-on-loud);
   }
 
   :host(:not([variant='text'])) {
-    --background-hover: color-mix(in oklab, var(--background), var(--wa-color-mix-hover));
-    --background-active: color-mix(in oklab, var(--background), var(--wa-color-mix-active));
-    --border-color: var(--background);
-    --border-color-hover: var(--background-hover);
-    --border-color-active: var(--background-active);
+    --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
+    --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
+    --border-color: initial;
+    --border-color-hover: initial;
+    --border-color-active: initial;
     --label-color-hover: var(--label-color);
     --label-color-active: var(--label-color);
   }
@@ -58,43 +57,40 @@ export default css`
    */
 
   :host([variant='brand'][outline]) {
-    --background-hover: var(--wa-color-brand-fill-subtle);
-    --label-color: var(--wa-color-brand-text-on-surface);
-    --label-color-hover: var(--wa-color-brand-text-on-fill);
+    --background-color-hover: var(--wa-color-brand-fill-quiet);
+    --label-color: var(--wa-color-brand-on-quiet);
   }
 
   :host([variant='success'][outline]) {
-    --background-hover: var(--wa-color-success-fill-subtle);
-    --label-color: var(--wa-color-success-text-on-surface);
-    --label-color-hover: var(--wa-color-success-text-on-fill);
+    --background-color-hover: var(--wa-color-success-fill-quiet);
+    --label-color: var(--wa-color-success-on-quiet);
   }
 
   :host([variant='neutral'][outline]),
   :host(.wa-button-group__button--radio:not([checked])) {
-    --background-hover: var(--wa-color-neutral-fill-subtle);
-    --label-color: var(--wa-color-neutral-text-on-surface);
-    --label-color-hover: var(--wa-color-neutral-text-on-fill);
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
+    --label-color: var(--wa-color-neutral-on-quiet);
   }
 
   :host([variant='warning'][outline]) {
-    --background-hover: var(--wa-color-warning-fill-subtle);
-    --label-color: var(--wa-color-warning-text-on-surface);
-    --label-color-hover: var(--wa-color-warning-text-on-fill);
+    --background-color-hover: var(--wa-color-warning-fill-quiet);
+    --label-color: var(--wa-color-warning-on-quiet);
   }
 
   :host([variant='danger'][outline]) {
-    --background-hover: var(--wa-color-danger-fill-subtle);
-    --label-color: var(--wa-color-danger-text-on-surface);
-    --label-color-hover: var(--wa-color-danger-text-on-fill);
+    --background-color-hover: var(--wa-color-danger-fill-quiet);
+    --label-color: var(--wa-color-danger-on-quiet);
   }
 
   :host([outline]),
   :host(.wa-button-group__button--radio:not([checked])) {
-    --background-active: color-mix(in oklab, var(--background-hover), var(--wa-color-surface-default) 30%);
-    --border-color: var(--label-color);
+    --background-color: transparent;
+    --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
+    --border-color: color-mix(in oklab, var(--label-color), var(--wa-color-surface-default) 30%);
     --border-color-hover: var(--border-color);
     --border-color-active: var(--border-color);
-    --label-color-active: var(--label-color-hover);
+    --label-color-hover: var(--label-color);
+    --label-color-active: var(--label-color);
   }
 
   /*
@@ -102,9 +98,9 @@ export default css`
    */
 
   :host([variant='text']) {
-    --background: none;
-    --background-active: none;
-    --background-hover: none;
+    --background-color: none;
+    --background-color-active: none;
+    --background-color-hover: none;
     --border-color: transparent;
     --border-color-active: transparent;
     --border-color-hover: transparent;
@@ -118,8 +114,17 @@ export default css`
    */
 
   :host([checked]) {
-    --background: var(--wa-color-brand-spot);
-    --label-color: var(--wa-color-brand-text-on-spot);
+    --background-color: var(--wa-color-brand-fill-quiet);
+    --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
+    --background-color-hover: var(--background-color);
+    --border-color: var(--wa-form-control-activated-color);
+    --border-color-active: var(--border-color);
+    --border-color-hover: var(--border-color);
+    --label-color: var(--wa-color-brand-on-normal);
+    --label-color-active: var(--label-color);
+    --label-color-hover: var(--label-color);
+    --indicator-color: var(--border-color);
+    --indicator-width: var(--wa-border-width-s);
   }
 
   /*
@@ -143,9 +148,12 @@ export default css`
    */
 
   .button {
+    background-color: var(--background-color);
+    border-color: var(--border-color, var(--background-color));
     border-radius: var(--border-radius);
     border-style: var(--border-style);
     border-width: max(1px, var(--border-width));
+    box-shadow: var(--box-shadow);
     color: var(--label-color);
     display: inline-flex;
     align-items: stretch;
@@ -160,30 +168,17 @@ export default css`
     vertical-align: middle;
     padding: 0;
     transition:
-      var(--wa-transition-faster) background,
-      var(--wa-transition-faster) border,
-      var(--wa-transition-faster) box-shadow,
-      var(--wa-transition-faster) color;
+      background var(--wa-transition-fast) var(--wa-transition-easing),
+      border var(--wa-transition-fast) var(--wa-transition-easing),
+      box-shadow var(--wa-transition-fast) var(--wa-transition-easing),
+      color var(--wa-transition-fast) var(--wa-transition-easing);
     cursor: inherit;
   }
 
-  .button--standard,
   .button--checked {
-    background: var(--background);
-    border-color: var(--border-color);
-    box-shadow: var(--box-shadow);
-  }
-
-  .button--outline:not(.button--checked) {
-    background: none;
-    border-color: var(--border-color);
-    box-shadow: var(--box-shadow);
-  }
-
-  .button--text {
-    background: none;
-    border-color: transparent;
-    box-shadow: none;
+    box-shadow:
+      var(--box-shadow, 0 0 transparent),
+      inset 0 0 0 var(--indicator-width) var(--indicator-color);
   }
 
   /*
@@ -214,14 +209,14 @@ export default css`
   }
 
   .button:hover:not(.button--disabled, .button--loading) {
-    background: var(--background-hover, var(--background, none));
-    border-color: var(--border-color-hover, var(--border-color, transparent));
+    background-color: var(--background-color-hover, var(--background-color, none));
+    border-color: var(--border-color-hover, var(--border-color, var(--background-color-hover)));
     color: var(--label-color-hover, var(--label-color));
   }
 
   .button:active:not(.button--disabled, .button--loading) {
-    background: var(--background-active, var(--background, none));
-    border-color: var(--border-color-active, var(--border-color, transparent));
+    background-color: var(--background-color-active, var(--background-color, none));
+    border-color: var(--border-color-active, var(--border-color, var(--background-color-active)));
     color: var(--label-color-active, var(--label-color));
   }
 
@@ -256,18 +251,18 @@ export default css`
    */
 
   .button--small {
-    height: var(--wa-form-controls-height-s);
-    line-height: calc(var(--wa-form-controls-height-s) - var(--border-width) * 2);
+    height: var(--wa-form-control-height-s);
+    line-height: calc(var(--wa-form-control-height-s) - var(--border-width) * 2);
   }
 
   .button--medium {
-    height: var(--wa-form-controls-height-m);
-    line-height: calc(var(--wa-form-controls-height-m) - var(--border-width) * 2);
+    height: var(--wa-form-control-height-m);
+    line-height: calc(var(--wa-form-control-height-m) - var(--border-width) * 2);
   }
 
   .button--large {
-    height: var(--wa-form-controls-height-l);
-    line-height: calc(var(--wa-form-controls-height-l) - var(--border-width) * 2);
+    height: var(--wa-form-control-height-l);
+    line-height: calc(var(--wa-form-control-height-l) - var(--border-width) * 2);
   }
 
   /*
@@ -275,15 +270,15 @@ export default css`
    */
 
   .button--pill.button--small {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .button--pill.button--medium {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .button--pill.button--large {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   /*
@@ -298,21 +293,6 @@ export default css`
     display: flex;
     align-self: center;
     align-items: center;
-  }
-
-  .button--small .button__caret {
-    margin-inline-start: calc(-0.5 * var(--wa-space-xs));
-    margin-inline-end: var(--wa-space-xs);
-  }
-
-  .button--medium .button__caret {
-    margin-inline-start: calc(-0.5 * var(--wa-space-s));
-    margin-inline-end: var(--wa-space-s);
-  }
-
-  .button--large .button__caret {
-    margin-inline-start: calc(-0.5 * var(--wa-space-m));
-    margin-inline-end: var(--wa-space-m);
   }
 
   .button--caret .button__caret::part(svg) {
@@ -352,6 +332,7 @@ export default css`
    */
 
   .button ::slotted(wa-badge) {
+    --border-color: var(--wa-color-surface-default);
     position: absolute;
     top: 0;
     right: 0;
@@ -370,45 +351,24 @@ export default css`
    */
 
   .button--small {
-    ::slotted([slot='prefix']) {
-      margin-inline-start: var(--wa-space-xs) !important;
-    }
-
-    ::slotted([slot='suffix']) {
-      margin-inline-end: var(--wa-space-xs) !important;
-    }
-
-    .button__label {
-      padding: 0 var(--wa-space-s);
-    }
+    padding: 0 var(--wa-space-s);
   }
 
   .button--medium {
-    ::slotted([slot='prefix']) {
-      margin-inline-start: var(--wa-space-s) !important;
-    }
-
-    ::slotted([slot='suffix']) {
-      margin-inline-end: var(--wa-space-s) !important;
-    }
-
-    .button__label {
-      padding: 0 var(--wa-space-m);
-    }
+    padding: 0 var(--wa-space-m);
   }
 
   .button--large {
-    ::slotted([slot='prefix']) {
-      margin-inline-start: var(--wa-space-m) !important;
-    }
+    padding: 0 var(--wa-space-l);
+  }
 
-    ::slotted([slot='suffix']) {
-      margin-inline-end: var(--wa-space-m) !important;
-    }
+  .button ::slotted([slot='prefix']) {
+    margin-inline-end: 0.75em;
+  }
 
-    .button__label {
-      padding: 0 var(--wa-space-l);
-    }
+  .button ::slotted([slot='suffix']),
+  .button .button__caret {
+    margin-inline-start: 0.75em;
   }
 
   /*
@@ -434,19 +394,18 @@ export default css`
 
   /* All except the first */
   :host(.wa-button-group__button:not(.wa-button-group__button--first)) {
-    margin-inline-start: calc(-1 * var(--wa-border-width-s));
+    margin-inline-start: calc(-1 * var(--border-width));
   }
 
   /* Add a visual separator between solid buttons */
-  :host(.wa-button-group__button:not(.wa-button-group__button--first, .wa-button-group__button--radio):not(:hover))
-    .button:after {
+  :host(.wa-button-group__button:not(.wa-button-group__button--first, .wa-button-group__button--radio)) .button:after {
     content: '';
     position: absolute;
     top: 0;
     inset-inline-start: 0;
     bottom: 0;
-    border-left: solid 1px rgb(0 0 0 / 0.2);
-    mix-blend-mode: multiply;
+    border-left: solid max(var(--border-width), 1px) var(--border-color, rgb(0 0 0 / 0.3));
+    z-index: 2; /* Keep separators visible on hover */
   }
 
   /* Bump hovered, focused, and checked buttons up so their focus ring isn't clipped */

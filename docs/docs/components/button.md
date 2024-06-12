@@ -200,7 +200,7 @@ This example demonstrates how to style buttons using a custom class. This is the
     color: white;
     font-size: 1.125rem;
     box-shadow: 0 2px 10px #0002;
-    transition: var(--wa-transition-normal) all;
+    transition: all var(--wa-transition-slow) var(--wa-transition-easing);
   }
 
   wa-button.pink::part(base):hover {

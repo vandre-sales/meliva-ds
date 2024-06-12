@@ -6,7 +6,7 @@ export default css`
     position: relative;
     background-color: var(--wa-color-surface-raised);
     border: var(--wa-border-style) var(--wa-border-width-s) var(--wa-color-surface-border);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     padding: var(--wa-space-xs) 0;
     overflow: auto;
     overscroll-behavior: none;

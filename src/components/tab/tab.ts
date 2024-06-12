@@ -10,12 +10,14 @@ import type { CSSResultGroup } from 'lit';
 let id = 0;
 
 /**
- * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
+ * @summary Tabs are used inside [tab groups](/docs/components/tab-group) to represent and activate [tab panels](/docs/components/tab-panel).
  * @documentation https://shoelace.style/components/tab
  * @status stable
  * @since 2.0
  *
  * @slot - The tab's label.
+ *
+ * @cssproperty --active-tab-color - The color of the active tab's label.
  *
  * @csspart base - The component's base wrapper.
  * @csspart close-button - The close button, an `<wa-icon-button>`.

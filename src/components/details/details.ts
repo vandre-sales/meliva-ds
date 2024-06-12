@@ -38,13 +38,13 @@ import type { CSSResultGroup } from 'lit';
  * @csspart summary-icon - The container that wraps the expand/collapse icons.
  * @csspart content - The details content.
  *
- * @cssproperty --background - The details' background styles.
+ * @cssproperty --background-color - The details' background color.
  * @cssproperty --border-color - The details' border color.
- * @cssproperty --border-radius - The border radius for the details' corners. Expects a single value.
+ * @cssproperty --border-radius - The radius for the details' corners. Expects a single value.
  * @cssproperty --border-style - The style of the details' borders.
  * @cssproperty --border-width - The width of the details' borders. Expects a single value.
  * @cssproperty --icon-color - The color of the details' icon.
- * @cssproperty --padding - The padding with the details. Expects a single value.
+ * @cssproperty --spacing - The amount of space around and between the details' content. Expects a single value.
  * @cssproperty [--show-duration=200ms] - The show duration to use when applying built-in animation classes.
  * @cssproperty [--hide-duration=200ms] - The hide duration to use when applying built-in animation classes.
  */

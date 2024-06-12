@@ -21,6 +21,8 @@ import type { CSSResultGroup } from 'lit';
  * @event wa-blur - Emitted when the icon button loses focus.
  * @event wa-focus - Emitted when the icon button gains focus.
  *
+ * @cssproperty --background-color-hover - The color of the button's background on hover.
+ *
  * @csspart base - The component's base wrapper.
  */
 @customElement('wa-icon-button')
@@ -140,6 +142,7 @@ export default class WaIconButton extends WebAwesomeFormAssociatedElement {
           library=${ifDefined(this.library)}
           src=${ifDefined(this.src)}
           aria-hidden="true"
+          fixed-width
         ></wa-icon>
       </${tag}>
     `;

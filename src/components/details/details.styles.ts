@@ -2,13 +2,13 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-color-surface-default);
+    --background-color: var(--wa-color-surface-default);
     --border-color: var(--wa-color-surface-border);
-    --border-radius: var(--wa-panel-corners);
+    --border-radius: var(--wa-panel-border-radius);
     --border-style: var(--wa-panel-border-style);
     --border-width: var(--wa-panel-border-width);
     --icon-color: var(--wa-color-text-quiet);
-    --padding: var(--wa-space-m);
+    --spacing: var(--wa-space-m);
     --show-duration: 200ms;
     --hide-duration: 200ms;
 
@@ -16,7 +16,7 @@ export default css`
   }
 
   .details {
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);
@@ -31,7 +31,7 @@ export default css`
   .details__header {
     display: flex;
     align-items: center;
-    padding: var(--padding);
+    padding: var(--spacing);
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer;
@@ -70,7 +70,7 @@ export default css`
     display: flex;
     align-items: center;
     color: var(--icon-color);
-    transition: var(--wa-transition-fast) rotate ease;
+    transition: rotate var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   .details--open .details__summary-icon {
@@ -93,7 +93,7 @@ export default css`
 
   .details__content {
     display: block;
-    padding: var(--padding);
+    padding: var(--spacing);
   }
 
   .show {

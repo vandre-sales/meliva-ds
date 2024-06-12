@@ -2,13 +2,13 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-color-surface-default);
+    --background-color: var(--wa-color-surface-default);
     --border-color: var(--wa-color-surface-border);
-    --border-radius: var(--wa-panel-corners);
+    --border-radius: var(--wa-panel-border-radius);
     --border-style: var(--wa-panel-border-style);
     --border-width: var(--wa-panel-border-width);
-    --box-shadow: var(--wa-shadow-level-1);
-    --padding: var(--wa-space-xl);
+    --box-shadow: var(--wa-shadow-s);
+    --spacing: var(--wa-space-xl);
 
     display: inline-block;
   }
@@ -16,7 +16,7 @@ export default css`
   .card {
     display: flex;
     flex-direction: column;
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);
@@ -48,7 +48,7 @@ export default css`
   .card__header {
     display: block;
     border-bottom: inherit;
-    padding: calc(var(--padding) / 2) var(--padding);
+    padding: calc(var(--spacing) / 2) var(--spacing);
   }
 
   .card:not(.card--has-header) .card__header {
@@ -62,13 +62,13 @@ export default css`
 
   .card__body {
     display: block;
-    padding: var(--padding);
+    padding: var(--spacing);
   }
 
   .card--has-footer .card__footer {
     display: block;
     border-top: inherit;
-    padding: var(--padding);
+    padding: var(--spacing);
   }
 
   .card:not(.card--has-footer) .card__footer {

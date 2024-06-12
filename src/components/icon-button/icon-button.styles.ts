@@ -2,6 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
+
     display: inline-block;
     color: var(--wa-color-text-quiet);
   }
@@ -12,22 +14,23 @@ export default css`
     align-items: center;
     background: none;
     border: none;
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     font-size: inherit;
     color: inherit;
     padding: var(--wa-space-xs);
     cursor: pointer;
-    transition: var(--wa-transition-faster) color;
+    transition: color var(--wa-transition-fast) var(--wa-transition-easing);
     -webkit-appearance: none;
   }
 
   .icon-button:hover:not(.icon-button--disabled),
   .icon-button:focus-visible:not(.icon-button--disabled) {
-    color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-neutral-fill-quiet);
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
   }
 
   .icon-button:active:not(.icon-button--disabled) {
-    color: color-mix(in oklab, var(--wa-color-brand-spot), var(--wa-color-mix-active));
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
   }
 
   .icon-button:focus {

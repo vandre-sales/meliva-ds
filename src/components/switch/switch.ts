@@ -37,8 +37,8 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
  * @csspart label - The switch's label.
  * @csspart form-control-help-text - The help text's wrapper.
  *
- * @cssproperty --background - The switch's background styles.
- * @cssproperty --background-checked - The switch's background styles when checked.
+ * @cssproperty --background-color - The switch's background color.
+ * @cssproperty --background-color-checked - The switch's background color when checked.
  * @cssproperty --border-color - The color of the switch's borders.
  * @cssproperty --border-color-checked - The color of the switch's borders when checked.
  * @cssproperty --border-style - The style of the switch's borders.

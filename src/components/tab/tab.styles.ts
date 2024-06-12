@@ -2,27 +2,26 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --active-tab-color: var(--wa-color-brand-on-quiet);
     display: inline-block;
+    color: var(--wa-color-neutral-on-quiet);
+    font-weight: var(--wa-font-weight-action);
   }
 
   .tab {
     display: inline-flex;
     align-items: center;
     font: inherit;
-    font-weight: var(--wa-font-weight-action);
-    color: var(--wa-color-neutral-text-on-surface);
     padding: var(--wa-space-m) var(--wa-space-l);
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer;
-    transition:
-      var(--transition-speed) box-shadow,
-      var(--transition-speed) color;
+    transition: color var(--wa-transition-fast) var(--wa-transition-easing);
   }
 
   :host(:hover:not([disabled])) .tab {
-    color: var(--wa-color-neutral-text-on-surface);
+    color: currentColor;
   }
 
   :host(:focus) {
@@ -35,7 +34,7 @@ export default css`
   }
 
   :host([active]:not([disabled])) .tab {
-    color: var(--wa-color-brand-text-on-surface);
+    color: var(--active-tab-color);
   }
 
   :host([disabled]) .tab {

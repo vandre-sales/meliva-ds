@@ -137,7 +137,7 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--wa-color-neutral-spot);
+    background: var(--wa-color-neutral-fill-loud);
     transform: translateX(-3px);
   }
 
@@ -347,7 +347,7 @@ Here's a more elaborate example that changes the divider's color and width and a
 
   .split-panel-divider wa-icon {
     position: absolute;
-    border-radius: var(--wa-corners-l);
+    border-radius: var(--wa-border-radius-l);
     background: var(--wa-color-red-50);
     color: white;
     padding: 0.5rem 0.25rem;

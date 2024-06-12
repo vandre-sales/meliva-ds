@@ -2,23 +2,23 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-radius: var(--wa-form-controls-corners);
-    --border-style: var(--wa-form-controls-border-style);
-    --border-width: var(--wa-form-controls-border-width);
-    --box-shadow: var(--wa-shadow-level-0);
+    --background-color: var(--wa-form-control-background-color);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-radius: var(--wa-form-control-border-radius);
+    --border-style: var(--wa-form-control-border-style);
+    --border-width: var(--wa-form-control-border-width);
+    --box-shadow: initial;
 
     display: block;
   }
 
   :host([filled]) {
-    --background: var(--wa-color-neutral-fill-subtle);
-    --border-color: var(--background);
+    --background-color: var(--wa-color-neutral-fill-quiet);
+    --border-color: var(--background-color);
   }
 
   .input {
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);
@@ -35,16 +35,16 @@ export default css`
     overflow: hidden;
     cursor: text;
     transition:
-      var(--wa-transition-fast) background,
-      var(--wa-transition-fast) border,
-      var(--wa-transition-faster) outline;
+      background var(--wa-transition-normal) var(--wa-transition-easing),
+      border var(--wa-transition-normal) var(--wa-transition-easing),
+      outline var(--wa-transition-fast) var(--wa-transition-easing);
   }
 
   /* Standard inputs */
   .input--standard.input--focused:not(.input--disabled) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
-    border-color: var(--wa-form-controls-activated-color);
+    border-color: var(--wa-form-control-activated-color);
   }
 
   .input--standard.input--disabled {
@@ -68,11 +68,11 @@ export default css`
     min-width: 0;
     height: 100%;
     font: inherit;
-    line-height: var(--wa-form-controls-value-line-height);
-    color: var(--wa-form-controls-value-color);
+    line-height: var(--wa-form-control-value-line-height);
+    color: var(--wa-form-control-value-color);
     border: none;
     /* prettier-ignore */
-    background: rgb(118 118 118 / 0); /* ensures proper placeholder styles in webkit's date input */
+    background-color: rgb(118 118 118 / 0); /* ensures proper placeholder styles in webkit's date input */
     box-shadow: none;
     padding: 0;
     margin: 0;
@@ -92,8 +92,8 @@ export default css`
   .input__control:-webkit-autofill:focus,
   .input__control:-webkit-autofill:active {
     box-shadow: none;
-    -webkit-text-fill-color: var(--wa-color-brand-text-on-fill);
-    caret-color: var(--wa-form-controls-value-color);
+    -webkit-text-fill-color: var(--wa-color-brand-on-normal);
+    caret-color: var(--wa-form-control-value-color);
   }
 
   .input--filled .input__control:-webkit-autofill,
@@ -104,7 +104,7 @@ export default css`
   }
 
   .input__control::placeholder {
-    color: var(--wa-form-controls-placeholder-color);
+    color: var(--wa-form-control-placeholder-color);
     user-select: none;
     -webkit-user-select: none;
   }
@@ -123,7 +123,7 @@ export default css`
 
   .input__prefix ::slotted(wa-icon),
   .input__suffix ::slotted(wa-icon) {
-    color: var(--wa-color-neutral-spot);
+    color: var(--wa-color-neutral-on-quiet);
   }
 
   /*
@@ -132,11 +132,11 @@ export default css`
 
   .input--small {
     font-size: var(--wa-font-size-s);
-    height: var(--wa-form-controls-height-s);
+    height: var(--wa-form-control-height-s);
   }
 
   .input--small .input__control {
-    height: calc(var(--wa-form-controls-height-s) - var(--border-width) * 2);
+    height: calc(var(--wa-form-control-height-s) - var(--border-width) * 2);
     padding: 0 var(--wa-space-s);
   }
 
@@ -155,11 +155,11 @@ export default css`
 
   .input--medium {
     font-size: var(--wa-font-size-m);
-    height: var(--wa-form-controls-height-m);
+    height: var(--wa-form-control-height-m);
   }
 
   .input--medium .input__control {
-    height: calc(var(--wa-form-controls-height-m) - var(--border-width) * 2);
+    height: calc(var(--wa-form-control-height-m) - var(--border-width) * 2);
     padding: 0 var(--wa-space-m);
   }
 
@@ -178,11 +178,11 @@ export default css`
 
   .input--large {
     font-size: var(--wa-font-size-l);
-    height: var(--wa-form-controls-height-l);
+    height: var(--wa-form-control-height-l);
   }
 
   .input--large .input__control {
-    height: calc(var(--wa-form-controls-height-l) - var(--border-width) * 2);
+    height: calc(var(--wa-form-control-height-l) - var(--border-width) * 2);
     padding: 0 var(--wa-space-l);
   }
 
@@ -204,15 +204,15 @@ export default css`
    */
 
   .input--pill.input--small {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .input--pill.input--medium {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   .input--pill.input--large {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   /*
@@ -225,17 +225,22 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: inherit;
-    color: var(--wa-color-neutral-spot);
+    color: var(--wa-color-neutral-on-quiet);
     border: none;
     background: none;
     padding: 0;
-    transition: var(--wa-transition-fast) color;
+    transition: var(--wa-transition-normal) color;
     cursor: pointer;
+  }
+
+  .input__clear:hover,
+  .input__password-toggle:hover {
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
   }
 
   .input__clear:active,
   .input__password-toggle:active {
-    color: color-mix(in oklab, var(--wa-color-neutral-spot), var(--wa-color-mix-active));
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
   }
 
   .input__clear:focus,

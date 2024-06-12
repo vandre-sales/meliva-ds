@@ -39,9 +39,9 @@ import type { CSSResultGroup } from 'lit';
  * @csspart caret - The button's caret icon, a `<wa-icon>` element.
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  *
- * @cssproperty --background - The button's background styles.
- * @cssproperty --background-active - The color of the button's background when active.
- * @cssproperty --background-hover - The color of the button's background on hover.
+ * @cssproperty --background-color - The button's background color.
+ * @cssproperty --background-color-active - The button's background color when active.
+ * @cssproperty --background-color-hover - The button's background color on hover.
  * @cssproperty --border-color - The color of the button's border.
  * @cssproperty --border-color-active - The color of the button's border when active.
  * @cssproperty --border-color-hover - The color of the button's border on hover.
@@ -49,7 +49,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-style - The style of the button's border.
  * @cssproperty --border-width - The width of the button's border. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the button.
- * @cssproperty --box-shadow-color - A bespoke shadow color for the button.
  * @cssproperty --label-color - The color of the button's label.
  * @cssproperty --label-color-active - The color of the button's label when active.
  * @cssproperty --label-color-hover - The color of the button's label on hover.

@@ -23,13 +23,13 @@ import type { CSSResultGroup } from 'lit';
  * @csspart body - The container that wraps the card's main content.
  * @csspart footer - The container that wraps the card's footer.
  *
- * @cssproperty --background - The card's background styles.
+ * @cssproperty --background-color - The card's background color.
  * @cssproperty --border-color - The card's border color, including borders that occur inside the card.
- * @cssproperty --border-radius - The border radius for the card's corners. Expects a single value.
+ * @cssproperty --border-radius - The radius for the card's corners. Expects a single value.
  * @cssproperty --border-style - The style of the card's borders.
  * @cssproperty --border-width - The width of the card's borders. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the card.
- * @cssproperty --padding - The padding for each section in the card. Expects a single value.
+ * @cssproperty --spacing - The amount of space around and between sections of the card. Expects a single value.
  */
 @customElement('wa-card')
 export default class WaCard extends WebAwesomeElement {

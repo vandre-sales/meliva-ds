@@ -2,10 +2,12 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --error-color: var(--wa-color-danger-spot);
-    --success-color: var(--wa-color-success-spot);
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
+    --error-color: var(--wa-color-danger-fill-loud);
+    --success-color: var(--wa-color-success-fill-loud);
 
     display: inline-block;
+    color: var(--wa-color-text-quiet);
   }
 
   .copy-button__button {
@@ -14,19 +16,29 @@ export default css`
     align-items: center;
     background: none;
     border: none;
-    border-radius: var(--wa-corners-s);
-    font-size: inherit;
+    border-radius: var(--wa-border-radius-s);
     color: inherit;
+    font-size: inherit;
     padding: var(--wa-space-xs);
     cursor: pointer;
-    transition: var(--wa-transition-faster) color;
+    transition: color var(--wa-transition-fast) var(--wa-transition-easing);
   }
 
-  .copy-button--success .copy-button__button {
+  .copy-button__button:hover:not([disabled]),
+  .copy-button__button:focus-visible:not([disabled]) {
+    background-color: var(--background-color-hover);
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
+  }
+
+  .copy-button__button:active:not([disabled]) {
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
+  }
+
+  slot[name='success-icon'] {
     color: var(--success-color);
   }
 
-  .copy-button--error .copy-button__button {
+  slot[name='error-icon'] {
     color: var(--error-color);
   }
 

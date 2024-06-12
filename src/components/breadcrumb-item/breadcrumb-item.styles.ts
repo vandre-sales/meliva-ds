@@ -10,8 +10,8 @@ export default css`
     align-items: center;
     font: inherit;
     font-weight: var(--wa-font-weight-action);
-    color: var(--wa-color-neutral-text-on-surface);
-    line-height: var(--wa-line-height-regular);
+    color: var(--wa-color-neutral-on-quiet);
+    line-height: var(--wa-line-height-normal);
     white-space: nowrap;
   }
 
@@ -22,23 +22,23 @@ export default css`
     color: inherit;
     background: none;
     border: none;
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     padding: 0;
     margin: 0;
     cursor: pointer;
-    transition: var(--wa-transition-fast) --color;
+    transition: color var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label {
-    color: var(--wa-color-brand-text-on-surface);
+    color: var(--wa-color-text-link);
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label:hover {
-    color: color-mix(in oklab, var(--wa-color-brand-text-on-surface), var(--wa-color-mix-hover));
+    color: color-mix(in oklab, var(--wa-color-text-link), var(--wa-color-mix-hover));
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label:active {
-    color: var(--wa-color-brand-text-on-surface);
+    color: var(--wa-color-text-link);
   }
 
   .breadcrumb-item__label:focus {

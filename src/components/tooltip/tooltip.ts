@@ -35,7 +35,11 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base__arrow - The popup's exported `arrow` part. Use this to target the tooltip's arrow.
  * @csspart body - The tooltip's body where its content is rendered.
  *
+ * @cssproperty --background-color - The tooltip's background color.
+ * @cssproperty --border-radius - The radius of the tooltip's corners.
+ * @cssproperty --content-color - The color of the tooltip's content.
  * @cssproperty --max-width - The maximum width of the tooltip before its content will wrap.
+ * @cssproperty --padding - The padding within the tooltip.
  * @cssproperty --hide-delay - The amount of time to wait before hiding the tooltip when hovering.
  * @cssproperty --show-delay - The amount of time to wait before showing the tooltip when hovering.
  */

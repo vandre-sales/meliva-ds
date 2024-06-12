@@ -62,22 +62,22 @@ Popup is a low-level utility built specifically for positioning elements. Do not
 
 <style>
   .popup-overview wa-popup {
-    --arrow-color: var(--wa-color-brand-spot);
+    --arrow-color: var(--wa-color-brand-fill-loud);
   }
 
   .popup-overview span[slot='anchor'] {
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 50px;
   }
 
   .popup-overview .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-overview-options {
@@ -127,15 +127,15 @@ Popups are inactive and hidden until the `active` attribute is applied. Removing
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 50px;
   }
 
   .popup-active .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 
@@ -164,15 +164,15 @@ By default, anchors are slotted into the popup using the `anchor` slot. If your 
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 50px 0 0 50px;
   }
 
   #external-anchor ~ wa-popup .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 ```
@@ -211,15 +211,15 @@ Since placement is preferred when using `flip`, you can observe the popup's curr
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 50px;
   }
 
   .popup-placement .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-placement wa-select {
@@ -255,15 +255,15 @@ Use the `distance` attribute to change the distance between the popup and its an
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 50px;
   }
 
   .popup-distance .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-distance wa-range {
@@ -299,15 +299,15 @@ The `skidding` attribute is similar to `distance`, but instead allows you to off
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 50px;
   }
 
   .popup-skidding .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-skidding wa-range {
@@ -367,22 +367,22 @@ By default, the arrow will be aligned as close to the center of the _anchor_ as 
 
   <style>
     .popup-arrow wa-popup {
-      --arrow-color: var(--wa-color-brand-spot);
+      --arrow-color: var(--wa-color-brand-fill-loud);
     }
 
     .popup-arrow span[slot='anchor'] {
       display: inline-block;
       width: 150px;
       height: 150px;
-      border: dashed 2px var(--wa-color-neutral-spot);
+      border: dashed 2px var(--wa-color-neutral-fill-loud);
       margin: 50px;
     }
 
     .popup-arrow .box {
       width: 100px;
       height: 50px;
-      background: var(--wa-color-brand-spot);
-      border-radius: var(--wa-corners-s);
+      background: var(--wa-color-brand-fill-loud);
+      border-radius: var(--wa-border-radius-s);
     }
 
     .popup-arrow-options {
@@ -439,7 +439,7 @@ Use the `sync` attribute to make the popup the same width or height as the ancho
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 50px;
   }
 
@@ -448,8 +448,8 @@ Use the `sync` attribute to make the popup the same width or height as the ancho
     height: 100%;
     min-width: 50px;
     min-height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-sync wa-select {
@@ -501,15 +501,15 @@ Toggle the switch and scroll the container to see the difference.
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 150px 50px;
   }
 
   .popup-strategy .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-strategy wa-switch {
@@ -557,15 +557,15 @@ Scroll the container to see how the popup flips to prevent clipping.
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 150px 50px;
   }
 
   .popup-flip .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 
@@ -610,15 +610,15 @@ Scroll the container to see how the popup changes it's fallback placement to pre
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 250px 50px;
   }
 
   .popup-flip-fallbacks .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 ```
@@ -652,15 +652,15 @@ Toggle the switch to see the difference.
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 60px 0 0 10px;
   }
 
   .popup-shift .box {
     width: 300px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 </style>
 
@@ -706,13 +706,13 @@ Scroll the container to see the popup resize as its available space changes.
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 250px 50px 100px 50px;
   }
 
   .popup-auto-size .box {
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
 
     /* This sets the preferred size of the popup's content */
     width: 100px;
@@ -754,15 +754,15 @@ When a gap exists between the anchor and the popup element, this option will add
     display: inline-block;
     width: 150px;
     height: 150px;
-    border: dashed 2px var(--wa-color-neutral-spot);
+    border: dashed 2px var(--wa-color-neutral-fill-loud);
     margin: 50px;
   }
 
   .popup-hover-bridge .box {
     width: 100px;
     height: 50px;
-    background: var(--wa-color-brand-spot);
-    border-radius: var(--wa-corners-s);
+    background: var(--wa-color-brand-fill-loud);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .popup-hover-bridge wa-range {
@@ -865,7 +865,7 @@ This example anchors a popup to the mouse cursor using a virtual element. As suc
   .popup-virtual-element .circle {
     width: 100px;
     height: 100px;
-    border: solid 4px var(--wa-color-neutral-spot);
+    border: solid 4px var(--wa-color-neutral-fill-loud);
     border-radius: 50%;
     translate: -50px -50px;
     animation: 1s virtual-cursor infinite;

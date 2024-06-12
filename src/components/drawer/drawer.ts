@@ -46,11 +46,11 @@ import type { CSSResultGroup } from 'lit';
  * @csspart body - The drawer's body.
  * @csspart footer - The drawer's footer.
  *
+ * @cssproperty --background-color - The drawer's background color.
+ * @cssproperty --box-shadow - The shadow effects around the edges of the drawer.
+ * @cssproperty --spacing - The amount of space around and between the drawer's content.
  * @cssproperty --size - The preferred size of the drawer. This will be applied to the drawer's width or height
  *   depending on its `placement`. Note that the drawer will shrink to accommodate smaller screens.
- * @cssproperty --header-spacing - The amount of padding to use for the header.
- * @cssproperty --body-spacing - The amount of padding to use for the body.
- * @cssproperty --footer-spacing - The amount of padding to use for the footer.
  * @cssproperty [--show-duration=200ms] - The animation duration when showing the drawer.
  * @cssproperty [--hide-duration=200ms] - The animation duration when hiding the drawer.
  *

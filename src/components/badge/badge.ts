@@ -16,7 +16,7 @@ import type { CSSResultGroup } from 'lit';
  *
  * @csspart base - The component's base wrapper.
  *
- * @cssproperty --background - The badge's background styles.
+ * @cssproperty --background-color - The badge's background color.
  * @cssproperty --border-color - The color of the badge's border.
  * @cssproperty --border-radius - The radius of the badge's corners.
  * @cssproperty --border-style - The style of the badge's border.

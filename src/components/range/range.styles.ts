@@ -2,12 +2,15 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --thumb-size: 20px;
+    --thumb-color: var(--wa-form-control-activated-color);
+    --thumb-gap: calc(var(--thumb-size) * 0.125);
+    --thumb-shadow: initial;
+    --thumb-size: calc(1rem * var(--wa-form-control-value-line-height));
     --tooltip-offset: calc(var(--wa-tooltip-arrow-size) * 2.5);
-    --track-color-active: var(--wa-color-neutral-fill-highlight);
-    --track-color-inactive: var(--wa-color-neutral-fill-highlight);
+    --track-color-active: var(--wa-color-neutral-fill-normal);
+    --track-color-inactive: var(--wa-color-neutral-fill-normal);
     --track-active-offset: 0%;
-    --track-height: 6px;
+    --track-height: calc(var(--thumb-size) * 0.25);
 
     display: block;
   }
@@ -19,11 +22,11 @@ export default css`
   .range__control {
     --percent: 0%;
     -webkit-appearance: none;
-    border-radius: 3px;
+    border-radius: calc(var(--track-height) / 2);
     width: 100%;
     height: var(--track-height);
     background: transparent;
-    line-height: var(--wa-form-controls-height-m);
+    line-height: var(--wa-form-control-height-m);
     vertical-align: middle;
     margin: 0;
 
@@ -59,12 +62,13 @@ export default css`
   }
 
   .range__control::-webkit-slider-thumb {
-    border: none;
     width: var(--thumb-size);
     height: var(--thumb-size);
     border-radius: 50%;
-    background-color: var(--wa-color-brand-spot);
-    border: var(--wa-form-controls-border-style) var(--wa-form-controls-border-width) var(--wa-color-brand-spot);
+    background-color: var(--thumb-color);
+    box-shadow:
+      var(--thumb-shadow, 0 0 transparent),
+      0 0 0 var(--thumb-gap) var(--wa-color-surface-default);
     -webkit-appearance: none;
     margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
     cursor: pointer;
@@ -99,17 +103,18 @@ export default css`
   }
 
   .range__control::-moz-range-thumb {
-    border: none;
     height: var(--thumb-size);
     width: var(--thumb-size);
     border-radius: 50%;
-    background-color: var(--wa-color-brand-spot);
-    border-color: var(--wa-color-brand-spot);
+    background-color: var(--thumb-color);
+    box-shadow:
+      var(--thumb-shadow),
+      0 0 0 var(--thumb-gap) var(--wa-color-surface-default);
     transition:
-      var(--wa-transition-fast) border-color,
-      var(--wa-transition-fast) background-color,
-      var(--wa-transition-fast) color,
-      var(--wa-transition-fast) box-shadow;
+      background-color var(--wa-transition-normal) var(--wa-transition-easing),
+      border-color var(--wa-transition-normal) var(--wa-transition-easing),
+      box-shadow var(--wa-transition-normal) var(--wa-transition-easing),
+      color var(--wa-transition-normal) var(--wa-transition-easing);
     cursor: pointer;
   }
 
@@ -142,16 +147,17 @@ export default css`
   /* Tooltip output */
   .range__tooltip {
     position: absolute;
-    z-index: var(--wa-z-index-tooltip);
+    z-index: 1000;
     left: 0;
-    border-radius: var(--wa-corners-s);
-    background-color: var(--wa-color-neutral-spot);
-    font: inherit;
-    line-height: var(--wa-line-height-regular);
-    color: var(--wa-color-neutral-text-on-spot);
+    border-radius: var(--wa-tooltip-border-radius);
+    background-color: var(--wa-tooltip-background-color);
+    font-family: inherit;
+    font-size: var(--wa-tooltip-font-size);
+    line-height: var(--wa-tooltip-line-height);
+    color: var(--wa-tooltip-content-color);
     opacity: 0;
     padding: var(--wa-space-2xs) var(--wa-space-xs);
-    transition: var(--wa-transition-fast) opacity;
+    transition: var(--wa-transition-normal) opacity;
     pointer-events: none;
   }
 
@@ -174,7 +180,7 @@ export default css`
   }
 
   .range--tooltip-top .range__tooltip:after {
-    border-top: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-spot);
+    border-top: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-fill-loud);
     border-left: var(--wa-tooltip-arrow-size) solid transparent;
     border-right: var(--wa-tooltip-arrow-size) solid transparent;
     top: 100%;
@@ -186,7 +192,7 @@ export default css`
   }
 
   .range--tooltip-bottom .range__tooltip:after {
-    border-bottom: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-spot);
+    border-bottom: var(--wa-tooltip-arrow-size) solid var(--wa-color-neutral-fill-loud);
     border-left: var(--wa-tooltip-arrow-size) solid transparent;
     border-right: var(--wa-tooltip-arrow-size) solid transparent;
     bottom: 100%;

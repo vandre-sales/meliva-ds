@@ -17,8 +17,8 @@ export default css`
   }
 
   .radio-group--required .radio-group__label::after {
-    content: var(--wa-form-controls-required-content);
-    margin-inline-start: var(--wa-form-controls-required-content-offset);
+    content: var(--wa-form-control-required-content);
+    margin-inline-start: var(--wa-form-control-required-content-offset);
   }
 
   .visually-hidden {

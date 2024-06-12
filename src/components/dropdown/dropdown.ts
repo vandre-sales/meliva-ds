@@ -36,6 +36,8 @@ import type WaPopup from '../popup/popup.js';
  * @event wa-hide - Emitted when the dropdown closes.
  * @event wa-after-hide - Emitted after the dropdown closes and all animations are complete.
  *
+ * @cssproperty --box-shadow - The shadow effects around the dropdown's edges.
+ *
  * @csspart base - The component's base wrapper.
  * @csspart trigger - The container that wraps the trigger.
  * @csspart panel - The panel that gets shown when the dropdown is open.

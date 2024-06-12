@@ -2,16 +2,16 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
-    --background-checked: var(--wa-form-controls-activated-color);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-color-checked: var(--wa-form-controls-activated-color);
+    --background-color: var(--wa-form-control-background-color);
+    --background-color-checked: var(--background-color);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-color-checked: var(--wa-form-control-activated-color);
     --border-style: var(--wa-border-style);
-    --border-width: var(--wa-form-controls-border-width);
+    --border-width: var(--wa-form-control-border-width);
     --box-shadow: none;
-    --checked-icon-color: var(--wa-color-brand-text-on-spot);
-    --checked-icon-scale: 0.4;
-    --toggle-size: calc(1em * var(--wa-font-line-height-compact) - 0.125rem);
+    --checked-icon-color: var(--wa-form-control-activated-color);
+    --checked-icon-scale: 0.75;
+    --toggle-size: calc(1em * var(--wa-form-control-value-line-height));
 
     display: inline-block;
   }
@@ -24,7 +24,7 @@ export default css`
     display: inline-flex;
     align-items: top;
     font: inherit;
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -61,14 +61,14 @@ export default css`
     border-style: var(--border-style);
     border-width: var(--border-width);
     border-radius: 50%;
-    background: var(--background);
+    background-color: var(--background-color);
     box-shadow: var(--box-shadow);
     color: transparent;
     transition:
-      var(--wa-transition-fast) border-color,
-      var(--wa-transition-fast) background-color,
-      var(--wa-transition-fast) color,
-      var(--wa-transition-fast) box-shadow;
+      background var(--wa-transition-normal) var(--wa-transition-easing),
+      border-color var(--wa-transition-normal) var(--wa-transition-easing),
+      box-shadow var(--wa-transition-normal) var(--wa-transition-easing),
+      color var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   .radio__input {
@@ -83,7 +83,7 @@ export default css`
   .radio--checked .radio__control {
     color: var(--checked-icon-color);
     border-color: var(--border-color-checked);
-    background: var(--background-checked);
+    background-color: var(--background-color-checked);
   }
 
   /* Checked + focus */
@@ -105,7 +105,7 @@ export default css`
 
   .radio__label {
     display: inline-block;
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;

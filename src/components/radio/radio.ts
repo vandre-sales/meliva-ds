@@ -29,8 +29,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart checked-icon - The checked icon.
  * @csspart label - The container that wraps the radio's label.
  *
- * @cssproperty --background - The radio's background styles.
- * @cssproperty --background-checked - The radio's background styles when checked.
+ * @cssproperty --background-color - The radio's background color.
+ * @cssproperty --background-color-checked - The radio's background color when checked.
  * @cssproperty --border-color - The color of the radio's borders.
  * @cssproperty --border-color-checked - The color of the radio's borders when checked.
  * @cssproperty --border-style - The style of the radio's borders.

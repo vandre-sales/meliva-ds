@@ -32,7 +32,9 @@ import type { CSSResultGroup } from 'lit';
  * @csspart divider - The divider that separates the images.
  * @csspart handle - The handle that the user drags to expose the after image.
  *
+ * @cssproperty --divider-color - The color of the divider.
  * @cssproperty --divider-width - The width of the dividing line.
+ * @cssproperty --handle-color - The color of the icon used inside the handle.
  * @cssproperty --handle-size - The size of the compare handle.
  */
 @customElement('wa-image-comparer')

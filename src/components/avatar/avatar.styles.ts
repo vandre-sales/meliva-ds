@@ -2,9 +2,11 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    display: inline-block;
-
+    --background-color: var(--wa-color-neutral-fill-normal);
+    --content-color: var(--wa-color-neutral-on-normal);
     --size: 3rem;
+
+    display: inline-block;
   }
 
   .avatar {
@@ -14,10 +16,10 @@ export default css`
     position: relative;
     width: var(--size);
     height: var(--size);
-    background-color: var(--wa-color-neutral-spot);
+    background-color: var(--background-color);
     font: inherit;
-    font-size: calc(var(--size) * 0.5);
-    color: var(--wa-color-neutral-text-on-spot);
+    font-size: calc(var(--size) * 0.4);
+    color: var(--content-color);
     user-select: none;
     -webkit-user-select: none;
     vertical-align: middle;
@@ -25,12 +27,12 @@ export default css`
 
   .avatar--circle,
   .avatar--circle .avatar__image {
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
   }
 
   .avatar--rounded,
   .avatar--rounded .avatar__image {
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
   }
 
   .avatar--square {

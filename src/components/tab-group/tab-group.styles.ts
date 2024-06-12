@@ -2,9 +2,9 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --indicator-color: var(--wa-color-brand-spot);
-    --track-color: var(--wa-color-neutral-fill-highlight);
-    --track-width: 2px;
+    --indicator-color: var(--wa-color-brand-fill-loud);
+    --track-color: var(--wa-color-neutral-fill-normal);
+    --track-width: 0.125rem;
 
     display: block;
   }
@@ -21,9 +21,6 @@ export default css`
 
   .tab-group__indicator {
     position: absolute;
-    transition:
-      var(--wa-transition-fast) translate ease,
-      var(--wa-transition-fast) width ease;
   }
 
   .tab-group--has-scroll-controls .tab-group__nav-container {

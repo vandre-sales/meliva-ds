@@ -38,6 +38,7 @@ import type WaTooltip from '../tooltip/tooltip.js';
  * @csspart tooltip__base__arrow - The tooltip's exported `arrow` part.
  * @csspart tooltip__body - The tooltip's exported `body` part.
  *
+ * @cssproperty --background-color-hover - The color of the button's background on hover.
  * @cssproperty --success-color - The color to use for success feedback.
  * @cssproperty --error-color - The color to use for error feedback.
  */
@@ -200,13 +201,13 @@ export default class WaCopyButton extends WebAwesomeElement {
         @click=${this.handleCopy}
       >
         <slot part="copy-icon" name="copy-icon">
-          <wa-icon library="system" name="copy" variant="regular"></wa-icon>
+          <wa-icon library="system" name="copy" variant="regular" fixed-width></wa-icon>
         </slot>
         <slot part="success-icon" name="success-icon" variant="solid" hidden>
-          <wa-icon library="system" name="check"></wa-icon>
+          <wa-icon library="system" name="check" fixed-width></wa-icon>
         </slot>
         <slot part="error-icon" name="error-icon" variant="solid" hidden>
-          <wa-icon library="system" name="xmark"></wa-icon>
+          <wa-icon library="system" name="xmark" fixed-width></wa-icon>
         </slot>
         <wa-tooltip
           class=${classMap({

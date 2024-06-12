@@ -12,9 +12,9 @@ export default css`
   /* Label */
   .form-control--has-label .form-control__label {
     display: inline-block;
-    color: var(--wa-form-controls-label-color);
-    font-weight: var(--wa-form-controls-label-font-weight);
-    line-height: var(--wa-form-controls-label-line-height);
+    color: var(--wa-form-control-label-color);
+    font-weight: var(--wa-form-control-label-font-weight);
+    line-height: var(--wa-form-control-label-line-height);
     margin-bottom: var(--wa-space-3xs);
   }
 
@@ -31,9 +31,9 @@ export default css`
   }
 
   :host([required]) .form-control--has-label .form-control__label::after {
-    content: var(--wa-form-controls-required-content);
-    margin-inline-start: var(--wa-form-controls-required-content-offset);
-    color: var(--wa-form-controls-required-content-color);
+    content: var(--wa-form-control-required-content);
+    margin-inline-start: var(--wa-form-control-required-content-offset);
+    color: var(--wa-form-control-required-content-color);
   }
 
   /* Help text */

@@ -19,7 +19,7 @@ To animate an element, wrap it in `<wa-animation>` and set an animation `name`. 
     display: inline-block;
     width: 100px;
     height: 100px;
-    background-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-brand-fill-loud);
     margin: 1.5rem;
   }
 </style>
@@ -85,7 +85,7 @@ This example demonstrates all of the baked-in animations and easings. Animations
   .animation-sandbox .box {
     width: 100px;
     height: 100px;
-    background-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-brand-fill-loud);
   }
 
   .animation-sandbox .controls {
@@ -131,7 +131,7 @@ Use an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/
     display: inline-block;
     width: 100px;
     height: 100px;
-    background-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-brand-fill-loud);
   }
 </style>
 ```
@@ -171,7 +171,7 @@ Supply your own [keyframe formats](https://developer.mozilla.org/en-US/docs/Web/
   .animation-keyframes .box {
     width: 100px;
     height: 100px;
-    background-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-brand-fill-loud);
   }
 </style>
 ```

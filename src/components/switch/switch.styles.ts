@@ -2,19 +2,19 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-resting-color);
-    --background-checked: var(--wa-form-controls-activated-color);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-color-checked: var(--background-checked);
-    --border-style: var(--wa-form-controls-border-style);
-    --border-width: var(--wa-form-controls-border-width);
-    --box-shadow: none;
-    --height: calc(1em * var(--wa-font-line-height-compact) - 0.125rem);
-    --thumb-color: var(--wa-form-controls-background);
-    --thumb-color-checked: var(--wa-form-controls-background);
-    --thumb-shadow: none;
-    --thumb-size: calc(var(--height) - var(--border-width) * 2);
-    --width: calc(var(--height) * 2);
+    --background-color: var(--wa-form-control-background-color);
+    --background-color-checked: var(--wa-form-control-activated-color);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-color-checked: var(--background-color-checked);
+    --border-style: var(--wa-form-control-border-style);
+    --border-width: var(--wa-form-control-border-width);
+    --box-shadow: initial;
+    --height: calc(1em * var(--wa-form-control-value-line-height));
+    --thumb-color: var(--wa-form-control-resting-color);
+    --thumb-color-checked: var(--wa-form-control-background-color);
+    --thumb-shadow: initial;
+    --thumb-size: calc((var(--height) - var(--border-width) * 2) * 0.75);
+    --width: calc(var(--height) * 1.75);
 
     display: inline-block;
   }
@@ -36,7 +36,7 @@ export default css`
     display: inline-flex;
     align-items: center;
     font: inherit;
-    color: var(--wa-form-controls-value-color);
+    color: var(--wa-form-control-value-color);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -49,15 +49,15 @@ export default css`
     justify-content: center;
     width: var(--width);
     height: var(--height);
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--height);
     border-style: var(--border-style);
     border-width: var(--border-width);
     box-shadow: var(--box-shadow);
     transition:
-      var(--wa-transition-fast) background,
-      var(--wa-transition-fast) border-color;
+      background var(--wa-transition-normal) var(--wa-transition-easing),
+      border-color var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   .switch__control .switch__thumb {
@@ -65,14 +65,13 @@ export default css`
     height: var(--thumb-size);
     background-color: var(--thumb-color);
     border-radius: 50%;
-    border: solid var(--border-width) var(--thumb-color);
     box-shadow: var(--thumb-shadow);
     translate: calc((var(--width) - var(--height)) / -2);
     transition:
-      var(--wa-transition-fast) translate ease,
-      var(--wa-transition-fast) background-color,
-      var(--wa-transition-fast) border-color,
-      var(--wa-transition-fast) box-shadow;
+      translate var(--wa-transition-normal) var(--wa-transition-easing),
+      background-color var(--wa-transition-normal) var(--wa-transition-easing),
+      border-color var(--wa-transition-normal) var(--wa-transition-easing),
+      box-shadow var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   .switch__input {
@@ -91,13 +90,12 @@ export default css`
 
   /* Checked */
   .switch--checked .switch__control {
-    background: var(--background-checked);
+    background-color: var(--background-color-checked);
     border-color: var(--border-color-checked);
   }
 
   .switch--checked .switch__control .switch__thumb {
-    background: var(--thumb-color-checked);
-    border-color: var(--thumb-color-checked);
+    background-color: var(--thumb-color-checked);
     translate: calc((var(--width) - var(--height)) / 2);
   }
 
@@ -116,9 +114,9 @@ export default css`
   }
 
   :host([required]) .switch__label::after {
-    content: var(--wa-form-controls-required-content);
-    color: var(--wa-form-controls-required-content-color);
-    margin-inline-start: var(--wa-form-controls-required-content-offset);
+    content: var(--wa-form-control-required-content);
+    color: var(--wa-form-control-required-content-color);
+    margin-inline-start: var(--wa-form-control-required-content-offset);
   }
 
   @media (forced-colors: active) {
