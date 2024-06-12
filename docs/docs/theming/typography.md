@@ -63,7 +63,7 @@ Line heights control the distance between lines of text and are unitless to scal
 
 | Custom Property              | Default Value | Preview                                                                                                                      |
 | ---------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `--wa-line-height-condensed` | `1.125`       | <div style="line-height: var(--wa-line-height-condensed); border-block-color: var(--wa-color-neutral-border-loud)">AaBb</div> |
+| `--wa-line-height-condensed` | `1.2`       | <div style="line-height: var(--wa-line-height-condensed); border-block-color: var(--wa-color-neutral-border-loud)">AaBb</div> |
 | `--wa-line-height-normal`    | `1.6`         | <div style="line-height: var(--wa-line-height-normal); border-block-color: var(--wa-color-neutral-border-loud)">AaBb</div>    |
 | `--wa-line-height-expanded`  | `2`           | <div style="line-height: var(--wa-line-height-expanded); border-block-color: var(--wa-color-neutral-border-loud)">AaBb</div>  |
 

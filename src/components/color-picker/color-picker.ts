@@ -127,7 +127,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
       return this.input;
     }
 
-    // This puts popup on the colorpicker itself without needing to expand it to show the input.
+    // This puts popup on the color picker itself without needing to expand it to show the input.
     // This is necessary because form submissions expect the "anchor" to be currently shown.
     return this.trigger;
   }
