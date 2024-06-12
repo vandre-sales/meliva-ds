@@ -83,7 +83,7 @@ export default css`
   .menu-item--submenu-expanded::after {
     content: '';
     position: fixed;
-    z-index: calc(var(--wa-z-index-dropdown) - 1);
+    z-index: 899;
     top: 0;
     right: 0;
     bottom: 0;
@@ -132,7 +132,7 @@ export default css`
   /* Add elevation and z-index to submenus */
   wa-popup::part(popup) {
     box-shadow: var(--wa-shadow-m);
-    z-index: var(--wa-z-index-dropdown);
+    z-index: 900;
     margin-left: var(--submenu-offset);
   }
 

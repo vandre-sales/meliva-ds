@@ -18,7 +18,7 @@ export default css`
   }
 
   .tooltip::part(popup) {
-    z-index: var(--wa-z-index-tooltip);
+    z-index: 1000;
   }
 
   .tooltip[placement^='top']::part(popup) {

@@ -300,15 +300,6 @@
   --wa-link-decoration-hover: underline;
 
   /**
-   * Z-index
-   */
-  --wa-z-index-drawer: 700;
-  --wa-z-index-dialog: 800;
-  --wa-z-index-dropdown: 900;
-  --wa-z-index-alert-group: 950;
-  --wa-z-index-tooltip: 1000;
-
-  /**
    * Transitions
    */
   --wa-transition-slow: 250ms;

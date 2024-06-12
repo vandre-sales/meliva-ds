@@ -327,14 +327,6 @@
   --wa-transition-fast: 75ms;
 
   /**
-   * Z-index
-   * TODO: use exact values and remove these properties
-   */
-  --wa-z-index-dropdown: 900;
-  --wa-z-index-toast: 990;
-  --wa-z-index-tooltip: 1000;
-
-  /**
    * Component Groups
    */
 

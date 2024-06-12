@@ -27,7 +27,7 @@ export default css`
   }
 
   .select::part(popup) {
-    z-index: var(--wa-z-index-dropdown);
+    z-index: 900;
   }
 
   .select[data-current-placement^='top']::part(popup) {

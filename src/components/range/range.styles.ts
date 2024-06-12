@@ -147,7 +147,7 @@ export default css`
   /* Tooltip output */
   .range__tooltip {
     position: absolute;
-    z-index: var(--wa-z-index-tooltip);
+    z-index: 1000;
     left: 0;
     border-radius: var(--wa-tooltip-border-radius);
     background-color: var(--wa-tooltip-background);
