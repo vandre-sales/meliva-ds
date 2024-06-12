@@ -8,7 +8,7 @@ export default css`
     --border-style: var(--wa-panel-border-style);
     --border-width: var(--wa-panel-border-width);
     --icon-color: var(--wa-color-text-quiet);
-    --padding: var(--wa-space-m);
+    --spacing: var(--wa-space-m);
     --show-duration: 200ms;
     --hide-duration: 200ms;
 
@@ -31,7 +31,7 @@ export default css`
   .details__header {
     display: flex;
     align-items: center;
-    padding: var(--padding);
+    padding: var(--spacing);
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer;
@@ -93,7 +93,7 @@ export default css`
 
   .details__content {
     display: block;
-    padding: var(--padding);
+    padding: var(--spacing);
   }
 
   .show {

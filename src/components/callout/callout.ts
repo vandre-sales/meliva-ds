@@ -27,7 +27,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --content-color - The color of the callout's content.
  * @cssproperty --icon-color - The color of the callout's icon.
  * @cssproperty --icon-size - The size of the callout's icon.
- * @cssproperty --padding - The padding within the callout. Expects a single value.
+ * @cssproperty --spacing - The amount of space around and between the callout's content. Expects a single value.
  */
 @customElement('wa-callout')
 export default class WaCallout extends WebAwesomeElement {

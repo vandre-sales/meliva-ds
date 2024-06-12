@@ -7,7 +7,7 @@ export default css`
     --border-width: var(--wa-panel-border-width);
     --icon-color: currentColor;
     --icon-size: var(--wa-font-size-l);
-    --padding: var(--wa-space-m);
+    --spacing: var(--wa-space-m);
 
     display: contents;
 
@@ -56,7 +56,7 @@ export default css`
     border-width: var(--border-width);
     color: var(--content-color);
     font: inherit;
-    padding: var(--padding);
+    padding: var(--spacing);
     margin: inherit;
   }
 
@@ -69,7 +69,7 @@ export default css`
   }
 
   .callout__icon ::slotted(*) {
-    margin-inline-end: var(--padding) !important;
+    margin-inline-end: var(--spacing) !important;
   }
 
   .callout__message {
