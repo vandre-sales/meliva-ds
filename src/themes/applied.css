@@ -186,9 +186,8 @@ var {
   font-family: var(--wa-font-family-code);
   font-size: 0.875em;
   background-color: var(--wa-color-overlay-inline);
-  border-radius: var(--wa-border-radius-xs);
-  padding-block: var(--wa-space-2xs);
-  padding-inline: var(--wa-space-xs);
+  border-radius: var(--wa-border-radius-s);
+  padding: 0.25em 0.5em;
 }
 
 code {
@@ -223,7 +222,7 @@ kbd {
   font-family: var(--wa-font-family-code);
   border-radius: var(--wa-border-radius-s);
   color: var(--wa-color-neutral-on-normal);
-  padding: 0.125em 0.4em;
+  padding: 0.25em 0.5em;
 }
 
 kbd wa-icon {
@@ -340,12 +339,12 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background-color: color-mix(in oklab, var(--wa-color-brand-fill-quiet), transparent 50%);
-  border-top-color: var(--wa-color-brand-border-quiet);
+  background-color: color-mix(in oklab, var(--wa-color-neutral-fill-quiet), transparent 50%);
+  border-top-color: var(--wa-color-neutral-border-quiet);
 }
 
 tbody tr:hover + tr {
-  border-top-color: var(--wa-color-brand-border-quiet);
+  border-top-color: var(--wa-color-neutral-border-quiet);
 }
 
 th {

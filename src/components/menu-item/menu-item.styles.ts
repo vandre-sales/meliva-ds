@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background-color-hover: var(--wa-color-neutral-fill-quiet);
-    --label-color-hover: var(--wa-color-text-normal);
+    --background-color-hover: var(--wa-color-neutral-fill-normal);
+    --label-color-hover: var(--wa-color-neutral-on-normal);
     --submenu-offset: -0.125rem;
 
     display: block;
