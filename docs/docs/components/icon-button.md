@@ -125,9 +125,8 @@ const App = () => <WaIconButton name="gear" variant="solid" label="Settings" hre
 Wrap a tooltip around an icon button to provide contextual information to the user.
 
 ```html {.example}
-<wa-tooltip content="Settings">
-  <wa-icon-button name="gear" variant="solid" label="Settings"></wa-icon-button>
-</wa-tooltip>
+<wa-icon-button id="icon-button" name="gear" variant="solid" label="Settings"></wa-icon-button>
+<wa-tooltip for="icon-button">Settings</wa-tooltip>
 ```
 
 {% raw %}
@@ -136,9 +135,10 @@ import WaIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
 import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
 
 const App = () => (
-  <WaTooltip content="Settings">
-    <WaIconButton name="gear" variant="solid" label="Settings" />
-  </WaTooltip>
+  <>
+    <WaIconButton id="icon-button" name="gear" variant="solid" />
+    <WaTooltip for="icon-button">Settings</WaTooltip>
+  </>
 );
 ```
 {% endraw %}

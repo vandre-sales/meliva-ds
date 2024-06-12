@@ -1,7 +1,7 @@
 import '../checkbox/checkbox.js';
 import '../icon/icon.js';
 import '../spinner/spinner.js';
-import { animate, parseDuration, stopAnimations } from '../../internal/animate.js';
+import { animate, parseDuration } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
@@ -125,8 +125,6 @@ export default class WaTreeItem extends WebAwesomeElement {
   private async animateCollapse() {
     this.dispatchEvent(new WaCollapseEvent());
 
-    await stopAnimations(this.childrenContainer);
-
     const duration = parseDuration(getComputedStyle(this.childrenContainer).getPropertyValue('--hide-duration'));
     await animate(
       this.childrenContainer,
@@ -162,7 +160,6 @@ export default class WaTreeItem extends WebAwesomeElement {
   private async animateExpand() {
     this.dispatchEvent(new WaExpandEvent());
 
-    await stopAnimations(this.childrenContainer);
     this.childrenContainer.hidden = false;
     // We can't animate to 'auto', so use the scroll height for now
     const duration = parseDuration(getComputedStyle(this.childrenContainer).getPropertyValue('--show-duration'));

@@ -56,6 +56,18 @@ export default class WaCopyButton extends WebAwesomeElement {
   @state() isCopying = false;
   @state() status: 'rest' | 'success' | 'error' = 'rest';
 
+  private get currentLabel() {
+    if (this.status === 'success') {
+      return this.successLabel || this.localize.term('copied');
+    }
+
+    if (this.status === 'error') {
+      return this.errorLabel || this.localize.term('error');
+    }
+
+    return this.copyLabel || this.localize.term('copy');
+  }
+
   /** The text value to copy. */
   @property() value = '';
 
@@ -157,12 +169,7 @@ export default class WaCopyButton extends WebAwesomeElement {
   }
 
   private async showStatus(status: 'success' | 'error') {
-    const copyLabel = this.copyLabel || this.localize.term('copy');
-    const successLabel = this.successLabel || this.localize.term('copied');
-    const errorLabel = this.errorLabel || this.localize.term('error');
     const iconToShow = status === 'success' ? this.successIcon : this.errorIcon;
-
-    this.tooltip.content = status === 'success' ? successLabel : errorLabel;
 
     // Show the feedback icon
     await animateWithClass(this.copyIcon, 'hide');
@@ -179,50 +186,48 @@ export default class WaCopyButton extends WebAwesomeElement {
       this.copyIcon.hidden = false;
       await animateWithClass(this.copyIcon, 'show');
 
-      this.tooltip.content = copyLabel;
       this.isCopying = false;
     }, this.feedbackDuration);
   }
 
   render() {
-    const copyLabel = this.copyLabel || this.localize.term('copy');
-
     return html`
-      <wa-tooltip
-        class=${classMap({
-          'copy-button': true,
-          'copy-button--success': this.status === 'success',
-          'copy-button--error': this.status === 'error'
-        })}
-        content=${copyLabel}
-        placement=${this.tooltipPlacement}
+      <button
+        class="copy-button__button"
+        part="button"
+        type="button"
+        id="copy-button"
         ?disabled=${this.disabled}
-        ?hoist=${this.hoist}
-        exportparts="
-          base:tooltip__base,
-          base__popup:tooltip__base__popup,
-          base__arrow:tooltip__base__arrow,
-          body:tooltip__body
-        "
+        @click=${this.handleCopy}
       >
-        <button
-          class="copy-button__button"
-          part="button"
-          type="button"
+        <slot part="copy-icon" name="copy-icon">
+          <wa-icon library="system" name="copy" variant="regular" fixed-width></wa-icon>
+        </slot>
+        <slot part="success-icon" name="success-icon" variant="solid" hidden>
+          <wa-icon library="system" name="check" fixed-width></wa-icon>
+        </slot>
+        <slot part="error-icon" name="error-icon" variant="solid" hidden>
+          <wa-icon library="system" name="xmark" fixed-width></wa-icon>
+        </slot>
+        <wa-tooltip
+          class=${classMap({
+            'copy-button': true,
+            'copy-button--success': this.status === 'success',
+            'copy-button--error': this.status === 'error'
+          })}
+          for="copy-button"
+          placement=${this.tooltipPlacement}
           ?disabled=${this.disabled}
-          @click=${this.handleCopy}
+          ?hoist=${this.hoist}
+          exportparts="
+            base:tooltip__base,
+            base__popup:tooltip__base__popup,
+            base__arrow:tooltip__base__arrow,
+            body:tooltip__body
+          "
+          >${this.currentLabel}</wa-tooltip
         >
-          <slot part="copy-icon" name="copy-icon">
-            <wa-icon library="system" name="copy" variant="regular" fixed-width></wa-icon>
-          </slot>
-          <slot part="success-icon" name="success-icon" variant="solid" hidden>
-            <wa-icon library="system" name="check" fixed-width></wa-icon>
-          </slot>
-          <slot part="error-icon" name="error-icon" variant="solid" hidden>
-            <wa-icon library="system" name="xmark" fixed-width></wa-icon>
-          </slot>
-        </button>
-      </wa-tooltip>
+      </button>
     `;
   }
 }

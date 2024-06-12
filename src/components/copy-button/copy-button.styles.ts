@@ -27,22 +27,18 @@ export default css`
   .copy-button__button:hover:not([disabled]),
   .copy-button__button:focus-visible:not([disabled]) {
     background-color: var(--background-color-hover);
-  }
-
-  .copy-button:not(.copy-button--success, .copy-button--error) .copy-button__button:hover:not([disabled]),
-  .copy-button:not(.copy-button--success, .copy-button--error) .copy-button__button:focus-visible:not([disabled]) {
     color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
   }
 
-  .copy-button:not(.copy-button--success, .copy-button--error) .copy-button__button:active:not([disabled]) {
+  .copy-button__button:active:not([disabled]) {
     color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
   }
 
-  .copy-button--success .copy-button__button {
+  slot[name='success-icon'] {
     color: var(--success-color);
   }
 
-  .copy-button--error .copy-button__button {
+  slot[name='error-icon'] {
     color: var(--error-color);
   }
 

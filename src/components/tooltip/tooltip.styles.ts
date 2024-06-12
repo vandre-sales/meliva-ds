@@ -7,7 +7,9 @@ export default css`
     --max-width: 30ch;
     --padding: var(--wa-space-2xs) var(--wa-space-xs);
 
-    display: contents;
+    display: inline-block;
+
+    /** These styles are added so we dont interfere in the DOM. */
   }
 
   .tooltip {

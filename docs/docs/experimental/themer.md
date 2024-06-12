@@ -38,12 +38,12 @@ hasOutline: false
     scrollbar-color: var(--wa-color-neutral-border-normal) var(--wa-color-surface-raised);
   }
 
-  /* #region Lock theme styles */  
+  /* #region Lock theme styles */
   #knobs,
   #knobs :host,
   #knobs :host *,
   #color-mode-selector,
-  #icon-chooser { 
+  #icon-chooser {
     --wa-color-surface-border: color-mix(in oklab, var(--wa-color-text-normal), transparent 90%);
 
     --wa-color-shadow: rgb(0 0 0 / 0.1);
@@ -534,13 +534,12 @@ hasOutline: false
         <wa-radio-button value="meteor"><wa-icon name="meteor"></wa-icon></wa-radio-button>
         <wa-radio-button value="cat-space"><wa-icon name="cat-space"></wa-icon></wa-radio-button>
         <wa-radio-button value="puzzle-piece"><wa-icon name="puzzle-piece"></wa-icon></wa-radio-button>
-        <wa-tooltip content="Browse icons" distance="-3" hoist>
           <wa-button value="[choose]" variant="text" id="icon-chooser-trigger" class="logo-chooser">
+            <wa-tooltip for="icon-chooser-trigger" distance="-3" hoist>Browse Icons</wa-tooltip>
             <wa-icon name="ellipsis" library="fa-classic-regular"></wa-icon>
             <wa-visually-hidden>Browse icons</wa-visually-hidden>
           </wa-button>
-        </wa-tooltip>
-        <small slot="help-text" style="display: inline-block; line-height: var(--wa-line-height-condensed);">It's dangerous to go alone. Take these!</small>
+          <small slot="help-text" style="display: inline-block; line-height: var(--wa-line-height-condensed);">It's dangerous to go alone. Take these!</small>
       </wa-radio-group>
     </div>
   </wa-details>
@@ -850,7 +849,7 @@ hasOutline: false
   });
 
   document.querySelector("#icon-chooser-trigger").addEventListener("click", () => {
-    document.querySelector("#icon-chooser").show()
+    document.querySelector("#icon-chooser").open = true
   })
 </script>
 
@@ -907,7 +906,7 @@ hasOutline: false
     colorStylesheet.href = `/dist/themes/color_${colorPalette}.css`;
     colorSelect.value = colorPalette;
   }
-  
+
   function resetHeadingFontWeightValue() {
     document.documentElement.style.removeProperty('--wa-font-weight-heading')
     fontWeightHeading.value = getComputedStyle(previewContainer).getPropertyValue('--wa-font-weight-heading')
@@ -1138,7 +1137,7 @@ hasOutline: false
     document.head.prepend(newStylesheet);
   });
 
-  // Color Palette 
+  // Color Palette
   colorSelect.addEventListener('wa-change', event => {
     const colorPalette = event.target.value;
 
@@ -1226,7 +1225,7 @@ hasOutline: false
     // Depending on how we plan to store the logos, we can also do <img src="" height="36" width="36">
     projectLogo.replaceWith(element);
     logoSelector.value = "";
-    event.currentTarget.closest("wa-dialog").hide();
+    event.currentTarget.closest("wa-dialog").open = false;
   })
 
   // Pre-generated logos
@@ -1597,11 +1596,11 @@ hasOutline: false
 
     if (iconFamily.value === 'custom') {
       iconChooserTrigger.setAttribute('disabled', 'true');
-      iconChooserTriggerTooltip.setAttribute('content', 'Choose a Font Awesome icon family to browse more icons');
+      iconChooserTriggerTooltip.textContent = 'Choose a Font Awesome icon family to browse more icons';
     }
     else {
       iconChooserTrigger.removeAttribute('disabled');
-      iconChooserTriggerTooltip.setAttribute('content', 'Browse icons');
+      iconChooserTriggerTooltip.textContent = 'Browse icons'
     }
   });
 
@@ -2125,10 +2124,10 @@ hasOutline: false
 <code class="language-css">:host,
 .wa-theme-purple-power {
   /* ... */
-}</code>
-</pre>
-        <h3>Ontological Shock</h3>
-        <p>The allegory is related to Plato's theory of Forms, which holds that the true essence of an object is not what we perceive with our senses, but rather its quality, and that most people perceive only the shadow of the object and are thus limited to false perception.</p>
+}</code></pre>
+
+<h3>Ontological Shock</h3>
+<p>The allegory is related to Plato's theory of Forms, which holds that the true essence of an object is not what we perceive with our senses, but rather its quality, and that most people perceive only the shadow of the object and are thus limited to false perception.</p>
 <pre class="codeblock">
 <code class="language-html">&lt;html class="wa-theme-default-dark"&gt;
   &lt;head&gt;
@@ -2146,44 +2145,35 @@ hasOutline: false
       </div>
     </section>
     <section class="strata message-composer">
-      <wa-card class="card-header card-footer">
+      <wa-card with-header with-footer class="card-header card-footer">
         <div slot="header">
           <div class="grouped-buttons">
-            <wa-tooltip content="Bold">
-              <wa-icon-button name="bold" label="Bold"></wa-icon-button>
-            </wa-tooltip>
-            <wa-tooltip content="Italic">
-              <wa-icon-button name="italic" label="Italic"></wa-icon-button>
-            </wa-tooltip>
-            <wa-tooltip content="Strikethrough">
-              <wa-icon-button name="strikethrough" label="strikethrough"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="bold" name="bold" label="Bold"></wa-icon-button>
+            <wa-tooltip for="bold">Bold</wa-tooltip>
+            <wa-icon-button id="italic" name="italic" label="Italic"></wa-icon-button>
+            <wa-tooltip for="italic">Italic</wa-tooltip>
+            <wa-icon-button id="strikethrough" name="strikethrough" label="strikethrough"></wa-icon-button>
+            <wa-tooltip for="strikethrough">Strikethrough</wa-tooltip>
           </div>
           <div class="grouped-buttons">
-            <wa-tooltip content="Link">
-              <wa-icon-button name="link" label="Link"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="link" name="link" label="Link"></wa-icon-button>
+            <wa-tooltip for="link">Link</wa-tooltip>
           </div>
           <div class="grouped-buttons">
-            <wa-tooltip content="Unordered List">
-              <wa-icon-button name="list" label="Unordered List"></wa-icon-button>
-            </wa-tooltip>
-            <wa-tooltip content="Ordered List">
-              <wa-icon-button name="list-ol" label="Ordered List"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="list" name="list" label="Unordered List"></wa-icon-button>
+            <wa-tooltip for="list">Unordered List</wa-tooltip>
+            <wa-icon-button id="list-ol" name="list-ol" label="Ordered List"></wa-icon-button>
+            <wa-tooltip for="list-ol">Ordered List</wa-tooltip>
           </div>
           <div class="grouped-buttons">
-            <wa-tooltip content="Block Quote">
-              <wa-icon-button name="block-quote" label="Block Quote"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="block-quote" name="block-quote" label="Block Quote"></wa-icon-button>
+            <wa-tooltip for="block-quote">Block Quote</wa-tooltip>
           </div>
           <div class="grouped-buttons">
-            <wa-tooltip content="Code">
-              <wa-icon-button name="code" label="Code"></wa-icon-button>
-            </wa-tooltip>
-            <wa-tooltip content="Inline Code">
-              <wa-icon-button name="terminal" label="Inline Code"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="code" name="code" label="Code"></wa-icon-button>
+            <wa-tooltip for="code">Code</wa-tooltip>
+            <wa-icon-button id="inline-code" name="terminal" label="Inline Code"></wa-icon-button>
+            <wa-tooltip for="inline-code">Inline Code</wa-tooltip>
           </div>
         </div>
         <div>
@@ -2192,31 +2182,24 @@ hasOutline: false
         <div slot="footer">
           <div class="tools">
             <div class="grouped-buttons">
-              <wa-tooltip content="Add File">
-                <wa-icon-button name="circle-plus" label="Add File"></wa-icon-button>
-              </wa-tooltip>
-              <wa-tooltip content="Formatting">
-                <wa-icon-button name="font-case" label="Open Formatting"></wa-icon-button>
-              </wa-tooltip>
-              <wa-tooltip content="Emojis">
-                <wa-icon-button name="face-smile" label="Emoji"></wa-icon-button>
-              </wa-tooltip>
-              <wa-tooltip content="Mention">
-                <wa-icon-button name="at" label="Mention"></wa-icon-button>
-              </wa-tooltip>
+              <wa-icon-button id="add-file" name="circle-plus" label="Add File"></wa-icon-button>
+              <wa-tooltip for="add-file">Add File</wa-tooltip>
+              <wa-icon-button id="formatting" name="font-case" label="Open Formatting"></wa-icon-button>
+              <wa-tooltip for="formatting">Formatting</wa-tooltip>
+              <wa-icon-button id="emojis" name="face-smile" label="Emoji"></wa-icon-button>
+              <wa-tooltip for="emojis">Emojis</wa-tooltip>
+              <wa-icon-button id="mention" name="at" label="Mention"></wa-icon-button>
+              <wa-tooltip for="mention">Mention</wa-tooltip>
             </div>
             <div class="grouped-buttons">
-              <wa-tooltip content="Record Video">
-                <wa-icon-button name="video" label="Video"></wa-icon-button>
-              </wa-tooltip>
-              <wa-tooltip content="Record Audio Clip">
-                <wa-icon-button name="microphone" label="Microphone"></wa-icon-button>
-              </wa-tooltip>
+              <wa-icon-button id="record-video" name="video" label="Video"></wa-icon-button>
+              <wa-tooltip for="record-video">Record Video</wa-tooltip>
+              <wa-icon-button id="record-audio" name="microphone" label="Microphone"></wa-icon-button>
+              <wa-tooltip for="record-audio">Record Audio Clip</wa-tooltip>
             </div>
             <div class="grouped-buttons">
-              <wa-tooltip content="Add Magic">
-                <wa-icon-button name="sparkles" label="Magic"></wa-icon-button>
-              </wa-tooltip>
+              <wa-icon-button id="add-magic" name="sparkles" label="Magic"></wa-icon-button>
+              <wa-tooltip for="add-magic">Add Magic</wa-tooltip>
             </div>
           </div>
           <div class="send">
