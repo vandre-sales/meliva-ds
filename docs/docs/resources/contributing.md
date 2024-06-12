@@ -201,10 +201,6 @@ This is a tip/informational callout
 :::warning
 This is a caution callout
 :::
-
-:::danger
-This is a danger callout
-:::
 ```
 
 #### GitHub Issues
