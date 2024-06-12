@@ -12,21 +12,6 @@ layout: component.njk
 </wa-radio-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRadio from '@shoelace-style/shoelace/dist/react/radio';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" name="a" value="1">
-    <WaRadio value="1">Option 1</WaRadio>
-    <WaRadio value="2">Option 2</WaRadio>
-    <WaRadio value="3">Option 3</WaRadio>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Help Text
@@ -41,21 +26,6 @@ Add descriptive help text to a radio group with the `help-text` attribute. For h
 </wa-radio-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRadio from '@shoelace-style/shoelace/dist/react/radio';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" help-text="Choose the most appropriate option." name="a" value="1">
-    <WaRadio value="1">Option 1</WaRadio>
-    <WaRadio value="2">Option 2</WaRadio>
-    <WaRadio value="3">Option 3</WaRadio>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
-
 ### Radio Buttons
 
 [Radio buttons](/components/radio-button) offer an alternate way to display radio controls. In this case, an internal [button group](/components/button-group) is used to group the buttons into a single, cohesive control.
@@ -68,21 +38,6 @@ const App = () => (
 </wa-radio-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" name="a" value="1">
-    <WaRadioButton value="1">Option 1</WaRadioButton>
-    <WaRadioButton value="2">Option 2</WaRadioButton>
-    <WaRadioButton value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
-
 ### Disabling Options
 
 Radios and radio buttons can be disabled by adding the `disabled` attribute to the respective options inside the radio group.
@@ -94,23 +49,6 @@ Radios and radio buttons can be disabled by adding the `disabled` attribute to t
   <wa-radio value="3">Option 3</wa-radio>
 </wa-radio-group>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaRadio from '@shoelace-style/shoelace/dist/react/radio';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" name="a" value="1">
-    <WaRadio value="1">Option 1</WaRadio>
-    <WaRadio value="2" disabled>
-      Option 2
-    </WaRadio>
-    <WaRadio value="3">Option 3</WaRadio>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
 
 ### Sizing Options
 
@@ -131,34 +69,6 @@ The size of [Radios](/components/radio) and [Radio Buttons](/components/radio-bu
   });
 </script>
 ```
-
-{% raw %}
-```jsx react
-import { useState } from 'react';
-import WaRadio from '@shoelace-style/shoelace/dist/react/radio';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => {
-  const [size, setSize] = useState('medium');
-
-  return (
-    <>
-      <WaRadioGroup
-        label="Select an option"
-        size={size}
-        value={size}
-        class="radio-group-size"
-        onWaChange={event => setSize(event.target.value)}
-      >
-        <WaRadio value="small">Small</WaRadio>
-        <WaRadio value="medium">Medium</WaRadio>
-        <WaRadio value="large">Large</WaRadio>
-      </WaRadioGroup>
-    </>
-  );
-};
-```
-{% endraw %}
 
 :::info
 [Radios](/components/radio) and [Radio Buttons](/components/radio-button) also have a `size` attribute. This can be useful in certain compositions, but it will be ignored when used inside of a Radio Group.
@@ -189,41 +99,6 @@ Setting the `required` attribute to make selecting an option mandatory. If a val
   });
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaRadio from '@shoelace-style/shoelace/dist/react/radio';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-const App = () => {
-  function handleSubmit(event) {
-    event.preventDefault();
-    alert('All fields are valid!');
-  }
-
-  return (
-    <form class="custom-validity" onSubmit={handleSubmit}>
-      <WaRadioGroup label="Select an option" name="a" required onWaChange={handleChange}>
-        <WaRadio value="1">
-          Option 1
-        </WaRadio>
-        <WaRadiovalue="2">
-          Option 2
-        </WaRadio>
-        <WaRadio value="3">
-          Option 3
-        </WaRadio>
-      </WaRadioGroup>
-      <br />
-      <WaButton type="submit" variant="brand">
-        Submit
-      </WaButton>
-    </form>
-  );
-};
-```
-{% endraw %}
 
 ### Custom Validity
 
@@ -263,44 +138,3 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
   });
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useEffect, useRef } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaRadio from '@shoelace-style/shoelace/dist/react/radio';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-const App = () => {
-  const radioGroup = useRef(null);
-  const errorMessage = 'You must choose this option';
-
-  function handleChange() {
-    radioGroup.current.setCustomValidity(radioGroup.current.value === '3' ? '' : errorMessage);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    alert('All fields are valid!');
-  }
-
-  useEffect(() => {
-    radio.current.setCustomValidity(errorMessage);
-  }, []);
-
-  return (
-    <form class="custom-validity" onSubmit={handleSubmit}>
-      <WaRadioGroup ref={radioGroup} label="Select an option" name="a" value="1" onWaChange={handleChange}>
-        <WaRadio value="1">Not me</WaRadio>
-        <WaRadio value="2">Me neither</WaRadio>
-        <WaRadio value="3">Choose me</WaRadio>
-      </WaRadioGroup>
-      <br />
-      <WaButton type="submit" variant="brand">
-        Submit
-      </WaButton>
-    </form>
-  );
-};
-```
-{% endraw %}

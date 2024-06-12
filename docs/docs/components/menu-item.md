@@ -24,37 +24,6 @@ layout: component.njk
 </wa-menu>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuItem>Option 1</WaMenuItem>
-    <WaMenuItem>Option 2</WaMenuItem>
-    <WaMenuItem>Option 3</WaMenuItem>
-    <WaDivider />
-    <WaMenuItem type="checkbox" checked>
-      Checkbox
-    </WaMenuItem>
-    <WaMenuItem disabled>Disabled</WaMenuItem>
-    <WaDivider />
-    <WaMenuItem>
-      Prefix Icon
-      <WaIcon slot="prefix" name="gift" variant="solid" />
-    </WaMenuItem>
-    <WaMenuItem>
-      Suffix Icon
-      <WaIcon slot="suffix" name="heart" variant="solid" />
-    </WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Prefix & Suffix
@@ -83,40 +52,6 @@ Add content to the start and end of menu items using the `prefix` and `suffix` s
 </wa-menu>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaBadge from '@shoelace-style/shoelace/dist/react/badge';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuItem>
-      <WaIcon slot="prefix" name="house" variant="solid" />
-      Home
-    </WaMenuItem>
-
-    <WaMenuItem>
-      <WaIcon slot="prefix" name="envelope" variant="solid" />
-      Messages
-      <WaBadge slot="suffix" variant="brand" pill>
-        12
-      </WaBadge>
-    </WaMenuItem>
-
-    <WaDivider />
-
-    <WaMenuItem>
-      <WaIcon slot="prefix" name="gear" variant="solid" />
-      Settings
-    </WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}
-
 ### Disabled
 
 Add the `disabled` attribute to disable the menu item so it cannot be selected.
@@ -129,21 +64,6 @@ Add the `disabled` attribute to disable the menu item so it cannot be selected.
 </wa-menu>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuItem>Option 1</WaMenuItem>
-    <WaMenuItem disabled>Option 2</WaMenuItem>
-    <WaMenuItem>Option 3</WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}
-
 ### Loading
 
 Use the `loading` attribute to indicate that a menu item is busy. Like a disabled menu item, clicks will be suppressed until the loading state is removed.
@@ -155,21 +75,6 @@ Use the `loading` attribute to indicate that a menu item is busy. Like a disable
   <wa-menu-item>Option 3</wa-menu-item>
 </wa-menu>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuItem>Option 1</WaMenuItem>
-    <WaMenuItem loading>Option 2</WaMenuItem>
-    <WaMenuItem>Option 3</WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}
 
 ### Checkbox Menu Items
 
@@ -184,23 +89,6 @@ Checkbox menu items are visually indistinguishable from regular menu items. Thei
   <wa-menu-item type="checkbox">Word Wrap</wa-menu-item>
 </wa-menu>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuItem type="checkbox">Autosave</WaMenuItem>
-    <WaMenuItem type="checkbox" checked>
-      Check Spelling
-    </WaMenuItem>
-    <WaMenuItem type="checkbox">Word Wrap</WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}
 
 ### Value & Selection
 
@@ -233,29 +121,3 @@ The `value` attribute can be used to assign a hidden value, such as a unique ide
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => {
-  function handleSelect(event) {
-    const item = event.detail.item;
-
-    // Toggle checked state
-    item.checked = !item.checked;
-
-    // Log value
-    console.log(`Selected value: ${item.value}`);
-  }
-
-  return (
-    <WaMenu style={{ maxWidth: '200px' }} onWaSelect={handleSelect}>
-      <WaMenuItem value="opt-1">Option 1</WaMenuItem>
-      <WaMenuItem value="opt-2">Option 2</WaMenuItem>
-      <WaMenuItem value="opt-3">Option 3</WaMenuItem>
-    </WaMenu>
-  );
-};
-```
-{% endraw %}

@@ -21,27 +21,6 @@ For best results, use images that share the same dimensions. The slider can be c
 </wa-image-comparer>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaImageComparer from '@shoelace-style/shoelace/dist/react/image-comparer';
-
-const App = () => (
-  <WaImageComparer>
-    <img
-      slot="before"
-      src="https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80&sat=-100&bri=-5"
-      alt="Grayscale version of kittens in a basket looking around."
-    />
-    <img
-      slot="after"
-      src="https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
-      alt="Color version of kittens in a basket looking around."
-    />
-  </WaImageComparer>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Initial Position
@@ -62,24 +41,3 @@ Use the `position` attribute to set the initial position of the slider. This is 
   />
 </wa-image-comparer>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaImageComparer from '@shoelace-style/shoelace/dist/react/image-comparer';
-
-const App = () => (
-  <WaImageComparer position={25}>
-    <img
-      slot="before"
-      src="https://images.unsplash.com/photo-1520903074185-8eca362b3dce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-      alt="A person sitting on bricks wearing untied boots."
-    />
-    <img
-      slot="after"
-      src="https://images.unsplash.com/photo-1520640023173-50a135e35804?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"
-      alt="A person sitting on a yellow curb tying shoelaces on a boot."
-    />
-  </WaImageComparer>
-);
-```
-{% endraw %}

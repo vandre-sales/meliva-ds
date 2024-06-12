@@ -291,7 +291,8 @@
   --wa-corners-l: calc(var(--wa-corners-base) * 3rem);
 
   /* Semantic corner properties create specific shapes beyond the theme's preferred corner styles. */
-  --wa-corners-pill: 9999 --wa-corners-circle: 50%;
+  --wa-corners-pill: 9999px;
+  --wa-corners-circle: 50%;
   --wa-corners-sharp: 0;
 
   /**

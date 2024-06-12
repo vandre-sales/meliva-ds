@@ -36,41 +36,6 @@ QR codes are useful for providing small pieces of information to users who can q
 </style>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaQrCode from '@shoelace-style/shoelace/dist/react/qr-code';
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const css = `
-  .qr-overview {
-    max-width: 256px;
-  }
-
-  .qr-overview wa-input {
-    margin-top: 1rem;
-  }
-`;
-
-const App = () => {
-  const [value, setValue] = useState('https://shoelace.style/');
-
-  return (
-    <>
-      <div className="qr-overview">
-        <WaQrCode value={value} label="Scan this code to visit Web Awesome on the web!" />
-        <br />
-
-        <WaInput maxlength="255" clearable onInput={event => setValue(event.target.value)} />
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ## Examples
 
 ### Colors
@@ -81,14 +46,6 @@ Use the `fill` and `background` attributes to modify the QR code's colors. You s
 <wa-qr-code value="https://shoelace.style/" fill="deeppink" background="white"></wa-qr-code>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaQrCode from '@shoelace-style/shoelace/dist/react/qr-code';
-
-const App = () => <WaQrCode value="https://shoelace.style/" fill="deeppink" background="white" />;
-```
-{% endraw %}
-
 ### Size
 
 Use the `size` attribute to change the size of the QR code.
@@ -97,14 +54,6 @@ Use the `size` attribute to change the size of the QR code.
 <wa-qr-code value="https://shoelace.style/" size="64"></wa-qr-code>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaQrCode from '@shoelace-style/shoelace/dist/react/qr-code';
-
-const App = () => <WaQrCode value="https://shoelace.style/" size="64" />;
-```
-{% endraw %}
-
 ### Radius
 
 Create a rounded effect with the `radius` attribute.
@@ -112,14 +61,6 @@ Create a rounded effect with the `radius` attribute.
 ```html {.example}
 <wa-qr-code value="https://shoelace.style/" radius="0.5"></wa-qr-code>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaQrCode from '@shoelace-style/shoelace/dist/react/qr-code';
-
-const App = () => <WaQrCode value="https://shoelace.style/" radius="0.5" />;
-```
-{% endraw %}
 
 ### Error Correction
 
@@ -141,32 +82,3 @@ QR codes can be rendered with various levels of [error correction](https://www.q
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaQrCode from '@shoelace-style/shoelace/dist/react/qr-code';
-
-const css = `
-  .qr-error-correction {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-`;
-
-const App = () => {
-  return (
-    <>
-      <div className="qr-error-correction">
-        <WaQrCode value="https://shoelace.style/" error-correction="L" />
-        <WaQrCode value="https://shoelace.style/" error-correction="M" />
-        <WaQrCode value="https://shoelace.style/" error-correction="Q" />
-        <WaQrCode value="https://shoelace.style/" error-correction="H" />
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}

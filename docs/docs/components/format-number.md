@@ -22,33 +22,6 @@ Localization is handled by the browser's [`Intl.NumberFormat` API](https://devel
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaFormatNumber from '@shoelace-style/shoelace/dist/react/format-number';
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => {
-  const [value, setValue] = useState(1000);
-
-  return (
-    <>
-      <WaFormatNumber value={value} />
-      <br />
-      <br />
-      <WaInput
-        type="number"
-        value={value}
-        label="Number to Format"
-        style={{ maxWidth: '180px' }}
-        onWaInput={event => setValue(event.target.value)}
-      />
-    </>
-  );
-};
-```
-{% endraw %}
-
 ## Examples
 
 ### Percentages
@@ -63,26 +36,6 @@ To get the value as a percent, set the `type` attribute to `percent`.
 <wa-format-number type="percent" value="1"></wa-format-number>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaFormatNumber from '@shoelace-style/shoelace/dist/react/format-number';
-
-const App = () => (
-  <>
-    <WaFormatNumber type="percent" value={0} />
-    <br />
-    <WaFormatNumber type="percent" value={0.25} />
-    <br />
-    <WaFormatNumber type="percent" value={0.5} />
-    <br />
-    <WaFormatNumber type="percent" value={0.75} />
-    <br />
-    <WaFormatNumber type="percent" value={1} />
-  </>
-);
-```
-{% endraw %}
-
 ### Localization
 
 Use the `lang` attribute to set the number formatting locale.
@@ -92,22 +45,6 @@ English: <wa-format-number value="2000" lang="en" minimum-fraction-digits="2"></
 German: <wa-format-number value="2000" lang="de" minimum-fraction-digits="2"></wa-format-number><br />
 Russian: <wa-format-number value="2000" lang="ru" minimum-fraction-digits="2"></wa-format-number>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaFormatNumber from '@shoelace-style/shoelace/dist/react/format-number';
-
-const App = () => (
-  <>
-    English: <WaFormatNumber value="2000" lang="en" minimum-fraction-digits="2" />
-    <br />
-    German: <WaFormatNumber value="2000" lang="de" minimum-fraction-digits="2" />
-    <br />
-    Russian: <WaFormatNumber value="2000" lang="ru" minimum-fraction-digits="2" />
-  </>
-);
-```
-{% endraw %}
 
 ### Currency
 
@@ -120,23 +57,3 @@ To format a number as a monetary value, set the `type` attribute to `currency` a
 <wa-format-number type="currency" currency="RUB" value="2000" lang="ru"></wa-format-number><br />
 <wa-format-number type="currency" currency="CNY" value="2000" lang="zh-cn"></wa-format-number>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaFormatNumber from '@shoelace-style/shoelace/dist/react/format-number';
-
-const App = () => (
-  <>
-    <WaFormatNumber type="currency" currency="USD" value="2000" lang="en-US" />
-    <br />
-    <WaFormatNumber type="currency" currency="GBP" value="2000" lang="en-GB" />
-    <br />
-    <WaFormatNumber type="currency" currency="EUR" value="2000" lang="de" />
-    <br />
-    <WaFormatNumber type="currency" currency="RUB" value="2000" lang="ru" />
-    <br />
-    <WaFormatNumber type="currency" currency="CNY" value="2000" lang="zh-cn" />
-  </>
-);
-```
-{% endraw %}

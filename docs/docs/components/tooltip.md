@@ -12,20 +12,6 @@ A tooltip's target is based on the `for` attribute which points to an element id
 <wa-button id="my-button">Hover Me</wa-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const App = () => (
-  <>
-    <WaTooltip for="my-button">This is a tooltip</WaTooltip>
-    <WaButton id="my-button">Hover Me</WaButton>
-  </>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Placement
@@ -99,85 +85,6 @@ Use the `placement` attribute to set the preferred placement of the tooltip.
 </style>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const css = `
-<style>
-  .tooltip-placement-example {
-    width: 250px;
-    margin: 1rem;
-  }
-
-  .tooltip-placement-example wa-button {
-    width: 2.5rem;
-  }
-
-  .tooltip-placement-example-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .tooltip-placement-example-row:nth-child(1),
-  .tooltip-placement-example-row:nth-child(5) {
-    justify-content: center;
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="tooltip-placement-example">
-      <div class="tooltip-placement-example-row">
-        <WaButton id="tooltip-top-start"></WaButton>
-        <WaButton id="tooltip-top"></WaButton>
-        <WaButton id="tooltip-top-end"></WaButton>
-      </div>
-
-      <div class="tooltip-placement-example-row">
-        <WaButton id="tooltip-left-start"></WaButton>
-        <WaButton id="tooltip-right-start"></WaButton>
-      </div>
-
-      <div class="tooltip-placement-example-row">
-        <WaButton id="tooltip-left"></WaButton>
-        <WaButton id="tooltip-right"></WaButton>
-      </div>
-
-      <div class="tooltip-placement-example-row">
-        <WaButton id="tooltip-left-end"></WaButton>
-        <WaButton id="tooltip-right-end"></WaButton>
-      </div>
-
-      <div class="tooltip-placement-example-row">
-        <WaButton id="tooltip-bottom-start"></WaButton>
-        <WaButton id="tooltip-bottom"></WaButton>
-        <WaButton id="tooltip-bottom-end"></WaButton>
-      </div>
-    </div>
-
-    <WaTooltip for="tooltip-top-start" placement="top-start">top-start</WaTooltip>
-    <WaTooltip for="tooltip-top" placement="top">top</WaTooltip>
-    <WaTooltip for="tooltip-top-end" placement="top-end">top-end</WaTooltip>
-    <WaTooltip for="tooltip-left-start" placement="left-start">left-start</WaTooltip>
-    <WaTooltip for="tooltip-right-start" placement="right-start">right-start</WaTooltip>
-    <WaTooltip for="tooltip-left" placement="left">left</WaTooltip>
-    <WaTooltip for="tooltip-right" placement="right">right</WaTooltip>
-    <WaTooltip for="tooltip-left-end" placement="left-end">left-end</WaTooltip>
-    <WaTooltip for="tooltip-right-end" placement="right-end">right-end</WaTooltip>
-    <WaTooltip for="tooltip-bottom-start" placement="bottom-start">bottom-start</WaTooltip>
-    <WaTooltip for="tooltip-bottom" placement="bottom">bottom</WaTooltip>
-    <WaTooltip for="tooltip-bottom-end" placement="bottom-end">bottom-end</WaTooltip>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}
-
 ### Click Trigger
 
 Set the `trigger` attribute to `click` to toggle the tooltip on click instead of hover.
@@ -186,20 +93,6 @@ Set the `trigger` attribute to `click` to toggle the tooltip on click instead of
 <wa-button id="toggle-button">Click to Toggle</wa-button>
 <wa-tooltip for="toggle-button" trigger="click">Click again to dismiss</wa-tooltip>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const App = () => (
-  <>
-    <WaButton id="toggle-button">Click to Toggle</WaButton>
-    <WaTooltip for="toggle-button" trigger="click">Click again to dismiss</WaTooltip>
-  </>
-);
-```
-{% endraw %}
 
 ### Manual Trigger
 
@@ -219,28 +112,6 @@ Tooltips can be controller programmatically by setting the `trigger` attribute t
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaAvatar from '@shoelace-style/shoelace/dist/react/avatar';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaButton style={{ marginRight: '4rem' }} onClick={() => setOpen(!open)}>Toggle Manually</WaButton>
-
-      <WaTooltip for="manual-trigger-tooltip" open={open} trigger="manual">This is an avatar!</WaTooltip>
-      <WaAvatar id="manual-trigger-tooltip" label="User" />
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Removing Arrows
 
 You can control the size of tooltip arrows by overriding the `--wa-tooltip-arrow-size` design token. To remove them, set the value to `0` as shown below.
@@ -249,20 +120,6 @@ You can control the size of tooltip arrows by overriding the `--wa-tooltip-arrow
 <wa-button id="no-arrow">No Arrow</wa-button>
 <wa-tooltip for="no-arrow" style="--wa-tooltip-arrow-size: 0;">This is a tooltip with no arrow</wa-tooltip>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const App = () => (
-  <>
-    <WaButton id="no-arrow">No Arrow</WaButton>
-    <WaTooltip for="no-arrow" style={{ "--wa-tooltip-arrow-size": "0"; }}>This is a tooltip with no arrow</WaTooltip>
-  </>
-);
-```
-{% endraw %}
 
 To override it globally, set it in a root block in your stylesheet after the Web Awesome stylesheet is loaded.
 
@@ -283,22 +140,6 @@ Use the default slot to create tooltips with HTML content. Tooltips are designed
 </wa-tooltip>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const App = () => (
-  <>
-    <WaButton id="rich-tooltip">Hover me</WaButton>
-    <WaTooltip for="rich-tooltip">
-      <div>I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
-    </WaTooltip>
-  </>
-);
-```
-{% endraw %}
-
 ### Setting a Maximum Width
 
 Use the `--max-width` custom property to change the width the tooltip can grow to before wrapping occurs.
@@ -309,22 +150,6 @@ Use the `--max-width` custom property to change the width the tooltip can grow t
 </wa-tooltip>
 <wa-button id="wrapping-tooltip">Hover me</wa-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const App = () => (
-  <>
-    <WaButton id="wrapping-tooltip">Hover me</WaButton>
-    <WaTooltip for="wrapping-tooltip" style={{ '--max-width': '80px' }}>
-      This tooltip will wrap after only 80 pixels.
-    </WaTooltip>
-  </>
-);
-```
-{% endraw %}
 
 ### Hoisting
 
@@ -348,33 +173,3 @@ Tooltips will be clipped if they're inside a container that has `overflow: auto|
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const css = `
-  .tooltip-hoist {
-    border: solid 2px var(--wa-color-surface-border);
-    overflow: hidden;
-    padding: var(--wa-space-m);
-    position: relative;
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="tooltip-hoist">
-      <WaTooltip for="no-hoist">This is a tooltip</WaTooltip>
-      <WaButton id="no-hoist">No Hoist</WaButton>
-
-      <WaTooltip for="hoist" hoist>This is a tooltip</WaTooltip>
-      <WaButton id="hoist">Hoist</WaButton>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}

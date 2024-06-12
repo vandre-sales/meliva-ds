@@ -18,26 +18,6 @@ You can use [menu items](/components/menu-item), [menu labels](/components/menu-
 </wa-menu>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuItem value="undo">Undo</WaMenuItem>
-    <WaMenuItem value="redo">Redo</WaMenuItem>
-    <WaDivider />
-    <WaMenuItem value="cut">Cut</WaMenuItem>
-    <WaMenuItem value="copy">Copy</WaMenuItem>
-    <WaMenuItem value="paste">Paste</WaMenuItem>
-    <WaMenuItem value="delete">Delete</WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}
-
 :::info
 Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you're building navigation, use `<nav>` and `<a>` elements instead.
 :::
@@ -58,26 +38,6 @@ Menus work really well when used inside [dropdowns](/components/dropdown).
   </wa-menu>
 </wa-dropdown>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaDropdown>
-    <WaButton slot="trigger" caret>Edit</WaButton>
-    <WaMenu>
-      <WaMenuItem value="cut">Cut</WaMenuItem>
-      <WaMenuItem value="copy">Copy</WaMenuItem>
-      <WaMenuItem value="paste">Paste</WaMenuItem>
-    </WaMenu>
-  </WaDropdown>
-);
-```
-{% endraw %}
 
 ### Submenus
 
@@ -110,42 +70,6 @@ To create a submenu, nest an `<wa-menu slot="submenu">` in any [menu item](/comp
   </wa-menu-item>
 </wa-menu>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuItem value="undo">Undo</WaMenuItem>
-    <WaMenuItem value="redo">Redo</WaMenuItem>
-    <WaDivider />
-    <WaMenuItem value="cut">Cut</WaMenuItem>
-    <WaMenuItem value="copy">Copy</WaMenuItem>
-    <WaMenuItem value="paste">Paste</WaMenuItem>
-    <WaDivider />
-    <WaMenuItem>
-      Find
-      <WaMenu slot="submenu">
-        <WaMenuItem value="find">Find…</WaMenuItem>
-        <WaMenuItem value="find-previous">Find Next</WaMenuItem>
-        <WaMenuItem value="find-next">Find Previous</WaMenuItem>
-      </WaMenu>
-    </WaMenuItem>
-    <WaMenuItem>
-      Transformations
-      <WaMenu slot="submenu">
-        <WaMenuItem value="uppercase">Make uppercase</WaMenuItem>
-        <WaMenuItem value="lowercase">Make lowercase</WaMenuItem>
-        <WaMenuItem value="capitalize">Capitalize</WaMenuItem>
-      </WaMenu>
-    </WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}
 
 :::warning
 As a UX best practice, avoid using more than one level of submenus when possible.

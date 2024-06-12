@@ -11,20 +11,6 @@ layout: component.njk
 </wa-callout>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaCallout from '@shoelace-style/shoelace/dist/react/callout';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <WaCallout>
-    <WaIcon slot="icon" name="circle-info" variant="regular" />
-    This is a standard callout. You can customize its content and even the icon.
-  </WaCallout>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Variants
@@ -71,60 +57,6 @@ Set the `variant` attribute to change the callout's variant.
 </wa-callout>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaCallout from '@shoelace-style/shoelace/dist/react/callout';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <>
-    <WaCallout variant="brand">
-      <WaIcon slot="icon" name="circle-info" variant="regular" />
-      <strong>This is super informative</strong>
-      <br />
-      You can tell by how pretty the callout is.
-    </WaCallout>
-
-    <br />
-
-    <WaCallout variant="success">
-      <WaIcon slot="icon" name="circle-check" variant="regular" />
-      <strong>Your changes have been saved</strong>
-      <br />
-      You can safely exit the app now.
-    </WaCallout>
-
-    <br />
-
-    <WaCallout variant="neutral">
-      <WaIcon slot="icon" name="gear" variant="regular" />
-      <strong>Your settings have been updated</strong>
-      <br />
-      Settings will take effect on next login.
-    </WaCallout>
-
-    <br />
-
-    <WaCallout variant="warning">
-      <WaIcon slot="icon" name="triangle-exclamation" variant="regular" />
-      <strong>Your session has ended</strong>
-      <br />
-      Please login again to continue.
-    </WaCallout>
-
-    <br />
-
-    <WaCallout variant="danger">
-      <WaIcon slot="icon" name="circle-exclamation" variant="regular" />
-      <strong>Your account has been deleted</strong>
-      <br />
-      We're very sorry to see you go!
-    </WaCallout>
-  </>
-);
-```
-{% endraw %}
-
 ### Without Icons
 
 Icons are optional. Simply omit the `icon` slot if you don't want them.
@@ -132,16 +64,3 @@ Icons are optional. Simply omit the `icon` slot if you don't want them.
 ```html {.example}
 <wa-callout variant="brand"> Nothing fancy here, just a simple callout. </wa-callout>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaCallout from '@shoelace-style/shoelace/dist/react/callout';
-
-const App = () => (
-  <WaCallout variant="brand">
-    Nothing fancy here, just a simple callout.
-  </WaCallout>
-);
-```
-{% endraw %}
-

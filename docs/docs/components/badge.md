@@ -8,14 +8,6 @@ layout: component.njk
 <wa-badge>Badge</wa-badge>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaBadge from '@shoelace-style/shoelace/dist/react/badge';
-
-const App = () => <WaBadge>Badge</WaBadge>;
-```
-{% endraw %}
-
 ## Examples
 
 ### Variants
@@ -30,22 +22,6 @@ Set the `variant` attribute to change the badge's variant.
 <wa-badge variant="danger">Danger</wa-badge>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaBadge from '@shoelace-style/shoelace/dist/react/badge';
-
-const App = () => (
-  <>
-    <WaBadge variant="brand">Brand</WaBadge>
-    <WaBadge variant="success">Success</WaBadge>
-    <WaBadge variant="neutral">Neutral</WaBadge>
-    <WaBadge variant="warning">Warning</WaBadge>
-    <WaBadge variant="danger">Danger</WaBadge>
-  </>
-);
-```
-{% endraw %}
-
 ### Pill Badges
 
 Use the `pill` attribute to give badges rounded edges.
@@ -57,32 +33,6 @@ Use the `pill` attribute to give badges rounded edges.
 <wa-badge variant="warning" pill>Warning</wa-badge>
 <wa-badge variant="danger" pill>Danger</wa-badge>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaBadge from '@shoelace-style/shoelace/dist/react/badge';
-
-const App = () => (
-  <>
-    <WaBadge variant="brand" pill>
-      Brand
-    </WaBadge>
-    <WaBadge variant="success" pill>
-      Success
-    </WaBadge>
-    <WaBadge variant="neutral" pill>
-      Neutral
-    </WaBadge>
-    <WaBadge variant="warning" pill>
-      Warning
-    </WaBadge>
-    <WaBadge variant="danger" pill>
-      Danger
-    </WaBadge>
-  </>
-);
-```
-{% endraw %}
 
 ### Pulsating Badges
 
@@ -103,42 +53,6 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaBadge from '@shoelace-style/shoelace/dist/react/badge';
-
-const css = `
-  .badge-pulse wa-badge:not(:last-of-type) {
-    margin-right: 1rem;
-  }
-`;
-
-const App = () => (
-  <>
-    <div className="badge-pulse">
-      <WaBadge variant="brand" pill pulse>
-        1
-      </WaBadge>
-      <WaBadge variant="success" pill pulse>
-        1
-      </WaBadge>
-      <WaBadge variant="neutral" pill pulse>
-        1
-      </WaBadge>
-      <WaBadge variant="warning" pill pulse>
-        1
-      </WaBadge>
-      <WaBadge variant="danger" pill pulse>
-        1
-      </WaBadge>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}
 
 ### With Buttons
 
@@ -161,36 +75,6 @@ One of the most common use cases for badges is attaching them to buttons. To mak
 </wa-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaBadge from '@shoelace-style/shoelace/dist/react/badge';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton>
-      Requests
-      <WaBadge pill>30</WaBadge>
-    </WaButton>
-
-    <WaButton style={{ marginInlineStart: '1rem' }}>
-      Warnings
-      <WaBadge variant="warning" pill>
-        8
-      </WaBadge>
-    </WaButton>
-
-    <WaButton style={{ marginInlineStart: '1rem' }}>
-      Errors
-      <WaBadge variant="danger" pill>
-        6
-      </WaBadge>
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
-
 ### With Menu Items
 
 When including badges in menu items, use the `suffix` slot to make sure they're aligned correctly.
@@ -202,33 +86,3 @@ When including badges in menu items, use the `suffix` slot to make sure they're 
   <wa-menu-item>Replies <wa-badge slot="suffix" variant="neutral" pill>12</wa-badge></wa-menu-item>
 </wa-menu>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaBadge from '@shoelace-style/shoelace/dist/react/badge';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-import WaMenuLabel from '@shoelace-style/shoelace/dist/react/menu-label';
-
-const App = () => (
-  <WaMenu
-    style={{ maxWidth: '240px' }}
-  >
-    <WaMenuLabel>Messages</WaMenuLabel>
-    <WaMenuItem>
-      Comments
-      <WaBadge slot="suffix" variant="neutral" pill>
-        4
-      </WaBadge>
-    </WaMenuItem>
-    <WaMenuItem>
-      Replies
-      <WaBadge slot="suffix" variant="neutral" pill>
-        12
-      </WaBadge>
-    </WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}

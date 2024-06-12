@@ -23,19 +23,6 @@ Many Font Awesome Pro icon families have variants such as `thin`, `light`, `regu
 <wa-icon family="brands" name="web-awesome"></wa-icon>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <>
-    <WaIcon family="brands" name="font-awesome" />
-    <WaIcon family="brands" name="web-awesome" />
-  </>
-);
-```
-{% endraw %}
-
 ### Colors
 
 Icons inherit their color from the current text color. Thus, you can set the `color` property on the `<wa-icon>` element or an ancestor to change the color.
@@ -67,41 +54,6 @@ Icons inherit their color from the current text color. Thus, you can set the `co
 </div>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <>
-    <div style={{ color: '#4a90e2' }}>
-      <WaIcon name="exclamation-triangle"></WaIcon>
-      <WaIcon name="archive"></WaIcon>
-      <WaIcon name="battery-three-quarters"></WaIcon>
-      <WaIcon name="bell"></WaIcon>
-    </div>
-    <div style={{ color: '#9013fe' }}>
-      <WaIcon name="clock"></WaIcon>
-      <WaIcon name="cloud"></WaIcon>
-      <WaIcon name="download"></WaIcon>
-      <WaIcon name="file"></WaIcon>
-    </div>
-    <div style={{ color: '#417505' }}>
-      <WaIcon name="flag"></WaIcon>
-      <WaIcon name="heart"></WaIcon>
-      <WaIcon name="image"></WaIcon>
-      <WaIcon name="bolt-lightning"></WaIcon>
-    </div>
-    <div style={{ color: '#f5a623' }}>
-      <WaIcon name="microphone"></WaIcon>
-      <WaIcon name="search"></WaIcon>
-      <WaIcon name="star"></WaIcon>
-      <WaIcon name="trash"></WaIcon>
-    </div>
-  </>
-);
-```
-{% endraw %}
-
 ### Sizing
 
 Icons are sized relative to the current font size. To change their size, set the `font-size` property on the icon itself or on a parent element as shown below.
@@ -117,33 +69,6 @@ Icons are sized relative to the current font size. To change their size, set the
 </div>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <div style={{ fontSize: '32px' }}>
-    <WaIcon name="exclamation-triangle" />
-    <WaIcon name="archive" />
-    <WaIcon name="battery-three-quarters" />
-    <WaIcon name="bell" />
-    <WaIcon name="clock" />
-    <WaIcon name="cloud" />
-    <WaIcon name="download" />
-    <WaIcon name="file" />
-    <WaIcon name="flag" />
-    <WaIcon name="heart" />
-    <WaIcon name="image" />
-    <WaIcon name="bolt-lightning" />
-    <WaIcon name="microphone" />
-    <WaIcon name="search" />
-    <WaIcon name="star" />
-    <WaIcon name="trash" />
-  </div>
-);
-```
-{% endraw %}
-
 ### Fixed Width Icons
 
 By default, icons have a 1em height and a variable width. Use the `fixed-width` attribute to render the host element in a 1em by 1em box.
@@ -157,23 +82,6 @@ By default, icons have a 1em height and a variable width. Use the `fixed-width` 
 <wa-icon fixed-width name="snowplow"></wa-icon>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <>
-    <WaIcon fixed-width name="cloud" />
-    <WaIcon fixed-width name="user" />
-    <WaIcon fixed-width name="truck" />
-    <WaIcon fixed-width name="file" />
-    <WaIcon fixed-width name="skating" />
-    <WaIcon fixed-width name="snowplow" />
-  </>
-);
-```
-{% endraw %}
-
 ### Labels
 
 For non-decorative icons, use the `label` attribute to announce it to assistive devices.
@@ -182,14 +90,6 @@ For non-decorative icons, use the `label` attribute to announce it to assistive 
 <wa-icon name="star" label="Add to favorites"></wa-icon>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => <WaIcon name="star" label="Add to favorites" />;
-```
-{% endraw %}
-
 ### Custom Icons
 
 Custom icons can be loaded individually with the `src` attribute. Only SVGs on a local or CORS-enabled endpoint are supported. If you're using more than one custom icon, it might make sense to register a [custom icon library](#icon-libraries).
@@ -197,14 +97,6 @@ Custom icons can be loaded individually with the `src` attribute. Only SVGs on a
 ```html {.example}
 <wa-icon src="https://shoelace.style/assets/images/shoe.svg" style="font-size: 4rem;"></wa-icon>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => <WaIcon src="https://shoelace.style/assets/images/shoe.svg" style={{ fontSize: '4rem' }}></WaIcon>;
-```
-{% endraw %}
 
 ## Icon Libraries
 

@@ -12,21 +12,6 @@ layout: component.njk
 </wa-button-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-
-const App = () => (
-  <WaButtonGroup label="Alignment">
-    <WaButton>Left</WaButton>
-    <WaButton>Center</WaButton>
-    <WaButton>Right</WaButton>
-  </WaButtonGroup>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Button Sizes
@@ -56,41 +41,6 @@ All button sizes are supported, but avoid mixing sizes within the same button gr
   <wa-button size="large">Right</wa-button>
 </wa-button-group>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-
-const App = () => (
-  <>
-    <WaButtonGroup label="Alignment">
-      <WaButton size="small">Left</WaButton>
-      <WaButton size="small">Center</WaButton>
-      <WaButton size="small">Right</WaButton>
-    </WaButtonGroup>
-
-    <br />
-    <br />
-
-    <WaButtonGroup label="Alignment">
-      <WaButton size="medium">Left</WaButton>
-      <WaButton size="medium">Center</WaButton>
-      <WaButton size="medium">Right</WaButton>
-    </WaButtonGroup>
-
-    <br />
-    <br />
-
-    <WaButtonGroup label="Alignment">
-      <WaButton size="large">Left</WaButton>
-      <WaButton size="large">Center</WaButton>
-      <WaButton size="large">Right</WaButton>
-    </WaButtonGroup>
-  </>
-);
-```
-{% endraw %}
 
 ### Theme Buttons
 
@@ -136,59 +86,6 @@ Theme buttons are supported through the button's `variant` attribute.
 </wa-button-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-
-const App = () => (
-  <>
-    <WaButtonGroup label="Alignment">
-      <WaButton variant="brand">Left</WaButton>
-      <WaButton variant="brand">Center</WaButton>
-      <WaButton variant="brand">Right</WaButton>
-    </WaButtonGroup>
-
-    <br />
-    <br />
-
-    <WaButtonGroup label="Alignment">
-      <WaButton variant="success">Left</WaButton>
-      <WaButton variant="success">Center</WaButton>
-      <WaButton variant="success">Right</WaButton>
-    </WaButtonGroup>
-
-    <br />
-    <br />
-
-    <WaButtonGroup label="Alignment">
-      <WaButton>Left</WaButton>
-      <WaButton>Center</WaButton>
-      <WaButton>Right</WaButton>
-    </WaButtonGroup>
-
-    <br />
-    <br />
-
-    <WaButtonGroup label="Alignment">
-      <WaButton variant="warning">Left</WaButton>
-      <WaButton variant="warning">Center</WaButton>
-      <WaButton variant="warning">Right</WaButton>
-    </WaButtonGroup>
-
-    <br />
-    <br />
-
-    <WaButtonGroup label="Alignment">
-      <WaButton variant="danger">Left</WaButton>
-      <WaButton variant="danger">Center</WaButton>
-      <WaButton variant="danger">Right</WaButton>
-    </WaButtonGroup>
-  </>
-);
-```
-{% endraw %}
-
 ### Pill Buttons
 
 Pill buttons are supported through the button's `pill` attribute.
@@ -217,59 +114,6 @@ Pill buttons are supported through the button's `pill` attribute.
 </wa-button-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-
-const App = () => (
-  <>
-    <WaButtonGroup label="Alignment">
-      <WaButton size="small" pill>
-        Left
-      </WaButton>
-      <WaButton size="small" pill>
-        Center
-      </WaButton>
-      <WaButton size="small" pill>
-        Right
-      </WaButton>
-    </WaButtonGroup>
-
-    <br />
-    <br />
-
-    <WaButtonGroup label="Alignment">
-      <WaButton size="medium" pill>
-        Left
-      </WaButton>
-      <WaButton size="medium" pill>
-        Center
-      </WaButton>
-      <WaButton size="medium" pill>
-        Right
-      </WaButton>
-    </WaButtonGroup>
-
-    <br />
-    <br />
-
-    <WaButtonGroup label="Alignment">
-      <WaButton size="large" pill>
-        Left
-      </WaButton>
-      <WaButton size="large" pill>
-        Center
-      </WaButton>
-      <WaButton size="large" pill>
-        Right
-      </WaButton>
-    </WaButtonGroup>
-  </>
-);
-```
-{% endraw %}
-
 ### Dropdowns in Button Groups
 
 Dropdowns can be placed inside button groups as long as the trigger is an `<wa-button>` element.
@@ -288,33 +132,6 @@ Dropdowns can be placed inside button groups as long as the trigger is an `<wa-b
   </wa-dropdown>
 </wa-button-group>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaButtonGroup label="Example Button Group">
-    <WaButton>Button</WaButton>
-    <WaButton>Button</WaButton>
-    <WaDropdown>
-      <WaButton slot="trigger" caret>
-        Dropdown
-      </WaButton>
-      <WaMenu>
-        <WaMenuItem>Item 1</WaMenuItem>
-        <WaMenuItem>Item 2</WaMenuItem>
-        <WaMenuItem>Item 3</WaMenuItem>
-      </WaMenu>
-    </WaDropdown>
-  </WaButtonGroup>
-);
-```
-{% endraw %}
 
 ### Split Buttons
 
@@ -336,30 +153,6 @@ Create a split button using a button and a dropdown. Use a [visually hidden](/co
 </wa-button-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaButtonGroup label="Example Button Group">
-    <WaButton variant="brand">Save</WaButton>
-    <WaDropdown placement="bottom-end">
-      <WaButton slot="trigger" variant="brand" caret></WaButton>
-      <WaMenu>
-        <WaMenuItem>Save</WaMenuItem>
-        <WaMenuItem>Save as&hellip;</WaMenuItem>
-        <WaMenuItem>Save all</WaMenuItem>
-      </WaMenu>
-    </WaDropdown>
-  </WaButtonGroup>
-);
-```
-{% endraw %}
-
 ### Tooltips in Button Groups
 
 Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.
@@ -375,28 +168,6 @@ Buttons can be wrapped in tooltips to provide more detail when the user interact
 <wa-tooltip for="button-center">I'm in the middle</wa-tooltip>
 <wa-tooltip for="button-right">I'm on the right</wa-tooltip>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const App = () => (
-  <>
-    <WaButton-group label="Alignment">
-      <WaButton id="button-left">Left</WaButton>
-      <WaButton id="button-center">Center</WaButton>
-      <WaButton id="button-right">Right</WaButton>
-    </WaButton-group>
-
-    <WaTooltip for="button-left">I'm on the left</WaTooltip>
-    <WaTooltip for="button-center">I'm in the middle</WaTooltip>
-    <WaTooltip for="button-right">I'm on the right</WaTooltip>
-  </>
-);
-```
-{% endraw %}
 
 ### Toolbar Example
 
@@ -438,53 +209,3 @@ Create interactive toolbars with button groups.
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
-
-const css = `
-  .button-group-toolbar wa-button-group:not(:last-of-type) {
-    margin-right: var(--wa-space-xs);
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="button-group-toolbar">
-      <WaButton-group label="History">
-        <WaButton id="undo-button"><WaIcon name="undo" variant="solid" label="Undo"></WaIcon></WaButton>
-        <WaButton id="redo-button"><WaIcon name="redo" variant="solid" label="Redo"></WaIcon></WaButton>
-      </WaButton-group>
-
-      <WaButton-group label="Formatting">
-        <WaButton id="button-bold"><WaIcon name="bold" variant="solid" label="Bold"></WaIcon></WaButton>
-        <WaButton id="button-italic"><WaIcon name="italic" variant="solid" label="Italic"></WaIcon></WaButton>
-        <WaButton id="button-underline"><WaIcon name="underline" variant="solid" label="Underline"></WaIcon></WaButton>
-      </WaButton-group>
-
-      <WaButton-group label="Alignment">
-        <WaButton id="button-align-left"><WaIcon name="align-left" variant="solid" label="Align Left"></WaIcon></WaButton>
-        <WaButton id="button-align-center"><WaIcon name="align-center" variant="solid" label="Align Center"></WaIcon></WaButton>
-        <WaButton id="button-align-right"><WaIcon name="align-right" variant="solid" label="Align Right"></WaIcon></WaButton>
-      </WaButton-group>
-    </div>
-
-    <WaTooltip for="undo-button">Undo</WaTooltip>
-    <WaTooltip for="redo-button">Redo</WaTooltip>
-    <WaTooltip for="button-bold">Bold</WaTooltip>
-    <WaTooltip for="button-italic">Italic</WaTooltip>
-    <WaTooltip for="button-underline">Underline</WaTooltip>
-
-    <WaTooltip for="button-align-left"Align Left</WaTooltip>
-    <WaTooltip for="button-align-center">Align Center</WaTooltip>
-    <WaTooltip for="button-align-right">Align Right</WaTooltip>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}

@@ -33,32 +33,3 @@ The resize observer will report changes to the dimensions of the elements it wra
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaResizeObserver from '@shoelace-style/shoelace/dist/react/resize-observer';
-
-const css = `
-  .resize-observer-overview div {
-    display: flex;
-    border: solid 2px var(--wa-color-surface-border);
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-  }
-`;
-
-const App = () => (
-  <>
-    <div className="resize-observer-overview">
-      <WaResizeObserver onWaResize={event => console.log(event.detail)}>
-        <div>Resize this box and watch the console 👉</div>
-      </WaResizeObserver>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}

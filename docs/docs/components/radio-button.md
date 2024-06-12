@@ -14,21 +14,6 @@ Radio buttons are designed to be used with [radio groups](/components/radio-grou
 </wa-radio-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" name="a" value="1">
-    <WaRadioButton value="1">Option 1</WaRadioButton>
-    <WaRadioButton value="2">Option 2</WaRadioButton>
-    <WaRadioButton value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Checked States
@@ -43,21 +28,6 @@ To set the initial value and checked state, use the `value` attribute on the con
 </wa-radio-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" name="a" value="1">
-    <WaRadioButton value="1">Option 1</WaRadioButton>
-    <WaRadioButton value="2">Option 2</WaRadioButton>
-    <WaRadioButton value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
-
 ### Disabled
 
 Use the `disabled` attribute to disable a radio button.
@@ -69,23 +39,6 @@ Use the `disabled` attribute to disable a radio button.
   <wa-radio-button value="3">Option 3</wa-radio-button>
 </wa-radio-group>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" name="a" value="1">
-    <WaRadioButton value="1">Option 1</WaRadioButton>
-    <WaRadioButton value="2" disabled>
-      Option 2
-    </WaRadioButton>
-    <WaRadioButton value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
 
 ### Sizes
 
@@ -115,37 +68,6 @@ Use the `size` attribute to change a radio button's size.
 </wa-radio-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup size="small" label="Select an option" name="a" value="1">
-    <WaRadioButton value="1">Option 1</WaRadioButton>
-    <WaRadioButton value="2">Option 2</WaRadioButton>
-    <WaRadioButton value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-
-  <br />
-
-  <WaRadioGroup size="medium" label="Select an option" name="a" value="1">
-    <WaRadioButton value="1">Option 1</WaRadioButton>
-    <WaRadioButton value="2">Option 2</WaRadioButton>
-    <WaRadioButton value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-
-  <br />
-
-  <WaRadioGroup size="large" label="Select an option" name="a" value="1">
-    <WaRadioButton value="1">Option 1</WaRadioButton>
-    <WaRadioButton value="2">Option 2</WaRadioButton>
-    <WaRadioButton value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
-
 ### Pill Buttons
 
 Use the `pill` attribute to give radio buttons rounded edges.
@@ -174,37 +96,6 @@ Use the `pill` attribute to give radio buttons rounded edges.
 </wa-radio-group>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup size="small" label="Select an option" name="a" value="1">
-    <WaRadioButton pill value="1">Option 1</WaRadioButton>
-    <WaRadioButton pill value="2">Option 2</WaRadioButton>
-    <WaRadioButton pill value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-
-  <br />
-
-  <WaRadioGroup size="medium" label="Select an option" name="a" value="1">
-    <WaRadioButton pill value="1">Option 1</WaRadioButton>
-    <WaRadioButton pill value="2">Option 2</WaRadioButton>
-    <WaRadioButton pill value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-
-  <br />
-
-  <WaRadioGroup size="large" label="Select an option" name="a" value="1">
-    <WaRadioButton pill value="1">Option 1</WaRadioButton>
-    <WaRadioButton pill value="2">Option 2</WaRadioButton>
-    <WaRadioButton pill value="3">Option 3</WaRadioButton>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
-
 ### Prefix and Suffix Icons
 
 Use the `prefix` and `suffix` slots to add icons.
@@ -228,34 +119,6 @@ Use the `prefix` and `suffix` slots to add icons.
   </wa-radio-button>
 </wa-radio-group>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" name="a" value="1">
-    <WaRadioButton value="1">
-      <WaIcon slot="prefix" name="archive" variant="solid" />
-      Option 1
-    </WaRadioButton>
-
-    <WaRadioButton value="2">
-      <WaIcon slot="suffix" name="bag" variant="solid" />
-      Option 2
-    </WaRadioButton>
-
-    <WaRadioButton value="3">
-      <WaIcon slot="prefix" name="gift" variant="solid" />
-      <WaIcon slot="suffix" name="cart" variant="solid" />
-      Option 3
-    </WaRadioButton>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
 
 ### Buttons with Icons
 
@@ -284,35 +147,3 @@ You can omit button labels and use icons instead. Make sure to set a `label` att
   </wa-radio-button>
 </wa-radio-group>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import WaRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
-
-const App = () => (
-  <WaRadioGroup label="Select an option" name="a" value="neutral">
-    <WaRadioButton value="angry">
-      <WaIcon name="face-angry" label="Angry" />
-    </WaRadioButton>
-
-    <WaRadioButton value="sad">
-      <WaIcon name="face-frown" label="Sad" />
-    </WaRadioButton>
-
-    <WaRadioButton value="neutral">
-      <WaIcon name="face-neutral" label="Neutral" />
-    </WaRadioButton>
-
-    <WaRadioButton value="happy">
-      <WaIcon name="face-smile" label="Happy" />
-    </WaRadioButton>
-
-    <WaRadioButton value="laughing">
-      <WaIcon name="face-laughing" label="Laughing" />
-    </WaRadioButton>
-  </WaRadioGroup>
-);
-```
-{% endraw %}
