@@ -4,7 +4,9 @@ export default css`
   :host {
     --max-width: 20rem;
 
-    display: contents;
+    display: inline-block;
+
+    /** These styles are added so we dont interfere in the DOM. */
   }
 
   .tooltip {

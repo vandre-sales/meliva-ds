@@ -1,5 +1,5 @@
 import '../icon/icon.js';
-import { animate, parseDuration, stopAnimations } from '../../internal/animate.js';
+import { animate, parseDuration } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
@@ -144,7 +144,6 @@ export default class WaDetails extends WebAwesomeElement {
         return;
       }
 
-      await stopAnimations(this.body);
       const duration = parseDuration(getComputedStyle(this.body).getPropertyValue('--show-duration'));
       // We can't animate to 'auto', so use the scroll height for now
       await animate(
@@ -171,7 +170,6 @@ export default class WaDetails extends WebAwesomeElement {
         return;
       }
 
-      await stopAnimations(this.body);
       const duration = parseDuration(getComputedStyle(this.body).getPropertyValue('--hide-duration'));
       // We can't animate from 'auto', so use the scroll height for now
       await animate(
