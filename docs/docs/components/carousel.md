@@ -39,50 +39,6 @@ layout: component.njk
 </wa-carousel>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-
-const App = () => (
-  <>
-    <WaCarousel pagination mouse-dragging>
-      <WaCarouselItem>
-        <img
-          alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-          src="/assets/examples/carousel/mountains.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-          src="/assets/examples/carousel/waterfall.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-          src="/assets/examples/carousel/sunset.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-          src="/assets/examples/carousel/field.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-          src="/assets/examples/carousel/valley.jpg"
-        />
-      </WaCarouselItem>
-    </WaCarousel>
-  </>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Pagination
@@ -124,48 +80,6 @@ Use the `pagination` attribute to show the total number of slides and the curren
 </wa-carousel>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-
-const App = () => (
-  <WaCarousel pagination>
-    <WaCarouselItem>
-      <img
-        alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-        src="/assets/examples/carousel/mountains.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-        src="/assets/examples/carousel/waterfall.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-        src="/assets/examples/carousel/sunset.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-        src="/assets/examples/carousel/field.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-        src="/assets/examples/carousel/valley.jpg"
-      />
-    </WaCarouselItem>
-  </WaCarousel>
-);
-```
-{% endraw %}
-
 ### Navigation
 
 Use the `navigation` attribute to show previous and next buttons.
@@ -204,48 +118,6 @@ Use the `navigation` attribute to show previous and next buttons.
   </wa-carousel-item>
 </wa-carousel>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-
-const App = () => (
-  <WaCarousel navigation>
-    <WaCarouselItem>
-      <img
-        alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-        src="/assets/examples/carousel/mountains.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-        src="/assets/examples/carousel/waterfall.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-        src="/assets/examples/carousel/sunset.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-        src="/assets/examples/carousel/field.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-        src="/assets/examples/carousel/valley.jpg"
-      />
-    </WaCarouselItem>
-  </WaCarousel>
-);
-```
-{% endraw %}
 
 ### Looping
 
@@ -286,48 +158,6 @@ By default, the carousel will not advanced beyond the first and last slides. You
 </wa-carousel>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-
-const App = () => (
-  <WaCarousel loop navigation pagination>
-    <WaCarouselItem>
-      <img
-        alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-        src="/assets/examples/carousel/mountains.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-        src="/assets/examples/carousel/waterfall.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-        src="/assets/examples/carousel/sunset.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-        src="/assets/examples/carousel/field.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-        src="/assets/examples/carousel/valley.jpg"
-      />
-    </WaCarouselItem>
-  </WaCarousel>
-);
-```
-{% endraw %}
-
 ### Autoplay
 
 The carousel will automatically advance when the `autoplay` attribute is used. To change how long a slide is shown before advancing, set `autoplay-interval` to the desired number of milliseconds. For best results, use the `loop` attribute when autoplay is enabled. Note that autoplay will pause while the user interacts with the carousel.
@@ -366,48 +196,6 @@ The carousel will automatically advance when the `autoplay` attribute is used. T
   </wa-carousel-item>
 </wa-carousel>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-
-const App = () => (
-  <WaCarousel autoplay loop pagination>
-    <WaCarouselItem>
-      <img
-        alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-        src="/assets/examples/carousel/mountains.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-        src="/assets/examples/carousel/waterfall.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-        src="/assets/examples/carousel/sunset.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-        src="/assets/examples/carousel/field.jpg"
-      />
-    </WaCarouselItem>
-    <WaCarouselItem>
-      <img
-        alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-        src="/assets/examples/carousel/valley.jpg"
-      />
-    </WaCarouselItem>
-  </WaCarousel>
-);
-```
-{% endraw %}
 
 ### Mouse Dragging
 
@@ -466,63 +254,6 @@ This example is best demonstrated using a mouse. Try clicking and dragging the s
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaSwitch from '@shoelace-style/shoelace/dist/react/switch';
-
-const App = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-
-  return (
-    <>
-      <WaCarousel navigation mouseDragging={isEnabled}>
-        <WaCarouselItem>
-          <img
-            alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-            src="/assets/examples/carousel/mountains.jpg"
-          />
-        </WaCarouselItem>
-        <WaCarouselItem>
-          <img
-            alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-            src="/assets/examples/carousel/waterfall.jpg"
-          />
-        </WaCarouselItem>
-        <WaCarouselItem>
-          <img
-            alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-            src="/assets/examples/carousel/sunset.jpg"
-          />
-        </WaCarouselItem>
-        <WaCarouselItem>
-          <img
-            alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-            src="/assets/examples/carousel/field.jpg"
-          />
-        </WaCarouselItem>
-        <WaCarouselItem>
-          <img
-            alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-            src="/assets/examples/carousel/valley.jpg"
-          />
-        </WaCarouselItem>
-      </WaCarousel>
-
-      <WaDivider></WaDivider>
-
-      <WaSwitch checked={isEnabled} onWaInput={() => setIsEnabled(!isEnabled)}>
-        Enable mouse dragging
-      </WaSwitch>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Multiple Slides Per View
 
 The `slides-per-page` attribute makes it possible to display multiple slides at a time. You can also use the `slides-per-move` attribute to advance more than once slide at a time, if desired.
@@ -537,24 +268,6 @@ The `slides-per-page` attribute makes it possible to display multiple slides at 
   <wa-carousel-item style="background: purple;">Slide 6</wa-carousel-item>
 </wa-carousel>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-
-const App = () => (
-  <WaCarousel navigation pagination slidesPerPage={2} slidesPerMove={2}>
-    <WaCarouselItem style={{ background: 'red' }}>Slide 1</WaCarouselItem>
-    <WaCarouselItem style={{ background: 'orange' }}>Slide 2</WaCarouselItem>
-    <WaCarouselItem style={{ background: 'yellow' }}>Slide 3</WaCarouselItem>
-    <WaCarouselItem style={{ background: 'green' }}>Slide 4</WaCarouselItem>
-    <WaCarouselItem style={{ background: 'blue' }}>Slide 5</WaCarouselItem>
-    <WaCarouselItem style={{ background: 'purple' }}>Slide 6</WaCarouselItem>
-  </WaCarousel>
-);
-```
-{% endraw %}
 
 ### Adding and Removing Slides
 
@@ -628,67 +341,6 @@ The content of the carousel can be changed by adding or removing carousel items.
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-
-const css = `
-  .dynamic-carousel {
-    --aspect-ratio: 3 / 2;
-  }
-
-  .dynamic-carousel ~ .carousel-options {
-    display: flex;
-    justify-content: center;
-    margin-top: var(--wa-space-l);
-  }
-
-  .dynamic-carousel wa-carousel-item {
-    flex: 0 0 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: var(--wa-font-size-2xl);
-  }
-`;
-
-const App = () => {
-  const [slides, setSlides] = useState(['#204ed8', '#be133d', '#6e28d9']);
-  const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-
-  const addSlide = () => {
-    setSlides([...slides, getRandomColor()]);
-  };
-
-  const removeSlide = () => {
-    setSlides(slides.slice(0, -1));
-  };
-
-  return (
-    <>
-      <WaCarousel className="dynamic-carousel" pagination navigation>
-        {slides.map((color, i) => (
-          <WaCarouselItem style={{ background: colors[i % colors.length }}>
-            Slide {i}
-          </WaCarouselItem>
-        ))}
-      </WaCarousel>
-
-      <div className="carousel-options">
-        <WaButton onClick={addSlide}>Add slide</WaButton>
-        <WaButton onClick={removeSlide}>Remove slide</WaButton>
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Vertical Scrolling
 
 Setting the `orientation` attribute to `vertical` will render the carousel in a vertical layout. If the content of your slides vary in height, you will need to set amn explicit `height` or `max-height` on the carousel using CSS.
@@ -745,70 +397,6 @@ Setting the `orientation` attribute to `vertical` will render the carousel in a 
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-
-const css = `
-  .vertical {
-    max-height: 400px;
-  }
-
-  .vertical::part(base) {
-    grid-template-areas: 'slides slides pagination';
-  }
-
-  .vertical::part(pagination) {
-    flex-direction: column;
-  }
-
-  .vertical::part(navigation) {
-    transform: rotate(90deg);
-    display: flex;
-  }
-`;
-
-const App = () => (
-  <>
-    <WaCarousel className="vertical" loop pagination orientation="vertical">
-      <WaCarouselItem>
-        <img
-          alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-          src="/assets/examples/carousel/mountains.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-          src="/assets/examples/carousel/waterfall.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-          src="/assets/examples/carousel/sunset.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-          src="/assets/examples/carousel/field.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-          src="/assets/examples/carousel/valley.jpg"
-        />
-      </WaCarouselItem>
-    </WaCarousel>
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}
 
 ### Aspect Ratio
 
@@ -868,73 +456,6 @@ Use the `--aspect-ratio` custom property to customize the size of the carousel's
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-
-const App = () => {
-  const [aspectRatio, setAspectRatio] = useState('3/2');
-
-  return (
-    <>
-      <WaCarousel className="aspect-ratio" navigation pagination style={{ '--aspect-ratio': aspectRatio }}>
-        <WaCarouselItem>
-          <img
-            alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-            src="/assets/examples/carousel/mountains.jpg"
-          />
-        </WaCarouselItem>
-        <WaCarouselItem>
-          <img
-            alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-            src="/assets/examples/carousel/waterfall.jpg"
-          />
-        </WaCarouselItem>
-        <WaCarouselItem>
-          <img
-            alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-            src="/assets/examples/carousel/sunset.jpg"
-          />
-        </WaCarouselItem>
-        <WaCarouselItem>
-          <img
-            alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-            src="/assets/examples/carousel/field.jpg"
-          />
-        </WaCarouselItem>
-        <WaCarouselItem>
-          <img
-            alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-            src="/assets/examples/carousel/valley.jpg"
-          />
-        </WaCarouselItem>
-      </WaCarousel>
-
-      <WaDivider />
-
-      <WaSelect
-        label="Aspect ratio"
-        name="aspect"
-        value={aspectRatio}
-        onWaChange={event => setAspectRatio(event.target.value)}
-      >
-        <WaOption value="1 / 1">1 / 1</WaOption>
-        <WaOption value="3 / 2">3 / 2</WaOption>
-        <WaOption value="16 / 9">16 / 9</WaOption>
-      </WaSelect>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Scroll Hint
 
 Use the `--scroll-hint` custom property to add inline padding in horizontal carousels and block padding in vertical carousels. This will make the closest slides slightly visible, hinting that there are more items in the carousel.
@@ -973,53 +494,6 @@ Use the `--scroll-hint` custom property to add inline padding in horizontal caro
   </wa-carousel-item>
 </wa-carousel>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaRange from '@shoelace-style/shoelace/dist/react/range';
-
-const App = () => (
-  <>
-    <WaCarousel className="scroll-hint" pagination style={{ '--scroll-hint': '10%' }}>
-      <WaCarouselItem>
-        <img
-          alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-          src="/assets/examples/carousel/mountains.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-          src="/assets/examples/carousel/waterfall.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-          src="/assets/examples/carousel/sunset.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-          src="/assets/examples/carousel/field.jpg"
-        />
-      </WaCarouselItem>
-      <WaCarouselItem>
-        <img
-          alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-          src="/assets/examples/carousel/valley.jpg"
-        />
-      </WaCarouselItem>
-    </WaCarousel>
-  </>
-);
-```
-{% endraw %}
 
 ### Gallery Example
 
@@ -1139,128 +613,3 @@ The carousel has a robust API that makes it possible to extend and customize. Th
   }
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useRef } from 'react';
-import WaCarousel from '@shoelace-style/shoelace/dist/react/carousel';
-import WaCarouselItem from '@shoelace-style/shoelace/dist/react/carousel-item';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaRange from '@shoelace-style/shoelace/dist/react/range';
-
-const css = `
-  .carousel-thumbnails {
-    --slide-aspect-ratio: 3 / 2;
-  }
-
-  .thumbnails {
-    display: flex;
-    justify-content: center;
-  }
-
-  .thumbnails__scroller {
-    display: flex;
-    gap: var(--wa-space-s);
-    overflow-x: auto;
-    scrollbar-width: none;
-    scroll-behavior: smooth;
-    scroll-padding: var(--wa-space-s);
-  }
-
-  .thumbnails__scroller::-webkit-scrollbar {
-    display: none;
-  }
-
-  .thumbnails__image {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-
-    opacity: 0.3;
-    will-change: opacity;
-    transition: 250ms opacity;
-
-    cursor: pointer;
-  }
-
-  .thumbnails__image.active {
-    opacity: 1;
-  }
-`;
-
-const images = [
-  {
-    src: '/assets/examples/carousel/mountains.jpg',
-    alt: 'The sun shines on the mountains and trees (by Adam Kool on Unsplash'
-  },
-  {
-    src: '/assets/examples/carousel/waterfall.jpg',
-    alt: 'A waterfall in the middle of a forest (by Thomas Kelly on Unsplash'
-  },
-  {
-    src: '/assets/examples/carousel/sunset.jpg',
-    alt: 'The sun is setting over a lavender field (by Leonard Cotte on Unsplash'
-  },
-  {
-    src: '/assets/examples/carousel/field.jpg',
-    alt: 'A field of grass with the sun setting in the background (by Sapan Patel on Unsplash'
-  },
-  {
-    src: '/assets/examples/carousel/valley.jpg',
-    alt: 'A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash'
-  }
-];
-
-const App = () => {
-  const carouselRef = useRef();
-  const thumbnailsRef = useRef();
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const thumbnails = Array.from(thumbnailsRef.current.querySelectorAll('.thumbnails__image'));
-
-    thumbnails[currentSlide]..scrollIntoView({
-      block: 'nearest'
-    });
-  }, [currentSlide]);
-
-  const handleThumbnailClick = (index) => {
-    carouselRef.current.goToSlide(index);
-  }
-
-  const handleSlideChange = (event) => {
-    const slideIndex = e.detail.index;
-    setCurrentSlide(slideIndex);
-  }
-
-  return (
-    <>
-      <WaCarousel className="carousel-thumbnails" navigation loop onWaSlideChange={handleSlideChange}>
-        {images.map({ src, alt }) => (
-          <WaCarouselItem>
-            <img
-              alt={alt}
-              src={src}
-            />
-          </WaCarouselItem>
-        )}
-      </WaCarousel>
-
-      <div class="thumbnails">
-        <div class="thumbnails__scroller">
-          {images.map({ src, alt }, i) => (
-            <img
-              alt={`Thumbnail by ${i + 1}`}
-              className={`thumbnails__image ${i === currentSlide ? 'active' : ''}`}
-              onCLick={() => handleThumbnailClick(i)}
-              src={src}
-            />
-          )}
-        </div>
-      </div>
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}

@@ -31,44 +31,6 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
 </wa-dropdown>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaDropdown>
-    <WaButton slot="trigger" caret>
-      Dropdown
-    </WaButton>
-    <WaMenu>
-      <WaMenuItem>Dropdown Item 1</WaMenuItem>
-      <WaMenuItem>Dropdown Item 2</WaMenuItem>
-      <WaMenuItem>Dropdown Item 3</WaMenuItem>
-      <WaDivider />
-      <WaMenuItem type="checkbox" checked>
-        Checkbox
-      </WaMenuItem>
-      <WaMenuItem disabled>Disabled</WaMenuItem>
-      <WaDivider />
-      <WaMenuItem>
-        Prefix
-        <WaIcon slot="prefix" name="gift" />
-      </WaMenuItem>
-      <WaMenuItem>
-        Suffix Icon
-        <WaIcon slot="suffix" name="heart" />
-      </WaMenuItem>
-    </WaMenu>
-  </WaDropdown>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Getting the Selected Item
@@ -98,35 +60,6 @@ When dropdowns are used with [menus](/components/menu), you can listen for the [
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => {
-  function handleSelect(event) {
-    const selectedItem = event.detail.item;
-    console.log(selectedItem.value);
-  }
-
-  return (
-    <WaDropdown>
-      <WaButton slot="trigger" caret>
-        Edit
-      </WaButton>
-      <WaMenu onWaSelect={handleSelect}>
-        <WaMenuItem value="cut">Cut</WaMenuItem>
-        <WaMenuItem value="copy">Copy</WaMenuItem>
-        <WaMenuItem value="paste">Paste</WaMenuItem>
-      </WaMenu>
-    </WaDropdown>
-  );
-};
-```
-{% endraw %}
-
 Alternatively, you can listen for the `click` event on individual menu items. Note that, using this approach, disabled menu items will still emit a `click` event.
 
 ```html {.example}
@@ -153,42 +86,6 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => {
-  function handleCut() {
-    console.log('cut');
-  }
-
-  function handleCopy() {
-    console.log('copy');
-  }
-
-  function handlePaste() {
-    console.log('paste');
-  }
-
-  return (
-    <WaDropdown>
-      <WaButton slot="trigger" caret>
-        Edit
-      </WaButton>
-      <WaMenu>
-        <WaMenuItem onClick={handleCut}>Cut</WaMenuItem>
-        <WaMenuItem onClick={handleCopy}>Copy</WaMenuItem>
-        <WaMenuItem onClick={handlePaste}>Paste</WaMenuItem>
-      </WaMenu>
-    </WaDropdown>
-  );
-};
-```
-{% endraw %}
-
 ### Placement
 
 The preferred placement of the dropdown can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport.
@@ -206,32 +103,6 @@ The preferred placement of the dropdown can be set with the `placement` attribut
   </wa-menu>
 </wa-dropdown>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaDropdown placement="top-start">
-    <WaButton slot="trigger" caret>
-      Edit
-    </WaButton>
-    <WaMenu>
-      <WaMenuItem>Cut</WaMenuItem>
-      <WaMenuItem>Copy</WaMenuItem>
-      <WaMenuItem>Paste</WaMenuItem>
-      <WaDivider />
-      <WaMenuItem>Find</WaMenuItem>
-      <WaMenuItem>Replace</WaMenuItem>
-    </WaMenu>
-  </WaDropdown>
-);
-```
-{% endraw %}
 
 ### Distance
 
@@ -251,32 +122,6 @@ The distance from the panel to the trigger can be customized using the `distance
 </wa-dropdown>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaDropdown distance={30}>
-    <WaButton slot="trigger" caret>
-      Edit
-    </WaButton>
-    <WaMenu>
-      <WaMenuItem>Cut</WaMenuItem>
-      <WaMenuItem>Copy</WaMenuItem>
-      <WaMenuItem>Paste</WaMenuItem>
-      <WaDivider />
-      <WaMenuItem>Find</WaMenuItem>
-      <WaMenuItem>Replace</WaMenuItem>
-    </WaMenu>
-  </WaDropdown>
-);
-```
-{% endraw %}
-
 ### Skidding
 
 The offset of the panel along the trigger can be customized using the `skidding` attribute. This value is specified in pixels.
@@ -294,32 +139,6 @@ The offset of the panel along the trigger can be customized using the `skidding`
   </wa-menu>
 </wa-dropdown>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaDropdown skidding={30}>
-    <WaButton slot="trigger" caret>
-      Edit
-    </WaButton>
-    <WaMenu>
-      <WaMenuItem>Cut</WaMenuItem>
-      <WaMenuItem>Copy</WaMenuItem>
-      <WaMenuItem>Paste</WaMenuItem>
-      <WaDivider />
-      <WaMenuItem>Find</WaMenuItem>
-      <WaMenuItem>Replace</WaMenuItem>
-    </WaMenu>
-  </WaDropdown>
-);
-```
-{% endraw %}
 
 ### Submenus
 
@@ -356,58 +175,6 @@ To create a submenu, nest an `<wa-menu slot="submenu">` element in a [menu item]
   </wa-menu>
 </wa-dropdown>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const css = `
-  .dropdown-hoist {
-    border: solid 2px var(--wa-color-surface-border);
-    padding: var(--wa-space-m);
-    overflow: hidden;
-  }
-`;
-
-const App = () => (
-  <>
-    <WaDropdown>
-      <WaButton slot="trigger" caret>Edit</WaButton>
-
-      <WaMenu style="max-width: 200px;">
-        <WaMenuItem value="undo">Undo</WaMenuItem>
-        <WaMenuItem value="redo">Redo</WaMenuItem>
-        <WaDivider />
-        <WaMenuItem value="cut">Cut</WaMenuItem>
-        <WaMenuItem value="copy">Copy</WaMenuItem>
-        <WaMenuItem value="paste">Paste</WaMenuItem>
-        <WaDivider />
-        <WaMenuItem>
-          Find
-          <WaMenu slot="submenu">
-            <WaMenuItem value="find">Find…</WaMenuItem>
-            <WaMenuItem value="find-previous">Find Next</WaMenuItem>
-            <WaMenuItem value="find-next">Find Previous</WaMenuItem>
-          </WaMenu>
-        </WaMenuItem>
-        <WaMenuItem>
-          Transformations
-          <WaMenu slot="submenu">
-            <WaMenuItem value="uppercase">Make uppercase</WaMenuItem>
-            <WaMenuItem value="lowercase">Make lowercase</WaMenuItem>
-            <WaMenuItem value="capitalize">Capitalize</WaMenuItem>
-          </WaMenu>
-        </WaMenuItem>
-      </WaMenu>
-    </WaDropdown>
-  </>
-);
-```
-{% endraw %}
 
 :::warning
 As a UX best practice, avoid using more than one level of submenu when possible.
@@ -447,51 +214,3 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const css = `
-  .dropdown-hoist {
-    border: solid 2px var(--wa-color-surface-border);
-    padding: var(--wa-space-m);
-    overflow: hidden;
-  }
-`;
-
-const App = () => (
-  <>
-    <div className="dropdown-hoist">
-      <WaDropdown>
-        <WaButton slot="trigger" caret>
-          No Hoist
-        </WaButton>
-        <WaMenu>
-          <WaMenuItem>Item 1</WaMenuItem>
-          <WaMenuItem>Item 2</WaMenuItem>
-          <WaMenuItem>Item 3</WaMenuItem>
-        </WaMenu>
-      </WaDropdown>
-
-      <WaDropdown hoist>
-        <WaButton slot="trigger" caret>
-          Hoist
-        </WaButton>
-        <WaMenu>
-          <WaMenuItem>Item 1</WaMenuItem>
-          <WaMenuItem>Item 2</WaMenuItem>
-          <WaMenuItem>Item 3</WaMenuItem>
-        </WaMenu>
-      </WaDropdown>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}

@@ -15,24 +15,6 @@ layout: component.njk
 </wa-select>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-    <WaOption value="option-4">Option 4</WaOption>
-    <WaOption value="option-5">Option 5</WaOption>
-    <WaOption value="option-6">Option 6</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
-
 :::info
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
@@ -51,21 +33,6 @@ Use the `label` attribute to give the select an accessible label. For labels tha
 </wa-select>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect label="Select one">
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
-
 ### Help Text
 
 Add descriptive help text to a select with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
@@ -77,21 +44,6 @@ Add descriptive help text to a select with the `help-text` attribute. For help t
   <wa-option value="3">Advanced</wa-option>
 </wa-select>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect label="Experience" help-text="Please tell us your skill level.">
-    <WaOption value="1">Novice</WaOption>
-    <WaOption value="2">Intermediate</WaOption>
-    <WaOption value="3">Advanced</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
 
 ### Placeholders
 
@@ -105,21 +57,6 @@ Use the `placeholder` attribute to add a placeholder.
 </wa-select>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect placeholder="Select one">
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
-
 ### Clearable
 
 Use the `clearable` attribute to make the control clearable. The clear button only appears when an option is selected.
@@ -131,21 +68,6 @@ Use the `clearable` attribute to make the control clearable. The clear button on
   <wa-option value="option-3">Option 3</wa-option>
 </wa-select>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect placeholder="Clearable" clearable>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
 
 ### Filled Selects
 
@@ -159,21 +81,6 @@ Add the `filled` attribute to draw a filled select.
 </wa-select>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect filled>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
-
 ### Pill
 
 Use the `pill` attribute to give selects rounded edges.
@@ -186,21 +93,6 @@ Use the `pill` attribute to give selects rounded edges.
 </wa-select>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect pill>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
-
 ### Disabled
 
 Use the `disabled` attribute to disable a select.
@@ -212,21 +104,6 @@ Use the `disabled` attribute to disable a select.
   <wa-option value="option-3">Option 3</wa-option>
 </wa-select>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect placeholder="Disabled" disabled>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
 
 ### Multiple
 
@@ -242,24 +119,6 @@ To allow multiple options to be selected, use the `multiple` attribute. It's a g
   <wa-option value="option-6">Option 6</wa-option>
 </wa-select>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect label="Select a Few" value="option-1 option-2 option-3" multiple clearable>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-    <WaOption value="option-4">Option 4</WaOption>
-    <WaOption value="option-5">Option 5</WaOption>
-    <WaOption value="option-6">Option 6</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
 
 :::info
 Note that multi-select options may wrap, causing the control to expand vertically. You can use the `max-options-visible` attribute to control the maximum number of selected options to show at once.
@@ -280,22 +139,6 @@ When using `multiple`, the `value` _attribute_ uses space-delimited values to se
 </wa-select>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect value="option-1 option-2" multiple clearable>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
-
 ### Grouping Options
 
 Use `<wa-divider>` to group listbox items visually. You can also use `<small>` to provide labels, but they won't be announced by most assistive devices.
@@ -313,24 +156,6 @@ Use `<wa-divider>` to group listbox items visually. You can also use `<small>` t
   <wa-option value="option-6">Option 6</wa-option>
 </wa-select>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-    <WaOption value="option-4">Option 4</WaOption>
-    <WaOption value="option-5">Option 5</WaOption>
-    <WaOption value="option-6">Option 6</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
 
 ### Sizes
 
@@ -360,39 +185,6 @@ Use the `size` attribute to change a select's size. Note that size does not appl
 </wa-select>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <>
-    <WaSelect placeholder="Small" size="small">
-      <WaOption value="option-1">Option 1</WaOption>
-      <WaOption value="option-2">Option 2</WaOption>
-      <WaOption value="option-3">Option 3</WaOption>
-    </WaSelect>
-
-    <br />
-
-    <WaSelect placeholder="Medium" size="medium">
-      <WaOption value="option-1">Option 1</WaOption>
-      <WaOption value="option-2">Option 2</WaOption>
-      <WaOption value="option-3">Option 3</WaOption>
-    </WaSelect>
-
-    <br />
-
-    <WaSelect placeholder="Large" size="large">
-      <WaOption value="option-1">Option 1</WaOption>
-      <WaOption value="option-2">Option 2</WaOption>
-      <WaOption value="option-3">Option 3</WaOption>
-    </WaSelect>
-  </>
-);
-```
-{% endraw %}
-
 ### Placement
 
 The preferred placement of the select's listbox can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport. Valid placements are `top` and `bottom`.
@@ -404,21 +196,6 @@ The preferred placement of the select's listbox can be set with the `placement` 
   <wa-option value="option-3">Option 3</wa-option>
 </wa-select>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect placement="top">
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaDropdown>
-);
-```
-{% endraw %}
 
 ### Prefix Icons
 
@@ -446,39 +223,6 @@ Use the `prefix` slot to prepend an icon to the control.
   <wa-option value="option-3">Option 3</wa-option>
 </wa-select>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <>
-    <WaSelect placeholder="Small" size="small">
-      <WaIcon slot="prefix" name="house" variant="solid"></WaIcon>
-      <WaOption value="option-1">Option 1</WaOption>
-      <WaOption value="option-2">Option 2</WaOption>
-      <WaOption value="option-3">Option 3</WaOption>
-    </WaSelect>
-    <br />
-    <WaSelect placeholder="Medium" size="medium">
-      <WaIcon slot="prefix" name="house" variant="solid"></WaIcon>
-      <WaOption value="option-1">Option 1</WaOption>
-      <WaOption value="option-2">Option 2</WaOption>
-      <WaOption value="option-3">Option 3</WaOption>
-    </WaSelect>
-    <br />
-    <WaSelect placeholder="Large" size="large">
-      <WaIcon slot="prefix" name="house" variant="solid"></WaIcon>
-      <WaOption value="option-1">Option 1</WaOption>
-      <WaOption value="option-2">Option 2</WaOption>
-      <WaOption value="option-3">Option 3</WaOption>
-    </WaSelect>
-  </>
-);
-```
-{% endraw %}
 
 ### Custom Tags
 

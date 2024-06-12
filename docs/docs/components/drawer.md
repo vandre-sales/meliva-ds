@@ -22,31 +22,6 @@ layout: component.njk
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ## Examples
 
 ### Drawer with Header
@@ -68,28 +43,6 @@ Headers can be used to display titles and more. Use the `with-header` attribute 
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header open={open} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Drawer with Footer
 
 Footers can be used to display titles and more. Use the `with-footer` attribute to add a footer to the drawer.
@@ -109,31 +62,6 @@ Footers can be used to display titles and more. Use the `with-footer` attribute 
   openButton.addEventListener('click', () => drawer.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Dismissing Drawers
 
@@ -155,31 +83,6 @@ You can add the special `data-drawer="dismiss"` attribute to a button inside the
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Slide in From Start
 
 By default, drawers slide in from the end. To make the drawer slide in from the start, set the `placement` attribute to `start`.
@@ -199,31 +102,6 @@ By default, drawers slide in from the end. To make the drawer slide in from the 
   openButton.addEventListener('click', () => drawer.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer placement="start" open={open} onWaAfterHide={() => setOpen(false)}>
-        This drawer slides in from the start.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Slide in From Top
 
@@ -245,31 +123,6 @@ To make the drawer slide in from the top, set the `placement` attribute to `top`
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer placement="top" open={open} onWaAfterHide={() => setOpen(false)}>
-        This drawer slides in from the top.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Slide in From Bottom
 
 To make the drawer slide in from the bottom, set the `placement` attribute to `bottom`.
@@ -290,31 +143,6 @@ To make the drawer slide in from the bottom, set the `placement` attribute to `b
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer placement="bottom" open={open} onWaAfterHide={() => setOpen(false)}>
-        This drawer slides in from the bottom.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Custom Size
 
 Use the `--size` custom property to set the drawer's size. This will be applied to the drawer's width or height depending on its `placement`.
@@ -334,31 +162,6 @@ Use the `--size` custom property to set the drawer's size. This will be applied 
   openButton.addEventListener('click', () => drawer.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)} style={{ '--size': '50vw' }}>
-        This drawer is always 50% of the viewport.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Scrolling
 
@@ -381,39 +184,6 @@ By design, a drawer's height will never exceed 100% of its container. As such, d
   openButton.addEventListener('click', () => drawer.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        <div
-          style={{
-            height: '150vh',
-            border: 'dashed 2px var(--wa-color-surface-border)',
-            padding: '0 1rem'
-          }}
-        >
-          <p>Scroll down and give it a try! 👇</p>
-        </div>
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Header Actions
 
@@ -438,33 +208,6 @@ The header shows a functional close button by default. You can use the `header-a
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-import WaIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        <WaIconButton slot="header-actions" name="arrow-up-right-from-square" onClick={() => window.open(location.href)} />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Light Dismissal
 
 If you want the drawer to close when the user clicks on the overlay, add the `light-dismiss` attribute.
@@ -484,38 +227,6 @@ If you want the drawer to close when the user clicks on the overlay, add the `li
   openButton.addEventListener('click', () => drawer.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-  
-  return (
-    <>
-      <WaDrawer 
-        label="Drawer" 
-        light-dismiss
-        with-header 
-        with-footer 
-        open={open} 
-        onWaAfterHide={() => setOpen(false)}
-      >
-        This drawer will close when you click on the overlay.
-        <WaButton ref={closeButton} slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Preventing the Drawer from Closing
 
@@ -549,38 +260,6 @@ You can use `event.detail.source` to determine what triggered the request to clo
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  // Prevent the drawer from closing when the user clicks on the overlay
-  function handleRequestClose(event) {
-    if (event.detail.source === 'overlay') {
-      event.preventDefault();
-    }
-  }
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer open={open} onWaRequestClose={handleRequestClose} onWaAfterHide={() => setOpen(false)}>
-        This drawer will not close when you click on the overlay.
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Save &amp; Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Customizing Initial Focus
 
 By default, the drawer's panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the drawer. If you want a different element to have focus, add the `autofocus` attribute to it as shown below.
@@ -601,30 +280,3 @@ By default, the drawer's panel will gain focus when opened. This allows a subseq
   openButton.addEventListener('click', () => drawer.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDrawer label="Drawer" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        <WaInput autofocus placeholder="I will have focus when the drawer is opened" />
-        <WaButton slot="footer" variant="brand" data-drawer="dismiss">
-          Close
-        </WaButton>
-      </WaDrawer>
-
-      <WaButton onClick={() => setOpen(true)}>Open Drawer</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-

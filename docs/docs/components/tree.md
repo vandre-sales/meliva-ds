@@ -34,44 +34,6 @@ layout: component.njk
 </wa-tree>
 ```
 
-<!-- prettier-ignore -->
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => (
-  <WaTree>
-    <WaTreeItem>
-      Deciduous
-      <WaTreeItem>Birch</WaTreeItem>
-      <WaTreeItem>
-        Maple
-        <WaTreeItem>Field maple</WaTreeItem>
-        <WaTreeItem>Red maple</WaTreeItem>
-        <WaTreeItem>Sugar maple</WaTreeItem>
-      </WaTreeItem>
-      <WaTreeItem>Oak</WaTreeItem>
-    </WaTreeItem>
-
-    <WaTreeItem>
-      Coniferous
-      <WaTreeItem>Cedar</WaTreeItem>
-      <WaTreeItem>Pine</WaTreeItem>
-      <WaTreeItem>Spruce</WaTreeItem>
-    </WaTreeItem>
-
-    <WaTreeItem>
-      Non-trees
-      <WaTreeItem>Bamboo</WaTreeItem>
-      <WaTreeItem>Cactus</WaTreeItem>
-      <WaTreeItem>Fern</WaTreeItem>
-    </WaTreeItem>
-  </WaTree>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Selection Modes
@@ -118,46 +80,6 @@ The `selection` attribute lets you change the selection behavior of the tree.
 </script>
 ```
 
-<!-- prettier-ignore -->
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => {
-  const [selection, setSelection] = useState('single');
-
-  return (
-    <>
-      <WaSelect label="Selection" value={selection} onWaChange={event => setSelection(event.target.value)}>
-        <WaMenuItem value="single">single</WaMenuItem>
-        <WaMenuItem value="multiple">multiple</WaMenuItem>
-        <WaMenuItem value="leaf">leaf</WaMenuItem>
-      </WaSelect>
-
-      <br />
-
-      <WaTree selection={selection}>
-        <WaTreeItem>
-          Item 1
-          <WaTreeItem>
-            Item A
-            <WaTreeItem>Item Z</WaTreeItem>
-            <WaTreeItem>Item Y</WaTreeItem>
-            <WaTreeItem>Item X</WaTreeItem>
-          </WaTreeItem>
-          <WaTreeItem>Item B</WaTreeItem>
-          <WaTreeItem>Item C</WaTreeItem>
-        </WaTreeItem>
-        <WaTreeItem>Item 2</WaTreeItem>
-        <WaTreeItem>Item 3</WaTreeItem>
-      </WaTree>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Showing Indent Guides
 
 Indent guides can be drawn by setting `--indent-guide-width`. You can also change the color, offset, and style, using `--indent-guide-color`, `--indent-guide-style`, and `--indent-guide-offset`, respectively.
@@ -198,44 +120,6 @@ Indent guides can be drawn by setting `--indent-guide-width`. You can also chang
 </style>
 ```
 
-<!-- prettier-ignore -->
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => (
-  <WaTree class="tree-with-lines" style={{ '--indent-guide-width': '1px' }}>
-    <WaTreeItem expanded>
-      Deciduous
-      <WaTreeItem>Birch</WaTreeItem>
-      <WaTreeItem expanded>
-        Maple
-        <WaTreeItem>Field maple</WaTreeItem>
-        <WaTreeItem>Red maple</WaTreeItem>
-        <WaTreeItem>Sugar maple</WaTreeItem>
-      </WaTreeItem>
-      <WaTreeItem>Oak</WaTreeItem>
-    </WaTreeItem>
-
-    <WaTreeItem>
-      Coniferous
-      <WaTreeItem>Cedar</WaTreeItem>
-      <WaTreeItem>Pine</WaTreeItem>
-      <WaTreeItem>Spruce</WaTreeItem>
-    </WaTreeItem>
-
-    <WaTreeItem>
-      Non-trees
-      <WaTreeItem>Bamboo</WaTreeItem>
-      <WaTreeItem>Cactus</WaTreeItem>
-      <WaTreeItem>Fern</WaTreeItem>
-    </WaTreeItem>
-  </WaTree>
-);
-```
-{% endraw %}
-
 ### Lazy Loading
 
 Use the `lazy` attribute on a tree item to indicate that the content is not yet present and will be loaded later. When the user tries to expand the node, the `loading` state is set to `true` and the `wa-lazy-load` event will be emitted to allow you to load data asynchronously. The item will remain in a loading state until its content is changed.
@@ -267,39 +151,6 @@ If you want to disable this behavior after the first load, simply remove the `la
   });
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => {
-  const [childItems, setChildItems] = useState([]);
-  const [lazy, setLazy] = useState(true);
-
-  const handleLazyLoad = () => {
-    // Simulate asynchronous loading
-    setTimeout(() => {
-      setChildItems(['Birch', 'Cedar', 'Maple', 'Pine']);
-
-      // Disable lazy mode once the content has been loaded
-      setLazy(false);
-    }, 1000);
-  };
-
-  return (
-    <WaTree>
-      <WaTreeItem lazy={lazy} onWaLazyLoad={handleLazyLoad}>
-        Available Trees
-        {childItems.map(item => (
-          <WaTreeItem>{item}</WaTreeItem>
-        ))}
-      </WaTreeItem>
-    </WaTree>
-  );
-};
-```
-{% endraw %}
 
 ### Customizing the Expand and Collapse Icons
 
@@ -344,47 +195,6 @@ Use the `expand-icon` and `collapse-icon` slots to change the expand and collaps
   }
 </style>
 ```
-
-<!-- prettier-ignore -->
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => (
-  <WaTree>
-    <WaIcon name="square-plus" variant="solid" slot="expand-icon"></WaIcon>
-    <WaIcon name="square-minus" variant="solid" slot="collapse-icon"></WaIcon>
-
-    <WaTreeItem>
-      Deciduous
-      <WaTreeItem>Birch</WaTreeItem>
-      <WaTreeItem>
-        Maple
-        <WaTreeItem>Field maple</WaTreeItem>
-        <WaTreeItem>Red maple</WaTreeItem>
-        <WaTreeItem>Sugar maple</WaTreeItem>
-      </WaTreeItem>
-      <WaTreeItem>Oak</WaTreeItem>
-    </WaTreeItem>
-
-    <WaTreeItem>
-      Coniferous
-      <WaTreeItem>Cedar</WaTreeItem>
-      <WaTreeItem>Pine</WaTreeItem>
-      <WaTreeItem>Spruce</WaTreeItem>
-    </WaTreeItem>
-
-    <WaTreeItem>
-      Non-trees
-      <WaTreeItem>Bamboo</WaTreeItem>
-      <WaTreeItem>Cactus</WaTreeItem>
-      <WaTreeItem>Fern</WaTreeItem>
-    </WaTreeItem>
-  </WaTree>
-);
-```
-{% endraw %}
 
 ### With Icons
 
@@ -432,52 +242,3 @@ Decorative icons can be used before labels to provide hints for each node.
   </wa-tree-item>
 </wa-tree>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => {
-  return (
-    <WaTree class="tree-with-icons">
-      <WaTreeItem expanded>
-        <WaIcon name="folder" />
-        Root
-        <WaTreeItem>
-          <WaIcon name="folder" />
-          Folder 1<WaTreeItem>
-            <WaIcon name="files" />
-            File 1 - 1
-          </WaTreeItem>
-          <WaTreeItem disabled>
-            <WaIcon name="files" />
-            File 1 - 2
-          </WaTreeItem>
-          <WaTreeItem>
-            <WaIcon name="files" />
-            File 1 - 3
-          </WaTreeItem>
-        </WaTreeItem>
-        <WaTreeItem>
-          <WaIcon name="files" />
-          Folder 2<WaTreeItem>
-            <WaIcon name="files" />
-            File 2 - 1
-          </WaTreeItem>
-          <WaTreeItem>
-            <WaIcon name="files" />
-            File 2 - 2
-          </WaTreeItem>
-        </WaTreeItem>
-        <WaTreeItem>
-          <WaIcon name="files" />
-          File 1
-        </WaTreeItem>
-      </WaTreeItem>
-    </WaTree>
-  );
-};
-```
-{% endraw %}

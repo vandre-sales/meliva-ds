@@ -8,14 +8,6 @@ layout: component.njk
 <wa-divider></wa-divider>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-
-const App = () => <WaDivider />;
-```
-{% endraw %}
-
 ## Examples
 
 ### Width
@@ -26,14 +18,6 @@ Use the `--width` custom property to change the width of the divider.
 <wa-divider style="--width: 4px;"></wa-divider>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-
-const App = () => <WaDivider style={{ '--width': '4px' }} />;
-```
-{% endraw %}
-
 ### Color
 
 Use the `--color` custom property to change the color of the divider.
@@ -41,14 +25,6 @@ Use the `--color` custom property to change the color of the divider.
 ```html {.example}
 <wa-divider style="--color: tomato;"></wa-divider>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-
-const App = () => <WaDivider style={{ '--color': 'tomato' }} />;
-```
-{% endraw %}
 
 ### Spacing
 
@@ -76,28 +52,6 @@ Add the `vertical` attribute to draw the divider in a vertical orientation. The 
 </div>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-
-const App = () => (
-  <div
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      height: '2rem'
-    }}
-  >
-    First
-    <WaDivider vertical />
-    Middle
-    <WaDivider vertical />
-    Last
-  </div>
-);
-```
-{% endraw %}
-
 ### Menu Dividers
 
 Use dividers in [menus](/components/menu) to visually group menu items.
@@ -113,23 +67,3 @@ Use dividers in [menus](/components/menu) to visually group menu items.
   <wa-menu-item value="6">Option 6</wa-menu-item>
 </wa-menu>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuItem value="1">Option 1</WaMenuItem>
-    <WaMenuItem value="2">Option 2</WaMenuItem>
-    <WaMenuItem value="3">Option 3</WaMenuItem>
-    <wa-divider />
-    <WaMenuItem value="4">Option 4</WaMenuItem>
-    <WaMenuItem value="5">Option 5</WaMenuItem>
-    <WaMenuItem value="6">Option 6</WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}

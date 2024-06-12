@@ -8,16 +8,6 @@ layout: component.njk
 <wa-copy-button value="Web Awesome rocks!"></wa-copy-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import { WaCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-
-const App = () => (
-  <WaCopyButton value="Web Awesome rocks!" />
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Custom Labels
@@ -33,21 +23,6 @@ Copy Buttons display feedback in a tooltip. You can customize the labels using t
 ></wa-copy-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import { WaCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-
-const App = () => (
-  <WaCopyButton
-    value="Custom labels are easy"
-    copy-label="Click to copy"
-    success-label="You did it!"
-    error-label="Whoops, your browser doesn't support this!"
-  />
-);
-```
-{% endraw %}
-
 ### Custom Icons
 
 Use the `copy-icon`, `success-icon`, and `error-icon` slots to customize the icons that get displayed for each state. You can use [`<wa-icon>`](/components/icon) or your own images.
@@ -59,23 +34,6 @@ Use the `copy-icon`, `success-icon`, and `error-icon` slots to customize the ico
   <wa-icon slot="error-icon" name="xmark" variant="solid"></wa-icon>
 </wa-copy-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import { WaCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-import { WaIcon } from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <>
-    <WaCopyButton value="Copied from a custom button">
-      <WaIcon slot="copy-icon" name="clipboard" variant="regular" />
-      <WaIcon slot="success-icon" name="check" variant="solid" />
-      <WaIcon slot="error-icon" name="xmark" variant="solid" />
-    </WaCopyButton>
-  </>
-);
-```
-{% endraw %}
 
 ### Copying Values From Other Elements
 
@@ -103,33 +61,6 @@ To copy data from an attribute, use `from="id[attr]"` where `id` is the id of th
 <wa-copy-button from="my-link[href]"></wa-copy-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import { WaCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-import { WaInput } from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => (
-  <>
-    {/* Copies the span's textContent */}
-    <span id="my-phone">+1 (234) 456-7890</span>
-    <WaCopyButton from="my-phone" />
-
-    <br /><br />
-
-    {/* Copies the input's "value" property */}
-    <WaInput id="my-input" type="text" />
-    <WaCopyButton from="my-input.value" />
-
-    <br /><br />
-
-    {/* Copies the link's "href" attribute */}
-    <a id="my-link" href="https://shoelace.style/">Web Awesome Website</a>
-    <WaCopyButton from="my-link[href]" />
-  </>
-);
-```
-{% endraw %}
-
 ### Handling Errors
 
 A copy error will occur if the value is an empty string, if the `from` attribute points to an id that doesn't exist, or if the browser rejects the operation for any reason. When this happens, the `wa-error` event will be emitted.
@@ -140,16 +71,6 @@ This example demonstrates what happens when a copy error occurs. You can customi
 <wa-copy-button from="i-do-not-exist"></wa-copy-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import { WaCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-
-const App = () => (
-  <WaCopyButton from="i-do-not-exist" />
-);
-```
-{% endraw %}
-
 ### Disabled
 
 Copy buttons can be disabled by adding the `disabled` attribute.
@@ -158,16 +79,6 @@ Copy buttons can be disabled by adding the `disabled` attribute.
 <wa-copy-button value="You can't copy me" disabled></wa-copy-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import { WaCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-
-const App = () => (
-  <WaCopyButton value="You can't copy me" disabled />
-);
-```
-{% endraw %}
-
 ### Changing Feedback Duration
 
 A success indicator is briefly shown after copying. You can customize the length of time the indicator is shown using the `feedback-duration` attribute.
@@ -175,16 +86,6 @@ A success indicator is briefly shown after copying. You can customize the length
 ```html {.example}
 <wa-copy-button value="Web Awesome rocks!" feedback-duration="250"></wa-copy-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import { WaCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-
-const App = () => (
-  <WaCopyButton value="Web Awesome rocks!" feedback-duration={250} />
-);
-```
-{% endraw %}
 
 ### Custom Styles
 
@@ -227,47 +128,3 @@ You can customize the button to your liking with CSS.
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import { WaCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-
-const css = `
-  .custom-styles {
-    --success-color: white;
-    --error-color: white;
-    color: white;
-  }
-
-  .custom-styles::part(button) {
-    background-color: #ff1493;
-    border: solid 4px #ff7ac1;
-    border-right-color: #ad005c;
-    border-bottom-color: #ad005c;
-    border-radius: 0;
-    transition: 100ms scale ease-in-out, 100ms translate ease-in-out;
-  }
-
-  .custom-styles::part(button):hover {
-    scale: 1.1;
-  }
-
-  .custom-styles::part(button):active {
-    translate: 0 2px;
-  }
-
-  .custom-styles::part(button):focus-visible {
-    outline: dashed 2px deeppink;
-    outline-offset: 4px;
-  }
-`;
-
-const App = () => (
-  <>
-    <WaCopyButton value="I'm so stylish" className="custom-styles" />
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}

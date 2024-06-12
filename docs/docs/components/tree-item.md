@@ -17,27 +17,6 @@ layout: component.njk
 </wa-tree>
 ```
 
-<!-- prettier-ignore -->
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => (
-  <WaTree>
-    <WaTreeItem>
-      Item 1
-      <WaTreeItem>Item A</WaTreeItem>
-      <WaTreeItem>Item B</WaTreeItem>
-      <WaTreeItem>Item C</WaTreeItem>
-    </WaTreeItem>
-    <WaTreeItem>Item 2</WaTreeItem>
-    <WaTreeItem>Item 3</WaTreeItem>
-  </WaTree>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Nested tree items
@@ -62,32 +41,6 @@ A tree item can contain other tree items. This allows the node to be expanded or
 </wa-tree>
 ```
 
-<!-- prettier-ignore -->
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => (
-  <WaTree>
-    <WaTreeItem>
-      Item 1
-      <WaTreeItem>
-        Item A
-        <WaTreeItem>Item Z</WaTreeItem>
-        <WaTreeItem>Item Y</WaTreeItem>
-        <WaTreeItem>Item X</WaTreeItem>
-      </WaTreeItem>
-      <WaTreeItem>Item B</WaTreeItem>
-      <WaTreeItem>Item C</WaTreeItem>
-    </WaTreeItem>
-    <WaTreeItem>Item 2</WaTreeItem>
-    <WaTreeItem>Item 3</WaTreeItem>
-  </WaTree>
-);
-```
-{% endraw %}
-
 ### Selected
 
 Use the `selected` attribute to select a tree item initially.
@@ -104,27 +57,6 @@ Use the `selected` attribute to select a tree item initially.
   <wa-tree-item>Item 3</wa-tree-item>
 </wa-tree>
 ```
-
-<!-- prettier-ignore -->
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => (
-  <WaTree>
-    <WaTreeItem selected>
-      Item 1
-      <WaTreeItem>Item A</WaTreeItem>
-      <WaTreeItem>Item B</WaTreeItem>
-      <WaTreeItem>Item C</WaTreeItem>
-    </WaTreeItem>
-    <WaTreeItem>Item 2</WaTreeItem>
-    <WaTreeItem>Item 3</WaTreeItem>
-  </WaTree>
-);
-```
-{% endraw %}
 
 ### Expanded
 
@@ -147,29 +79,3 @@ Use the `expanded` attribute to expand a tree item initially.
   <wa-tree-item>Item 3</wa-tree-item>
 </wa-tree>
 ```
-
-<!-- prettier-ignore -->
-{% raw %}
-```jsx {.react}
-import WaTree from '@shoelace-style/shoelace/dist/react/tree';
-import WaTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
-
-const App = () => (
-  <WaTree>
-    <WaTreeItem expanded>
-      Item 1
-      <WaTreeItem expanded>
-        Item A
-        <WaTreeItem>Item Z</WaTreeItem>
-        <WaTreeItem>Item Y</WaTreeItem>
-        <WaTreeItem>Item X</WaTreeItem>
-      </WaTreeItem>
-      <WaTreeItem>Item B</WaTreeItem>
-      <WaTreeItem>Item C</WaTreeItem>
-    </WaTreeItem>
-    <WaTreeItem>Item 2</WaTreeItem>
-    <WaTreeItem>Item 3</WaTreeItem>
-  </WaTree>
-);
-```
-{% endraw %}

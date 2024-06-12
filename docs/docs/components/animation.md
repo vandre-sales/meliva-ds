@@ -25,43 +25,6 @@ To animate an element, wrap it in `<wa-animation>` and set an animation `name`. 
 </style>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaAnimation from '@shoelace-style/shoelace/dist/react/animation';
-
-const css = `
-  .animation-overview .box {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: var(--wa-color-brand-fill-loud);
-    margin: 1.5rem;
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="animation-overview">
-      <WaAnimation name="bounce" duration={2000} play>
-        <div class="box" />
-      </WaAnimation>
-      <WaAnimation name="jello" duration={2000} play>
-        <div class="box" />
-      </WaAnimation>
-      <WaAnimation name="heartBeat" duration={2000} play>
-        <div class="box" />
-      </WaAnimation>
-      <WaAnimation name="flip" duration={2000} play>
-        <div class="box" />
-      </WaAnimation>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}
-
 :::info
 The animation will only be applied to the first child element found in `<wa-animation>`.
 :::
@@ -136,12 +99,6 @@ This example demonstrates all of the baked-in animations and easings. Animations
 </style>
 ```
 
-{% raw %}
-```jsx {.react}
-
-```
-{% endraw %}
-
 ### Using Intersection Observer
 
 Use an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to control the animation when an element enters or exits the viewport. For example, scroll the box below in and out of your screen. The animation stops when the box exits the viewport and restarts each time it enters the viewport.
@@ -178,58 +135,6 @@ Use an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useEffect, useRef, useState } from 'react';
-import WaAnimation from '@shoelace-style/shoelace/dist/react/animation';
-
-const css = `
-  .animation-scroll {
-    height: calc(100vh + 100px);
-  }
-
-  .animation-scroll .box {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: var(--wa-color-brand-fill-loud);
-  }
-`;
-
-const App = () => {
-  const animation = useRef(null);
-  const box = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        animation.current.play = true;
-      } else {
-        animation.current.play = false;
-        animation.current.currentTime = 0;
-      }
-    });
-
-    if (box.current) {
-      observer.observe(box.current);
-    }
-  }, [box]);
-
-  return (
-    <>
-      <div class="animation-scroll">
-        <WaAnimation ref={animation} name="jackInTheBox" duration={2000} iterations={1}>
-          <div ref={box} class="box" />
-        </WaAnimation>
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Custom Keyframe Formats
 
@@ -271,52 +176,6 @@ Supply your own [keyframe formats](https://developer.mozilla.org/en-US/docs/Web/
 </style>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaAnimation from '@shoelace-style/shoelace/dist/react/animation';
-
-const css = `
-  .animation-keyframes .box {
-    width: 100px;
-    height: 100px;
-    background-color: var(--wa-color-brand-fill-loud);
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="animation-keyframes">
-      <WaAnimation
-        easing="ease-in-out"
-        duration={2000}
-        play
-        keyframes={[
-          {
-            offset: 0,
-            easing: 'cubic-bezier(0.250, 0.460, 0.450, 0.940)',
-            fillMode: 'both',
-            transformOrigin: 'center center',
-            transform: 'rotate(0)'
-          },
-          {
-            offset: 1,
-            easing: 'cubic-bezier(0.250, 0.460, 0.450, 0.940)',
-            fillMode: 'both',
-            transformOrigin: 'center center',
-            transform: 'rotate(90deg)'
-          }
-        ]}
-      >
-        <div class="box" />
-      </WaAnimation>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}
-
 ### Playing Animations on Demand
 
 Animations won't play until you apply the `play` attribute. You can omit it initially, then apply it on demand such as after a user interaction. In this example, the button will animate once every time the button is clicked.
@@ -338,25 +197,3 @@ Animations won't play until you apply the `play` attribute. You can omit it init
   });
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaAnimation from '@shoelace-style/shoelace/dist/react/animation';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => {
-  const [play, setPlay] = useState(false);
-
-  return (
-    <div class="animation-form">
-      <WaAnimation name="rubberBand" duration={1000} iterations={1} play={play} onWaFinish={() => setPlay(false)}>
-        <WaButton variant="brand" onClick={() => setPlay(true)}>
-          Click me
-        </WaButton>
-      </WaAnimation>
-    </div>
-  );
-};
-```
-{% endraw %}

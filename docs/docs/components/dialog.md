@@ -22,31 +22,6 @@ layout: component.njk
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ## Examples
 
 ### Dialog with Header
@@ -68,28 +43,6 @@ Headers can be used to display titles and more. Use the `with-header` attribute 
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDialog label="Dialog" with-header open={open} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Dialog with Footer
 
 Footers can be used to display titles and more. Use the `with-footer` attribute to add a footer to the dialog.
@@ -109,31 +62,6 @@ Footers can be used to display titles and more. Use the `with-footer` attribute 
   openButton.addEventListener('click', () => dialog.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDialog label="Dialog" with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Dismissing Dialogs
 
@@ -155,31 +83,6 @@ You can add the special `data-dialog="dismiss"` attribute to a button inside the
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Custom Width
 
 Use the `--width` custom property to set the dialog's width.
@@ -199,31 +102,6 @@ Use the `--width` custom property to set the dialog's width.
   openButton.addEventListener('click', () => dialog.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDialog label="Dialog" with-header with-footer open={open} style={{ '--width': '50vw' }} onWaAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Scrolling
 
@@ -246,40 +124,6 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
   openButton.addEventListener('click', () => dialog.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        <div
-          style={{
-            height: '150vh',
-            border: 'dashed 2px var(--wa-color-surface-border)',
-            padding: '0 1rem'
-          }}
-        >
-          <p>Scroll down and give it a try! 👇</p>
-        </div>
-
-        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Header Actions
 
@@ -304,38 +148,6 @@ The header shows a functional close button by default. You can use the `header-a
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-import WaIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        <WaIconButton
-          class="new-window"
-          slot="header-actions"
-          name="arrow-up-right-from-square"
-          onClick={() => window.open(location.href)}
-        />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Light Dismissal
 
 If you want the dialog to close when the user clicks on the overlay, add the `light-dismiss` attribute.
@@ -355,38 +167,6 @@ If you want the dialog to close when the user clicks on the overlay, add the `li
   openButton.addEventListener('click', () => dialog.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-  
-  return (
-    <>
-      <WaDialog 
-        label="Dialog" 
-        light-dismiss
-        with-header 
-        with-footer 
-        open={open} 
-        onWaAfterHide={() => setOpen(false)}
-      >
-        This dialog will close when you click on the overlay.
-        <WaButton ref={closeButton} slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Preventing the Dialog from Closing
 
@@ -420,47 +200,6 @@ You can use `event.detail.source` to determine which element triggered the reque
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useRef, useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-
-const App = () => {
-  const closeButton = useRef(null);
-  const [open, setOpen] = useState(false);
-
-  // Prevent the dialog from closing when the user clicks on the overlay
-  function handleRequestClose(event) {
-    if (event.detail.source !== closeButton) {
-      event.preventDefault();
-    }
-
-  }
-
-  return (
-    <>
-      <WaDialog 
-        label="Dialog" 
-        with-header 
-        with-footer 
-        open={open} 
-        onWaRequestClose={handleRequestClose} 
-        onWaAfterHide={() => setOpen(false)}
-      >
-        This dialog will only close when you click the right button.
-        <WaButton ref={closeButton} slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Setting Initial Focus
 
 To give focus to a specific element when the dialog opens, use the `autofocus` attribute.
@@ -481,30 +220,3 @@ To give focus to a specific element when the dialog opens, use the `autofocus` a
   openButton.addEventListener('click', () => dialog.open = true);
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaDialog from '@shoelace-style/shoelace/dist/react/dialog';
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <WaDialog label="Dialog" with-header with-footer open={open} onWaAfterHide={() => setOpen(false)}>
-        <WaInput autofocus placeholder="I will have focus when the dialog is opened" />
-        <WaButton slot="footer" variant="brand" data-dialog="dismiss">
-          Close
-        </WaButton>
-      </WaDialog>
-
-      <WaButton onClick={() => setOpen(true)}>Open Dialog</WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-

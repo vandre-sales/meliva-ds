@@ -17,26 +17,3 @@ layout: component.njk
   <wa-menu-item value="zucchini">Zucchini</wa-menu-item>
 </wa-menu>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaDivider from '@shoelace-style/shoelace/dist/react/divider';
-import WaMenu from '@shoelace-style/shoelace/dist/react/menu';
-import WaMenuLabel from '@shoelace-style/shoelace/dist/react/menu-label';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => (
-  <WaMenu style={{ maxWidth: '200px' }}>
-    <WaMenuLabel>Fruits</WaMenuLabel>
-    <WaMenuItem value="apple">Apple</WaMenuItem>
-    <WaMenuItem value="banana">Banana</WaMenuItem>
-    <WaMenuItem value="orange">Orange</WaMenuItem>
-    <WaDivider />
-    <WaMenuLabel>Vegetables</WaMenuLabel>
-    <WaMenuItem value="broccoli">Broccoli</WaMenuItem>
-    <WaMenuItem value="carrot">Carrot</WaMenuItem>
-    <WaMenuItem value="zucchini">Zucchini</WaMenuItem>
-  </WaMenu>
-);
-```
-{% endraw %}

@@ -12,21 +12,6 @@ layout: component.njk
 </wa-select>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2">Option 2</WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Disabled
@@ -40,23 +25,6 @@ Use the `disabled` attribute to disable an option and prevent it from being sele
   <wa-option value="option-3">Option 3</wa-option>
 </wa-select>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaOption from '@shoelace-style/shoelace/dist/react/option';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-
-const App = () => (
-  <WaSelect>
-    <WaOption value="option-1">Option 1</WaOption>
-    <WaOption value="option-2" disabled>
-      Option 2
-    </WaOption>
-    <WaOption value="option-3">Option 3</WaOption>
-  </WaSelect>
-);
-```
-{% endraw %}
 
 ### Prefix & Suffix
 

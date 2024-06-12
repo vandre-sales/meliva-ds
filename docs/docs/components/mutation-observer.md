@@ -42,47 +42,6 @@ The mutation observer will report changes to the content it wraps through the `w
 </div>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaMutationObserver from '@shoelace-style/shoelace/dist/react/mutation-observer';
-
-const css = `
-  .mutation-overview wa-button {
-    margin-bottom: 1rem;
-  }
-`;
-
-const variants = ['brand', 'success', 'neutral', 'warning', 'danger'];
-let clicks = 0;
-
-const App = () => {
-  const [variant, setVariant] = useState('brand');
-
-  function handleClick() {
-    clicks++;
-    setVariant(variants[clicks % variants.length]);
-  }
-
-  return (
-    <>
-      <WaMutationObserver attr="*" onWaMutation={event => console.log(event.detail)}>
-        <WaButton variant={variant} onClick={handleClick}>
-          Click to mutate
-        </WaButton>
-      </WaMutationObserver>
-
-    <br />
-    👆 Click the button and watch the console
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}
-
 :::info
 When you create a mutation observer, you must indicate what changes it should respond to by including at least one of `attr`, `child-list`, or `char-data`. If you don't specify at least one of these attributes, no mutation events will be emitted.
 :::
@@ -143,55 +102,3 @@ Use the `child-list` attribute to watch for new child elements that are added or
   </style>
 </div>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaMutationObserver from '@shoelace-style/shoelace/dist/react/mutation-observer';
-
-const css = `
-  .mutation-child-list .buttons {
-    display: flex;
-    gap: .25rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-  }
-`;
-
-let buttonCount = 0;
-
-const App = () => {
-  const [buttonIds, setButtonIds] = useState([]);
-
-  function addButton() {
-    setButtonIds([...buttonIds, ++buttonCount]);
-  }
-
-  function removeButton(id) {
-    setButtonIds(buttonIds.filter(i => i !== id));
-  }
-
-  return (
-    <>
-      <div className="mutation-child-list">
-        <WaMutationObserver child-list onWaMutation={event => console.log(event.detail)}>
-          <div className="buttons">
-            <WaButton variant="brand" onClick={addButton}>
-              Add button
-            </WaButton>
-            {buttonIds.map(id => (
-              <WaButton key={id} variant="default" onClick={() => removeButton(id)}>
-                {id}
-              </WaButton>
-            ))}
-          </div>
-        </WaMutationObserver>
-      </div>
-      👆 Add and remove buttons and watch the console
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}

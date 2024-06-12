@@ -8,14 +8,6 @@ layout: component.njk
 <wa-progress-bar value="50"></wa-progress-bar>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
-
-const App = () => <WaProgressBar value={50} />;
-```
-{% endraw %}
-
 ## Examples
 
 ### Labels
@@ -26,14 +18,6 @@ Use the `label` attribute to label the progress bar and tell assistive devices h
 <wa-progress-bar value="50" label="Upload progress"></wa-progress-bar>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
-
-const App = () => <WaProgressBar value="50" label="Upload progress" />;
-```
-{% endraw %}
-
 ### Custom Height
 
 Use the `--height` custom property to set the progress bar's height.
@@ -41,14 +25,6 @@ Use the `--height` custom property to set the progress bar's height.
 ```html {.example}
 <wa-progress-bar value="50" style="--height: 6px;"></wa-progress-bar>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
-
-const App = () => <WaProgressBar value={50} style={{ '--height': '6px' }} />;
-```
-{% endraw %}
 
 ### Showing Values
 
@@ -81,42 +57,6 @@ Use the default slot to show a value.
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
-
-const App = () => {
-  const [value, setValue] = useState(50);
-
-  function adjustValue(amount) {
-    let newValue = value + amount;
-    if (newValue < 0) newValue = 0;
-    if (newValue > 100) newValue = 100;
-    setValue(newValue);
-  }
-
-  return (
-    <>
-      <WaProgressBar value={value}>{value}%</WaProgressBar>
-
-      <br />
-
-      <WaButton circle onClick={() => adjustValue(-10)}>
-        <WaIcon name="minus" variant="solid" label="Decrease" />
-      </WaButton>
-
-      <WaButton circle onClick={() => adjustValue(10)}>
-        <WaIcon name="plus" variant="solid" label="Increase" />
-      </WaButton>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Indeterminate
 
 The `indeterminate` attribute can be used to inform the user that the operation is pending, but its status cannot currently be determined. In this state, `value` is ignored and the label, if present, will not be shown.
@@ -124,11 +64,3 @@ The `indeterminate` attribute can be used to inform the user that the operation 
 ```html {.example}
 <wa-progress-bar indeterminate></wa-progress-bar>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
-
-const App = () => <WaProgressBar indeterminate />;
-```
-{% endraw %}

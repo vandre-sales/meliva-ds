@@ -144,8 +144,8 @@
   --wa-color-overlay-modal: color-mix(in oklab, var(--wa-color-base-05) 50%, transparent);
   --wa-color-overlay-inline: color-mix(in oklab, var(--wa-color-base-80) 20%, transparent);
 
-  /* Shadows indicate elevation. Shadow color is used in your theme's shadow properties. 
-   * By default, the opacity of your shadow color is tied to the blur of shadows in your theme. 
+  /* Shadows indicate elevation. Shadow color is used in your theme's shadow properties.
+   * By default, the opacity of your shadow color is tied to the blur of shadows in your theme.
    * Because solid shadows appear stronger in color than diffused shadows, this helps keep consistent color intensity. */
   --wa-color-shadow: color-mix(
     in oklab,
@@ -228,9 +228,9 @@
   --wa-font-family-code: ui-monospace, monospace;
   --wa-font-family-longform: ui-serif, serif;
 
-  /* The default type scale is roughly based on the Major Second scale (x1.125), 
+  /* The default type scale is roughly based on the Major Second scale (x1.125),
    * with each value rounded to the nearest whole pixel based on a 16px root font size.
-   * For larger font sizes, every other step on the scale is skipped in order to maximize variation. 
+   * For larger font sizes, every other step on the scale is skipped in order to maximize variation.
    * A multiplier is provided to uniformly increase or decrease all font sizes. */
   --wa-font-size-multiplier: 1;
   --wa-font-size-2xs: calc(0.6875rem * var(--wa-font-size-multiplier)); /* 11px */
@@ -309,7 +309,7 @@
   /**
    * Shadows
    * Shadow properties are highly modular to make it easy to create custom shadow effects or transform elements based on specific shadow qualities.
-   * A multiplier is provided for each shadow quality to uniformly scale all related values. 
+   * A multiplier is provided for each shadow quality to uniformly scale all related values.
    */
 
   --wa-shadow-offset-x-multiplier: 0;
