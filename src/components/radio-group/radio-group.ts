@@ -120,7 +120,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
       radio.checked = false;
 
       if (!hasButtonGroup) {
-        radio.setAttribute("tabindex", "-1");
+        radio.setAttribute('tabindex', '-1');
       }
     }
 
@@ -169,10 +169,10 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
         const buttonRadio = radios[0].shadowRoot?.querySelector('button');
 
         if (buttonRadio) {
-          buttonRadio.setAttribute("tabindex", "0");
+          buttonRadio.setAttribute('tabindex', '0');
         }
       } else {
-        radios[0].setAttribute("tabindex", "0")
+        radios[0].setAttribute('tabindex', '0');
       }
     }
 
@@ -246,7 +246,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
       radio.checked = false;
 
       if (!hasButtonGroup) {
-        radio.setAttribute("tabindex", "-1")
+        radio.setAttribute('tabindex', '-1');
       }
     });
 
@@ -254,7 +254,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
     radios[index].checked = true;
 
     if (!hasButtonGroup) {
-      radios[index].setAttribute("tabindex", "0")
+      radios[index].setAttribute('tabindex', '0');
       radios[index].focus();
     } else {
       radios[index].shadowRoot!.querySelector('button')!.focus();
