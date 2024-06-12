@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-control-background);
-    --background-checked: var(--background);
+    --background-color: var(--wa-form-control-background);
+    --background-color-checked: var(--background-color);
     --border-color: var(--wa-form-control-resting-color);
     --border-color-checked: var(--wa-form-control-activated-color);
     --border-style: var(--wa-border-style);
@@ -61,7 +61,7 @@ export default css`
     border-style: var(--border-style);
     border-width: var(--border-width);
     border-radius: 50%;
-    background: var(--background);
+    background-color: var(--background-color);
     box-shadow: var(--box-shadow);
     color: transparent;
     transition:
@@ -83,7 +83,7 @@ export default css`
   .radio--checked .radio__control {
     color: var(--checked-icon-color);
     border-color: var(--border-color-checked);
-    background: var(--background-checked);
+    background-color: var(--background-color-checked);
   }
 
   /* Checked + focus */

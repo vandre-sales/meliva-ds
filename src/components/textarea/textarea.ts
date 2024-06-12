@@ -38,7 +38,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's base wrapper.
  * @csspart textarea - The internal `<textarea>` control.
  *
- * @cssproperty --background - The textarea's background styles.
+ * @cssproperty --background-color - The textarea's background color.
  * @cssproperty --border-color - The color of the textarea's borders.
  * @cssproperty --border-radius - The border radius of the textarea's corners.
  * @cssproperty --border-style - The style of the textarea's borders.

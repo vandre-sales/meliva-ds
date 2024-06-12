@@ -10,31 +10,31 @@ export default css`
   }
 
   :host([variant='brand']) {
-    --background: var(--wa-color-brand-fill-quiet);
+    --background-color: var(--wa-color-brand-fill-quiet);
     --border-color: var(--wa-color-brand-border-normal);
     --content-color: var(--wa-color-brand-on-normal);
   }
 
   :host([variant='success']) {
-    --background: var(--wa-color-success-fill-quiet);
+    --background-color: var(--wa-color-success-fill-quiet);
     --border-color: var(--wa-color-success-border-normal);
     --content-color: var(--wa-color-success-on-normal);
   }
 
   :host([variant='warning']) {
-    --background: var(--wa-color-warning-fill-quiet);
+    --background-color: var(--wa-color-warning-fill-quiet);
     --border-color: var(--wa-color-warning-border-normal);
     --content-color: var(--wa-color-warning-on-normal);
   }
 
   :host([variant='neutral']) {
-    --background: var(--wa-color-neutral-fill-quiet);
+    --background-color: var(--wa-color-neutral-fill-quiet);
     --border-color: var(--wa-color-neutral-border-normal);
     --content-color: var(--wa-color-neutral-on-normal);
   }
 
   :host([variant='danger']) {
-    --background: var(--wa-color-danger-fill-quiet);
+    --background-color: var(--wa-color-danger-fill-quiet);
     --border-color: var(--wa-color-danger-border-normal);
     --content-color: var(--wa-color-danger-on-normal);
   }
@@ -42,7 +42,7 @@ export default css`
   .tag {
     display: flex;
     align-items: center;
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);

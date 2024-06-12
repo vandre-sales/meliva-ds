@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-tooltip-background);
+    --background-color: var(--wa-tooltip-background);
     --border-radius: var(--wa-tooltip-border-radius);
     --max-width: 30ch;
     --padding: var(--wa-space-2xs) var(--wa-space-xs);
@@ -40,7 +40,7 @@ export default css`
     width: max-content;
     max-width: var(--max-width);
     border-radius: var(--border-radius);
-    background: var(--background);
+    background-color: var(--background-color);
     font: inherit;
     color: var(--wa-tooltip-content-color);
     font-size: var(--wa-tooltip-font-size);

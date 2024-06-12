@@ -101,7 +101,7 @@ export default css`
 
   :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
-    background: var(--background-color-hover);
+    background-color: var(--background-color-hover);
     color: var(--label-color-hover);
   }
 

@@ -43,11 +43,11 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
  * @csspart label - The container that wraps the checkbox's label.
  * @csspart form-control-help-text - The help text's wrapper.
  *
- * @cssproperty --background - The checkbox's background styles.
- * @cssproperty --background-checked - The checkbox's background styles when checked.
+ * @cssproperty --background-color - The checkbox's background color.
+ * @cssproperty --background-color-checked - The checkbox's background color when checked.
  * @cssproperty --border-color - The color of the checkbox's borders.
  * @cssproperty --border-color-checked - The color of the checkbox's borders when checked.
- * @cssproperty --border-radius - The border radius of the checkbox's corners.
+ * @cssproperty --border-radius - The radius of the checkbox's corners.
  * @cssproperty --border-style - The style of the checkbox's borders.
  * @cssproperty --border-width - The width of the checkbox's borders. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the checkbox.

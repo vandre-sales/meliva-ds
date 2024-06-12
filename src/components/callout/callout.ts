@@ -19,9 +19,9 @@ import type { CSSResultGroup } from 'lit';
  * @csspart icon - The container that wraps the optional icon.
  * @csspart message - The container that wraps the callout's main content.
  *
- * @cssproperty --background - The callout's background styles.
+ * @cssproperty --background-color - The callout's background color.
  * @cssproperty --border-color - The color of the callout's border.
- * @cssproperty --border-radius - The border radius of the callout's corners.
+ * @cssproperty --border-radius - The radius of the callout's corners.
  * @cssproperty --border-style - The style of the callout's borders.
  * @cssproperty --border-width - The width of the callout's borders.
  * @cssproperty --content-color - The color of the callout's content.

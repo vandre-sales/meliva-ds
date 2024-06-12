@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-color-surface-default);
+    --background-color: var(--wa-color-surface-default);
     --border-color: var(--wa-color-surface-border);
     --border-radius: var(--wa-panel-border-radius);
     --border-style: var(--wa-panel-border-style);
@@ -16,7 +16,7 @@ export default css`
   }
 
   .details {
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);

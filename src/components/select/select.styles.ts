@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-control-background);
+    --background-color: var(--wa-form-control-background);
     --border-color: var(--wa-form-control-resting-color);
     --border-radius: var(--wa-form-control-border-radius);
     --border-style: var(--wa-form-control-border-style);
@@ -13,8 +13,8 @@ export default css`
   }
 
   :host([filled]) {
-    --background: var(--wa-color-neutral-fill-quiet);
-    --border-color: var(--background);
+    --background-color: var(--wa-color-neutral-fill-quiet);
+    --border-color: var(--background-color);
   }
 
   /** The popup */
@@ -40,7 +40,7 @@ export default css`
 
   /* Combobox */
   .select__combobox {
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);

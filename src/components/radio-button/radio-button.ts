@@ -24,9 +24,9 @@ import type { CSSResultGroup } from 'lit';
  * @event wa-blur - Emitted when the button loses focus.
  * @event wa-focus - Emitted when the button gains focus.
  *
- * @cssproperty --background - The button's background styles.
- * @cssproperty --background-active - The color of the button's background when active.
- * @cssproperty --background-hover - The color of the button's background on hover.
+ * @cssproperty --background-color - The button's background color.
+ * @cssproperty --background-color-active - The button's background color when active.
+ * @cssproperty --background-color-hover - The button's background color on hover.
  * @cssproperty --border-color - The color of the button's border.
  * @cssproperty --border-color-active - The color of the button's border when active.
  * @cssproperty --border-color-hover - The color of the button's border on hover.

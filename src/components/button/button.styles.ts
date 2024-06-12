@@ -18,33 +18,33 @@ export default css`
    */
 
   :host([variant='brand']) {
-    --background: var(--wa-color-brand-fill-loud);
+    --background-color: var(--wa-color-brand-fill-loud);
     --label-color: var(--wa-color-brand-on-loud);
   }
 
   :host([variant='success']) {
-    --background: var(--wa-color-success-fill-loud);
+    --background-color: var(--wa-color-success-fill-loud);
     --label-color: var(--wa-color-success-on-loud);
   }
 
   :host([variant='warning']) {
-    --background: var(--wa-color-warning-fill-loud);
+    --background-color: var(--wa-color-warning-fill-loud);
     --label-color: var(--wa-color-warning-on-loud);
   }
 
   :host([variant='neutral']) {
-    --background: var(--wa-color-neutral-fill-loud);
+    --background-color: var(--wa-color-neutral-fill-loud);
     --label-color: var(--wa-color-neutral-on-loud);
   }
 
   :host([variant='danger']) {
-    --background: var(--wa-color-danger-fill-loud);
+    --background-color: var(--wa-color-danger-fill-loud);
     --label-color: var(--wa-color-danger-on-loud);
   }
 
   :host(:not([variant='text'])) {
-    --background-hover: color-mix(in oklab, var(--background), var(--wa-color-mix-hover));
-    --background-active: color-mix(in oklab, var(--background), var(--wa-color-mix-active));
+    --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
+    --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
     --border-color: initial;
     --border-color-hover: initial;
     --border-color-active: initial;
@@ -57,40 +57,40 @@ export default css`
    */
 
   :host([variant='brand'][outline]) {
-    --background-hover: var(--wa-color-brand-fill-quiet);
+    --background-color-hover: var(--wa-color-brand-fill-quiet);
     --label-color: var(--wa-color-brand-on-quiet);
     --label-color-hover: var(--wa-color-brand-on-normal);
   }
 
   :host([variant='success'][outline]) {
-    --background-hover: var(--wa-color-success-fill-quiet);
+    --background-color-hover: var(--wa-color-success-fill-quiet);
     --label-color: var(--wa-color-success-on-quiet);
     --label-color-hover: var(--wa-color-success-on-normal);
   }
 
   :host([variant='neutral'][outline]),
   :host(.wa-button-group__button--radio:not([checked])) {
-    --background-hover: var(--wa-color-neutral-fill-quiet);
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
     --label-color: var(--wa-color-neutral-on-quiet);
     --label-color-hover: var(--wa-color-neutral-on-normal);
   }
 
   :host([variant='warning'][outline]) {
-    --background-hover: var(--wa-color-warning-fill-quiet);
+    --background-color-hover: var(--wa-color-warning-fill-quiet);
     --label-color: var(--wa-color-warning-on-quiet);
     --label-color-hover: var(--wa-color-warning-on-normal);
   }
 
   :host([variant='danger'][outline]) {
-    --background-hover: var(--wa-color-danger-fill-quiet);
+    --background-color-hover: var(--wa-color-danger-fill-quiet);
     --label-color: var(--wa-color-danger-on-quiet);
     --label-color-hover: var(--wa-color-danger-on-normal);
   }
 
   :host([outline]),
   :host(.wa-button-group__button--radio:not([checked])) {
-    --background: transparent;
-    --background-active: color-mix(in oklab, var(--background-hover), var(--wa-color-surface-default) 30%);
+    --background-color: transparent;
+    --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
     --border-color: color-mix(in oklab, var(--label-color), var(--wa-color-surface-default) 30%);
     --border-color-hover: var(--border-color);
     --border-color-active: var(--border-color);
@@ -102,9 +102,9 @@ export default css`
    */
 
   :host([variant='text']) {
-    --background: none;
-    --background-active: none;
-    --background-hover: none;
+    --background-color: none;
+    --background-color-active: none;
+    --background-color-hover: none;
     --border-color: transparent;
     --border-color-active: transparent;
     --border-color-hover: transparent;
@@ -118,9 +118,9 @@ export default css`
    */
 
   :host([checked]) {
-    --background: var(--wa-color-brand-fill-quiet);
-    --background-active: color-mix(in oklab, var(--background-hover), var(--wa-color-surface-default) 30%);
-    --background-hover: var(--background);
+    --background-color: var(--wa-color-brand-fill-quiet);
+    --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
+    --background-color-hover: var(--background-color);
     --border-color: var(--wa-form-control-activated-color);
     --border-color-active: var(--border-color);
     --border-color-hover: var(--border-color);
@@ -152,8 +152,8 @@ export default css`
    */
 
   .button {
-    background: var(--background);
-    border-color: var(--border-color, var(--background));
+    background-color: var(--background-color);
+    border-color: var(--border-color, var(--background-color));
     border-radius: var(--border-radius);
     border-style: var(--border-style);
     border-width: max(1px, var(--border-width));
@@ -213,14 +213,14 @@ export default css`
   }
 
   .button:hover:not(.button--disabled, .button--loading) {
-    background: var(--background-hover, var(--background, none));
-    border-color: var(--border-color-hover, var(--border-color, var(--background-hover)));
+    background-color: var(--background-color-hover, var(--background-color, none));
+    border-color: var(--border-color-hover, var(--border-color, var(--background-color-hover)));
     color: var(--label-color-hover, var(--label-color));
   }
 
   .button:active:not(.button--disabled, .button--loading) {
-    background: var(--background-active, var(--background, none));
-    border-color: var(--border-color-active, var(--border-color, var(--background-active)));
+    background-color: var(--background-color-active, var(--background-color, none));
+    border-color: var(--border-color-active, var(--border-color, var(--background-color-active)));
     color: var(--label-color-active, var(--label-color));
   }
 

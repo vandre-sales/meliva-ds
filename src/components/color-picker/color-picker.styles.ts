@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-color-surface-raised);
+    --background-color: var(--wa-color-surface-raised);
     --border-color: var(--wa-color-surface-border);
     --border-radius: var(--wa-form-control-border-radius);
     --border-style: var(--wa-form-control-border-style);
@@ -23,7 +23,7 @@ export default css`
   }
 
   .color-picker {
-    background: var(--background);
+    background-color: var(--background-color);
     border-radius: var(--border-radius);
     color: var(--color);
     font: inherit;
@@ -279,7 +279,7 @@ export default css`
 
   .color-dropdown::part(panel) {
     max-height: none;
-    background: var(--background);
+    background-color: var(--background-color);
     border: var(--border-style) var(--border-width) var(--border-color);
     border-radius: var(--border-radius);
     overflow: visible;

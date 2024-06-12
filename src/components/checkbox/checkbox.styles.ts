@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-control-background);
-    --background-checked: var(--wa-form-control-activated-color);
+    --background-color: var(--wa-form-control-background);
+    --background-color-checked: var(--wa-form-control-activated-color);
     --border-color: var(--wa-form-control-resting-color);
     --border-color-checked: var(--wa-form-control-activated-color);
     --border-radius: min(
@@ -52,7 +52,7 @@ export default css`
     border-radius: var(--border-radius);
     border-style: var(--border-style);
     border-width: var(--border-width);
-    background: var(--background);
+    background-color: var(--background-color);
     box-shadow: var(--box-shadow);
     color: var(--wa-form-control-value-color);
     transition:
@@ -88,7 +88,7 @@ export default css`
   .checkbox--indeterminate .checkbox__control {
     color: var(--wa-color-brand-on-loud);
     border-color: var(--border-color-checked);
-    background: var(--background-checked);
+    background-color: var(--background-color-checked);
   }
 
   /* Checked/indeterminate + focus */

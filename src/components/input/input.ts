@@ -54,9 +54,9 @@ import type WaButton from '../button/button.js';
  * @csspart password-toggle-button - The password toggle button.
  * @csspart suffix - The container that wraps the suffix.
  *
- * @cssproperty --background - The input's background styles.
+ * @cssproperty --background-color - The input's background color.
  * @cssproperty --border-color - The color of the input's borders.
- * @cssproperty --border-radius - The border radius of the input's corners.
+ * @cssproperty --border-radius - The radius of the input's corners.
  * @cssproperty --border-style - The style of the input's borders.
  * @cssproperty --border-width - The width of the input's borders. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the input.

@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-color-surface-raised);
+    --background-color: var(--wa-color-surface-raised);
     --box-shadow: var(--wa-shadow-l);
     --size: 25rem;
     --spacing: var(--wa-space-xl);
@@ -26,7 +26,7 @@ export default css`
     max-width: 100%;
     max-height: 100%;
     overflow: hidden;
-    background: var(--background);
+    background-color: var(--background-color);
     border: none;
     box-shadow: var(--box-shadow);
     overflow: auto;

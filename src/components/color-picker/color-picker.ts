@@ -86,9 +86,9 @@ declare const EyeDropper: EyeDropperConstructor;
  * @csspart format-button__suffix - The format button's exported `suffix` part.
  * @csspart format-button__caret - The format button's exported `caret` part.
  *
- * @cssproperty --background - The color picker's background styles.
+ * @cssproperty --background-color - The color picker's background color.
  * @cssproperty --border-color - The color of the color picker's borders.
- * @cssproperty --border-radius - The corners of the color picker.
+ * @cssproperty --border-radius - The radius of the color picker's corners.
  * @cssproperty --border-style - The style of the color picker's borders.
  * @cssproperty --border-width - The width of the color picker's borders.
  * @cssproperty --grid-width - The width of the color grid.

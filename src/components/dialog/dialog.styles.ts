@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-color-surface-raised);
+    --background-color: var(--wa-color-surface-raised);
     --border-radius: var(--wa-panel-border-radius);
     --box-shadow: var(--wa-shadow-l);
     --width: 31rem;
@@ -27,7 +27,7 @@ export default css`
     width: var(--width);
     max-width: calc(100% - var(--wa-space-2xl));
     max-height: calc(100% - var(--wa-space-2xl));
-    background: var(--background);
+    background-color: var(--background-color);
     border-radius: var(--border-radius);
     border: none;
     box-shadow: var(--box-shadow);

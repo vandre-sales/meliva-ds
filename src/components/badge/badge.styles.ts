@@ -42,7 +42,7 @@ export default css`
     font-size: max(12px, 0.75em);
     font-weight: var(--wa-font-weight-semibold);
     line-height: 1;
-    background: var(--background-color);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);

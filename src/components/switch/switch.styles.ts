@@ -2,10 +2,10 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-control-background);
-    --background-checked: var(--wa-form-control-activated-color);
+    --background-color: var(--wa-form-control-background);
+    --background-color-checked: var(--wa-form-control-activated-color);
     --border-color: var(--wa-form-control-resting-color);
-    --border-color-checked: var(--background-checked);
+    --border-color-checked: var(--background-color-checked);
     --border-style: var(--wa-form-control-border-style);
     --border-width: var(--wa-form-control-border-width);
     --box-shadow: initial;
@@ -49,7 +49,7 @@ export default css`
     justify-content: center;
     width: var(--width);
     height: var(--height);
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--height);
     border-style: var(--border-style);
@@ -90,12 +90,12 @@ export default css`
 
   /* Checked */
   .switch--checked .switch__control {
-    background: var(--background-checked);
+    background-color: var(--background-color-checked);
     border-color: var(--border-color-checked);
   }
 
   .switch--checked .switch__control .switch__thumb {
-    background: var(--thumb-color-checked);
+    background-color: var(--thumb-color-checked);
     translate: calc((var(--width) - var(--height)) / 2);
   }
 

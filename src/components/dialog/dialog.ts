@@ -45,7 +45,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart body - The dialog's body.
  * @csspart footer - The dialog's footer.
  *
- * @cssproperty --background - The dialog's background styles.
+ * @cssproperty --background-color - The dialog's background color.
  * @cssproperty --border-radius - The radius of the dialog's corners.
  * @cssproperty --box-shadow - The shadow effects around the edges of the dialog.
  * @cssproperty --spacing - The amount of space around and between the dialog's content.

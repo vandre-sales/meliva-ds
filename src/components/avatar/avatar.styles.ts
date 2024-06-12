@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-color-neutral-fill-normal);
+    --background-color: var(--wa-color-neutral-fill-normal);
     --content-color: var(--wa-color-neutral-on-normal);
     --size: 3rem;
 
@@ -16,7 +16,7 @@ export default css`
     position: relative;
     width: var(--size);
     height: var(--size);
-    background: var(--background);
+    background-color: var(--background-color);
     font: inherit;
     font-size: calc(var(--size) * 0.4);
     color: var(--content-color);
