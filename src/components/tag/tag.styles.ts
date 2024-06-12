@@ -59,8 +59,12 @@ export default css`
     padding: 0;
   }
 
+  .tag:hover > wa-icon-button {
+    color: color-mix(in oklab, var(--content-color), var(--wa-color-mix-hover));
+  }
+
   .tag:active > wa-icon-button {
-    color: var(--content-color);
+    color: color-mix(in oklab, var(--content-color), var(--wa-color-mix-active));
   }
 
   /*

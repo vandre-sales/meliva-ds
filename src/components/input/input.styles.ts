@@ -123,7 +123,7 @@ export default css`
 
   .input__prefix ::slotted(wa-icon),
   .input__suffix ::slotted(wa-icon) {
-    color: var(--wa-color-neutral-fill-loud);
+    color: var(--wa-color-neutral-on-quiet);
   }
 
   /*
@@ -225,7 +225,7 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: inherit;
-    color: var(--wa-color-neutral-fill-loud);
+    color: var(--wa-color-neutral-on-quiet);
     border: none;
     background: none;
     padding: 0;
@@ -233,9 +233,14 @@ export default css`
     cursor: pointer;
   }
 
+  .input__clear:hover,
+  .input__password-toggle:hover {
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
+  }
+
   .input__clear:active,
   .input__password-toggle:active {
-    color: color-mix(in oklab, var(--wa-color-neutral-fill-loud), var(--wa-color-mix-active));
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
   }
 
   .input__clear:focus,

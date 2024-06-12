@@ -142,6 +142,7 @@ export default class WaIconButton extends WebAwesomeFormAssociatedElement {
           library=${ifDefined(this.library)}
           src=${ifDefined(this.src)}
           aria-hidden="true"
+          fixed-width
         ></wa-icon>
       </${tag}>
     `;

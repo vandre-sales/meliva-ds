@@ -239,7 +239,7 @@ export default css`
     flex: 0;
     display: inline-flex;
     align-items: center;
-    color: var(--wa-color-neutral-fill-loud);
+    color: var(--wa-color-neutral-on-quiet);
   }
 
   /* Clear button */
@@ -248,7 +248,7 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: inherit;
-    color: var(--wa-color-neutral-fill-loud);
+    color: var(--wa-color-neutral-on-quiet);
     border: none;
     background: none;
     padding: 0;
@@ -260,8 +260,12 @@ export default css`
     outline: none;
   }
 
+  .select__clear:hover {
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-hover));
+  }
+
   .select__clear:active {
-    color: color-mix(in oklab, var(--wa-color-neutral-fill-loud), var(--wa-color-mix-active));
+    color: color-mix(in oklab, currentColor, var(--wa-color-mix-active));
   }
 
   /* Expand icon */
@@ -269,7 +273,7 @@ export default css`
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    color: var(--wa-color-text-quiet);
+    color: var(--wa-color-neutral-on-quiet);
     transition: rotate var(--wa-transition-slow) ease;
     rotate: 0;
     margin-inline-start: var(--wa-space-s);
