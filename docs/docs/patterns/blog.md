@@ -89,11 +89,68 @@ TODO Page Description
 ```html{.example}
 ```
 
-### Social Share
+## Social Share
+
+### Vertical
+```html{.example}
+<wa-card class="social-share-vertical" style="--border-radius: 4rem;">
+  <wa-icon-button name="facebook" family="brands" variant="solid" label="Edit" href="https://example.com/"></wa-icon-button>
+   <wa-icon-button name="x-twitter" family="brands" variant="solid" label="Edit" href="https://example.com/"></wa-icon-button>
+    <wa-icon-button name="threads" family="brands" variant="solid" label="Edit" href="https://example.com/"></wa-icon-button>
+    <wa-icon-button name="mastodon" family="brands" variant="solid" label="Edit" href="https://example.com/"></wa-icon-button>
+    <wa-icon-button name="paper-plane" family="solid" variant="solid" label="Edit" href="https://example.com/"></wa-icon-button>
+</wa-card>
+<style>
+  .social-share-vertical {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+
+    wa-icon-button {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: .5rem;
+    }
+     wa-icon-button:last-of-type {
+      margin-bottom: initial;
+    }
+  }
+</style>
+```
+
+### Horizontal
 ```html{.example}
 <wa-card>
-  <wa-icon-button name="facebook" family="brands" variant="solid" label="Edit" style="font-size: 2.5rem;"></wa-icon-button>
-   <wa-icon-button name="x-twitter" family="brands" variant="solid" label="Edit" style="font-size: 2.5rem;"></wa-icon-button>
-    <wa-icon-button name="threads" family="brands" variant="solid" label="Edit" style="font-size: 2.5rem;"></wa-icon-button>
+  <div slot="header">
+    Share this Article
+  </div>
+  <wa-icon-button name="facebook" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem; background: red"></wa-icon-button>
+   <wa-icon-button name="x-twitter" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+    <wa-icon-button name="threads" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+        <wa-icon-button name="mastodon" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+
+    <wa-icon-button name="instagram" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+
+    <wa-icon-button name="pinterest" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+    <wa-icon-button name="linkedin" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+    <div slot="footer">
+      <div class="share-input">
+         <wa-input></wa-input>
+    <wa-button variant="brand"> <wa-icon slot="prefix" name="link" variant="solid"></wa-icon>Copy</wa-button>
+      </div>
+   
+  </div>
 </wa-card>
+<style>
+  .share-input {
+    display: flex;
+    
+    wa-input {
+          --border-radius: var(--wa-form-controls-corners) 0 0 var(--wa-form-controls-corners);
+    }
+    wa-button {
+      --border-radius:  0 var(--wa-form-controls-corners)  var(--wa-form-controls-corners) 0;
+    }
+  }
+</style>
 ```
