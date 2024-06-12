@@ -324,7 +324,7 @@
   /**
    * Component groups
    */
-  --wa-form-control-background: transparent;
+  --wa-form-control-background-color: transparent;
 
   --wa-form-control-border-radius: var(--wa-border-radius-pill);
 

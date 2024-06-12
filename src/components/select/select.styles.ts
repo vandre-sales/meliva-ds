@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background-color: var(--wa-form-control-background);
+    --background-color: var(--wa-form-control-background-color);
     --border-color: var(--wa-form-control-resting-color);
     --border-radius: var(--wa-form-control-border-radius);
     --border-style: var(--wa-form-control-border-style);

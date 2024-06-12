@@ -315,7 +315,7 @@
   /**
    * Component groups
    */
-  --wa-form-control-background: var(--wa-color-surface-default);
+  --wa-form-control-background-color: var(--wa-color-surface-default);
 
   --wa-form-control-border-radius: var(--wa-border-radius-s);
 

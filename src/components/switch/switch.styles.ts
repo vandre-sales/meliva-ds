@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background-color: var(--wa-form-control-background);
+    --background-color: var(--wa-form-control-background-color);
     --background-color-checked: var(--wa-form-control-activated-color);
     --border-color: var(--wa-form-control-resting-color);
     --border-color-checked: var(--background-color-checked);
@@ -11,7 +11,7 @@ export default css`
     --box-shadow: initial;
     --height: calc(1em * var(--wa-form-control-value-line-height));
     --thumb-color: var(--wa-form-control-resting-color);
-    --thumb-color-checked: var(--wa-form-control-background);
+    --thumb-color-checked: var(--wa-form-control-background-color);
     --thumb-shadow: initial;
     --thumb-size: calc((var(--height) - var(--border-width) * 2) * 0.75);
     --width: calc(var(--height) * 1.75);

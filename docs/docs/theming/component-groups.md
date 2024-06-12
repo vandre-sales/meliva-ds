@@ -14,7 +14,7 @@ Not every form control uses all of these custom properties. For example, `<wa-ra
 
 | Custom Property                             | Default Value                                                                                     |
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `--wa-form-control-background`              | `var(--wa-color-surface-default)`                                                                 |
+| `--wa-form-control-background-color`              | `var(--wa-color-surface-default)`                                                                 |
 | `--wa-form-control-border-style`            | `var(--wa-border-style)`                                                                          |
 | `--wa-form-control-border-width`            | `var(--wa-border-width-s)`                                                                        |
 | `--wa-form-control-border-radius`           | `var(--wa-border-radius-s)`                                                                       |
@@ -105,7 +105,7 @@ Tooltip styles are shared between the [tooltip](/docs/components/tooltip) compon
 | Custom Property              | Default Value                       |
 | ---------------------------- | ----------------------------------- |
 | `--wa-tooltip-arrow-size`    | `0.375rem` <small>(6px)</small>     |
-| `--wa-tooltip-background`    | `var(--wa-color-neutral-fill-loud)` |
+| `--wa-tooltip-background-color`    | `var(--wa-color-neutral-fill-loud)` |
 | `--wa-tooltip-border-radius` | `var(--wa-border-radius-s)`         |
 | `--wa-tooltip-content-color` | `var(--wa-color-neutral-on-loud)`   |
 | `--wa-tooltip-font-size`     | `var(--wa-font-size-s)`             |

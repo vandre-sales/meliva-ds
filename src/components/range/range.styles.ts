@@ -150,7 +150,7 @@ export default css`
     z-index: 1000;
     left: 0;
     border-radius: var(--wa-tooltip-border-radius);
-    background-color: var(--wa-tooltip-background);
+    background-color: var(--wa-tooltip-background-color);
     font-family: inherit;
     font-size: var(--wa-tooltip-font-size);
     line-height: var(--wa-tooltip-line-height);

@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background-color: var(--wa-tooltip-background);
+    --background-color: var(--wa-tooltip-background-color);
     --border-radius: var(--wa-tooltip-border-radius);
     --max-width: 30ch;
     --padding: var(--wa-space-2xs) var(--wa-space-xs);
@@ -14,7 +14,7 @@ export default css`
 
   .tooltip {
     --arrow-size: var(--wa-tooltip-arrow-size);
-    --arrow-color: var(--wa-tooltip-background);
+    --arrow-color: var(--wa-tooltip-background-color);
   }
 
   .tooltip::part(popup) {

@@ -152,7 +152,7 @@ hasOutline: false
     --wa-shadow-l: var(--wa-shadow-offset-x-l) var(--wa-shadow-offset-y-l) var(--wa-shadow-blur-l)
       calc(var(--wa-shadow-offset-x-l) * -1) var(--wa-color-shadow);
 
-    --wa-form-control-background: var(--wa-color-surface-default);
+    --wa-form-control-background-color: var(--wa-color-surface-default);
 
     --wa-form-control-border-radius: var(--wa-border-radius-s);
 
@@ -367,7 +367,7 @@ hasOutline: false
     position: relative;
     border: var(--wa-form-control-border-width) dashed var(--wa-form-control-resting-color);
     border-radius: var(--wa-form-control-border-radius);
-    background: var(--wa-form-control-background);
+    background: var(--wa-form-control-background-color);
     cursor: pointer;
     font-weight: var(--wa-font-weight-action);
     height: calc(var(--wa-form-control-height-m) + var(--wa-border-width-s) * 2);
