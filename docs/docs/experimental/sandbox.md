@@ -100,13 +100,13 @@ layout: page.njk
 <wa-button variant="warning">Warning</wa-button>
 <wa-button variant="danger">Danger</wa-button>
 <br /><br />
-<wa-button variant="brand" outline>Brand</wa-button>
-<wa-button variant="success" outline>Success</wa-button>
-<wa-button variant="neutral" outline>Neutral</wa-button>
-<wa-button variant="warning" outline>Warning</wa-button>
-<wa-button variant="danger" outline>Danger</wa-button>
+<wa-button variant="brand" appearance="outline">Brand</wa-button>
+<wa-button variant="success" appearance="outline">Success</wa-button>
+<wa-button variant="neutral" appearance="outline">Neutral</wa-button>
+<wa-button variant="warning" appearance="outline">Warning</wa-button>
+<wa-button variant="danger" appearance="outline">Danger</wa-button>
 <br /><br />
-<wa-button variant="text">Brand</wa-button>
+<wa-button appearance="text">Text</wa-button>
 <br /><br />
 <wa-radio-group label="Radio button group" name="a" value="1">
   <wa-radio-button value="1">Option 1</wa-radio-button>

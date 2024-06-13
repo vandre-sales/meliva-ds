@@ -91,7 +91,6 @@ export default css`
   :host(.wa-button-group__button--radio:not([checked])) {
     --background-color: transparent;
     --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
-    --border-color: color-mix(in oklab, var(--label-color), var(--wa-color-surface-default) 30%);
     --border-color-hover: var(--border-color);
     --border-color-active: var(--border-color);
     --label-color-hover: var(--label-color);
@@ -167,8 +166,8 @@ export default css`
   }
 
   :host([appearance='subtle']) {
-    --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
-    --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
+    --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-surface-default) 20%);
+    --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-surface-default) 30%);
     --border-color: initial;
     --border-color-hover: initial;
     --border-color-active: initial;
