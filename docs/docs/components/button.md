@@ -24,36 +24,36 @@ Use the `variant` attribute to set the button's semantic variant.
 
 ### Appearance
 
-Use the `appearance` attribute to set the button's visual appearance.
+Use the `appearance` attribute to change the button's visual appearance.
 
 ```html {.example}
 <div style="margin-block-end: 1rem;">
-  <wa-button appearance="solid" variant="neutral">Solid</wa-button>
-  <wa-button appearance="subtle" variant="neutral">Subtle</wa-button>
+  <wa-button appearance="filled" variant="neutral">Filled</wa-button>
+  <wa-button appearance="tinted" variant="neutral">Tinted</wa-button>
   <wa-button appearance="outline" variant="neutral">Outline</wa-button>
   <wa-button appearance="text" variant="neutral">Text</wa-button>
 </div>
 <div style="margin-block-end: 1rem;">
-  <wa-button appearance="solid" variant="brand">Solid</wa-button>
-  <wa-button appearance="subtle" variant="brand">Subtle</wa-button>
+  <wa-button appearance="filled" variant="brand">Filled</wa-button>
+  <wa-button appearance="tinted" variant="brand">Tinted</wa-button>
   <wa-button appearance="outline" variant="brand">Outline</wa-button>
   <wa-button appearance="text" variant="brand">Text</wa-button>
 </div>
 <div style="margin-block-end: 1rem;">
-  <wa-button appearance="solid" variant="success">Solid</wa-button>
-  <wa-button appearance="subtle" variant="success">Subtle</wa-button>
+  <wa-button appearance="filled" variant="success">Filled</wa-button>
+  <wa-button appearance="tinted" variant="success">Tinted</wa-button>
   <wa-button appearance="outline" variant="success">Outline</wa-button>
   <wa-button appearance="text" variant="success">Text</wa-button>
 </div>
 <div style="margin-block-end: 1rem;">
-  <wa-button appearance="solid" variant="warning">Solid</wa-button>
-  <wa-button appearance="subtle" variant="warning">Subtle</wa-button>
+  <wa-button appearance="filled" variant="warning">Filled</wa-button>
+  <wa-button appearance="tinted" variant="warning">Tinted</wa-button>
   <wa-button appearance="outline" variant="warning">Outline</wa-button>
   <wa-button appearance="text" variant="warning">Text</wa-button>
 </div>
 <div>
-  <wa-button appearance="solid" variant="danger">Solid</wa-button>
-  <wa-button appearance="subtle" variant="danger">Subtle</wa-button>
+  <wa-button appearance="filled" variant="danger">Filled</wa-button>
+  <wa-button appearance="tinted" variant="danger">Tinted</wa-button>
   <wa-button appearance="outline" variant="danger">Outline</wa-button>
   <wa-button appearance="text" variant="danger">Text</wa-button>
 </div>
@@ -110,54 +110,54 @@ Use the `prefix` and `suffix` slots to add icons.
 
 ```html {.example}
 <wa-button size="small">
-  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
+  <wa-icon slot="prefix" name="gear" variant="filled"></wa-icon>
   Settings
 </wa-button>
 
 <wa-button size="small">
-  <wa-icon slot="suffix" name="undo" variant="solid"></wa-icon>
+  <wa-icon slot="suffix" name="undo" variant="filled"></wa-icon>
   Refresh
 </wa-button>
 
 <wa-button size="small">
-  <wa-icon slot="prefix" name="link" variant="solid"></wa-icon>
-  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="solid"></wa-icon>
+  <wa-icon slot="prefix" name="link" variant="filled"></wa-icon>
+  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="filled"></wa-icon>
   Open
 </wa-button>
 
 <br /><br />
 
 <wa-button>
-  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
+  <wa-icon slot="prefix" name="gear" variant="filled"></wa-icon>
   Settings
 </wa-button>
 
 <wa-button>
-  <wa-icon slot="suffix" name="undo" variant="solid"></wa-icon>
+  <wa-icon slot="suffix" name="undo" variant="filled"></wa-icon>
   Refresh
 </wa-button>
 
 <wa-button>
-  <wa-icon slot="prefix" name="link" variant="solid"></wa-icon>
-  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="solid"></wa-icon>
+  <wa-icon slot="prefix" name="link" variant="filled"></wa-icon>
+  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="filled"></wa-icon>
   Open
 </wa-button>
 
 <br /><br />
 
 <wa-button size="large">
-  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
+  <wa-icon slot="prefix" name="gear" variant="filled"></wa-icon>
   Settings
 </wa-button>
 
 <wa-button size="large">
-  <wa-icon slot="suffix" name="undo" variant="solid"></wa-icon>
+  <wa-icon slot="suffix" name="undo" variant="filled"></wa-icon>
   Refresh
 </wa-button>
 
 <wa-button size="large">
-  <wa-icon slot="prefix" name="link" variant="solid"></wa-icon>
-  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="solid"></wa-icon>
+  <wa-icon slot="prefix" name="link" variant="filled"></wa-icon>
+  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="filled"></wa-icon>
   Open
 </wa-button>
 ```
@@ -206,7 +206,7 @@ This example demonstrates how to style buttons using a custom class. This is the
 <style>
   wa-button.pink::part(base) {
     border-radius: 6px;
-    border: solid 2px;
+    border: filled 2px;
     background: #ff1493;
     border-top-color: #ff7ac1;
     border-left-color: #ff7ac1;

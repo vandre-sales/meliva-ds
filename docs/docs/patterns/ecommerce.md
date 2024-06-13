@@ -26,7 +26,7 @@ TODO Page Description
       <div style="font-size: small;">Off-white Jordan One</div>
       <div style="display:flex; justify-content: space-between; align-items: center;">
         <span>Qty: 1</span>
-        <wa-button variant="text" size="small">Remove</wa-button>
+        <wa-button appearance="text" size="small">Remove</wa-button>
       </div>
     </div>
   </section>
@@ -40,7 +40,7 @@ TODO Page Description
       <div style="font-size: small;">50/50 Cotton Poly Blend</div>
       <div style="display:flex; justify-content: space-between; align-items: center;">
         <span>Qty: 1</span>
-        <wa-button variant="text" size="small">Remove</wa-button>
+        <wa-button appearance="text" size="small">Remove</wa-button>
       </div>
     </div>
   </section>
@@ -54,7 +54,7 @@ TODO Page Description
       <div style="font-size: small;">100% Cotton</div>
       <div style="display:flex; justify-content: space-between; align-items: center;">
         <span>Qty: 1</span>
-        <wa-button variant="text" size="small">Remove</wa-button>
+        <wa-button appearance="text" size="small">Remove</wa-button>
       </div>
     </div>
   </section>
@@ -284,7 +284,7 @@ TODO Page Description
 
        <div style="display: flex;justify-content: space-between;align-items: baseline;">
         <span><wa-icon name="check" style="color: green; margin-right: 0.5rem;"></wa-icon> In Stock</span>
-        <wa-button variant="text" size="small">Remove</wa-button>
+        <wa-button appearance="text" size="small">Remove</wa-button>
         </div>
     </div>
 
@@ -301,7 +301,7 @@ TODO Page Description
 
        <div style="display: flex;justify-content: space-between;align-items: baseline;">
         <span><wa-icon name="check" style="color: green; margin-right: 0.5rem;"></wa-icon> In Stock</span>
-        <wa-button variant="text" size="small">Remove</wa-button>
+        <wa-button appearance="text" size="small">Remove</wa-button>
         </div>
     </div>
 
@@ -318,7 +318,7 @@ TODO Page Description
 
        <div style="display: flex;justify-content: space-between;align-items: baseline;">
         <span><wa-icon name="check" style="color: green; margin-right: 0.5rem;"></wa-icon> In Stock</span>
-        <wa-button variant="text" size="small">Remove</wa-button>
+        <wa-button appearance="text" size="small">Remove</wa-button>
         </div>
     </div>
 

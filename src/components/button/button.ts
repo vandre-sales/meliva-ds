@@ -74,7 +74,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
   @property({ reflect: true }) variant: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' = 'neutral';
 
   /** The button's visual appearance. */
-  @property({ reflect: true }) appearance: 'solid' | 'subtle' | 'outline' | 'text' = 'solid';
+  @property({ reflect: true }) appearance: 'filled' | 'tinted' | 'outline' | 'text' = 'filled';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -255,8 +255,8 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
           'button--disabled': this.disabled,
           'button--focused': this.hasFocus,
           'button--loading': this.loading,
-          'button--solid': this.appearance === 'solid',
-          'button--subtle': this.appearance === 'subtle',
+          'button--filled': this.appearance === 'filled',
+          'button--tinted': this.appearance === 'tinted',
           'button--outline': this.appearance === 'outline',
           'button--text': this.appearance === 'text',
           'button--pill': this.pill,
@@ -290,7 +290,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
                   class="button__caret"
                   library="system"
                   name="chevron-down"
-                  variant="solid"
+                  variant="filled"
                 ></wa-icon>
               `
             : ''
