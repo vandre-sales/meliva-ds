@@ -110,54 +110,54 @@ Use the `prefix` and `suffix` slots to add icons.
 
 ```html {.example}
 <wa-button size="small">
-  <wa-icon slot="prefix" name="gear" variant="filled"></wa-icon>
+  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
   Settings
 </wa-button>
 
 <wa-button size="small">
-  <wa-icon slot="suffix" name="undo" variant="filled"></wa-icon>
+  <wa-icon slot="suffix" name="undo" variant="solid"></wa-icon>
   Refresh
 </wa-button>
 
 <wa-button size="small">
-  <wa-icon slot="prefix" name="link" variant="filled"></wa-icon>
-  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="filled"></wa-icon>
+  <wa-icon slot="prefix" name="link" variant="solid"></wa-icon>
+  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="solid"></wa-icon>
   Open
 </wa-button>
 
 <br /><br />
 
 <wa-button>
-  <wa-icon slot="prefix" name="gear" variant="filled"></wa-icon>
+  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
   Settings
 </wa-button>
 
 <wa-button>
-  <wa-icon slot="suffix" name="undo" variant="filled"></wa-icon>
+  <wa-icon slot="suffix" name="undo" variant="solid"></wa-icon>
   Refresh
 </wa-button>
 
 <wa-button>
-  <wa-icon slot="prefix" name="link" variant="filled"></wa-icon>
-  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="filled"></wa-icon>
+  <wa-icon slot="prefix" name="link" variant="solid"></wa-icon>
+  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="solid"></wa-icon>
   Open
 </wa-button>
 
 <br /><br />
 
 <wa-button size="large">
-  <wa-icon slot="prefix" name="gear" variant="filled"></wa-icon>
+  <wa-icon slot="prefix" name="gear" variant="solid"></wa-icon>
   Settings
 </wa-button>
 
 <wa-button size="large">
-  <wa-icon slot="suffix" name="undo" variant="filled"></wa-icon>
+  <wa-icon slot="suffix" name="undo" variant="solid"></wa-icon>
   Refresh
 </wa-button>
 
 <wa-button size="large">
-  <wa-icon slot="prefix" name="link" variant="filled"></wa-icon>
-  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="filled"></wa-icon>
+  <wa-icon slot="prefix" name="link" variant="solid"></wa-icon>
+  <wa-icon slot="suffix" name="arrow-up-right-from-square" variant="solid"></wa-icon>
   Open
 </wa-button>
 ```
@@ -206,7 +206,7 @@ This example demonstrates how to style buttons using a custom class. This is the
 <style>
   wa-button.pink::part(base) {
     border-radius: 6px;
-    border: filled 2px;
+    border: solid 2px;
     background: #ff1493;
     border-top-color: #ff7ac1;
     border-left-color: #ff7ac1;

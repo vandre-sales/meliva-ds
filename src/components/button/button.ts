@@ -290,7 +290,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
                   class="button__caret"
                   library="system"
                   name="chevron-down"
-                  variant="filled"
+                  variant="solid"
                 ></wa-icon>
               `
             : ''

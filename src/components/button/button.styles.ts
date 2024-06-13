@@ -266,7 +266,7 @@ export default css`
 
   @media (forced-colors: active) {
     .button.button--outline.button--checked:not(.button--disabled) {
-      outline: filled 2px transparent;
+      outline: solid 2px transparent;
     }
   }
 
@@ -448,7 +448,7 @@ export default css`
     top: 0;
     inset-inline-start: 0;
     bottom: 0;
-    border-left: filled max(var(--border-width), 1px) var(--border-color, rgb(0 0 0 / 0.3));
+    border-left: solid max(var(--border-width), 1px) var(--border-color, rgb(0 0 0 / 0.3));
     z-index: 2; /* Keep separators visible on hover */
   }
 
