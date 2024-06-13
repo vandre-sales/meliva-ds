@@ -4,8 +4,8 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { drag } from '../../internal/drag.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import { WaChangeEvent } from '../../events/change.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './image-comparer.styles.js';
@@ -32,14 +32,14 @@ import type { CSSResultGroup } from 'lit';
  * @csspart divider - The divider that separates the images.
  * @csspart handle - The handle that the user drags to expose the after image.
  *
+ * @cssproperty --divider-color - The color of the divider.
  * @cssproperty --divider-width - The width of the dividing line.
+ * @cssproperty --handle-color - The color of the icon used inside the handle.
  * @cssproperty --handle-size - The size of the compare handle.
  */
 @customElement('wa-image-comparer')
 export default class WaImageComparer extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
-
-  private readonly localize = new LocalizeController(this);
 
   @query('.image-comparer') base: HTMLElement;
   @query('.image-comparer__handle') handle: HTMLElement;
@@ -49,7 +49,7 @@ export default class WaImageComparer extends WebAwesomeElement {
 
   private handleDrag(event: PointerEvent) {
     const { width } = this.base.getBoundingClientRect();
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
 
     event.preventDefault();
 
@@ -63,8 +63,8 @@ export default class WaImageComparer extends WebAwesomeElement {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    const isLtr = this.localize.dir() === 'ltr';
-    const isRtl = this.localize.dir() === 'rtl';
+    const isLtr = this.matches(':dir(ltr)');
+    const isRtl = this.matches(':dir(rtl)');
 
     if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
       const incr = event.shiftKey ? 10 : 1;
@@ -92,11 +92,11 @@ export default class WaImageComparer extends WebAwesomeElement {
 
   @watch('position', { waitUntilFirstUpdate: true })
   handlePositionChange() {
-    this.emit('wa-change');
+    this.dispatchEvent(new WaChangeEvent());
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
 
     return html`
       <div

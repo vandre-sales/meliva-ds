@@ -201,10 +201,6 @@ This is a tip/informational callout
 :::warning
 This is a caution callout
 :::
-
-:::danger
-This is a danger callout
-:::
 ```
 
 #### GitHub Issues
@@ -282,7 +278,7 @@ Internally, each component uses the [BEM methodology](http://getbem.com/) for cl
 
 ### Boolean Props
 
-Boolean props should _always_ default to `false`, otherwise there's no way for the user to unset them using only attributes. To keep the API as friendly and consistent as possible, use a property such as `noHeader` and a corresponding kebab-case attribute such as `no-header`.
+Boolean props should _always_ default to `false`, otherwise there's no way for the user to unset them using only attributes. To keep the API as friendly and consistent as possible, use a property such as `noValue` and a corresponding kebab-case attribute such as `no-value`.
 
 When naming boolean props that hide or disable things, prefix them with `no-`, e.g. `no-spin-buttons` and avoid using other verbs such as `hide-` and `disable-` for consistency.
 
@@ -314,9 +310,9 @@ When providing fallback content inside of `<slot>` elements, avoid adding parts,
 
 This creates confusion because the part will be documented, but it won't work when the user slots in their own content. The recommended way to customize this example is for the user to slot in their own content and target its styles with CSS as needed.
 
-### Custom Events
+### Emitting Events
 
-Components must only emit custom events, and all custom events must start with `sl-` as a namespace. For compatibility with frameworks that utilize DOM templates, custom events must have lowercase, kebab-style names. For example, use `wa-change` instead of `slChange`.
+Components must only emit events that start with `wa-` as a namespace. For compatibility with frameworks that utilize DOM templates, events must have lowercase, kebab-style names. For example, use `wa-change` instead of `waChange`.
 
 This convention avoids the problem of browsers lowercasing attributes, causing some frameworks to be unable to listen to them. This problem isn't specific to one framework, but [Vue's documentation](https://vuejs.org/v2/guide/components-custom-events.html#Event-Names) provides a good explanation of the problem.
 
@@ -332,8 +328,8 @@ To expose custom properties as part of a component's API, scope them to the `:ho
 
 ```css
 :host {
-  --color: var(--wa-color-brand-text-on-spot);
-  --background-color: var(--wa-color-brand-spot);
+  --color: var(--wa-color-brand-on-loud);
+  --background-color: var(--wa-color-brand-fill-loud);
 }
 ```
 
@@ -405,12 +401,15 @@ For non-dependencies, _the user_ should decide what gets registered, even if it 
 
 Form controls should support submission and validation through the following conventions:
 
+- Form Controls should extend from `WebAwesomeFormAssociatedElement`
 - All form controls must use `name`, `value`, and `disabled` properties in the same manner as `HTMLInputElement`
-- All form controls must have a `setCustomValidity()` method so the user can set a custom validation message
-- All form controls must have a `reportValidity()` method that report their validity during form submission
+- All form controls with the `disabled` property *NOT* reflect the `disabled` attribute.
 - All form controls must have an `invalid` property that reflects their validity
-- All form controls should mirror their native validation attributes such as `required`, `pattern`, `minlength`, `maxlength`, etc. when possible
+- All form controls should mirror their native validation attributes such as `required`, `pattern`, `minlength`, `maxlength`, etc. when possible and use the `MirrorValidator`.
 - All form controls must be tested to work with the standard `<form>` element
+- Form controls that **DO NOT** have an editable value such as a button only need `@property({ reflect: true }) value`
+- Form controls that **DO** have an editable value such as an input or textarea should have: `@property({ attribute: false }) value` and `@property({ attribute: "value", reflect: true }) defaultValue`. We do this to align with how native form controls work.
+- Form controls which have an editable property such as `checked` or `selected` should also have a `defaultSelected` and `defaultChecked` property respectively for use when the form is "reset".
 
 ### System Icons
 
@@ -430,7 +429,7 @@ What to test for a given component:
 - Add at least one accessibility test (The accessibility check only covers the parts of the DOM which are currently visible and rendered. Depending on the component, more than one accessibility test is required to cover all scenarios.):
 
 ```ts
-const myComponent = await fixture<WaAlert>(html`<wa-my-component>SomeContent</wa-my-component>`);
+const myComponent = await fixture<WaComponent>(html`<wa-component>...</wa-component>`);
 
 await expect(myComponent).to.be.accessible();
 ```

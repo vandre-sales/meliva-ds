@@ -1,12 +1,14 @@
 import { getOffset } from './offset.js';
 
 const locks = new Set();
+const lockStyles = document.createElement('style');
 
-/** Returns the width of the document's scrollbar */
-function getScrollbarWidth() {
-  const documentWidth = document.documentElement.clientWidth;
-  return Math.abs(window.innerWidth - documentWidth);
-}
+lockStyles.textContent = `
+  .wa-scroll-lock {
+    scrollbar-gutter: stable !important;
+    overflow: hidden !important;
+  }
+`;
 
 /**
  * Prevents body scrolling. Keeps track of which elements requested a lock so multiple levels of locking are possible
@@ -15,12 +17,9 @@ function getScrollbarWidth() {
 export function lockBodyScrolling(lockingEl: HTMLElement) {
   locks.add(lockingEl);
 
-  // When the first lock is created, set the scroll lock size to match the scrollbar's width to prevent content from
-  // shifting. We only do this on the first lock because the scrollbar width will measure zero after overflow is hidden.
-  if (!document.body.classList.contains('wa-scroll-lock')) {
-    const scrollbarWidth = getScrollbarWidth(); // must be measured before the `wa-scroll-lock` class is applied
-    document.body.classList.add('wa-scroll-lock');
-    document.body.style.setProperty('--wa-scroll-lock-size', `${scrollbarWidth}px`);
+  if (!lockStyles.isConnected) {
+    document.body.append(lockStyles);
+    document.documentElement.classList.add('wa-scroll-lock');
   }
 }
 
@@ -31,8 +30,8 @@ export function unlockBodyScrolling(lockingEl: HTMLElement) {
   locks.delete(lockingEl);
 
   if (locks.size === 0) {
-    document.body.classList.remove('wa-scroll-lock');
-    document.body.style.removeProperty('--wa-scroll-lock-size');
+    document.documentElement.classList.remove('wa-scroll-lock');
+    lockStyles.remove();
   }
 }
 

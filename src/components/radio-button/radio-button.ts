@@ -3,10 +3,12 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { WaBlurEvent } from '../../events/blur.js';
+import { WaFocusEvent } from '../../events/focus.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './radio-button.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -22,6 +24,22 @@ import type { CSSResultGroup } from 'lit';
  * @event wa-blur - Emitted when the button loses focus.
  * @event wa-focus - Emitted when the button gains focus.
  *
+ * @cssproperty --background-color - The button's background color.
+ * @cssproperty --background-color-active - The button's background color when active.
+ * @cssproperty --background-color-hover - The button's background color on hover.
+ * @cssproperty --border-color - The color of the button's border.
+ * @cssproperty --border-color-active - The color of the button's border when active.
+ * @cssproperty --border-color-hover - The color of the button's border on hover.
+ * @cssproperty --border-radius - The radius of the button's corners.
+ * @cssproperty --border-style - The style of the button's border.
+ * @cssproperty --border-width - The width of the button's border. Expects a single value.
+ * @cssproperty --box-shadow - The shadow effects around the edges of the button.
+ * @cssproperty --indicator-color - The color of the checked button indicator.
+ * @cssproperty --indicator-width - The width of the checked button indicator.
+ * @cssproperty --label-color - The color of the button's label.
+ * @cssproperty --label-color-active - The color of the button's label when active.
+ * @cssproperty --label-color-hover - The color of the button's label on hover.
+ *
  * @csspart base - The component's base wrapper.
  * @csspart button - The internal `<button>` element.
  * @csspart button--checked - The internal button element when the radio button is checked.
@@ -30,7 +48,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart suffix - The container that wraps the suffix.
  */
 @customElement('wa-radio-button')
-export default class WaRadioButton extends WebAwesomeElement {
+export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
@@ -47,10 +65,10 @@ export default class WaRadioButton extends WebAwesomeElement {
   @property({ type: Boolean, reflect: true }) checked = false;
 
   /** The radio's value. When selected, the radio group will receive this value. */
-  @property() value: string;
+  @property({ reflect: true }) value: string;
 
   /** Disables the radio button. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   /**
    * The radio button's size. When used inside a radio group, the size will be determined by the radio group's size so
@@ -61,6 +79,14 @@ export default class WaRadioButton extends WebAwesomeElement {
   /** Draws a pill-style radio button with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
 
+  /**
+   * The string pointing to a form's id.
+   */
+  @property({ reflect: true }) form: string | null = null;
+
+  // Needed for Form Validation. Without it we get a console error.
+  static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
+
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'presentation');
@@ -68,7 +94,7 @@ export default class WaRadioButton extends WebAwesomeElement {
 
   private handleBlur() {
     this.hasFocus = false;
-    this.emit('wa-blur');
+    this.dispatchEvent(new WaBlurEvent());
   }
 
   private handleClick(e: MouseEvent) {
@@ -83,7 +109,7 @@ export default class WaRadioButton extends WebAwesomeElement {
 
   private handleFocus() {
     this.hasFocus = true;
-    this.emit('wa-focus');
+    this.dispatchEvent(new WaFocusEvent());
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -127,7 +153,6 @@ export default class WaRadioButton extends WebAwesomeElement {
           aria-disabled=${this.disabled}
           type="button"
           value=${ifDefined(this.value)}
-          tabindex="${this.checked ? '0' : '-1'}"
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}
           @click=${this.handleClick}

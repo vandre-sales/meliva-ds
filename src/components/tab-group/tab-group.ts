@@ -1,9 +1,13 @@
 import '../icon-button/icon-button.js';
+import '../tab-panel/tab-panel.js';
+import '../tab/tab.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { scrollIntoView } from '../../internal/scroll.js';
+import { WaTabHideEvent } from '../../events/tab-hide.js';
+import { WaTabShowEvent } from '../../events/tab-show.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './tab-group.styles.js';
@@ -19,6 +23,8 @@ import type WaTabPanel from '../tab-panel/tab-panel.js';
  * @since 2.0
  *
  * @dependency wa-icon-button
+ * @dependency wa-tab
+ * @dependency wa-tab-panel
  *
  * @slot - Used for grouping tab panels in the tab group. Must be `<wa-tab-panel>` elements.
  * @slot nav - Used for grouping tabs in the tab group. Must be `<wa-tab>` elements.
@@ -29,7 +35,6 @@ import type WaTabPanel from '../tab-panel/tab-panel.js';
  * @csspart base - The component's base wrapper.
  * @csspart nav - The tab group's navigation container where tabs are slotted in.
  * @csspart tabs - The container that wraps the tabs.
- * @csspart active-tab-indicator - The line that highlights the currently selected tab.
  * @csspart body - The tab group's body where tab panels are slotted in.
  * @csspart scroll-button - The previous/next scroll buttons that show when tabs are scrollable, an `<wa-icon-button>`.
  * @csspart scroll-button--start - The starting scroll button.
@@ -50,14 +55,17 @@ export default class WaTabGroup extends WebAwesomeElement {
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
   private tabs: WaTab[] = [];
+  private focusableTabs: WaTab[] = [];
   private panels: WaTabPanel[] = [];
 
   @query('.tab-group') tabGroup: HTMLElement;
   @query('.tab-group__body') body: HTMLSlotElement;
   @query('.tab-group__nav') nav: HTMLElement;
-  @query('.tab-group__indicator') indicator: HTMLElement;
 
   @state() private hasScrollControls = false;
+
+  /** Sets the active tab. */
+  @property({ reflect: true }) active = '';
 
   /** The placement of the tabs. */
   @property() placement: 'top' | 'bottom' | 'start' | 'end' = 'top';
@@ -72,15 +80,9 @@ export default class WaTabGroup extends WebAwesomeElement {
   @property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;
 
   connectedCallback() {
-    const whenAllDefined = Promise.all([
-      customElements.whenDefined('wa-tab'),
-      customElements.whenDefined('wa-tab-panel')
-    ]);
-
     super.connectedCallback();
 
     this.resizeObserver = new ResizeObserver(() => {
-      this.repositionIndicator();
       this.updateScrollControls();
     });
 
@@ -102,18 +104,25 @@ export default class WaTabGroup extends WebAwesomeElement {
       this.mutationObserver.observe(this, { attributes: true, childList: true, subtree: true });
       this.resizeObserver.observe(this.nav);
 
-      // Wait for tabs and tab panels to be registered
-      whenAllDefined.then(() => {
-        // Set initial tab state when the tabs become visible
-        const intersectionObserver = new IntersectionObserver((entries, observer) => {
-          if (entries[0].intersectionRatio > 0) {
-            this.setAriaLabels();
+      // Set initial tab state when the tabs become visible
+      const intersectionObserver = new IntersectionObserver((entries, observer) => {
+        if (entries[0].intersectionRatio > 0) {
+          this.setAriaLabels();
+
+          if (this.active) {
+            const tab = this.tabs.find(t => t.panel === this.active);
+
+            if (tab) {
+              this.setActiveTab(tab);
+            }
+          } else {
             this.setActiveTab(this.getActiveTab() ?? this.tabs[0], { emitEvents: false });
-            observer.unobserve(entries[0].target);
           }
-        });
-        intersectionObserver.observe(this.tabGroup);
+
+          observer.unobserve(entries[0].target);
+        }
       });
+      intersectionObserver.observe(this.tabGroup);
     });
   }
 
@@ -123,13 +132,11 @@ export default class WaTabGroup extends WebAwesomeElement {
     this.resizeObserver.unobserve(this.nav);
   }
 
-  private getAllTabs(options: { includeDisabled: boolean } = { includeDisabled: true }) {
+  private getAllTabs() {
     const slot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="nav"]')!;
 
     return [...(slot.assignedElements() as WaTab[])].filter(el => {
-      return options.includeDisabled
-        ? el.tagName.toLowerCase() === 'wa-tab'
-        : el.tagName.toLowerCase() === 'wa-tab' && !el.disabled;
+      return el.tagName.toLowerCase() === 'wa-tab';
     });
   }
 
@@ -172,53 +179,84 @@ export default class WaTabGroup extends WebAwesomeElement {
         this.setActiveTab(tab, { scrollBehavior: 'smooth' });
         event.preventDefault();
       }
+      return;
     }
 
     // Move focus left or right
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       const activeEl = this.tabs.find(t => t.matches(':focus'));
-      const isRtl = this.localize.dir() === 'rtl';
+      const isRtl = this.matches(':dir(rtl)');
+      let nextTab: null | WaTab = null;
 
       if (activeEl?.tagName.toLowerCase() === 'wa-tab') {
-        let index = this.tabs.indexOf(activeEl);
-
         if (event.key === 'Home') {
-          index = 0;
+          nextTab = this.focusableTabs[0];
         } else if (event.key === 'End') {
-          index = this.tabs.length - 1;
+          nextTab = this.focusableTabs[this.focusableTabs.length - 1];
         } else if (
           (['top', 'bottom'].includes(this.placement) && event.key === (isRtl ? 'ArrowRight' : 'ArrowLeft')) ||
           (['start', 'end'].includes(this.placement) && event.key === 'ArrowUp')
         ) {
-          index--;
+          const currentIndex = this.tabs.findIndex(el => el === activeEl);
+          nextTab = this.findNextFocusableTab(currentIndex, 'backward');
         } else if (
           (['top', 'bottom'].includes(this.placement) && event.key === (isRtl ? 'ArrowLeft' : 'ArrowRight')) ||
           (['start', 'end'].includes(this.placement) && event.key === 'ArrowDown')
         ) {
-          index++;
+          const currentIndex = this.tabs.findIndex(el => el === activeEl);
+          nextTab = this.findNextFocusableTab(currentIndex, 'forward');
         }
 
-        if (index < 0) {
-          index = this.tabs.length - 1;
+        if (!nextTab) {
+          return;
         }
 
-        if (index > this.tabs.length - 1) {
-          index = 0;
-        }
-
-        this.tabs[index].focus({ preventScroll: true });
+        nextTab.tabIndex = 0;
+        nextTab.focus({ preventScroll: true });
 
         if (this.activation === 'auto') {
-          this.setActiveTab(this.tabs[index], { scrollBehavior: 'smooth' });
+          this.setActiveTab(nextTab, { scrollBehavior: 'smooth' });
+        } else {
+          this.tabs.forEach(tabEl => {
+            tabEl.tabIndex = tabEl === nextTab ? 0 : -1;
+          });
         }
 
         if (['top', 'bottom'].includes(this.placement)) {
-          scrollIntoView(this.tabs[index], this.nav, 'horizontal');
+          scrollIntoView(nextTab, this.nav, 'horizontal');
         }
 
         event.preventDefault();
       }
     }
+  }
+
+  private findNextFocusableTab(currentIndex: number, direction: 'forward' | 'backward') {
+    let nextTab = null;
+    const iterator = direction === 'forward' ? 1 : -1;
+    let nextIndex = currentIndex + iterator;
+
+    while (currentIndex < this.tabs.length) {
+      nextTab = this.tabs[nextIndex] || null;
+
+      if (nextTab === null) {
+        // This is where wrapping happens. If we're moving forward and get to the end, then we jump to the beginning. If we're moving backward and get to the start, then we jump to the end.
+        if (direction === 'forward') {
+          nextTab = this.focusableTabs[0];
+        } else {
+          nextTab = this.focusableTabs[this.focusableTabs.length - 1];
+        }
+        break;
+      }
+
+      if (!nextTab.disabled) {
+        break;
+      }
+
+      nextIndex += iterator;
+    }
+
+    return nextTab;
   }
 
   private handleScrollToStart() {
@@ -250,12 +288,16 @@ export default class WaTabGroup extends WebAwesomeElement {
 
     if (tab !== this.activeTab && !tab.disabled) {
       const previousTab = this.activeTab;
+      this.active = tab.panel;
       this.activeTab = tab;
 
       // Sync active tab and panel
-      this.tabs.forEach(el => (el.active = el === this.activeTab));
+      this.tabs.forEach(el => {
+        el.active = el === this.activeTab;
+        el.tabIndex = el === this.activeTab ? 0 : -1;
+      });
+
       this.panels.forEach(el => (el.active = el.name === this.activeTab?.panel));
-      this.syncIndicator();
 
       if (['top', 'bottom'].includes(this.placement)) {
         scrollIntoView(this.activeTab, this.nav, 'horizontal', options.scrollBehavior);
@@ -264,10 +306,10 @@ export default class WaTabGroup extends WebAwesomeElement {
       // Emit events
       if (options.emitEvents) {
         if (previousTab) {
-          this.emit('wa-tab-hide', { detail: { name: previousTab.panel } });
+          this.dispatchEvent(new WaTabHideEvent({ name: previousTab.panel }));
         }
 
-        this.emit('wa-tab-show', { detail: { name: this.activeTab.panel } });
+        this.dispatchEvent(new WaTabShowEvent({ name: this.activeTab.panel }));
       }
     }
   }
@@ -283,54 +325,23 @@ export default class WaTabGroup extends WebAwesomeElement {
     });
   }
 
-  private repositionIndicator() {
-    const currentTab = this.getActiveTab();
-
-    if (!currentTab) {
-      return;
-    }
-
-    const width = currentTab.clientWidth;
-    const height = currentTab.clientHeight;
-    const isRtl = this.localize.dir() === 'rtl';
-
-    // We can't used offsetLeft/offsetTop here due to a shadow parent issue where neither can getBoundingClientRect
-    // because it provides invalid values for animating elements: https://bugs.chromium.org/p/chromium/issues/detail?id=920069
-    const allTabs = this.getAllTabs();
-    const precedingTabs = allTabs.slice(0, allTabs.indexOf(currentTab));
-    const offset = precedingTabs.reduce(
-      (previous, current) => ({
-        left: previous.left + current.clientWidth,
-        top: previous.top + current.clientHeight
-      }),
-      { left: 0, top: 0 }
-    );
-
-    switch (this.placement) {
-      case 'top':
-      case 'bottom':
-        this.indicator.style.width = `${width}px`;
-        this.indicator.style.height = 'auto';
-        this.indicator.style.translate = isRtl ? `${-1 * offset.left}px` : `${offset.left}px`;
-        break;
-
-      case 'start':
-      case 'end':
-        this.indicator.style.width = 'auto';
-        this.indicator.style.height = `${height}px`;
-        this.indicator.style.translate = `0 ${offset.top}px`;
-        break;
-    }
-  }
-
   // This stores tabs and panels so we can refer to a cache instead of calling querySelectorAll() multiple times.
   private syncTabsAndPanels() {
-    this.tabs = this.getAllTabs({ includeDisabled: false });
+    this.tabs = this.getAllTabs();
+    this.focusableTabs = this.tabs.filter(el => !el.disabled);
     this.panels = this.getAllPanels();
-    this.syncIndicator();
 
     // After updating, show or hide scroll controls as needed
     this.updateComplete.then(() => this.updateScrollControls());
+  }
+
+  @watch('active')
+  updateActiveTab() {
+    const tab = this.tabs.find(el => el.panel === this.active);
+
+    if (tab) {
+      this.setActiveTab(tab, { scrollBehavior: 'smooth' });
+    }
   }
 
   @watch('noScrollControls', { waitUntilFirstUpdate: true })
@@ -348,29 +359,8 @@ export default class WaTabGroup extends WebAwesomeElement {
     }
   }
 
-  @watch('placement', { waitUntilFirstUpdate: true })
-  syncIndicator() {
-    const tab = this.getActiveTab();
-
-    if (tab) {
-      this.indicator.style.display = 'block';
-      this.repositionIndicator();
-    } else {
-      this.indicator.style.display = 'none';
-    }
-  }
-
-  /** Shows the specified tab panel. */
-  show(panel: string) {
-    const tab = this.tabs.find(el => el.panel === panel);
-
-    if (tab) {
-      this.setActiveTab(tab, { scrollBehavior: 'smooth' });
-    }
-  }
-
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
 
     return html`
       <div
@@ -381,7 +371,7 @@ export default class WaTabGroup extends WebAwesomeElement {
           'tab-group--bottom': this.placement === 'bottom',
           'tab-group--start': this.placement === 'start',
           'tab-group--end': this.placement === 'end',
-          'tab-group--rtl': this.localize.dir() === 'rtl',
+          'tab-group--rtl': isRtl,
           'tab-group--has-scroll-controls': this.hasScrollControls
         })}
         @click=${this.handleClick}
@@ -405,7 +395,6 @@ export default class WaTabGroup extends WebAwesomeElement {
 
           <div class="tab-group__nav">
             <div part="tabs" class="tab-group__tabs" role="tablist">
-              <div part="active-tab-indicator" class="tab-group__indicator"></div>
               <slot name="nav" @slotchange=${this.syncTabsAndPanels}></slot>
             </div>
           </div>
@@ -429,12 +418,6 @@ export default class WaTabGroup extends WebAwesomeElement {
         <slot part="body" class="tab-group__body" @slotchange=${this.syncTabsAndPanels}></slot>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'wa-tab-group': WaTabGroup;
   }
 }
 

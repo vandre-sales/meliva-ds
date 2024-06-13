@@ -3,6 +3,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
+import { WaRemoveEvent } from '../../events/remove.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './tag.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
@@ -25,7 +26,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart remove-button - The tag's remove button, an `<wa-icon-button>`.
  * @csspart remove-button__base - The remove button's exported `base` part.
  *
- * @cssproperty --background - The tag's background styles.
+ * @cssproperty --background-color - The tag's background color.
  * @cssproperty --border-color - The color of the tag's border.
  * @cssproperty --border-radius - The radius of the tag's corners.
  * @cssproperty --border-style - The style of the tag's border.
@@ -51,7 +52,7 @@ export default class WaTag extends WebAwesomeElement {
   @property({ type: Boolean }) removable = false;
 
   private handleRemoveClick() {
-    this.emit('wa-remove');
+    this.dispatchEvent(new WaRemoveEvent());
   }
 
   render() {

@@ -1,10 +1,13 @@
-import { animateTo, parseDuration, stopAnimations } from '../../internal/animate.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
+import { uniqueId } from '../../internal/math.js';
+import { WaAfterHideEvent } from '../../events/after-hide.js';
+import { WaAfterShowEvent } from '../../events/after-show.js';
+import { WaHideEvent } from '../../events/hide.js';
 import { waitForEvent } from '../../internal/event.js';
+import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './tooltip.styles.js';
@@ -20,8 +23,7 @@ import type { CSSResultGroup } from 'lit';
  *
  * @dependency wa-popup
  *
- * @slot - The tooltip's target element. Avoid slotting in more than one element, as subsequent ones will be ignored.
- * @slot content - The content to render in the tooltip. Alternatively, you can use the `content` attribute.
+ * @slot - The tooltip's default slot where any content should live. Interactive content should be avoided.
  *
  * @event wa-show - Emitted when the tooltip begins to show.
  * @event wa-after-show - Emitted after the tooltip has shown and all animations are complete.
@@ -33,12 +35,13 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base__arrow - The popup's exported `arrow` part. Use this to target the tooltip's arrow.
  * @csspart body - The tooltip's body where its content is rendered.
  *
+ * @cssproperty --background-color - The tooltip's background color.
+ * @cssproperty --border-radius - The radius of the tooltip's corners.
+ * @cssproperty --content-color - The color of the tooltip's content.
  * @cssproperty --max-width - The maximum width of the tooltip before its content will wrap.
+ * @cssproperty --padding - The padding within the tooltip.
  * @cssproperty --hide-delay - The amount of time to wait before hiding the tooltip when hovering.
  * @cssproperty --show-delay - The amount of time to wait before showing the tooltip when hovering.
- *
- * @animation tooltip.show - The animation to use when showing the tooltip.
- * @animation tooltip.hide - The animation to use when hiding the tooltip.
  */
 @customElement('wa-tooltip')
 export default class WaTooltip extends WebAwesomeElement {
@@ -46,15 +49,11 @@ export default class WaTooltip extends WebAwesomeElement {
   static dependencies = { 'wa-popup': WaPopup };
 
   private hoverTimeout: number;
-  private readonly localize = new LocalizeController(this);
   private closeWatcher: CloseWatcher | null;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
   @query('.tooltip__body') body: HTMLElement;
   @query('wa-popup') popup: WaPopup;
-
-  /** The tooltip's content. If you need to display HTML, use the `content` slot instead. */
-  @property() content = '';
 
   /**
    * The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip
@@ -86,6 +85,12 @@ export default class WaTooltip extends WebAwesomeElement {
   /** The distance in pixels from which to offset the tooltip along its target. */
   @property({ type: Number }) skidding = 0;
 
+  /** The amount of time to wait before showing the tooltip when the user mouses in. */
+  @property({ attribute: 'show-delay', type: Number }) showDelay = 150;
+
+  /** The amount of time to wait before hiding the tooltip when the user mouses out.. */
+  @property({ attribute: 'hide-delay', type: Number }) hideDelay = 0;
+
   /**
    * Controls how the tooltip is activated. Possible options include `click`, `hover`, `focus`, and `manual`. Multiple
    * options can be passed by separating them with a space. When manual is used, the tooltip must be activated
@@ -100,19 +105,31 @@ export default class WaTooltip extends WebAwesomeElement {
    */
   @property({ type: Boolean }) hoist = false;
 
-  constructor() {
-    super();
-    this.addEventListener('blur', this.handleBlur, true);
-    this.addEventListener('focus', this.handleFocus, true);
-    this.addEventListener('click', this.handleClick);
-    this.addEventListener('mouseover', this.handleMouseOver);
-    this.addEventListener('mouseout', this.handleMouseOut);
+  @property() for: null | string = null;
+
+  @state() anchor: null | Element = null;
+
+  private eventController = new AbortController();
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    // If the user doesn't give us an id, generate one.
+    if (!this.id) {
+      this.id = uniqueId('wa-tooltip-');
+    }
   }
 
   disconnectedCallback() {
     // Cleanup this event in case the tooltip is removed while open
     this.closeWatcher?.destroy();
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
+    this.eventController.abort();
+
+    if (this.anchor) {
+      const label = this.anchor.getAttribute('aria-labelledby') || '';
+      this.anchor.setAttribute('aria-labelledby', label.replace(this.id, ''));
+    }
   }
 
   firstUpdated() {
@@ -157,17 +174,16 @@ export default class WaTooltip extends WebAwesomeElement {
 
   private handleMouseOver = () => {
     if (this.hasTrigger('hover')) {
-      const delay = parseDuration(getComputedStyle(this).getPropertyValue('--show-delay'));
       clearTimeout(this.hoverTimeout);
-      this.hoverTimeout = window.setTimeout(() => this.show(), delay);
+
+      this.hoverTimeout = window.setTimeout(() => this.show(), this.showDelay);
     }
   };
 
   private handleMouseOut = () => {
     if (this.hasTrigger('hover')) {
-      const delay = parseDuration(getComputedStyle(this).getPropertyValue('--hide-delay'));
       clearTimeout(this.hoverTimeout);
-      this.hoverTimeout = window.setTimeout(() => this.hide(), delay);
+      this.hoverTimeout = window.setTimeout(() => this.hide(), this.hideDelay);
     }
   };
 
@@ -184,7 +200,13 @@ export default class WaTooltip extends WebAwesomeElement {
       }
 
       // Show
-      this.emit('wa-show');
+      const waShowEvent = new WaShowEvent();
+      this.dispatchEvent(waShowEvent);
+      if (waShowEvent.defaultPrevented) {
+        this.open = false;
+        return;
+      }
+
       if ('CloseWatcher' in window) {
         this.closeWatcher?.destroy();
         this.closeWatcher = new CloseWatcher();
@@ -192,34 +214,89 @@ export default class WaTooltip extends WebAwesomeElement {
           this.hide();
         };
       } else {
-        document.addEventListener('keydown', this.handleDocumentKeyDown);
+        document.addEventListener('keydown', this.handleDocumentKeyDown, { signal: this.eventController.signal });
       }
 
-      await stopAnimations(this.body);
       this.body.hidden = false;
       this.popup.active = true;
-      const { keyframes, options } = getAnimation(this, 'tooltip.show', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'show-with-scale');
       this.popup.reposition();
 
-      this.emit('wa-after-show');
+      this.dispatchEvent(new WaAfterShowEvent());
     } else {
       // Hide
-      this.emit('wa-hide');
+      const waHideEvent = new WaHideEvent();
+      this.dispatchEvent(waHideEvent);
+      if (waHideEvent.defaultPrevented) {
+        this.open = false;
+        return;
+      }
+
       this.closeWatcher?.destroy();
       document.removeEventListener('keydown', this.handleDocumentKeyDown);
 
-      await stopAnimations(this.body);
-      const { keyframes, options } = getAnimation(this, 'tooltip.hide', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
+      await animateWithClass(this.popup.popup, 'hide-with-scale');
       this.popup.active = false;
       this.body.hidden = true;
 
-      this.emit('wa-after-hide');
+      this.dispatchEvent(new WaAfterHideEvent());
     }
   }
 
-  @watch(['content', 'distance', 'hoist', 'placement', 'skidding'])
+  @watch('for')
+  handleForChange() {
+    const rootNode = this.getRootNode() as Document | ShadowRoot | null;
+
+    if (!rootNode) {
+      return;
+    }
+
+    const newAnchor = this.for ? rootNode.querySelector(`#${this.for}`) : null;
+    const oldAnchor = this.anchor;
+
+    if (newAnchor === oldAnchor) {
+      return;
+    }
+
+    const { signal } = this.eventController;
+
+    // "\\b" is a space boundary, used for making sure we dont add the tooltip to aria-labelledby twice.
+    const labelRegex = new RegExp(`\\b${this.id}\\b`);
+
+    if (newAnchor) {
+      /**
+       * We use `aria-labelledby` because it seems to have the most consistent screenreader experience.
+       * Particularly for our "special" focusable elements like `<wa-button>`, `<wa-input>` etc.
+       * aria-describedby usually in some screenreaders is required to be on the actually focusable element,
+       * whereas with `aria-labelledby` it'll still read on first focus. The APG does and WAI-ARIA does recommend aria-describedby
+       * so perhaps once we have cross-root aria, we can revisit this decision.
+       */
+      const currentLabel = newAnchor.getAttribute('aria-labelledby') || '';
+      if (!currentLabel.match(labelRegex)) {
+        newAnchor.setAttribute('aria-labelledby', currentLabel + ' ' + this.id);
+      }
+
+      newAnchor.addEventListener('blur', this.handleBlur, { capture: true, signal });
+      newAnchor.addEventListener('focus', this.handleFocus, { capture: true, signal });
+      newAnchor.addEventListener('click', this.handleClick, { signal });
+      newAnchor.addEventListener('mouseover', this.handleMouseOver, { signal });
+      newAnchor.addEventListener('mouseout', this.handleMouseOut, { signal });
+    }
+
+    if (oldAnchor) {
+      const label = oldAnchor.getAttribute('aria-labelledby') || '';
+      oldAnchor.setAttribute('aria-labelledby', label.replace(labelRegex, ''));
+      oldAnchor.removeEventListener('blur', this.handleBlur, { capture: true });
+      oldAnchor.removeEventListener('focus', this.handleFocus, { capture: true });
+      oldAnchor.removeEventListener('click', this.handleClick);
+      oldAnchor.removeEventListener('mouseover', this.handleMouseOver);
+      oldAnchor.removeEventListener('mouseout', this.handleMouseOut);
+    }
+
+    this.anchor = newAnchor;
+  }
+
+  @watch(['distance', 'hoist', 'placement', 'skidding'])
   async handleOptionsChange() {
     if (this.hasUpdated) {
       await this.updateComplete;
@@ -254,12 +331,6 @@ export default class WaTooltip extends WebAwesomeElement {
     return waitForEvent(this, 'wa-after-hide');
   }
 
-  //
-  // NOTE: Tooltip is a bit unique in that we're using aria-live instead of aria-labelledby to trick screen readers into
-  // announcing the content. It works really well, but it violates an accessibility rule. We're also adding the
-  // aria-describedby attribute to a slot, which is required by <wa-popup> to correctly locate the first assigned
-  // element, otherwise positioning is incorrect.
-  //
   render() {
     return html`
       <wa-popup
@@ -280,34 +351,15 @@ export default class WaTooltip extends WebAwesomeElement {
         shift
         arrow
         hover-bridge
+        .anchor=${this.anchor}
       >
-        ${'' /* eslint-disable-next-line lit-a11y/no-aria-slot */}
-        <slot slot="anchor" aria-describedby="tooltip"></slot>
-
-        ${'' /* eslint-disable-next-line lit-a11y/accessible-name */}
-        <div part="body" id="tooltip" class="tooltip__body" role="tooltip" aria-live=${this.open ? 'polite' : 'off'}>
-          <slot name="content">${this.content}</slot>
+        <div part="body" class="tooltip__body">
+          <slot></slot>
         </div>
       </wa-popup>
     `;
   }
 }
-
-setDefaultAnimation('tooltip.show', {
-  keyframes: [
-    { opacity: 0, scale: 0.8 },
-    { opacity: 1, scale: 1 }
-  ],
-  options: { duration: 150, easing: 'ease' }
-});
-
-setDefaultAnimation('tooltip.hide', {
-  keyframes: [
-    { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.8 }
-  ],
-  options: { duration: 150, easing: 'ease' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

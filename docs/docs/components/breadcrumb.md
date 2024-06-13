@@ -15,22 +15,6 @@ Breadcrumbs are usually placed before a page's main content with the current pag
 </wa-breadcrumb>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import WaBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
-
-const App = () => (
-  <WaBreadcrumb>
-    <WaBreadcrumbItem>Catalog</WaBreadcrumbItem>
-    <WaBreadcrumbItem>Clothing</WaBreadcrumbItem>
-    <WaBreadcrumbItem>Women's</WaBreadcrumbItem>
-    <WaBreadcrumbItem>Shirts &amp; Tops</WaBreadcrumbItem>
-  </WaBreadcrumb>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Breadcrumb Links
@@ -50,25 +34,6 @@ For websites, you'll probably want to use links instead. You can make any breadc
   <wa-breadcrumb-item href="https://example.com/home/services/digital/web-design">Web Design</wa-breadcrumb-item>
 </wa-breadcrumb>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import WaBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
-
-const App = () => (
-  <WaBreadcrumb>
-    <WaBreadcrumbItem href="https://example.com/home">Homepage</WaBreadcrumbItem>
-
-    <WaBreadcrumbItem href="https://example.com/home/services">Our Services</WaBreadcrumbItem>
-
-    <WaBreadcrumbItem href="https://example.com/home/services/digital">Digital Media</WaBreadcrumbItem>
-
-    <WaBreadcrumbItem href="https://example.com/home/services/digital/web-design">Web Design</WaBreadcrumbItem>
-  </WaBreadcrumb>
-);
-```
-{% endraw %}
 
 ### Custom Separators
 
@@ -101,43 +66,6 @@ Use the `separator` slot to change the separator that goes between breadcrumb it
 </wa-breadcrumb>
 ```
 
-{% raw %}
-```jsx {.react}
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-import WaBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import WaBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
-
-const App = () => (
-  <>
-    <WaBreadcrumb>
-      <wa-icon slot="separator" name="angles-right" variant="solid" />
-      <WaBreadcrumbItem>First</WaBreadcrumbItem>
-      <WaBreadcrumbItem>Second</WaBreadcrumbItem>
-      <WaBreadcrumbItem>Third</WaBreadcrumbItem>
-    </WaBreadcrumb>
-
-    <br />
-
-    <WaBreadcrumb>
-      <wa-icon slot="separator" name="arrow-right" variant="solid" />
-      <WaBreadcrumbItem>First</WaBreadcrumbItem>
-      <WaBreadcrumbItem>Second</WaBreadcrumbItem>
-      <WaBreadcrumbItem>Third</WaBreadcrumbItem>
-    </WaBreadcrumb>
-
-    <br />
-
-    <WaBreadcrumb>
-      <span slot="separator">/</span>
-      <WaBreadcrumbItem>First</WaBreadcrumbItem>
-      <WaBreadcrumbItem>Second</WaBreadcrumbItem>
-      <WaBreadcrumbItem>Third</WaBreadcrumbItem>
-    </WaBreadcrumb>
-  </>
-);
-```
-{% endraw %}
-
 ### Prefixes
 
 Use the `prefix` slot to add content before any breadcrumb item.
@@ -153,25 +81,6 @@ Use the `prefix` slot to add content before any breadcrumb item.
 </wa-breadcrumb>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import WaBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <WaBreadcrumb>
-    <WaBreadcrumbItem>
-      <WaIcon slot="prefix" name="house" variant="solid" />
-      Home
-    </WaBreadcrumbItem>
-    <WaBreadcrumbItem>Articles</WaBreadcrumbItem>
-    <WaBreadcrumbItem>Traveling</WaBreadcrumbItem>
-  </WaBreadcrumb>
-);
-```
-{% endraw %}
-
 ### Suffixes
 
 Use the `suffix` slot to add content after any breadcrumb item.
@@ -186,25 +95,6 @@ Use the `suffix` slot to add content after any breadcrumb item.
   </wa-breadcrumb-item>
 </wa-breadcrumb>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import WaBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <WaBreadcrumb>
-    <WaBreadcrumbItem>Documents</WaBreadcrumbItem>
-    <WaBreadcrumbItem>Policies</WaBreadcrumbItem>
-    <WaBreadcrumbItem>
-      Security
-      <WaIcon slot="suffix" name="shield" variant="solid"></WaIcon>
-    </WaBreadcrumbItem>
-  </WaBreadcrumb>
-);
-```
-{% endraw %}
 
 ### With Dropdowns
 
@@ -230,40 +120,3 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
   </wa-breadcrumb-item>
 </wa-breadcrumb>
 ```
-
-{% raw %}
-```jsx {.react}
-import {
-  WaBreadcrumb,
-  WaBreadcrumbItem,
-  WaButton,
-  WaDropdown,
-  WaIcon,
-  WaMenu,
-  WaMenuItem
-} from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <WaBreadcrumb>
-    <WaBreadcrumbItem>Homepage</WaBreadcrumbItem>
-    <WaBreadcrumbItem>Our Services</WaBreadcrumbItem>
-    <WaBreadcrumbItem>Digital Media</WaBreadcrumbItem>
-    <WaBreadcrumbItem>
-      Web Design
-      <WaDropdown slot="suffix">
-        <WaButton slot="trigger" size="small" pill>
-          <WaIcon label="More options" name="ellipsis"></WaIcon>
-        </WaButton>
-        <WaMenu>
-          <WaMenuItem type="checkbox" checked>
-            Web Design
-          </WaMenuItem>
-          <WaMenuItem type="checkbox">Web Development</WaMenuItem>
-          <WaMenuItem type="checkbox">Marketing</WaMenuItem>
-        </WaMenu>
-      </WaDropdown>
-    </WaBreadcrumbItem>
-  </WaBreadcrumb>
-);
-```
-{% endraw %}

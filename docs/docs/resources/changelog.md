@@ -12,24 +12,72 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 
 ## 3.0 Changes (BREAKING)
 
+- Disabled form controls will no longer have a `disabled` attribute set when they are disabled via property. IE: `el.disabled = true`. Instead use `:state(disabled)` to style them.
+- Checkboxes will no longer have a `checked` attribute set when their `checked` property is changed. IE: `el.checked = true`. Instead, use the `:state(:checked)` and for unsupported browsers, use `[data-checked]`
+- `data-optional`, `data-required`, `data-invalid`, `data-valid`, `data-user-invalid`, and `data-user-valid` have all been renamed to have a `data-wa-*` prefix. Like so: `data-wa-valid`, `data-wa-invalid`, to avoid any conflicts with user provided attributes.
+- `<wa-checkbox>` and `<wa-switch>` now use `:state(checked)` and `[data-wa-checked]` for CSS styling their "checked" state. The "checked" attribute now maps to `defaultChecked` just like native HTML checkboxes.
+- `<wa-radio>` has changed from `display: block;` to `display: inline-block`
+- `getFormControls()` has been removed. We use Form Associated Custom Elements now and can reliably grab Web Awesome Elements via `formElement.elements`.
 - Added `setKitCode()` and `getKitCode()` functions as well as support for setting kit codes declaratively with `data-webawesome-kit`
 - Added `family` and `variant` attributes to `<wa-icon>` and `<wa-icon-button>`
+- Added the `active` attribute to `<wa-tab-group>`
+- Added an easier way to close dialogs by applying `data-dialog="dismiss"` to any button in the dialog
+- Added an easier way to close drawers by applying `data-dialog="dismiss"` to any button in the drawer
+- Added the `--show-duration` and `--hide-duration` custom properties to `<wa-details>`, `<wa-dialog>`, `<wa-drawer>`, `<sl-tree-item>`, and `<wa-popup>`
 - Changed the attribute for setting the base path declaratively to `data-webawesome` instead of `data-shoelace`; additionally, you can place it on any element now instead of just the associated `<script>` tag
 - `<wa-icon>` icons are no longer fixed width by default to accommodate variable width icons
 - Changed the `sl` prefix to `wa` for Web Awesome, including tags, events, etc.
 - Changed `primary` variants to `brand` in all components
+- Changed the internal structure of `<wa-checkbox>` so that the internal checkbox now takes up the full height and width of its wrapping container.
+- Changed `<wa-tab-group>` to implement a "roving tabindex" and `<wa-tab>` is no longer tabbable by default. This aligns closer to the APG pattern for tabs. [#2041]
+- Changed `<wa-tooltip>` to no longer wrap content due to accessibility and styling issues. Tooltips are now associated using the `for` attribute + an `id` on the trigger [#123]
+- Fixed a bug in `<wa-spinner>` that caused it to display incorrectly when zooming in Safari
 - Improved submenu selection by implementing the [safe triangle](https://www.smashingmagazine.com/2023/08/better-context-menus-safe-triangles/) method [#1550]
+- Improved tabbing in `<wa-tab-group>` so it uses a roving tab index instead of being able to cycle through each tab
 - Removed `default` from `<wa-button>` and made `neutral` the new default
 - Removed the `circle` modifier from `<wa-button>` because button's no longer have a set height
+- Removed the `active-tab-indicator` part from `<wa-tab-group>`
+- Removed the `closable` attribute from `<wa-tab>` because you can't nest interactive elements (see the updated example for a better method)
+- Removed the `show()` method from `<wa-tab-group>` (use the `active` attribute instead)
+- Removed the `show()` and `hide()` methods from `<wa-dialog>` and `<wa-drawer`> (toggle the `open` attribute instead)
+- Removed JavaScript-based animation customizations due to high confusion and low usage
+- Removed the `wa-request-close` event from `<wa-dialog>` and `<wa-drawer>` (use the `wa-hide` event instead)
+- Removed `valueAsDate` from `<wa-input>`. Instead use the following to mimic browser behavior:
+    setter: `waInput.value = new Date().toLocaleDateString()`
+    getter: `new Date(waInput.value)`
+- Removed `valueAsNumber` from `<wa-input>`. Instead you can use the following to mimic browser behavior:
+    setter: `waInput.value = 5.toString()`
+    getter: `Number(waInput.value)`
 
 ## Next
 
+- Fixed a bug in the submenu controller that prevented submenus from rendering in RTL without explicitly setting `dir` on the parent menu item [#1992]
+
+## 12.15.1
+
+- Fixed a bug in `<sl-radio-group>` where if a click did not contain a `<sl-radio>` it would show a console error. [#2009]
+- Fixed a bug in `<sl-split-panel>` that caused it not to recalculate it's position when going from being `display: none;` to its original display value. [#1942]
+- Fixed a bug in `<dialog>` where when it showed it would cause a layout shift. [#1967]
+- Fixed a bug in `<sl-tooltip>` that allowed unwanted text properties to leak in [#1947]
+- Fixed a bug in `<sl-button-group>` classes [#1974]
+- Fixed a bug in `<sl-textarea>` that may throw errors on `disconnectedCallback` in test environments [#1985]
+- Fixed a bug in `<sl-color-picker>` that would log a non-passive event listener warning [#2005]
+- Fixed a bug in the submenu controller that allowed submenus to go offscreen and not be scrollable [#2001]
+- Fixed a bug in `<sl-range>` that caused the tooltip position to be incorrect in some cases [#1979]
+
+## 2.15.0
+
 - Added support for `contextElement` to `VirtualElements` in `<sl-popup>` [#1874]
+- Added the `sync` property to `<wa-dropdown>` [#1935]
+- Fixed a bug in `<sl-icon>` that did not properly apply mutators to spritesheets [#1927]
+- Fixed a bug in `.sl-scroll-lock` causing layout shifts [#1895]
 - Fixed a bug in `<sl-rating>` that caused the rating to not reset in some circumstances [#1877]
 - Fixed a bug in `<sl-select>` that caused the menu to not close when rendered in a shadow root [#1878]
 - Fixed a bug in `<sl-tree>` that caused a new stacking context resulting in tooltips being clipped [#1709]
 - Fixed a bug in `<sl-tab-group>` that caused the scroll controls to toggle indefinitely when zoomed in Safari [#1839]
 - Fixed a bug in the submenu controller that allowed two submenus to be open at the same time [#1880]
+- Fixed a bug in `<sl-input>` that prevented the control from receiving focus when clicking over the clear button
+- Fixed a bug in `<dialog>` where when it showed it would create a layout shift. [#1967]
 
 ## 2.14.0
 
@@ -49,6 +97,7 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Added the `hover-bridge` feature to `<sl-popup>` to support better tooltip accessibility [#1734]
 - Added the `loading` attribute and the `spinner` and `spinner__base` part to `<sl-menu-item>` [#1700]
 - Fixed files that did not have `.js` extensions. [#1770]
+- Fixed a bug in `<sl-tree>` when providing custom expand / collapse icons [#1922]
 - Fixed `<sl-dialog>` not accounting for elements with hidden dialog controls like `<video>` [#1755]
 - Fixed focus trapping not scrolling elements into view. [#1750]
 - Fixed more performance issues with focus trapping performance. [#1750]
@@ -398,7 +447,7 @@ This release includes a complete rewrite of `<wa-select>` to improve accessibili
 - 🚨 BREAKING: changed the default value of `date` in `<wa-relative-time>` to the current date instead of the Unix epoch
 - 🚨 BREAKING: removed the `handle-icon` part and slot from `<wa-image-comparer>` (use `handle` instead)
 - 🚨 BREAKING: removed the `handle` slot from `<wa-split-panel>` (use the `divider` slot instead)
-- 🚨 BREAKING: removed the `--box-shadow` custom property from `<wa-alert>` (apply a box shadow to `::part(base)` instead)
+- 🚨 BREAKING: removed the `--box-shadow` custom property from `<wa-callout>` (apply a box shadow to `::part(base)` instead)
 - 🚨 BREAKING: removed the `play-icon` and `pause-icon` parts (use the `play-icon` and `pause-icon` slots instead)
 - Added `header-actions` slot to `<wa-dialog>` and `<wa-drawer>`
 - Added the `expand-icon` and `collapse-icon` slots to `<wa-details>` and refactored the icon animation [#1046]
@@ -414,7 +463,7 @@ This release includes a complete rewrite of `<wa-select>` to improve accessibili
 - Fixed the border radius in `<wa-dropdown>` so it matches with nested `<wa-menu>` elements
 - Fixed a bug that caused all button values to appear in submitted form data even if they weren't the submitter
 - Improved IntelliSense in VS Code, courtesy of [Burton's amazing CEM Analyzer plugin](https://github.com/break-stuff/cem-plugin-vs-code-custom-data-generator)
-- Improved accessibility of `<wa-alert>` so the alert is announced and the close button has a label
+- Improved accessibility of `<wa-callout>` so the alert is announced and the close button has a label
 - Improved accessibility of `<wa-progress-ring>` so slotted labels are announced along with visually hidden labels
 - Refactored all styles and animations to use `translate`, `rotate`, and `scale` instead of `transform`
 - Removed slot wrappers from many components, allowing better control over user-applied styles
@@ -740,7 +789,7 @@ To upgrade to this version, you will need to rework your radio controls by movin
 - 🚨 BREAKING: refactored exported parts to ensure composed components and their parts can be targeted via CSS
   - Refactored the `eye-dropper-button` part and added `eye-dropper-button__base`, `eye-dropper-button__prefix`, `eye-dropper-button__label`, `eye-dropper-button__suffix`, and `eye-dropper-button__caret` parts to `<wa-color-picker>`
   - Refactored the `format-button` part and added `format-button__base`, `format-button__prefix`, `format-button__label`, `format-button__suffix`, and `format-button__caret` parts to `<wa-color-picker>`
-  - Moved the `close-button` part in `<wa-alert>` to the internal `<wa-icon-button>` and removed the `<span>` that wrapped it
+  - Moved the `close-button` part in `<wa-callout>` to the internal `<wa-icon-button>` and removed the `<span>` that wrapped it
   - Moved the `close-button` part in `<wa-dialog>` and `<wa-drawer>` to point to the host element and added the `close-button__base` part
   - Renamed parts in `<wa-select>` from `tag-base` to `tag__base`, `tag-content` to `tag__content`, and `tag-remove-button` to `tag__remove-button`
   - Moved the `close-button` part in `<wa-tab>` to the internal `<wa-icon-button>` and added the `close-button__base` part
@@ -844,7 +893,7 @@ To upgrade to this version, you will need to rework your radio controls by movin
 
 ## 2.0.0-beta.63
 
-- 🚨 BREAKING: changed the `type` attribute to `variant` in `<wa-alert>`, `<wa-badge>`, `<wa-button>`, and `<wa-tag>` since it's more appropriate and to disambiguate from other `type` attributes
+- 🚨 BREAKING: changed the `type` attribute to `variant` in `<wa-callout>`, `<wa-badge>`, `<wa-button>`, and `<wa-tag>` since it's more appropriate and to disambiguate from other `type` attributes
 - 🚨 BREAKING: removed `base` part from `<wa-divider>` to simplify the styling API
 - Added the experimental `<wa-split-panel>` component
 - Added `focus()` and `blur()` methods to `<wa-select>` [#625]
@@ -1077,7 +1126,7 @@ This change applies to all design tokens that implement a color. Refer to the [c
 - 🚨 BREAKING: all design tokens that implement colors have been converted to `R G B` and must be used with the `rgb()` function
 - 🚨 BREAKING: removed `--sl-color-black|white` color tokens (use `--sl-color-neutral-0|1000` instead)
 - 🚨 BREAKING: removed `--sl-color-primary|success|warning|info|danger-text` design tokens (use theme or primitive colors instead)
-- 🚨 BREAKING: removed `info` variant from `<wa-alert>`, `<wa-badge>`, `<wa-button>`, and `<wa-tag>` (use `neutral` instead)
+- 🚨 BREAKING: removed `info` variant from `<wa-callout>`, `<wa-badge>`, `<wa-button>`, and `<wa-tag>` (use `neutral` instead)
 - 🚨 BREAKING: removed `--sl-color-info-*` design token (use `--sl-color-neutral-*` instead)
 - 🚨 BREAKING: renamed `dist/themes/base.css` to `dist/themes/default.css`
 - 🚨 BREAKING: removed `--wa-focus-ring-color-primary` tokens (use color tokens and `--wa-focus-ring-width|alpha` instead)
@@ -1189,9 +1238,9 @@ Technical reasons aside, canceling these events seldom led to a good user experi
 - 🚨 BREAKING: `wa-show` and `wa-hide` events are no longer cancelable
 - Added Iconoir example to the icon docs
 - Added Web Test Runner
-- Added initial tests for `<wa-alert>` and `<wa-details>`
+- Added initial tests for `<wa-callout>` and `<wa-details>`
 - Changed the `cancelable` default to `false` for the internal `@event` decorator
-- Fixed a bug where toggling `open` stopped working in `<wa-alert>`, `<wa-dialog>`, `<wa-drawer>`, `<wa-dropdown>`, and `<wa-tooltip>`
+- Fixed a bug where toggling `open` stopped working in `<wa-callout>`, `<wa-dialog>`, `<wa-drawer>`, `<wa-dropdown>`, and `<wa-tooltip>`
 - Fixed a bug in `<wa-range>` where setting a value outside the default `min` or `max` would clamp the value [#448]
 - Fixed a bug in `<wa-dropdown>` where placement wouldn't adjust properly when shown [#447]
 - Fixed a bug in the internal `shimKeyframesHeightAuto` utility that caused `<wa-details>` to measure heights incorrectly [#445]
@@ -1212,7 +1261,7 @@ The most elegant solution I found was to use the [Web Animations API](https://de
 - 🚨 BREAKING: removed `--hide-duration`, `--hide-timing-function`, `--show-duration`, and `--show-timing-function` custom properties from `<wa-tooltip>` (use the Animation Registry instead)
 - Added the Animation Registry
 - Fixed a bug where removing `<wa-dropdown>` from the DOM and adding it back destroyed the popover reference [#443]
-- Updated animations for `<wa-alert>`, `<wa-dialog>`, `<wa-drawer>`, `<wa-dropdown>`, and `<wa-tooltip>` to use the Animation Registry instead of CSS transitions
+- Updated animations for `<wa-callout>`, `<wa-dialog>`, `<wa-drawer>`, `<wa-dropdown>`, and `<wa-tooltip>` to use the Animation Registry instead of CSS transitions
 - Improved a11y by respecting `prefers-reduced-motion` for all show/hide animations
 - Improved `--show-delay` and `--hide-delay` behavior in `<wa-tooltip>` so they only apply on hover
 - Removed the internal popover utility
@@ -1287,7 +1336,7 @@ The most elegant solution I found was to use the [Web Animations API](https://de
 ## 2.0.0-beta.35
 
 - Fixed a bug in `<wa-animation>` where `wa-cancel` and `wa-finish` events would never fire
-- Fixed a bug where `<wa-alert>` wouldn't always transition properly
+- Fixed a bug where `<wa-callout>` wouldn't always transition properly
 - Fixed a bug where using `<wa-menu>` inside a shadow root would break keyboard selections [#382]
 - Fixed a bug where toggling `multiple` in `<wa-select>` would lead to a stale display label
 - Fixed a bug in `<wa-tab-group>` where changing `placement` could result in the active tab indicator being drawn a few pixels off
@@ -1325,7 +1374,7 @@ From now on, importing a component will register it automatically. The caveat is
 - Added tag name maps so TypeScript can identify Web Awesome elements [#371]
 - Fixed a bug where the active tab indicator wouldn't render properly on tabs styled with `flex-end` [#355]
 - Fixed a bug where `wa-change` wasn't emitted by `<wa-checkbox>` or `<wa-switch>` [#370]
-- Fixed a bug where some props weren't being watched correctly in `<wa-alert>` and `<wa-color-picker>`
+- Fixed a bug where some props weren't being watched correctly in `<wa-callout>` and `<wa-color-picker>`
 - Improved `@watch` decorator so watch handlers don't run before the first render
 - Removed guards that were added due to previous watch handler behavior
 
@@ -1412,7 +1461,7 @@ The component API remains the same except for the changes noted below. Thanks fo
 - Fixed a bug in `<wa-color-picker>` where the toggle button was smaller than the preview button in Safari
 - Fixed a bug in `<wa-tab-group>` where activating a nested tab group didn't work properly [#299]
 - Fixed a bug in `<wa-tab-group>` where removing tabs would throw an error
-- Fixed a bug in `<wa-alert>`, `<wa-dialog>`, `<wa-drawer>`, `<wa-select>`, and `<wa-tag>` where the close button's base wasn't exported so it couldn't be styled
+- Fixed a bug in `<wa-callout>`, `<wa-dialog>`, `<wa-drawer>`, `<wa-select>`, and `<wa-tag>` where the close button's base wasn't exported so it couldn't be styled
 - Removed `text` type from `<wa-badge>` as it was erroneously copied and never had styles
 - Updated `<wa-tab-group>` so the `active` property is reflected to its attribute
 - Updated the docs to show dependencies instead of dependents which is much more useful when working with the custom elements bundle
@@ -1509,7 +1558,7 @@ The component API remains the same except for the changes noted below. Thanks fo
 - Fixed a bug where concurrent active modals (i.e. dialog, drawer) would try to steal focus from each other
 - Improved `<wa-color-picker>` grid and slider handles [#246]
 - Refactored `<wa-icon>` request logic and removed unused cache map
-- Reworked show/hide logic in `<wa-alert>`, `<wa-dialog>`, and `<wa-drawer>` to not use reflow hacks and the `hidden` attribute
+- Reworked show/hide logic in `<wa-callout>`, `<wa-dialog>`, and `<wa-drawer>` to not use reflow hacks and the `hidden` attribute
 - Reworked slot logic in `<wa-card>`, `<wa-dialog>`, and `<wa-drawer>`
 - Updated to Popper 2.5.3 to address a fixed position bug in Firefox
 
@@ -1539,7 +1588,7 @@ The following pages demonstrate why this change was necessary.
 ## 2.0.0-beta.19
 
 - Added `input`, `label`, `prefix`, `clear-button`, `suffix`, `help-text` exported parts to `<wa-select>` to make the input customizable
-- Added toast notifications through the `toast()` method on `<wa-alert>`
+- Added toast notifications through the `toast()` method on `<wa-callout>`
 - Fixed a bug where mouse events would bubble up when `<wa-button>` was disabled, causing tooltips to erroneously appear
 - Fixed a bug where pressing space would open and immediately close `<wa-dropdown>` panels in Firefox
 - Fixed a bug where `<wa-tooltip>` would throw an error on init

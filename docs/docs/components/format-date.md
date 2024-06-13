@@ -11,14 +11,6 @@ Localization is handled by the browser's [`Intl.DateTimeFormat` API](https://dev
 <wa-format-date date="2020-07-15T09:17:00-04:00"></wa-format-date>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaFormatDate from '@shoelace-style/shoelace/dist/react/format-date';
-
-const App = () => <WaFormatDate date="2020-07-15T09:17:00-04:00" />;
-```
-{% endraw %}
-
 The `date` attribute determines the date/time to use when formatting. It must be a string that [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse) can interpret or a [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object set via JavaScript. If omitted, the current date/time will be assumed.
 
 :::info
@@ -51,39 +43,6 @@ Formatting options are based on those found in the [`Intl.DateTimeFormat` API](h
 <wa-format-date></wa-format-date>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaFormatDate from '@shoelace-style/shoelace/dist/react/format-date';
-
-const App = () => (
-  <>
-    {/* Human-readable date */}
-    <WaFormatDate month="long" day="numeric" year="numeric" />
-    <br />
-
-    {/* Time */}
-    <WaFormatDate hour="numeric" minute="numeric" />
-    <br />
-
-    {/* Weekday */}
-    <WaFormatDate weekday="long" />
-    <br />
-
-    {/* Month */}
-    <WaFormatDate month="long" />
-    <br />
-
-    {/* Year */}
-    <WaFormatDate year="numeric" />
-    <br />
-
-    {/* No formatting options */}
-    <WaFormatDate />
-  </>
-);
-```
-{% endraw %}
-
 ### Hour Formatting
 
 By default, the browser will determine whether to use 12-hour or 24-hour time. To force one or the other, set the `hour-format` attribute to `12` or `24`.
@@ -92,20 +51,6 @@ By default, the browser will determine whether to use 12-hour or 24-hour time. T
 <wa-format-date hour="numeric" minute="numeric" hour-format="12"></wa-format-date><br />
 <wa-format-date hour="numeric" minute="numeric" hour-format="24"></wa-format-date>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaFormatDate from '@shoelace-style/shoelace/dist/react/format-date';
-
-const App = () => (
-  <>
-    <WaFormatDate hour="numeric" minute="numeric" hour-format="12" />
-    <br />
-    <WaFormatDate hour="numeric" minute="numeric" hour-format="24" />
-  </>
-);
-```
-{% endraw %}
 
 ### Localization
 
@@ -116,19 +61,3 @@ English: <wa-format-date lang="en"></wa-format-date><br />
 French: <wa-format-date lang="fr"></wa-format-date><br />
 Russian: <wa-format-date lang="ru"></wa-format-date>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaFormatDate from '@shoelace-style/shoelace/dist/react/format-date';
-
-const App = () => (
-  <>
-    English: <WaFormatDate lang="en" />
-    <br />
-    French: <WaFormatDate lang="fr" />
-    <br />
-    Russian: <WaFormatDate lang="ru" />
-  </>
-);
-```
-{% endraw %}

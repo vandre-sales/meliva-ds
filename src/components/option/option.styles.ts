@@ -2,9 +2,15 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background-color-current: var(--wa-color-brand-fill-loud);
+    --background-color-hover: var(--wa-color-neutral-fill-normal);
+    --label-color-current: var(--wa-color-brand-on-loud);
+    --label-color-hover: var(--wa-color-neutral-on-normal);
+
     display: block;
-    user-select: none;
+    color: var(--wa-color-text-normal);
     -webkit-user-select: none;
+    user-select: none;
   }
 
   :host(:focus) {
@@ -16,21 +22,20 @@ export default css`
     display: flex;
     align-items: center;
     font: inherit;
-    color: var(--wa-color-neutral-text-on-surface);
     padding: var(--wa-space-xs) var(--wa-space-m) var(--wa-space-xs) var(--wa-space-2xs);
-    transition: var(--wa-transition-fast) fill;
+    transition: fill var(--wa-transition-normal) var(--wa-transition-easing);
     cursor: pointer;
   }
 
   .option--hover:not(.option--current):not(.option--disabled) {
-    background-color: var(--wa-color-neutral-fill-highlight);
-    color: var(--wa-color-neutral-text-on-fill);
+    background-color: var(--background-color-hover);
+    color: var(--label-color-hover);
   }
 
   .option--current,
   .option--current.option--disabled {
-    background-color: var(--wa-color-brand-spot);
-    color: var(--wa-color-brand-text-on-spot);
+    background-color: var(--background-color-current);
+    color: var(--label-color-current);
     opacity: 1;
   }
 
@@ -43,7 +48,6 @@ export default css`
   .option__label {
     flex: 1 1 auto;
     display: inline-block;
-    line-height: var(--wa-line-height-compact);
   }
 
   .option .option__check {

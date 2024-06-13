@@ -15,7 +15,7 @@ describe('<wa-checkbox>', () => {
     const el = await fixture<WaCheckbox>(html` <wa-checkbox></wa-checkbox> `);
 
     expect(el.name).to.equal('');
-    expect(el.value).to.be.undefined;
+    expect(el.value).to.be.null;
     expect(el.title).to.equal('');
     expect(el.disabled).to.be.false;
     expect(el.required).to.be.false;
@@ -168,16 +168,17 @@ describe('<wa-checkbox>', () => {
 
       expect(checkbox.checkValidity()).to.be.false;
       expect(checkbox.checkValidity()).to.be.false;
-      expect(checkbox.hasAttribute('data-invalid')).to.be.true;
-      expect(checkbox.hasAttribute('data-valid')).to.be.false;
-      expect(checkbox.hasAttribute('data-user-invalid')).to.be.false;
-      expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
+      expect(checkbox.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(checkbox.hasAttribute('data-wa-valid')).to.be.false;
+      expect(checkbox.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(checkbox.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(checkbox);
       await checkbox.updateComplete;
+      await aTimeout(0);
 
-      expect(checkbox.hasAttribute('data-user-invalid')).to.be.true;
-      expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
+      expect(checkbox.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(checkbox.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should be invalid when required and unchecked', async () => {
@@ -187,6 +188,7 @@ describe('<wa-checkbox>', () => {
 
     it('should be valid when required and checked', async () => {
       const checkbox = await fixture<HTMLFormElement>(html` <wa-checkbox required checked></wa-checkbox> `);
+      await checkbox.updateComplete;
       expect(checkbox.checkValidity()).to.be.true;
     });
 
@@ -209,12 +211,12 @@ describe('<wa-checkbox>', () => {
       const el = await fixture<HTMLFormElement>(html` <form novalidate><wa-checkbox required></wa-checkbox></form> `);
       const checkbox = el.querySelector<WaCheckbox>('wa-checkbox')!;
 
-      expect(checkbox.hasAttribute('data-required')).to.be.true;
-      expect(checkbox.hasAttribute('data-optional')).to.be.false;
-      expect(checkbox.hasAttribute('data-invalid')).to.be.true;
-      expect(checkbox.hasAttribute('data-valid')).to.be.false;
-      expect(checkbox.hasAttribute('data-user-invalid')).to.be.false;
-      expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
+      expect(checkbox.hasAttribute('data-wa-required')).to.be.true;
+      expect(checkbox.hasAttribute('data-wa-optional')).to.be.false;
+      expect(checkbox.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(checkbox.hasAttribute('data-wa-valid')).to.be.false;
+      expect(checkbox.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(checkbox.hasAttribute('data-wa-user-valid')).to.be.false;
     });
   });
 
@@ -236,7 +238,7 @@ describe('<wa-checkbox>', () => {
       await oneEvent(form, 'reset');
       await checkbox.updateComplete;
 
-      expect(checkbox.checked).to.true;
+      expect(checkbox.checked).to.be.true;
 
       checkbox.defaultChecked = false;
 
@@ -244,7 +246,7 @@ describe('<wa-checkbox>', () => {
       await oneEvent(form, 'reset');
       await checkbox.updateComplete;
 
-      expect(checkbox.checked).to.false;
+      expect(checkbox.checked).to.be.false;
     });
   });
 
@@ -351,7 +353,7 @@ describe('<wa-checkbox>', () => {
     });
   });
 
-  describe('indeterminate', () => {
+  describe('indeterminate', async () => {
     it('should render indeterminate icon until checked', async () => {
       const el = await fixture<WaCheckbox>(html`<wa-checkbox indeterminate></wa-checkbox>`);
       let indeterminateIcon = el.shadowRoot!.querySelector('[part~="indeterminate-icon"]')!;
@@ -366,6 +368,6 @@ describe('<wa-checkbox>', () => {
       expect(indeterminateIcon).to.be.null;
     });
 
-    runFormControlBaseTests('wa-checkbox');
+    await runFormControlBaseTests('wa-checkbox');
   });
 });

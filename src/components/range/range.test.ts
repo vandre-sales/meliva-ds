@@ -6,7 +6,7 @@ import { serialize } from '../../utilities/form.js';
 import sinon from 'sinon';
 import type WaRange from './range.js';
 
-describe('<wa-range>', () => {
+describe('<wa-range>', async () => {
   it('should pass accessibility tests', async () => {
     const el = await fixture<WaRange>(html` <wa-range label="Name"></wa-range> `);
     await expect(el).to.be.accessible();
@@ -158,18 +158,18 @@ describe('<wa-range>', () => {
       await range.updateComplete;
 
       expect(range.checkValidity()).to.be.false;
-      expect(range.hasAttribute('data-invalid')).to.be.true;
-      expect(range.hasAttribute('data-valid')).to.be.false;
-      expect(range.hasAttribute('data-user-invalid')).to.be.false;
-      expect(range.hasAttribute('data-user-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(range.hasAttribute('data-wa-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(range);
       await range.updateComplete;
       range.blur();
       await range.updateComplete;
 
-      expect(range.hasAttribute('data-user-invalid')).to.be.true;
-      expect(range.hasAttribute('data-user-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
@@ -179,10 +179,10 @@ describe('<wa-range>', () => {
       range.setCustomValidity('Invalid value');
       await range.updateComplete;
 
-      expect(range.hasAttribute('data-invalid')).to.be.true;
-      expect(range.hasAttribute('data-valid')).to.be.false;
-      expect(range.hasAttribute('data-user-invalid')).to.be.false;
-      expect(range.hasAttribute('data-user-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(range.hasAttribute('data-wa-valid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
@@ -231,5 +231,5 @@ describe('<wa-range>', () => {
     });
   });
 
-  runFormControlBaseTests('wa-range');
+  await runFormControlBaseTests('wa-range');
 });

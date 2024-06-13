@@ -1,7 +1,5 @@
 import { createRef, ref, type Ref } from 'lit/directives/ref.js';
-import { type HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
-import { type LocalizeController } from '../../utilities/localize.js';
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import type WaMenuItem from './menu-item.js';
 import type WaPopup from '../popup/popup.js';
@@ -14,22 +12,18 @@ export class SubmenuController implements ReactiveController {
   private isConnected = false;
   private isPopupConnected = false;
   private skidding = 0;
-  private readonly hasSlotController: HasSlotController;
-  private readonly localize: LocalizeController;
   private readonly submenuOpenDelay = 100;
 
-  constructor(
-    host: ReactiveControllerHost & WaMenuItem,
-    hasSlotController: HasSlotController,
-    localize: LocalizeController
-  ) {
+  constructor(host: ReactiveControllerHost & WaMenuItem) {
     (this.host = host).addController(this);
-    this.hasSlotController = hasSlotController;
-    this.localize = localize;
+  }
+
+  private hasSubmenu() {
+    return this.host.querySelector(`:scope > [slot="submenu"]`) !== null;
   }
 
   hostConnected() {
-    if (this.hasSlotController.test('submenu') && !this.host.disabled) {
+    if (this.hasSubmenu() && !this.host.disabled) {
       this.addListeners();
     }
   }
@@ -39,7 +33,7 @@ export class SubmenuController implements ReactiveController {
   }
 
   hostUpdated() {
-    if (this.hasSlotController.test('submenu') && !this.host.disabled) {
+    if (this.hasSubmenu() && !this.host.disabled) {
       this.addListeners();
       this.updateSkidding();
     } else {
@@ -93,7 +87,7 @@ export class SubmenuController implements ReactiveController {
   };
 
   private handleMouseOver = () => {
-    if (this.hasSlotController.test('submenu')) {
+    if (this.hasSubmenu()) {
       this.enableSubmenu();
     }
   };
@@ -201,7 +195,7 @@ export class SubmenuController implements ReactiveController {
   private handlePopupReposition = () => {
     const submenuSlot: HTMLSlotElement | null = this.host.renderRoot.querySelector("slot[name='submenu']");
     const menu = submenuSlot?.assignedElements({ flatten: true }).filter(el => el.localName === 'wa-menu')[0];
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.host.matches(':dir(rtl)');
 
     if (!menu) {
       return;
@@ -266,7 +260,7 @@ export class SubmenuController implements ReactiveController {
   }
 
   renderSubmenu() {
-    const isLtr = this.localize.dir() === 'ltr';
+    const isRtl = this.host.matches(':dir(rtl)');
 
     // Always render the slot, but conditionally render the outer <wa-popup>
     if (!this.isConnected) {
@@ -276,12 +270,14 @@ export class SubmenuController implements ReactiveController {
     return html`
       <wa-popup
         ${ref(this.popupRef)}
-        placement=${isLtr ? 'right-start' : 'left-start'}
+        placement=${isRtl ? 'left-start' : 'right-start'}
         anchor="anchor"
         flip
         flip-fallback-strategy="best-fit"
         skidding="${this.skidding}"
         strategy="fixed"
+        auto-size="vertical"
+        auto-size-padding="10"
       >
         <slot name="submenu"></slot>
       </wa-popup>

@@ -5,7 +5,6 @@
 html {
   box-sizing: border-box;
   background-color: var(--wa-color-surface-default);
-  font-size: var(--wa-font-size-root);
   padding: 0;
   margin: 0;
 }
@@ -21,7 +20,7 @@ body {
   font-family: var(--wa-font-family-body);
   font-size: var(--wa-font-size-m);
   font-weight: var(--wa-font-weight-body);
-  line-height: var(--wa-font-line-height-regular);
+  line-height: var(--wa-line-height-normal);
   text-size-adjust: none;
   color: var(--wa-color-text-normal);
   padding: 0;
@@ -30,12 +29,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
-}
-
-/* Text selection */
-::selection {
-  background-color: var(--wa-color-selection-background);
-  color: var(--wa-color-selection-text);
 }
 
 /* Show custom elements only after they're registered */
@@ -70,7 +63,7 @@ pre,
 table,
 ul,
 video {
-  margin: 0 0 var(--wa-flow-spacing) 0;
+  margin: 0 0 var(--wa-space-xl) 0;
 }
 
 /* Headings & text */
@@ -82,7 +75,7 @@ h5,
 h6 {
   font-family: var(--wa-font-family-heading);
   font-weight: var(--wa-font-weight-heading);
-  line-height: var(--wa-font-line-height-compact);
+  line-height: var(--wa-line-height-condensed);
   text-wrap: balance;
 }
 
@@ -113,7 +106,7 @@ h6 {
 hr {
   border: none;
   border-bottom: solid var(--wa-border-width-s) var(--wa-color-surface-border);
-  margin: var(--wa-flow-spacing) 0;
+  margin: var(--wa-space-xl) 0;
 }
 
 em,
@@ -123,7 +116,7 @@ i {
 
 strong,
 b {
-  font-weight: var(--wa-font-weight-heavy);
+  font-weight: var(--wa-font-weight-bold);
 }
 
 s {
@@ -137,24 +130,24 @@ mark {
 }
 
 ins {
-  background-color: var(--wa-color-success-fill-subtle);
-  color: var(--wa-color-success-text-on-fill);
-  border-radius: var(--wa-corners-s);
+  background-color: var(--wa-color-success-fill-quiet);
+  color: var(--wa-color-success-on-normal);
+  border-radius: var(--wa-border-radius-s);
   text-decoration: none;
 }
 
 del {
-  background-color: var(--wa-color-danger-fill-subtle);
-  color: var(--wa-color-danger-text-on-fill);
-  border-radius: var(--wa-corners-s);
+  background-color: var(--wa-color-danger-fill-quiet);
+  color: var(--wa-color-danger-on-normal);
+  border-radius: var(--wa-border-radius-s);
   text-decoration: none;
   padding: 0.125em 0.25em;
 }
 
 mark {
-  background-color: var(--wa-color-warning-fill-subtle);
+  background-color: var(--wa-color-warning-fill-quiet);
   color: inherit;
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   padding: 0.125em 0.25em;
 }
 
@@ -191,20 +184,19 @@ kbd,
 samp,
 var {
   font-family: var(--wa-font-family-code);
-  font-size: 0.90625em;
-  background-color: var(--wa-color-neutral-fill-subtle);
-  border-radius: var(--wa-corners-s);
-  padding-block: var(--wa-space-3xs);
-  padding-inline: var(--wa-space-2xs);
+  font-size: 0.875em;
+  background-color: var(--wa-color-overlay-inline);
+  border-radius: var(--wa-border-radius-s);
+  padding: 0.25em 0.5em;
 }
 
 code {
-  background-color: color-mix(in oklab, var(--wa-color-neutral-spot), transparent 90%);
+  white-space: pre;
 }
 
 pre {
   color: var(--wa-color-text-normal);
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   padding: var(--wa-space-m);
   white-space: pre;
 }
@@ -225,14 +217,12 @@ pre:has(code) {
 }
 
 kbd {
-  border: solid 1px var(--wa-color-neutral-border-subtle);
-  box-shadow:
-    inset 0 1px 0 1px rgb(255 255 255 / 0.2),
-    0 1px 0 0 rgb(0 0 0 / 0.2);
+  border: solid var(--wa-border-width-s) var(--wa-color-neutral-border-quiet);
+  border-bottom-width: var(--wa-border-width-m);
   font-family: var(--wa-font-family-code);
-  border-radius: var(--wa-corners-s);
-  color: var(--wa-color-neutral-text-on-fill);
-  padding: 0.125em 0.4em;
+  border-radius: var(--wa-border-radius-s);
+  color: var(--wa-color-neutral-on-normal);
+  padding: 0.25em 0.5em;
 }
 
 kbd wa-icon {
@@ -245,8 +235,8 @@ blockquote {
   font-family: var(--wa-font-family-longform);
   font-size: var(--wa-font-size-l);
   font-style: italic;
-  background-color: var(--wa-color-neutral-fill-subtle);
-  border-radius: var(--wa-corners-s);
+  background-color: var(--wa-color-neutral-fill-quiet);
+  border-radius: var(--wa-border-radius-s);
   padding: var(--wa-space-xl);
   margin: 0 0 var(--wa-space-xl) 0;
 }
@@ -263,7 +253,7 @@ blockquote > :last-child {
 ul,
 ol {
   padding: 0;
-  margin: 0 0 var(--wa-flow-spacing) var(--wa-space-xl);
+  margin: 0 0 var(--wa-space-xl) var(--wa-space-xl);
 }
 
 ul {
@@ -281,12 +271,12 @@ li > ol {
 
 /* Details */
 details {
-  background-color: var(--wa-color-neutral-fill-subtle);
-  border-radius: var(--wa-panel-corners);
+  background-color: var(--wa-color-neutral-fill-quiet);
+  border-radius: var(--wa-panel-border-radius);
   padding: 0;
   margin: 0;
   padding-inline: var(--wa-space-m);
-  margin-block-end: var(--wa-flow-spacing);
+  margin-block-end: var(--wa-space-xl);
 }
 
 details :last-child {
@@ -330,7 +320,7 @@ details[open] > summary::before {
 }
 
 details + details {
-  margin-top: calc(-1 * var(--wa-flow-spacing) + var(--wa-border-width-s));
+  margin-top: calc(-1 * var(--wa-space-xl) + var(--wa-border-width-s));
 }
 
 /* Tables */
@@ -349,17 +339,17 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background-color: color-mix(in oklab, var(--wa-color-brand-fill-highlight), transparent 50%);
-  border-top-color: var(--wa-color-brand-border-subtle);
+  background-color: color-mix(in oklab, var(--wa-color-neutral-fill-quiet), transparent 50%);
+  border-top-color: var(--wa-color-neutral-border-quiet);
 }
 
 tbody tr:hover + tr {
-  border-top-color: var(--wa-color-brand-border-subtle);
+  border-top-color: var(--wa-color-neutral-border-quiet);
 }
 
 th {
   font-size: var(--wa-font-size-s);
-  font-weight: var(--wa-font-weight-heavy);
+  font-weight: var(--wa-font-weight-bold);
 }
 
 td,
@@ -370,7 +360,7 @@ th {
 
 /* Definition lists */
 dt {
-  font-weight: var(--wa-font-weight-medium);
+  font-weight: var(--wa-font-weight-semibold);
 }
 
 dd {
@@ -380,7 +370,7 @@ dd {
 /* Fieldsets */
 fieldset {
   border: solid 1px var(--wa-color-surface-border);
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   padding: var(--wa-space-m);
   padding-block-end: var(--wa-space-xl);
 }
@@ -395,7 +385,7 @@ img:not(wa-card *),
 picture,
 svg,
 video {
-  border-radius: var(--wa-corners-s);
+  border-radius: var(--wa-border-radius-s);
   max-width: 100%;
   height: auto;
 }
@@ -456,7 +446,7 @@ textarea {
 }
 
 table.wa-alternating-row-colors tbody tr:nth-child(2n + 1) {
-  background-color: color-mix(in oklab, var(--wa-color-neutral-fill-highlight), transparent 80%);
+  background-color: color-mix(in oklab, var(--wa-color-neutral-fill-normal), transparent 80%);
 }
 
 /* Print styles */

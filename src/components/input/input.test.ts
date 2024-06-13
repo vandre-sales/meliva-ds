@@ -1,12 +1,13 @@
 // eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
-import { elementUpdated, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
-import { getFormControls, serialize } from '../../../dist/webawesome.js';
+import { aTimeout, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
+import { isSafari } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import { sendKeys } from '@web/test-runner-commands'; // must come from the same module
+import { serialize } from '../../../dist/webawesome.js';
 import sinon from 'sinon';
 import type WaInput from './input.js';
 
-describe('<wa-input>', () => {
+describe('<wa-input>', async () => {
   it('should pass accessibility tests', async () => {
     const el = await fixture<WaInput>(html` <wa-input label="Name"></wa-input> `);
     await expect(el).to.be.accessible();
@@ -17,7 +18,7 @@ describe('<wa-input>', () => {
 
     expect(el.type).to.equal('text');
     expect(el.size).to.equal('medium');
-    expect(el.name).to.equal('');
+    expect(el.name).to.equal(null);
     expect(el.value).to.equal('');
     expect(el.defaultValue).to.equal('');
     expect(el.title).to.equal('');
@@ -46,8 +47,6 @@ describe('<wa-input>', () => {
     expect(el.enterkeyhint).to.be.undefined;
     expect(el.spellcheck).to.be.true;
     expect(el.inputmode).to.be.undefined;
-    expect(el.valueAsDate).to.be.null;
-    expect(isNaN(el.valueAsNumber)).to.be.true;
   });
 
   it('should have title if title attribute is set', async () => {
@@ -62,74 +61,6 @@ describe('<wa-input>', () => {
     const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
     expect(input.disabled).to.be.true;
-  });
-
-  describe('value methods', () => {
-    it('should set the value as a date when using valueAsDate', async () => {
-      const el = document.createElement(`wa-input`);
-      el.type = 'date';
-      const today = new Date();
-
-      el.valueAsDate = today;
-
-      // Test before we render in the dom
-      expect(el.value).to.equal(today.toISOString().split('T')[0]);
-      expect(el.valueAsDate.toISOString().split('T')[0]).to.equal(today.toISOString().split('T')[0]);
-
-      document.body.appendChild(el);
-
-      await elementUpdated(el);
-
-      // Update valueAsDate after we render to make sure it reflects properly
-      el.valueAsDate = null;
-
-      await elementUpdated(el);
-
-      expect(el.value).to.equal('');
-      expect(el.valueAsDate).to.equal(null);
-
-      // Update again with a real date to make sure it works
-      el.valueAsDate = today;
-
-      await elementUpdated(el);
-
-      expect(el.value).to.equal(today.toISOString().split('T')[0]);
-      expect(el.valueAsDate.toISOString().split('T')[0]).to.equal(today.toISOString().split('T')[0]);
-
-      el.remove();
-    });
-
-    it('should set the value as a number when using valueAsNumber', async () => {
-      const el = document.createElement(`wa-input`);
-      el.type = 'number';
-      const num = 12345;
-
-      el.valueAsNumber = num;
-
-      expect(el.value).to.equal(num.toString());
-      expect(el.valueAsNumber).to.equal(num);
-
-      document.body.appendChild(el);
-
-      await elementUpdated(el);
-
-      // Wait for render, then update the value
-      const otherNum = 4567;
-      el.valueAsNumber = otherNum;
-
-      await elementUpdated(el);
-
-      expect(el.value).to.equal(otherNum.toString());
-      expect(el.valueAsNumber).to.equal(otherNum);
-
-      // Re-set valueAsNumber and make sure it updates.
-      el.valueAsNumber = num;
-      await elementUpdated(el);
-      expect(el.value).to.equal(num.toString());
-      expect(el.valueAsNumber).to.equal(num);
-
-      el.remove();
-    });
   });
 
   it('should focus the input when clicking on the label', async () => {
@@ -157,22 +88,40 @@ describe('<wa-input>', () => {
     });
 
     it('should be invalid when required and disabled is removed', async () => {
-      const el = await fixture<WaInput>(html` <wa-input disabled required></wa-input> `);
+      const el = await fixture<WaInput>(html` <wa-input disabled required></wa-input>`);
+      // Should be valid while disabled
+      expect(el.checkValidity()).to.be.true;
       el.disabled = false;
       await el.updateComplete;
+      // Should be invalid while enabled
       expect(el.checkValidity()).to.be.false;
+    });
+
+    it('should not add a value to the form if disabled', async () => {
+      const form = await fixture<HTMLFormElement>(
+        html` <form><wa-input name="name" disabled required></wa-input></form>`
+      );
+      const el = form.querySelector('wa-input')!;
+      el.value = 'blah';
+      await el.updateComplete;
+
+      expect(new FormData(form).get('name')).to.equal(null);
+      el.disabled = false;
+      await el.updateComplete;
+      // Should be invalid while enabled
+      expect(new FormData(form).get('name')).to.equal('blah');
     });
 
     it('should receive the correct validation attributes ("states") when valid', async () => {
       const el = await fixture<WaInput>(html` <wa-input required value="a"></wa-input> `);
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-required')).to.be.true;
-      expect(el.hasAttribute('data-optional')).to.be.false;
-      expect(el.hasAttribute('data-invalid')).to.be.false;
-      expect(el.hasAttribute('data-valid')).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-required')).to.be.true;
+      expect(el.hasAttribute('data-wa-optional')).to.be.false;
+      expect(el.hasAttribute('data-wa-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
 
       el.focus();
       await el.updateComplete;
@@ -182,19 +131,19 @@ describe('<wa-input>', () => {
       await el.updateComplete;
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.true;
     });
 
     it('should receive the correct validation attributes ("states") when invalid', async () => {
       const el = await fixture<WaInput>(html` <wa-input required></wa-input> `);
 
-      expect(el.hasAttribute('data-required')).to.be.true;
-      expect(el.hasAttribute('data-optional')).to.be.false;
-      expect(el.hasAttribute('data-invalid')).to.be.true;
-      expect(el.hasAttribute('data-valid')).to.be.false;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-required')).to.be.true;
+      expect(el.hasAttribute('data-wa-optional')).to.be.false;
+      expect(el.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(el.hasAttribute('data-wa-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
 
       el.focus();
       await el.updateComplete;
@@ -204,20 +153,20 @@ describe('<wa-input>', () => {
       el.blur();
       await el.updateComplete;
 
-      expect(el.hasAttribute('data-user-invalid')).to.be.true;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
       const el = await fixture<HTMLFormElement>(html` <form novalidate><wa-input required></wa-input></form> `);
       const input = el.querySelector<WaInput>('wa-input')!;
 
-      expect(input.hasAttribute('data-required')).to.be.true;
-      expect(input.hasAttribute('data-optional')).to.be.false;
-      expect(input.hasAttribute('data-invalid')).to.be.true;
-      expect(input.hasAttribute('data-valid')).to.be.false;
-      expect(input.hasAttribute('data-user-invalid')).to.be.false;
-      expect(input.hasAttribute('data-user-valid')).to.be.false;
+      expect(input.hasAttribute('data-wa-required')).to.be.true;
+      expect(input.hasAttribute('data-wa-optional')).to.be.false;
+      expect(input.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(input.hasAttribute('data-wa-valid')).to.be.false;
+      expect(input.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(input.hasAttribute('data-wa-user-valid')).to.be.false;
     });
   });
 
@@ -274,10 +223,10 @@ describe('<wa-input>', () => {
       await input.updateComplete;
 
       expect(input.checkValidity()).to.be.false;
-      expect(input.hasAttribute('data-invalid')).to.be.true;
-      expect(input.hasAttribute('data-valid')).to.be.false;
-      expect(input.hasAttribute('data-user-invalid')).to.be.false;
-      expect(input.hasAttribute('data-user-valid')).to.be.false;
+      expect(input.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(input.hasAttribute('data-wa-valid')).to.be.false;
+      expect(input.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(input.hasAttribute('data-wa-user-valid')).to.be.false;
 
       input.focus();
       await sendKeys({ type: 'test' });
@@ -285,8 +234,8 @@ describe('<wa-input>', () => {
       input.blur();
       await input.updateComplete;
 
-      expect(input.hasAttribute('data-user-invalid')).to.be.true;
-      expect(input.hasAttribute('data-user-valid')).to.be.false;
+      expect(input.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(input.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
@@ -347,7 +296,7 @@ describe('<wa-input>', () => {
       expect(form.reportValidity()).to.be.false;
     });
 
-    it('should be valid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
+    it('should be invalid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form novalidate>
           <wa-input required value=""></wa-input>
@@ -355,7 +304,7 @@ describe('<wa-input>', () => {
         </form>
       `);
 
-      expect(form.reportValidity()).to.be.true;
+      expect(form.reportValidity()).to.be.false;
     });
 
     it('should be invalid when a native input is empty and form.reportValidity() is called', async () => {
@@ -490,59 +439,31 @@ describe('<wa-input>', () => {
     });
   });
 
-  describe('when using FormControlController', () => {
-    it('should submit with the correct form when the form attribute changes', async () => {
-      const el = await fixture<HTMLFormElement>(html`
-        <div>
-          <form id="f1">
-            <input type="hidden" name="b" value="2" />
-            <wa-button type="submit">Submit</wa-button>
-          </form>
-          <form id="f2">
-            <input type="hidden" name="c" value="3" />
-            <wa-button type="submit">Submit</wa-button>
-          </form>
-          <wa-input form="f1" name="a" value="1"></wa-input>
-        </div>
-      `);
-      const form = el.querySelector<HTMLFormElement>('#f2')!;
-      const input = document.querySelector('wa-input')!;
+  it('should submit with the correct form when the form attribute changes', async () => {
+    const el = await fixture<HTMLFormElement>(html`
+      <div>
+        <form id="f1">
+          <input type="hidden" name="b" value="2" />
+          <wa-button type="submit">Submit</wa-button>
+        </form>
+        <form id="f2">
+          <input type="hidden" name="c" value="3" />
+          <wa-button type="submit">Submit</wa-button>
+        </form>
+        <wa-input form="f1" name="a" value="1"></wa-input>
+      </div>
+    `);
+    const form = el.querySelector<HTMLFormElement>('#f2')!;
+    const input = document.querySelector('wa-input')!;
 
-      input.form = 'f2';
-      await input.updateComplete;
+    input.form = 'f2';
+    await input.updateComplete;
 
-      const formData = new FormData(form);
+    const formData = new FormData(form);
 
-      expect(formData.get('a')).to.equal('1');
-      expect(formData.get('b')).to.be.null;
-      expect(formData.get('c')).to.equal('3');
-    });
-  });
-
-  describe('when using the getFormControls() function', () => {
-    it('should return both native and Web Awesome form controls in the correct DOM order', async () => {
-      const el = await fixture<HTMLFormElement>(html`
-        <div>
-          <input type="text" name="a" value="1" form="f1" />
-          <wa-input type="text" name="b" value="2" form="f1"></wa-input>
-          <form id="f1">
-            <input type="hidden" name="c" value="3" />
-            <input type="text" name="d" value="4" />
-            <wa-input name="e" value="5"></wa-input>
-            <textarea name="f">6</textarea>
-            <wa-textarea name="g" value="7"></wa-textarea>
-            <wa-checkbox name="h" value="8"></wa-checkbox>
-          </form>
-          <input type="text" name="i" value="9" form="f1" />
-          <wa-input type="text" name="j" value="10" form="f1"></wa-input>
-        </div>
-      `);
-      const form = el.querySelector<HTMLFormElement>('form')!;
-
-      const formControls = getFormControls(form); // eslint-disable-line
-      expect(formControls.length).to.equal(10); // eslint-disable-line
-      expect(formControls.map((fc: HTMLInputElement) => fc.value).join('')).to.equal('12345678910'); // eslint-disable-line
-    });
+    expect(formData.get('a')).to.equal('1');
+    expect(formData.get('b')).to.be.null;
+    expect(formData.get('c')).to.equal('3');
   });
 
   describe('when using the setRangeText() function', () => {
@@ -557,5 +478,25 @@ describe('<wa-input>', () => {
     });
   });
 
-  runFormControlBaseTests('wa-input');
+  it('Should be invalid if the pattern is invalid', async () => {
+    const el = await fixture<WaInput>(html` <wa-input required pattern="1234"></wa-input> `);
+
+    el.input.focus();
+    await el.updateComplete;
+    expect(el.checkValidity()).to.be.false;
+
+    await aTimeout(10);
+    await sendKeys({ type: '1234' });
+    await el.updateComplete;
+    await aTimeout(10);
+
+    // For some reason this is only required in Safari.
+    if (isSafari) {
+      el.setCustomValidity('');
+    }
+
+    expect(el.checkValidity()).to.be.true;
+  });
+
+  await runFormControlBaseTests('wa-input');
 });

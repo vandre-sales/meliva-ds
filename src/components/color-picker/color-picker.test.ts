@@ -6,7 +6,7 @@ import { serialize } from '../../utilities/form.js';
 import sinon from 'sinon';
 import type WaColorPicker from './color-picker.js';
 
-describe('<wa-color-picker>', () => {
+describe('<wa-color-picker>', async () => {
   describe('when the value changes', () => {
     it('should not emit wa-change or wa-input when the value is changed programmatically', async () => {
       const el = await fixture<WaColorPicker>(html` <wa-color-picker></wa-color-picker> `);
@@ -32,7 +32,7 @@ describe('<wa-color-picker>', () => {
       await aTimeout(200); // wait for the dropdown to open
       await el.updateComplete;
 
-      // Simulate a drag event. "sl-change" should not fire until we stop dragging.
+      // Simulate a drag event. "wa-change" should not fire until we stop dragging.
       await dragElement(grid, 2, 0, {
         afterMouseDown: () => {
           expect(changeHandler).to.have.not.been.called;
@@ -461,6 +461,7 @@ describe('<wa-color-picker>', () => {
           <wa-color-picker name="a" value="#ffcc00"></wa-color-picker>
         </form>
       `);
+
       const formData = new FormData(form);
       expect(formData.get('a')).to.equal('#ffcc00');
     });
@@ -545,12 +546,12 @@ describe('<wa-color-picker>', () => {
       const grid = el.shadowRoot!.querySelector('[part~="grid"]')!;
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-required')).to.be.true;
-      expect(el.hasAttribute('data-optional')).to.be.false;
-      expect(el.hasAttribute('data-invalid')).to.be.false;
-      expect(el.hasAttribute('data-valid')).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-required')).to.be.true;
+      expect(el.hasAttribute('data-wa-optional')).to.be.false;
+      expect(el.hasAttribute('data-wa-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(trigger);
       await aTimeout(500);
@@ -558,8 +559,8 @@ describe('<wa-color-picker>', () => {
       await el.updateComplete;
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.true;
     });
 
     it('should receive the correct validation attributes ("states") when invalid', async () => {
@@ -567,12 +568,12 @@ describe('<wa-color-picker>', () => {
       const trigger = el.shadowRoot!.querySelector('[part~="trigger"]')!;
       const grid = el.shadowRoot!.querySelector('[part~="grid"]')!;
 
-      expect(el.hasAttribute('data-required')).to.be.true;
-      expect(el.hasAttribute('data-optional')).to.be.false;
-      expect(el.hasAttribute('data-invalid')).to.be.true;
-      expect(el.hasAttribute('data-valid')).to.be.false;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-required')).to.be.true;
+      expect(el.hasAttribute('data-wa-optional')).to.be.false;
+      expect(el.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(el.hasAttribute('data-wa-valid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(trigger);
       await aTimeout(500);
@@ -580,10 +581,10 @@ describe('<wa-color-picker>', () => {
       await el.updateComplete;
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.hasAttribute('data-user-invalid')).to.be.false;
-      expect(el.hasAttribute('data-user-valid')).to.be.true;
+      expect(el.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-wa-user-valid')).to.be.true;
     });
   });
 
-  runFormControlBaseTests('wa-color-picker');
+  await runFormControlBaseTests('wa-color-picker');
 });

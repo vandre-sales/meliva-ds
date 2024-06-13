@@ -12,22 +12,6 @@ layout: component.njk
 <wa-tag variant="danger">Danger</wa-tag>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaTag from '@shoelace-style/shoelace/dist/react/tag';
-
-const App = () => (
-  <>
-    <WaTag variant="brand">Brand</WaTag>
-    <WaTag variant="success">Success</WaTag>
-    <WaTag variant="neutral">Neutral</WaTag>
-    <WaTag variant="warning">Warning</WaTag>
-    <WaTag variant="danger">Danger</WaTag>
-  </>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Sizes
@@ -40,20 +24,6 @@ Use the `size` attribute to change a tab's size.
 <wa-tag size="large">Large</wa-tag>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaTag from '@shoelace-style/shoelace/dist/react/tag';
-
-const App = () => (
-  <>
-    <WaTag size="small">Small</WaTag>
-    <WaTag size="medium">Medium</WaTag>
-    <WaTag size="large">Large</WaTag>
-  </>
-);
-```
-{% endraw %}
-
 ### Pill
 
 Use the `pill` attribute to give tabs rounded edges.
@@ -63,26 +33,6 @@ Use the `pill` attribute to give tabs rounded edges.
 <wa-tag size="medium" pill>Medium</wa-tag>
 <wa-tag size="large" pill>Large</wa-tag>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaTag from '@shoelace-style/shoelace/dist/react/tag';
-
-const App = () => (
-  <>
-    <WaTag size="small" pill>
-      Small
-    </WaTag>
-    <WaTag size="medium" pill>
-      Medium
-    </WaTag>
-    <WaTag size="large" pill>
-      Large
-    </WaTag>
-  </>
-);
-```
-{% endraw %}
 
 ### Removable
 
@@ -107,47 +57,7 @@ Use the `removable` attribute to add a remove button to the tag.
 
 <style>
   .tags-removable wa-tag {
-    transition: var(--wa-transition-fast) opacity;
+    transition: opacity var(--wa-transition-normal);
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaTag from '@shoelace-style/shoelace/dist/react/tag';
-
-const css = `
-  .tags-removable wa-tag {
-    transition: var(--wa-transition-fast) opacity;
-  }
-`;
-
-const App = () => {
-  function handleRemove(event) {
-    const tag = event.target;
-    tag.style.opacity = '0';
-    setTimeout(() => (tag.style.opacity = '1'), 2000);
-  }
-
-  return (
-    <>
-      <div className="tags-removable">
-        <WaTag size="small" removable onWaRemove={handleRemove}>
-          Small
-        </WaTag>
-
-        <WaTag size="medium" removable onWaRemove={handleRemove}>
-          Medium
-        </WaTag>
-
-        <WaTag size="large" removable onWaRemove={handleRemove}>
-          Large
-        </WaTag>
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}

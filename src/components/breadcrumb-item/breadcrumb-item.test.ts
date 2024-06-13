@@ -122,11 +122,6 @@ describe('<wa-breadcrumb-item>', () => {
 
       expect(childNodes.length).to.eq(1);
     });
-
-    it('should append class "breadcrumb-item--has-prefix" to "base" part', () => {
-      const part = el.shadowRoot!.querySelector('[part~="base"]')!;
-      expect(part.classList.value.trim()).to.equal('breadcrumb-item breadcrumb-item--has-prefix');
-    });
   });
 
   describe('when provided an element in the slot "suffix" to support suffix icons', () => {
@@ -148,11 +143,6 @@ describe('<wa-breadcrumb-item>', () => {
       const childNodes = slot.assignedNodes({ flatten: true });
 
       expect(childNodes.length).to.eq(1);
-    });
-
-    it('should append class "breadcrumb-item--has-suffix" to "base" part', () => {
-      const part = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
-      expect(part.classList.value.trim()).to.equal('breadcrumb-item breadcrumb-item--has-suffix');
     });
   });
 });

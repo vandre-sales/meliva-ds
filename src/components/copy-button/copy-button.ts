@@ -1,10 +1,12 @@
 import '../icon/icon.js';
 import '../tooltip/tooltip.js';
+import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
+import { WaCopyEvent } from '../../events/copy.js';
+import { WaErrorEvent } from '../../events/error.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './copy-button.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
@@ -36,11 +38,9 @@ import type WaTooltip from '../tooltip/tooltip.js';
  * @csspart tooltip__base__arrow - The tooltip's exported `arrow` part.
  * @csspart tooltip__body - The tooltip's exported `body` part.
  *
+ * @cssproperty --background-color-hover - The color of the button's background on hover.
  * @cssproperty --success-color - The color to use for success feedback.
  * @cssproperty --error-color - The color to use for error feedback.
- *
- * @animation copy.in - The animation to use when feedback icons animate in.
- * @animation copy.out - The animation to use when feedback icons animate out.
  */
 @customElement('wa-copy-button')
 export default class WaCopyButton extends WebAwesomeElement {
@@ -55,6 +55,18 @@ export default class WaCopyButton extends WebAwesomeElement {
 
   @state() isCopying = false;
   @state() status: 'rest' | 'success' | 'error' = 'rest';
+
+  private get currentLabel() {
+    if (this.status === 'success') {
+      return this.successLabel || this.localize.term('copied');
+    }
+
+    if (this.status === 'error') {
+      return this.errorLabel || this.localize.term('error');
+    }
+
+    return this.copyLabel || this.localize.term('copy');
+  }
 
   /** The text value to copy. */
   @property() value = '';
@@ -135,119 +147,90 @@ export default class WaCopyButton extends WebAwesomeElement {
       } else {
         // No target
         this.showStatus('error');
-        this.emit('wa-error');
+        this.dispatchEvent(new WaErrorEvent());
       }
     }
 
     // No value
     if (!valueToCopy) {
       this.showStatus('error');
-      this.emit('wa-error');
+      this.dispatchEvent(new WaErrorEvent());
     } else {
       try {
         await navigator.clipboard.writeText(valueToCopy);
         this.showStatus('success');
-        this.emit('wa-copy', {
-          detail: {
-            value: valueToCopy
-          }
-        });
+        this.dispatchEvent(new WaCopyEvent({ value: valueToCopy }));
       } catch (error) {
         // Rejected by browser
         this.showStatus('error');
-        this.emit('wa-error');
+        this.dispatchEvent(new WaErrorEvent());
       }
     }
   }
 
   private async showStatus(status: 'success' | 'error') {
-    const copyLabel = this.copyLabel || this.localize.term('copy');
-    const successLabel = this.successLabel || this.localize.term('copied');
-    const errorLabel = this.errorLabel || this.localize.term('error');
     const iconToShow = status === 'success' ? this.successIcon : this.errorIcon;
-    const showAnimation = getAnimation(this, 'copy.in', { dir: 'ltr' });
-    const hideAnimation = getAnimation(this, 'copy.out', { dir: 'ltr' });
-
-    this.tooltip.content = status === 'success' ? successLabel : errorLabel;
 
     // Show the feedback icon
-    await this.copyIcon.animate(hideAnimation.keyframes, hideAnimation.options).finished;
+    await animateWithClass(this.copyIcon, 'hide');
     this.copyIcon.hidden = true;
     this.status = status;
     iconToShow.hidden = false;
-    await iconToShow.animate(showAnimation.keyframes, showAnimation.options).finished;
+    await animateWithClass(iconToShow, 'show');
 
     // After a brief delay, restore the original state
     setTimeout(async () => {
-      await iconToShow.animate(hideAnimation.keyframes, hideAnimation.options).finished;
+      await animateWithClass(iconToShow, 'hide');
       iconToShow.hidden = true;
       this.status = 'rest';
       this.copyIcon.hidden = false;
-      await this.copyIcon.animate(showAnimation.keyframes, showAnimation.options).finished;
+      await animateWithClass(this.copyIcon, 'show');
 
-      this.tooltip.content = copyLabel;
       this.isCopying = false;
     }, this.feedbackDuration);
   }
 
   render() {
-    const copyLabel = this.copyLabel || this.localize.term('copy');
-
     return html`
-      <wa-tooltip
-        class=${classMap({
-          'copy-button': true,
-          'copy-button--success': this.status === 'success',
-          'copy-button--error': this.status === 'error'
-        })}
-        content=${copyLabel}
-        placement=${this.tooltipPlacement}
+      <button
+        class="copy-button__button"
+        part="button"
+        type="button"
+        id="copy-button"
         ?disabled=${this.disabled}
-        ?hoist=${this.hoist}
-        exportparts="
-          base:tooltip__base,
-          base__popup:tooltip__base__popup,
-          base__arrow:tooltip__base__arrow,
-          body:tooltip__body
-        "
+        @click=${this.handleCopy}
       >
-        <button
-          class="copy-button__button"
-          part="button"
-          type="button"
+        <slot part="copy-icon" name="copy-icon">
+          <wa-icon library="system" name="copy" variant="regular" fixed-width></wa-icon>
+        </slot>
+        <slot part="success-icon" name="success-icon" variant="solid" hidden>
+          <wa-icon library="system" name="check" fixed-width></wa-icon>
+        </slot>
+        <slot part="error-icon" name="error-icon" variant="solid" hidden>
+          <wa-icon library="system" name="xmark" fixed-width></wa-icon>
+        </slot>
+        <wa-tooltip
+          class=${classMap({
+            'copy-button': true,
+            'copy-button--success': this.status === 'success',
+            'copy-button--error': this.status === 'error'
+          })}
+          for="copy-button"
+          placement=${this.tooltipPlacement}
           ?disabled=${this.disabled}
-          @click=${this.handleCopy}
+          ?hoist=${this.hoist}
+          exportparts="
+            base:tooltip__base,
+            base__popup:tooltip__base__popup,
+            base__arrow:tooltip__base__arrow,
+            body:tooltip__body
+          "
+          >${this.currentLabel}</wa-tooltip
         >
-          <slot part="copy-icon" name="copy-icon">
-            <wa-icon library="system" name="copy" variant="regular"></wa-icon>
-          </slot>
-          <slot part="success-icon" name="success-icon" variant="solid" hidden>
-            <wa-icon library="system" name="check"></wa-icon>
-          </slot>
-          <slot part="error-icon" name="error-icon" variant="solid" hidden>
-            <wa-icon library="system" name="xmark"></wa-icon>
-          </slot>
-        </button>
-      </wa-tooltip>
+      </button>
     `;
   }
 }
-
-setDefaultAnimation('copy.in', {
-  keyframes: [
-    { scale: '.25', opacity: '.25' },
-    { scale: '1', opacity: '1' }
-  ],
-  options: { duration: 100 }
-});
-
-setDefaultAnimation('copy.out', {
-  keyframes: [
-    { scale: '1', opacity: '1' },
-    { scale: '.25', opacity: '0' }
-  ],
-  options: { duration: 100 }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

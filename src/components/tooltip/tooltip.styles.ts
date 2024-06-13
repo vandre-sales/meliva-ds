@@ -2,20 +2,23 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --max-width: 20rem;
-    --hide-delay: 0ms;
-    --show-delay: 150ms;
+    --background-color: var(--wa-tooltip-background-color);
+    --border-radius: var(--wa-tooltip-border-radius);
+    --max-width: 30ch;
+    --padding: var(--wa-space-2xs) var(--wa-space-xs);
 
-    display: contents;
+    display: inline-block;
+
+    /** These styles are added so we dont interfere in the DOM. */
   }
 
   .tooltip {
     --arrow-size: var(--wa-tooltip-arrow-size);
-    --arrow-color: var(--wa-color-neutral-spot);
+    --arrow-color: var(--wa-tooltip-background-color);
   }
 
   .tooltip::part(popup) {
-    z-index: var(--wa-z-index-tooltip);
+    z-index: 1000;
   }
 
   .tooltip[placement^='top']::part(popup) {
@@ -38,12 +41,15 @@ export default css`
     display: block;
     width: max-content;
     max-width: var(--max-width);
-    border-radius: var(--wa-corners-s);
-    background-color: var(--wa-color-neutral-spot);
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
     font: inherit;
-    line-height: var(--wa-line-height-regular);
-    color: var(--wa-color-neutral-text-on-spot);
-    padding: var(--wa-space-2xs) var(--wa-space-xs);
+    color: var(--wa-tooltip-content-color);
+    font-size: var(--wa-tooltip-font-size);
+    line-height: var(--wa-tooltip-line-height);
+    text-align: start;
+    white-space: normal;
+    padding: var(--padding);
     user-select: none;
     -webkit-user-select: none;
   }

@@ -5,16 +5,8 @@ layout: component.njk
 ---
 
 ```html {.example}
-<wa-input></wa-input>
+<form><wa-input></wa-input></form>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => <WaInput />;
-```
-{% endraw %}
 
 :::info
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
@@ -30,15 +22,6 @@ Use the `label` attribute to give the input an accessible label. For labels that
 <wa-input label="What is your name?"></wa-input>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => <WaInput label="What is your name?" />;
-```
-{% endraw %}
-
 ### Help Text
 
 Add descriptive help text to an input with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
@@ -46,15 +29,6 @@ Add descriptive help text to an input with the `help-text` attribute. For help t
 ```html {.example}
 <wa-input label="Nickname" help-text="What would you like people to call you?"></wa-input>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => <WaInput label="Nickname" help-text="What would you like people to call you?" />;
-```
-{% endraw %}
 
 ### Placeholders
 
@@ -64,14 +38,6 @@ Use the `placeholder` attribute to add a placeholder.
 <wa-input placeholder="Type something"></wa-input>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => <WaInput placeholder="Type something" />;
-```
-{% endraw %}
-
 ### Clearable
 
 Add the `clearable` attribute to add a clear button when the input has content.
@@ -79,14 +45,6 @@ Add the `clearable` attribute to add a clear button when the input has content.
 ```html {.example}
 <wa-input placeholder="Clearable" clearable></wa-input>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => <WaInput placeholder="Clearable" clearable />;
-```
-{% endraw %}
 
 ### Toggle Password
 
@@ -96,14 +54,6 @@ Add the `password-toggle` attribute to add a toggle button that will show the pa
 <wa-input type="password" placeholder="Password Toggle" password-toggle></wa-input>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => <WaInput type="password" placeholder="Password Toggle" size="medium" password-toggle />;
-```
-{% endraw %}
-
 ### Filled Inputs
 
 Add the `filled` attribute to draw a filled input.
@@ -112,14 +62,6 @@ Add the `filled` attribute to draw a filled input.
 <wa-input placeholder="Type something" filled></wa-input>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => <WaInput placeholder="Type something" filled />;
-```
-{% endraw %}
-
 ### Disabled
 
 Use the `disabled` attribute to disable an input.
@@ -127,14 +69,6 @@ Use the `disabled` attribute to disable an input.
 ```html {.example}
 <wa-input placeholder="Disabled" disabled></wa-input>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => <WaInput placeholder="Disabled" disabled />;
-```
-{% endraw %}
 
 ### Sizes
 
@@ -148,22 +82,6 @@ Use the `size` attribute to change an input's size.
 <wa-input placeholder="Large" size="large"></wa-input>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => (
-  <>
-    <WaInput placeholder="Small" size="small" />
-    <br />
-    <WaInput placeholder="Medium" size="medium" />
-    <br />
-    <WaInput placeholder="Large" size="large" />
-  </>
-);
-```
-{% endraw %}
-
 ### Pill
 
 Use the `pill` attribute to give inputs rounded edges.
@@ -176,22 +94,6 @@ Use the `pill` attribute to give inputs rounded edges.
 <wa-input placeholder="Large" size="large" pill></wa-input>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => (
-  <>
-    <WaInput placeholder="Small" size="small" pill />
-    <br />
-    <WaInput placeholder="Medium" size="medium" pill />
-    <br />
-    <WaInput placeholder="Large" size="large" pill />
-  </>
-);
-```
-{% endraw %}
-
 ### Input Types
 
 The `type` attribute controls the type of input the browser renders.
@@ -203,22 +105,6 @@ The `type` attribute controls the type of input the browser renders.
 <br />
 <wa-input type="date" placeholder="Date"></wa-input>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => (
-  <>
-    <WaInput type="email" placeholder="Email" />
-    <br />
-    <WaInput type="number" placeholder="Number" />
-    <br />
-    <WaInput type="date" placeholder="Date" />
-  </>
-);
-```
-{% endraw %}
 
 ### Prefix & Suffix Icons
 
@@ -240,32 +126,6 @@ Use the `prefix` and `suffix` slots to add icons.
   <wa-icon name="comment" variant="solid" slot="suffix"></wa-icon>
 </wa-input>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => (
-  <>
-    <WaInput placeholder="Small" size="small">
-      <WaIcon name="house" variant="solid" slot="prefix"></WaIcon>
-      <WaIcon name="comment" variant="solid" slot="suffix"></WaIcon>
-    </WaInput>
-    <br />
-    <WaInput placeholder="Medium" size="medium">
-      <WaIcon name="house" variant="solid" slot="prefix"></WaIcon>
-      <WaIcon name="comment" variant="solid" slot="suffix"></WaIcon>
-    </WaInput>
-    <br />
-    <WaInput placeholder="Large" size="large">
-      <WaIcon name="house" variant="solid" slot="prefix"></WaIcon>
-      <WaIcon name="comment" variant="solid" slot="suffix"></WaIcon>
-    </WaInput>
-  </>
-);
-```
-{% endraw %}
 
 ### Customizing Label Position
 

@@ -3,9 +3,8 @@ import '../popup/popup.js';
 import '../spinner/spinner.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getTextContent, HasSlotController } from '../../internal/slot.js';
+import { getTextContent } from '../../internal/slot.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { SubmenuController } from './submenu-controller.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -36,6 +35,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart spinner__base - The spinner's base part.
  * @csspart submenu-icon - The submenu icon, visible only when the menu item has a submenu (not yet implemented).
  *
+ * @cssproperty --background-color-hover - The menu item's background color on hover.
+ * @cssproperty --label-color-hover - The label color on hover.
  * @cssproperty [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
  */
 @customElement('wa-menu-item')
@@ -62,9 +63,7 @@ export default class WaMenuItem extends WebAwesomeElement {
   /** Draws the menu item in a disabled state, preventing selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  private readonly localize = new LocalizeController(this);
-  private readonly hasSlotController = new HasSlotController(this, 'submenu');
-  private submenuController: SubmenuController = new SubmenuController(this, this.hasSlotController, this.localize);
+  private submenuController: SubmenuController = new SubmenuController(this);
 
   connectedCallback() {
     super.connectedCallback();
@@ -90,7 +89,8 @@ export default class WaMenuItem extends WebAwesomeElement {
     // When the label changes, emit a slotchange event so parent controls see it
     if (textLabel !== this.cachedTextLabel) {
       this.cachedTextLabel = textLabel;
-      this.emit('slotchange', { bubbles: true, composed: false, cancelable: false });
+      /** @internal - prevent the CEM from recording this event */
+      this.dispatchEvent(new Event('slotchange', { bubbles: true, composed: false, cancelable: false }));
     }
   }
 
@@ -145,11 +145,11 @@ export default class WaMenuItem extends WebAwesomeElement {
   }
 
   isSubmenu() {
-    return this.hasSlotController.test('submenu');
+    return this.querySelector(`:scope > [slot="submenu"]`) !== null;
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
     const isSubmenuExpanded = this.submenuController.isExpanded();
 
     return html`

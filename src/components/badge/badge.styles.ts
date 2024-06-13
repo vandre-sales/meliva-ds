@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --border-color: var(--wa-color-surface-default);
-    --border-radius: var(--wa-corners-xs);
+    --border-color: var(--background-color);
+    --border-radius: var(--wa-border-radius-xs);
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-border-width-s);
 
@@ -11,28 +11,28 @@ export default css`
   }
 
   :host([variant='brand']) {
-    --background: var(--wa-color-brand-spot);
-    --content-color: var(--wa-color-brand-text-on-spot);
+    --background-color: var(--wa-color-brand-fill-loud);
+    --content-color: var(--wa-color-brand-on-loud);
   }
 
   :host([variant='success']) {
-    --background: var(--wa-color-success-spot);
-    --content-color: var(--wa-color-success-text-on-spot);
+    --background-color: var(--wa-color-success-fill-loud);
+    --content-color: var(--wa-color-success-on-loud);
   }
 
   :host([variant='warning']) {
-    --background: var(--wa-color-warning-spot);
-    --content-color: var(--wa-color-warning-text-on-spot);
+    --background-color: var(--wa-color-warning-fill-loud);
+    --content-color: var(--wa-color-warning-on-loud);
   }
 
   :host([variant='neutral']) {
-    --background: var(--wa-color-neutral-spot);
-    --content-color: var(--wa-color-neutral-text-on-spot);
+    --background-color: var(--wa-color-neutral-fill-loud);
+    --content-color: var(--wa-color-neutral-on-loud);
   }
 
   :host([variant='danger']) {
-    --background: var(--wa-color-danger-spot);
-    --content-color: var(--wa-color-danger-text-on-spot);
+    --background-color: var(--wa-color-danger-fill-loud);
+    --content-color: var(--wa-color-danger-on-loud);
   }
 
   .badge {
@@ -40,16 +40,16 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: max(12px, 0.75em);
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-semibold);
     line-height: 1;
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);
     border-width: var(--border-width);
     color: var(--content-color);
     white-space: nowrap;
-    padding: 0.35em 0.6em;
+    padding: 0.375em 0.625em;
     user-select: none;
     -webkit-user-select: none;
     cursor: inherit;
@@ -57,32 +57,14 @@ export default css`
 
   /* Pill modifier */
   .badge--pill {
-    border-radius: var(--wa-corners-pill);
+    border-radius: var(--wa-border-radius-pill);
   }
 
   /* Pulse modifier */
   .badge--pulse {
+    --pulse-color: var(--background-color);
+
     animation: pulse 1.5s infinite;
-  }
-
-  .badge--pulse.badge--brand {
-    --pulse-color: var(--wa-color-brand-spot);
-  }
-
-  .badge--pulse.badge--success {
-    --pulse-color: var(--wa-color-success-spot);
-  }
-
-  .badge--pulse.badge--neutral {
-    --pulse-color: var(--wa-color-neutral-spot);
-  }
-
-  .badge--pulse.badge--warning {
-    --pulse-color: var(--wa-color-warning-spot);
-  }
-
-  .badge--pulse.badge--danger {
-    --pulse-color: var(--wa-color-danger-spot);
   }
 
   @keyframes pulse {

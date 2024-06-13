@@ -2,6 +2,8 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { getIconLibrary, type IconLibrary, unwatchIcon, watchIcon } from './library.js';
 import { html } from 'lit';
 import { isTemplateResult } from 'lit/directive-helpers.js';
+import { WaErrorEvent } from '../../events/error.js';
+import { WaLoadEvent } from '../../events/load.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './icon.styles.js';
@@ -32,6 +34,11 @@ interface IconSource {
  *
  * @csspart svg - The internal SVG element.
  * @csspart use - The `<use>` element generated when using `spriteSheet: true`
+ *
+ * @cssproperty [--primary-color=currentColor] - Sets a duotone icon's primary color.
+ * @cssproperty [--primary-opacity=1] - Sets a duotone icon's primary opacity.
+ * @cssproperty [--secondary-color=currentColor] - Sets a duotone icon's secondary color.
+ * @cssproperty [--secondary-opacity=0.4] - Sets a duotone icon's secondary opacity.
  */
 @customElement('wa-icon')
 export default class WaIcon extends WebAwesomeElement {
@@ -39,59 +46,27 @@ export default class WaIcon extends WebAwesomeElement {
 
   private initialRender = false;
 
-  /** Given a URL, this function returns the resulting SVG element or an appropriate error symbol. */
-  private async resolveIcon(url: string, library?: IconLibrary): Promise<SVGResult> {
-    let fileData: Response;
-
-    if (library?.spriteSheet) {
-      return html`<svg part="svg">
-        <use part="use" href="${url}"></use>
-      </svg>`;
-    }
-
-    try {
-      fileData = await fetch(url, { mode: 'cors' });
-      if (!fileData.ok) return fileData.status === 410 ? CACHEABLE_ERROR : RETRYABLE_ERROR;
-    } catch {
-      return RETRYABLE_ERROR;
-    }
-
-    try {
-      const div = document.createElement('div');
-      div.innerHTML = await fileData.text();
-
-      const svg = div.firstElementChild;
-      if (svg?.tagName?.toLowerCase() !== 'svg') return CACHEABLE_ERROR;
-
-      if (!parser) parser = new DOMParser();
-      const doc = parser.parseFromString(svg.outerHTML, 'text/html');
-
-      const svgEl = doc.body.querySelector('svg');
-      if (!svgEl) return CACHEABLE_ERROR;
-
-      svgEl.part.add('svg');
-      return document.adoptNode(svgEl);
-    } catch {
-      return CACHEABLE_ERROR;
-    }
-  }
-
   @state() private svg: SVGElement | HTMLTemplateResult | null = null;
 
   /** The name of the icon to draw. Available names depend on the icon library being used. */
   @property({ reflect: true }) name?: string;
 
   /**
-   * The family of icons to choose from. For Font Awesome, valid options include `classic`, `sharp`, `duotone`, and
-   * `brands`. Custom icon libraries may or may not use this property.
+   * The family of icons to choose from. For Font Awesome Free (default), valid options include `classic` and `brands`.
+   * For Font Awesome Pro subscribers, valid options include, `classic`, `sharp`, `duotone`, and `brands`. Custom icon
+   * libraries may or may not use this property.
    */
   @property({ reflect: true }) family: string;
 
   /**
    * The name of the icon's variant. For Font Awesome, valid options include `thin`, `light`, `regular`, and `solid` for
-   * the _classic_ and _sharp_ families. Custom icon libraries may or may not use this property.
+   * the `classic` and `sharp` families. Some variants require a Font Awesome Pro subscription. Custom icon libraries
+   * may or may not use this property.
    */
   @property({ reflect: true }) variant: string;
+
+  /** Draws the icon in a fixed-width both. */
+  @property({ attribute: 'fixed-width', type: Boolean, reflect: true }) fixedWidth: false;
 
   /**
    * An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and
@@ -138,6 +113,55 @@ export default class WaIcon extends WebAwesomeElement {
     };
   }
 
+  /** Given a URL, this function returns the resulting SVG element or an appropriate error symbol. */
+  private async resolveIcon(url: string, library?: IconLibrary): Promise<SVGResult> {
+    let fileData: Response;
+
+    if (library?.spriteSheet) {
+      this.svg = html`<svg part="svg">
+        <use part="use" href="${url}"></use>
+      </svg>`;
+
+      // Using a templateResult requires the SVG to be written to the DOM first before we can grab the SVGElement
+      // to be passed to the library's mutator function.
+      await this.updateComplete;
+
+      const svg = this.shadowRoot!.querySelector("[part='svg']")!;
+
+      if (typeof library.mutator === 'function') {
+        library.mutator(svg as SVGElement);
+      }
+
+      return this.svg;
+    }
+
+    try {
+      fileData = await fetch(url, { mode: 'cors' });
+      if (!fileData.ok) return fileData.status === 410 ? CACHEABLE_ERROR : RETRYABLE_ERROR;
+    } catch {
+      return RETRYABLE_ERROR;
+    }
+
+    try {
+      const div = document.createElement('div');
+      div.innerHTML = await fileData.text();
+
+      const svg = div.firstElementChild;
+      if (svg?.tagName?.toLowerCase() !== 'svg') return CACHEABLE_ERROR;
+
+      if (!parser) parser = new DOMParser();
+      const doc = parser.parseFromString(svg.outerHTML, 'text/html');
+
+      const svgEl = doc.body.querySelector('svg');
+      if (!svgEl) return CACHEABLE_ERROR;
+
+      svgEl.part.add('svg');
+      return document.adoptNode(svgEl);
+    } catch {
+      return CACHEABLE_ERROR;
+    }
+  }
+
   @watch('label')
   handleLabelChange() {
     const hasLabel = typeof this.label === 'string' && this.label.length > 0;
@@ -153,7 +177,7 @@ export default class WaIcon extends WebAwesomeElement {
     }
   }
 
-  @watch(['name', 'src', 'library'])
+  @watch(['family', 'name', 'library', 'variant', 'src'])
   async setIcon() {
     const { url, fromLibrary } = this.getIconSource();
     const library = fromLibrary ? getIconLibrary(this.library) : undefined;
@@ -194,12 +218,12 @@ export default class WaIcon extends WebAwesomeElement {
       case RETRYABLE_ERROR:
       case CACHEABLE_ERROR:
         this.svg = null;
-        this.emit('wa-error');
+        this.dispatchEvent(new WaErrorEvent());
         break;
       default:
         this.svg = svg.cloneNode(true) as SVGElement;
         library?.mutator?.(this.svg);
-        this.emit('wa-load');
+        this.dispatchEvent(new WaLoadEvent());
     }
   }
 

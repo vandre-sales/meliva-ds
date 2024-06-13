@@ -3,6 +3,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
 import { offsetParent } from 'composed-offset-position';
+import { WaRepositionEvent } from '../../events/reposition.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './popup.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
@@ -50,6 +51,8 @@ function isVirtualElement(e: unknown): e is VirtualElement {
  * @cssproperty [--auto-size-available-height] - A read-only custom property that determines the amount of height the
  *  popup can be before overflowing. Useful for positioning child elements that need to overflow. This property is only
  *  available when using `auto-size`.
+ * @cssproperty [--show-duration=100ms] - The show duration to use when applying built-in animation classes.
+ * @cssproperty [--hide-duration=100ms] - The hide duration to use when applying built-in animation classes.
  */
 @customElement('wa-popup')
 export default class WaPopup extends WebAwesomeElement {
@@ -258,7 +261,8 @@ export default class WaPopup extends WebAwesomeElement {
       this.anchorEl = this.querySelector<HTMLElement>('[slot="anchor"]');
     }
 
-    // If the anchor is a <slot>, we'll use the first assigned element as the target since slots use `display: contents`
+    // If the anchor is a `<slot>`, we'll use the first assigned element as the target since slots use
+    // `display: contents`
     // and positioning can't be calculated on them
     if (this.anchorEl instanceof HTMLSlotElement) {
       this.anchorEl = this.anchorEl.assignedElements({ flatten: true })[0] as HTMLElement;
@@ -414,7 +418,7 @@ export default class WaPopup extends WebAwesomeElement {
       //
       // Source: https://github.com/floating-ui/floating-ui/blob/cb3b6ab07f95275730d3e6e46c702f8d4908b55c/packages/dom/src/utils/getDocumentRect.ts#L31
       //
-      const isRtl = getComputedStyle(this).direction === 'rtl';
+      const isRtl = this.matches(':dir(rtl)');
       const staticSide = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }[placement.split('-')[0]]!;
 
       this.setAttribute('data-current-placement', placement);
@@ -467,7 +471,7 @@ export default class WaPopup extends WebAwesomeElement {
     // Wait until the new position is drawn before updating the hover bridge, otherwise it can get out of sync
     requestAnimationFrame(() => this.updateHoverBridge());
 
-    this.emit('wa-reposition');
+    this.dispatchEvent(new WaRepositionEvent());
   }
 
   private updateHoverBridge = () => {

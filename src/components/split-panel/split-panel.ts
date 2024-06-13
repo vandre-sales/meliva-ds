@@ -4,6 +4,7 @@ import { drag } from '../../internal/drag.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { WaRepositionEvent } from '../../events/reposition.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './split-panel.styles.js';
@@ -27,6 +28,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart panel - Targets both the start and end panels.
  * @csspart divider - The divider that separates the start and end panels.
  *
+ * @cssproperty --divider-color - The color of the divider.
  * @cssproperty [--divider-width=4px] - The width of the visible divider.
  * @cssproperty [--divider-hit-area=12px] - The invisible region around the divider where dragging can occur. This is
  *  usually wider than the divider to facilitate easier dragging.
@@ -103,7 +105,7 @@ export default class WaSplitPanel extends WebAwesomeElement {
   }
 
   private handleDrag(event: PointerEvent) {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
 
     if (this.disabled) {
       return;
@@ -190,6 +192,14 @@ export default class WaSplitPanel extends WebAwesomeElement {
     const { width, height } = entries[0].contentRect;
     this.size = this.vertical ? height : width;
 
+    // There's some weird logic that gets `this.cachedPositionInPixels = NaN` or `this.position === Infinity` when
+    // a split-panel goes from `display: none;` to showing.
+    if (isNaN(this.cachedPositionInPixels) || this.position === Infinity) {
+      this.cachedPositionInPixels = Number(this.getAttribute('position-in-pixels'));
+      this.positionInPixels = Number(this.getAttribute('position-in-pixels'));
+      this.position = this.pixelsToPercentage(this.positionInPixels);
+    }
+
     // Resize when a primary panel is set
     if (this.primary) {
       this.position = this.pixelsToPercentage(this.cachedPositionInPixels);
@@ -200,7 +210,7 @@ export default class WaSplitPanel extends WebAwesomeElement {
   handlePositionChange() {
     this.cachedPositionInPixels = this.percentageToPixels(this.position);
     this.positionInPixels = this.percentageToPixels(this.position);
-    this.emit('wa-reposition');
+    this.dispatchEvent(new WaRepositionEvent());
   }
 
   @watch('positionInPixels')
@@ -216,7 +226,7 @@ export default class WaSplitPanel extends WebAwesomeElement {
   render() {
     const gridTemplate = this.vertical ? 'gridTemplateRows' : 'gridTemplateColumns';
     const gridTemplateAlt = this.vertical ? 'gridTemplateColumns' : 'gridTemplateRows';
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
     const primary = `
       clamp(
         0%,

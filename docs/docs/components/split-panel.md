@@ -21,41 +21,6 @@ layout: component.njk
 </wa-split-panel>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-
-const App = () => (
-  <WaSplitPanel>
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </WaSplitPanel>
-);
-```
-{% endraw %}
-
 ## Examples
 
 ### Initial Position
@@ -114,41 +79,6 @@ To set the initial position in pixels instead of a percentage, use the `position
 </wa-split-panel>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-
-const App = () => (
-  <WaSplitPanel position="200">
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </WaSplitPanel>
-);
-```
-{% endraw %}
-
 ### Vertical
 
 Add the `vertical` attribute to render the split panel in a vertical orientation where the start and end panels are stacked. You also need to set a height when using the vertical orientation.
@@ -169,41 +99,6 @@ Add the `vertical` attribute to render the split panel in a vertical orientation
   </div>
 </wa-split-panel>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-
-const App = () => (
-  <WaSplitPanel vertical style={{ height: '400px' }}>
-    <div
-      slot="start"
-      style={{
-        height: '100%',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '100%',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </WaSplitPanel>
-);
-```
-{% endraw %}
 
 ### Snapping
 
@@ -242,7 +137,7 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--wa-color-neutral-spot);
+    background: var(--wa-color-neutral-fill-loud);
     transform: translateX(-3px);
   }
 
@@ -255,75 +150,6 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-
-const css = `
-  .split-panel-snapping {
-    position: relative;
-  }
-
-  .split-panel-snapping-dots::before,
-  .split-panel-snapping-dots::after {
-    content: '';
-    position: absolute;
-    bottom: -12px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--wa-color-neutral-spot);
-    transform: translateX(-3px);
-  }
-
-  .split-panel-snapping-dots::before {
-    left: 100px;
-  }
-
-  .split-panel-snapping-dots::after {
-    left: 50%;
-  }
-`;
-
-const App = () => (
-  <>
-    <div className="split-panel-snapping">
-      <WaSplitPanel snap="100px 50%">
-        <div
-          slot="start"
-          style={{
-            height: '200px',
-            background: 'var(--wa-color-surface-lowered)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          Start
-        </div>
-        <div
-          slot="end"
-          style={{
-            height: '200px',
-            background: 'var(--wa-color-surface-lowered)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          End
-        </div>
-      </WaSplitPanel>
-
-      <div className="split-panel-snapping-dots" />
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}
 
 ### Disabled
 
@@ -345,41 +171,6 @@ Add the `disabled` attribute to prevent the divider from being repositioned.
   </div>
 </wa-split-panel>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-
-const App = () => (
-  <WaSplitPanel disabled>
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </WaSplitPanel>
-);
-```
-{% endraw %}
 
 ### Setting the Primary Panel
 
@@ -420,61 +211,6 @@ Try resizing the example below with each option and notice how the panels respon
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import WaSelect from '@shoelace-style/shoelace/dist/react/select';
-import WaMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-
-const App = () => {
-  const [primary, setPrimary] = useState('');
-
-  return (
-    <>
-      <WaSplitPanel primary={primary}>
-        <div
-          slot="start"
-          style={{
-            height: '200px',
-            background: 'var(--wa-color-surface-lowered)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          Start
-        </div>
-        <div
-          slot="end"
-          style={{
-            height: '200px',
-            background: 'var(--wa-color-surface-lowered)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          End
-        </div>
-      </WaSplitPanel>
-
-      <WaSelect
-        label="Primary Panel"
-        value={primary}
-        style={{ maxWidth: '200px', marginTop: '1rem' }}
-        onWaChange={event => setPrimary(event.target.value)}
-      >
-        <WaMenuItem value="">None</WaMenuItem>
-        <WaMenuItem value="start">Start</WaMenuItem>
-        <WaMenuItem value="end">End</WaMenuItem>
-      </WaSelect>
-    </>
-  );
-};
-```
-{% endraw %}
-
 ### Min & Max
 
 To set a minimum or maximum size of the primary panel, use the `--min` and `--max` custom properties. Since the secondary panel is flexible, size constraints can only be applied to the primary panel. If no primary panel is designated, these constraints will be applied to the `start` panel.
@@ -497,41 +233,6 @@ This examples demonstrates how you can ensure both panels are at least 150px usi
   </div>
 </wa-split-panel>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-
-const App = () => (
-  <WaSplitPanel style={{ '--min': '150px', '--max': 'calc(100% - 150px)' }}>
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </WaSplitPanel>
-);
-```
-{% endraw %}
 
 ### Nested Split Panels
 
@@ -563,57 +264,6 @@ Create complex layouts that can be repositioned independently by nesting split p
   </div>
 </wa-split-panel>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-
-const App = () => (
-  <WaSplitPanel>
-    <div
-      slot="start"
-      style={{
-        height: '400px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div slot="end">
-      <WaSplitPanel vertical style={{ height: '400px' }}>
-        <div
-          slot="start"
-          style={{
-            height: '100%',
-            background: 'var(--wa-color-surface-lowered)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          Start
-        </div>
-        <div
-          slot="end"
-          style={{
-            height: '100%',
-            background: 'var(--wa-color-surface-lowered)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          End
-        </div>
-      </WaSplitPanel>
-    </div>
-  </WaSplitPanel>
-);
-```
-{% endraw %}
 
 ### Customizing the Divider
 
@@ -650,43 +300,6 @@ You can target the `divider` part to apply CSS properties to the divider. To add
   </div>
 </wa-split-panel>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <WaSplitPanel style={{ '--divider-width': '20px' }}>
-    <WaIcon slot="divider" name="grip-vertical" variant="solid" />
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--wa-color-surface-lowered)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </WaSplitPanel>
-);
-```
-{% endraw %}
 
 Here's a more elaborate example that changes the divider's color and width and adds a styled handle.
 
@@ -734,7 +347,7 @@ Here's a more elaborate example that changes the divider's color and width and a
 
   .split-panel-divider wa-icon {
     position: absolute;
-    border-radius: var(--wa-corners-l);
+    border-radius: var(--wa-border-radius-l);
     background: var(--wa-color-red-50);
     color: white;
     padding: 0.5rem 0.25rem;
@@ -750,73 +363,3 @@ Here's a more elaborate example that changes the divider's color and width and a
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const css = `
-  .split-panel-divider wa-split-panel {
-    --divider-width: 4px;
-    }
-
-  .split-panel-divider wa-split-panel::part(divider) {
-    background-color: var(--wa-color-red-50);
-  }
-
-  .split-panel-divider wa-icon {
-    position: absolute;
-    border-radius: var(--wa-corners-xs);
-    background: var(--wa-color-red-50);
-    color: white;
-    padding: .5rem .25rem;
-  }
-
-  .split-panel-divider wa-split-panel::part(divider):focus-visible {
-    background-color: var(--wa-color-blue-50);
-  }
-
-  .split-panel-divider wa-split-panel:focus-within wa-icon {
-    background-color: var(--wa-color-blue-50);
-    color: white;
-  }
-`;
-
-const App = () => (
-  <>
-    <div className="split-panel-divider">
-      <WaSplitPanel>
-        <WaIcon slot="divider" name="grip-vertical" variant="solid" />
-        <div
-          slot="start"
-          style={{
-            height: '200px',
-            background: 'var(--wa-color-surface-lowered)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          Start
-        </div>
-        <div
-          slot="end"
-          style={{
-            height: '200px',
-            background: 'var(--wa-color-surface-lowered)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          End
-        </div>
-      </WaSplitPanel>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}

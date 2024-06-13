@@ -4,7 +4,7 @@ import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type WaSwitch from './switch.js';
 
-describe('<wa-switch>', () => {
+describe('<wa-switch>', async () => {
   it('should pass accessibility tests', async () => {
     const el = await fixture<WaSwitch>(html` <wa-switch>Switch</wa-switch> `);
     await expect(el).to.be.accessible();
@@ -13,8 +13,8 @@ describe('<wa-switch>', () => {
   it('default properties', async () => {
     const el = await fixture<WaSwitch>(html` <wa-switch></wa-switch> `);
 
-    expect(el.name).to.equal('');
-    expect(el.value).to.be.undefined;
+    expect(el.name).to.equal(null);
+    expect(el.value).to.be.null;
     expect(el.title).to.equal('');
     expect(el.disabled).to.be.false;
     expect(el.required).to.be.false;
@@ -183,11 +183,11 @@ describe('<wa-switch>', () => {
         </form>
       `);
       const button = form.querySelector('wa-button')!;
-      const slSwitch = form.querySelector('wa-switch')!;
+      const waSwitch = form.querySelector('wa-switch')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
       // Submitting the form after setting custom validity should not trigger the handler
-      slSwitch.setCustomValidity('Invalid selection');
+      waSwitch.setCustomValidity('Invalid selection');
       form.addEventListener('submit', submitHandler);
       button.click();
       await aTimeout(100);
@@ -196,13 +196,13 @@ describe('<wa-switch>', () => {
     });
 
     it('should be invalid when required and unchecked', async () => {
-      const slSwitch = await fixture<HTMLFormElement>(html` <wa-switch required></wa-switch> `);
-      expect(slSwitch.checkValidity()).to.be.false;
+      const waSwitch = await fixture<HTMLFormElement>(html` <wa-switch required></wa-switch> `);
+      expect(waSwitch.checkValidity()).to.be.false;
     });
 
     it('should be valid when required and checked', async () => {
-      const slSwitch = await fixture<HTMLFormElement>(html` <wa-switch required checked></wa-switch> `);
-      expect(slSwitch.checkValidity()).to.be.true;
+      const waSwitch = await fixture<HTMLFormElement>(html` <wa-switch required checked></wa-switch> `);
+      expect(waSwitch.checkValidity()).to.be.true;
     });
 
     it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
@@ -222,14 +222,14 @@ describe('<wa-switch>', () => {
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
       const el = await fixture<HTMLFormElement>(html` <form novalidate><wa-switch required></wa-switch></form> `);
-      const slSwitch = el.querySelector<WaSwitch>('wa-switch')!;
+      const waSwitch = el.querySelector<WaSwitch>('wa-switch')!;
 
-      expect(slSwitch.hasAttribute('data-required')).to.be.true;
-      expect(slSwitch.hasAttribute('data-optional')).to.be.false;
-      expect(slSwitch.hasAttribute('data-invalid')).to.be.true;
-      expect(slSwitch.hasAttribute('data-valid')).to.be.false;
-      expect(slSwitch.hasAttribute('data-user-invalid')).to.be.false;
-      expect(slSwitch.hasAttribute('data-user-valid')).to.be.false;
+      expect(waSwitch.hasAttribute('data-wa-required')).to.be.true;
+      expect(waSwitch.hasAttribute('data-wa-optional')).to.be.false;
+      expect(waSwitch.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(waSwitch.hasAttribute('data-wa-valid')).to.be.false;
+      expect(waSwitch.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(waSwitch.hasAttribute('data-wa-user-valid')).to.be.false;
     });
   });
 
@@ -323,5 +323,5 @@ describe('<wa-switch>', () => {
     expect(window.scrollY).to.equal(0);
   });
 
-  runFormControlBaseTests('wa-switch');
+  await runFormControlBaseTests('wa-switch');
 });

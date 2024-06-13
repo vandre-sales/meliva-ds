@@ -1,13 +1,13 @@
 .code-example {
-  border: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
-  border-radius: var(--wa-corners-m);
+  border: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
+  border-radius: var(--wa-border-radius-m);
   color: var(--wa-color-text-normal);
   margin-block-end: var(--wa-flow-spacing);
 }
 
 .code-example-preview {
   padding: 2rem;
-  border-bottom: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+  border-bottom: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
 
   > :first-child {
     margin-block-start: 0;
@@ -19,7 +19,7 @@
 }
 
 .code-example-source {
-  border-bottom: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+  border-bottom: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
 }
 
 .code-example:not(.open) .code-example-source {
@@ -41,8 +41,8 @@
   border-bottom: none;
 
   pre {
-    border-bottom-right-radius: var(--wa-corners-m);
-    border-bottom-left-radius: var(--wa-corners-m);
+    border-bottom-right-radius: var(--wa-border-radius-m);
+    border-bottom-left-radius: var(--wa-border-radius-m);
   }
 }
 
@@ -55,18 +55,18 @@
     flex: 1 0 auto;
     font-size: 0.875rem;
     color: var(--wa-color-text-quiet);
-    border-left: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+    border-left: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
     text-align: center;
     padding: 0.5rem;
     cursor: pointer;
 
     &:first-of-type {
       border-left: none;
-      border-bottom-left-radius: var(--wa-corners-m);
+      border-bottom-left-radius: var(--wa-border-radius-m);
     }
 
     &:last-of-type {
-      border-bottom-right-radius: var(--wa-corners-m);
+      border-bottom-right-radius: var(--wa-border-radius-m);
     }
 
     &:focus-visible {

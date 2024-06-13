@@ -11,14 +11,6 @@ Localization is handled by the browser's [`Intl.RelativeTimeFormat` API](https:/
 <wa-relative-time date="2020-07-15T09:17:00-04:00"></wa-relative-time>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRelativeTime from '@shoelace-style/shoelace/dist/react/relative-time';
-
-const App = () => <WaRelativeTime date="2020-07-15T09:17:00-04:00" />;
-```
-{% endraw %}
-
 The `date` attribute determines when the date/time is calculated from. It must be a string that [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse) can interpret or a [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object set via JavaScript.
 
 :::info
@@ -44,16 +36,6 @@ Use the `sync` attribute to update the displayed value automatically as time pas
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaRelativeTime from '@shoelace-style/shoelace/dist/react/relative-time';
-
-const date = new Date(new Date().getTime() - 60000);
-
-const App = () => <WaRelativeTime date={date} sync />;
-```
-{% endraw %}
-
 ### Formatting Styles
 
 You can change how the time is displayed using the `format` attribute. Note that some locales may display the same values for `narrow` and `short` formats.
@@ -63,22 +45,6 @@ You can change how the time is displayed using the `format` attribute. Note that
 <wa-relative-time date="2020-07-15T09:17:00-04:00" format="short"></wa-relative-time><br />
 <wa-relative-time date="2020-07-15T09:17:00-04:00" format="long"></wa-relative-time>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaRelativeTime from '@shoelace-style/shoelace/dist/react/relative-time';
-
-const App = () => (
-  <>
-    <WaRelativeTime date="2020-07-15T09:17:00-04:00" format="narrow" />
-    <br />
-    <WaRelativeTime date="2020-07-15T09:17:00-04:00" format="short" />
-    <br />
-    <WaRelativeTime date="2020-07-15T09:17:00-04:00" format="long" />
-  </>
-);
-```
-{% endraw %}
 
 ### Localization
 
@@ -91,23 +57,3 @@ German: <wa-relative-time date="2020-07-15T09:17:00-04:00" lang="de"></wa-relati
 Greek: <wa-relative-time date="2020-07-15T09:17:00-04:00" lang="el"></wa-relative-time><br />
 Russian: <wa-relative-time date="2020-07-15T09:17:00-04:00" lang="ru"></wa-relative-time>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaRelativeTime from '@shoelace-style/shoelace/dist/react/relative-time';
-
-const App = () => (
-  <>
-    English: <WaRelativeTime date="2020-07-15T09:17:00-04:00" lang="en-US" />
-    <br />
-    Chinese: <WaRelativeTime date="2020-07-15T09:17:00-04:00" lang="zh-CN" />
-    <br />
-    German: <WaRelativeTime date="2020-07-15T09:17:00-04:00" lang="de" />
-    <br />
-    Greek: <WaRelativeTime date="2020-07-15T09:17:00-04:00" lang="el" />
-    <br />
-    Russian: <WaRelativeTime date="2020-07-15T09:17:00-04:00" lang="ru" />
-  </>
-);
-```
-{% endraw %}

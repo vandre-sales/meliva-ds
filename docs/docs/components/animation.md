@@ -19,48 +19,11 @@ To animate an element, wrap it in `<wa-animation>` and set an animation `name`. 
     display: inline-block;
     width: 100px;
     height: 100px;
-    background-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-brand-fill-loud);
     margin: 1.5rem;
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaAnimation from '@shoelace-style/shoelace/dist/react/animation';
-
-const css = `
-  .animation-overview .box {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: var(--wa-color-brand-spot);
-    margin: 1.5rem;
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="animation-overview">
-      <WaAnimation name="bounce" duration={2000} play>
-        <div class="box" />
-      </WaAnimation>
-      <WaAnimation name="jello" duration={2000} play>
-        <div class="box" />
-      </WaAnimation>
-      <WaAnimation name="heartBeat" duration={2000} play>
-        <div class="box" />
-      </WaAnimation>
-      <WaAnimation name="flip" duration={2000} play>
-        <div class="box" />
-      </WaAnimation>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}
 
 :::info
 The animation will only be applied to the first child element found in `<wa-animation>`.
@@ -122,7 +85,7 @@ This example demonstrates all of the baked-in animations and easings. Animations
   .animation-sandbox .box {
     width: 100px;
     height: 100px;
-    background-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-brand-fill-loud);
   }
 
   .animation-sandbox .controls {
@@ -135,12 +98,6 @@ This example demonstrates all of the baked-in animations and easings. Animations
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-
-```
-{% endraw %}
 
 ### Using Intersection Observer
 
@@ -174,62 +131,10 @@ Use an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/
     display: inline-block;
     width: 100px;
     height: 100px;
-    background-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-brand-fill-loud);
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useEffect, useRef, useState } from 'react';
-import WaAnimation from '@shoelace-style/shoelace/dist/react/animation';
-
-const css = `
-  .animation-scroll {
-    height: calc(100vh + 100px);
-  }
-
-  .animation-scroll .box {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: var(--wa-color-brand-spot);
-  }
-`;
-
-const App = () => {
-  const animation = useRef(null);
-  const box = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        animation.current.play = true;
-      } else {
-        animation.current.play = false;
-        animation.current.currentTime = 0;
-      }
-    });
-
-    if (box.current) {
-      observer.observe(box.current);
-    }
-  }, [box]);
-
-  return (
-    <>
-      <div class="animation-scroll">
-        <WaAnimation ref={animation} name="jackInTheBox" duration={2000} iterations={1}>
-          <div ref={box} class="box" />
-        </WaAnimation>
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-{% endraw %}
 
 ### Custom Keyframe Formats
 
@@ -266,56 +171,10 @@ Supply your own [keyframe formats](https://developer.mozilla.org/en-US/docs/Web/
   .animation-keyframes .box {
     width: 100px;
     height: 100px;
-    background-color: var(--wa-color-brand-spot);
+    background-color: var(--wa-color-brand-fill-loud);
   }
 </style>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaAnimation from '@shoelace-style/shoelace/dist/react/animation';
-
-const css = `
-  .animation-keyframes .box {
-    width: 100px;
-    height: 100px;
-    background-color: var(--wa-color-brand-spot);
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="animation-keyframes">
-      <WaAnimation
-        easing="ease-in-out"
-        duration={2000}
-        play
-        keyframes={[
-          {
-            offset: 0,
-            easing: 'cubic-bezier(0.250, 0.460, 0.450, 0.940)',
-            fillMode: 'both',
-            transformOrigin: 'center center',
-            transform: 'rotate(0)'
-          },
-          {
-            offset: 1,
-            easing: 'cubic-bezier(0.250, 0.460, 0.450, 0.940)',
-            fillMode: 'both',
-            transformOrigin: 'center center',
-            transform: 'rotate(90deg)'
-          }
-        ]}
-      >
-        <div class="box" />
-      </WaAnimation>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-{% endraw %}
 
 ### Playing Animations on Demand
 
@@ -338,25 +197,3 @@ Animations won't play until you apply the `play` attribute. You can omit it init
   });
 </script>
 ```
-
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaAnimation from '@shoelace-style/shoelace/dist/react/animation';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => {
-  const [play, setPlay] = useState(false);
-
-  return (
-    <div class="animation-form">
-      <WaAnimation name="rubberBand" duration={1000} iterations={1} play={play} onWaFinish={() => setPlay(false)}>
-        <WaButton variant="brand" onClick={() => setPlay(true)}>
-          Click me
-        </WaButton>
-      </WaAnimation>
-    </div>
-  );
-};
-```
-{% endraw %}

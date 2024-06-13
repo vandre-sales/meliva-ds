@@ -1,9 +1,9 @@
-import { aTimeout, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
+import { aTimeout, expect, fixture, html, oneEvent } from '@open-wc/testing';
 import { clickOnElement } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type { WaChangeEvent } from '../../events/wa-change.js';
+import type { WaChangeEvent } from '../../events/change.js';
 import type WaRadio from '../radio/radio.js';
 import type WaRadioGroup from './radio-group.js';
 
@@ -94,19 +94,19 @@ describe('<wa-radio-group>', () => {
       const secondRadio = radioGroup.querySelectorAll('wa-radio')[1];
 
       expect(radioGroup.checkValidity()).to.be.true;
-      expect(radioGroup.hasAttribute('data-required')).to.be.true;
-      expect(radioGroup.hasAttribute('data-optional')).to.be.false;
-      expect(radioGroup.hasAttribute('data-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-valid')).to.be.true;
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-required')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-optional')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-valid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(secondRadio);
       await secondRadio.updateComplete;
 
       expect(radioGroup.checkValidity()).to.be.true;
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.true;
     });
 
     it('should receive the correct validation attributes ("states") when invalid', async () => {
@@ -118,19 +118,19 @@ describe('<wa-radio-group>', () => {
       `);
       const secondRadio = radioGroup.querySelectorAll('wa-radio')[1];
 
-      expect(radioGroup.hasAttribute('data-required')).to.be.true;
-      expect(radioGroup.hasAttribute('data-optional')).to.be.false;
-      expect(radioGroup.hasAttribute('data-invalid')).to.be.true;
-      expect(radioGroup.hasAttribute('data-valid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-required')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-optional')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.false;
 
       await clickOnElement(secondRadio);
       radioGroup.value = '';
       await radioGroup.updateComplete;
 
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.true;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
@@ -144,12 +144,12 @@ describe('<wa-radio-group>', () => {
       `);
       const radioGroup = el.querySelector<WaRadioGroup>('wa-radio-group')!;
 
-      expect(radioGroup.hasAttribute('data-required')).to.be.true;
-      expect(radioGroup.hasAttribute('data-optional')).to.be.false;
-      expect(radioGroup.hasAttribute('data-invalid')).to.be.true;
-      expect(radioGroup.hasAttribute('data-valid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
-      expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-required')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-optional')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-invalid')).to.be.true;
+      expect(radioGroup.hasAttribute('data-wa-valid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-invalid')).to.be.false;
+      expect(radioGroup.hasAttribute('data-wa-user-valid')).to.be.false;
     });
 
     it('should show a constraint validation error when setCustomValidity() is called', async () => {
@@ -212,24 +212,16 @@ describe('when submitting a form', () => {
           <wa-radio id="radio-2" value="2"></wa-radio>
           <wa-radio id="radio-3" value="3"></wa-radio>
         </wa-radio-group>
-        <wa-button type="submit">Submit</wa-button>
       </form>
     `);
-    const button = form.querySelector('wa-button')!;
+
     const radio = form.querySelectorAll('wa-radio')[1];
-    const submitHandler = sinon.spy((event: SubmitEvent) => {
-      formData = new FormData(form);
-
-      event.preventDefault();
-    });
-    let formData: FormData;
-
-    form.addEventListener('submit', submitHandler);
     radio.click();
-    button.click();
-    await waitUntil(() => submitHandler.calledOnce);
 
-    expect(formData!.get('a')).to.equal('2');
+    await form.querySelector('wa-radio-group')?.updateComplete;
+
+    const formData = new FormData(form);
+    expect(formData.get('a')).to.equal('2');
   });
 
   it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
@@ -299,7 +291,7 @@ describe('when a size is applied', () => {
   });
 });
 
-describe('when the value changes', () => {
+describe('when the value changes', async () => {
   it('should emit wa-change when toggled with the arrow keys', async () => {
     const radioGroup = await fixture<WaRadioGroup>(html`
       <wa-radio-group>
@@ -365,7 +357,8 @@ describe('when the value changes', () => {
     await radioGroup.updateComplete;
   });
 
-  it('should relatively position content to prevent visually hidden scroll bugs', async () => {
+  // I think we can delete this?? We no longer need to have a hidden form control to mimic formAssociation.
+  it.skip('should relatively position content to prevent visually hidden scroll bugs', async () => {
     //
     // See https://github.com/shoelace-style/shoelace/issues/1380
     //
@@ -413,5 +406,5 @@ describe('when the value changes', () => {
     // expect(radioGroup.querySelector("wa-radio")?.getAttribute("aria-checked")).to.equal("true")
   });
 
-  runFormControlBaseTests('wa-radio-group');
+  await runFormControlBaseTests('wa-radio-group');
 });

@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 /** Ensures a number stays within a minimum and maximum value */
 export function clamp(value: number, min: number, max: number) {
   const noNegativeZero = (n: number) => (Object.is(n, -0) ? 0 : n);
@@ -11,4 +13,9 @@ export function clamp(value: number, min: number, max: number) {
   }
 
   return noNegativeZero(value);
+}
+
+/* Generates a random, unique id with an optional prefix. */
+export function uniqueId(prefix = '') {
+  return `${prefix}${nanoid()}`;
 }

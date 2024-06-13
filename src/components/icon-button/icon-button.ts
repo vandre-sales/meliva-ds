@@ -3,9 +3,11 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { WaBlurEvent } from '../../events/blur.js';
+import { WaFocusEvent } from '../../events/focus.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './icon-button.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -19,10 +21,12 @@ import type { CSSResultGroup } from 'lit';
  * @event wa-blur - Emitted when the icon button loses focus.
  * @event wa-focus - Emitted when the icon button gains focus.
  *
+ * @cssproperty --background-color-hover - The color of the button's background on hover.
+ *
  * @csspart base - The component's base wrapper.
  */
 @customElement('wa-icon-button')
-export default class WaIconButton extends WebAwesomeElement {
+export default class WaIconButton extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   @query('.icon-button') button: HTMLButtonElement | HTMLLinkElement;
@@ -30,7 +34,7 @@ export default class WaIconButton extends WebAwesomeElement {
   @state() private hasFocus = false;
 
   /** The name of the icon to draw. Available names depend on the icon library being used. */
-  @property() name?: string;
+  @property({ reflect: true }) name: string | null = null;
 
   /**
    * The family of icons to choose from. For Font Awesome, valid options include `classic`, `sharp`, `duotone`, and
@@ -69,16 +73,16 @@ export default class WaIconButton extends WebAwesomeElement {
   @property() label = '';
 
   /** Disables the button. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   private handleBlur() {
     this.hasFocus = false;
-    this.emit('wa-blur');
+    this.dispatchEvent(new WaBlurEvent());
   }
 
   private handleFocus() {
     this.hasFocus = true;
-    this.emit('wa-focus');
+    this.dispatchEvent(new WaFocusEvent());
   }
 
   private handleClick(event: MouseEvent) {
@@ -138,6 +142,7 @@ export default class WaIconButton extends WebAwesomeElement {
           library=${ifDefined(this.library)}
           src=${ifDefined(this.src)}
           aria-hidden="true"
+          fixed-width
         ></wa-icon>
       </${tag}>
     `;

@@ -1,7 +1,7 @@
 import { clamp } from '../../internal/math.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
+import { WaSelectionChangeEvent } from '../../events/selection-change.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './tree.styles.js';
@@ -91,7 +91,6 @@ export default class WaTree extends WebAwesomeElement {
   // automatically updated when the underlying document is changed.
   //
   private lastFocusedItem: WaTreeItem | null;
-  private readonly localize = new LocalizeController(this);
   private mutationObserver: MutationObserver;
   private clickTarget: WaTreeItem | null = null;
 
@@ -146,13 +145,16 @@ export default class WaTree extends WebAwesomeElement {
       .filter(status => !!this.querySelector(`[slot="${status}-icon"]`))
       .forEach((status: 'expand' | 'collapse') => {
         const existingIcon = item.querySelector(`[slot="${status}-icon"]`);
+        const expandButtonIcon = this.getExpandButtonIcon(status);
+
+        if (!expandButtonIcon) return;
 
         if (existingIcon === null) {
           // No separator exists, add one
-          item.append(this.getExpandButtonIcon(status)!);
+          item.append(expandButtonIcon);
         } else if (existingIcon.hasAttribute('data-default')) {
           // A default separator exists, replace it
-          existingIcon.replaceWith(this.getExpandButtonIcon(status)!);
+          existingIcon.replaceWith(expandButtonIcon);
         } else {
           // The user provided a custom icon, leave it alone
         }
@@ -198,7 +200,7 @@ export default class WaTree extends WebAwesomeElement {
     ) {
       // Wait for the tree items' DOM to update before emitting
       Promise.all(nextSelection.map(el => el.updateComplete)).then(() => {
-        this.emit('wa-selection-change', { detail: { selection: nextSelection } });
+        this.dispatchEvent(new WaSelectionChangeEvent({ selection: nextSelection }));
       });
     }
   }
@@ -224,8 +226,8 @@ export default class WaTree extends WebAwesomeElement {
     }
 
     const items = this.getFocusableItems();
-    const isLtr = this.localize.dir() === 'ltr';
-    const isRtl = this.localize.dir() === 'rtl';
+    const isLtr = this.matches(':dir(ltr)');
+    const isRtl = this.matches(':dir(rtl)');
 
     if (items.length > 0) {
       event.preventDefault();

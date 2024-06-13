@@ -8,14 +8,6 @@ layout: component.njk
 <wa-button>Button</wa-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => <WaButton>Button</WaButton>;
-```
-{% endraw %}
-
 ## Examples
 
 ### Variants
@@ -30,22 +22,6 @@ Use the `variant` attribute to set the button's variant.
 <wa-button variant="danger">Danger</wa-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton variant="brand">Brand</WaButton>
-    <WaButton variant="success">Success</WaButton>
-    <WaButton variant="neutral">Neutral</WaButton>
-    <WaButton variant="warning">Warning</WaButton>
-    <WaButton variant="danger">Danger</WaButton>
-  </>
-);
-```
-{% endraw %}
-
 ### Sizes
 
 Use the `size` attribute to change a button's size.
@@ -55,20 +31,6 @@ Use the `size` attribute to change a button's size.
 <wa-button size="medium">Medium</wa-button>
 <wa-button size="large">Large</wa-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton size="small">Small</WaButton>
-    <WaButton size="medium">Medium</WaButton>
-    <WaButton size="large">Large</WaButton>
-  </>
-);
-```
-{% endraw %}
 
 ### Outline Buttons
 
@@ -82,32 +44,6 @@ Use the `outline` attribute to draw outlined buttons with transparent background
 <wa-button variant="danger" outline>Danger</wa-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton variant="brand" outline>
-      Brand
-    </WaButton>
-    <WaButton variant="success" outline>
-      Success
-    </WaButton>
-    <WaButton variant="neutral" outline>
-      Neutral
-    </WaButton>
-    <WaButton variant="warning" outline>
-      Warning
-    </WaButton>
-    <WaButton variant="danger" outline>
-      Danger
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
-
 ### Pill Buttons
 
 Use the `pill` attribute to give buttons rounded edges.
@@ -117,26 +53,6 @@ Use the `pill` attribute to give buttons rounded edges.
 <wa-button size="medium" pill>Medium</wa-button>
 <wa-button size="large" pill>Large</wa-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton size="small" pill>
-      Small
-    </WaButton>
-    <WaButton size="medium" pill>
-      Medium
-    </WaButton>
-    <WaButton size="large" pill>
-      Large
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
 
 ### Text Buttons
 
@@ -148,26 +64,6 @@ Use the `text` variant to create text buttons that share the same size as regula
 <wa-button variant="text" size="large">Text</wa-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton variant="text" size="small">
-      Text
-    </WaButton>
-    <WaButton variant="text" size="medium">
-      Text
-    </WaButton>
-    <WaButton variant="text" size="large">
-      Text
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
-
 ### Link Buttons
 
 It's often helpful to have a button that works like a link. This is possible by setting the `href` attribute, which will make the component render an `<a>` under the hood. This gives you all the default link behavior the browser provides (e.g. [[CMD/CTRL/SHIFT]] + [[CLICK]]) and exposes the `target` and `download` attributes.
@@ -178,27 +74,6 @@ It's often helpful to have a button that works like a link. This is possible by 
 <wa-button href="/assets/images/logo.svg" download="shoelace.svg">Download</wa-button>
 <wa-button href="https://example.com/" disabled>Disabled</wa-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton href="https://example.com/">Link</WaButton>
-    <WaButton href="https://example.com/" target="_blank">
-      New Window
-    </WaButton>
-    <WaButton href="/assets/images/logo.svg" download="shoelace.svg">
-      Download
-    </WaButton>
-    <WaButton href="https://example.com/" disabled>
-      Disabled
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
 
 :::info
 When a `target` is set, the link will receive `rel="noreferrer noopener"` for [security reasons](https://mathiasbynens.github.io/rel-noopener/).
@@ -213,26 +88,6 @@ As expected, buttons can be given a custom width by setting the `width` attribut
 <wa-button size="medium" style="width: 100%; margin-bottom: 1rem;">Medium</wa-button>
 <wa-button size="large" style="width: 100%;">Large</wa-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton size="small" style={{ width: '100%', marginBottom: '1rem' }}>
-      Small
-    </WaButton>
-    <WaButton size="medium" style={{ width: '100%', marginBottom: '1rem' }}>
-      Medium
-    </WaButton>
-    <WaButton size="large" style={{ width: '100%' }}>
-      Large
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
 
 ### Prefix and Suffix Icons
 
@@ -292,71 +147,6 @@ Use the `prefix` and `suffix` slots to add icons.
 </wa-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <>
-    <WaButton size="small">
-      <WaIcon slot="prefix" name="gear" variant="solid"></WaIcon>
-      Settings
-    </WaButton>
-
-    <WaButton size="small">
-      <WaIcon slot="suffix" name="undo" variant="solid"></WaIcon>
-      Refresh
-    </WaButton>
-
-    <WaButton size="small">
-      <WaIcon slot="prefix" name="link" variant="solid"></WaIcon>
-      <WaIcon slot="suffix" name="arrow-up-right-from-square" variant="solid"></WaIcon>
-      Open
-    </WaButton>
-
-    <br />
-    <br />
-
-    <WaButton>
-      <WaIcon slot="prefix" name="gear" variant="solid"></WaIcon>
-      Settings
-    </WaButton>
-
-    <WaButton>
-      <WaIcon slot="suffix" name="undo" variant="solid"></WaIcon>
-      Refresh
-    </WaButton>
-
-    <WaButton>
-      <WaIcon slot="prefix" name="link" variant="solid"></WaIcon>
-      <WaIcon slot="suffix" name="arrow-up-right-from-square" variant="solid"></WaIcon>
-      Open
-    </WaButton>
-
-    <br />
-    <br />
-
-    <WaButton size="large">
-      <WaIcon slot="prefix" name="gear" variant="solid"></WaIcon>
-      Settings
-    </WaButton>
-
-    <WaButton size="large">
-      <WaIcon slot="suffix" name="undo" variant="solid"></WaIcon>
-      Refresh
-    </WaButton>
-
-    <WaButton size="large">
-      <WaIcon slot="prefix" name="link" variant="solid"></WaIcon>
-      <WaIcon slot="suffix" name="arrow-up-right-from-square" variant="solid"></WaIcon>
-      Open
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
-
 ### Caret
 
 Use the `caret` attribute to add a dropdown indicator when a button will trigger a dropdown, menu, or popover.
@@ -366,26 +156,6 @@ Use the `caret` attribute to add a dropdown indicator when a button will trigger
 <wa-button size="medium" caret>Medium</wa-button>
 <wa-button size="large" caret>Large</wa-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton size="small" caret>
-      Small
-    </WaButton>
-    <WaButton size="medium" caret>
-      Medium
-    </WaButton>
-    <WaButton size="large" caret>
-      Large
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
 
 ### Loading
 
@@ -399,32 +169,6 @@ Use the `loading` attribute to make a button busy. The width will remain the sam
 <wa-button variant="danger" loading>Danger</wa-button>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton variant="brand" loading>
-      Brand
-    </WaButton>
-    <WaButton variant="success" loading>
-      Success
-    </WaButton>
-    <WaButton variant="neutral" loading>
-      Neutral
-    </WaButton>
-    <WaButton variant="warning" loading>
-      Warning
-    </WaButton>
-    <WaButton variant="danger" loading>
-      Danger
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
-
 ### Disabled
 
 Use the `disabled` attribute to disable a button.
@@ -436,36 +180,6 @@ Use the `disabled` attribute to disable a button.
 <wa-button variant="warning" disabled>Warning</wa-button>
 <wa-button variant="danger" disabled>Danger</wa-button>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => (
-  <>
-    <WaButton variant="brand" disabled>
-      Brand
-    </WaButton>
-
-    <WaButton variant="success" disabled>
-      Success
-    </WaButton>
-
-    <WaButton variant="neutral" disabled>
-      Neutral
-    </WaButton>
-
-    <WaButton variant="warning" disabled>
-      Warning
-    </WaButton>
-
-    <WaButton variant="danger" disabled>
-      Danger
-    </WaButton>
-  </>
-);
-```
-{% endraw %}
 
 ### Styling Buttons
 
@@ -486,7 +200,7 @@ This example demonstrates how to style buttons using a custom class. This is the
     color: white;
     font-size: 1.125rem;
     box-shadow: 0 2px 10px #0002;
-    transition: var(--wa-transition-normal) all;
+    transition: all var(--wa-transition-slow) var(--wa-transition-easing);
   }
 
   wa-button.pink::part(base):hover {

@@ -2,10 +2,12 @@ import '../icon/icon.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { html } from 'lit';
+import { WaBlurEvent } from '../../events/blur.js';
+import { WaFocusEvent } from '../../events/focus.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './radio.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -27,8 +29,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart checked-icon - The checked icon.
  * @csspart label - The container that wraps the radio's label.
  *
- * @cssproperty --background - The radio's background styles.
- * @cssproperty --background-checked - The radio's background styles when checked.
+ * @cssproperty --background-color - The radio's background color.
+ * @cssproperty --background-color-checked - The radio's background color when checked.
  * @cssproperty --border-color - The color of the radio's borders.
  * @cssproperty --border-color-checked - The color of the radio's borders when checked.
  * @cssproperty --border-style - The style of the radio's borders.
@@ -39,14 +41,19 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --toggle-size - The size of the radio.
  */
 @customElement('wa-radio')
-export default class WaRadio extends WebAwesomeElement {
+export default class WaRadio extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   @state() checked = false;
   @state() protected hasFocus = false;
 
+  /**
+   * The string pointing to a form's id.
+   */
+  @property({ reflect: true }) form: string | null = null;
+
   /** The radio's value. When selected, the radio group will receive this value. */
-  @property() value: string;
+  @property({ reflect: true }) value: string;
 
   /**
    * The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this
@@ -55,12 +62,12 @@ export default class WaRadio extends WebAwesomeElement {
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Disables the radio. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
   constructor() {
     super();
-    this.addEventListener('blur', this.handleBlur);
     this.addEventListener('click', this.handleClick);
+    this.addEventListener('blur', this.handleBlur);
     this.addEventListener('focus', this.handleFocus);
   }
 
@@ -71,36 +78,43 @@ export default class WaRadio extends WebAwesomeElement {
 
   private handleBlur = () => {
     this.hasFocus = false;
-    this.emit('wa-blur');
-  };
-
-  private handleClick = () => {
-    if (!this.disabled) {
-      this.checked = true;
-    }
+    this.dispatchEvent(new WaBlurEvent());
   };
 
   private handleFocus = () => {
     this.hasFocus = true;
-    this.emit('wa-focus');
+    this.dispatchEvent(new WaFocusEvent());
   };
 
   private setInitialAttributes() {
     this.setAttribute('role', 'radio');
-    this.setAttribute('tabindex', '-1');
+    this.tabIndex = 0;
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
 
   @watch('checked')
   handleCheckedChange() {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
-    this.setAttribute('tabindex', this.checked ? '0' : '-1');
+    this.tabIndex = this.checked ? 0 : -1;
+  }
+
+  /**
+   * @override
+   */
+  setValue(): void {
+    // We override `setValue` because we don't want to set form values from here. We want to do that in "RadioGroup" itself.
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
+
+  private handleClick = () => {
+    if (!this.disabled) {
+      this.checked = true;
+    }
+  };
 
   render() {
     return html`
@@ -134,12 +148,6 @@ export default class WaRadio extends WebAwesomeElement {
         <slot part="label" class="radio__label"></slot>
       </span>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'wa-radio': WaRadio;
   }
 }
 

@@ -1,67 +1,60 @@
+/** Same as `el.animate()`, except returns a promise that doesn't throw an error when the animation is canceled. */
+export async function animate(el: Element, keyframes: Keyframe[], options?: KeyframeAnimationOptions) {
+  return el.animate(keyframes, options).finished.catch(() => {
+    /* suppress errors in Safari */
+  });
+}
+
 /**
- * Animates an element using keyframes. Returns a promise that resolves after the animation completes or gets canceled.
+ * Applies a class to the specified element to animate it. The class is removed after the animation finishes and then
+ * the promise resolves. If a timeout is provided, the class will be removed and the animation will
  */
-export function animateTo(el: HTMLElement, keyframes: Keyframe[], options?: KeyframeAnimationOptions) {
-  return new Promise(resolve => {
-    if (options?.duration === Infinity) {
-      throw new Error('Promise-based animations must be finite.');
-    }
+export function animateWithClass(el: Element, className: string) {
+  return new Promise<void>(resolve => {
+    el.classList.remove(className);
+    const controller = new AbortController();
+    const { signal } = controller;
 
-    const animation = el.animate(keyframes, {
-      ...options,
-      duration: prefersReducedMotion() ? 0 : options!.duration
-    });
+    el.classList.add(className);
+    el.addEventListener(
+      'animationend',
+      () => {
+        el.classList.remove(className);
+        resolve();
+        controller.abort();
+      },
+      { once: true, signal }
+    );
 
-    animation.addEventListener('cancel', resolve, { once: true });
-    animation.addEventListener('finish', resolve, { once: true });
+    el.addEventListener(
+      'animationcancel',
+      () => {
+        el.classList.remove(className);
+        resolve();
+        controller.abort();
+      },
+      { once: true, signal }
+    );
   });
 }
 
 /** Parses a CSS duration and returns the number of milliseconds. */
-export function parseDuration(delay: number | string) {
-  delay = delay.toString().toLowerCase();
+export function parseDuration(duration: number | string) {
+  duration = duration.toString().toLowerCase();
 
-  if (delay.indexOf('ms') > -1) {
-    return parseFloat(delay);
+  if (duration.indexOf('ms') > -1) {
+    return parseFloat(duration) || 0;
   }
 
-  if (delay.indexOf('s') > -1) {
-    return parseFloat(delay) * 1000;
+  if (duration.indexOf('s') > -1) {
+    return (parseFloat(duration) || 0) * 1000;
   }
 
-  return parseFloat(delay);
+  return parseFloat(duration) || 0;
 }
 
 /** Tells if the user has enabled the "reduced motion" setting in their browser or OS. */
 export function prefersReducedMotion() {
   const query = window.matchMedia('(prefers-reduced-motion: reduce)');
   return query.matches;
-}
-
-/**
- * Stops all active animations on the target element. Returns a promise that resolves after all animations are canceled.
- */
-export function stopAnimations(el: HTMLElement) {
-  return Promise.all(
-    el.getAnimations().map(animation => {
-      return new Promise(resolve => {
-        const handleAnimationEvent = requestAnimationFrame(resolve);
-
-        animation.addEventListener('cancel', () => handleAnimationEvent, { once: true });
-        animation.addEventListener('finish', () => handleAnimationEvent, { once: true });
-        animation.cancel();
-      });
-    })
-  );
-}
-
-/**
- * We can't animate `height: auto`, but we can calculate the height and shim keyframes by replacing it with the
- * element's scrollHeight before the animation.
- */
-export function shimKeyframesHeightAuto(keyframes: Keyframe[], calculatedHeight: number) {
-  return keyframes.map(keyframe => ({
-    ...keyframe,
-    height: keyframe.height === 'auto' ? `${calculatedHeight}px` : keyframe.height
-  }));
 }

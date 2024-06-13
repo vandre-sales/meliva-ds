@@ -31,12 +31,12 @@ export default css`
     height: var(--control-box-size);
     font-size: calc(var(--icon-size) * 0.75);
     background: none;
-    border: solid 2px currentColor;
+    border: solid var(--wa-border-width-s) currentColor;
     background-color: rgb(0 0 0 / 50%);
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
     color: white;
     pointer-events: none;
-    transition: var(--wa-transition-fast) opacity;
+    transition: opacity var(--wa-transition-normal) var(--wa-transition-easing);
   }
 
   :host([play]:hover) .animated-image__control-box {

@@ -2,23 +2,23 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background: var(--wa-form-controls-background);
-    --border-color: var(--wa-form-controls-resting-color);
-    --border-radius: var(--wa-form-controls-corners);
-    --border-style: var(--wa-form-controls-border-style);
-    --border-width: var(--wa-form-controls-border-width);
-    --box-shadow: var(--wa-shadow-level-0);
+    --background-color: var(--wa-form-control-background-color);
+    --border-color: var(--wa-form-control-resting-color);
+    --border-radius: var(--wa-form-control-border-radius);
+    --border-style: var(--wa-form-control-border-style);
+    --border-width: var(--wa-form-control-border-width);
+    --box-shadow: initial;
 
     display: block;
   }
 
   :host([filled]) {
-    --background: var(--wa-color-neutral-fill-subtle);
-    --border-color: var(--background);
+    --background-color: var(--wa-color-neutral-fill-quiet);
+    --border-color: var(--background-color);
   }
 
   .textarea {
-    background: var(--background);
+    background-color: var(--background-color);
     border-color: var(--border-color);
     border-radius: var(--border-radius);
     border-style: var(--border-style);
@@ -29,12 +29,12 @@ export default css`
     position: relative;
     width: 100%;
     font: inherit;
-    line-height: var(--wa-form-controls-value-line-height);
+    line-height: var(--wa-form-control-value-line-height);
     vertical-align: middle;
     transition:
-      var(--wa-transition-fast) background,
-      var(--wa-transition-fast) border,
-      var(--wa-transition-faster) outline;
+      background var(--wa-transition-normal) var(--wa-transition-easing),
+      border var(--wa-transition-normal) var(--wa-transition-easing),
+      outline var(--wa-transition-fast) var(--wa-transition-easing);
     cursor: text;
   }
 
@@ -42,7 +42,7 @@ export default css`
   .textarea--standard.textarea--focused:not(.textarea--disabled) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
-    border-color: var(--wa-form-controls-activated-color);
+    border-color: var(--wa-form-control-activated-color);
   }
 
   .textarea--standard.textarea--disabled {
@@ -64,8 +64,8 @@ export default css`
   .textarea__control {
     flex: 1 1 auto;
     font: inherit;
-    line-height: var(--wa-font-line-height-comfortable);
-    color: var(--wa-form-controls-value-color);
+    line-height: var(--wa-line-height-expanded);
+    color: var(--wa-form-control-value-color);
     border: none;
     background: none;
     box-shadow: none;
@@ -81,7 +81,7 @@ export default css`
   }
 
   .textarea__control::placeholder {
-    color: var(--wa-form-controls-placeholder-color);
+    color: var(--wa-form-control-placeholder-color);
     user-select: none;
     -webkit-user-select: none;
   }

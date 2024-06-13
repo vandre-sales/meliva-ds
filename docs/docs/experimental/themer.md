@@ -35,38 +35,36 @@ hasOutline: false
 
   :root,
   #knobs {
-    scrollbar-color: var(--wa-color-neutral-border-highlight) var(--wa-color-surface-raised);
+    scrollbar-color: var(--wa-color-neutral-border-normal) var(--wa-color-surface-raised);
   }
 
-  /* #region Lock theme styles */  
+  /* #region Lock theme styles */
   #knobs,
   #knobs :host,
   #knobs :host *,
   #color-mode-selector,
-  #icon-chooser { 
+  #icon-chooser {
     --wa-color-surface-border: color-mix(in oklab, var(--wa-color-text-normal), transparent 90%);
 
     --wa-color-shadow: rgb(0 0 0 / 0.1);
 
-    --wa-color-neutral-spot: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 75%);
-    --wa-color-neutral-spot-darker: color-mix(in oklab, var(--wa-color-neutral-spot), black 5%);
-    --wa-color-neutral-fill-subtle: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 10%);
-    --wa-color-neutral-fill-highlight: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 20%);
-    --wa-color-neutral-border-subtle: color-mix(in oklab, var(--wa-color-text-normal), var(--wa-color-surface-default) 90%);
-    --wa-color-neutral-border-highlight: color-mix(in oklab, var(--wa-color-text-normal), var(--wa-color-surface-default) 70%);
-    --wa-color-neutral-text-on-spot: color-mix(in oklab, var(--wa-color-surface-default) 90%, var(--wa-color-text-normal));
-    --wa-color-neutral-text-on-fill: color-mix(in oklab, var(--wa-color-surface-raised) 10%, var(--wa-color-text-normal));
-    --wa-color-neutral-text-on-surface: var(--wa-color-neutral-spot);
+    --wa-color-neutral-fill-loud: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 75%);
+    --wa-color-neutral-fill-quiet: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 10%);
+    --wa-color-neutral-fill-normal: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-text-normal) 20%);
+    --wa-color-neutral-border-quiet: color-mix(in oklab, var(--wa-color-text-normal), var(--wa-color-surface-default) 90%);
+    --wa-color-neutral-border-normal: color-mix(in oklab, var(--wa-color-text-normal), var(--wa-color-surface-default) 70%);
+    --wa-color-neutral-on-loud: color-mix(in oklab, var(--wa-color-surface-default) 90%, var(--wa-color-text-normal));
+    --wa-color-neutral-on-normal: color-mix(in oklab, var(--wa-color-surface-raised) 10%, var(--wa-color-text-normal));
+    --wa-color-neutral-on-quiet: var(--wa-color-neutral-fill-loud);
 
-    --wa-color-brand-spot: var(--wa-color-neutral-spot);
-    --wa-color-brand-spot-darker: var(--wa-color-neutral-spot-darker);
-    --wa-color-brand-fill-subtle: var(--wa-color-neutral-fill-subtle);
-    --wa-color-brand-fill-highlight: var(--wa-color-neutral-fill-highlight);
-    --wa-color-brand-border-subtle: var(--wa-color-neutral-border-subtle);
-    --wa-color-brand-border-highlight: var(--wa-color-neutral-border-highlight);
-    --wa-color-brand-text-on-spot: var(--wa-color-neutral-text-on-spot);
-    --wa-color-brand-text-on-fill: var(--wa-color-neutral-text-on-fill);
-    --wa-color-brand-text-on-surface: var(--wa-color-neutral-text-on-surface);
+    --wa-color-brand-fill-loud: var(--wa-color-neutral-fill-loud);
+    --wa-color-brand-fill-quiet: var(--wa-color-neutral-fill-quiet);
+    --wa-color-brand-fill-normal: var(--wa-color-neutral-fill-normal);
+    --wa-color-brand-border-quiet: var(--wa-color-neutral-border-quiet);
+    --wa-color-brand-border-normal: var(--wa-color-neutral-border-normal);
+    --wa-color-brand-on-loud: var(--wa-color-neutral-on-loud);
+    --wa-color-brand-on-normal: var(--wa-color-neutral-on-normal);
+    --wa-color-brand-on-quiet: var(--wa-color-neutral-on-quiet);
 
     --wa-font-family-heading: Inconsolata, monospace;
     --wa-font-family-body: Inconsolata, monospace;
@@ -75,123 +73,122 @@ hasOutline: false
 
     --wa-font-weight-light: 300;
     --wa-font-weight-normal: 400;
-    --wa-font-weight-medium: 600;
-    --wa-font-weight-heavy: 800;
+    --wa-font-weight-semibold: 600;
+    --wa-font-weight-bold: 800;
 
-    --wa-font-weight-heading: var(--wa-font-weight-heavy);
+    --wa-font-weight-heading: var(--wa-font-weight-bold);
     --wa-font-weight-body: var(--wa-font-weight-normal);
-    --wa-font-weight-action: var(--wa-font-weight-medium);
+    --wa-font-weight-action: var(--wa-font-weight-semibold);
 
     --wa-font-size-root: 16px;
-    --wa-font-size-2xs: var(--wa-font-size-root) * 0.6875;
-    --wa-font-size-xs: var(--wa-font-size-root) * 0.75;
-    --wa-font-size-s: var(--wa-font-size-root) * 0.875;
-    --wa-font-size-m: var(--wa-font-size-root) * 1;
-    --wa-font-size-l: var(--wa-font-size-root) * 1.25;
-    --wa-font-size-xl: var(--wa-font-size-root) * 1.625;
-    --wa-font-size-2xl: var(--wa-font-size-root) * 2;
-    --wa-font-size-3xl: var(--wa-font-size-root) * 2.5625;
-    --wa-font-size-4xl: var(--wa-font-size-root) * 3.25;
+    --wa-font-size-2xs: 1rem * 0.6875;
+    --wa-font-size-xs: 1rem * 0.75;
+    --wa-font-size-s: 1rem * 0.875;
+    --wa-font-size-m: 1rem * 1;
+    --wa-font-size-l: 1rem * 1.25;
+    --wa-font-size-xl: 1rem * 1.625;
+    --wa-font-size-2xl: 1rem * 2;
+    --wa-font-size-3xl: 1rem * 2.5625;
+    --wa-font-size-4xl: 1rem * 3.25;
 
-    --wa-font-line-height-compact: 1.25;
-    --wa-font-line-height-regular: 1.6;
-    --wa-font-line-height-comfortable: 2;
+    --wa-line-height-condensed: 1.25;
+    --wa-line-height-normal: 1.6;
+    --wa-line-height-expanded: 2;
 
-    --wa-space-base: 1;
-    --wa-space-3xs: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.125);
-    --wa-space-2xs: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.25);
-    --wa-space-xs: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.5);
-    --wa-space-s: calc(var(--wa-space-base) * var(--wa-font-size-root) * 0.75);
-    --wa-space-m: calc(var(--wa-space-base) * var(--wa-font-size-root) * 1);
-    --wa-space-l: calc(var(--wa-space-base) * var(--wa-font-size-root) * 1.25);
-    --wa-space-xl: calc(var(--wa-space-base) * var(--wa-font-size-root) * 1.5);
-    --wa-space-2xl: calc(var(--wa-space-base) * var(--wa-font-size-root) * 2);
-    --wa-space-3xl: calc(var(--wa-space-base) * var(--wa-font-size-root) * 3);
+    --wa-space-multiplier: 1;
+    --wa-space-3xs: calc(var(--wa-space-multiplier) * 1rem * 0.125);
+    --wa-space-2xs: calc(var(--wa-space-multiplier) * 1rem * 0.25);
+    --wa-space-xs: calc(var(--wa-space-multiplier) * 1rem * 0.5);
+    --wa-space-s: calc(var(--wa-space-multiplier) * 1rem * 0.75);
+    --wa-space-m: calc(var(--wa-space-multiplier) * 1rem * 1);
+    --wa-space-l: calc(var(--wa-space-multiplier) * 1rem * 1.25);
+    --wa-space-xl: calc(var(--wa-space-multiplier) * 1rem * 1.5);
+    --wa-space-2xl: calc(var(--wa-space-multiplier) * 1rem * 2);
+    --wa-space-3xl: calc(var(--wa-space-multiplier) * 1rem * 3);
 
     --wa-border-style: solid;
 
-    --wa-border-width-base: 0.0625;
-    --wa-border-width-s: calc(var(--wa-border-width-base) * var(--wa-font-size-root) * 1);
-    --wa-border-width-m: calc(var(--wa-border-width-base) * var(--wa-font-size-root) * 2);
-    --wa-border-width-l: calc(var(--wa-border-width-base) * var(--wa-font-size-root) * 3);
+    --wa-border-width-multiplier: 0.0625;
+    --wa-border-width-s: calc(var(--wa-border-width-multiplier) * 1rem * 1);
+    --wa-border-width-m: calc(var(--wa-border-width-multiplier) * 1rem * 2);
+    --wa-border-width-l: calc(var(--wa-border-width-multiplier) * 1rem * 3);
 
-    --wa-form-controls-border-style: var(--wa-border-style);
-    --wa-form-controls-border-width: var(--wa-border-width-s);
+    --wa-form-control-border-style: var(--wa-border-style);
+    --wa-form-control-border-width: var(--wa-border-width-s);
 
     --wa-panel-border-style: var(--wa-border-style);
     --wa-panel-border-width: var(--wa-border-width-s);
 
-    --wa-corners-base: 0.375;
-    --wa-corners-xs: calc(var(--wa-corners-base) * var(--wa-font-size-root) * 0.75);
-    --wa-corners-s: calc(var(--wa-corners-base) * var(--wa-font-size-root) * 1);
-    --wa-corners-m: calc(var(--wa-corners-base) * var(--wa-font-size-root) * 2);
-    --wa-corners-l: calc(var(--wa-corners-base) * var(--wa-font-size-root) * 3);
+    --wa-border-radius-multiplier: 0.375;
+    --wa-border-radius-xs: calc(var(--wa-border-radius-multiplier) * 1rem * 0.75);
+    --wa-border-radius-s: calc(var(--wa-border-radius-multiplier) * 1rem * 1);
+    --wa-border-radius-m: calc(var(--wa-border-radius-multiplier) * 1rem * 2);
+    --wa-border-radius-l: calc(var(--wa-border-radius-multiplier) * 1rem * 3);
 
-    --wa-shadow-blur-base: 0.125;
-    --wa-shadow-blur-inset: calc(var(--wa-shadow-blur-base) * 0.75rem);
-    --wa-shadow-blur-level-1: calc(var(--wa-shadow-blur-base) * 1rem);
-    --wa-shadow-blur-level-2: calc(var(--wa-shadow-blur-base) * 1.5rem);
-    --wa-shadow-blur-level-3: calc(var(--wa-shadow-blur-base) * 2rem);
+    --wa-shadow-blur-multiplier: 0.125;
+    --wa-shadow-blur-xs: calc(var(--wa-shadow-blur-multiplier) * 0.75rem);
+    --wa-shadow-blur-s: calc(var(--wa-shadow-blur-multiplier) * 1rem);
+    --wa-shadow-blur-m: calc(var(--wa-shadow-blur-multiplier) * 1.5rem);
+    --wa-shadow-blur-l: calc(var(--wa-shadow-blur-multiplier) * 2rem);
 
-    --wa-shadow-offset-y-base: 0.1;
-    --wa-shadow-offset-y-inset: calc(var(--wa-shadow-offset-y-base) * 0.75rem);
-    --wa-shadow-offset-y-level-1: calc(var(--wa-shadow-offset-y-base) * 1rem);
-    --wa-shadow-offset-y-level-2: calc(var(--wa-shadow-offset-y-base) * 1.5rem);
-    --wa-shadow-offset-y-level-3: calc(var(--wa-shadow-offset-y-base) * 2rem);
+    --wa-shadow-offset-y-multiplier: 0.1;
+    --wa-shadow-offset-y-xs: calc(var(--wa-shadow-offset-y-multiplier) * 0.75rem);
+    --wa-shadow-offset-y-s: calc(var(--wa-shadow-offset-y-multiplier) * 1rem);
+    --wa-shadow-offset-y-m: calc(var(--wa-shadow-offset-y-multiplier) * 1.5rem);
+    --wa-shadow-offset-y-l: calc(var(--wa-shadow-offset-y-multiplier) * 2rem);
 
-    --wa-shadow-offset-x-base: 0;
-    --wa-shadow-offset-x-inset: calc(var(--wa-shadow-offset-x-base) * 0.75rem);
-    --wa-shadow-offset-x-level-1: calc(var(--wa-shadow-offset-x-base) * 1rem);
-    --wa-shadow-offset-x-level-2: calc(var(--wa-shadow-offset-x-base) * 1.5rem);
-    --wa-shadow-offset-x-level-3: calc(var(--wa-shadow-offset-x-base) * 2rem);
+    --wa-shadow-offset-x-multiplier: 0;
+    --wa-shadow-offset-x-xs: calc(var(--wa-shadow-offset-x-multiplier) * 0.75rem);
+    --wa-shadow-offset-x-s: calc(var(--wa-shadow-offset-x-multiplier) * 1rem);
+    --wa-shadow-offset-x-m: calc(var(--wa-shadow-offset-x-multiplier) * 1.5rem);
+    --wa-shadow-offset-x-l: calc(var(--wa-shadow-offset-x-multiplier) * 2rem);
 
-    --wa-shadow-inset: inset var(--wa-shadow-offset-x-inset) var(--wa-shadow-offset-y-inset) var(--wa-shadow-blur-inset)
-      calc(var(--wa-shadow-offset-x-inset) * -1) var(--wa-color-shadow);
-    --wa-shadow-level-0: none;
-    --wa-shadow-level-1: var(--wa-shadow-offset-x-level-1) var(--wa-shadow-offset-y-level-1) var(--wa-shadow-blur-level-1)
-      calc(var(--wa-shadow-offset-x-level-1) * -1) var(--wa-color-shadow);
-    --wa-shadow-level-2: var(--wa-shadow-offset-x-level-2) var(--wa-shadow-offset-y-level-2) var(--wa-shadow-blur-level-2)
-      calc(var(--wa-shadow-offset-x-level-2) * -1) var(--wa-color-shadow);
-    --wa-shadow-level-3: var(--wa-shadow-offset-x-level-3) var(--wa-shadow-offset-y-level-3) var(--wa-shadow-blur-level-3)
-      calc(var(--wa-shadow-offset-x-level-3) * -1) var(--wa-color-shadow);
+    --wa-shadow-xs: inset var(--wa-shadow-offset-x-xs) var(--wa-shadow-offset-y-xs) var(--wa-shadow-blur-xs)
+      calc(var(--wa-shadow-offset-x-xs) * -1) var(--wa-color-shadow);
+    --wa-shadow-s: var(--wa-shadow-offset-x-s) var(--wa-shadow-offset-y-s) var(--wa-shadow-blur-s)
+      calc(var(--wa-shadow-offset-x-s) * -1) var(--wa-color-shadow);
+    --wa-shadow-m: var(--wa-shadow-offset-x-m) var(--wa-shadow-offset-y-m) var(--wa-shadow-blur-m)
+      calc(var(--wa-shadow-offset-x-m) * -1) var(--wa-color-shadow);
+    --wa-shadow-l: var(--wa-shadow-offset-x-l) var(--wa-shadow-offset-y-l) var(--wa-shadow-blur-l)
+      calc(var(--wa-shadow-offset-x-l) * -1) var(--wa-color-shadow);
 
-    --wa-form-controls-background: var(--wa-color-surface-default);
+    --wa-form-control-background-color: var(--wa-color-surface-default);
 
-    --wa-form-controls-corners: var(--wa-corners-s);
+    --wa-form-control-border-radius: var(--wa-border-radius-s);
 
-    --wa-form-controls-activated-color: var(--wa-color-brand-spot);
-    --wa-form-controls-resting-color: var(--wa-color-neutral-border-highlight);
+    --wa-form-control-activated-color: var(--wa-color-brand-fill-loud);
+    --wa-form-control-resting-color: var(--wa-color-neutral-border-normal);
 
-    --wa-form-controls-label-color: var(--wa-color-text-normal);
-    --wa-form-controls-label-font-weight: var(--wa-font-weight-normal);
-    --wa-form-controls-label-line-height: var(--wa-font-line-height-regular);
+    --wa-form-control-label-color: var(--wa-color-text-normal);
+    --wa-form-control-label-font-weight: var(--wa-font-weight-normal);
+    --wa-form-control-label-line-height: var(--wa-line-height-normal);
 
-    --wa-form-controls-value-color: var(--wa-color-text-normal);
-    --wa-form-controls-value-font-weight: var(--wa-font-weight-body);
-    --wa-form-controls-value-line-height: var(--wa-font-line-height-compact);
+    --wa-form-control-value-color: var(--wa-color-text-normal);
+    --wa-form-control-value-font-weight: var(--wa-font-weight-body);
+    --wa-form-control-value-line-height: var(--wa-line-height-condensed);
 
-    --wa-form-controls-placeholder-color: color-mix(in oklab, var(--wa-color-text-normal), transparent);
+    --wa-form-control-placeholder-color: color-mix(in oklab, var(--wa-color-text-normal), transparent);
 
-    --wa-form-controls-height-s: calc(
-      var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-controls-value-line-height)
+    --wa-form-control-height-s: calc(
+      var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-control-value-line-height)
     );
-    --wa-form-controls-height-m: calc(
-      var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-controls-value-line-height)
+    --wa-form-control-height-m: calc(
+      var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-control-value-line-height)
     );
-    --wa-form-controls-height-l: calc(
-      var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-controls-value-line-height)
+    --wa-form-control-height-l: calc(
+      var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-control-value-line-height)
     );
 
-    --wa-form-controls-required-content: '*';
-    --wa-form-controls-required-content-color: inherit;
-    --wa-form-controls-required-content-offset: -0.1em;
+    --wa-form-control-required-content: '*';
+    --wa-form-control-required-content-color: inherit;
+    --wa-form-control-required-content-offset: -0.1em;
 
-    --wa-panel-corners: var(--wa-corners-m);
+    --wa-panel-border-radius: var(--wa-border-radius-m);
 
     font-family: var(--wa-font-family-code);
-    font-size: var(--wa-font-size-root);
+    font-size: 1rem;
     font-weight: var(--wa-font-weight-normal);
-    line-height: var(--wa-font-line-height-regular);
+    line-height: var(--wa-line-height-normal);
 
     & wa-button,
     & wa-input,
@@ -232,7 +229,7 @@ hasOutline: false
       position: relative;
 
       &::part(summary) {
-        font-weight: var(--wa-font-weight-medium);
+        font-weight: var(--wa-font-weight-semibold);
       }
       &::part(summary-icon) {
         rotate: 0deg;
@@ -260,9 +257,9 @@ hasOutline: false
         padding-block-end: 0;
 
         & legend {
-          color: var(--wa-form-controls-label-color);
-          font-weight: var(--wa-form-controls-label-font-weight);
-          line-height: var(--wa-form-controls-label-line-height);
+          color: var(--wa-form-control-label-color);
+          font-weight: var(--wa-form-control-label-font-weight);
+          line-height: var(--wa-form-control-label-line-height);
           margin-bottom: var(--wa-space-3xs);
           padding-inline: 0;
         }
@@ -290,15 +287,15 @@ hasOutline: false
 
 
   #knobs wa-radio-group[name="color"] wa-radio {
-    border: 0.0625em solid var(--wa-color-neutral-border-subtle);
-    border-radius: var(--wa-corners-m);
+    border: 0.0625em solid var(--wa-color-neutral-border-quiet);
+    border-radius: var(--wa-border-radius-m);
     box-shadow: inset 0 0 0 0 transparent;
     padding: 1em;
-    transition: box-shadow var(--wa-transition-fast);
+    transition: box-shadow var(--wa-transition-normal) var(--wa-transition-easing);
 
     &[aria-checked="true"] {
       border-color: transparent;
-      box-shadow: inset 0 0 0 0.125em var(--wa-form-controls-activated-color);
+      box-shadow: inset 0 0 0 0.125em var(--wa-form-control-activated-color);
     }
 
     & + * {
@@ -329,13 +326,13 @@ hasOutline: false
   #knobs wa-radio-group[name="brand-color"] wa-radio {
     display: inline-block;
     border: 0.125em solid transparent;
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
     block-size: 2.375em;
     inline-size: 2.375em;
     padding: 0.0625em;
 
     &[aria-checked="true"] {
-      border: 0.125em solid var(--wa-form-controls-activated-color);
+      border: 0.125em solid var(--wa-form-control-activated-color);
     }
 
     &::part(base) {
@@ -354,7 +351,7 @@ hasOutline: false
       display: inline-block;
       block-size: 2em;
       inline-size: 2em;
-      border-radius: var(--wa-corners-circle);
+      border-radius: var(--wa-border-radius-circle);
     }
   }
 
@@ -368,18 +365,18 @@ hasOutline: false
   /* file uploader styles */
   .file-uploader {
     position: relative;
-    border: var(--wa-form-controls-border-width) dashed var(--wa-form-controls-resting-color);
-    border-radius: var(--wa-form-controls-corners);
-    background: var(--wa-form-controls-background);
+    border: var(--wa-form-control-border-width) dashed var(--wa-form-control-resting-color);
+    border-radius: var(--wa-form-control-border-radius);
+    background: var(--wa-form-control-background-color);
     cursor: pointer;
     font-weight: var(--wa-font-weight-action);
-    height: calc(var(--wa-form-controls-height-m) + var(--wa-border-width-s) * 2);
-    line-height: var(--wa-form-controls-height-m);
+    height: calc(var(--wa-form-control-height-m) + var(--wa-border-width-s) * 2);
+    line-height: var(--wa-form-control-height-m);
     text-align: center;
   }
 
   .file-uploader:is(:hover) {
-    background-color: var(--wa-color-neutral-fill-subtle);
+    background-color: var(--wa-color-neutral-fill-quiet);
   }
 
   /**
@@ -406,7 +403,7 @@ hasOutline: false
 
   #file-uploader-description {
     display: block;
-    line-height: var(--wa-font-line-height-compact);
+    line-height: var(--wa-line-height-condensed);
     color: var(--wa-color-text-quiet);
     margin-top: var(--wa-space-2xs);
   }
@@ -422,7 +419,7 @@ hasOutline: false
   }
 
   wa-radio-group[name="project-logo-selector"] wa-radio-button:last-of-type::part(button) {
-    border-radius: 0 var(--wa-corners-s) var(--wa-corners-s) 0;
+    border-radius: 0 var(--wa-border-radius-s) var(--wa-border-radius-s) 0;
   }
 
   wa-radio-group[name="project-logo-selector"] wa-tooltip {
@@ -432,12 +429,12 @@ hasOutline: false
 
   #icon-chooser-trigger {
     --button-group-separator-border: none;
-    --label-color: var(--wa-color-neutral-text-on-surface);
-    --label-color-hover: color-mix(in oklab, var(--wa-color-neutral-text-on-surface), var(--wa-color-mix-hover));
+    --label-color: var(--wa-color-neutral-on-quiet);
+    --label-color-hover: color-mix(in oklab, var(--wa-color-neutral-on-quiet), var(--wa-color-mix-hover));
     --label-color-active: var(--label-color-hover);
   }
 
-  #icon-chooser::part(panel) {
+  #icon-chooser::part(dialog) {
     width: 100%;
     height: 80%;
     max-width: 700px;
@@ -450,7 +447,7 @@ hasOutline: false
 
   .icon-search {
     border: solid 1px var(--wa-color-surface-border);
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     padding: var(--wa-space-m);
   }
 
@@ -470,7 +467,7 @@ hasOutline: false
   }
 
   @media screen and (max-width: 768px) {
-    #icon-chooser::part(panel) {
+    #icon-chooser::part(dialog) {
       width: 100%;
       max-height: 80%;
       max-width: 90vw;
@@ -537,13 +534,12 @@ hasOutline: false
         <wa-radio-button value="meteor"><wa-icon name="meteor"></wa-icon></wa-radio-button>
         <wa-radio-button value="cat-space"><wa-icon name="cat-space"></wa-icon></wa-radio-button>
         <wa-radio-button value="puzzle-piece"><wa-icon name="puzzle-piece"></wa-icon></wa-radio-button>
-        <wa-tooltip content="Browse icons" distance="-3" hoist>
           <wa-button value="[choose]" variant="text" id="icon-chooser-trigger" class="logo-chooser">
+            <wa-tooltip for="icon-chooser-trigger" distance="-3" hoist>Browse Icons</wa-tooltip>
             <wa-icon name="ellipsis" library="fa-classic-regular"></wa-icon>
             <wa-visually-hidden>Browse icons</wa-visually-hidden>
           </wa-button>
-        </wa-tooltip>
-        <small slot="help-text" style="display: inline-block; line-height: var(--wa-font-line-height-compact);">It's dangerous to go alone. Take these!</small>
+          <small slot="help-text" style="display: inline-block; line-height: var(--wa-line-height-condensed);">It's dangerous to go alone. Take these!</small>
       </wa-radio-group>
     </div>
   </wa-details>
@@ -677,10 +673,10 @@ hasOutline: false
   </wa-details>
 </form>
 
-<wa-dialog id="icon-chooser" label="Browse Icons">
+<wa-dialog id="icon-chooser" label="Browse Icons" with-header>
   <div style="display: grid; grid-template-rows: minmax(0, auto) minmax(0, 1fr); height: 100%; gap: 1rem;">
     <div style="display: flex; gap: 1.25rem;">
-      <wa-input name="icon-search" placeholder="Search Icons" clearable style="flex: 1 1 auto;">
+      <wa-input name="icon-search" autofocus placeholder="Search Icons" clearable style="flex: 1 1 auto;">
         <wa-icon slot="prefix" name="magnifying-glass"></wa-icon>
       </wa-input>
       <wa-select name="icon-variant" value="solid" style="flex: 0 1 auto;">
@@ -713,17 +709,17 @@ hasOutline: false
     & wa-radio-group {
       &::part(button-group) {
         background: var(--wa-color-surface-raised);
-        border-radius: var(--wa-corners-pill);
+        border-radius: var(--wa-border-radius-pill);
         box-shadow: 0 0.25em 0.25em -0.25em rgb(0 0 0 / 0.8);
         padding: 4px;
       }
       & wa-radio-button {
         &::part(button) {
           border: none;
-          border-radius: var(--wa-corners-circle);
+          border-radius: var(--wa-border-radius-circle);
         }
         &::part(button--checked) {
-          background: var(--wa-color-brand-spot);
+          background: var(--wa-color-brand-fill-loud);
         }
       }
     }
@@ -813,10 +809,6 @@ hasOutline: false
   const queue = [];
   let inputTimeout;
 
-  chooser.addEventListener('wa-initial-focus', () => {
-    requestAnimationFrame(() => input.focus());
-  })
-
   variantInput.addEventListener('wa-change', () => {
     iconList.dataset.variant = variantInput.value;
   });
@@ -857,7 +849,7 @@ hasOutline: false
   });
 
   document.querySelector("#icon-chooser-trigger").addEventListener("click", () => {
-    document.querySelector("#icon-chooser").show()
+    document.querySelector("#icon-chooser").open = true
   })
 </script>
 
@@ -914,7 +906,7 @@ hasOutline: false
     colorStylesheet.href = `/dist/themes/color_${colorPalette}.css`;
     colorSelect.value = colorPalette;
   }
-  
+
   function resetHeadingFontWeightValue() {
     document.documentElement.style.removeProperty('--wa-font-weight-heading')
     fontWeightHeading.value = getComputedStyle(previewContainer).getPropertyValue('--wa-font-weight-heading')
@@ -936,8 +928,8 @@ hasOutline: false
   }
 
   function resetBorderWidthValue() {
-    document.documentElement.style.removeProperty('--wa-border-width-base')
-    borderWidth.value = getComputedStyle(previewContainer).getPropertyValue("--wa-border-width-base")
+    document.documentElement.style.removeProperty('--wa-border-width-multiplier')
+    borderWidth.value = getComputedStyle(previewContainer).getPropertyValue("--wa-border-width-multiplier")
   }
 
   function resetBorderStyleValue() {
@@ -946,13 +938,13 @@ hasOutline: false
   }
 
   function resetSpacingValue() {
-    document.documentElement.style.removeProperty('--wa-space-base')
-    spacing.value = getComputedStyle(previewContainer).getPropertyValue("--wa-space-base")
+    document.documentElement.style.removeProperty('--wa-space-multiplier')
+    spacing.value = getComputedStyle(previewContainer).getPropertyValue("--wa-space-multiplier")
   }
 
   function resetCornersValue() {
-    document.documentElement.style.removeProperty('--wa-corners-base')
-    corners.value = getComputedStyle(previewContainer).getPropertyValue("--wa-corners-base")
+    document.documentElement.style.removeProperty('--wa-border-radius-multiplier')
+    corners.value = getComputedStyle(previewContainer).getPropertyValue("--wa-border-radius-multiplier")
   }
 
 
@@ -1145,7 +1137,7 @@ hasOutline: false
     document.head.prepend(newStylesheet);
   });
 
-  // Color Palette 
+  // Color Palette
   colorSelect.addEventListener('wa-change', event => {
     const colorPalette = event.target.value;
 
@@ -1233,7 +1225,7 @@ hasOutline: false
     // Depending on how we plan to store the logos, we can also do <img src="" height="36" width="36">
     projectLogo.replaceWith(element);
     logoSelector.value = "";
-    event.currentTarget.closest("wa-dialog").hide();
+    event.currentTarget.closest("wa-dialog").open = false;
   })
 
   // Pre-generated logos
@@ -1604,11 +1596,11 @@ hasOutline: false
 
     if (iconFamily.value === 'custom') {
       iconChooserTrigger.setAttribute('disabled', 'true');
-      iconChooserTriggerTooltip.setAttribute('content', 'Choose a Font Awesome icon family to browse more icons');
+      iconChooserTriggerTooltip.textContent = 'Choose a Font Awesome icon family to browse more icons';
     }
     else {
       iconChooserTrigger.removeAttribute('disabled');
-      iconChooserTriggerTooltip.setAttribute('content', 'Browse icons');
+      iconChooserTriggerTooltip.textContent = 'Browse icons'
     }
   });
 
@@ -1624,12 +1616,12 @@ hasOutline: false
 
   // Corners
   container.querySelector('[name="corners"]').addEventListener('wa-input', event => {
-    document.documentElement.style.setProperty('--wa-corners-base', `${event.target.value}`);
+    document.documentElement.style.setProperty('--wa-border-radius-multiplier', `${event.target.value}`);
   });
 
   // Border width
   container.querySelector('[name="border-width"]').addEventListener('wa-input', event => {
-    document.documentElement.style.setProperty('--wa-border-width-base', `${event.target.value / 16}`);
+    document.documentElement.style.setProperty('--wa-border-width-multiplier', `${event.target.value / 16}`);
   });
 
   // Border style
@@ -1639,7 +1631,7 @@ hasOutline: false
 
   // Spacing style
   spacing.addEventListener('wa-input', event => {
-    document.documentElement.style.setProperty('--wa-space-base', `${event.target.value}`);
+    document.documentElement.style.setProperty('--wa-space-multiplier', `${event.target.value}`);
   });
 
   // Form validation
@@ -1681,7 +1673,7 @@ hasOutline: false
     padding: 0;
     max-inline-size: 1400px;
     margin-inline: auto;
-    border: var(--wa-border-width-s) var(--wa-color-neutral-border-subtle) var(--wa-border-style);
+    border: var(--wa-border-width-s) var(--wa-color-neutral-border-quiet) var(--wa-border-style);
     overflow: clip;
   }
 
@@ -1716,7 +1708,7 @@ hasOutline: false
     overflow: hidden;
 
     &:not(wa-card *) {
-      border-radius: calc(var(--wa-corners-m) - var(--wa-panel-border-width));
+      border-radius: calc(var(--wa-border-radius-m) - var(--wa-panel-border-width));
     }
 
     & > img {
@@ -1850,7 +1842,7 @@ hasOutline: false
 
   .message-composer .grouped-buttons:not(:last-of-type) {
     padding-inline-end: var(--wa-space-m);
-    border-right: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-neutral-border-subtle);
+    border-right: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-neutral-border-quiet);
   }
 
   .message-composer wa-card::part(header) {
@@ -1893,11 +1885,6 @@ hasOutline: false
     text-decoration: line-through;
     color: var(--wa-color-text-quiet);
     margin-inline-end: var(--wa-space-m);
-  }
-
-  .product-detail wa-radio-button[checked] {
-    --background: var(--wa-color-neutral-text-on-surface);
-    --label-color: var(--wa-color-surface-lowered);
   }
 
   /* strata - support table */
@@ -2137,10 +2124,10 @@ hasOutline: false
 <code class="language-css">:host,
 .wa-theme-purple-power {
   /* ... */
-}</code>
-</pre>
-        <h3>Ontological Shock</h3>
-        <p>The allegory is related to Plato's theory of Forms, which holds that the true essence of an object is not what we perceive with our senses, but rather its quality, and that most people perceive only the shadow of the object and are thus limited to false perception.</p>
+}</code></pre>
+
+<h3>Ontological Shock</h3>
+<p>The allegory is related to Plato's theory of Forms, which holds that the true essence of an object is not what we perceive with our senses, but rather its quality, and that most people perceive only the shadow of the object and are thus limited to false perception.</p>
 <pre class="codeblock">
 <code class="language-html">&lt;html class="wa-theme-default-dark"&gt;
   &lt;head&gt;
@@ -2151,51 +2138,42 @@ hasOutline: false
   &lt;/body&gt;
 &lt;/html&gt;</code>
 </pre>
-        <wa-alert open>
+        <wa-callout>
           <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
           Adam Sternbergh credits The Matrix with reinventing and setting the template for modern superhero blockbusters, and inspiring the superhero renaissance in the early 21st century.
-        </wa-alert>
+        </wa-callout>
       </div>
     </section>
     <section class="strata message-composer">
-      <wa-card class="card-header card-footer">
+      <wa-card with-header with-footer class="card-header card-footer">
         <div slot="header">
           <div class="grouped-buttons">
-            <wa-tooltip content="Bold">
-              <wa-icon-button name="bold" label="Bold"></wa-icon-button>
-            </wa-tooltip>
-            <wa-tooltip content="Italic">
-              <wa-icon-button name="italic" label="Italic"></wa-icon-button>
-            </wa-tooltip>
-            <wa-tooltip content="Strikethrough">
-              <wa-icon-button name="strikethrough" label="strikethrough"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="bold" name="bold" label="Bold"></wa-icon-button>
+            <wa-tooltip for="bold">Bold</wa-tooltip>
+            <wa-icon-button id="italic" name="italic" label="Italic"></wa-icon-button>
+            <wa-tooltip for="italic">Italic</wa-tooltip>
+            <wa-icon-button id="strikethrough" name="strikethrough" label="strikethrough"></wa-icon-button>
+            <wa-tooltip for="strikethrough">Strikethrough</wa-tooltip>
           </div>
           <div class="grouped-buttons">
-            <wa-tooltip content="Link">
-              <wa-icon-button name="link" label="Link"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="link" name="link" label="Link"></wa-icon-button>
+            <wa-tooltip for="link">Link</wa-tooltip>
           </div>
           <div class="grouped-buttons">
-            <wa-tooltip content="Unordered List">
-              <wa-icon-button name="list" label="Unordered List"></wa-icon-button>
-            </wa-tooltip>
-            <wa-tooltip content="Ordered List">
-              <wa-icon-button name="list-ol" label="Ordered List"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="list" name="list" label="Unordered List"></wa-icon-button>
+            <wa-tooltip for="list">Unordered List</wa-tooltip>
+            <wa-icon-button id="list-ol" name="list-ol" label="Ordered List"></wa-icon-button>
+            <wa-tooltip for="list-ol">Ordered List</wa-tooltip>
           </div>
           <div class="grouped-buttons">
-            <wa-tooltip content="Block Quote">
-              <wa-icon-button name="block-quote" label="Block Quote"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="block-quote" name="block-quote" label="Block Quote"></wa-icon-button>
+            <wa-tooltip for="block-quote">Block Quote</wa-tooltip>
           </div>
           <div class="grouped-buttons">
-            <wa-tooltip content="Code">
-              <wa-icon-button name="code" label="Code"></wa-icon-button>
-            </wa-tooltip>
-            <wa-tooltip content="Inline Code">
-              <wa-icon-button name="terminal" label="Inline Code"></wa-icon-button>
-            </wa-tooltip>
+            <wa-icon-button id="code" name="code" label="Code"></wa-icon-button>
+            <wa-tooltip for="code">Code</wa-tooltip>
+            <wa-icon-button id="inline-code" name="terminal" label="Inline Code"></wa-icon-button>
+            <wa-tooltip for="inline-code">Inline Code</wa-tooltip>
           </div>
         </div>
         <div>
@@ -2204,31 +2182,24 @@ hasOutline: false
         <div slot="footer">
           <div class="tools">
             <div class="grouped-buttons">
-              <wa-tooltip content="Add File">
-                <wa-icon-button name="circle-plus" label="Add File"></wa-icon-button>
-              </wa-tooltip>
-              <wa-tooltip content="Formatting">
-                <wa-icon-button name="font-case" label="Open Formatting"></wa-icon-button>
-              </wa-tooltip>
-              <wa-tooltip content="Emojis">
-                <wa-icon-button name="face-smile" label="Emoji"></wa-icon-button>
-              </wa-tooltip>
-              <wa-tooltip content="Mention">
-                <wa-icon-button name="at" label="Mention"></wa-icon-button>
-              </wa-tooltip>
+              <wa-icon-button id="add-file" name="circle-plus" label="Add File"></wa-icon-button>
+              <wa-tooltip for="add-file">Add File</wa-tooltip>
+              <wa-icon-button id="formatting" name="font-case" label="Open Formatting"></wa-icon-button>
+              <wa-tooltip for="formatting">Formatting</wa-tooltip>
+              <wa-icon-button id="emojis" name="face-smile" label="Emoji"></wa-icon-button>
+              <wa-tooltip for="emojis">Emojis</wa-tooltip>
+              <wa-icon-button id="mention" name="at" label="Mention"></wa-icon-button>
+              <wa-tooltip for="mention">Mention</wa-tooltip>
             </div>
             <div class="grouped-buttons">
-              <wa-tooltip content="Record Video">
-                <wa-icon-button name="video" label="Video"></wa-icon-button>
-              </wa-tooltip>
-              <wa-tooltip content="Record Audio Clip">
-                <wa-icon-button name="microphone" label="Microphone"></wa-icon-button>
-              </wa-tooltip>
+              <wa-icon-button id="record-video" name="video" label="Video"></wa-icon-button>
+              <wa-tooltip for="record-video">Record Video</wa-tooltip>
+              <wa-icon-button id="record-audio" name="microphone" label="Microphone"></wa-icon-button>
+              <wa-tooltip for="record-audio">Record Audio Clip</wa-tooltip>
             </div>
             <div class="grouped-buttons">
-              <wa-tooltip content="Add Magic">
-                <wa-icon-button name="sparkles" label="Magic"></wa-icon-button>
-              </wa-tooltip>
+              <wa-icon-button id="add-magic" name="sparkles" label="Magic"></wa-icon-button>
+              <wa-tooltip for="add-magic">Add Magic</wa-tooltip>
             </div>
           </div>
           <div class="send">
@@ -2267,10 +2238,10 @@ hasOutline: false
           <p>It is a pickle, no doubt about it. Bad news is there's no way you can really know if I'm here to help you or not, so it's really up to you. Just have to make up your own damn mind to either accept what I'm going to tell you, or reject it. Candy?</p>
           <p>We're all here to do what we're all here to do. I'm interested in one thing, Neo, the future. And believe me, I know: the only way to get there is together.</p>
         </div>
-        <wa-alert variant="warning" open>
+        <wa-callout variant="warning">
           <wa-icon slot="icon" name="clock" variant="regular"></wa-icon>
           This item will soon be discontinued
-        </wa-alert>
+        </wa-callout>
         <div>
           <div style="margin: var(--wa-space-3xl) 0">
             <wa-radio-group label="Choose a finish" name="finish" value="Matte" class="product-finish">

@@ -12,14 +12,6 @@ The included content will be inserted into the `<wa-include>` element's default 
 <wa-include src="https://shoelace.style/assets/examples/include.html"></wa-include>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaInclude from '@shoelace-style/shoelace/dist/react/include';
-
-const App = () => <WaInclude src="https://shoelace.style/assets/examples/include.html" />;
-```
-{% endraw %}
-
 ## Examples
 
 ### Listening for Events

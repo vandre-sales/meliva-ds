@@ -2,21 +2,18 @@ import '../button-group/button-group.js';
 import '../radio/radio.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import {
-  customErrorValidityState,
-  FormControlController,
-  validValidityState,
-  valueMissingValidityState
-} from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
+import { uniqueId } from '../../internal/math.js';
+import { WaChangeEvent } from '../../events/change.js';
+import { WaInputEvent } from '../../events/input.js';
 import { watch } from '../../internal/watch.js';
+import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './radio-group.styles.js';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
-import type { WebAwesomeFormControl } from '../../internal/webawesome-element.js';
 import type WaRadio from '../radio/radio.js';
 import type WaRadioButton from '../radio-button/radio-button.js';
 
@@ -27,7 +24,6 @@ import type WaRadioButton from '../radio-button/radio-button.js';
  * @since 2.0
  *
  * @dependency wa-button-group
- * @dependency wa-radio
  *
  * @slot - The default slot where `<wa-radio>` or `<wa-radio-button>` elements are placed.
  * @slot label - The radio group's label. Required for proper accessibility. Alternatively, you can use the `label`
@@ -46,20 +42,28 @@ import type WaRadioButton from '../radio-button/radio-button.js';
  * @csspart button-group__base - The button group's `base` part.
  */
 @customElement('wa-radio-group')
-export default class WaRadioGroup extends WebAwesomeElement implements WebAwesomeFormControl {
+export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
-  protected readonly formControlController = new FormControlController(this);
+  static get validators() {
+    return [
+      ...super.validators,
+      RequiredValidator({
+        validationElement: Object.assign(document.createElement('input'), {
+          required: true,
+          type: 'radio',
+          // we need an id that's guaranteed to be unique; users will never see this
+          name: uniqueId('__wa-radio')
+        })
+      })
+    ];
+  }
+
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
-  private customValidityMessage = '';
-  private validationTimeout: number;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('.radio-group__validation-input') validationInput: HTMLInputElement;
 
   @state() private hasButtonGroup = false;
-  @state() private errorMessage = '';
-  @state() defaultValue = '';
 
   /**
    * The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
@@ -71,126 +75,63 @@ export default class WaRadioGroup extends WebAwesomeElement implements WebAwesom
   @property({ attribute: 'help-text' }) helpText = '';
 
   /** The name of the radio group, submitted as a name/value pair with form data. */
-  @property() name = 'option';
+  @property({ reflect: true }) name: string | null = null;
 
-  /** The current value of the radio group, submitted as a name/value pair with form data. */
-  @property({ reflect: true }) value = '';
+  @property({ attribute: false }) value = '';
+  @property({ attribute: 'value', reflect: true }) defaultValue = '';
 
   /** The radio group's size. This size will be applied to all child radios and radio buttons. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /**
-   * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
-   * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
-   * the same document or shadow root for this to work.
-   */
-  @property({ reflect: true }) form = '';
-
   /** Ensures a child radio is checked before allowing the containing form to submit. */
   @property({ type: Boolean, reflect: true }) required = false;
 
-  /** Gets the validity state object */
-  get validity() {
-    const isRequiredAndEmpty = this.required && !this.value;
-    const hasCustomValidityMessage = this.customValidityMessage !== '';
+  //
+  // We need this because if we don't have it, FormValidation yells at us that it's "not focusable".
+  //   If we use `this.tabIndex = -1` we can't focus the radio inside.
+  //
+  static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
-    if (hasCustomValidityMessage) {
-      return customErrorValidityState;
-    } else if (isRequiredAndEmpty) {
-      return valueMissingValidityState;
+  constructor() {
+    super();
+
+    this.addEventListener('keydown', this.handleKeyDown);
+    this.addEventListener('click', this.handleRadioClick);
+  }
+
+  private handleRadioClick = (e: Event) => {
+    const clickedRadio = (e.target as HTMLElement).closest<WaRadio | WaRadioButton>('wa-radio, wa-radio-button');
+
+    if (!clickedRadio || clickedRadio.disabled) {
+      return;
     }
 
-    return validValidityState;
-  }
+    const oldValue = this.value;
+    this.value = clickedRadio.value;
+    clickedRadio.checked = true;
 
-  /** Gets the validation message */
-  get validationMessage() {
-    const isRequiredAndEmpty = this.required && !this.value;
-    const hasCustomValidityMessage = this.customValidityMessage !== '';
+    const radios = this.getAllRadios();
+    const hasButtonGroup = radios.some(radio => radio.tagName.toLowerCase() === 'wa-radio-button');
+    for (const radio of radios) {
+      if (clickedRadio === radio) {
+        continue;
+      }
 
-    if (hasCustomValidityMessage) {
-      return this.customValidityMessage;
-    } else if (isRequiredAndEmpty) {
-      return this.validationInput.validationMessage;
+      radio.checked = false;
+
+      if (!hasButtonGroup) {
+        radio.setAttribute('tabindex', '-1');
+      }
     }
 
-    return '';
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.defaultValue = this.value;
-  }
-
-  firstUpdated() {
-    this.formControlController.updateValidity();
-  }
+    if (this.value !== oldValue) {
+      this.dispatchEvent(new WaChangeEvent());
+      this.dispatchEvent(new WaInputEvent());
+    }
+  };
 
   private getAllRadios() {
     return [...this.querySelectorAll<WaRadio | WaRadioButton>('wa-radio, wa-radio-button')];
-  }
-
-  private handleRadioClick(event: MouseEvent) {
-    const target = (event.target as HTMLElement).closest<WaRadio | WaRadioButton>('wa-radio, wa-radio-button')!;
-    const radios = this.getAllRadios();
-    const oldValue = this.value;
-
-    if (!target || target.disabled) {
-      return;
-    }
-
-    this.value = target.value;
-    radios.forEach(radio => (radio.checked = radio === target));
-
-    if (this.value !== oldValue) {
-      this.emit('wa-change');
-      this.emit('wa-input');
-    }
-  }
-
-  private handleKeyDown(event: KeyboardEvent) {
-    if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(event.key)) {
-      return;
-    }
-
-    const radios = this.getAllRadios().filter(radio => !radio.disabled);
-    const checkedRadio = radios.find(radio => radio.checked) ?? radios[0];
-    const incr = event.key === ' ' ? 0 : ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
-    const oldValue = this.value;
-    let index = radios.indexOf(checkedRadio) + incr;
-
-    if (index < 0) {
-      index = radios.length - 1;
-    }
-
-    if (index > radios.length - 1) {
-      index = 0;
-    }
-
-    this.getAllRadios().forEach(radio => {
-      radio.checked = false;
-
-      if (!this.hasButtonGroup) {
-        radio.tabIndex = -1;
-      }
-    });
-
-    this.value = radios[index].value;
-    radios[index].checked = true;
-
-    if (!this.hasButtonGroup) {
-      radios[index].tabIndex = 0;
-      radios[index].focus();
-    } else {
-      radios[index].shadowRoot!.querySelector('button')!.focus();
-    }
-
-    if (this.value !== oldValue) {
-      this.emit('wa-change');
-      this.emit('wa-input');
-    }
-
-    event.preventDefault();
   }
 
   private handleLabelClick() {
@@ -204,11 +145,6 @@ export default class WaRadioGroup extends WebAwesomeElement implements WebAwesom
     }
   }
 
-  private handleInvalid(event: Event) {
-    this.formControlController.setValidity(false);
-    this.formControlController.emitInvalidEvent(event);
-  }
-
   private async syncRadioElements() {
     const radios = this.getAllRadios();
 
@@ -216,8 +152,13 @@ export default class WaRadioGroup extends WebAwesomeElement implements WebAwesom
       // Sync the checked state and size
       radios.map(async radio => {
         await radio.updateComplete;
-        radio.checked = radio.value === this.value;
         radio.size = this.size;
+
+        if (!radio.disabled && radio.value === this.value) {
+          radio.checked = true;
+        } else {
+          radio.checked = false;
+        }
       })
     );
 
@@ -228,10 +169,10 @@ export default class WaRadioGroup extends WebAwesomeElement implements WebAwesom
         const buttonRadio = radios[0].shadowRoot?.querySelector('button');
 
         if (buttonRadio) {
-          buttonRadio.tabIndex = 0;
+          buttonRadio.setAttribute('tabindex', '0');
         }
       } else {
-        radios[0].tabIndex = 0;
+        radios[0].setAttribute('tabindex', '0');
       }
     }
 
@@ -244,87 +185,87 @@ export default class WaRadioGroup extends WebAwesomeElement implements WebAwesom
     }
   }
 
-  private syncRadios() {
-    if (customElements.get('wa-radio') && customElements.get('wa-radio-button')) {
-      this.syncRadioElements();
-      return;
-    }
-
-    if (customElements.get('wa-radio')) {
-      this.syncRadioElements();
-    } else {
-      customElements.whenDefined('wa-radio').then(() => this.syncRadios());
-    }
-
-    if (customElements.get('wa-radio-button')) {
-      this.syncRadioElements();
-    } else {
-      // Rerun this handler when <wa-radio> or <wa-radio-button> is registered
-      customElements.whenDefined('wa-radio-button').then(() => this.syncRadios());
-    }
-  }
-
-  private updateCheckedRadio() {
-    const radios = this.getAllRadios();
-    radios.forEach(radio => (radio.checked = radio.value === this.value));
-    this.formControlController.setValidity(this.validity.valid);
-  }
-
-  @watch('size', { waitUntilFirstUpdate: true })
-  handleSizeChange() {
-    this.syncRadios();
+  /**
+   * We use the first available radio as the validationTarget similar to native HTML that shows the validation popup on
+   * the first radio element.
+   */
+  get validationTarget() {
+    return this.querySelector<WaRadio | WaRadioButton>(':is(wa-radio, wa-radio-button):not([disabled])') || undefined;
   }
 
   @watch('value')
   handleValueChange() {
-    if (this.hasUpdated) {
-      this.updateCheckedRadio();
-    }
+    this.syncRadioElements();
   }
 
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
-  checkValidity() {
-    const isRequiredAndEmpty = this.required && !this.value;
-    const hasCustomValidityMessage = this.customValidityMessage !== '';
-
-    if (isRequiredAndEmpty || hasCustomValidityMessage) {
-      this.formControlController.emitInvalidEvent();
-      return false;
-    }
-
-    return true;
+  @watch('size', { waitUntilFirstUpdate: true })
+  handleSizeChange() {
+    this.syncRadioElements();
   }
 
-  /** Gets the associated form, if one exists. */
-  getForm(): HTMLFormElement | null {
-    return this.formControlController.getForm();
+  formResetCallback(...args: Parameters<WebAwesomeFormAssociatedElement['formResetCallback']>) {
+    this.value = this.defaultValue;
+
+    super.formResetCallback(...args);
+
+    this.syncRadioElements();
   }
 
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity(): boolean {
-    const isValid = this.validity.valid;
-
-    this.errorMessage = this.customValidityMessage || isValid ? '' : this.validationInput.validationMessage;
-    this.formControlController.setValidity(isValid);
-    this.validationInput.hidden = true;
-    clearTimeout(this.validationTimeout);
-
-    if (!isValid) {
-      // Show the browser's constraint validation message
-      this.validationInput.hidden = false;
-      this.validationInput.reportValidity();
-      this.validationTimeout = setTimeout(() => (this.validationInput.hidden = true), 10000) as unknown as number;
+  private handleKeyDown(event: KeyboardEvent) {
+    if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(event.key)) {
+      return;
     }
 
-    return isValid;
-  }
+    const radios = this.getAllRadios().filter(radio => !radio.disabled);
 
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
-  setCustomValidity(message = '') {
-    this.customValidityMessage = message;
-    this.errorMessage = message;
-    this.validationInput.setCustomValidity(message);
-    this.formControlController.updateValidity();
+    if (radios.length <= 0) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const oldValue = this.value;
+
+    const checkedRadio = radios.find(radio => radio.checked) ?? radios[0];
+    const incr = event.key === ' ' ? 0 : ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
+    let index = radios.indexOf(checkedRadio) + incr;
+
+    if (!index) index = 0;
+
+    if (index < 0) {
+      index = radios.length - 1;
+    }
+
+    if (index > radios.length - 1) {
+      index = 0;
+    }
+
+    const hasButtonGroup = radios.some(radio => radio.tagName.toLowerCase() === 'wa-radio-button');
+
+    this.getAllRadios().forEach(radio => {
+      radio.checked = false;
+
+      if (!hasButtonGroup) {
+        radio.setAttribute('tabindex', '-1');
+      }
+    });
+
+    this.value = radios[index].value;
+    radios[index].checked = true;
+
+    if (!hasButtonGroup) {
+      radios[index].setAttribute('tabindex', '0');
+      radios[index].focus();
+    } else {
+      radios[index].shadowRoot!.querySelector('button')!.focus();
+    }
+
+    if (this.value !== oldValue) {
+      this.dispatchEvent(new WaChangeEvent());
+      this.dispatchEvent(new WaInputEvent());
+    }
+
+    event.preventDefault();
   }
 
   render() {
@@ -332,9 +273,7 @@ export default class WaRadioGroup extends WebAwesomeElement implements WebAwesom
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const defaultSlot = html`
-      <slot @slotchange=${this.syncRadios} @click=${this.handleRadioClick} @keydown=${this.handleKeyDown}></slot>
-    `;
+    const defaultSlot = html` <slot @slotchange=${this.syncRadioElements}></slot> `;
 
     return html`
       <fieldset
@@ -364,20 +303,6 @@ export default class WaRadioGroup extends WebAwesomeElement implements WebAwesom
         </label>
 
         <div part="form-control-input" class="form-control-input">
-          <div class="visually-hidden">
-            <div id="error-message" aria-live="assertive">${this.errorMessage}</div>
-            <label class="radio-group__validation">
-              <input
-                type="text"
-                class="radio-group__validation-input"
-                ?required=${this.required}
-                tabindex="-1"
-                hidden
-                @invalid=${this.handleInvalid}
-              />
-            </label>
-          </div>
-
           ${this.hasButtonGroup
             ? html`
                 <wa-button-group part="button-group" exportparts="base:button-group__base" role="presentation">

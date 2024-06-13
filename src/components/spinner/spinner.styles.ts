@@ -8,58 +8,56 @@ import { css } from 'lit';
 export default css`
   :host {
     --track-width: 2px;
-    --track-color: var(--wa-color-neutral-fill-highlight);
-    --indicator-color: var(--wa-color-brand-spot);
+    --track-color: var(--wa-color-neutral-fill-normal);
+    --indicator-color: var(--wa-color-brand-fill-loud);
     --speed: 2s;
 
+    flex: none;
     display: inline-flex;
     width: 1em;
     height: 1em;
-    flex: none;
   }
 
-  .spinner {
-    flex: 1 1 auto;
-    height: 100%;
+  svg {
     width: 100%;
-  }
-
-  .spinner__track,
-  .spinner__indicator {
-    fill: none;
-    stroke-width: var(--track-width);
-    r: calc(0.5em - var(--track-width) / 2);
-    cx: 0.5em;
-    cy: 0.5em;
-    transform-origin: 50% 50%;
+    height: 100%;
+    aspect-ratio: 1;
+    animation: spin var(--speed) linear infinite;
   }
 
   .spinner__track {
     stroke: var(--track-color);
-    transform-origin: 0% 0%;
   }
 
   .spinner__indicator {
     stroke: var(--indicator-color);
+    stroke-dasharray: 75, 100;
+    stroke-dashoffset: -5;
+    animation: dash 1.5s ease-in-out infinite;
     stroke-linecap: round;
-    stroke-dasharray: 150% 75%;
-    animation: spin var(--speed) linear infinite;
   }
 
   @keyframes spin {
     0% {
       transform: rotate(0deg);
-      stroke-dasharray: 0.05em, 3em;
     }
-
-    50% {
-      transform: rotate(450deg);
-      stroke-dasharray: 1.375em, 1.375em;
-    }
-
     100% {
-      transform: rotate(1080deg);
-      stroke-dasharray: 0.05em, 3em;
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
     }
   }
 `;

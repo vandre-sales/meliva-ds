@@ -15,25 +15,6 @@ layout: component.njk
 </wa-breadcrumb>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import WaBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
-import WaIcon from '@shoelace-style/shoelace/dist/react/icon';
-
-const App = () => (
-  <WaBreadcrumb>
-    <WaBreadcrumbItem>
-      <WaIcon slot="prefix" name="house"></WaIcon>
-      Home
-    </WaBreadcrumbItem>
-    <WaBreadcrumbItem>Clothing</WaBreadcrumbItem>
-    <WaBreadcrumbItem>Shirts</WaBreadcrumbItem>
-  </WaBreadcrumb>
-);
-```
-{% endraw %}
-
 :::info
 Additional demonstrations can be found in the [breadcrumb examples](/components/breadcrumb).
 :::

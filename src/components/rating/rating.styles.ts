@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --symbol-color: var(--wa-color-neutral-fill-highlight);
+    --symbol-color: var(--wa-color-neutral-fill-normal);
     --symbol-color-active: var(--wa-color-yellow-70);
     --symbol-size: var(--wa-font-size-l);
     --symbol-spacing: var(--wa-space-3xs);
@@ -13,7 +13,7 @@ export default css`
   .rating {
     position: relative;
     display: inline-flex;
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     vertical-align: middle;
   }
 
@@ -56,7 +56,7 @@ export default css`
   }
 
   .rating__symbol {
-    transition: var(--wa-transition-fast) scale;
+    transition: scale var(--wa-transition-normal) var(--wa-transition-easing);
     pointer-events: none;
   }
 

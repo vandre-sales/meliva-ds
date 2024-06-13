@@ -9,7 +9,7 @@ describe('<wa-icon-button>', () => {
     it('default properties', async () => {
       const el = await fixture<WaIconButton>(html` <wa-icon-button></wa-icon-button> `);
 
-      expect(el.name).to.be.undefined;
+      expect(el.name).to.be.null;
       expect(el.library).to.be.undefined;
       expect(el.src).to.be.undefined;
       expect(el.href).to.be.undefined;

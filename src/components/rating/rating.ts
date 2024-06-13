@@ -3,9 +3,10 @@ import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { WaChangeEvent } from '../../events/change.js';
+import { WaHoverEvent } from '../../events/hover.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './rating.styles.js';
@@ -35,8 +36,6 @@ import type { CSSResultGroup } from 'lit';
 @customElement('wa-rating')
 export default class WaRating extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
-
-  private readonly localize = new LocalizeController(this);
 
   @query('.rating') rating: HTMLElement;
 
@@ -81,7 +80,7 @@ export default class WaRating extends WebAwesomeElement {
   }
 
   private getValueFromXCoordinate(coordinate: number) {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
     const { left, right, width } = this.rating.getBoundingClientRect();
     const value = isRtl
       ? this.roundToPrecision(((right - coordinate) / width) * this.max, this.precision)
@@ -96,7 +95,7 @@ export default class WaRating extends WebAwesomeElement {
     }
 
     this.setValue(this.getValueFromMousePosition(event));
-    this.emit('wa-change');
+    this.dispatchEvent(new WaChangeEvent());
   }
 
   private setValue(newValue: number) {
@@ -109,8 +108,8 @@ export default class WaRating extends WebAwesomeElement {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    const isLtr = this.localize.dir() === 'ltr';
-    const isRtl = this.localize.dir() === 'rtl';
+    const isLtr = this.matches(':dir(ltr)');
+    const isRtl = this.matches(':dir(rtl)');
     const oldValue = this.value;
 
     if (this.disabled || this.readonly) {
@@ -140,7 +139,7 @@ export default class WaRating extends WebAwesomeElement {
     }
 
     if (this.value !== oldValue) {
-      this.emit('wa-change');
+      this.dispatchEvent(new WaChangeEvent());
     }
   }
 
@@ -173,7 +172,7 @@ export default class WaRating extends WebAwesomeElement {
   private handleTouchEnd(event: TouchEvent) {
     this.isHovering = false;
     this.setValue(this.hoverValue);
-    this.emit('wa-change');
+    this.dispatchEvent(new WaChangeEvent());
 
     // Prevent click on mobile devices
     event.preventDefault();
@@ -186,22 +185,22 @@ export default class WaRating extends WebAwesomeElement {
 
   @watch('hoverValue')
   handleHoverValueChange() {
-    this.emit('wa-hover', {
-      detail: {
+    this.dispatchEvent(
+      new WaHoverEvent({
         phase: 'move',
         value: this.hoverValue
-      }
-    });
+      })
+    );
   }
 
   @watch('isHovering')
   handleIsHoveringChange() {
-    this.emit('wa-hover', {
-      detail: {
+    this.dispatchEvent(
+      new WaHoverEvent({
         phase: this.isHovering ? 'start' : 'end',
         value: this.hoverValue
-      }
-    });
+      })
+    );
   }
 
   /** Sets focus on the rating. */
@@ -215,7 +214,7 @@ export default class WaRating extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
     const counter = Array.from(Array(this.max).keys());
     let displayValue = 0;
 

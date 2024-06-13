@@ -2,51 +2,105 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background-color: var(--wa-color-surface-raised);
+    --box-shadow: var(--wa-shadow-l);
     --size: 25rem;
-    --header-spacing: var(--wa-space-l);
-    --body-spacing: var(--wa-space-l);
-    --footer-spacing: var(--wa-space-l);
+    --spacing: var(--wa-space-xl);
+    --show-duration: 200ms;
+    --hide-duration: 200ms;
 
-    display: contents;
+    display: none;
+  }
+
+  :host([open]) {
+    display: block;
   }
 
   .drawer {
+    display: flex;
+    flex-direction: column;
     top: 0;
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .drawer--contained {
-    position: absolute;
-    z-index: initial;
-  }
-
-  .drawer--fixed {
-    position: fixed;
-    z-index: var(--wa-z-index-drawer);
-  }
-
-  .drawer__panel {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
     max-width: 100%;
     max-height: 100%;
-    background-color: var(--wa-color-surface-raised);
-    box-shadow: var(--wa-shadow-level-3);
+    overflow: hidden;
+    background-color: var(--background-color);
+    border: none;
+    box-shadow: var(--box-shadow);
     overflow: auto;
-    pointer-events: all;
+    padding: 0;
+    margin: 0;
+    animation-duration: var(--show-duration);
+    animation-timing-function: ease;
+
+    &.show::backdrop {
+      animation: show-backdrop var(--show-duration, 200ms) ease;
+    }
+
+    &.hide::backdrop {
+      animation: show-backdrop var(--hide-duration, 200ms) ease reverse;
+    }
+
+    &.show.drawer--top {
+      animation: show-drawer-from-top var(--show-duration) ease;
+    }
+
+    &.hide.drawer--top {
+      animation: show-drawer-from-top var(--hide-duration) ease reverse;
+    }
+
+    &.show.drawer--end {
+      animation: show-drawer-from-end var(--show-duration) ease;
+
+      &.drawer--rtl {
+        animation-name: show-drawer-from-start;
+      }
+    }
+
+    &.hide.drawer--end {
+      animation: show-drawer-from-end var(--hide-duration) ease reverse;
+
+      &.drawer--rtl {
+        animation-name: show-drawer-from-start;
+      }
+    }
+
+    &.show.drawer--bottom {
+      animation: show-drawer-from-bottom var(--show-duration) ease;
+    }
+
+    &.hide.drawer--bottom {
+      animation: show-drawer-from-bottom var(--hide-duration) ease reverse;
+    }
+
+    &.show.drawer--start {
+      animation: show-drawer-from-start var(--show-duration) ease;
+
+      &.drawer--rtl {
+        animation-name: show-drawer-from-end;
+      }
+    }
+
+    &.hide.drawer--start {
+      animation: show-drawer-from-start var(--hide-duration) ease reverse;
+
+      &.drawer--rtl {
+        animation-name: show-drawer-from-end;
+      }
+    }
+
+    &.pulse {
+      animation: pulse 250ms ease;
+    }
   }
 
-  .drawer__panel:focus {
+  .drawer:focus {
     outline: none;
   }
 
-  .drawer--top .drawer__panel {
+  .drawer--top {
     top: 0;
     inset-inline-end: auto;
     bottom: auto;
@@ -55,7 +109,7 @@ export default css`
     height: var(--size);
   }
 
-  .drawer--end .drawer__panel {
+  .drawer--end {
     top: 0;
     inset-inline-end: 0;
     bottom: auto;
@@ -64,7 +118,7 @@ export default css`
     height: 100%;
   }
 
-  .drawer--bottom .drawer__panel {
+  .drawer--bottom {
     top: auto;
     inset-inline-end: auto;
     bottom: 0;
@@ -73,7 +127,7 @@ export default css`
     height: var(--size);
   }
 
-  .drawer--start .drawer__panel {
+  .drawer--start {
     top: 0;
     inset-inline-end: auto;
     bottom: auto;
@@ -84,24 +138,29 @@ export default css`
 
   .drawer__header {
     display: flex;
+    flex-wrap: nowrap;
+    padding: var(--spacing);
+    padding-block-end: 0;
   }
 
   .drawer__title {
+    align-self: center;
     flex: 1 1 auto;
     font: inherit;
     font-size: var(--wa-font-size-l);
-    line-height: var(--wa-line-height-compact);
-    padding: var(--header-spacing);
+    font-weight: var(--wa-font-weight-heading);
+    line-height: var(--wa-line-height-condensed);
     margin: 0;
   }
 
   .drawer__header-actions {
-    flex-shrink: 0;
+    align-self: start;
     display: flex;
+    flex-shrink: 0;
     flex-wrap: wrap;
     justify-content: end;
     gap: var(--wa-space-2xs);
-    padding: 0 var(--header-spacing);
+    padding-inline-start: var(--spacing);
   }
 
   .drawer__header-actions wa-icon-button,
@@ -115,41 +174,110 @@ export default css`
   .drawer__body {
     flex: 1 1 auto;
     display: block;
-    padding: var(--body-spacing);
+    padding: var(--spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .drawer__footer {
-    text-align: right;
-    padding: var(--footer-spacing);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wa-space-xs);
+    justify-content: end;
+    padding: var(--spacing);
+    padding-block-start: 0;
   }
 
   .drawer__footer ::slotted(wa-button:not(:last-of-type)) {
     margin-inline-end: var(--wa-spacing-xs);
   }
 
-  .drawer:not(.drawer--has-footer) .drawer__footer {
-    display: none;
+  .drawer::backdrop {
+    /*
+      NOTE: the ::backdrop element doesn't inherit properly in Safari yet, but it will in 17.4! At that time, we can
+      remove the fallback values here.
+    */
+    background-color: var(--wa-color-overlay-modal, rgb(0 0 0 / 0.25));
   }
 
-  .drawer__overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: var(--wa-color-overlay);
-    pointer-events: all;
+  @keyframes pulse {
+    0% {
+      scale: 1;
+    }
+    50% {
+      scale: 1.01;
+    }
+    100% {
+      scale: 1;
+    }
   }
 
-  .drawer--contained .drawer__overlay {
-    display: none;
+  @keyframes show-drawer {
+    from {
+      opacity: 0;
+      scale: 0.8;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes show-drawer-from-top {
+    from {
+      opacity: 0;
+      translate: 0 -100%;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes show-drawer-from-end {
+    from {
+      opacity: 0;
+      translate: 100%;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes show-drawer-from-bottom {
+    from {
+      opacity: 0;
+      translate: 0 100%;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes show-drawer-from-start {
+    from {
+      opacity: 0;
+      translate: -100% 0;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes show-backdrop {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @media (forced-colors: active) {
-    .drawer__panel {
+    .drawer {
       border: solid 1px white;
     }
   }

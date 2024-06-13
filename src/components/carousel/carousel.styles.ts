@@ -4,8 +4,8 @@ export default css`
   :host {
     --aspect-ratio: 16 / 9;
     --navigation-color: var(--wa-color-text-quiet);
-    --pagination-color-activated: var(--wa-form-controls-activated-color);
-    --pagination-color-resting: var(--wa-form-controls-resting-color);
+    --pagination-color: var(--wa-form-control-resting-color);
+    --pagination-color-active: var(--wa-form-control-activated-color);
     --scroll-hint: 0px;
     --slide-gap: var(--wa-space-m, 1rem);
 
@@ -46,7 +46,7 @@ export default css`
     overscroll-behavior-x: contain;
     scrollbar-width: none;
     aspect-ratio: calc(var(--aspect-ratio) * var(--slides-per-page));
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
 
     --slide-size: calc((100% - (var(--slides-per-page) - 1) * var(--slide-gap)) / var(--slides-per-page));
   }
@@ -104,12 +104,12 @@ export default css`
     align-items: center;
     background: none;
     border: none;
-    border-radius: var(--wa-corners-s);
+    border-radius: var(--wa-border-radius-s);
     font-size: inherit;
     color: var(--navigation-color);
     padding: var(--wa-space-xs);
     cursor: pointer;
-    transition: var(--wa-transition-fast) color;
+    transition: var(--wa-transition-normal) color;
     appearance: none;
   }
 
@@ -137,17 +137,17 @@ export default css`
     cursor: pointer;
     background: none;
     border: 0;
-    border-radius: var(--wa-corners-circle);
+    border-radius: var(--wa-border-radius-circle);
     width: var(--wa-space-s);
     height: var(--wa-space-s);
-    background-color: var(--pagination-color-resting);
+    background-color: var(--pagination-color);
     padding: 0;
     margin: 0;
-    transition: transform var(--wa-transition-normal);
+    transition: transform var(--wa-transition-slow);
   }
 
   .carousel__pagination-item--active {
-    background-color: var(--pagination-color-activated);
+    background-color: var(--pagination-color-active);
     transform: scale(1.25);
   }
 

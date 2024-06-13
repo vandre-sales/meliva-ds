@@ -1,11 +1,13 @@
 import '../icon/icon.js';
-import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
+import { animate, parseDuration } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
+import { WaAfterHideEvent } from '../../events/after-hide.js';
+import { WaAfterShowEvent } from '../../events/after-show.js';
+import { WaHideEvent } from '../../events/hide.js';
 import { waitForEvent } from '../../internal/event.js';
+import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './details.styles.js';
@@ -36,22 +38,19 @@ import type { CSSResultGroup } from 'lit';
  * @csspart summary-icon - The container that wraps the expand/collapse icons.
  * @csspart content - The details content.
  *
- * @cssproperty --background - The details' background styles.
+ * @cssproperty --background-color - The details' background color.
  * @cssproperty --border-color - The details' border color.
- * @cssproperty --border-radius - The border radius for the details' corners. Expects a single value.
+ * @cssproperty --border-radius - The radius for the details' corners. Expects a single value.
  * @cssproperty --border-style - The style of the details' borders.
  * @cssproperty --border-width - The width of the details' borders. Expects a single value.
  * @cssproperty --icon-color - The color of the details' icon.
- * @cssproperty --padding - The padding with the details. Expects a single value.
- *
- * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
- * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
+ * @cssproperty --spacing - The amount of space around and between the details' content. Expects a single value.
+ * @cssproperty [--show-duration=200ms] - The show duration to use when applying built-in animation classes.
+ * @cssproperty [--hide-duration=200ms] - The hide duration to use when applying built-in animation classes.
  */
 @customElement('wa-details')
 export default class WaDetails extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
-
-  private readonly localize = new LocalizeController(this);
 
   @query('.details') details: HTMLDetailsElement;
   @query('.details__header') header: HTMLElement;
@@ -137,37 +136,54 @@ export default class WaDetails extends WebAwesomeElement {
     if (this.open) {
       this.details.open = true;
       // Show
-      const slShow = this.emit('wa-show', { cancelable: true });
-      if (slShow.defaultPrevented) {
+      const waShow = new WaShowEvent();
+      this.dispatchEvent(waShow);
+      if (waShow.defaultPrevented) {
         this.open = false;
         this.details.open = false;
         return;
       }
 
-      await stopAnimations(this.body);
-
-      const { keyframes, options } = getAnimation(this, 'details.show', { dir: this.localize.dir() });
-      await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
+      const duration = parseDuration(getComputedStyle(this.body).getPropertyValue('--show-duration'));
+      // We can't animate to 'auto', so use the scroll height for now
+      await animate(
+        this.body,
+        [
+          { height: '0', opacity: '0' },
+          { height: `${this.body.scrollHeight}px`, opacity: '1' }
+        ],
+        {
+          duration,
+          easing: 'linear'
+        }
+      );
       this.body.style.height = 'auto';
 
-      this.emit('wa-after-show');
+      this.dispatchEvent(new WaAfterShowEvent());
     } else {
       // Hide
-      const slHide = this.emit('wa-hide', { cancelable: true });
-      if (slHide.defaultPrevented) {
+      const waHide = new WaHideEvent();
+      this.dispatchEvent(waHide);
+      if (waHide.defaultPrevented) {
         this.details.open = true;
         this.open = true;
         return;
       }
 
-      await stopAnimations(this.body);
-
-      const { keyframes, options } = getAnimation(this, 'details.hide', { dir: this.localize.dir() });
-      await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
+      const duration = parseDuration(getComputedStyle(this.body).getPropertyValue('--hide-duration'));
+      // We can't animate from 'auto', so use the scroll height for now
+      await animate(
+        this.body,
+        [
+          { height: `${this.body.scrollHeight}px`, opacity: '1' },
+          { height: '0', opacity: '0' }
+        ],
+        { duration, easing: 'linear' }
+      );
       this.body.style.height = 'auto';
 
       this.details.open = false;
-      this.emit('wa-after-hide');
+      this.dispatchEvent(new WaAfterHideEvent());
     }
   }
 
@@ -192,7 +208,7 @@ export default class WaDetails extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
 
     return html`
       <details
@@ -235,22 +251,6 @@ export default class WaDetails extends WebAwesomeElement {
     `;
   }
 }
-
-setDefaultAnimation('details.show', {
-  keyframes: [
-    { height: '0', opacity: '0' },
-    { height: 'auto', opacity: '1' }
-  ],
-  options: { duration: 250, easing: 'linear' }
-});
-
-setDefaultAnimation('details.hide', {
-  keyframes: [
-    { height: 'auto', opacity: '1' },
-    { height: '0', opacity: '0' }
-  ],
-  options: { duration: 250, easing: 'linear' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {

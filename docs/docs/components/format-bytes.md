@@ -19,34 +19,6 @@ layout: component.njk
 </script>
 ```
 
-{% raw %}
-```jsx {.react}
-import { useState } from 'react';
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-import WaFormatBytes from '@shoelace-style/shoelace/dist/react/format-bytes';
-import WaInput from '@shoelace-style/shoelace/dist/react/input';
-
-const App = () => {
-  const [value, setValue] = useState(1000);
-
-  return (
-    <>
-      The file is <WaFormatBytes value={value} /> in size.
-      <br />
-      <br />
-      <WaInput
-        type="number"
-        value={value}
-        label="Number to Format"
-        style={{ maxWidth: '180px' }}
-        onWaInput={event => setValue(event.target.value)}
-      />
-    </>
-  );
-};
-```
-{% endraw %}
-
 ## Examples
 
 ### Formatting Bytes
@@ -60,24 +32,6 @@ Set the `value` attribute to a number to get the value in bytes.
 <wa-format-bytes value="1200000000"></wa-format-bytes>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaFormatBytes from '@shoelace-style/shoelace/dist/react/format-bytes';
-
-const App = () => (
-  <>
-    <WaFormatBytes value="12" />
-    <br />
-    <WaFormatBytes value="1200" />
-    <br />
-    <WaFormatBytes value="1200000" />
-    <br />
-    <WaFormatBytes value="1200000000" />
-  </>
-);
-```
-{% endraw %}
-
 ### Formatting Bits
 
 To get the value in bits, set the `unit` attribute to `bit`.
@@ -89,24 +43,6 @@ To get the value in bits, set the `unit` attribute to `bit`.
 <wa-format-bytes value="1200000000" unit="bit"></wa-format-bytes>
 ```
 
-{% raw %}
-```jsx {.react}
-import WaFormatBytes from '@shoelace-style/shoelace/dist/react/format-bytes';
-
-const App = () => (
-  <>
-    <WaFormatBytes value="12" unit="bit" />
-    <br />
-    <WaFormatBytes value="1200" unit="bit" />
-    <br />
-    <WaFormatBytes value="1200000" unit="bit" />
-    <br />
-    <WaFormatBytes value="1200000000" unit="bit" />
-  </>
-);
-```
-{% endraw %}
-
 ### Localization
 
 Use the `lang` attribute to set the number formatting locale.
@@ -117,21 +53,3 @@ Use the `lang` attribute to set the number formatting locale.
 <wa-format-bytes value="1200000" lang="de"></wa-format-bytes><br />
 <wa-format-bytes value="1200000000" lang="de"></wa-format-bytes>
 ```
-
-{% raw %}
-```jsx {.react}
-import WaFormatBytes from '@shoelace-style/shoelace/dist/react/format-bytes';
-
-const App = () => (
-  <>
-    <WaFormatBytes value="12" lang="de" />
-    <br />
-    <WaFormatBytes value="1200" lang="de" />
-    <br />
-    <WaFormatBytes value="1200000" lang="de" />
-    <br />
-    <WaFormatBytes value="1200000000" lang="de" />
-  </>
-);
-```
-{% endraw %}

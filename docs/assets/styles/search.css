@@ -1,10 +1,10 @@
 #site-search {
   --width: 38rem;
 
-  &::part(panel) {
+  &::part(dialog) {
     position: absolute;
     top: 0;
-    border-radius: var(--wa-corners-m);
+    border-radius: var(--wa-border-radius-m);
     padding: 0;
     margin: 10rem auto;
     overflow: hidden;
@@ -27,7 +27,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  #site-search::part(panel) {
+  #site-search::part(dialog) {
     max-width: calc(100% - 2rem);
     margin-block: 1rem;
   }
@@ -42,12 +42,12 @@ header {
   flex: 0 0 auto;
   align-items: middle;
   /* Fixes an iOS Safari 16.4 bug that draws the parent element's border radius incorrectly when showing/hiding results */
-  border-radius: var(--wa-corners-l);
+  border-radius: var(--wa-border-radius-l);
 }
 
 #site-search.has-results header {
-  border-start-start-radius: var(--wa-corners-l);
-  border-start-end-radius: var(--wa-corners-l);
+  border-start-start-radius: var(--wa-border-radius-l);
+  border-start-end-radius: var(--wa-border-radius-l);
   border-end-start-radius: 0;
   border-end-end-radius: 0;
 }
@@ -99,7 +99,7 @@ header {
 #site-search.has-results,
 #site-search.no-results {
   #site-search-body {
-    border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
+    border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
   }
 }
 
@@ -126,19 +126,19 @@ header {
   @media (hover: hover) {
     li a:hover,
     li a:hover small {
-      background-color: var(--wa-color-neutral-fill-highlight);
+      background-color: var(--wa-color-neutral-fill-normal);
     }
   }
 
   li[data-selected='true'] a,
   li[data-selected='true'] a * {
     outline: none;
-    background-color: var(--wa-color-brand-spot);
-    color: var(--wa-color-brand-text-on-spot);
+    background-color: var(--wa-color-brand-fill-loud);
+    color: var(--wa-color-brand-on-loud);
   }
 
   h3 {
-    font-weight: var(--wa-font-weight-medium);
+    font-weight: var(--wa-font-weight-semibold);
     margin: 0;
   }
 
@@ -165,7 +165,7 @@ header {
 
     wa-icon {
       font-size: 1.75rem;
-      color: var(--wa-color-neutral-spot);
+      color: var(--wa-color-neutral-fill-loud);
     }
   }
 
@@ -184,8 +184,8 @@ header {
 
   .site-search-result-title {
     font-size: 1.25rem;
-    font-weight: var(--wa-font-weight-medium);
-    color: var(--wa-color-brand-text-on-fill);
+    font-weight: var(--wa-font-weight-semibold);
+    color: var(--wa-color-brand-on-normal);
   }
 
   .site-search-result-description {
@@ -227,9 +227,9 @@ header {
   justify-content: center;
   gap: 2rem;
   color: var(--wa-color-text-quiet);
-  border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-subtle);
-  border-bottom-left-radius: var(--wa-corners-m);
-  border-bottom-right-radius: var(--wa-corners-m);
+  border-top: var(--wa-panel-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
+  border-bottom-left-radius: var(--wa-border-radius-m);
+  border-bottom-right-radius: var(--wa-border-radius-m);
   padding: 1rem;
 
   kbd {
@@ -237,7 +237,7 @@ header {
     height: 1.35rem;
     justify-content: center;
     align-items: center;
-    font-weight: var(--wa-font-weight-heavy);
+    font-weight: var(--wa-font-weight-bold);
 
     &:last-of-type {
       margin-inline-end: 0.25rem;

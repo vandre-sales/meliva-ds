@@ -1,13 +1,18 @@
 import '../checkbox/checkbox.js';
 import '../icon/icon.js';
 import '../spinner/spinner.js';
-import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
+import { animate, parseDuration } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { WaAfterCollapseEvent } from '../../events/after-collapse.js';
+import { WaAfterExpandEvent } from '../../events/after-expand.js';
+import { WaCollapseEvent } from '../../events/collapse.js';
+import { WaExpandEvent } from '../../events/expand.js';
+import { WaLazyChangeEvent } from '../../events/lazy-change.js';
+import { WaLazyLoadEvent } from '../../events/lazy-load.js';
 import { watch } from '../../internal/watch.js';
 import { when } from 'lit/directives/when.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -46,6 +51,8 @@ import type { CSSResultGroup, PropertyValueMap } from 'lit';
  * @csspart item--selected - Applied when the tree item is selected.
  * @csspart indentation - The tree item's indentation container.
  * @csspart expand-button - The container that wraps the tree item's expand button and spinner.
+ * @csspart spinner - The spinner that shows when a lazy tree item is in the loading state.
+ * @csspart spinner__base - The spinner's base part.
  * @csspart label - The tree item's label.
  * @csspart children - The container that wraps the tree item's nested children.
  * @csspart checkbox - The checkbox that shows when using multiselect.
@@ -56,6 +63,12 @@ import type { CSSResultGroup, PropertyValueMap } from 'lit';
  * @csspart checkbox__checked-icon - The checkbox's exported `checked-icon` part.
  * @csspart checkbox__indeterminate-icon - The checkbox's exported `indeterminate-icon` part.
  * @csspart checkbox__label - The checkbox's exported `label` part.
+ *
+ * @cssproperty --selection-background-color - The background color of selected tree items.
+ * @cssproperty --selection-indicator-color - The color the indicator for selected tree items.
+ * @cssproperty --expand-button-color - The color of the expand button.
+ * @cssproperty [--show-duration=200ms] - The animation duration when expanding tree items.
+ * @cssproperty [--hide-duration=200ms] - The animation duration when collapsing tree items.
  */
 @customElement('wa-tree-item')
 export default class WaTreeItem extends WebAwesomeElement {
@@ -110,19 +123,21 @@ export default class WaTreeItem extends WebAwesomeElement {
   }
 
   private async animateCollapse() {
-    this.emit('wa-collapse');
+    this.dispatchEvent(new WaCollapseEvent());
 
-    await stopAnimations(this.childrenContainer);
-
-    const { keyframes, options } = getAnimation(this, 'tree-item.collapse', { dir: this.localize.dir() });
-    await animateTo(
+    const duration = parseDuration(getComputedStyle(this.childrenContainer).getPropertyValue('--hide-duration'));
+    await animate(
       this.childrenContainer,
-      shimKeyframesHeightAuto(keyframes, this.childrenContainer.scrollHeight),
-      options
+      [
+        // We can't animate from 'auto', so use the scroll height for now
+        { height: `${this.childrenContainer.scrollHeight}px`, opacity: '1', overflow: 'hidden' },
+        { height: '0', opacity: '0', overflow: 'hidden' }
+      ],
+      { duration, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' }
     );
     this.childrenContainer.hidden = true;
 
-    this.emit('wa-after-collapse');
+    this.dispatchEvent(new WaAfterCollapseEvent());
   }
 
   // Checks whether the item is nested into an item
@@ -143,20 +158,25 @@ export default class WaTreeItem extends WebAwesomeElement {
   }
 
   private async animateExpand() {
-    this.emit('wa-expand');
+    this.dispatchEvent(new WaExpandEvent());
 
-    await stopAnimations(this.childrenContainer);
     this.childrenContainer.hidden = false;
-
-    const { keyframes, options } = getAnimation(this, 'tree-item.expand', { dir: this.localize.dir() });
-    await animateTo(
+    // We can't animate to 'auto', so use the scroll height for now
+    const duration = parseDuration(getComputedStyle(this.childrenContainer).getPropertyValue('--show-duration'));
+    await animate(
       this.childrenContainer,
-      shimKeyframesHeightAuto(keyframes, this.childrenContainer.scrollHeight),
-      options
+      [
+        { height: '0', opacity: '0', overflow: 'hidden' },
+        { height: `${this.childrenContainer.scrollHeight}px`, opacity: '1', overflow: 'hidden' }
+      ],
+      {
+        duration,
+        easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)'
+      }
     );
     this.childrenContainer.style.height = 'auto';
 
-    this.emit('wa-after-expand');
+    this.dispatchEvent(new WaAfterExpandEvent());
   }
 
   @watch('loading', { waitUntilFirstUpdate: true })
@@ -192,8 +212,7 @@ export default class WaTreeItem extends WebAwesomeElement {
     if (this.expanded) {
       if (this.lazy) {
         this.loading = true;
-
-        this.emit('wa-lazy-load');
+        this.dispatchEvent(new WaLazyLoadEvent());
       } else {
         this.animateExpand();
       }
@@ -204,7 +223,7 @@ export default class WaTreeItem extends WebAwesomeElement {
 
   @watch('lazy', { waitUntilFirstUpdate: true })
   handleLazyChange() {
-    this.emit('wa-lazy-change');
+    this.dispatchEvent(new WaLazyChangeEvent());
   }
 
   /** Gets all the nested tree items in this node. */
@@ -217,7 +236,7 @@ export default class WaTreeItem extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
     const showExpandButton = !this.loading && (!this.isLeaf || this.lazy);
 
     return html`
@@ -253,7 +272,10 @@ export default class WaTreeItem extends WebAwesomeElement {
             })}
             aria-hidden="true"
           >
-            ${when(this.loading, () => html` <wa-spinner></wa-spinner> `)}
+            ${when(
+              this.loading,
+              () => html` <wa-spinner part="spinner" exportparts="base:spinner__base"></wa-spinner> `
+            )}
             <slot class="tree-item__expand-icon-slot" name="expand-icon">
               <wa-icon name=${isRtl ? 'chevron-left' : 'chevron-right'} library="system" variant="solid"></wa-icon>
             </slot>
@@ -295,22 +317,6 @@ export default class WaTreeItem extends WebAwesomeElement {
     `;
   }
 }
-
-setDefaultAnimation('tree-item.expand', {
-  keyframes: [
-    { height: '0', opacity: '0', overflow: 'hidden' },
-    { height: 'auto', opacity: '1', overflow: 'hidden' }
-  ],
-  options: { duration: 250, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' }
-});
-
-setDefaultAnimation('tree-item.collapse', {
-  keyframes: [
-    { height: 'auto', opacity: '1', overflow: 'hidden' },
-    { height: '0', opacity: '0', overflow: 'hidden' }
-  ],
-  options: { duration: 200, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {
