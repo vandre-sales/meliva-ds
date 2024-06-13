@@ -50,6 +50,40 @@ export default css`
   }
 
   /*
+   * Tinted buttons
+   */
+
+  :host([appearance='tinted']) {
+    --background-color-hover: color-mix(in oklab, var(--background-color), transparent 10%);
+    --background-color-active: color-mix(in oklab, var(--background-color), transparent 20%);
+  }
+
+  :host([appearance='tinted'][variant='neutral']) {
+    --background-color: var(--wa-color-neutral-fill-normal);
+    --label-color: var(--wa-color-neutral-on-normal);
+  }
+
+  :host([appearance='tinted'][variant='brand']) {
+    --background-color: var(--wa-color-brand-fill-normal);
+    --label-color: var(--wa-color-brand-on-normal);
+  }
+
+  :host([appearance='tinted'][variant='success']) {
+    --background-color: var(--wa-color-success-fill-normal);
+    --label-color: var(--wa-color-success-on-normal);
+  }
+
+  :host([appearance='tinted'][variant='warning']) {
+    --background-color: var(--wa-color-warning-fill-normal);
+    --label-color: var(--wa-color-warning-on-normal);
+  }
+
+  :host([appearance='tinted'][variant='danger']) {
+    --background-color: var(--wa-color-danger-fill-normal);
+    --label-color: var(--wa-color-danger-on-normal);
+  }
+
+  /*
    * Outline buttons
    */
 
@@ -97,8 +131,6 @@ export default css`
   :host([appearance='text']) {
     --background-color: transparent;
     --background-color-active: color-mix(in oklab, var(--background-color-hover), transparent 20%);
-    --label-color-active: color-mix(in oklab, var(--label-color), var(--wa-color-mix-active));
-    --label-color-hover: color-mix(in oklab, var(--label-color), var(--wa-color-mix-hover));
   }
 
   :host([appearance='text'][variant='neutral']) {
@@ -124,40 +156,6 @@ export default css`
   :host([appearance='text'][variant='danger']) {
     --label-color: var(--wa-color-danger-on-quiet);
     --background-color-hover: var(--wa-color-danger-fill-quiet);
-  }
-
-  /*
-   * Tinted buttons
-   */
-
-  :host([appearance='tinted']) {
-    --background-color-hover: color-mix(in oklab, var(--background-color), transparent 10%);
-    --background-color-active: color-mix(in oklab, var(--background-color), transparent 20%);
-  }
-
-  :host([appearance='tinted'][variant='neutral']) {
-    --background-color: var(--wa-color-neutral-fill-normal);
-    --label-color: var(--wa-color-neutral-on-normal);
-  }
-
-  :host([appearance='tinted'][variant='brand']) {
-    --background-color: var(--wa-color-brand-fill-normal);
-    --label-color: var(--wa-color-brand-on-normal);
-  }
-
-  :host([appearance='tinted'][variant='success']) {
-    --background-color: var(--wa-color-success-fill-normal);
-    --label-color: var(--wa-color-success-on-normal);
-  }
-
-  :host([appearance='tinted'][variant='warning']) {
-    --background-color: var(--wa-color-warning-fill-normal);
-    --label-color: var(--wa-color-warning-on-normal);
-  }
-
-  :host([appearance='tinted'][variant='danger']) {
-    --background-color: var(--wa-color-danger-fill-normal);
-    --label-color: var(--wa-color-danger-on-normal);
   }
 
   /*
