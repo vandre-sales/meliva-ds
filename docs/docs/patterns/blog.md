@@ -87,6 +87,17 @@ TODO Page Description
 ```
 ### Article footer
 ```html{.example}
+<div class="article-footer">
+  <div class="article-tags">
+    <a href="#"><wa-tag size="medium" pill>UX</wa-tag></a>
+    <a href="#"><wa-tag size="medium" pill>Product Design</wa-tag></a>
+    <a href="#"><wa-tag size="medium" pill>Design</wa-tag></a>
+    <a href="#"><wa-tag size="medium" pill>Prototyping</wa-tag></a>
+  </div>
+  <div class="article-actions">
+    <wa-icon-button name="hands-clapping"></wa-icon-button>
+  </div>
+</div>
 ```
 
 ## Social Share
@@ -120,29 +131,46 @@ TODO Page Description
 
 ### Horizontal
 ```html{.example}
-<wa-card>
+<wa-card class="social-share-horizontal">
   <div slot="header">
     Share this Article
   </div>
-  <wa-icon-button name="facebook" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem; background: red"></wa-icon-button>
-   <wa-icon-button name="x-twitter" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
-    <wa-icon-button name="threads" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
-        <wa-icon-button name="mastodon" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+  <wa-icon-button name="facebook" family="brands" variant="solid" label="Edit" style="--background: #1877f225; --color: #1877f2"></wa-icon-button>
+   <wa-icon-button name="x-twitter" family="brands" variant="solid" label="Edit" style="--background: #00000025; --color: #000000"></wa-icon-button>
+    <wa-icon-button name="threads" family="brands" variant="solid" label="Edit" style="--background: #c32aa325; --color: #c32aa3"></wa-icon-button>
+        <wa-icon-button name="mastodon" family="brands" variant="solid" label="Edit" style="--background: #6364ff25; --color: #6364ff"></wa-icon-button>
 
-    <wa-icon-button name="instagram" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+    <wa-icon-button name="instagram" family="brands" variant="solid" label="Edit" style="--background: #c32aa325; --color: #c32aa3"></wa-icon-button>
 
-    <wa-icon-button name="pinterest" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
-    <wa-icon-button name="linkedin" family="brands" variant="solid" label="Edit" style="font-size: 1.5rem;"></wa-icon-button>
+    <wa-icon-button name="pinterest" family="brands" variant="solid" label="Edit" style="--background: #bd081c25; --color: #bd081c"></wa-icon-button>
+    <wa-icon-button name="linkedin" family="brands" variant="solid" label="Edit" style="--background: #0a66c225; --color: #0a66c2"></wa-icon-button>
     <div slot="footer">
       <div class="share-input">
-         <wa-input></wa-input>
+         <wa-input value="https://fontawesome.com"></wa-input>
     <wa-button variant="brand"> <wa-icon slot="prefix" name="link" variant="solid"></wa-icon>Copy</wa-button>
       </div>
    
   </div>
 </wa-card>
 <style>
-  .share-input {
+  .social-share-horizontal {
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+
+    wa-icon-button {
+      --background: transparent;
+      --color: initial;
+      font-size: 1.5rem;
+      border-radius: .25rem;
+      background: var(--background);
+    }
+    wa-icon-button::part(base) {
+      
+      color: var(--color);
+    }
+
+    .share-input {
     display: flex;
     
     wa-input {
@@ -152,5 +180,7 @@ TODO Page Description
       --border-radius:  0 var(--wa-form-controls-corners)  var(--wa-form-controls-corners) 0;
     }
   }
+  }
+  
 </style>
 ```
