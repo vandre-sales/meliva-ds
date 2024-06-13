@@ -14,35 +14,35 @@ export default css`
   }
 
   /*
-   * Standard buttons
+   * Solid buttons
    */
 
-  :host([variant='brand']) {
+  :host([appearance='solid'][variant='brand']) {
     --background-color: var(--wa-color-brand-fill-loud);
     --label-color: var(--wa-color-brand-on-loud);
   }
 
-  :host([variant='success']) {
+  :host([appearance='solid'][variant='success']) {
     --background-color: var(--wa-color-success-fill-loud);
     --label-color: var(--wa-color-success-on-loud);
   }
 
-  :host([variant='warning']) {
+  :host([appearance='solid'][variant='warning']) {
     --background-color: var(--wa-color-warning-fill-loud);
     --label-color: var(--wa-color-warning-on-loud);
   }
 
-  :host([variant='neutral']) {
+  :host([appearance='solid'][variant='neutral']) {
     --background-color: var(--wa-color-neutral-fill-loud);
     --label-color: var(--wa-color-neutral-on-loud);
   }
 
-  :host([variant='danger']) {
+  :host([appearance='solid'][variant='danger']) {
     --background-color: var(--wa-color-danger-fill-loud);
     --label-color: var(--wa-color-danger-on-loud);
   }
 
-  :host(:not([variant='text'])) {
+  :host([appearance='solid']) {
     --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
     --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
     --border-color: initial;
@@ -56,33 +56,38 @@ export default css`
    * Outline buttons
    */
 
-  :host([variant='brand'][outline]) {
+  :host([variant='brand'][appearance='outline']) {
     --background-color-hover: var(--wa-color-brand-fill-quiet);
+    --border-color: var(--wa-color-brand-border-loud);
     --label-color: var(--wa-color-brand-on-quiet);
   }
 
-  :host([variant='success'][outline]) {
+  :host([variant='success'][appearance='outline']) {
     --background-color-hover: var(--wa-color-success-fill-quiet);
+    --border-color: var(--wa-color-success-border-loud);
     --label-color: var(--wa-color-success-on-quiet);
   }
 
-  :host([variant='neutral'][outline]),
+  :host([variant='neutral'][appearance='outline']),
   :host(.wa-button-group__button--radio:not([checked])) {
     --background-color-hover: var(--wa-color-neutral-fill-quiet);
+    --border-color: var(--wa-color-neutral-border-loud);
     --label-color: var(--wa-color-neutral-on-quiet);
   }
 
-  :host([variant='warning'][outline]) {
+  :host([variant='warning'][appearance='outline']) {
     --background-color-hover: var(--wa-color-warning-fill-quiet);
+    --border-color: var(--wa-color-warning-border-loud);
     --label-color: var(--wa-color-warning-on-quiet);
   }
 
-  :host([variant='danger'][outline]) {
+  :host([variant='danger'][appearance='outline']) {
     --background-color-hover: var(--wa-color-danger-fill-quiet);
+    --border-color: var(--wa-color-danger-border-loud);
     --label-color: var(--wa-color-danger-on-quiet);
   }
 
-  :host([outline]),
+  :host([appearance='outline']),
   :host(.wa-button-group__button--radio:not([checked])) {
     --background-color: transparent;
     --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
@@ -97,16 +102,78 @@ export default css`
    * Text buttons
    */
 
-  :host([variant='text']) {
-    --background-color: none;
-    --background-color-active: none;
-    --background-color-hover: none;
+  :host([appearance='text']) {
+    --background-color: transparent;
+    --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
     --border-color: transparent;
     --border-color-active: transparent;
     --border-color-hover: transparent;
-    --label-color: var(--wa-color-text-link);
-    --label-color-active: var(--wa-color-text-link);
-    --label-color-hover: color-mix(in oklab, var(--wa-color-text-link), var(--wa-color-mix-hover));
+    --label-color-active: color-mix(in oklab, var(--label-color), var(--wa-color-mix-active));
+    --label-color-hover: color-mix(in oklab, var(--label-color), var(--wa-color-mix-hover));
+  }
+
+  :host([appearance='text'][variant='brand']) {
+    --label-color: var(--wa-color-brand-on-quiet);
+    --background-color-hover: var(--wa-color-brand-fill-quiet);
+  }
+
+  :host([appearance='text'][variant='success']) {
+    --label-color: var(--wa-color-success-on-quiet);
+    --background-color-hover: var(--wa-color-success-fill-quiet);
+  }
+
+  :host([appearance='text'][variant='neutral']) {
+    --label-color: var(--wa-color-neutral-on-quiet);
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
+  }
+
+  :host([appearance='text'][variant='warning']) {
+    --label-color: var(--wa-color-warning-on-quiet);
+    --background-color-hover: var(--wa-color-warning-fill-quiet);
+  }
+
+  :host([appearance='text'][variant='danger']) {
+    --label-color: var(--wa-color-danger-on-quiet);
+    --background-color-hover: var(--wa-color-danger-fill-quiet);
+  }
+
+  /*
+   * Subtle buttons
+   */
+
+  :host([appearance='subtle'][variant='brand']) {
+    --background-color: var(--wa-color-brand-fill-normal);
+    --label-color: var(--wa-color-brand-on-normal);
+  }
+
+  :host([appearance='subtle'][variant='success']) {
+    --background-color: var(--wa-color-success-fill-normal);
+    --label-color: var(--wa-color-success-on-normal);
+  }
+
+  :host([appearance='subtle'][variant='warning']) {
+    --background-color: var(--wa-color-warning-fill-normal);
+    --label-color: var(--wa-color-warning-on-normal);
+  }
+
+  :host([appearance='subtle'][variant='neutral']) {
+    --background-color: var(--wa-color-neutral-fill-normal);
+    --label-color: var(--wa-color-neutral-on-normal);
+  }
+
+  :host([appearance='subtle'][variant='danger']) {
+    --background-color: var(--wa-color-danger-fill-normal);
+    --label-color: var(--wa-color-danger-on-normal);
+  }
+
+  :host([appearance='subtle']) {
+    --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
+    --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
+    --border-color: initial;
+    --border-color-hover: initial;
+    --border-color-active: initial;
+    --label-color-hover: color-mix(in oklab, var(--label-color), var(--wa-color-mix-hover));
+    --label-color-active: color-mix(in oklab, var(--label-color), var(--wa-color-mix-active));
   }
 
   /*

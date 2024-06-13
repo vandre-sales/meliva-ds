@@ -130,8 +130,8 @@
   --wa-color-focus: var(--wa-color-blue-60);
 
   /* Hover and active colors are intended to be used in color-mix() to achieve consistent effects across components. */
-  --wa-color-mix-hover: black 16%;
-  --wa-color-mix-active: black 24%;
+  --wa-color-mix-hover: black 10%;
+  --wa-color-mix-active: black 20%;
 
   /**
    * Semantic Colors
