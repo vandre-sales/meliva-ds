@@ -4,6 +4,15 @@
 @import 'outline.css';
 @import 'search.css';
 
+:root {
+  --wa-brand-orange: #f36944;
+}
+
+html.wa-theme-default-dark .only-light,
+html:not(.wa-theme-default-dark) .only-dark {
+  display: none;
+}
+
 wa-page {
   --wa-flow-spacing: var(--wa-space-xl);
 }
@@ -22,13 +31,46 @@ wa-page > header {
   flex: 1 1 auto;
   display: flex;
   align-items: center;
-  max-width: 1200px;
-  height: 60px;
-  padding-inline: 2rem;
+  justify-content: space-between;
+  height: 64px;
+  padding-inline: var(--wa-space-xl);
+
+  a[href='/'] {
+    color: var(--wa-color-text-normal);
+    line-height: 1;
+  }
 
   svg {
     width: auto;
-    max-height: 26px;
+    height: 1.75rem;
+  }
+
+  #docs-branding,
+  #docs-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--wa-space-xs);
+  }
+
+  #version-number {
+    color: var(--wa-color-text-quiet);
+    font-size: var(--wa-font-size-xs);
+    line-height: 1;
+    margin-block-start: var(--wa-space-2xs);
+  }
+  #version-number + wa-badge {
+    --background-color: var(--wa-color-warning-fill-quiet);
+    --content-color: var(--wa-color-warning-on-quiet);
+    font-size: var(--wa-font-size-2xs);
+    text-transform: uppercase;
+  }
+  wa-button#search-trigger {
+    --background-color: var(--wa-form-control-background-color);
+    --border-color: var(--wa-form-control-resting-color);
+  }
+  #search-trigger kbd {
+    font-size: var(--wa-font-size-2xs);
+    line-height: var(--wa-form-control-value-line-height);
   }
 }
 
