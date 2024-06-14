@@ -3,9 +3,11 @@
 @import 'copy-code.css';
 @import 'outline.css';
 @import 'search.css';
+@import 'cera_typeface.css';
 
 :root {
   --wa-brand-orange: #f36944;
+  --wa-brand-grey: #30323b;
 }
 
 html.wa-theme-default-dark .only-light,
@@ -32,7 +34,7 @@ wa-page > header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 4rem;
   padding-inline: var(--wa-space-xl);
 
   a[href='/'] {
