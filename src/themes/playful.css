@@ -637,7 +637,7 @@
     text-shadow: 0 2px 2px var(--button-text-shadow);
   }
 
-  wa-button[outline] {
+  wa-button[appearance='outline'] {
     --box-shadow: none;
     --border-width: var(--wa-form-control-border-width);
     --label-color: var(--wa-color-neutral-on-normal);
@@ -911,7 +911,7 @@
       }
     }
 
-    & wa-button[outline] {
+    & wa-button[appearance='outline'] {
       --box-shadow: none;
       --border-color: var(--wa-color-neutral-border-normal);
     }

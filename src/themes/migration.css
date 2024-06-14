@@ -542,7 +542,7 @@
     }
   }
 
-  wa-button[outline] {
+  wa-button[appearance='outline'] {
     --border-color: color-mix(in oklab, var(--label-color), transparent 75%);
   }
 

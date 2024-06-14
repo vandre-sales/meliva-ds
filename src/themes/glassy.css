@@ -435,7 +435,7 @@
 
 /* #region Custom styles */
 @container preview (min-width: 0) {
-  wa-button[outline] {
+  wa-button[appearance='outline'] {
     &[variant='brand'] {
       --border-color: var(--wa-color-brand-border-normal);
     }

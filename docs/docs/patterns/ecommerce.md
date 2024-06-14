@@ -469,8 +469,8 @@ TODO Page Description
       <span>$95.00</span>
     </span>
       <span style="display: grid;grid-template-columns: 1fr 1fr;column-gap: 1rem;">
-        <wa-button variant="neutral" outline>View Order</wa-button>
-        <wa-button variant="neutral" outline>View Invoice</wa-button>
+        <wa-button variant="neutral" appearance="outline">View Order</wa-button>
+        <wa-button variant="neutral" appearance="outline">View Invoice</wa-button>
       </span>
   </div>
   <div>

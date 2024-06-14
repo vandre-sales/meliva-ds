@@ -2040,7 +2040,7 @@ hasOutline: false
             <wa-icon slot="prefix" name="plus" variant="regular"></wa-icon>
             Add to Cart
           </wa-button>
-          <wa-button size="small" outline>
+          <wa-button size="small" appearance="outline">
             <wa-icon slot="prefix" name="bookmark" variant="regular"></wa-icon>
             Save
           </wa-button>
@@ -2063,7 +2063,7 @@ hasOutline: false
             <wa-icon slot="prefix" name="plus" variant="regular"></wa-icon>
             Add to Cart
           </wa-button>
-          <wa-button size="small" outline>
+          <wa-button size="small" appearance="outline">
             <wa-icon slot="prefix" name="bookmark" variant="regular"></wa-icon>
             Save
           </wa-button>
@@ -2085,7 +2085,7 @@ hasOutline: false
             <wa-icon slot="prefix" name="plus" variant="regular"></wa-icon>
             Add to Cart
           </wa-button>
-          <wa-button size="small" outline>
+          <wa-button size="small" appearance="outline">
             <wa-icon slot="prefix" name="bookmark" variant="regular"></wa-icon>
             Save
           </wa-button>
