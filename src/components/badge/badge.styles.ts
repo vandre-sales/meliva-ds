@@ -39,7 +39,7 @@ export default css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: max(12px, 0.75em);
+    font-size: max(var(--wa-font-size-2xs), 0.75em);
     font-weight: var(--wa-font-weight-semibold);
     line-height: 1;
     background-color: var(--background-color);
