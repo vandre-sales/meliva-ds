@@ -23,6 +23,11 @@ wa-page[view='desktop'] [data-toggle-nav] {
   display: none;
 }
 
+wa-page[view='desktop'] .only-mobile,
+wa-page:not([view='desktop']) .only-desktop {
+  display: none;
+}
+
 /* Header */
 wa-page::part(header) {
   background-color: var(--wa-color-surface-default);
@@ -40,6 +45,14 @@ wa-page > header {
   a[href='/'] {
     color: var(--wa-color-text-normal);
     line-height: 1;
+  }
+
+  wa-button[data-toggle-nav] {
+    --label-color: currentColor;
+    margin-inline-end: 0.75rem;
+    &::part(base) {
+      padding: 0;
+    }
   }
 
   svg {
