@@ -60,7 +60,7 @@
         <div id="docs-toolbar">
           {# Color scheme selector #}
           <wa-dropdown id="color-scheme-selector">
-            <wa-button slot="trigger" size="small" pill caret title="Press \ to toggle">
+            <wa-button slot="trigger" appearance="tinted" size="small" pill caret title="Press \ to toggle">
               <wa-icon class="only-light" slot="prefix" name="sun" variant="regular"></wa-icon>
               <wa-icon class="only-dark" slot="prefix" name="moon" variant="regular"></wa-icon>
               <span class="only-light">Light</span>
@@ -75,7 +75,7 @@
           </wa-dropdown>
 
           {# Search #}
-          <wa-button id="search-trigger" outline size="small" data-search>
+          <wa-button id="search-trigger" appearance="outline" size="small" data-search>
             <wa-icon slot="prefix" name="magnifying-glass"></wa-icon>
             Search
             <kbd slot="suffix">/</kbd>
