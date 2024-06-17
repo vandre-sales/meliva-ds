@@ -1,6 +1,6 @@
 import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integration';
 import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
-import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
+// import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
 import { parse } from 'comment-parser';
 import { pascalCase } from 'pascal-case';
 import fs from 'fs';
@@ -156,7 +156,7 @@ export default {
       referencesTemplate: (_, tag) => [
         {
           name: 'Documentation',
-          url: `https://shoelace.style/components/${tag.replace('wa-', '')}`
+          url: `https://webawesome.com/docs/components/${tag.replace('wa-', '')}`
         }
       ]
     }),
@@ -168,7 +168,7 @@ export default {
       referencesTemplate: (_, tag) => {
         return {
           name: 'Documentation',
-          url: `https://shoelace.style/components/${tag.replace('wa-', '')}`
+          url: `https://webawesome.com/docs/components/${tag.replace('wa-', '')}`
         };
       }
     })

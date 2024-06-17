@@ -274,19 +274,12 @@
 
   <wa-tab-group label="How would you like to import this component?">
     <wa-tab slot="nav" panel="cdn">CDN</wa-tab>
-    <wa-tab slot="nav" panel="npm">npm</wa-tab>
     <wa-tab slot="nav" panel="react">React</wa-tab>
     <wa-tab-panel name="cdn">
       <p>
         To manually import this component from the CDN, use the following code.
       </p>
       <pre><code class="language-js">import '{% cdnUrl component.path %}';</code></pre>
-    </wa-tab-panel>
-    <wa-tab-panel name="npm">
-      <p>
-        To manually import this component from npm, use the following code.
-      </p>
-      <pre><code class="language-js">import '@shoelace-style/webawesome/{{ component.path }}';</code></pre>
     </wa-tab-panel>
     <wa-tab-panel name="react">
       <p>

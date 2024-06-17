@@ -82,7 +82,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
   /** Draws the button with a caret. Used to indicate that the button triggers a dropdown menu or similar behavior. */
   @property({ type: Boolean, reflect: true }) caret = false;
 
-  /** Disables the button. */
+  /** Disables the button. Does not apply to link buttons. */
   @property({ type: Boolean }) disabled = false;
 
   /** Draws the button in a loading state. */

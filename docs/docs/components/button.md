@@ -193,7 +193,6 @@ Use the `disabled` attribute to disable a button.
 <wa-button variant="success" disabled>Success</wa-button>
 <wa-button variant="neutral" disabled>Neutral</wa-button>
 <wa-button variant="warning" disabled>Warning</wa-button>
-<wa-button variant="danger" disabled>Danger</wa-button>
 ```
 
 ### Styling Buttons
