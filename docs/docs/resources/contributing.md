@@ -4,7 +4,7 @@ description: Web Awesome is an open source project, meaning everyone can use it 
 layout: page
 ---
 
-Web Awesome is an open source project, meaning everyone can use it and contribute to its development. When you join our community, you'll find a friendly group of enthusiasts at all experience levels who are willing to chat about anything and everything related to Web Awesome.
+Many Web Awesome components are open source, meaning everyone can use them and contribute to their development. When you join our community, you'll find a friendly group of enthusiasts at all experience levels who are willing to chat about anything and everything related to Web Awesome.
 
 The easiest way to get started contributing is to join the [community chat](https://discord.gg/mg8f26C). This is where we hang out, discuss new ideas, ask for feedback, and more!
 
@@ -31,10 +31,10 @@ I realize that one cannot reasonably enforce this any more than one can enforce 
 
 ## Using the Issue Tracker
 
-The [issue tracker](https://github.com/shoelace-style/shoelace/issues) is for bug reports, feature requests, and pull requests.
+The [issue tracker](https://github.com/shoelace-style/webawesome-alpha/issues) is for bug reports, feature requests, and pull requests.
 
-- Please **do not** use the issue tracker for personal support requests. Use [the discussion forum](https://github.com/shoelace-style/shoelace/discussions/categories/help) instead.
-- Please **do not** use the issue tracker for feature requests. Use [the discussion forum](https://github.com/shoelace-style/shoelace/discussions/categories/ideas) instead.
+- Please **do not** use the issue tracker for personal support requests. Use [the discussion forum](https://github.com/shoelace-style/webawesome-alpha/discussions/categories/help-support) instead.
+- Please **do not** use the issue tracker for feature requests. Use [the discussion forum](https://github.com/shoelace-style/webawesome-alpha/discussions/categories/ideas) instead.
 - Please **do not** derail, hijack, or troll issues. Keep the discussion on topic and be respectful of others.
 - Please **do not** post comments with "+1" or "👍". Use [reactions](https://github.blog/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/) instead.
 - Please **do** use the issue tracker for feature requests, bug reports, and pull requests.
@@ -43,7 +43,7 @@ Issues that do not follow these guidelines are subject to closure. There simply 
 
 ### Feature Requests
 
-Feature requests can be added using [the discussion forum](https://github.com/shoelace-style/shoelace/discussions/categories/ideas).
+Feature requests can be added using [the discussion forum](https://github.com/shoelace-style/webawesome-alpha/discussions/categories/ideas).
 
 - Please **do** search for an existing request before suggesting a new feature.
 - Please **do** use the voting buttons to vote for a feature.
@@ -75,79 +75,9 @@ The author reserves the right to reject any PR that's outside the scope of the p
 
 ### Branches
 
-`current` - This branch reflects the latest release and powers [shoelace.style](https://shoelace.style/).
+`current` - This branch reflects the latest release.
 
-`next` - This is the branch you should submit pull requests against. It reflects what's coming in the _next_ release, which can be previewed at [next.shoelace.style](https://next.shoelace.style/).
-
-## Developing
-
-To set up a local dev environment, [fork the repo](https://github.com/shoelace-style/shoelace/fork) on GitHub, clone it locally, and install its dependencies.
-
-```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/webawesome
-cd webawesome
-npm install
-```
-
-Once you've cloned the repo, run the following command to spin up the dev server.
-
-```bash
-npm start
-```
-
-After the initial build, a browser will open automatically to a local version of the docs. The documentation is powered by Eleventy and a number of custom plugins.
-
-### Cloud-based Development
-
-Alternatively, you can use [Gitpod](https://www.gitpod.io/) to setup a dev environment in the cloud using only your browser.
-
-[![Open in Gitpod](/assets/images/gitpod.svg)](https://gitpod.io/#https://github.com/shoelace-style/shoelace)
-
-### Creating New Components
-
-To scaffold a new component, run the following command, replacing `wa-tag-name` with the desired tag name.
-
-```bash
-npm run create wa-tag-name
-```
-
-This will generate a source file, a stylesheet, and a docs page for you. When you start the dev server, you'll find the new component in the "Components" section of the sidebar.
-
-### Dev Sandbox
-
-Component development occurs _within_ the local docs site. I've found that offering common variations _in the docs_ is more beneficial for users than segmenting demos and code examples into separate tools such as Storybook. This encourages more thorough documentation, streamlines development for maintainers, and simplifies how the project is built. It also reduces installation and startup times significantly.
-
-There is currently no hot module reloading (HMR), as browsers don't provide a way to unregister custom elements. However, most changes to the source will reload the browser automatically.
-
-For more information about running and building the project locally, refer to `README.md` in the project's root.
-
-### Testing
-
-Web Awesome uses [Web Test Runner](https://modern-web.dev/guides/test-runner/getting-started/) for testing. To launch the test runner during development, open a terminal and launch the dev server.
-
-```bash
-npm start
-```
-
-In a second terminal window, launch the test runner.
-
-```bash
-npm run test:watch
-```
-
-Follow the on-screen instructions to work with the test runner. Tests will automatically re-run as you make changes.
-
-To run all tests only once:
-
-```bash
-npm run test
-```
-
-To test a single component, use the component's basename as shown in the following example.
-
-```bash
-npm run test:component breadcrumb-item
-```
+`next` - This is the branch you should submit pull requests against. It reflects what's coming in the _next_ release.
 
 ## Documentation
 
@@ -225,7 +155,7 @@ This section can be a lot to digest in one sitting, so don't feel like you need 
 
 Web Awesome is built with accessibility in mind. Creating generic components that are fully accessible to users with varying capabilities across a multitude of circumstances is a daunting challenge. Oftentimes, the solution to an a11y problem is not written in black and white and, therefore, we may not get it right the first time around. There are, however, guidelines we can follow in our effort to make Web Awesome an accessible foundation from which applications and websites can be built.
 
-We take this commitment seriously, so please ensure your contributions have this goal in mind. If you need help with anything a11y-related, please [reach out to the community](/resources/community) for assistance. If you discover an accessibility concern within the library, please file a bug on the [issue tracker](https://github.com/shoelace-style/shoelace/issues).
+We take this commitment seriously, so please ensure your contributions have this goal in mind. If you need help with anything a11y-related, please [reach out to the community](/resources/community) for assistance. If you discover an accessibility concern within the library, please file a bug on the [issue tracker](https://github.com/shoelace-style/webawesome-alpha/issues).
 
 It's important to remember that, although accessibility starts with foundational components, it doesn't end with them. It everyone's responsibility to encourage best practices and ensure we're providing an optimal experience for all of our users.
 
