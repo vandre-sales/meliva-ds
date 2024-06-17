@@ -1,7 +1,7 @@
 ---
 title: Button Group
 description: Button groups can be used to group related buttons into sections.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}

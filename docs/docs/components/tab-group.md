@@ -1,7 +1,7 @@
 ---
 title: Tab Group
 description: Tab groups organize content into a container that shows one section at a time.
-layout: component.njk
+layout: component
 ---
 
 Tab groups make use of [tabs](/components/tab) and [tab panels](/components/tab-panel). Each tab must be slotted into the `nav` slot and its `panel` must refer to a tab panel of the same name.

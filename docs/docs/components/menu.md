@@ -1,7 +1,7 @@
 ---
 title: Menu
 description: Menus provide a list of options for the user to choose from.
-layout: component.njk
+layout: component
 ---
 
 You can use [menu items](/components/menu-item), [menu labels](/components/menu-label), and [dividers](/components/divider) to compose a menu. Menus support keyboard interactions, including type-to-select an option.

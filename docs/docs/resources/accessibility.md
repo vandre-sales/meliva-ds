@@ -1,7 +1,7 @@
 ---
 title: Accessibility Commitment
 description: Web Awesome recognizes the need for all users to have undeterred access to the websites and applications that are created with it.
-layout: page.njk
+layout: page
 ---
 
 Web Awesome recognizes the need for all users, regardless of ability and device, to have undeterred access to the websites and applications that are created with it. This is an important goal of the project.

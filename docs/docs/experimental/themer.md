@@ -1,7 +1,7 @@
 ---
 meta:
 title: Themer
-layout: page.njk
+layout: page
 hasOutline: false
 ---
 

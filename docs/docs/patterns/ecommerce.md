@@ -1,7 +1,7 @@
 ---
 title: E-commerce
 description: TODO
-layout: page.njk
+layout: page
 ---
 
 TODO Page Description

@@ -1,7 +1,7 @@
 ---
 title: Borders
 description: Change the edges and corners of your components with Web Awesome's border properties.
-layout: page.njk
+layout: page
 ---
 
 ## Style

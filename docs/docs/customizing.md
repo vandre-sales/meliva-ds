@@ -1,7 +1,7 @@
 ---
 title: Customizing
 description: Learn how to customize Web Awesome through parts and custom properties.
-layout: page.njk
+layout: page
 ---
 
 Web Awesome components can be customized at a high level through design tokens. This gives you control over theme colors and general styling. For more advanced customizations, you can make use of CSS parts and custom properties to target individual components.

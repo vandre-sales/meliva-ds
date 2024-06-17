@@ -1,7 +1,7 @@
 ---
 title: Breadcrumb Item
 description: Breadcrumb Items are used inside breadcrumbs to represent different links.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}

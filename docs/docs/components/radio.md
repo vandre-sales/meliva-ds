@@ -1,7 +1,7 @@
 ---
 title: Radio
 description: Radios allow the user to select a single option from a group.
-layout: component.njk
+layout: component
 ---
 
 Radios are designed to be used with [radio groups](/components/radio-group).

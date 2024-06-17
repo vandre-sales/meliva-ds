@@ -1,7 +1,7 @@
 ---
 title: Drawer
 description: Drawers slide in from a container to expose additional options and information.
-layout: component.njk
+layout: component
 ---
 
 <!-- cspell:dictionaries lorem-ipsum -->

@@ -1,7 +1,7 @@
 ---
 title: Theming Sandbox
 description: TODO
-layout: page.njk
+layout: page
 ---
 
 ## Card

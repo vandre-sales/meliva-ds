@@ -1,7 +1,7 @@
 ---
 title: Web Awesome
 description: Build better with Web Awesome, the open source library of web components from Font Awesome.
-layout: page.njk
+layout: page
 ---
 
 <style>

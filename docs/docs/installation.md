@@ -1,7 +1,7 @@
 ---
 title: Installation
 description: Choose the installation method that works best for you.
-layout: page.njk
+layout: page
 ---
 
 You can load Web Awesome via CDN or by installing it locally. If you're using a framework, make sure to check out the pages for [React](/frameworks/react), [Vue](/frameworks/vue), and [Angular](/frameworks/angular) for additional information.
