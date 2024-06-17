@@ -71,7 +71,10 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
   @property() title = ''; // make reactive to pass through
 
   /** The button's theme variant. */
-  @property({ reflect: true }) variant: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' | 'text' = 'neutral';
+  @property({ reflect: true }) variant: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' = 'neutral';
+
+  /** The button's visual appearance. */
+  @property({ reflect: true }) appearance: 'filled' | 'tinted' | 'outline' | 'text' = 'filled';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -84,9 +87,6 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
 
   /** Draws the button in a loading state. */
   @property({ type: Boolean, reflect: true }) loading = false;
-
-  /** Draws an outlined button. */
-  @property({ type: Boolean, reflect: true }) outline = false;
 
   /** Draws a pill-style button with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
@@ -248,7 +248,6 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
           'button--neutral': this.variant === 'neutral',
           'button--warning': this.variant === 'warning',
           'button--danger': this.variant === 'danger',
-          'button--text': this.variant === 'text',
           'button--small': this.size === 'small',
           'button--medium': this.size === 'medium',
           'button--large': this.size === 'large',
@@ -256,8 +255,10 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
           'button--disabled': this.disabled,
           'button--focused': this.hasFocus,
           'button--loading': this.loading,
-          'button--standard': !this.outline,
-          'button--outline': this.outline,
+          'button--filled': this.appearance === 'filled',
+          'button--tinted': this.appearance === 'tinted',
+          'button--outline': this.appearance === 'outline',
+          'button--text': this.appearance === 'text',
           'button--pill': this.pill,
           'button--rtl': this.localize.dir() === 'rtl'
         })}

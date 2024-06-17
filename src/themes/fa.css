@@ -518,7 +518,7 @@
     --background-active: var(--border-color);
     --label-color-active: var(--background);
 
-    &[outline] {
+    &[appearance='outline'] {
       --background: var(--wa-color-surface-default);
     }
 

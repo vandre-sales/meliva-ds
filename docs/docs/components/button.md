@@ -12,14 +12,51 @@ layout: component.njk
 
 ### Variants
 
-Use the `variant` attribute to set the button's variant.
+Use the `variant` attribute to set the button's semantic variant.
 
 ```html {.example}
+<wa-button variant="neutral">Neutral</wa-button>
 <wa-button variant="brand">Brand</wa-button>
 <wa-button variant="success">Success</wa-button>
-<wa-button variant="neutral">Neutral</wa-button>
 <wa-button variant="warning">Warning</wa-button>
 <wa-button variant="danger">Danger</wa-button>
+```
+
+### Appearance
+
+Use the `appearance` attribute to change the button's visual appearance.
+
+```html {.example}
+<div style="margin-block-end: 1rem;">
+  <wa-button appearance="filled" variant="neutral">Filled</wa-button>
+  <wa-button appearance="tinted" variant="neutral">Tinted</wa-button>
+  <wa-button appearance="outline" variant="neutral">Outline</wa-button>
+  <wa-button appearance="text" variant="neutral">Text</wa-button>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-button appearance="filled" variant="brand">Filled</wa-button>
+  <wa-button appearance="tinted" variant="brand">Tinted</wa-button>
+  <wa-button appearance="outline" variant="brand">Outline</wa-button>
+  <wa-button appearance="text" variant="brand">Text</wa-button>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-button appearance="filled" variant="success">Filled</wa-button>
+  <wa-button appearance="tinted" variant="success">Tinted</wa-button>
+  <wa-button appearance="outline" variant="success">Outline</wa-button>
+  <wa-button appearance="text" variant="success">Text</wa-button>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-button appearance="filled" variant="warning">Filled</wa-button>
+  <wa-button appearance="tinted" variant="warning">Tinted</wa-button>
+  <wa-button appearance="outline" variant="warning">Outline</wa-button>
+  <wa-button appearance="text" variant="warning">Text</wa-button>
+</div>
+<div>
+  <wa-button appearance="filled" variant="danger">Filled</wa-button>
+  <wa-button appearance="tinted" variant="danger">Tinted</wa-button>
+  <wa-button appearance="outline" variant="danger">Outline</wa-button>
+  <wa-button appearance="text" variant="danger">Text</wa-button>
+</div>
 ```
 
 ### Sizes
@@ -32,18 +69,6 @@ Use the `size` attribute to change a button's size.
 <wa-button size="large">Large</wa-button>
 ```
 
-### Outline Buttons
-
-Use the `outline` attribute to draw outlined buttons with transparent backgrounds.
-
-```html {.example}
-<wa-button variant="brand" outline>Brand</wa-button>
-<wa-button variant="success" outline>Success</wa-button>
-<wa-button variant="neutral" outline>Neutral</wa-button>
-<wa-button variant="warning" outline>Warning</wa-button>
-<wa-button variant="danger" outline>Danger</wa-button>
-```
-
 ### Pill Buttons
 
 Use the `pill` attribute to give buttons rounded edges.
@@ -52,16 +77,6 @@ Use the `pill` attribute to give buttons rounded edges.
 <wa-button size="small" pill>Small</wa-button>
 <wa-button size="medium" pill>Medium</wa-button>
 <wa-button size="large" pill>Large</wa-button>
-```
-
-### Text Buttons
-
-Use the `text` variant to create text buttons that share the same size as regular buttons but don't have backgrounds or borders.
-
-```html {.example}
-<wa-button variant="text" size="small">Text</wa-button>
-<wa-button variant="text" size="medium">Text</wa-button>
-<wa-button variant="text" size="large">Text</wa-button>
 ```
 
 ### Link Buttons

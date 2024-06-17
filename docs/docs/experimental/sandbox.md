@@ -100,13 +100,13 @@ layout: page.njk
 <wa-button variant="warning">Warning</wa-button>
 <wa-button variant="danger">Danger</wa-button>
 <br /><br />
-<wa-button variant="brand" outline>Brand</wa-button>
-<wa-button variant="success" outline>Success</wa-button>
-<wa-button variant="neutral" outline>Neutral</wa-button>
-<wa-button variant="warning" outline>Warning</wa-button>
-<wa-button variant="danger" outline>Danger</wa-button>
+<wa-button variant="brand" appearance="outline">Brand</wa-button>
+<wa-button variant="success" appearance="outline">Success</wa-button>
+<wa-button variant="neutral" appearance="outline">Neutral</wa-button>
+<wa-button variant="warning" appearance="outline">Warning</wa-button>
+<wa-button variant="danger" appearance="outline">Danger</wa-button>
 <br /><br />
-<wa-button variant="text">Brand</wa-button>
+<wa-button appearance="text">Text</wa-button>
 <br /><br />
 <wa-radio-group label="Radio button group" name="a" value="1">
   <wa-radio-button value="1">Option 1</wa-radio-button>
@@ -215,40 +215,40 @@ layout: page.njk
 </wa-button>
 <br /><br />
 <wa-button-group label="Alignment">
-  <wa-button outline variant="brand">Left</wa-button>
-  <wa-button outline variant="brand">Center</wa-button>
-  <wa-button outline variant="brand">Right</wa-button>
+  <wa-button appearance="outline" variant="brand">Left</wa-button>
+  <wa-button appearance="outline" variant="brand">Center</wa-button>
+  <wa-button appearance="outline" variant="brand">Right</wa-button>
 </wa-button-group>
 
 <br /><br />
 
 <wa-button-group label="Alignment">
-  <wa-button outline variant="success">Left</wa-button>
-  <wa-button outline variant="success">Center</wa-button>
-  <wa-button outline variant="success">Right</wa-button>
+  <wa-button appearance="outline" variant="success">Left</wa-button>
+  <wa-button appearance="outline" variant="success">Center</wa-button>
+  <wa-button appearance="outline" variant="success">Right</wa-button>
 </wa-button-group>
 
 <br /><br />
 
 <wa-button-group label="Alignment">
-  <wa-button outline>Left</wa-button>
-  <wa-button outline>Center</wa-button>
-  <wa-button outline>Right</wa-button>
+  <wa-button appearance="outline">Left</wa-button>
+  <wa-button appearance="outline">Center</wa-button>
+  <wa-button appearance="outline">Right</wa-button>
 </wa-button-group>
 
 <br /><br />
 
 <wa-button-group label="Alignment">
-  <wa-button outline variant="warning">Left</wa-button>
-  <wa-button outline variant="warning">Center</wa-button>
-  <wa-button outline variant="warning">Right</wa-button>
+  <wa-button appearance="outline" variant="warning">Left</wa-button>
+  <wa-button appearance="outline" variant="warning">Center</wa-button>
+  <wa-button appearance="outline" variant="warning">Right</wa-button>
 </wa-button-group>
 
 <br /><br />
 
 <wa-button-group label="Alignment">
-  <wa-button outline variant="danger">Left</wa-button>
-  <wa-button outline variant="danger">Center</wa-button>
-  <wa-button outline variant="danger">Right</wa-button>
+  <wa-button appearance="outline" variant="danger">Left</wa-button>
+  <wa-button appearance="outline" variant="danger">Center</wa-button>
+  <wa-button appearance="outline" variant="danger">Right</wa-button>
 </wa-button-group>
 ```
