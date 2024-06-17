@@ -153,9 +153,9 @@ export default class WaDialog extends WebAwesomeElement {
 
   private handleDialogClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const button = target.closest('[data-dialog="dismiss"]');
+    const button = target.closest('[data-dialog="close"]');
 
-    // Close when a button with [data-dialog="dismiss"] is clicked
+    // Close when a button with [data-dialog="close"] is clicked
     if (button) {
       event.stopPropagation();
       this.requestClose(button);

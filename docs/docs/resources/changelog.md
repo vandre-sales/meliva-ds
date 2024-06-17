@@ -21,8 +21,8 @@ New versions of Web Awesome are released as-needed and generally occur when a cr
 - Added `setKitCode()` and `getKitCode()` functions as well as support for setting kit codes declaratively with `data-webawesome-kit`
 - Added `family` and `variant` attributes to `<wa-icon>` and `<wa-icon-button>`
 - Added the `active` attribute to `<wa-tab-group>`
-- Added an easier way to close dialogs by applying `data-dialog="dismiss"` to any button in the dialog
-- Added an easier way to close drawers by applying `data-dialog="dismiss"` to any button in the drawer
+- Added an easier way to close dialogs by applying `data-dialog="close"` to any button in the dialog
+- Added an easier way to close drawers by applying `data-dialog="close"` to any button in the drawer
 - Added the `--show-duration` and `--hide-duration` custom properties to `<wa-details>`, `<wa-dialog>`, `<wa-drawer>`, `<sl-tree-item>`, and `<wa-popup>`
 - Changed the attribute for setting the base path declaratively to `data-webawesome` instead of `data-shoelace`; additionally, you can place it on any element now instead of just the associated `<script>` tag
 - `<wa-icon>` icons are no longer fixed width by default to accommodate variable width icons

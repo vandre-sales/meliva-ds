@@ -161,9 +161,9 @@ export default class WaDrawer extends WebAwesomeElement {
 
   private handleDialogClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const button = target.closest('[data-drawer="dismiss"]');
+    const button = target.closest('[data-drawer="close"]');
 
-    // Close when a button with [data-drawer="dismiss"] is clicked
+    // Close when a button with [data-drawer="close"] is clicked
     if (button) {
       event.stopPropagation();
       this.requestClose(button);
