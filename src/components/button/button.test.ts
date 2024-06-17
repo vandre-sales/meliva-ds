@@ -30,7 +30,6 @@ describe('<wa-button>', async () => {
       expect(el.disabled).to.equal(false);
       expect(el.caret).to.equal(false);
       expect(el.loading).to.equal(false);
-      expect(el.outline).to.equal(false);
       expect(el.pill).to.equal(false);
     });
 
