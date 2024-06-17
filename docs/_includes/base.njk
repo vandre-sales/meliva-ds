@@ -86,6 +86,7 @@
       {# Sidebar #}
       {% if hasSidebar %}
         <aside slot="navigation" id="sidebar" class="docs-aside" data-remember-scroll>
+          <wa-icon-button id="sidebar-close-button" name="xmark" label="Close" data-drawer="close"></wa-icon-button>
           <nav>
             {% include "sidebar.njk" %}
           </nav>

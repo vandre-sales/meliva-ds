@@ -134,6 +134,19 @@ wa-page[view='desktop'] > #sidebar {
   }
 }
 
+#sidebar-close-button {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #sidebar-close-button {
+    display: inline-block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
 #sidebar nav {
   padding-bottom: 1rem;
 }
