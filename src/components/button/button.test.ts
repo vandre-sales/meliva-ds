@@ -26,6 +26,7 @@ describe('<wa-button>', async () => {
 
       expect(el.title).to.equal('');
       expect(el.variant).to.equal('neutral');
+      expect(el.appearance).to.equal('filled');
       expect(el.size).to.equal('medium');
       expect(el.disabled).to.equal(false);
       expect(el.caret).to.equal(false);
