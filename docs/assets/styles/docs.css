@@ -49,9 +49,12 @@ wa-page > header {
 
   wa-button[data-toggle-nav] {
     --label-color: currentColor;
-    margin-inline-end: 0.75rem;
+    margin-inline-start: -0.875rem;
+    margin-inline-end: 0;
+
     &::part(base) {
       padding: 0;
+      padding-inline: 0.875rem;
     }
   }
 
