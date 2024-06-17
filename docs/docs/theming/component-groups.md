@@ -112,9 +112,6 @@ Tooltip styles are shared between the [tooltip](/docs/components/tooltip) compon
 | `--wa-tooltip-line-height`   | `var(--wa-line-height-normal)`      |
 
 ```html {.example}
-<wa-tooltip content="This is a tooltip" open trigger="manual">
-  <wa-icon name="bullseye" style="color: var(--wa-color-text-quiet); font-size: var(--wa-font-size-xl);"></wa-icon>
-</wa-tooltip>
-<br />
-<wa-range label="Range" help-text="Move the slider to take a gander at the tooltip."></wa-range>
+<wa-icon-button id="bullseye-example" label="Button" name="bullseye"></wa-icon-button>
+<wa-tooltip for="bullseye-example" open trigger="manual">This is a tooltip</wa-tooltip>
 ```
