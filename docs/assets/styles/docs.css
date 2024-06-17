@@ -222,7 +222,6 @@ wa-page > main {
 }
 
 /* Swatches */
-
 .swatch {
   background-color: transparent;
   border-color: var(--wa-color-neutral-border-normal);
@@ -233,4 +232,10 @@ wa-page > main {
   line-height: 2.5;
   height: 2.5em;
   padding-inline: var(--wa-space-xs);
+}
+
+/* Utilities */
+.two-columns {
+  columns: 2;
+  gap: 1rem;
 }
