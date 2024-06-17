@@ -245,8 +245,9 @@ export default class WaPage extends WebAwesomeElement {
         </div>
       </div>
       <wa-drawer
-        placement=${this.navigationPlacement}
         part="drawer"
+        placement=${this.navigationPlacement}
+        light-dismiss
         ?open=${live(this.navOpen)}
         @wa-after-show=${() => (this.navOpen = this.navigationDrawer.open)}
         @wa-after-hide=${() => (this.navOpen = this.navigationDrawer.open)}

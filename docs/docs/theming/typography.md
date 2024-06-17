@@ -75,7 +75,3 @@ Together with [`--wa-color-link`](/docs/theming/color/#text), these custom prope
 | ------------------------------ | ---------------------------------------------------------------------------------- |
 | `--wa-link-decoration-default` | `underline color-mix(in oklab, var(--wa-color-text-link) 70%, transparent) dotted` |
 | `--wa-link-decoration-hover`   | `underline`                                                                        |
-
-```html {.example}
-<a href="#">Web Awesome anchor</a>
-```

@@ -21,11 +21,10 @@ Cras pulvinar mattis nunc sed blandit libero. Facilisis magna etiam tempor orci.
 ## Inline Text
 
 ```html
-
 Feugiat nisl pretium fusce id. Ipsum dolor sit amet consectetur adipiscing elit. Eget nunc lobortis mattis aliquam faucibus purus. Metus dictum at tempor commodo ullamcorper a lacus vestibulum. Urna condimentum mattis pellentesque id nibh tortor id.
 ```
 
-<div class="docs-grid">
+<div class="two-columns">
   <p><strong>Bold</strong></p>
   <p><em>Italics</em></p>
   <p><u>Underline</u></p>
@@ -85,17 +84,17 @@ Individual details look like this.
 
 Grouping them provides accordion-style functionality.
 
-<details>
+<details name="details-accordion">
   <summary>Enim diam</summary>
   <p>Nunc faucibus a pellentesque sit amet porttitor. Adipiscing tristique risus nec feugiat in fermentum. Leo duis ut diam quam nulla porttitor massa id. Mauris nunc congue nisi vitae.</p>
 </details>
 
-<details>
+<details name="details-accordion">
   <summary>Arcu non odio</summary>
   <p>Sed libero enim sed faucibus turpis in eu mi bibendum. Nunc mi ipsum faucibus vitae aliquet nec. Ultricies tristique nulla aliquet enim tortor. Tellus at urna condimentum mattis pellentesque.</p>
 </details>
 
-<details>
+<details name="details-accordion">
   <summary>Ut porttitor</summary>
   <p>Eu facilisis sed odio morbi quis commodo odio aenean sed. Sit amet purus gravida quis blandit turpis cursus. Eu consequat ac felis donec et odio pellentesque diam volutpat.</p>
 </details>

@@ -3,9 +3,11 @@
 @import 'copy-code.css';
 @import 'outline.css';
 @import 'search.css';
+@import 'cera_typeface.css';
 
 :root {
   --wa-brand-orange: #f36944;
+  --wa-brand-grey: #30323b;
 }
 
 html.wa-theme-default-dark .only-light,
@@ -21,6 +23,11 @@ wa-page[view='desktop'] [data-toggle-nav] {
   display: none;
 }
 
+wa-page[view='desktop'] .only-mobile,
+wa-page:not([view='desktop']) .only-desktop {
+  display: none;
+}
+
 /* Header */
 wa-page::part(header) {
   background-color: var(--wa-color-surface-default);
@@ -32,12 +39,20 @@ wa-page > header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 4rem;
   padding-inline: var(--wa-space-xl);
 
   a[href='/'] {
     color: var(--wa-color-text-normal);
     line-height: 1;
+  }
+
+  wa-button[data-toggle-nav] {
+    --label-color: currentColor;
+    margin-inline-end: 0.75rem;
+    &::part(base) {
+      padding: 0;
+    }
   }
 
   svg {
@@ -207,7 +222,6 @@ wa-page > main {
 }
 
 /* Swatches */
-
 .swatch {
   background-color: transparent;
   border-color: var(--wa-color-neutral-border-normal);
@@ -218,4 +232,10 @@ wa-page > main {
   line-height: 2.5;
   height: 2.5em;
   padding-inline: var(--wa-space-xs);
+}
+
+/* Utilities */
+.two-columns {
+  columns: 2;
+  gap: 1rem;
 }

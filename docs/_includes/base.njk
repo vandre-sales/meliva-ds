@@ -50,11 +50,16 @@
 
         {# Logo #}
         <div id="docs-branding">
+          {# Nav toggle #}
+          <wa-button variant="text" data-toggle-nav>
+            <wa-icon name="bars" label="Toggle navigation"></wa-icon>
+          </wa-button>
           <a href="/" aria-label="Web Awesome">
-            {% include "logo.njk" %}
+            <span class="only-desktop">{% include "logo.njk" %}</span>
+            <span class="only-mobile">{% include "logo-simple.njk" %}</span>
           </a>
-          <small id="version-number">{{ package.version }}</small>
-          <wa-badge variant="warning">Alpha</wa-badge>
+          <small id="version-number" class="only-desktop">{{ package.version }}</small>
+          <wa-badge variant="warning" class="only-desktop">Alpha</wa-badge>
         </div>
 
         <div id="docs-toolbar">
@@ -63,8 +68,8 @@
             <wa-button slot="trigger" appearance="tinted" size="small" pill caret title="Press \ to toggle">
               <wa-icon class="only-light" slot="prefix" name="sun" variant="regular"></wa-icon>
               <wa-icon class="only-dark" slot="prefix" name="moon" variant="regular"></wa-icon>
-              <span class="only-light">Light</span>
-              <span class="only-dark">Dark</span>
+              <span class="only-light only-desktop">Light</span>
+              <span class="only-dark only-desktop">Dark</span>
             </wa-button>
             <wa-menu>
               <wa-menu-item type="checkbox" value="light">Light</wa-menu-item>
@@ -78,7 +83,7 @@
           <wa-button id="search-trigger" appearance="outline" size="small" data-search>
             <wa-icon slot="prefix" name="magnifying-glass"></wa-icon>
             Search
-            <kbd slot="suffix">/</kbd>
+            <kbd slot="suffix" class="only-desktop">/</kbd>
           </wa-button>
         </div>
       </header>

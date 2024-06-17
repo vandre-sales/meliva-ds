@@ -4,7 +4,7 @@ description: Discover how to localize Web Awesome with minimal effort.
 layout: page.njk
 ---
 
-Components can be localized by importing the appropriate translation file and setting the desired [`lang` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang) and/or [`dir` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) on the `<html>` element. Here's an example that renders Web Awesome components in Spanish.
+Components can be localized by importing the appropriate translation file and setting the desired [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang) and/or [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) attributes on the `<html>` element. Here's an example that renders Web Awesome components in Spanish.
 
 ```html
 <html lang="es">

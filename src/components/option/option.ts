@@ -25,6 +25,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --background-color-hover - The options's background color on hover.
  * @cssproperty --label-color-current - The current option's label color.
  * @cssproperty --label-color-hover - The label color on hover.
+ *
  * @csspart checked-icon - The checked icon, a `<wa-icon>` element.
  * @csspart base - The component's base wrapper.
  * @csspart label - The option's label.
