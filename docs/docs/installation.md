@@ -14,6 +14,7 @@ Thank you so much for backing us!
 
 - [Report a bug](https://github.com/shoelace-style/webawesome-alpha/issues)
 - [Get help / ask a question](https://github.com/shoelace-style/webawesome-alpha/discussions)
+- [See what's new since the last version](/docs/resources/changelog)
 
 :::warning
 As a Web Awesome backer, this early alpha release is _just for you_. Please refrain from sharing it for the time being!
