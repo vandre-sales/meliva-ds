@@ -105,6 +105,11 @@ wa-page[view='desktop'] > #sidebar {
   max-height: 100%;
 }
 
+wa-page[view='desktop'] > #outline {
+  min-width: 240px;
+  max-width: 240px;
+}
+
 #sidebar,
 #outline {
   h2 {
@@ -191,7 +196,7 @@ wa-page > main {
 .callout {
   display: flex;
   gap: 1rem;
-  border: var(--wa-border-style) var(--wa-border-width-m);
+  border: var(--wa-border-style) var(--wa-border-width-s);
   border-radius: var(--wa-border-radius-m);
   padding: 1rem;
   margin-block-end: var(--wa-flow-spacing);
@@ -257,4 +262,8 @@ wa-page > main {
 .two-columns {
   columns: 2;
   gap: 1rem;
+}
+
+.component-table td > * + * {
+  margin-block-start: var(--wa-space-s);
 }
