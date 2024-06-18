@@ -21,7 +21,6 @@ import { WaInputEvent } from '../../events/input.js';
 import { WaInvalidEvent } from '../../events/invalid.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import { when } from 'lit/directives/when.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './color-picker.styles.js';
 import type { CSSResultGroup } from 'lit';
