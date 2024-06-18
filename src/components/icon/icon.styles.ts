@@ -7,15 +7,14 @@ export default css`
     --secondary-color: currentColor;
     --secondary-opacity: 0.4;
 
-    display: inline-block;
+    display: inline-flex;
     box-sizing: content-box !important;
-    width: 1em;
+    width: auto;
     height: 1em;
   }
 
   svg {
     display: inline-block;
-    width: 1em;
     height: 1em;
     fill: currentColor;
 
@@ -28,5 +27,9 @@ export default css`
       color: var(--secondary-color);
       opacity: var(--secondary-opacity);
     }
+  }
+
+  :host([fixed-width]) {
+    width: 1em;
   }
 `;
