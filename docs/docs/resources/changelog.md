@@ -8,9 +8,15 @@ Web Awesome follows [Semantic Versioning](https://semver.org/). Breaking changes
 
 Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> badge should not be used in production. They are made available as release candidates for development and testing purposes. As such, changes to experimental components will not be subject to semantic versioning.
 
-New versions of Web Awesome are released as-needed and generally occur when a critical mass of changes have accumulated. At any time, you can see what's coming in the next release by visiting [next.shoelace.style](https://next.shoelace.style).
+## Web Awesome 1.0.0-alpha.1
 
-## 3.0 Changes (BREAKING)
+- This is the initial release of Web Awesome alpha!
+
+## What's different from Shoelace 2.0?
+
+==If you're new to Web Awesome, you can skip this section.== If you're coming from [Shoelace](https://shoelace.style/), you're in the right place!
+
+Here's a list of things that have changed since Shoelace v2. For questions or help upgrading, [the alpha discussion board](https://github.com/shoelace-style/webawesome-alpha/discussions) is a great place to get help!
 
 - Disabled form controls will no longer have a `disabled` attribute set when they are disabled via property. IE: `el.disabled = true`. Instead use `:state(disabled)` to style them.
 - Checkboxes will no longer have a `checked` attribute set when their `checked` property is changed. IE: `el.checked = true`. Instead, use the `:state(:checked)` and for unsupported browsers, use `[data-checked]`
