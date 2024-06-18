@@ -74,3 +74,11 @@ The color picker can be rendered as disabled.
 ```html {.example}
 <wa-color-picker disabled label="Select a color"></wa-color-picker>
 ```
+
+### Help Text
+
+The color picker can be rendered as disabled.
+
+```html {.example}
+<wa-color-picker label="Select a color" help-text="Choose a color with appropate contrast!"></wa-color-picker>
+```

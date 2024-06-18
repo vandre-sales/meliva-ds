@@ -335,9 +335,14 @@ export default css`
     cursor: not-allowed;
   }
 
-  .color-dropdown__label {
+  .form-control.form-control--has-label .form-control__label {
     cursor: pointer;
-    padding-bottom: var(--spacing);
+    padding-bottom: 0.5em;
+    display: block;
+  }
+
+  .form-control__input {
+    display: block;
   }
 
   .color-dropdown__container {

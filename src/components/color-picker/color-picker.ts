@@ -26,6 +26,8 @@ import styles from './color-picker.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type WaDropdown from '../dropdown/dropdown.js';
 import type WaInput from '../input/input.js';
+import formControlStyles from '../../styles/form-control.styles.js';
+import { HasSlotController } from '../../internal/slot.js';
 
 const hasEyeDropper = 'EyeDropper' in window;
 
@@ -52,6 +54,7 @@ declare const EyeDropper: EyeDropperConstructor;
  * @dependency wa-visually-hidden
  *
  * @slot label - The color picker's form label. Alternatively, you can use the `label` attribute.
+ * @slot help-text - The color picker's form help text. Alternatively, you can use the `helpText` attribute.
  *
  * @event wa-blur - Emitted when the color picker loses focus.
  * @event wa-change - Emitted when the color picker's value changes.
@@ -105,13 +108,15 @@ declare const EyeDropper: EyeDropperConstructor;
  */
 @customElement('wa-color-picker')
 export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
   static get validators() {
     return [...super.validators, RequiredValidator()];
   }
+
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
 
   private isSafeValue = false;
   private readonly localize = new LocalizeController(this);
@@ -162,12 +167,17 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   @property() label = '';
 
   /**
+   * The color picker's help text. If you need to display HTML, use the `help-text` slot instead.
+   */
+  @property({ attribute: "help-text" }) helpText = '';
+
+  /**
    * The format to use. If opacity is enabled, these will translate to HEXA, RGBA, HSLA, and HSVA respectively. The color
    * picker will accept user input in any format (including CSS color names) and convert it to the desired format.
    */
   @property() format: 'hex' | 'rgb' | 'hsl' | 'hsv' = 'hex';
 
-  /** Determines the size of the color picker's trigger. This has no effect on inline color pickers. */
+  /** Determines the size of the color picker's trigger */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Removes the button that lets users toggle between format.   */
@@ -785,7 +795,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   reportValidity() {
     // This won't get called when a form is submitted. This is only for manual calls.
     if (!this.validity.valid && !this.dropdown.open) {
-      // If the input is inline and invalid, show the dropdown so the browser can focus on it
+      // Show the dropdown so the browser can focus on it
       this.addEventListener('wa-after-show', () => this.reportValidity(), { once: true });
       this.dropdown.show();
 
@@ -807,6 +817,11 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   }
 
   render() {
+    const hasLabelSlot = this.hasSlotController.test('label');
+    const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
+
     const gridHandleX = this.saturation;
     const gridHandleY = 100 - this.brightness;
     const swatches = Array.isArray(this.swatches)
@@ -1043,15 +1058,28 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
         @wa-after-show=${this.handleAfterShow}
         @wa-after-hide=${this.handleAfterHide}
       >
-        <div class="color-dropdown__container" part="trigger-container" slot="trigger">
-          <!-- Ideally this should be a <label> but it causes click event to fire twice causing the popup to open then close. -->
-          <div id="trigger-label" part="trigger-label" class="color-dropdown__label">
-            <slot name="label">${this.label}</slot>
-          </div>
+        <div
+          class=${classMap({
+            'color-dropdown__container': true,
+            'form-control': true,
+            'form-control--small': this.size === 'small',
+            'form-control--medium': this.size === 'medium',
+            'form-control--large': this.size === 'large',
+            'form-control--has-label': hasLabel,
+            'form-control--has-help-text': hasHelpText
+          })}
+          part="trigger-container form-control"
+          slot="trigger"
+        >
+          <div
+            part="form-control-label"
+            class="form-control__label"
+            id="form-control-label"
+          ><slot name="label">${this.label}</slot></div>
 
           <button
             id="trigger"
-            part="trigger"
+            part="trigger form-control-input"
             class=${classMap({
               'color-dropdown__trigger': true,
               'color-dropdown__trigger--disabled': this.disabled,
@@ -1060,14 +1088,22 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
               'color-dropdown__trigger--large': this.size === 'large',
               'color-dropdown__trigger--empty': this.isEmpty,
               'color-dropdown__trigger--focused': this.hasFocus,
-              'color-picker__transparent-bg': true
+              'color-picker__transparent-bg': true,
+              'form-control-input': true,
             })}
             style=${styleMap({
               color: this.getHexString(this.hue, this.saturation, this.brightness, this.alpha)
             })}
             type="button"
-            aria-labelledby="trigger-label"
+            aria-labelledby="form-control-label"
+            aria-describedby="help-text"
           ></button>
+
+          <div
+            part="form-control-help-text"
+            id="help-text"
+            class="form-control__help-text"
+          ><slot name="help-text">${this.helpText}</slot></div>
         </div>
         ${colorPicker}
       </wa-dropdown>
