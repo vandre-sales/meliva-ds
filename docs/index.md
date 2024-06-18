@@ -151,6 +151,9 @@ layout: page
       height: 2rem;
       width: 2rem;
     }
+    & h3 {
+      font-size: 1rem;
+    }
   }
   footer {
     display: flex;
@@ -173,12 +176,72 @@ layout: page
       }
       & wa-button {
         --wa-form-control-height-m: 1.5rem;
-        --background-color: var(--wa-color-neutral-fill-quiet);
-        --background-color-hover: color-mix(in oklab, var(--background-color), transparent 20%);
-        --label-color: var(--wa-color-neutral-on-quiet);
         display: inline-flex;
         font-size: 0.75rem;
       }
+    }
+  }
+  .alpha-notice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    & > * {
+      flex-basis: calc(((30ch * 2 + 1rem) - 100%) * 999);
+    }
+    & > * {
+      flex-grow: 2;
+    }
+    & > * + * {
+      flex-grow: 1;
+    }
+    & wa-callout::part(base),
+    & wa-button::part(base) {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  wa-button.tile::part(base) {
+    border-color: var(--wa-color-surface-border);
+    border-radius: 0.75rem;
+    color: var(--wa-color-text-normal);
+    display: block;
+    height: 100%;
+    line-height: var(--wa-line-height-normal);
+    padding: 1.25rem;
+    text-align: left;
+    white-space: wrap;
+  }
+  wa-button.tile::part(suffix) {
+    display: none;
+  }
+  wa-button.tile {
+    width: 100%;
+    height: 100%;
+    & h3 {
+      font-size: 1rem;
+    }
+    & .icon-heading + wa-icon {
+      color: var(--wa-color-text-quiet);
+    }
+    & p {
+      font-size: 0.875rem;
+      font-weight: var(--wa-font-weight-normal);
+    }
+    &::part(label) {
+      width: 100%;
+    }
+  }
+  wa-callout {
+    --spacing: 1.25rem;
+    height: 100%;
+
+    & .icon-heading wa-icon {
+      background-color: var(--wa-color-warning-fill-normal);
+      color: var(--wa-color-warning-on-normal);
+    }
+
+    & p {
+      font-size: 0.875rem;
     }
   }
 </style>
@@ -200,6 +263,30 @@ layout: page
 </div>
 
 <div class="home-wrapper">
+  <div class="alpha-notice">
+    <div>
+      <wa-callout variant="warning">
+        <div class="icon-heading">
+          <wa-icon name="triangle-exclamation" variant="regular" fixed-width></wa-icon>
+          <h3>You're in Alpha Territory</h3>
+        </div>
+        <p>What you see may not be perfect (we're only humans!) and is subject to change. We encourage you to <a href="https://github.com/shoelace-style/webawesome-alpha/issues">report bugs</a> or <a href="https://github.com/shoelace-style/webawesome-alpha/discussions">ask for help</a>!</p>
+      </wa-callout>
+    </div>
+    <div>
+      <wa-button href="/docs/installation" appearance="outline" class="tile">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-block-end: 1rem;">
+          <div class="icon-heading" style="margin-block-end: 0;">
+            <wa-icon name="pen-ruler" fixed-width></wa-icon>
+            <h3>Get started</h3>
+          </div>
+          <wa-icon name="arrow-right" fixed-width></wa-icon>
+        </div>
+        <p>Check out our installation guide to start building with Web Awesome.</p>
+      </wa-button>
+    </div>
+  </div>
+  <wa-divider></wa-divider>
   <div class="summary">
     <h2 class="brand-font">What's <span class="emphasis">Web</span> Awesome?</h2>
     <p>Web Awesome is the biggest open-source library of meticulously designed, highly customizable, and framework-agnostic UI components.</p>
@@ -273,12 +360,12 @@ layout: page
       <div class="attribution">
         <span>Special thanks</span>
         <div class="button-list">
-          <wa-button pill href="https://lit.dev/">Lit</wa-button>
-          <wa-button pill href="https://github.com/open-wc/custom-elements-manifest">Custom Elements Manifest</wa-button>
-          <wa-button pill href="https://www.11ty.dev/">11ty</wa-button>
-          <wa-button pill href="https://floating-ui.com/">Floating UI</wa-button>
-          <wa-button pill href="https://animate.style/">animate.css</wa-button>
-          <wa-button pill href="https://lunrjs.com/">Lunr</wa-button>
+          <wa-button appearance="tinted" pill href="https://lit.dev/">Lit</wa-button>
+          <wa-button appearance="tinted" pill href="https://github.com/open-wc/custom-elements-manifest">Custom Elements Manifest</wa-button>
+          <wa-button appearance="tinted" pill href="https://www.11ty.dev/">11ty</wa-button>
+          <wa-button appearance="tinted" pill href="https://floating-ui.com/">Floating UI</wa-button>
+          <wa-button appearance="tinted" pill href="https://animate.style/">animate.css</wa-button>
+          <wa-button appearance="tinted" pill href="https://lunrjs.com/">Lunr</wa-button>
         </div>
       </div>
     </div>
