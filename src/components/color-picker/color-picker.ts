@@ -163,11 +163,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   @property() label = '';
 
   /**
-   * Where to place the label in relation to the color picker. The default is "top" (showing above the color picker) but can be configured to show next to the color picker. Note, "bottom" is not supported because it generally interferes with the "popup"
-   */
-  @property({ attribute: "label-placement" }) labelPlacement: "top" | "start" | "end" = "top"
-
-  /**
    * The format to use. If opacity is enabled, these will translate to HEXA, RGBA, HSLA, and HSVA respectively. The color
    * picker will accept user input in any format (including CSS color names) and convert it to the desired format.
    */
@@ -1038,17 +1033,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
       </div>
     `;
 
-    const buttonLabel = html`
-      <!-- Ideally this should be a <label> but it causes click event to fire twice causing the popup to open then close. -->
-      <div
-        id="trigger-label"
-        part="trigger-label"
-        class="color-dropdown__label"
-      >
-        <slot name="label">${this.label}</slot>
-      </div>
-    `
-
     // Render as a dropdown
     return html`
       <wa-dropdown
@@ -1061,9 +1045,15 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
         @wa-after-hide=${this.handleAfterHide}
       >
         <div class="color-dropdown__container" part="trigger-container" slot="trigger">
-          ${when(this.labelPlacement === "top" || this.labelPlacement === "start",
-            () => buttonLabel
-          )}
+          <!-- Ideally this should be a <label> but it causes click event to fire twice causing the popup to open then close. -->
+          <div
+            id="trigger-label"
+            part="trigger-label"
+            class="color-dropdown__label"
+          >
+            <slot name="label">${this.label}</slot>
+          </div>
+
           <button
             id="trigger"
             part="trigger"
