@@ -26,8 +26,8 @@ As a Web Awesome backer, this early alpha release is _just for you_. Please refr
 The autoloader is the easiest way to use Web Awesome. A lightweight script watches the DOM for unregistered Web Awesome elements and lazy loads them for you — even if they're added dynamically.
 
 ```html
-<link rel="stylesheet" href="{% cdnUrl 'dist/themes/default.css' %}" />
-<script type="module" src="{% cdnUrl 'dist/autoloader.js' %}"></script>
+<link rel="stylesheet" href="{% cdnUrl 'themes/default.css' %}" />
+<script type="module" src="{% cdnUrl 'autoloader.js' %}"></script>
 ```
 
 Now you can [start using Web Awesome!](/getting-started/usage)

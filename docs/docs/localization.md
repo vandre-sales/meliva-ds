@@ -57,7 +57,7 @@ Available translations include:
 You can import translations using the following syntax, where `<code>` is replaced with any language code shown above.
 
 ```js
-import '{% cdnUrl "dist/translations/<code>.js" %}';
+import '{% cdnUrl "translations/<code>.js" %}';
 ```
 
 You do not need to load translations up front. You can import them dynamically even after updating the `lang` attribute. Once a translation is registered, localized components will update automatically.
@@ -67,7 +67,7 @@ You do not need to load translations up front. You can import them dynamically e
 document.documentElement.lang = 'de';
 
 // Import the translation
-import('/path/to/shoelace/dist/translations/de.js');
+import('{% cdnUrl "translations/<code>.js" %}');
 ```
 
 ### Translation Resolution

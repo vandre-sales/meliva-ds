@@ -16,12 +16,9 @@ document.addEventListener('click', event => {
     const codeExample = pen.closest('.code-example');
     const code = codeExample.querySelector('code');
     const cdnUrl = document.documentElement.dataset.cdnUrl;
-    const html =
-      `<script type="module" src="${cdnUrl}dist/webawesome.loader.js"></script>` + `\n\n` + `${code.textContent}`;
+    const html = `<script type="module" src="${cdnUrl}webawesome.loader.js"></script>` + `\n\n` + `${code.textContent}`;
     const css =
-      `import '${cdnUrl}/dist/themes/default.css';` +
-      `\n\n` +
-      `body {\n  font: 16px sans-serif;\n  padding: 1rem;\n}\n`;
+      `import '${cdnUrl}themes/default.css';` + `\n\n` + `body {\n  font: 16px sans-serif;\n  padding: 1rem;\n}\n`;
     const js = '';
 
     const form = document.createElement('form');
