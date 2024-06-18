@@ -14,9 +14,16 @@ import { getComponents } from './_utils/manifest.js';
 import process from 'process';
 
 const packageData = JSON.parse(await readFile('./package.json', 'utf-8'));
+const isAlpha = process.argv.includes('--alpha');
 const isDeveloping = process.argv.includes('--develop');
 
 export default function (eleventyConfig) {
+  // NOTE - alpha setting removes certain pages
+  if (isAlpha) {
+    eleventyConfig.ignores.add('**/components/page.md');
+    eleventyConfig.ignores.add('**/experimental/**');
+  }
+
   // Add template data
   eleventyConfig.addGlobalData('package', packageData);
 

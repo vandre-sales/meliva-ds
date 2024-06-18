@@ -44,6 +44,8 @@
   "scripts": {
     "start": "node scripts/build.js --develop",
     "build": "node scripts/build.js",
+    "build:alpha": "node scripts/build.js --alpha",
+    "start:alpha": "node scripts/build.js --alpha --develop",
     "create": "plop --plopfile scripts/plop/plopfile.js",
     "prepare": "npm i --ignore-scripts && npx playwright install",
     "test": "web-test-runner --group default",

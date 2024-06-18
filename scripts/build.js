@@ -20,6 +20,7 @@ import process from 'process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const isDeveloping = process.argv.includes('--develop');
+const isAlpha = process.argv.includes('--alpha');
 const spinner = ora({ text: 'Web Awesome', color: 'cyan' }).start();
 const packageData = JSON.parse(await readFile(join(rootDir, 'package.json'), 'utf-8'));
 const version = JSON.stringify(packageData.version.toString());
@@ -97,7 +98,16 @@ function generateReactWrappers() {
 async function generateStyles() {
   spinner.start('Copying stylesheets');
 
-  await copy(join(rootDir, 'src/themes'), join(distDir, 'themes'), { overwrite: true });
+  // NOTE - alpha setting omits all stylesheets except for these because we use them in the docs
+  if (isAlpha) {
+    await copy(join(rootDir, 'src/themes/applied.css'), join(distDir, 'themes/applied.css'), { overwrite: true });
+    await copy(join(rootDir, 'src/themes/color_standard.css'), join(distDir, 'themes/color_standard.css'), {
+      overwrite: true
+    });
+    await copy(join(rootDir, 'src/themes/default.css'), join(distDir, 'themes/default.css'), { overwrite: true });
+  } else {
+    await copy(join(rootDir, 'src/themes'), join(distDir, 'themes'), { overwrite: true });
+  }
 
   spinner.succeed();
 
@@ -107,7 +117,7 @@ async function generateStyles() {
 /**
  * Runs TypeScript to generate types.
  */
-function generateTypes() {
+async function generateTypes() {
   spinner.start('Running the TypeScript compiler');
 
   try {
@@ -188,8 +198,12 @@ async function regenerateBundle() {
 async function generateDocs() {
   spinner.start('Writing the docs');
 
+  const args = [];
+  if (isAlpha) args.push('--alpha');
+  if (isDeveloping) args.push('--develop');
+
   // 11ty
-  const output = (await runScript(join(__dirname, 'docs.js'), isDeveloping ? ['--develop'] : undefined))
+  const output = (await runScript(join(__dirname, 'docs.js'), args))
     // Cleanup the output
     .replace('[11ty]', '')
     .replace(' seconds', 's')
