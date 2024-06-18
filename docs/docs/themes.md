@@ -9,7 +9,7 @@ Web Awesome is designed to be highly customizable through pure CSS. Out of the b
 In essence, a theme is a stylesheet that uses the Web Awesome API to define custom properties and apply custom styles to components. To create a theme, you will need a decent understanding of CSS, including [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) and the [`::part` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
 
 :::info
-For component developers, built-in themes are also available as JavaScript modules that export [Lit CSSResult](https://lit.dev/docs/api/styles/#CSSResult) objects. You can find them in `/%NPMDIR%/themes/*.styles.js`.
+For component developers, built-in themes are also available as JavaScript modules that export [Lit CSSResult](https://lit.dev/docs/api/styles/#CSSResult) objects. You can find them in `/dist/themes/*.styles.js`.
 :::
 
 ## Theme Basics
@@ -34,7 +34,7 @@ To activate a theme, import it and apply the theme's class to the `<html>` eleme
 ```html
 <html class="wa-theme-default-dark">
   <head>
-    <link rel="stylesheet" href="path/to/webawesome/%NPMDIR%/themes/default.css" />
+    <link rel="stylesheet" href="path/to/webawesome/dist/themes/default.css" />
   </head>
 
   <body>
@@ -54,7 +54,7 @@ You can activate different themes and styles on various containers throughout th
 ```html
 <html>
   <head>
-    <link rel="stylesheet" href="path/to/shoelace/%NPMDIR%/themes/default.css" />
+    <link rel="stylesheet" href="path/to/shoelace/dist/themes/default.css" />
   </head>
 
   <body>

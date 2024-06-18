@@ -11,11 +11,11 @@ Built by the folks behind [Font Awesome](https://fontawesome.com/).
 
 ---
 
-Documentation: [shoelace.style](https://shoelace.style)
+Documentation: [webawesome.com](https://webawesome.com)
 
-Source: [github.com/shoelace-style/shoelace](https://github.com/shoelace-style/shoelace)
+Source: [github.com/shoelace-style/webawesome](https://github.com/shoelace-style/webawesome)
 
-Twitter: [@shoelace_style](https://twitter.com/shoelace_style)
+Twitter: [@webawesomer](https://twitter.com/webawesomer)
 
 ---
 
@@ -25,7 +25,7 @@ Developers can use this documentation to learn how to build Web Awesome from sou
 
 **You don't need to do any of this to use Web Awesome!** This page is for people who want to contribute to the project, tinker with the source, or create a custom build of Web Awesome.
 
-If that's not what you're trying to do, the [documentation website](https://shoelace.style) is where you want to be.
+If that's not what you're trying to do, the [documentation website](https://webawesome.com) is where you want to be.
 
 ### What are you using to build Web Awesome?
 
@@ -33,7 +33,7 @@ Components are built with [LitElement](https://lit-element.polymer-project.org/)
 
 ### Forking the Repo
 
-Start by [forking the repo](https://github.com/shoelace-style/shoelace/fork) on GitHub, then clone it locally and install dependencies.
+Start by [forking the repo](https://github.com/shoelace-style/webawesome/fork) on GitHub, then clone it locally and install dependencies.
 
 ```bash
 git clone https://github.com/YOUR_GITHUB_USERNAME/webawesome

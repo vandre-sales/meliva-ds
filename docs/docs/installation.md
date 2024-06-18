@@ -4,15 +4,26 @@ description: Choose the installation method that works best for you.
 layout: page
 ---
 
-You can load Web Awesome via CDN or by installing it locally. If you're using a framework, make sure to check out the pages for [React](/frameworks/react), [Vue](/frameworks/vue), and [Angular](/frameworks/angular) for additional information.
+Welcome to the Web Awesome alpha release for early backers! 👋
+
+==This is a very early alpha release!== For this preview, we're only offering access to the free components through a temporary CDN. Please be aware: Things can change Things can break. You probably shouldn't be using this software in production yet! But fear not, we're working hard to polish up the free stuff you see here _plus_ all the great stuff we have planned for Web Awesome Pro!
+
+==To be clear, this release _only_ includes a preview the components in Web Awesome Free!==
+
+Thank you so much for backing us!
+
+- [Report a bug](https://github.com/shoelace-style/webawesome-alpha/issues)
+- [Get help / ask a question](https://github.com/shoelace-style/webawesome-alpha/discussions)
+
+---
 
 ## Autoloading via CDN (Easiest)
 
 The autoloader is the easiest way to use Web Awesome. A lightweight script watches the DOM for unregistered Web Awesome elements and lazy loads them for you — even if they're added dynamically.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/themes/default.css" />
-<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/autoloader.js"></script>
+<link rel="stylesheet" href="{% cdnUrl 'dist/themes/default.css' %}" />
+<script type="module" src="{% cdnUrl 'dist/autoloader.js' %}"></script>
 ```
 
 Now you can [start using Web Awesome!](/getting-started/usage)
@@ -25,16 +36,16 @@ While convenient, autoloading may lead to a [Flash of Undefined Custom Elements]
 
 Some components rely on assets (icons, images, etc.) and Web Awesome needs to know where they're located. For convenience, Web Awesome will try to auto-detect the correct location based on the script you've loaded it from. This assumes assets are colocated with `autoloader.js` and will "just work" for most users.
 
-If you're using the CDN, you can skip this section. However, if you're [cherry picking](#cherry-picking) or bundling Web Awesome, you'll need to set the base path. You can do this one of two ways.
+==If you're using the CDN, you can skip this section.== However, if you're [cherry picking](#cherry-picking) or bundling Web Awesome, you'll need to set the base path. You can do this one of two ways.
 
 ```html
 <!-- Option 1: the data-webawesome attribute -->
-<script src="bundle.js" data-webawesome="/path/to/web-awesome/%NPMDIR%"></script>
+<script src="bundle.js" data-webawesome="/path/to/web-awesome/dist"></script>
 
 <!-- Option 2: the setBasePath() method -->
 <script type="module">
-  import { setBasePath } from '/path/to/web-awesome/%NPMDIR%/webawesome.js';
-  setBasePath('/path/to/web-awesome/%NPMDIR%');
+  import { setBasePath } from '/path/to/web-awesome/dist/webawesome.js';
+  setBasePath('/path/to/web-awesome/dist');
 </script>
 ```
 
@@ -44,7 +55,7 @@ Most of the magic behind assets is handled internally by Web Awesome, but if you
 
 ```html
 <script type="module">
-  import { getBasePath, setBasePath } from '/path/to/web-awesome/%NPMDIR%/webawesome.js';
+  import { getBasePath, setBasePath } from '/path/to/web-awesome/dist/webawesome.js';
 
   setBasePath('/path/to/assets');
 
@@ -68,8 +79,8 @@ Font Awesome users can set their kit code to unlock Font Awesome Pro icons. You 
 
 <!-- Option 2: the setKitCode() method -->
 <script type="module">
-  import { setKitCode } from '/path/to/web-awesome/%NPMDIR%/webawesome.js';
-  setBasePath('/path/to/web-awesome/%NPMDIR%');
+  import { setKitCode } from '/path/to/web-awesome/dist/webawesome.js';
+  setBasePath('/path/to/web-awesome/dist');
 </script>
 ```
 
@@ -80,10 +91,10 @@ Cherry picking will only the components you need up front, while limiting the nu
 Here's an example that loads only the button component.
 
 ```html
-<link rel="stylesheet" href="/path/to/web-awesome/%NPMDIR%/themes/default.css" />
+<link rel="stylesheet" href="/path/to/web-awesome/dist/themes/default.css" />
 
-<script type="module" data-webawesome="/path/to/web-awesome/%NPMDIR%">
-  import '/path/to/web-awesome/%NPMDIR%/components/button/button.js';
+<script type="module" data-webawesome="/path/to/web-awesome/dist">
+  import '/path/to/web-awesome/dist/components/button/button.js';
 
   // <wa-button> is ready to use!
 </script>

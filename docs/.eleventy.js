@@ -40,9 +40,7 @@ export default function (eleventyConfig) {
 
   // Shortcodes - {% shortCode arg1, arg2 %}
   eleventyConfig.addShortcode('cdnUrl', location => {
-    return (
-      `https://cdn.jsdelivr.net/npm/@shoelace-style/webawesome@${packageData.version}/` + location.replace(/^\//, '')
-    );
+    return `https://early.webawesome.com/webawesome@${packageData.version}/` + location.replace(/^\//, '');
   });
 
   // Helpers

@@ -18,7 +18,6 @@
     "CACHEABLE",
     "callout",
     "callouts",
-    "cdndir",
     "chatbubble",
     "checkmark",
     "Clippy",
@@ -109,7 +108,6 @@
     "noopener",
     "noreferrer",
     "novalidate",
-    "npmdir",
     "Numberish",
     "oklab",
     "oklch",
@@ -178,6 +176,7 @@
     "Vuejs",
     "WCAG",
     "webawesome",
+    "webawesomer",
     "WEBP",
     "Webpacker",
     "xmark"
