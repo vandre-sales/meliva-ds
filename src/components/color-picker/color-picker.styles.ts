@@ -323,7 +323,7 @@ export default css`
     background-color: currentColor;
     box-shadow:
       inset 0 0 0 0.0625rem var(--wa-form-control-resting-color),
-      inset 0 0 0 0.25rem white;
+      inset 0 0 0 0.25rem var(--wa-color-surface-default);
   }
 
   .color-dropdown__trigger--empty:before {
