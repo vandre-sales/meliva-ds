@@ -295,9 +295,9 @@ export default class WaDropdown extends WebAwesomeElement {
 
           // Either the tag hasn't registered, or it hasn't rendered.
           // So, wait for the tag to register, and then try again.
-          if (target === undefined) {
+          if (target === undefined || target === null) {
             customElements.whenDefined(tagName).then(async () => {
-              await (target as WaButton | WaIconButton).updateComplete;
+              await (accessibleTrigger as WaButton | WaIconButton).updateComplete
               this.updateAccessibleTrigger();
             });
 

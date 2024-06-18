@@ -5,10 +5,7 @@ layout: component
 ---
 
 ```html {.example}
-<form>
-<wa-color-picker required label="Select a color"></wa-color-picker>
-<wa-button type="submit">Submit</wa-button>
-</form>
+<wa-color-picker label="Select a color"></wa-color-picker>
 ```
 
 :::info
@@ -76,4 +73,30 @@ The color picker can be rendered inline instead of in a dropdown using the `inli
 
 ```html {.example}
 <wa-color-picker inline label="Select a color"></wa-color-picker>
+```
+
+### Disabled
+
+The color picker can be rendered as disabled.
+
+```html {.example}
+<wa-color-picker disabled label="Select a color"></wa-color-picker>
+```
+
+### Changing label placement (start)
+
+You can change where to display the label to be either at the "start" or "end" of the color picker. The default is "top". "bottom" is omitted because it will generally interfere with the dropdown for the color picker.
+
+Here is a color picker with a "start" label-placement.
+
+```html {.example}
+<wa-color-picker label="Select a color" label-placement="start"></wa-color-picker>
+```
+
+### Changing label placement (end)
+
+You can change where to display the label to be either at the "start" or "end" of the color picker. The default is "top". "bottom" is omitted because it will generally interfere with the dropdown for the color picker.
+
+```html {.example}
+<wa-color-picker label="Select a color" label-placement="end"></wa-color-picker>
 ```

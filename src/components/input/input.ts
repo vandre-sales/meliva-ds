@@ -260,15 +260,21 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
             return;
           }
 
-          const button = [...form.elements].find((el: HTMLButtonElement) => el.type === 'submit' && !el.disabled) as
+          const formElements = [...form.elements]
+
+          // If this is the only element in the form, submit the form.
+          if (formElements.length === 1) {
+            form.requestSubmit(null);
+            return;
+          }
+
+          const button = formElements.find((el: HTMLButtonElement) => el.type === 'submit' && !el.matches(":disabled")) as
             | undefined
             | HTMLButtonElement
             | WaButton;
 
-          if (!button) {
-            form.requestSubmit(null);
-            return;
-          }
+          // If there's no submit buttons, don't submit the form.
+          if (!button) { return }
 
           if (button.tagName.toLowerCase() === 'button') {
             form.requestSubmit(button);

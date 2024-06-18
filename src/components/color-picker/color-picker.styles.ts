@@ -339,8 +339,32 @@ export default css`
     outline-offset: var(--wa-focus-ring-offset);
   }
 
-  .color-dropdown__trigger.color-dropdown__trigger--disabled {
+  :host(:disabled) :is(.color-dropdown__label, .color-dropdown__trigger) {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+
+  .color-picker-inline__label,
+  .color-dropdown__label {
+    cursor: pointer;
+    padding-bottom: var(--spacing);
+  }
+
+  :host([label-placement="start"]) .color-dropdown__label,
+  :host([label-placement="end"]) .color-dropdown__label {
+    padding-bottom: 0;
+  }
+
+  :host([label-placement="start"]) .color-dropdown__container,
+  :host([label-placement="end"]) .color-dropdown__container {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .color-dropdown__container {
+    margin: 0 1em;
+    padding-bottom: 0.5em;
   }
 `;

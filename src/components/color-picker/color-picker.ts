@@ -21,6 +21,7 @@ import { WaInputEvent } from '../../events/input.js';
 import { WaInvalidEvent } from '../../events/invalid.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
+import { when } from 'lit/directives/when.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './color-picker.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -160,6 +161,11 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
    * display HTML, you can use the `label` slot` instead.
    */
   @property() label = '';
+
+  /**
+   * Where to place the label in relation to the color picker. The default is "top" (showing above the color picker) but can be configured to show next to the color picker. Note, "bottom" is not supported because it generally interferes with the "popup"
+   */
+  @property({ attribute: "label-placement" }) labelPlacement: "top" | "start" | "end" = "top"
 
   /**
    * The format to use. If opacity is enabled, these will translate to HEXA, RGBA, HSLA, and HSVA respectively. The color
@@ -821,6 +827,14 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
       : this.swatches.split(';').filter(color => color.trim() !== '');
 
     const colorPicker = html`
+      ${this.inline
+        ? html`
+            <div id="inline-label" part="inline-label" class="color-picker-inline__label">
+              <slot name="label">${this.label}</slot>
+            </div>
+          `
+        : null}
+
       <div
         part="base"
         class=${classMap({
@@ -830,17 +844,9 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
           'color-picker--focused': this.hasFocus
         })}
         aria-disabled=${this.disabled ? 'true' : 'false'}
-        aria-labelledby="label"
+        aria-labelledby="inline-label"
         tabindex=${this.inline ? '0' : '-1'}
       >
-        ${this.inline
-          ? html`
-              <wa-visually-hidden id="label">
-                <slot name="label">${this.label}</slot>
-              </wa-visually-hidden>
-            `
-          : null}
-
         <div
           part="grid"
           class="color-picker__grid"
@@ -1054,6 +1060,17 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
       return colorPicker;
     }
 
+    const buttonLabel = html`
+      <!-- Ideally this should be a <label> but it causes click event to fire twice causing the popup to open then close. -->
+      <div
+        id="trigger-label"
+        part="trigger-label"
+        class="color-dropdown__label"
+      >
+        <slot name="label">${this.label}</slot>
+      </div>
+    `
+
     // Render as a dropdown
     return html`
       <wa-dropdown
@@ -1065,28 +1082,34 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
         @wa-after-show=${this.handleAfterShow}
         @wa-after-hide=${this.handleAfterHide}
       >
-        <button
-          part="trigger"
-          slot="trigger"
-          class=${classMap({
-            'color-dropdown__trigger': true,
-            'color-dropdown__trigger--disabled': this.disabled,
-            'color-dropdown__trigger--small': this.size === 'small',
-            'color-dropdown__trigger--medium': this.size === 'medium',
-            'color-dropdown__trigger--large': this.size === 'large',
-            'color-dropdown__trigger--empty': this.isEmpty,
-            'color-dropdown__trigger--focused': this.hasFocus,
-            'color-picker__transparent-bg': true
-          })}
-          style=${styleMap({
-            color: this.getHexString(this.hue, this.saturation, this.brightness, this.alpha)
-          })}
-          type="button"
-        >
-          <wa-visually-hidden>
-            <slot name="label">${this.label}</slot>
-          </wa-visually-hidden>
-        </button>
+        <div class="color-dropdown__container" part="trigger-container" slot="trigger">
+          ${when(this.labelPlacement === "top" || this.labelPlacement === "start",
+            () => buttonLabel
+          )}
+          <button
+            id="trigger"
+            part="trigger"
+            class=${classMap({
+              'color-dropdown__trigger': true,
+              'color-dropdown__trigger--disabled': this.disabled,
+              'color-dropdown__trigger--small': this.size === 'small',
+              'color-dropdown__trigger--medium': this.size === 'medium',
+              'color-dropdown__trigger--large': this.size === 'large',
+              'color-dropdown__trigger--empty': this.isEmpty,
+              'color-dropdown__trigger--focused': this.hasFocus,
+              'color-picker__transparent-bg': true
+            })}
+            style=${styleMap({
+              color: this.getHexString(this.hue, this.saturation, this.brightness, this.alpha)
+            })}
+            type="button"
+            aria-labelledby="trigger-label"
+          >
+          </button>
+          ${when(this.labelPlacement === "end",
+            () => buttonLabel
+          )}
+        </div>
         ${colorPicker}
       </wa-dropdown>
     `;
