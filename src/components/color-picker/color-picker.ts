@@ -735,7 +735,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
 
   /** Removes focus from the color picker. */
   blur() {
-    const elementToBlur = this.trigger
+    const elementToBlur = this.trigger;
 
     if (this.hasFocus) {
       // We don't know which element in the color picker has focus, so we'll move it to the trigger or base (inline) and
@@ -1046,11 +1046,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
       >
         <div class="color-dropdown__container" part="trigger-container" slot="trigger">
           <!-- Ideally this should be a <label> but it causes click event to fire twice causing the popup to open then close. -->
-          <div
-            id="trigger-label"
-            part="trigger-label"
-            class="color-dropdown__label"
-          >
+          <div id="trigger-label" part="trigger-label" class="color-dropdown__label">
             <slot name="label">${this.label}</slot>
           </div>
 
@@ -1072,11 +1068,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             })}
             type="button"
             aria-labelledby="trigger-label"
-          >
-          </button>
-          ${when(this.labelPlacement === "end",
-            () => buttonLabel
-          )}
+          ></button>
         </div>
         ${colorPicker}
       </wa-dropdown>

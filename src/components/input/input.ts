@@ -260,7 +260,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
             return;
           }
 
-          const formElements = [...form.elements]
+          const formElements = [...form.elements];
 
           // If this is the only element in the form, submit the form.
           if (formElements.length === 1) {
@@ -268,13 +268,14 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
             return;
           }
 
-          const button = formElements.find((el: HTMLButtonElement) => el.type === 'submit' && !el.matches(":disabled")) as
-            | undefined
-            | HTMLButtonElement
-            | WaButton;
+          const button = formElements.find(
+            (el: HTMLButtonElement) => el.type === 'submit' && !el.matches(':disabled')
+          ) as undefined | HTMLButtonElement | WaButton;
 
           // If there's no submit buttons, don't submit the form.
-          if (!button) { return }
+          if (!button) {
+            return;
+          }
 
           if (button.tagName.toLowerCase() === 'button') {
             form.requestSubmit(button);
