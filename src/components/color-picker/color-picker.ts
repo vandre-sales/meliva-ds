@@ -124,7 +124,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   //   or is the new behavior okay?
   get validationTarget() {
     // This puts the popup on the element only if the color picker is expanded.
-    if (this.inline || this.dropdown?.open) {
+    if (this.dropdown?.open) {
       return this.input;
     }
 
@@ -172,9 +172,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
    * picker will accept user input in any format (including CSS color names) and convert it to the desired format.
    */
   @property() format: 'hex' | 'rgb' | 'hsl' | 'hsv' = 'hex';
-
-  /** Renders the color picker inline rather than in a dropdown. */
-  @property({ type: Boolean, reflect: true }) inline = false;
 
   /** Determines the size of the color picker's trigger. This has no effect on inline color pickers. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -738,16 +735,12 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
 
   /** Sets focus on the color picker. */
   focus(options?: FocusOptions) {
-    if (this.inline) {
-      this.base.focus(options);
-    } else {
-      this.trigger.focus(options);
-    }
+    this.trigger.focus(options);
   }
 
   /** Removes focus from the color picker. */
   blur() {
-    const elementToBlur = this.inline ? this.base : this.trigger;
+    const elementToBlur = this.trigger
 
     if (this.hasFocus) {
       // We don't know which element in the color picker has focus, so we'll move it to the trigger or base (inline) and
@@ -797,7 +790,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
     // This won't get called when a form is submitted. This is only for manual calls.
-    if (!this.inline && !this.validity.valid && !this.dropdown.open) {
+    if (!this.validity.valid && !this.dropdown.open) {
       // If the input is inline and invalid, show the dropdown so the browser can focus on it
       this.addEventListener('wa-after-show', () => this.reportValidity(), { once: true });
       this.dropdown.show();
@@ -827,25 +820,15 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
       : this.swatches.split(';').filter(color => color.trim() !== '');
 
     const colorPicker = html`
-      ${this.inline
-        ? html`
-            <div id="inline-label" part="inline-label" class="color-picker-inline__label">
-              <slot name="label">${this.label}</slot>
-            </div>
-          `
-        : null}
-
       <div
         part="base"
         class=${classMap({
           'color-picker': true,
-          'color-picker--inline': this.inline,
           'color-picker--disabled': this.disabled,
           'color-picker--focused': this.hasFocus
         })}
         aria-disabled=${this.disabled ? 'true' : 'false'}
-        aria-labelledby="inline-label"
-        tabindex=${this.inline ? '0' : '-1'}
+        tabindex="-1"
       >
         <div
           part="grid"
@@ -1054,11 +1037,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
           : ''}
       </div>
     `;
-
-    // Render inline
-    if (this.inline) {
-      return colorPicker;
-    }
 
     const buttonLabel = html`
       <!-- Ideally this should be a <label> but it causes click event to fire twice causing the popup to open then close. -->
