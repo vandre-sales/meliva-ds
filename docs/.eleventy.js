@@ -14,9 +14,16 @@ import { getComponents } from './_utils/manifest.js';
 import process from 'process';
 
 const packageData = JSON.parse(await readFile('./package.json', 'utf-8'));
+const isAlpha = process.argv.includes('--alpha');
 const isDeveloping = process.argv.includes('--develop');
 
 export default function (eleventyConfig) {
+  // NOTE - alpha setting removes certain pages
+  if (isAlpha) {
+    eleventyConfig.ignores.add('**/components/page.md');
+    eleventyConfig.ignores.add('**/experimental/**');
+  }
+
   // Add template data
   eleventyConfig.addGlobalData('package', packageData);
 
@@ -33,9 +40,7 @@ export default function (eleventyConfig) {
 
   // Shortcodes - {% shortCode arg1, arg2 %}
   eleventyConfig.addShortcode('cdnUrl', location => {
-    return (
-      `https://cdn.jsdelivr.net/npm/@shoelace-style/webawesome@${packageData.version}/` + location.replace(/^\//, '')
-    );
+    return `https://early.webawesome.com/webawesome@${packageData.version}/` + location.replace(/^\//, '');
   });
 
   // Helpers

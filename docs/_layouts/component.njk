@@ -274,6 +274,7 @@
 
   <wa-tab-group label="How would you like to import this component?">
     <wa-tab slot="nav" panel="cdn">CDN</wa-tab>
+    <wa-tab slot="nav" panel="npm">npm</wa-tab>
     <wa-tab slot="nav" panel="react">React</wa-tab>
     <wa-tab-panel name="cdn">
       <p>
@@ -281,11 +282,17 @@
       </p>
       <pre><code class="language-js">import '{% cdnUrl component.path %}';</code></pre>
     </wa-tab-panel>
+    <wa-tab-panel name="npm">
+      Coming soon!
+    </wa-tab-panel>
     <wa-tab-panel name="react">
+      Coming soon!
+      {# NOTE - disabled for alpha
       <p>
         To manually import this component from React, use the following code.
       </p>
       <pre><code class="language-js">import '@shoelace-style/webawesome/react/{{ component.tagName | stripPrefix }}';</code></pre>
+      #}
     </wa-tab-panel>
   </wa-tab-group>
 {% endblock %}

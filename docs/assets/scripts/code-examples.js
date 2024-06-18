@@ -15,12 +15,13 @@ document.addEventListener('click', event => {
   if (pen) {
     const codeExample = pen.closest('.code-example');
     const code = codeExample.querySelector('code');
-    const version = document.documentElement.dataset.version;
+    const cdnUrl = document.documentElement.dataset.cdnUrl;
     const html =
-      `<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/webawesome@${version}/dist/webawesome.loader.js"></script>` +
+      `<script type="module" src="${cdnUrl}dist/webawesome.loader.js"></script>` + `\n\n` + `${code.textContent}`;
+    const css =
+      `import '${cdnUrl}/dist/themes/default.css';` +
       `\n\n` +
-      `${code.textContent}`;
-    const css = 'body {\n  font: 16px sans-serif;\n  padding: 1rem;\n}\n';
+      `body {\n  font: 16px sans-serif;\n  padding: 1rem;\n}\n`;
     const js = '';
 
     const form = document.createElement('form');
