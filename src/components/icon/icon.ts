@@ -65,9 +65,6 @@ export default class WaIcon extends WebAwesomeElement {
    */
   @property({ reflect: true }) variant: string;
 
-  /** Draws the icon in a fixed-width both. */
-  @property({ attribute: 'fixed-width', type: Boolean, reflect: true }) fixedWidth: false;
-
   /**
    * An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and
    * can result in XSS attacks.

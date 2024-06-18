@@ -9,10 +9,14 @@ export default css`
 
     display: inline-block;
     box-sizing: content-box !important;
+    width: 1em;
+    height: 1em;
   }
 
   svg {
-    display: block;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
     fill: currentColor;
 
     .fa-primary {
@@ -23,28 +27,6 @@ export default css`
     .fa-secondary {
       color: var(--secondary-color);
       opacity: var(--secondary-opacity);
-    }
-  }
-
-  /* Normal width */
-  :host(:not([fixed-width])) {
-    max-width: auto;
-    height: 1em;
-
-    svg {
-      width: auto;
-      height: 1em;
-    }
-  }
-
-  /* Fixed width */
-  :host([fixed-width]) {
-    width: 1em;
-    height: 1em;
-
-    svg {
-      width: 1em;
-      height: 1em;
     }
   }
 `;
