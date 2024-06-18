@@ -286,11 +286,23 @@ export default class WaDropdown extends WebAwesomeElement {
     let target: HTMLElement;
 
     if (accessibleTrigger) {
-      switch (accessibleTrigger.tagName.toLowerCase()) {
+      const tagName = accessibleTrigger.tagName.toLowerCase()
+      switch (tagName) {
         // Web Awesome buttons have to update the internal button so it's announced correctly by screen readers
         case 'wa-button':
         case 'wa-icon-button':
           target = (accessibleTrigger as WaButton | WaIconButton).button;
+
+          // Either the tag hasn't registered, or it hasn't rendered.
+          // So, wait for the tag to register, and then try again.
+          if (target === undefined) {
+            customElements.whenDefined(tagName).then(async () => {
+              await (target as WaButton | WaIconButton).updateComplete
+              this.updateAccessibleTrigger()
+            })
+
+            return
+          }
           break;
 
         default:
