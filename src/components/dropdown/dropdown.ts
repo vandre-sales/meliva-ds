@@ -286,7 +286,7 @@ export default class WaDropdown extends WebAwesomeElement {
     let target: HTMLElement;
 
     if (accessibleTrigger) {
-      const tagName = accessibleTrigger.tagName.toLowerCase()
+      const tagName = accessibleTrigger.tagName.toLowerCase();
       switch (tagName) {
         // Web Awesome buttons have to update the internal button so it's announced correctly by screen readers
         case 'wa-button':
@@ -297,11 +297,11 @@ export default class WaDropdown extends WebAwesomeElement {
           // So, wait for the tag to register, and then try again.
           if (target === undefined) {
             customElements.whenDefined(tagName).then(async () => {
-              await (target as WaButton | WaIconButton).updateComplete
-              this.updateAccessibleTrigger()
-            })
+              await (target as WaButton | WaIconButton).updateComplete;
+              this.updateAccessibleTrigger();
+            });
 
-            return
+            return;
           }
           break;
 
