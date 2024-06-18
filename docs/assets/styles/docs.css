@@ -100,6 +100,9 @@ wa-page[view='desktop']::part(navigation) {
 wa-page[view='desktop'] > #sidebar {
   min-width: 300px;
   padding: var(--wa-space-xl);
+  max-width: 300px;
+  overflow: auto;
+  max-height: 100%;
 }
 
 #sidebar,
