@@ -268,7 +268,7 @@ layout: page
       <wa-callout variant="warning">
         <div class="icon-heading">
           <wa-icon name="triangle-exclamation" variant="regular" fixed-width></wa-icon>
-          <h3>You're in Alpha Territory</h3>
+          <h3>You're in alpha territory</h3>
         </div>
         <p>What you see may not be perfect (we're only humans!) and is subject to change. We encourage you to <a href="https://github.com/shoelace-style/webawesome-alpha/issues">report bugs</a> or <a href="https://github.com/shoelace-style/webawesome-alpha/discussions">ask for help</a>!</p>
       </wa-callout>
