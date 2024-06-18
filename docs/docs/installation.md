@@ -1,7 +1,7 @@
 ---
 title: Installation
 description: Choose the installation method that works best for you.
-layout: page
+layout: page-outline
 ---
 
 Welcome to the Web Awesome alpha release for early backers! 👋

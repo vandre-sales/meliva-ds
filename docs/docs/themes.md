@@ -1,7 +1,7 @@
 ---
 title: Themes
 description: Everything you need to know about theming Web Awesome.
-layout: page
+layout: page-outline
 ---
 
 Web Awesome is designed to be highly customizable through pure CSS. Out of the box, the default theme includes both light and dark styles. Alternatively, you can design your own theme.
