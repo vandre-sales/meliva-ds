@@ -31,5 +31,6 @@ export default css`
 
   :host([fixed-width]) {
     width: 1em;
+    justify-content: center;
   }
 `;
