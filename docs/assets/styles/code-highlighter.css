@@ -1,10 +1,14 @@
+pre {
+  background-color: var(--wa-color-gray-20);
+  color: white;
+}
 .code-comment,
 .code-prolog,
 .code-doctype,
 .code-cdata,
 .code-operator,
 .code-punctuation {
-  color: var(--wa-color-base-40);
+  color: var(--wa-color-gray-70);
 }
 
 .code-namespace {
@@ -15,13 +19,13 @@
 .code-keyword,
 .code-tag,
 .code-url {
-  color: var(--wa-color-indigo-40);
+  color: var(--wa-color-indigo-70);
 }
 
 .code-symbol,
 .code-deleted,
 .code-important {
-  color: var(--wa-color-red-40);
+  color: var(--wa-color-red-70);
 }
 
 .code-boolean,
@@ -32,7 +36,7 @@
 .code-char,
 .code-builtin,
 .code-inserted {
-  color: var(--wa-color-green-40);
+  color: var(--wa-color-green-70);
 }
 
 .code-atrule,
@@ -42,7 +46,7 @@
 .code-function,
 .code-class-name,
 .code-regex {
-  color: var(--wa-color-blue-40);
+  color: var(--wa-color-blue-70);
 }
 
 .code-important,

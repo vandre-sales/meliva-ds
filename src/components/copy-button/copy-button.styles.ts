@@ -2,6 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background-color: transparent;
     --background-color-hover: var(--wa-color-neutral-fill-quiet);
     --error-color: var(--wa-color-danger-fill-loud);
     --success-color: var(--wa-color-success-fill-loud);
@@ -14,7 +15,7 @@ export default css`
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    background: none;
+    background-color: var(--background-color);
     border: none;
     border-radius: var(--wa-border-radius-s);
     color: inherit;
