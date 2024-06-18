@@ -8,6 +8,7 @@ import { clamp } from '../../internal/math.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
 import { drag } from '../../internal/drag.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -22,12 +23,11 @@ import { WaInvalidEvent } from '../../events/invalid.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './color-picker.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type WaDropdown from '../dropdown/dropdown.js';
 import type WaInput from '../input/input.js';
-import formControlStyles from '../../styles/form-control.styles.js';
-import { HasSlotController } from '../../internal/slot.js';
 
 const hasEyeDropper = 'EyeDropper' in window;
 
@@ -169,7 +169,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   /**
    * The color picker's help text. If you need to display HTML, use the `help-text` slot instead.
    */
-  @property({ attribute: "help-text" }) helpText = '';
+  @property({ attribute: 'help-text' }) helpText = '';
 
   /**
    * The format to use. If opacity is enabled, these will translate to HEXA, RGBA, HSLA, and HSVA respectively. The color
@@ -1071,11 +1071,9 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
           part="trigger-container form-control"
           slot="trigger"
         >
-          <div
-            part="form-control-label"
-            class="form-control__label"
-            id="form-control-label"
-          ><slot name="label">${this.label}</slot></div>
+          <div part="form-control-label" class="form-control__label" id="form-control-label">
+            <slot name="label">${this.label}</slot>
+          </div>
 
           <button
             id="trigger"
@@ -1089,7 +1087,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
               'color-dropdown__trigger--empty': this.isEmpty,
               'color-dropdown__trigger--focused': this.hasFocus,
               'color-picker__transparent-bg': true,
-              'form-control-input': true,
+              'form-control-input': true
             })}
             style=${styleMap({
               color: this.getHexString(this.hue, this.saturation, this.brightness, this.alpha)
@@ -1099,11 +1097,9 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             aria-describedby="help-text"
           ></button>
 
-          <div
-            part="form-control-help-text"
-            id="help-text"
-            class="form-control__help-text"
-          ><slot name="help-text">${this.helpText}</slot></div>
+          <div part="form-control-help-text" id="help-text" class="form-control__help-text">
+            <slot name="help-text">${this.helpText}</slot>
+          </div>
         </div>
         ${colorPicker}
       </wa-dropdown>
