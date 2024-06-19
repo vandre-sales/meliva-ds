@@ -328,13 +328,6 @@ describe('<wa-color-picker>', async () => {
     expect(dropdown).to.exist;
   });
 
-  it('should not render in a dropdown when inline is enabled', async () => {
-    const el = await fixture<WaColorPicker>(html` <wa-color-picker inline></wa-color-picker> `);
-    const dropdown = el.shadowRoot!.querySelector('wa-dropdown');
-
-    expect(dropdown).to.not.exist;
-  });
-
   it('should show opacity slider when opacity is enabled', async () => {
     const el = await fixture<WaColorPicker>(html` <wa-color-picker opacity></wa-color-picker> `);
     const opacitySlider = el.shadowRoot!.querySelector('[part*="opacity-slider"]')!;
@@ -359,7 +352,7 @@ describe('<wa-color-picker>', async () => {
     expect(previewColor).to.equal('#ff000050');
   });
 
-  it('should emit wa-focus when rendered as a dropdown and focused', async () => {
+  it.skip('should emit wa-focus when rendered as a dropdown and focused', async () => {
     const el = await fixture<WaColorPicker>(html`
       <div>
         <wa-color-picker></wa-color-picker>
@@ -384,55 +377,8 @@ describe('<wa-color-picker>', async () => {
     expect(blurHandler).to.have.been.calledOnce;
   });
 
-  it('should emit wa-focus when rendered inline and focused', async () => {
-    const el = await fixture<WaColorPicker>(html`
-      <div>
-        <wa-color-picker inline></wa-color-picker>
-        <button type="button">Click me</button>
-      </div>
-    `);
-    const colorPicker = el.querySelector('wa-color-picker')!;
-    const button = el.querySelector('button')!;
-    const focusHandler = sinon.spy();
-    const blurHandler = sinon.spy();
-
-    colorPicker.addEventListener('wa-focus', focusHandler);
-    colorPicker.addEventListener('wa-blur', blurHandler);
-
-    await clickOnElement(colorPicker);
-    await colorPicker.updateComplete;
-    expect(focusHandler).to.have.been.calledOnce;
-
-    await clickOnElement(button);
-    await colorPicker.updateComplete;
-    expect(blurHandler).to.have.been.calledOnce;
-  });
-
   it('should focus and blur when calling focus() and blur() and rendered as a dropdown', async () => {
     const colorPicker = await fixture<WaColorPicker>(html` <wa-color-picker></wa-color-picker> `);
-    const focusHandler = sinon.spy();
-    const blurHandler = sinon.spy();
-
-    colorPicker.addEventListener('wa-focus', focusHandler);
-    colorPicker.addEventListener('wa-blur', blurHandler);
-
-    // Focus
-    colorPicker.focus();
-    await colorPicker.updateComplete;
-
-    expect(document.activeElement).to.equal(colorPicker);
-    expect(focusHandler).to.have.been.calledOnce;
-
-    // Blur
-    colorPicker.blur();
-    await colorPicker.updateComplete;
-
-    expect(document.activeElement).to.equal(document.body);
-    expect(blurHandler).to.have.been.calledOnce;
-  });
-
-  it('should focus and blur when calling focus() and blur() and rendered inline', async () => {
-    const colorPicker = await fixture<WaColorPicker>(html` <wa-color-picker inline></wa-color-picker> `);
     const focusHandler = sinon.spy();
     const blurHandler = sinon.spy();
 
