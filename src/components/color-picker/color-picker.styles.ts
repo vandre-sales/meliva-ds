@@ -32,15 +32,6 @@ export default css`
     -webkit-user-select: none;
   }
 
-  .color-picker--inline {
-    border: var(--border-style) var(--border-width) var(--border-color);
-  }
-
-  .color-picker--inline:focus-visible {
-    outline: var(--wa-focus-ring);
-    outline-offset: var(--wa-focus-ring-offset);
-  }
-
   .color-picker__grid {
     position: relative;
     height: var(--grid-height);
@@ -339,8 +330,23 @@ export default css`
     outline-offset: var(--wa-focus-ring-offset);
   }
 
-  .color-dropdown__trigger.color-dropdown__trigger--disabled {
+  :host(:disabled) :is(.color-dropdown__label, .color-dropdown__trigger) {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  .form-control.form-control--has-label .form-control__label {
+    cursor: pointer;
+    padding-bottom: 0.5em;
+    display: block;
+  }
+
+  .form-control__input {
+    display: inline-block;
+  }
+
+  .color-dropdown__container {
+    margin: 0 1em;
+    padding-bottom: 0.5em;
   }
 `;

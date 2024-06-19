@@ -5,10 +5,7 @@ layout: component
 ---
 
 ```html {.example}
-<form>
-<wa-color-picker required label="Select a color"></wa-color-picker>
-<wa-button type="submit">Submit</wa-button>
-</form>
+<wa-color-picker label="Select a color"></wa-color-picker>
 ```
 
 :::info
@@ -70,10 +67,18 @@ Use the `size` attribute to change the color picker's trigger size.
 <wa-color-picker size="large" label="Select a color"></wa-color-picker>
 ```
 
-### Inline
+### Disabled
 
-The color picker can be rendered inline instead of in a dropdown using the `inline` attribute.
+The color picker can be rendered as disabled.
 
 ```html {.example}
-<wa-color-picker inline label="Select a color"></wa-color-picker>
+<wa-color-picker disabled label="Select a color"></wa-color-picker>
+```
+
+### Help Text
+
+The color picker can be rendered as disabled.
+
+```html {.example}
+<wa-color-picker label="Select a color" help-text="Choose a color with appropate contrast!"></wa-color-picker>
 ```

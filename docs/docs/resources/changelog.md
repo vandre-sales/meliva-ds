@@ -30,6 +30,7 @@ Here's a list of things that have changed since Shoelace v2. For questions or he
 - Added an easier way to close dialogs by applying `data-dialog="close"` to any button in the dialog
 - Added an easier way to close drawers by applying `data-dialog="close"` to any button in the drawer
 - Added the `--show-duration` and `--hide-duration` custom properties to `<wa-details>`, `<wa-dialog>`, `<wa-drawer>`, `<sl-tree-item>`, and `<wa-popup>`
+- Added visible labels to `<wa-color-picker>`
 - Changed the attribute for setting the base path declaratively to `data-webawesome` instead of `data-shoelace`; additionally, you can place it on any element now instead of just the associated `<script>` tag
 - `<wa-icon>` icons are no longer fixed width by default to accommodate variable width icons
 - Changed the `sl` prefix to `wa` for Web Awesome, including tags, events, etc.
@@ -54,6 +55,7 @@ Here's a list of things that have changed since Shoelace v2. For questions or he
 - Removed `valueAsNumber` from `<wa-input>`. Instead you can use the following to mimic browser behavior:
     setter: `waInput.value = 5.toString()`
     getter: `Number(waInput.value)`
+- Removed `inline` from `<wa-color-picker>`
 
 ---
 
