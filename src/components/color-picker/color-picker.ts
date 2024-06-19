@@ -1082,6 +1082,10 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
 
             // Stop clicks from bubbling on anything except the button and the label. This is a hacky work around i may come to regret, but this "fixes" the issue of `<wa-dropdown>` expecting all children in the "trigger slot" to open the trigger. [Konnor]
             e.stopImmediatePropagation()
+
+            if (this.dropdown.open) {
+              this.dropdown.hide()
+            }
           }}
         >
           <div part="form-control-label" class="form-control__label" id="form-control-label">
