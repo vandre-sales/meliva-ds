@@ -1073,18 +1073,18 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
           part="trigger-container form-control"
           slot="trigger"
           @click=${(e: Event) => {
-            const composedPath = e.composedPath()
-            const triggerButton = this.triggerButton
-            const triggerLabel = this.triggerLabel
-            if (composedPath.find((el) => el === triggerButton || el === triggerLabel)) {
-              return
+            const composedPath = e.composedPath();
+            const triggerButton = this.triggerButton;
+            const triggerLabel = this.triggerLabel;
+            if (composedPath.find(el => el === triggerButton || el === triggerLabel)) {
+              return;
             }
 
             // Stop clicks from bubbling on anything except the button and the label. This is a hacky work around i may come to regret, but this "fixes" the issue of `<wa-dropdown>` expecting all children in the "trigger slot" to open the trigger. [Konnor]
-            e.stopImmediatePropagation()
+            e.stopImmediatePropagation();
 
             if (this.dropdown.open) {
-              this.dropdown.hide()
+              this.dropdown.hide();
             }
           }}
         >
@@ -1114,11 +1114,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             aria-describedby="help-text"
           ></button>
 
-          <div
-            part="form-control-help-text"
-            id="help-text"
-            class="form-control__help-text"
-          >
+          <div part="form-control-help-text" id="help-text" class="form-control__help-text">
             <slot name="help-text">${this.helpText}</slot>
           </div>
         </div>
