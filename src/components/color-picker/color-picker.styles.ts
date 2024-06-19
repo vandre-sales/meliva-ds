@@ -342,7 +342,7 @@ export default css`
   }
 
   .form-control__input {
-    display: block;
+    display: inline-block;
   }
 
   .color-dropdown__container {

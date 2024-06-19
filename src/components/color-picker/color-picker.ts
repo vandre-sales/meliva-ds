@@ -123,6 +123,8 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
 
   @query('[part~="base"]') base: HTMLElement;
   @query('[part~="input"]') input: WaInput;
+  @query('[part~="form-control-label"]') triggerLabel: HTMLElement;
+  @query('[part~="form-control-input"]') triggerButton: HTMLButtonElement;
 
   // @TODO: This is a hacky way to show the "Please fill out this field", do we want the old behavior where it opens the dropdown?
   //   or is the new behavior okay?
@@ -1070,6 +1072,17 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
           })}
           part="trigger-container form-control"
           slot="trigger"
+          @click=${(e: Event) => {
+            const composedPath = e.composedPath()
+            const triggerButton = this.triggerButton
+            const triggerLabel = this.triggerLabel
+            if (composedPath.find((el) => el === triggerButton || el === triggerLabel)) {
+              return
+            }
+
+            // Stop clicks from bubbling on anything except the button and the label. This is a hacky work around i may come to regret, but this "fixes" the issue of `<wa-dropdown>` expecting all children in the "trigger slot" to open the trigger. [Konnor]
+            e.stopImmediatePropagation()
+          }}
         >
           <div part="form-control-label" class="form-control__label" id="form-control-label">
             <slot name="label">${this.label}</slot>
@@ -1097,7 +1110,11 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             aria-describedby="help-text"
           ></button>
 
-          <div part="form-control-help-text" id="help-text" class="form-control__help-text">
+          <div
+            part="form-control-help-text"
+            id="help-text"
+            class="form-control__help-text"
+          >
             <slot name="help-text">${this.helpText}</slot>
           </div>
         </div>
