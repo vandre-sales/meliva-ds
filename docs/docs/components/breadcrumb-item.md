@@ -16,5 +16,5 @@ layout: component
 ```
 
 :::info
-Additional demonstrations can be found in the [breadcrumb examples](/components/breadcrumb).
+Additional demonstrations can be found in the [breadcrumb examples](/docs/components/breadcrumb).
 :::

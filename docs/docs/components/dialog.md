@@ -127,7 +127,7 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
 
 ### Header Actions
 
-The header shows a functional close button by default. You can use the `header-actions` slot to add additional [icon buttons](/components/icon-button) if needed.
+The header shows a functional close button by default. You can use the `header-actions` slot to add additional [icon buttons](/docs/components/icon-button) if needed.
 
 ```html {.example}
 <wa-dialog label="Dialog" with-header with-footer class="dialog-header-actions">

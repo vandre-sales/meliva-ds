@@ -135,7 +135,7 @@ Dropdowns can be placed inside button groups as long as the trigger is an `<wa-b
 
 ### Split Buttons
 
-Create a split button using a button and a dropdown. Use a [visually hidden](/components/visually-hidden) label to ensure the dropdown is accessible to users with assistive devices.
+Create a split button using a button and a dropdown. Use a [visually hidden](/docs/components/visually-hidden) label to ensure the dropdown is accessible to users with assistive devices.
 
 ```html {.example}
 <wa-button-group label="Example Button Group">

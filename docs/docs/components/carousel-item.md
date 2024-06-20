@@ -40,5 +40,5 @@ layout: component
 ```
 
 :::info
-Additional demonstrations can be found in the [carousel examples](/components/carousel).
+Additional demonstrations can be found in the [carousel examples](/docs/components/carousel).
 :::

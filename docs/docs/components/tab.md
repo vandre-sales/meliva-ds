@@ -5,5 +5,5 @@ layout: component
 ---
 
 :::info
-Additional demonstrations can be found in the [tab group examples](/components/tab-group).
+Additional demonstrations can be found in the [tab group examples](/docs/components/tab-group).
 :::
