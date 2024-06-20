@@ -1,8 +1,8 @@
 {
-  "name": "@shoelace-style/shoelace",
+  "name": "@shoelace-style/webawesome",
   "description": "A forward-thinking library of web components.",
   "version": "3.0.0-alpha.1",
-  "homepage": "https://github.com/shoelace-style/shoelace",
+  "homepage": "https://webawesome.com/",
   "author": "Web Awesome",
   "license": "MIT",
   "customElements": "dist/custom-elements.json",
@@ -35,10 +35,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shoelace-style/shoelace.git"
+    "url": "git+https://github.com/shoelace-style/webawesome.git"
   },
   "bugs": {
-    "url": "https://github.com/shoelace-style/shoelace/issues"
+    "url": "https://github.com/shoelace-style/webawesome/issues"
   },
   "scripts": {
     "start": "node scripts/build.js --develop",
