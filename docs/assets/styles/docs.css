@@ -106,7 +106,6 @@ wa-page[view='desktop'] > #sidebar {
 }
 
 wa-page[view='desktop'] > #outline {
-  min-width: 240px;
   max-width: 240px;
 }
 
