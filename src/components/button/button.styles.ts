@@ -344,10 +344,6 @@ export default css`
     height: 0.875em;
   }
 
-  .button--caret:not(.button--visually-hidden-label) .button__caret {
-    margin-inline-start: 0.75em;
-  }
-
   /*
    * Loading modifier
    */
@@ -410,12 +406,31 @@ export default css`
     padding: 0 var(--wa-space-l);
   }
 
-  .button ::slotted([slot='prefix']) {
-    margin-inline-end: 0.75em;
+  .button--small ::slotted([slot='prefix']) {
+    margin-inline-end: var(--wa-space-s);
   }
 
-  .button ::slotted([slot='suffix']) {
-    margin-inline-start: 0.75em;
+  .button--medium ::slotted([slot='prefix']) {
+    margin-inline-end: var(--wa-space-m);
+  }
+
+  .button--large ::slotted([slot='prefix']) {
+    margin-inline-end: var(--wa-space-l);
+  }
+
+  .button--small ::slotted([slot='suffix']),
+  .button--small.button--caret:not(.button--visually-hidden-label) .button__caret {
+    margin-inline-start: var(--wa-space-s);
+  }
+
+  .button--medium ::slotted([slot='suffix']),
+  .button--medium.button--caret:not(.button--visually-hidden-label) .button__caret {
+    margin-inline-start: var(--wa-space-m);
+  }
+
+  .button--large ::slotted([slot='suffix']),
+  .button--large.button--caret:not(.button--visually-hidden-label) .button__caret {
+    margin-inline-start: var(--wa-space-l);
   }
 
   /*
