@@ -11,7 +11,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Options define the selectable items within various form controls such as [select](/docs/components/select).
- * @documentation https://shoelace.style/components/option
+ * @documentation https://backers.webawesome.com/docs/components/option
  * @status stable
  * @since 2.0
  *

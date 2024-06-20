@@ -8,7 +8,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Callouts are used to display important messages inline.
- * @documentation https://shoelace.style/components/callout
+ * @documentation https://backers.webawesome.com/docs/components/callout
  * @status stable
  * @since 2.0
  *

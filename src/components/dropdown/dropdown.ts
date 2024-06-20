@@ -22,7 +22,7 @@ import type WaPopup from '../popup/popup.js';
 
 /**
  * @summary Dropdowns expose additional content that "drops down" in a panel.
- * @documentation https://shoelace.style/components/dropdown
+ * @documentation https://backers.webawesome.com/docs/components/dropdown
  * @status stable
  * @since 2.0
  *

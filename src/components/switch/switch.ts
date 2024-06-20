@@ -18,7 +18,7 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
 
 /**
  * @summary Switches allow the user to toggle an option on or off.
- * @documentation https://shoelace.style/components/switch
+ * @documentation https://backers.webawesome.com/docs/components/switch
  * @status stable
  * @since 2.0
  *

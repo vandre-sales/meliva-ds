@@ -32,7 +32,7 @@ import type WaPopup from '../popup/popup.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://shoelace.style/components/select
+ * @documentation https://backers.webawesome.com/docs/components/select
  * @status stable
  * @since 2.0
  *

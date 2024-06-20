@@ -5,7 +5,7 @@ import WebAwesomeElement from '../../internal/webawesome-element.js';
 
 /**
  * @summary Formats a date/time using the specified locale and options.
- * @documentation https://shoelace.style/components/format-date
+ * @documentation https://backers.webawesome.com/docs/components/format-date
  * @status stable
  * @since 2.0
  */

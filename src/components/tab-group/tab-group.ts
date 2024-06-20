@@ -18,7 +18,7 @@ import type WaTabPanel from '../tab-panel/tab-panel.js';
 
 /**
  * @summary Tab groups organize content into a container that shows one section at a time.
- * @documentation https://shoelace.style/components/tab-group
+ * @documentation https://backers.webawesome.com/docs/components/tab-group
  * @status stable
  * @since 2.0
  *

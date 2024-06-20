@@ -19,7 +19,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Ranges allow the user to select a single value within a given range using a slider.
- * @documentation https://shoelace.style/components/range
+ * @documentation https://backers.webawesome.com/docs/components/range
  * @status stable
  * @since 2.0
  *

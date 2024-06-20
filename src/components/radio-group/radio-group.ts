@@ -19,7 +19,7 @@ import type WaRadioButton from '../radio-button/radio-button.js';
 
 /**
  * @summary Radio groups are used to group multiple [radios](/docs/components/radio) or [radio buttons](/docs/components/radio-button) so they function as a single form control.
- * @documentation https://shoelace.style/components/radio-group
+ * @documentation https://backers.webawesome.com/docs/components/radio-group
  * @status stable
  * @since 2.0
  *

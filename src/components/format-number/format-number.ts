@@ -4,7 +4,7 @@ import WebAwesomeElement from '../../internal/webawesome-element.js';
 
 /**
  * @summary Formats a number using the specified locale and options.
- * @documentation https://shoelace.style/components/format-number
+ * @documentation https://backers.webawesome.com/docs/components/format-number
  * @status stable
  * @since 2.0
  */

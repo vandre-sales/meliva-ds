@@ -19,7 +19,7 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
- * @documentation https://shoelace.style/components/checkbox
+ * @documentation https://backers.webawesome.com/docs/components/checkbox
  * @status stable
  * @since 2.0
  *

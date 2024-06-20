@@ -8,7 +8,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Breadcrumb Items are used inside [breadcrumbs](/docs/components/breadcrumb) to represent different links.
- * @documentation https://shoelace.style/components/breadcrumb-item
+ * @documentation https://backers.webawesome.com/docs/components/breadcrumb-item
  * @status stable
  * @since 2.0
  *
