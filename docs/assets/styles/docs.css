@@ -161,8 +161,12 @@ wa-page::part(menu) {
 /* Main content */
 wa-page > main {
   max-width: 80ch;
-  padding: 2rem;
+  padding: var(--wa-space-xl);
   margin-inline: auto;
+}
+
+wa-page[view='desktop'] > main {
+  padding: var(--wa-space-3xl);
 }
 
 .component-info {
