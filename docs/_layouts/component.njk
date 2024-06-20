@@ -19,7 +19,7 @@
     </wa-badge>
   </div>
   <p class="component-summary">
-    {{ component.summary }}
+    {{ component.summary | inlineMarkdown | safe }}
   </p>
 {% endblock %}
 
