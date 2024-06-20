@@ -12,18 +12,14 @@ Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> bad
 
 - This is the initial release of Web Awesome alpha!
 
-## What's different from Shoelace 2.0?
+---
+
+## What's different from Shoelace v2?
 
 ==If you're new to Web Awesome, you can skip this section.== If you're coming from [Shoelace](https://shoelace.style/), you're in the right place!
 
-Here's a list of things that have changed since Shoelace v2. For questions or help upgrading, [the alpha discussion board](https://github.com/shoelace-style/webawesome-alpha/discussions) is a great place to get help!
+Here's a list of some of the things that have changed since Shoelace v2. For questions or help upgrading, [the alpha discussion board](https://github.com/shoelace-style/webawesome-alpha/discussions) is a great place to get help!
 
-- Disabled form controls will no longer have a `disabled` attribute set when they are disabled via property. IE: `el.disabled = true`. Instead use `:state(disabled)` to style them.
-- Checkboxes will no longer have a `checked` attribute set when their `checked` property is changed. IE: `el.checked = true`. Instead, use the `:state(:checked)` and for unsupported browsers, use `[data-checked]`
-- `data-optional`, `data-required`, `data-invalid`, `data-valid`, `data-user-invalid`, and `data-user-valid` have all been renamed to have a `data-wa-*` prefix. Like so: `data-wa-valid`, `data-wa-invalid`, to avoid any conflicts with user provided attributes.
-- `<wa-checkbox>` and `<wa-switch>` now use `:state(checked)` and `[data-wa-checked]` for CSS styling their "checked" state. The "checked" attribute now maps to `defaultChecked` just like native HTML checkboxes.
-- `<wa-radio>` has changed from `display: block;` to `display: inline-block`
-- `getFormControls()` has been removed. We use Form Associated Custom Elements now and can reliably grab Web Awesome Elements via `formElement.elements`.
 - Added `setKitCode()` and `getKitCode()` functions as well as support for setting kit codes declaratively with `data-webawesome-kit`
 - Added `family` and `variant` attributes to `<wa-icon>` and `<wa-icon-button>`
 - Added the `active` attribute to `<wa-tab-group>`
@@ -32,13 +28,18 @@ Here's a list of things that have changed since Shoelace v2. For questions or he
 - Added the `--show-duration` and `--hide-duration` custom properties to `<wa-details>`, `<wa-dialog>`, `<wa-drawer>`, `<sl-tree-item>`, and `<wa-popup>`
 - Added visible labels to `<wa-color-picker>`
 - Changed the attribute for setting the base path declaratively to `data-webawesome` instead of `data-shoelace`; additionally, you can place it on any element now instead of just the associated `<script>` tag
-- `<wa-icon>` icons are no longer fixed width by default to accommodate variable width icons
 - Changed the `sl` prefix to `wa` for Web Awesome, including tags, events, etc.
 - Changed `primary` variants to `brand` in all components
 - Changed the internal structure of `<wa-checkbox>` so that the internal checkbox now takes up the full height and width of its wrapping container.
+- Changed disabled form controls so they don't have the `disabled` attribute when disabled (use `:state(disabled)` or `[data-wa-disabled]` instead)
+- Changed `<wa-checkbox>` to no longer have a `checked` attribute set when their `checked` property is changed, e.g. `el.checked = true` (use the `:state(:checked)` or `[data-checked]` selector instead)
+- Changed `<wa-checkbox>` and `<wa-switch>` to use `:state(checked)` (fallback `[data-wa-checked]`) for styling their "checked" state (the `checked` attribute now maps to `defaultChecked` like native HTML checkboxes)
+- Changed the `data-optional`, `data-required`, `data-invalid`, `data-valid`, `data-user-invalid`, and `data-user-valid` states to `data-wa-*` prefix to avoid conflicts with user provided attributes
+- Changed `<wa-icon>` so icons are no longer fixed width by default to accommodate variable width icons
+- Changed `<wa-radio>` from `display: block;` to `display: inline-block`
 - Changed `<wa-tab-group>` to implement a "roving tabindex" and `<wa-tab>` is no longer tabbable by default. This aligns closer to the APG pattern for tabs. [#2041]
 - Changed `<wa-tooltip>` to no longer wrap content due to accessibility and styling issues. Tooltips are now associated using the `for` attribute + an `id` on the trigger [#123]
-- Fixed a bug in `<wa-spinner>` that caused it to display incorrectly when zooming in Safari
+- Improved `<wa-spinner>` so it doesn't wobble when zooming in Safari
 - Improved submenu selection by implementing the [safe triangle](https://www.smashingmagazine.com/2023/08/better-context-menus-safe-triangles/) method [#1550]
 - Improved tabbing in `<wa-tab-group>` so it uses a roving tab index instead of being able to cycle through each tab
 - Removed `default` from `<wa-button>` and made `neutral` the new default
@@ -49,14 +50,15 @@ Here's a list of things that have changed since Shoelace v2. For questions or he
 - Removed the `show()` and `hide()` methods from `<wa-dialog>` and `<wa-drawer`> (toggle the `open` attribute instead)
 - Removed JavaScript-based animation customizations due to high confusion and low usage
 - Removed the `wa-request-close` event from `<wa-dialog>` and `<wa-drawer>` (use the `wa-hide` event instead)
-- Removed `valueAsDate` from `<wa-input>`. Instead use the following to mimic browser behavior:
+- Removed `inline` from `<wa-color-picker>`
+- Removed `getFormControls()` since we now use Form Associated Custom Elements and can reliably access Web Awesome Elements via `formElement.elements`.
+- Removed `valueAsDate` from `<wa-input>`; use the following to mimic native behaviors:
     setter: `waInput.value = new Date().toLocaleDateString()`
     getter: `new Date(waInput.value)`
-- Removed `valueAsNumber` from `<wa-input>`. Instead you can use the following to mimic browser behavior:
+- Removed `valueAsNumber` from `<wa-input>`; use the following to mimic native behaviors:
     setter: `waInput.value = 5.toString()`
     getter: `Number(waInput.value)`
-- Removed `inline` from `<wa-color-picker>`
 
----
+Did we miss something? [Let us know!](https://github.com/shoelace-style/webawesome-alpha/discussions)
 
-Coming from Shoelace? [The 2.x changelog can be found here.](https://shoelace.style/resources/changelog/)
+Are you coming from Shoelace? [The 2.x changelog can be found here.](https://shoelace.style/resources/changelog/)
