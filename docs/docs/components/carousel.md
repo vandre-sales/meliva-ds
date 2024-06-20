@@ -9,31 +9,31 @@ layout: component
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
@@ -50,31 +50,31 @@ Use the `pagination` attribute to show the total number of slides and the curren
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
@@ -89,31 +89,31 @@ Use the `navigation` attribute to show previous and next buttons.
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
@@ -128,31 +128,31 @@ By default, the carousel will not advanced beyond the first and last slides. You
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
@@ -167,31 +167,31 @@ The carousel will automatically advance when the `autoplay` attribute is used. T
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
@@ -209,31 +209,31 @@ This example is best demonstrated using a mouse. Try clicking and dragging the s
     <wa-carousel-item>
       <img
         alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-        src="/assets/examples/carousel/mountains.jpg"
+        src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
       />
     </wa-carousel-item>
     <wa-carousel-item>
       <img
-        alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-        src="/assets/examples/carousel/waterfall.jpg"
+        alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+        src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
       />
     </wa-carousel-item>
     <wa-carousel-item>
       <img
         alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-        src="/assets/examples/carousel/sunset.jpg"
+        src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
       />
     </wa-carousel-item>
     <wa-carousel-item>
       <img
         alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-        src="/assets/examples/carousel/field.jpg"
+        src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
       />
     </wa-carousel-item>
     <wa-carousel-item>
       <img
         alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-        src="/assets/examples/carousel/valley.jpg"
+        src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
       />
     </wa-carousel-item>
   </wa-carousel>
@@ -350,31 +350,31 @@ Setting the `orientation` attribute to `vertical` will render the carousel in a 
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
@@ -407,31 +407,31 @@ Use the `--aspect-ratio` custom property to customize the size of the carousel's
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
@@ -465,31 +465,31 @@ Use the `--scroll-hint` custom property to add inline padding in horizontal caro
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
@@ -504,42 +504,42 @@ The carousel has a robust API that makes it possible to extend and customize. Th
   <wa-carousel-item>
     <img
       alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
-      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+      src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+      src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+      src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
     />
   </wa-carousel-item>
   <wa-carousel-item>
     <img
       alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
     />
   </wa-carousel-item>
 </wa-carousel>
 
 <div class="thumbnails">
   <div class="thumbnails__scroller">
-    <img alt="Thumbnail by 1" class="thumbnails__image active" src="/assets/examples/carousel/mountains.jpg" />
-    <img alt="Thumbnail by 2" class="thumbnails__image" src="/assets/examples/carousel/waterfall.jpg" />
-    <img alt="Thumbnail by 3" class="thumbnails__image" src="/assets/examples/carousel/sunset.jpg" />
-    <img alt="Thumbnail by 4" class="thumbnails__image" src="/assets/examples/carousel/field.jpg" />
-    <img alt="Thumbnail by 5" class="thumbnails__image" src="/assets/examples/carousel/valley.jpg" />
+    <img alt="Thumbnail by 1" class="thumbnails__image active" src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10" />
+    <img alt="Thumbnail by 2" class="thumbnails__image" src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10" />
+    <img alt="Thumbnail by 3" class="thumbnails__image" src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10" />
+    <img alt="Thumbnail by 4" class="thumbnails__image" src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10" />
+    <img alt="Thumbnail by 5" class="thumbnails__image" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10" />
   </div>
 </div>
 
