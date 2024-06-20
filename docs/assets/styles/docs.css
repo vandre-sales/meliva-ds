@@ -270,3 +270,7 @@ wa-page[view='desktop'] > main {
 .component-table td > * + * {
   margin-block-start: var(--wa-space-s);
 }
+
+.table-scroll {
+  overflow-x: auto;
+}
