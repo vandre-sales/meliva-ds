@@ -20,6 +20,9 @@ layout: page
       margin: 0;
     }
   }
+  wa-page:not([view="desktop"]) > main {
+    --content-flow-spacing: 3rem;
+  }
   .brand-font {
     font-family: cera-round-pro;
   }
@@ -41,7 +44,7 @@ layout: page
     background-image: linear-gradient(color-mix(in oklab, var(--wa-brand-orange), orangered 40%) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--wa-brand-orange), orangered 40%) 1px, transparent 1px);
     background-size: 2rem 2rem;
     color: white;
-    padding: 7.5rem 0 var(--content-flow-spacing) 0;
+    padding: calc(var(--content-flow-spacing) * 1.875) 0 var(--content-flow-spacing) 0;
   }
   .hero-content {
     max-width: var(--content-width);
@@ -51,7 +54,7 @@ layout: page
       margin-block-start: 2rem;
     }
     & h1 {
-      font-size: 3.25rem;
+      font-size: clamp(2.5625rem, 13vw, 3.25rem);
     }
     & .emphasis::after {
       background-color: var(--wa-brand-grey);
@@ -67,15 +70,20 @@ layout: page
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    flex-wrap: wrap;
     background-color: var(--wa-brand-grey);
     border-radius: 0.75rem;
     font-size: 0.875rem;
     padding: 1.5rem;
+    & > *:first-child {
+      flex: 1 1 67%;
+    }
     & wa-button {
       --wa-form-control-height-s: 2.5rem;
       --border-color: black;
       --border-width: 0.125rem;
       --box-shadow: 0 0.25rem 0 0 var(--border-color);
+      flex: 1 1 auto;
       &:active:not([disabled]) {
         --box-shadow: 0 0 0 0 transparent;
         transform: translateY(0.25rem);
@@ -95,7 +103,7 @@ layout: page
     background-color: var(--wa-brand-grey);
     border-radius: 1.125rem;
     color: white;
-    padding: 4rem;
+    padding: var(--content-flow-spacing);
     & > * + * {
       margin-block-start: 2rem;
     }
