@@ -30,31 +30,31 @@ Use the `appearance` attribute to change the button's visual appearance.
 <div style="margin-block-end: 1rem;">
   <wa-button appearance="filled" variant="neutral">Filled</wa-button>
   <wa-button appearance="tinted" variant="neutral">Tinted</wa-button>
-  <wa-button appearance="outline" variant="neutral">Outline</wa-button>
+  <wa-button appearance="outlined" variant="neutral">Outlined</wa-button>
   <wa-button appearance="text" variant="neutral">Text</wa-button>
 </div>
 <div style="margin-block-end: 1rem;">
   <wa-button appearance="filled" variant="brand">Filled</wa-button>
   <wa-button appearance="tinted" variant="brand">Tinted</wa-button>
-  <wa-button appearance="outline" variant="brand">Outline</wa-button>
+  <wa-button appearance="outlined" variant="brand">Outlined</wa-button>
   <wa-button appearance="text" variant="brand">Text</wa-button>
 </div>
 <div style="margin-block-end: 1rem;">
   <wa-button appearance="filled" variant="success">Filled</wa-button>
   <wa-button appearance="tinted" variant="success">Tinted</wa-button>
-  <wa-button appearance="outline" variant="success">Outline</wa-button>
+  <wa-button appearance="outlined" variant="success">Outlined</wa-button>
   <wa-button appearance="text" variant="success">Text</wa-button>
 </div>
 <div style="margin-block-end: 1rem;">
   <wa-button appearance="filled" variant="warning">Filled</wa-button>
   <wa-button appearance="tinted" variant="warning">Tinted</wa-button>
-  <wa-button appearance="outline" variant="warning">Outline</wa-button>
+  <wa-button appearance="outlined" variant="warning">Outlined</wa-button>
   <wa-button appearance="text" variant="warning">Text</wa-button>
 </div>
 <div>
   <wa-button appearance="filled" variant="danger">Filled</wa-button>
   <wa-button appearance="tinted" variant="danger">Tinted</wa-button>
-  <wa-button appearance="outline" variant="danger">Outline</wa-button>
+  <wa-button appearance="outlined" variant="danger">Outlined</wa-button>
   <wa-button appearance="text" variant="danger">Text</wa-button>
 </div>
 ```

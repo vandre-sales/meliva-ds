@@ -127,7 +127,7 @@ wa-button:not([variant='text']) {
   }
 }
 
-wa-button:not([appearance='outline']) {
+wa-button:not([appearance='outlined']) {
   &[variant='brand'] {
     --background: linear-gradient(var(--wa-color-brand-fill-loud) 25%, var(--wa-color-brand-fill-loud));
     --background-hover: linear-gradient(

@@ -75,7 +75,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
   @property({ reflect: true }) variant: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' = 'neutral';
 
   /** The button's visual appearance. */
-  @property({ reflect: true }) appearance: 'filled' | 'tinted' | 'outline' | 'text' = 'filled';
+  @property({ reflect: true }) appearance: 'filled' | 'tinted' | 'outlined' | 'text' = 'filled';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -267,7 +267,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
           'button--loading': this.loading,
           'button--filled': this.appearance === 'filled',
           'button--tinted': this.appearance === 'tinted',
-          'button--outline': this.appearance === 'outline',
+          'button--outlined': this.appearance === 'outlined',
           'button--text': this.appearance === 'text',
           'button--pill': this.pill,
           'button--rtl': this.localize.dir() === 'rtl',

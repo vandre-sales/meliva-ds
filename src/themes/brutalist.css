@@ -492,7 +492,7 @@
     --wa-shadow-offset-y-s: 0;
   }
 
-  wa-button:not([appearance='outline']) {
+  wa-button:not([appearance='outlined']) {
     &[variant='neutral'] {
       --background-hover: color-mix(in oklab, var(--background), transparent 20%);
     }

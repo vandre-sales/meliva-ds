@@ -84,41 +84,41 @@ export default css`
   }
 
   /*
-   * Outline buttons
+   * Outlined buttons
    */
 
-  :host([appearance='outline']),
+  :host([appearance='outlined']),
   :host(.wa-button-group__button--radio:not([checked])) {
     --background-color: transparent;
     --background-color-active: color-mix(in oklab, var(--background-color-hover), transparent 20%);
   }
 
-  :host([appearance='outline'][variant='neutral']),
+  :host([appearance='outlined'][variant='neutral']),
   :host(.wa-button-group__button--radio:not([checked])) {
     --background-color-hover: var(--wa-color-neutral-fill-quiet);
     --border-color: var(--wa-color-neutral-border-loud);
     --label-color: var(--wa-color-neutral-on-quiet);
   }
 
-  :host([appearance='outline'][variant='brand']) {
+  :host([appearance='outlined'][variant='brand']) {
     --background-color-hover: var(--wa-color-brand-fill-quiet);
     --border-color: var(--wa-color-brand-border-loud);
     --label-color: var(--wa-color-brand-on-quiet);
   }
 
-  :host([appearance='outline'][variant='success']) {
+  :host([appearance='outlined'][variant='success']) {
     --background-color-hover: var(--wa-color-success-fill-quiet);
     --border-color: var(--wa-color-success-border-loud);
     --label-color: var(--wa-color-success-on-quiet);
   }
 
-  :host([appearance='outline'][variant='warning']) {
+  :host([appearance='outlined'][variant='warning']) {
     --background-color-hover: var(--wa-color-warning-fill-quiet);
     --border-color: var(--wa-color-warning-border-loud);
     --label-color: var(--wa-color-warning-on-quiet);
   }
 
-  :host([appearance='outline'][variant='danger']) {
+  :host([appearance='outlined'][variant='danger']) {
     --background-color-hover: var(--wa-color-danger-fill-quiet);
     --border-color: var(--wa-color-danger-border-loud);
     --label-color: var(--wa-color-danger-on-quiet);
@@ -265,7 +265,7 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    .button.button--outline.button--checked:not(.button--disabled) {
+    .button.button--outlined.button--checked:not(.button--disabled) {
       outline: solid 2px transparent;
     }
   }
