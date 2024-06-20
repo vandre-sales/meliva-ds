@@ -105,10 +105,6 @@ wa-page[view='desktop'] > #sidebar {
   max-height: 100%;
 }
 
-wa-page[view='desktop'] > #outline {
-  max-width: 240px;
-}
-
 #sidebar,
 #outline {
   h2 {
