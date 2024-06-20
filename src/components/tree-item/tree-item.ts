@@ -21,7 +21,7 @@ import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup, PropertyValueMap } from 'lit';
 
 /**
- * @summary A tree item serves as a hierarchical node that lives inside a [tree](/components/tree).
+ * @summary A tree item serves as a hierarchical node that lives inside a [tree](/docs/components/tree).
  * @documentation https://shoelace.style/components/tree-item
  * @status stable
  * @since 2.0
