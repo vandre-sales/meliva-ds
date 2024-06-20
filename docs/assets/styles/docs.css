@@ -165,6 +165,10 @@ wa-page > main {
   margin-inline: auto;
 }
 
+.component-info {
+  margin-block-end: var(--wa-flow-spacing);
+}
+
 /* Current link */
 #sidebar,
 #outline {
