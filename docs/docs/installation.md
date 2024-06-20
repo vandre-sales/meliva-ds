@@ -113,4 +113,4 @@ You will see files named `chunk.[hash].js` in the `chunks` directory. Never impo
 
 ## Using Web Awesome with npm
 
-An npm package isn't available in the early backer alpha release, but we'll have one soon! For now, please enjoy Web Awesome from the CDN as described above.
+An npm package isn't available in the early backer alpha release, but we'll have one soon! For now, please enjoy Web Awesome from the CDN as shown above.
