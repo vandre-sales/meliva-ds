@@ -16,9 +16,11 @@ document.addEventListener('click', event => {
     const codeExample = pen.closest('.code-example');
     const code = codeExample.querySelector('code');
     const cdnUrl = document.documentElement.dataset.cdnUrl;
-    const html = `<script type="module" src="${cdnUrl}webawesome.loader.js"></script>` + `\n\n` + `${code.textContent}`;
-    const css =
-      `import '${cdnUrl}themes/default.css';` + `\n\n` + `body {\n  font: 16px sans-serif;\n  padding: 1rem;\n}\n`;
+    const html =
+      `<script type="module" src="${cdnUrl}webawesome.loader.js"></script>\n` +
+      `<link rel="stylesheet" href="${cdnUrl}themes/default.css">\n\n` +
+      `${code.textContent}`;
+    const css = 'body {\n  font: 16px sans-serif;\n  padding: 1rem;\n}';
     const js = '';
 
     const form = document.createElement('form');
