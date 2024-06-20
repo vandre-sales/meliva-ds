@@ -28,7 +28,7 @@ The autoloader is the easiest way to use Web Awesome. A lightweight script watch
 
 ```html
 <link rel="stylesheet" href="{% cdnUrl 'themes/default.css' %}" />
-<script type="module" src="{% cdnUrl 'autoloader.js' %}"></script>
+<script type="module" src="{% cdnUrl 'webawesome.loader.js' %}"></script>
 ```
 
 Now you can [start using Web Awesome!](/getting-started/usage)
@@ -39,7 +39,7 @@ While convenient, autoloading may lead to a [Flash of Undefined Custom Elements]
 
 ## Setting the Base Path
 
-Some components rely on assets (icons, images, etc.) and Web Awesome needs to know where they're located. For convenience, Web Awesome will try to auto-detect the correct location based on the script you've loaded it from. This assumes assets are colocated with `autoloader.js` and will "just work" for most users.
+Some components rely on assets (icons, images, etc.) and Web Awesome needs to know where they're located. For convenience, Web Awesome will try to auto-detect the correct location based on the script you've loaded it from. This assumes assets are colocated with `webawesome.loader.js` and will "just work" for most users.
 
 ==If you're using the CDN, you can skip this section.== However, if you're [cherry picking](#cherry-picking) or bundling Web Awesome, you'll need to set the base path. You can do this one of two ways.
 
