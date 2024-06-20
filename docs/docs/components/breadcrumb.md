@@ -108,7 +108,7 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
   <wa-breadcrumb-item>
     Web Design
     <wa-dropdown slot="suffix">
-      <wa-button slot="trigger" size="small" pill>
+      <wa-button slot="trigger" size="small" appearance="tinted" pill>
         <wa-icon label="More options" name="ellipsis" variant="solid"></wa-icon>
       </wa-button>
       <wa-menu>

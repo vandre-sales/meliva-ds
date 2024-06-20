@@ -63,8 +63,12 @@ export default css`
     display: inline-flex;
   }
 
-  ::slotted(*) {
-    margin-inline-end: var(--wa-space-s) !important;
+  ::slotted([slot='prefix']) {
+    margin-inline-end: var(--wa-space-s);
+  }
+
+  ::slotted([slot='suffix']) {
+    margin-inline-start: var(--wa-space-s);
   }
 
   :host(:last-of-type) .breadcrumb-item__separator {
