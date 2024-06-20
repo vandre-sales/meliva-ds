@@ -344,6 +344,10 @@ export default css`
     height: 0.875em;
   }
 
+  .button--caret:not(.button--visually-hidden-label) .button__caret {
+    margin-inline-start: 0.75em;
+  }
+
   /*
    * Loading modifier
    */
@@ -410,8 +414,7 @@ export default css`
     margin-inline-end: 0.75em;
   }
 
-  .button ::slotted([slot='suffix']),
-  .button .button__caret {
+  .button ::slotted([slot='suffix']) {
     margin-inline-start: 0.75em;
   }
 

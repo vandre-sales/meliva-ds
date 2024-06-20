@@ -67,6 +67,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
   @query('.button') button: HTMLButtonElement | HTMLLinkElement;
 
   @state() private hasFocus = false;
+  @state() visuallyHiddenLabel = false;
   @state() invalid = false;
   @property() title = ''; // make reactive to pass through
 
@@ -198,6 +199,15 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
     this.dispatchEvent(new WaInvalidEvent());
   }
 
+  private handleLabelSlotChange(event: Event) {
+    // If the only thing slotted in is a visually hidden element, we consider it a visually hidden label and apply a
+    // class so we can adjust styles accordingly.
+    const elements = (event.target as HTMLSlotElement).assignedElements({ flatten: true });
+    if (elements.length === 1 && elements[0].localName === 'wa-visually-hidden') {
+      this.visuallyHiddenLabel = true;
+    }
+  }
+
   private isButton() {
     return this.href ? false : true;
   }
@@ -213,7 +223,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
 
   // eslint-disable-next-line
   setValue(..._args: Parameters<WebAwesomeFormAssociatedElement['setValue']>) {
-    // This is just a stub. We dont ever actually want to set a value on the form. That happens when the button is clicked and added
+    // This is just a stub. We don't ever actually want to set a value on the form. That happens when the button is clicked and added
     // via the light dom button.
   }
 
@@ -260,7 +270,8 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
           'button--outline': this.appearance === 'outline',
           'button--text': this.appearance === 'text',
           'button--pill': this.pill,
-          'button--rtl': this.localize.dir() === 'rtl'
+          'button--rtl': this.localize.dir() === 'rtl',
+          'button--visually-hidden-label': this.visuallyHiddenLabel
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
@@ -280,7 +291,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
         @click=${this.handleClick}
       >
         <slot name="prefix" part="prefix" class="button__prefix"></slot>
-        <slot part="label" class="button__label"></slot>
+        <slot part="label" class="button__label" @slotchange=${this.handleLabelSlotChange}></slot>
         <slot name="suffix" part="suffix" class="button__suffix"></slot>
         ${
           this.caret
