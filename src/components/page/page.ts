@@ -9,7 +9,7 @@ import type WaDrawer from '../drawer/drawer.js';
 
 /**
  * @summary Pages offer an easy way to scaffold pages using minimal markup.
- * @documentation https://shoelace.style/components/page
+ * @documentation https://backers.webawesome.com/docs/components/page
  * @status experimental
  * @since 3.0
  *

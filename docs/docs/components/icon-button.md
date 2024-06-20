@@ -4,7 +4,7 @@ description: Icons buttons are simple, icon-only buttons that can be used for ac
 layout: component
 ---
 
-For a full list of icons that come bundled with Web Awesome, refer to the [icon component](/components/icon).
+For a full list of icons that come bundled with Web Awesome, refer to the [icon component](/docs/components/icon).
 
 ```html {.example}
 <wa-icon-button name="gear" label="Settings"></wa-icon-button>

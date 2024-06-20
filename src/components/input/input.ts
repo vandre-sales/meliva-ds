@@ -22,7 +22,7 @@ import type WaButton from '../button/button.js';
 
 /**
  * @summary Inputs collect data from the user.
- * @documentation https://shoelace.style/components/input
+ * @documentation https://backers.webawesome.com/docs/components/input
  * @status stable
  * @since 2.0
  *

@@ -16,7 +16,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.
- * @documentation https://shoelace.style/components/details
+ * @documentation https://backers.webawesome.com/docs/components/details
  * @status stable
  * @since 2.0
  *

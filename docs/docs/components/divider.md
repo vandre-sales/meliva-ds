@@ -54,7 +54,7 @@ Add the `vertical` attribute to draw the divider in a vertical orientation. The 
 
 ### Menu Dividers
 
-Use dividers in [menus](/components/menu) to visually group menu items.
+Use dividers in [menus](/docs/components/menu) to visually group menu items.
 
 ```html {.example}
 <wa-menu style="max-width: 200px;">

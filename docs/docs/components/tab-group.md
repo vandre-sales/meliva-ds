@@ -4,7 +4,7 @@ description: Tab groups organize content into a container that shows one section
 layout: component
 ---
 
-Tab groups make use of [tabs](/components/tab) and [tab panels](/components/tab-panel). Each tab must be slotted into the `nav` slot and its `panel` must refer to a tab panel of the same name.
+Tab groups make use of [tabs](/docs/components/tab) and [tab panels](/docs/components/tab-panel). Each tab must be slotted into the `nav` slot and its `panel` must refer to a tab panel of the same name.
 
 ```html {.example}
 <wa-tab-group>

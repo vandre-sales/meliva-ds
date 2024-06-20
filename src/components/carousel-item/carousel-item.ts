@@ -6,7 +6,7 @@ import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary A carousel item represent a slide within a [carousel](/components/carousel).
+ * @summary A carousel item represent a slide within a [carousel](/docs/components/carousel).
  *
  * @since 2.0
  * @status experimental

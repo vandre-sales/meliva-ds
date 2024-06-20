@@ -4,7 +4,7 @@ description: Radios buttons allow the user to select a single option from a grou
 layout: component
 ---
 
-Radio buttons are designed to be used with [radio groups](/components/radio-group). When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls.
+Radio buttons are designed to be used with [radio groups](/docs/components/radio-group). When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls.
 
 ```html {.example}
 <wa-radio-group label="Select an option" name="a" value="1">

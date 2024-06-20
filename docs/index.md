@@ -15,7 +15,7 @@ layout: page
     --content-padding-inline: 2rem;
     --content-flow-spacing: 4rem;
     max-width: 100%;
-    padding: 0;
+    padding: 0 !important;
     & p, h1, h2, h3, h4, h5, h6 {
       margin: 0;
     }

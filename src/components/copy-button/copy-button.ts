@@ -15,7 +15,7 @@ import type WaTooltip from '../tooltip/tooltip.js';
 
 /**
  * @summary Copies text data to the clipboard when the user clicks the trigger.
- * @documentation https://shoelace.style/components/copy
+ * @documentation https://backers.webawesome.com/docs/components/copy
  * @status experimental
  * @since 2.7
  *

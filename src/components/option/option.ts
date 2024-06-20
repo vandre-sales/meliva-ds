@@ -10,8 +10,8 @@ import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Options define the selectable items within various form controls such as [select](/components/select).
- * @documentation https://shoelace.style/components/option
+ * @summary Options define the selectable items within various form controls such as [select](/docs/components/select).
+ * @documentation https://backers.webawesome.com/docs/components/option
  * @status stable
  * @since 2.0
  *

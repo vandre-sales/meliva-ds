@@ -14,7 +14,7 @@ export interface MenuSelectEventDetail {
 
 /**
  * @summary Menus provide a list of options for the user to choose from.
- * @documentation https://shoelace.style/components/menu
+ * @documentation https://backers.webawesome.com/docs/components/menu
  * @status stable
  * @since 2.0
  *

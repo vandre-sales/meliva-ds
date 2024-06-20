@@ -25,7 +25,7 @@ Copy Buttons display feedback in a tooltip. You can customize the labels using t
 
 ### Custom Icons
 
-Use the `copy-icon`, `success-icon`, and `error-icon` slots to customize the icons that get displayed for each state. You can use [`<wa-icon>`](/components/icon) or your own images.
+Use the `copy-icon`, `success-icon`, and `error-icon` slots to customize the icons that get displayed for each state. You can use [`<wa-icon>`](/docs/components/icon) or your own images.
 
 ```html {.example}
 <wa-copy-button value="Copied from a custom button">
