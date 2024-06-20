@@ -274,6 +274,11 @@ export default class WaDialog extends WebAwesomeElement {
   }
 }
 
+// Ugly, but it fixes light dismiss in Safari: https://bugs.webkit.org/show_bug.cgi?id=267688
+document.body.addEventListener('pointerdown', () => {
+  /* empty */
+});
+
 declare global {
   interface HTMLElementTagNameMap {
     'wa-dialog': WaDialog;
