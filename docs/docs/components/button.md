@@ -87,7 +87,6 @@ It's often helpful to have a button that works like a link. This is possible by 
 <wa-button href="https://example.com/">Link</wa-button>
 <wa-button href="https://example.com/" target="_blank">New Window</wa-button>
 <wa-button href="/assets/images/logo.svg" download="shoelace.svg">Download</wa-button>
-<wa-button href="https://example.com/" disabled>Disabled</wa-button>
 ```
 
 :::info
