@@ -250,12 +250,3 @@ header {
     }
   }
 }
-
-@keyframes show-search-backdrop {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
