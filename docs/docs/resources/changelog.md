@@ -8,6 +8,10 @@ Web Awesome follows [Semantic Versioning](https://semver.org/). Breaking changes
 
 Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> badge should not be used in production. They are made available as release candidates for development and testing purposes. As such, changes to experimental components will not be subject to semantic versioning.
 
+:::warning
+During the alpha period, things might break! We take breaking changes very seriously, but sometimes they're necessary to make the final product that much better. We appreciate your patience!
+:::
+
 ## Web Awesome 1.0.0-alpha.1
 
 - This is the initial release of Web Awesome alpha!
