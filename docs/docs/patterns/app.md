@@ -296,7 +296,7 @@ TODO Page Description
 ### Simple Pagination
 
 ```html {.example}
-  <wa-card style="width: 100%;" class="simple-pagination">
+  <wa-card with-footer style="width: 100%;" class="simple-pagination">
     <div>Card body</div>
     <div slot="footer" class="footer">
       Showing 1 to 10 of 50 Results
@@ -319,7 +319,7 @@ TODO Page Description
 ### Multi Page
 
 ```html {.example}
-<wa-card style="width: 100%;" class="simple-pagination">
+<wa-card with-footer style="width: 100%;" class="simple-pagination">
     <div>Card body</div>
     <div slot="footer" class="footer">
       Showing 1 to 10 of 50 Results
@@ -351,7 +351,7 @@ TODO Page Description
 
 ```html{.example}
 <form class="comment-box">
-<wa-card>
+<wa-card with-footer>
   <wa-textarea resize="auto"></wa-textarea>
   <div slot="footer" class="comment-footer">
     <wa-button variant="text">
@@ -500,7 +500,7 @@ TODO Page Description
 ### With starting points
 
 ```html{.example}
-<wa-card>
+<wa-card with-header with-footer>
   <div slot="header">
     <h4>Projects</h4>
     <p>You haven’t created a project yet. Get started by selecting a template or start from an empty project.</p>

@@ -11,13 +11,13 @@ TODO Page Description
 ### Slide Over
 
 ```html {.example}
-<wa-card class="card-header" style="width: 500px;">
+<wa-card with-header with-footer class="card-header" style="width: 500px;">
   <div slot="header">
     <strong>Shopping Cart</strong>
     <wa-icon-button name="close" variant="solid" label="Settings"></wa-icon-button>
   </div>
     <section class="cart-item">
-    <img src="https://source.unsplash.com/white-and-red-nike-air-force-1-high--iJgjj33eEk" alt="" width="300">
+    <img src="https://images.unsplash.com/photo-1704677982224-89cd6d039fa6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDEwOTJ8&ixlib=rb-4.0.3&q=80&w=1080" alt="" width="300">
     <div>
       <div style="display:flex; justify-content: space-between; font-weight: 600;">
         <span>AJ1</span>
@@ -31,7 +31,7 @@ TODO Page Description
     </div>
   </section>
    <section class="cart-item">
-    <img src="https://source.unsplash.com/smiling-woman-in-black-and-white-print-t-shirt-VW5VjskNXZ8" alt="" width="300">
+    <img src="https://plus.unsplash.com/premium_photo-1707932485795-1d0aed727376?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDE2NDl8&ixlib=rb-4.0.3&q=80&w=1080" alt="" width="300">
     <div>
       <div style="display:flex; justify-content: space-between; font-weight: 600;">
         <span>The Trails</span>
@@ -45,7 +45,7 @@ TODO Page Description
     </div>
   </section>
    <section class="cart-item">
-    <img src="https://source.unsplash.com/man-standing-in-front-of-door-dG4Eb_oC5iM" alt="" width="300">
+    <img src="https://plus.unsplash.com/premium_photo-1690347839113-b5db143123b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDE5MTB8&ixlib=rb-4.0.3&q=80&w=1080" alt="" width="300">
     <div>
       <div style="display:flex; justify-content: space-between; font-weight: 600;">
         <span>Outcast</span>
@@ -120,7 +120,7 @@ TODO Page Description
   <h1>Shopping Cart</h1>
   <div class="first-column">
     <section class="cart-item">
-     <img class="cart-item-image" src="https://source.unsplash.com/white-crew-neck-t-shirt-acn5ERAeSb4" alt="" width="300">
+     <img class="cart-item-image" src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDIzNDd8&ixlib=rb-4.0.3&q=80&w=1080" alt="" width="300">
     <div class="cart-item-info">
       <div class="cart-item-meta">
         <div>
@@ -144,7 +144,7 @@ TODO Page Description
     </div>
   </section>
   <section class="cart-item">
-     <img class="cart-item-image" src="https://source.unsplash.com/blue-and-white-checkered-dress-shirt-RqYTuWkTdEs" alt="" width="300">
+     <img class="cart-item-image" src="https://images.unsplash.com/photo-1624378440847-4a64ee1a889d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDI0MDd8&ixlib=rb-4.0.3&q=80&w=1080" alt="" width="300">
     <div class="cart-item-info">
       <div class="cart-item-meta">
         <div>
@@ -168,7 +168,7 @@ TODO Page Description
     </div>
   </section>
   <section class="cart-item">
-     <img class="cart-item-image" src="https://source.unsplash.com/white-and-blue-cat-printed-crew-neck-t-shirt-fEt6Wd4t4j0" alt="" width="300">
+     <img class="cart-item-image" src="https://images.unsplash.com/photo-1511551203524-9a24350a5771?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDI0OTB8&ixlib=rb-4.0.3&q=80&w=1080" alt="" width="300">
     <div class="cart-item-info">
       <div class="cart-item-meta">
         <div>
@@ -194,7 +194,7 @@ TODO Page Description
 
 
   </div>
-  <wa-card class="card-header second-column">
+  <wa-card with-header class="card-header second-column">
   <div slot="header">
     Order Summary
 
@@ -277,7 +277,7 @@ TODO Page Description
   <h1>Shopping Cart</h1>
   <div class="first-half half">
     <section class="cart-item">
-    <img class="cart-item-image" src="https://source.unsplash.com/black-convertible-coupe-0CZwuZhiC84" alt="" >
+    <img class="cart-item-image" src="https://images.unsplash.com/photo-1594787317357-dcda50fd1d78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDI4MDd8&ixlib=rb-4.0.3&q=80&w=1080" alt="" >
     <div>
       <span style="display: flex;justify-content: space-between;">
         <span><strong>Convertible</strong></span>
@@ -294,7 +294,7 @@ TODO Page Description
 
   </section>
   <section class="cart-item">
-    <img class="cart-item-image" src="https://source.unsplash.com/blue-open-door-pickup-truck-BCKgFzJbwz4" alt="" >
+    <img class="cart-item-image" src="https://images.unsplash.com/photo-1597670250484-0e9aff7f8804?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDI4NTB8&ixlib=rb-4.0.3&q=80&w=1080" alt="" >
     <div>
       <span style="display: flex;justify-content: space-between;">
         <span><strong>Pickup</strong></span>
@@ -311,7 +311,7 @@ TODO Page Description
 
   </section>
   <section class="cart-item">
-    <img class="cart-item-image" src="https://source.unsplash.com/red-and-white-volkswagen-t-2-scale-model-GlDRYsruYJ8" alt="" >
+    <img class="cart-item-image" src="https://images.unsplash.com/photo-1594787826350-19386fdb2363?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDI4ODV8&ixlib=rb-4.0.3&q=80&w=1080" alt="" >
     <div>
       <span style="display: flex;justify-content: space-between;">
         <span><strong>Volkswagon T2</strong></span>
@@ -376,7 +376,7 @@ TODO Page Description
 ### Product Quickview
 
 ```html {.example}
-<wa-card class="card-header">
+<wa-card with-header class="card-header">
   <div slot="header">
     <strong>Quickview</strong>
     <wa-icon-button name="close" variant="solid" label="Settings"></wa-icon-button>
@@ -386,7 +386,7 @@ TODO Page Description
     grid-template-columns: 35% 65%;
     grid-column-gap: 1rem;
 ">
-  <img class="cart-item-image" src="https://source.unsplash.com/white-crew-neck-t-shirt-acn5ERAeSb4" alt="" >
+  <img class="cart-item-image" src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDI5OTJ8&ixlib=rb-4.0.3&q=80&w=1080" alt="" >
   <div>
     <h3>Quality Cotton Tee</h3>
     <span>$45.00</span>
@@ -496,7 +496,7 @@ TODO Page Description
   </div>
   <div>
     <div class="order-history-list-item" style="align-items: center;">
-      <img class="cart-item-image" src="https://source.unsplash.com/beige-wooden-bar-stool-4kTbAMRAHtQ" alt="">
+      <img class="cart-item-image" src="https://images.unsplash.com/photo-1628304433247-804066a9864c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDMxODN8&ixlib=rb-4.0.3&q=80&w=1080" alt="">
       <div>
         <span style="display: flex;justify-content: space-between;">
           <span><strong>Kitchen Stool</strong></span>
@@ -511,7 +511,7 @@ TODO Page Description
       </div>
     </div>
     <div class="order-history-list-item" style="margin-top: 1rem; align-items: center;">
-      <img class="cart-item-image" src="https://source.unsplash.com/green-succulent-in-teal-ceramic-vase-miziNqvJx5M" alt="">
+      <img class="cart-item-image" src="https://plus.unsplash.com/premium_photo-1675705062445-0c14a42d4289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDMwODJ8&ixlib=rb-4.0.3&q=80&w=1080" alt="">
       <div>
         <span style="display: flex;justify-content: space-between;">
           <span><strong>Succulent</strong></span>
@@ -526,7 +526,7 @@ TODO Page Description
       </div>
     </div>
     <div class="order-history-list-item" style="margin-top: 1rem; align-items: center;">
-      <img class="cart-item-image" src="https://source.unsplash.com/battercreek-coffee-pack-rsnzc-8dVs0" alt="">
+      <img class="cart-item-image" src="https://images.unsplash.com/photo-1613536844480-ac5d7b1b6ed1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDMyMzh8&ixlib=rb-4.0.3&q=80&w=1080" alt="">
       <div>
         <span style="display: flex;justify-content: space-between;">
           <span><strong>French Roast</strong></span>
@@ -610,7 +610,7 @@ TODO Page Description
   <h4>Order Summary</h4>
   <wa-card class="card-basic">
     <div class="summary-item">
-      <img src="https://source.unsplash.com/pair-of-white-and-orange-athletic-shoes-on-white-box-dwKiHoqqxk8">
+      <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDM1MzB8&ixlib=rb-4.0.3&q=80&w=1080">
       <div class="summary-item-info">
         <span style="display: flex; justify-content: space-between;">
           <span class="item-heading">Dolce Runners</span>
@@ -631,7 +631,7 @@ TODO Page Description
       <hr style="grid-column: 1 / -1;">
     </div>
     <div class="summary-item">
-      <img src="https://source.unsplash.com/white-and-brown-nike-sneaker-LV_4qM5Gf9c">
+      <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDM1Njh8&ixlib=rb-4.0.3&q=80&w=1080">
       <div class="summary-item-info">
         <span style="display: flex; justify-content: space-between;">
           <span class="item-heading">Dunk High</span>
@@ -652,7 +652,7 @@ TODO Page Description
       <hr style="grid-column: 1 / -1;">
     </div>
     <div class="summary-item">
-      <img src="https://source.unsplash.com/black-and-white-new-balance-low-top-sneaker-6zO5VKogoZE">
+      <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDM2MTF8&ixlib=rb-4.0.3&q=80&w=1080">
       <div class="summary-item-info">
         <span style="display: flex; justify-content: space-between;">
           <span class="item-heading">NB Runner</span>

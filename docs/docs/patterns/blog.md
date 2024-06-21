@@ -12,50 +12,121 @@ TODO Page Description
 ```html{.example}
 <wa-carousel pagination>
   <wa-carousel-item>
-    <img
-      alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
-      src="/assets/examples/carousel/mountains.jpg"
-    />
-  </wa-carousel-item>
-  <wa-carousel-item>
-    <img
+    <a href="#" class="hero-link">
+      <div style="background: #fe53a0;">
+       
+      </div>
+      <div style="background: gray;">
+        <img
       alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
-      src="/assets/examples/carousel/waterfall.jpg"
+      src="/assets/examples/carousel/blog-carousel-5.jpg"
     />
+      </div>
+      <h2><span>Do you see any Teletubbies in here?</span></h2>
+    </a>
   </wa-carousel-item>
   <wa-carousel-item>
-    <img
-      alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
-      src="/assets/examples/carousel/sunset.jpg"
+    <a href="#" class="hero-link">
+      <div style="background: #5a90f3;">
+       
+      </div>
+      <div style="background: gray;">
+        <img
+      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
+      src="/assets/examples/carousel/blog-carousel-1.jpg"
     />
+      </div>
+      <h2><span>The path of the righteous man is beset on all sides</span></h2>
+    </a>
   </wa-carousel-item>
   <wa-carousel-item>
-    <img
-      alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
-      src="/assets/examples/carousel/field.jpg"
+    <a href="#" class="hero-link">
+      <div style="background: #8c431e;">
+       
+      </div>
+      <div style="background: gray;">
+        <img
+      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
+      src="/assets/examples/carousel/blog-carousel-2.jpg"
     />
+      </div>
+      <h2><span>Article Title</span></h2>
+    </a>
   </wa-carousel-item>
   <wa-carousel-item>
-    <img
-      alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
-      src="/assets/examples/carousel/valley.jpg"
+    <a href="#" class="hero-link">
+      <div style="background: #37b3e6;">
+       
+      </div>
+      <div style="background: gray;">
+        <img
+      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
+      src="/assets/examples/carousel/blog-carousel-3.jpg"
     />
+      </div>
+      <h2><span>Article Title</span></h2>
+    </a>
   </wa-carousel-item>
+  <wa-carousel-item>
+    <a href="#" class="hero-link">
+      <div style="background: #f993d6;">
+       
+      </div>
+      <div style="background: gray;">
+        <img
+      alt="A waterfall in the middle of a forest (by Thomas Kelly on Unsplash)"
+      src="/assets/examples/carousel/blog-carousel-4.jpg"
+    />
+      </div>
+      <h2><span>Article Title</span></h2>
+    </a>
+  </wa-carousel-item>
+  
 </wa-carousel>
+<style>
+  .hero-link {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
 
+    h2 {
+      position: absolute;
+      color: white;
+      top: 25%;
+      left: 15%;
+      width: 200px;
+      padding: .5rem;
+      line-height: 1.15;
+
+      span {
+        background-color: black;
+      }
+    }
+
+    div:first-of-type {
+      width: 30%;
+    }
+    div:last-of-type {
+      width: 70%;
+    }
+  }
+</style>
 ```
 
 ### Newsletter signup
 ```html{.example}
-<div>
-  <wa-input></wa-input><wa-button> <wa-icon name="search"></wa-icon></wa-button>
-</div>
-<wa-card>
+<wa-card class="news-letter-signup">
   <h2>Subscribe to our Newsletter</h2>
-  <p>To get the lastest and most quality design resources</p>
+  <p>To get the latest and most quality design resources</p>
   <div class="subscribe-input"> <wa-input></wa-input><wa-button> <wa-icon name="search"></wa-icon></wa-button></div>
 </wa-card>
 <style>
+  .news-letter-signup {
+        display: block;
+    width: fit-content;
+    margin: 0 auto;
+  }
   .subscribe-input {
     display: flex;
     width: 100%;
@@ -73,9 +144,9 @@ TODO Page Description
 
 ### Posts List
 ```html{.example}
-<wa-card>
+<wa-card with-header>
   <div slot="header">
-    Related Posts
+    Recent Articles
    
   </div>
 </wa-card>
@@ -83,6 +154,40 @@ TODO Page Description
 
 ### Related Posts
 ```html{.example}
+<wa-card with-image with-footer class="card-overview">
+  <img
+    slot="image"
+    src="https://plus.unsplash.com/premium_photo-1661382011487-cd3d6b1d9dff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1OTAyOTl8MHwxfGFsbHx8fHx8fHx8fDE3MTg2NDc0ODd8&ixlib=rb-4.0.3&q=80&w=1080"
+    alt="A kitten sits patiently between a terracotta pot and decorative grasses."
+  />
+
+  <strong>Color Advancements</strong><br />
+  Lot of new and exciting features in web colors<br />
+  <small>2d ago</small>
+
+  <div slot="footer">
+    <wa-button variant="brand" pill>Read More</wa-button>
+
+  </div>
+</wa-card>
+
+
+
+<style>
+  .card-overview {
+    max-width: 300px;
+  }
+
+  .card-overview small {
+    color: var(--wa-color-text-quiet);
+  }
+
+  .card-overview [slot='footer'] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
 
 ```
 ### Article footer
@@ -131,7 +236,7 @@ TODO Page Description
 
 ### Horizontal
 ```html{.example}
-<wa-card class="social-share-horizontal">
+<wa-card with-header with-footer class="social-share-horizontal">
   <div slot="header">
     Share this Article
   </div>
@@ -174,10 +279,10 @@ TODO Page Description
     display: flex;
     
     wa-input {
-          --border-radius: var(--wa-form-controls-corners) 0 0 var(--wa-form-controls-corners);
+          --border-radius: var(--wa-form-control-border-radius) 0 0 var(--wa-form-control-border-radius);
     }
     wa-button {
-      --border-radius:  0 var(--wa-form-controls-corners)  var(--wa-form-controls-corners) 0;
+      --border-radius:  0 var(--wa-form-control-border-radius)  var(--wa-form-control-border-radius) 0;
     }
   }
   }
