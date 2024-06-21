@@ -91,7 +91,7 @@ Font Awesome users can set their kit code to unlock Font Awesome Pro icons. You 
 
 ## Cherry Picking
 
-Cherry picking will only the components you need up front, while limiting the number of files the browser has to download. The disadvantage is that you need to import each individual component on each page it's used.
+Cherry picking will only load the components you need up front, while limiting the number of files the browser has to download. The disadvantage is that you need to import each individual component on each page it's used.
 
 Here's an example that loads only the button component.
 
