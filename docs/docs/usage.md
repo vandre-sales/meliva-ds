@@ -22,19 +22,6 @@ Some properties are boolean, so they only have true/false values. To activate a 
 <wa-button disabled>Click me</wa-button>
 ```
 
-In rare cases, a property may require an array, an object, or a function. For example, to customize the color picker's list of preset swatches, you set the `swatches` property to an array of colors. This must be done with JavaScript.
-
-```html
-<wa-color-picker></wa-color-picker>
-
-<script>
-  const colorPicker = document.querySelector('wa-color-picker');
-  colorPicker.swatches = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-</script>
-```
-
-Refer to a component's documentation for a complete list of its properties.
-
 ## Events
 
 You can listen for standard events such as `click`, `mouseover`, etc. as you normally would. However, it's important to note that many events emitted within a component's shadow root will be [retargeted](https://dom.spec.whatwg.org/#retarget) to the host element. This may result in, for example, multiple `click` handlers executing even if the user clicks just once. Furthermore, `event.target` will point to the host element, making things even more confusing.
