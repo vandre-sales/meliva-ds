@@ -59,7 +59,7 @@ Use the `href` attribute to convert the button to a link.
 
 ### Icon Button with Tooltip
 
-Wrap a tooltip around an icon button to provide contextual information to the user.
+Add a tooltip that references the `id` of the icon button to provide contextual information.
 
 ```html {.example}
 <wa-icon-button id="icon-button" name="gear" variant="solid" label="Settings"></wa-icon-button>
