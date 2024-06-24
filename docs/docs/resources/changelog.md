@@ -12,7 +12,11 @@ Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> bad
 During the alpha period, things might break! We take breaking changes very seriously, but sometimes they're necessary to make the final product that much better. We appreciate your patience!
 :::
 
-## Web Awesome 1.0.0-alpha.1
+## Next
+
+- Fixed a bug where `<wa-relative-time>` would announce the full time instead of the relative time in screen readers [#22](https://github.com/shoelace-style/webawesome-alpha/issues/22)
+
+## 1.0.0-alpha.1
 
 - This is the initial release of Web Awesome alpha!
 
