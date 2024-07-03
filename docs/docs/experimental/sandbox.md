@@ -177,7 +177,11 @@ layout: page
 
 ```html {.example}
 <style>
+  div.test-cases > * + * {
+    margin-top: 1rem;
+  }
   div.alignment {
+    background: linear-gradient(to bottom, lightblue, lightblue 1px, transparent 1px, transparent), linear-gradient(to top, lightblue, lightblue 1px, transparent 1px, transparent);
     position: relative;
     display: flex;
     gap: 1rem;
@@ -186,41 +190,65 @@ layout: page
   div.alignment::after {
     content: '';
     position: absolute;
-    top: calc(50% - 1px);
+    top: calc(50% - 0.5px);
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: red;
   }
 </style>
-<div class="alignment">
-  <wa-switch size="small">OCBS</wa-switch>
-  <wa-checkbox size="small">OCBS</wa-checkbox>
-  <wa-radio value="1" size="small">OCBS</wa-radio>
-  <wa-button size="small">OCBS</wa-button>
-</div>
-<div class="alignment">
-  <wa-switch>OCBS</wa-switch>
-  <wa-checkbox>OCBS</wa-checkbox>
-  <wa-radio value="1">OCBS</wa-radio>
-  <wa-button>OCBS</wa-button>
-</div>
-<div class="alignment">
-  <wa-switch size="large">OCBS</wa-switch>
-  <wa-checkbox size="large">OCBS</wa-checkbox>
-  <wa-radio value="1" size="large">OCBS</wa-radio>
-  <wa-button size="large">OCBS</wa-button>
-</div>
-<div class="alignment">
-  <wa-input size="small"></wa-input>
-  <wa-button size="small">OCBS</wa-button>
-</div>
-<div class="alignment">
-  <wa-badge>OCBS</wa-badge>
-  <wa-button>OCBS</wa-button>
-  <wa-avatar style="--size: var(--wa-form-control-height-m)"></wa-avatar>
-</div>
-<div class="alignment">
-  <wa-badge size="large">OCBS</wa-badge>
-  <wa-button size="large">OCBS</wa-button>
+<div class="test-cases">
+  <div class="alignment">
+    <wa-switch size="small">OCBS</wa-switch>
+    <wa-checkbox size="small">OCBS</wa-checkbox>
+    <wa-radio value="1" size="small">OCBS</wa-radio>
+  </div>
+  <div class="alignment">
+    <wa-switch>OCBS</wa-switch>
+    <wa-checkbox>OCBS</wa-checkbox>
+    <wa-radio value="1">OCBS</wa-radio>
+  </div>
+  <div class="alignment">
+    <wa-switch size="large">OCBS</wa-switch>
+    <wa-checkbox size="large">OCBS</wa-checkbox>
+    <wa-radio value="1" size="large">OCBS</wa-radio>
+  </div>
+  <div class="alignment">
+    <wa-input size="small"></wa-input>
+    <wa-select size="small" value="ocbs" multiple>
+      <wa-option value="ocbs">OCBS</wa-option>
+    </wa-select>
+    <wa-color-picker size="small"></wa-color-picker>
+    <wa-button size="small">OCBS</wa-button>
+  </div>
+  <div class="alignment">
+    <wa-input size="medium"></wa-input>
+    <wa-select size="medium" value="ocbs" multiple>
+      <wa-option value="ocbs">OCBS</wa-option>
+    </wa-select>
+    <wa-color-picker size="medium"></wa-color-picker>
+    <wa-button size="medium">OCBS</wa-button>
+  </div>
+  <div class="alignment">
+    <wa-input size="large"></wa-input>
+    <wa-select size="large" value="ocbs" multiple>
+      <wa-option value="ocbs">OCBS</wa-option>
+    </wa-select>
+    <wa-color-picker size="large"></wa-color-picker>
+    <wa-button size="large">OCBS</wa-button>
+  </div>
+  <div class="alignment">
+    <wa-badge>OCBS</wa-badge>
+    <wa-avatar></wa-avatar>
+    <wa-rating></wa-rating>
+    <wa-range></wa-range>
+  </div>
+  <div class="alignment">
+    <wa-input label="AaBbCc" help-text="Lorem ipsum dolor"></wa-input>
+    <wa-select label="AaBbCc" value="ocbs" multiple help-text="Lorem ipsum dolor">
+      <wa-option value="ocbs">OCBS</wa-option>
+    </wa-select>
+    <wa-color-picker label="AaBbCc" help-text="Lorem ipsum dolor"></wa-color-picker>
+  </div>
+  <wa-range style="--track-height: 2rem; --thumb-size: 1.5rem; --track-color-active: slateblue;"></wa-range>
 </div>
 ```
