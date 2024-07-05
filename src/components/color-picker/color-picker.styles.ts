@@ -268,6 +268,10 @@ export default css`
    * Color dropdown
    */
 
+  .color-dropdown {
+    display: flex;
+  }
+
   .color-dropdown::part(panel) {
     max-height: none;
     background-color: var(--background-color);
