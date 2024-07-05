@@ -241,6 +241,9 @@ layout: page
     <wa-avatar></wa-avatar>
     <wa-rating></wa-rating>
     <wa-range></wa-range>
+    <wa-icon-button name="gear" label="Settings"></wa-icon-button>
+    <wa-progress-bar value="50" style="width: 8rem;"></wa-progress-bar>
+    <wa-spinner></wa-spinner>
   </div>
   <div class="alignment">
     <wa-input label="AaBbCc" help-text="Lorem ipsum dolor"></wa-input>
@@ -249,6 +252,5 @@ layout: page
     </wa-select>
     <wa-color-picker label="AaBbCc" help-text="Lorem ipsum dolor"></wa-color-picker>
   </div>
-  <wa-range style="--track-height: 2rem; --thumb-size: 1.5rem; --track-color-active: slateblue;"></wa-range>
 </div>
 ```
