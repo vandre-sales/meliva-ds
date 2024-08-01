@@ -131,7 +131,7 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.resizeObserver.unobserve(this.input);
+    this.resizeObserver?.unobserve(this.input);
   }
 
   private handleChange() {
