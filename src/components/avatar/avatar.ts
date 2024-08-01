@@ -19,7 +19,7 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot icon - The default icon to use when no image or initials are present. Works best with `<wa-icon>`.
  *
- * @event sl-error - The image could not be loaded. This may because of an invalid URL, a temporary network condition, or some
+ * @event wa-error - The image could not be loaded. This may because of an invalid URL, a temporary network condition, or some
  * unknown cause.
  *
  * @csspart base - The component's base wrapper.
