@@ -47,7 +47,7 @@ export default class WaBreadcrumbItem extends WebAwesomeElement {
 
   private setRenderType() {
     const hasDropdown =
-      this.defaultSlot.assignedElements({ flatten: true }).filter(i => i.tagName.toLowerCase() === 'sl-dropdown')
+      this.defaultSlot.assignedElements({ flatten: true }).filter(i => i.tagName.toLowerCase() === 'wa-dropdown')
         .length > 0;
 
     if (this.href) {
@@ -101,7 +101,7 @@ export default class WaBreadcrumbItem extends WebAwesomeElement {
           : ''}
         ${this.renderType === 'dropdown'
           ? html`
-              <div part="label" class="breadcrumb-item__label breadcrumb-item__label--drop-down">
+              <div part="label" class="breadcrumb-item__label breadcrumb-item__label--dropdown">
                 <slot @slotchange=${this.handleSlotChange}></slot>
               </div>
             `
