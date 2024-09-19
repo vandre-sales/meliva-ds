@@ -15,7 +15,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Ratings give users a way to quickly view and provide feedback.
- * @documentation https://shoelace.style/components/rating
+ * @documentation https://backers.webawesome.com/docs/components/rating
  * @status stable
  * @since 2.0
  *
@@ -214,7 +214,7 @@ export default class WaRating extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.hasUpdated ? this.matches(':dir(rtl)') : this.dir;
     const counter = Array.from(Array(this.max).keys());
     let displayValue = 0;
 
@@ -272,7 +272,7 @@ export default class WaRating extends WebAwesomeElement {
                         : `inset(0 0 0 ${(displayValue - index) * 100}%)`
                     })}
                   >
-                    ${unsafeHTML(this.getSymbol(index + 1))}
+                    ${this.getSymbol(index + 1)}
                   </div>
                   <div
                     class="rating__partial--filled"

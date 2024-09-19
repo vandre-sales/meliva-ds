@@ -1,7 +1,7 @@
 ---
 title: Typography
 description: Get consistent font styles and vertical rhythm with Web Awesome's typography properties.
-layout: page.njk
+layout: page-outline
 ---
 
 ## Font Family
@@ -75,7 +75,3 @@ Together with [`--wa-color-link`](/docs/theming/color/#text), these custom prope
 | ------------------------------ | ---------------------------------------------------------------------------------- |
 | `--wa-link-decoration-default` | `underline color-mix(in oklab, var(--wa-color-text-link) 70%, transparent) dotted` |
 | `--wa-link-decoration-hover`   | `underline`                                                                        |
-
-```html {.example}
-<a href="#">Web Awesome anchor</a>
-```

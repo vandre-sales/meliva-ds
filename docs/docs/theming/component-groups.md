@@ -1,7 +1,7 @@
 ---
 title: Component Groups
 description: Style groups of components that share similar qualities with these Web Awesome custom properties.
-layout: page.njk
+layout: page-outline
 ---
 
 For components that share similar qualities, Web Awesome includes custom properties to change the appearance of these related components all at once.
@@ -14,7 +14,7 @@ Not every form control uses all of these custom properties. For example, `<wa-ra
 
 | Custom Property                             | Default Value                                                                                     |
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `--wa-form-control-background-color`              | `var(--wa-color-surface-default)`                                                                 |
+| `--wa-form-control-background-color`        | `var(--wa-color-surface-default)`                                                                 |
 | `--wa-form-control-border-style`            | `var(--wa-border-style)`                                                                          |
 | `--wa-form-control-border-width`            | `var(--wa-border-width-s)`                                                                        |
 | `--wa-form-control-border-radius`           | `var(--wa-border-radius-s)`                                                                       |
@@ -26,7 +26,7 @@ Not every form control uses all of these custom properties. For example, `<wa-ra
 | `--wa-form-control-value-color`             | `var(--wa-color-text-normal)`                                                                     |
 | `--wa-form-control-value-font-weight`       | `var(--wa-font-weight-body)`                                                                      |
 | `--wa-form-control-value-line-height`       | `var(--wa-line-height-condensed)`                                                                 |
-| `--wa-form-control-placeholder-color`       | `var(--wa-color-base-60)`                                                                         |
+| `--wa-form-control-placeholder-color`       | `var(--wa-color-gray-60)`                                                                         |
 | `--wa-form-control-height-s`                | `calc(var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-control-value-line-height))` |
 | `--wa-form-control-height-m`                | `calc(var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-control-value-line-height))`  |
 | `--wa-form-control-height-l`                | `calc(var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-control-value-line-height))`  |
@@ -112,9 +112,6 @@ Tooltip styles are shared between the [tooltip](/docs/components/tooltip) compon
 | `--wa-tooltip-line-height`   | `var(--wa-line-height-normal)`      |
 
 ```html {.example}
-<wa-tooltip content="This is a tooltip" open trigger="manual">
-  <wa-icon name="bullseye" style="color: var(--wa-color-text-quiet); font-size: var(--wa-font-size-xl);"></wa-icon>
-</wa-tooltip>
-<br />
-<wa-range label="Range" help-text="Move the slider to take a gander at the tooltip."></wa-range>
+<wa-icon-button id="bullseye-example" label="Button" name="bullseye"></wa-icon-button>
+<wa-tooltip for="bullseye-example" open trigger="manual">This is a tooltip</wa-tooltip>
 ```

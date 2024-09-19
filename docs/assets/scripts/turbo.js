@@ -1,5 +1,3 @@
-import 'https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/+esm';
-
 if (!window.___turboScrollPositions___) {
   window.___turboScrollPositions___ = {};
 }
@@ -7,11 +5,11 @@ if (!window.___turboScrollPositions___) {
 const positions = window.___turboScrollPositions___;
 
 function saveScrollPosition() {
-  document.querySelectorAll('[data-remember-scroll]').forEach(el => {
-    if (el.id) {
-      positions[el.id] = {
-        top: el.scrollTop,
-        left: el.scrollLeft
+  document.querySelectorAll('[data-remember-scroll]').forEach(element => {
+    if (element.id) {
+      positions[element.id] = {
+        top: element.scrollTop,
+        left: element.scrollLeft
       };
     } else {
       console.warn(`Can't save scroll position for elements without an id.`, el);
@@ -20,15 +18,54 @@ function saveScrollPosition() {
 }
 
 function restoreScrollPosition(event) {
-  const el = event.detail?.newBody || document;
+  if (event.detail && event.detail.newBody) {
+    event.detail.newBody.querySelectorAll('[data-remember-scroll]').forEach(element => {
+      if (!positions[element.id]) {
+        return;
+      }
 
-  el.querySelectorAll('[data-remember-scroll]').forEach(el => {
-    if (positions[el.id]) {
-      el.scrollTop = positions[el.id].top;
-      el.scrollLeft = positions[el.id].left;
+      const { top, left } = positions[element.id];
+
+      element.scrollTop = top;
+      element.scrollLeft = left;
+    });
+  }
+
+  document.querySelectorAll('[data-remember-scroll]').forEach(element => {
+    if (!positions[element.id]) {
+      return;
     }
+
+    const { top, left } = positions[element.id];
+
+    element.scrollTop = top;
+    element.scrollLeft = left;
   });
 }
+
+function fixDSD(e) {
+  const newElement = e.detail.newBody || e.detail.newFrame || e.detail.newStream;
+  if (!newElement) {
+    return;
+  }
+
+  // https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#polyfill
+  (function attachShadowRoots(root) {
+    root.querySelectorAll('template[shadowrootmode]').forEach(template => {
+      const mode = template.getAttribute('shadowrootmode');
+      const shadowRoot = template.parentNode.attachShadow({ mode });
+      shadowRoot.appendChild(template.content);
+      template.remove();
+      attachShadowRoots(shadowRoot);
+    });
+  })(newElement);
+}
+
+// Fixes an issue with DSD keeping the `<template>` elements hanging around in the lightdom.
+// https://github.com/hotwired/turbo/issues/1292
+['turbo:before-render', 'turbo:before-stream-render', 'turbo:before-frame-render'].forEach(eventName => {
+  document.addEventListener(eventName, fixDSD);
+});
 
 window.addEventListener('turbo:before-cache', saveScrollPosition);
 window.addEventListener('turbo:before-render', restoreScrollPosition);

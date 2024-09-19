@@ -9,7 +9,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary The Mutation Observer component offers a thin, declarative interface to the [`MutationObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver).
- * @documentation https://shoelace.style/components/mutation-observer
+ * @documentation https://backers.webawesome.com/docs/components/mutation-observer
  * @status stable
  * @since 2.0
  *
@@ -47,10 +47,12 @@ export default class WaMutationObserver extends WebAwesomeElement {
   connectedCallback() {
     super.connectedCallback();
 
-    this.mutationObserver = new MutationObserver(this.handleMutation);
+    if (typeof MutationObserver !== 'undefined') {
+      this.mutationObserver = new MutationObserver(this.handleMutation);
 
-    if (!this.disabled) {
-      this.startObserver();
+      if (!this.disabled) {
+        this.startObserver();
+      }
     }
   }
 

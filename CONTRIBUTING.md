@@ -2,4 +2,4 @@
 
 Before contributing, please review the contributions guidelines at:
 
-[shoelace.style/resources/contributing](https://shoelace.style/resources/contributing)
+[webawesome.com/docs/resources/contributing](https://webawesome.com/docs/resources/contributing)

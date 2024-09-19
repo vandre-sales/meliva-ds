@@ -1,7 +1,7 @@
 ---
 title: Tab Panel
 description: Tab panels are used inside tab groups to display tabbed content.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}
@@ -19,5 +19,5 @@ layout: component.njk
 ```
 
 :::info
-Additional demonstrations can be found in the [tab group examples](/components/tab-group).
+Additional demonstrations can be found in the [tab group examples](/docs/components/tab-group).
 :::

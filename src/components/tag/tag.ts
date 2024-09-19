@@ -11,7 +11,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Tags are used as labels to organize things or to indicate a selection.
- * @documentation https://shoelace.style/components/tag
+ * @documentation https://backers.webawesome.com/docs/components/tag
  * @status stable
  * @since 2.0
  *

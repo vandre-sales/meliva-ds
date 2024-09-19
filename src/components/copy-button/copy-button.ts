@@ -1,5 +1,6 @@
 import '../icon/icon.js';
 import '../tooltip/tooltip.js';
+import '../visually-hidden/visually-hidden.js';
 import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
@@ -15,7 +16,7 @@ import type WaTooltip from '../tooltip/tooltip.js';
 
 /**
  * @summary Copies text data to the clipboard when the user clicks the trigger.
- * @documentation https://shoelace.style/components/copy
+ * @documentation https://backers.webawesome.com/docs/components/copy
  * @status experimental
  * @since 2.7
  *
@@ -38,6 +39,7 @@ import type WaTooltip from '../tooltip/tooltip.js';
  * @csspart tooltip__base__arrow - The tooltip's exported `arrow` part.
  * @csspart tooltip__body - The tooltip's exported `body` part.
  *
+ * @cssproperty --background-color - The color of the button's background.
  * @cssproperty --background-color-hover - The color of the button's background on hover.
  * @cssproperty --success-color - The color to use for success feedback.
  * @cssproperty --error-color - The color to use for error feedback.
@@ -200,6 +202,8 @@ export default class WaCopyButton extends WebAwesomeElement {
         ?disabled=${this.disabled}
         @click=${this.handleCopy}
       >
+        <!-- Render a visually hidden label to appease the accessibility checking gods -->
+        <wa-visually-hidden>${this.currentLabel}</wa-visually-hidden>
         <slot part="copy-icon" name="copy-icon">
           <wa-icon library="system" name="copy" variant="regular" fixed-width></wa-icon>
         </slot>

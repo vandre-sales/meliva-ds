@@ -2,10 +2,17 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
+    --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
+    --border-color: initial;
+    --border-color-hover: var(--border-color);
+    --border-color-active: var(--border-color);
     --border-radius: var(--wa-form-control-border-radius);
     --border-style: var(--wa-border-style);
     --border-width: var(--wa-form-control-border-width);
     --box-shadow: initial;
+    --label-color-hover: var(--label-color);
+    --label-color-active: var(--label-color);
 
     display: inline-block;
     position: relative;
@@ -14,99 +21,141 @@ export default css`
   }
 
   /*
-   * Standard buttons
+   * Filled buttons
    */
 
-  :host([variant='brand']) {
-    --background-color: var(--wa-color-brand-fill-loud);
-    --label-color: var(--wa-color-brand-on-loud);
-  }
-
-  :host([variant='success']) {
-    --background-color: var(--wa-color-success-fill-loud);
-    --label-color: var(--wa-color-success-on-loud);
-  }
-
-  :host([variant='warning']) {
-    --background-color: var(--wa-color-warning-fill-loud);
-    --label-color: var(--wa-color-warning-on-loud);
-  }
-
-  :host([variant='neutral']) {
+  :host([appearance='filled'][variant='neutral']) {
     --background-color: var(--wa-color-neutral-fill-loud);
     --label-color: var(--wa-color-neutral-on-loud);
   }
 
-  :host([variant='danger']) {
+  :host([appearance='filled'][variant='brand']) {
+    --background-color: var(--wa-color-brand-fill-loud);
+    --label-color: var(--wa-color-brand-on-loud);
+  }
+
+  :host([appearance='filled'][variant='success']) {
+    --background-color: var(--wa-color-success-fill-loud);
+    --label-color: var(--wa-color-success-on-loud);
+  }
+
+  :host([appearance='filled'][variant='warning']) {
+    --background-color: var(--wa-color-warning-fill-loud);
+    --label-color: var(--wa-color-warning-on-loud);
+  }
+
+  :host([appearance='filled'][variant='danger']) {
     --background-color: var(--wa-color-danger-fill-loud);
     --label-color: var(--wa-color-danger-on-loud);
   }
 
-  :host(:not([variant='text'])) {
-    --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
-    --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
-    --border-color: initial;
-    --border-color-hover: initial;
-    --border-color-active: initial;
-    --label-color-hover: var(--label-color);
-    --label-color-active: var(--label-color);
+  /*
+   * Tinted buttons
+   */
+
+  :host([appearance='tinted']) {
+    --background-color-hover: color-mix(in oklab, var(--background-color), transparent 10%);
+    --background-color-active: color-mix(in oklab, var(--background-color), transparent 20%);
+  }
+
+  :host([appearance='tinted'][variant='neutral']) {
+    --background-color: var(--wa-color-neutral-fill-normal);
+    --label-color: var(--wa-color-neutral-on-normal);
+  }
+
+  :host([appearance='tinted'][variant='brand']) {
+    --background-color: var(--wa-color-brand-fill-normal);
+    --label-color: var(--wa-color-brand-on-normal);
+  }
+
+  :host([appearance='tinted'][variant='success']) {
+    --background-color: var(--wa-color-success-fill-normal);
+    --label-color: var(--wa-color-success-on-normal);
+  }
+
+  :host([appearance='tinted'][variant='warning']) {
+    --background-color: var(--wa-color-warning-fill-normal);
+    --label-color: var(--wa-color-warning-on-normal);
+  }
+
+  :host([appearance='tinted'][variant='danger']) {
+    --background-color: var(--wa-color-danger-fill-normal);
+    --label-color: var(--wa-color-danger-on-normal);
   }
 
   /*
-   * Outline buttons
+   * Outlined buttons
    */
 
-  :host([variant='brand'][outline]) {
-    --background-color-hover: var(--wa-color-brand-fill-quiet);
-    --label-color: var(--wa-color-brand-on-quiet);
+  :host([appearance='outlined']),
+  :host(.wa-button-group__button--radio:not([checked])) {
+    --background-color: transparent;
+    --background-color-active: color-mix(in oklab, var(--background-color-hover), transparent 20%);
   }
 
-  :host([variant='success'][outline]) {
-    --background-color-hover: var(--wa-color-success-fill-quiet);
-    --label-color: var(--wa-color-success-on-quiet);
-  }
-
-  :host([variant='neutral'][outline]),
+  :host([appearance='outlined'][variant='neutral']),
   :host(.wa-button-group__button--radio:not([checked])) {
     --background-color-hover: var(--wa-color-neutral-fill-quiet);
+    --border-color: var(--wa-color-neutral-border-loud);
     --label-color: var(--wa-color-neutral-on-quiet);
   }
 
-  :host([variant='warning'][outline]) {
+  :host([appearance='outlined'][variant='brand']) {
+    --background-color-hover: var(--wa-color-brand-fill-quiet);
+    --border-color: var(--wa-color-brand-border-loud);
+    --label-color: var(--wa-color-brand-on-quiet);
+  }
+
+  :host([appearance='outlined'][variant='success']) {
+    --background-color-hover: var(--wa-color-success-fill-quiet);
+    --border-color: var(--wa-color-success-border-loud);
+    --label-color: var(--wa-color-success-on-quiet);
+  }
+
+  :host([appearance='outlined'][variant='warning']) {
     --background-color-hover: var(--wa-color-warning-fill-quiet);
+    --border-color: var(--wa-color-warning-border-loud);
     --label-color: var(--wa-color-warning-on-quiet);
   }
 
-  :host([variant='danger'][outline]) {
+  :host([appearance='outlined'][variant='danger']) {
     --background-color-hover: var(--wa-color-danger-fill-quiet);
+    --border-color: var(--wa-color-danger-border-loud);
     --label-color: var(--wa-color-danger-on-quiet);
-  }
-
-  :host([outline]),
-  :host(.wa-button-group__button--radio:not([checked])) {
-    --background-color: transparent;
-    --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
-    --border-color: color-mix(in oklab, var(--label-color), var(--wa-color-surface-default) 30%);
-    --border-color-hover: var(--border-color);
-    --border-color-active: var(--border-color);
-    --label-color-hover: var(--label-color);
-    --label-color-active: var(--label-color);
   }
 
   /*
    * Text buttons
    */
 
-  :host([variant='text']) {
-    --background-color: none;
-    --background-color-active: none;
-    --background-color-hover: none;
-    --border-color: transparent;
-    --border-color-active: transparent;
-    --border-color-hover: transparent;
-    --label-color: var(--wa-color-text-link);
-    --label-color-active: var(--wa-color-text-link);
-    --label-color-hover: color-mix(in oklab, var(--wa-color-text-link), var(--wa-color-mix-hover));
+  :host([appearance='text']) {
+    --background-color: transparent;
+    --background-color-active: color-mix(in oklab, var(--background-color-hover), transparent 20%);
+  }
+
+  :host([appearance='text'][variant='neutral']) {
+    --label-color: var(--wa-color-neutral-on-quiet);
+    --background-color-hover: var(--wa-color-neutral-fill-quiet);
+  }
+
+  :host([appearance='text'][variant='brand']) {
+    --label-color: var(--wa-color-brand-on-quiet);
+    --background-color-hover: var(--wa-color-brand-fill-quiet);
+  }
+
+  :host([appearance='text'][variant='success']) {
+    --label-color: var(--wa-color-success-on-quiet);
+    --background-color-hover: var(--wa-color-success-fill-quiet);
+  }
+
+  :host([appearance='text'][variant='warning']) {
+    --label-color: var(--wa-color-warning-on-quiet);
+    --background-color-hover: var(--wa-color-warning-fill-quiet);
+  }
+
+  :host([appearance='text'][variant='danger']) {
+    --label-color: var(--wa-color-danger-on-quiet);
+    --background-color-hover: var(--wa-color-danger-fill-quiet);
   }
 
   /*
@@ -115,14 +164,9 @@ export default css`
 
   :host([checked]) {
     --background-color: var(--wa-color-brand-fill-quiet);
-    --background-color-active: color-mix(in oklab, var(--background-color-hover), var(--wa-color-surface-default) 30%);
     --background-color-hover: var(--background-color);
     --border-color: var(--wa-form-control-activated-color);
-    --border-color-active: var(--border-color);
-    --border-color-hover: var(--border-color);
     --label-color: var(--wa-color-brand-on-normal);
-    --label-color-active: var(--label-color);
-    --label-color-hover: var(--label-color);
     --indicator-color: var(--border-color);
     --indicator-width: var(--wa-border-width-s);
   }
@@ -221,7 +265,7 @@ export default css`
   }
 
   @media (forced-colors: active) {
-    .button.button--outline.button--checked:not(.button--disabled) {
+    .button.button--outlined.button--checked:not(.button--disabled) {
       outline: solid 2px transparent;
     }
   }
@@ -362,13 +406,31 @@ export default css`
     padding: 0 var(--wa-space-l);
   }
 
-  .button ::slotted([slot='prefix']) {
-    margin-inline-end: 0.75em;
+  .button--small ::slotted([slot='prefix']) {
+    margin-inline-end: var(--wa-space-s);
   }
 
-  .button ::slotted([slot='suffix']),
-  .button .button__caret {
-    margin-inline-start: 0.75em;
+  .button--medium ::slotted([slot='prefix']) {
+    margin-inline-end: var(--wa-space-m);
+  }
+
+  .button--large ::slotted([slot='prefix']) {
+    margin-inline-end: var(--wa-space-l);
+  }
+
+  .button--small ::slotted([slot='suffix']),
+  .button--small.button--caret:not(.button--visually-hidden-label) .button__caret {
+    margin-inline-start: var(--wa-space-s);
+  }
+
+  .button--medium ::slotted([slot='suffix']),
+  .button--medium.button--caret:not(.button--visually-hidden-label) .button__caret {
+    margin-inline-start: var(--wa-space-m);
+  }
+
+  .button--large ::slotted([slot='suffix']),
+  .button--large.button--caret:not(.button--visually-hidden-label) .button__caret {
+    margin-inline-start: var(--wa-space-l);
   }
 
   /*
@@ -397,7 +459,7 @@ export default css`
     margin-inline-start: calc(-1 * var(--border-width));
   }
 
-  /* Add a visual separator between solid buttons */
+  /* Add a visual separator between filled buttons */
   :host(.wa-button-group__button:not(.wa-button-group__button--first, .wa-button-group__button--radio)) .button:after {
     content: '';
     position: absolute;

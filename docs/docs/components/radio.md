@@ -1,10 +1,10 @@
 ---
 title: Radio
 description: Radios allow the user to select a single option from a group.
-layout: component.njk
+layout: component
 ---
 
-Radios are designed to be used with [radio groups](/components/radio-group).
+Radios are designed to be used with [radio groups](/docs/components/radio-group).
 
 ```html {.example}
 <wa-radio-group label="Select an option" name="a" value="1">
@@ -15,7 +15,7 @@ Radios are designed to be used with [radio groups](/components/radio-group).
 ```
 
 :::info
-This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
+This component works with standard `<form>` elements. Please refer to the section on [form controls](/docs/form-controls) to learn more about form submission and client-side validation.
 :::
 
 ## Examples
@@ -46,7 +46,7 @@ Use the `disabled` attribute to disable a radio.
 
 ## Sizes
 
-Add the `size` attribute to the [Radio Group](/components/radio-group) to change the radios' size.
+Add the `size` attribute to the [Radio Group](/docs/components/radio-group) to change the radios' size.
 
 ```html {.example}
 <wa-radio-group size="small" value="1">

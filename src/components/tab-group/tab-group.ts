@@ -18,7 +18,7 @@ import type WaTabPanel from '../tab-panel/tab-panel.js';
 
 /**
  * @summary Tab groups organize content into a container that shows one section at a time.
- * @documentation https://shoelace.style/components/tab-group
+ * @documentation https://backers.webawesome.com/docs/components/tab-group
  * @status stable
  * @since 2.0
  *
@@ -128,8 +128,8 @@ export default class WaTabGroup extends WebAwesomeElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.mutationObserver.disconnect();
-    this.resizeObserver.unobserve(this.nav);
+    this.mutationObserver?.disconnect();
+    this.resizeObserver?.unobserve(this.nav);
   }
 
   private getAllTabs() {
@@ -360,7 +360,7 @@ export default class WaTabGroup extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.hasUpdated ? this.matches(':dir(rtl)') : this.dir === 'rtl';
 
     return html`
       <div
@@ -393,7 +393,8 @@ export default class WaTabGroup extends WebAwesomeElement {
               `
             : ''}
 
-          <div class="tab-group__nav">
+          <!-- We have a focus listener because in Firefox (and soon to be Chrome) overflow containers are focusable. -->
+          <div class="tab-group__nav" @focus=${() => this.activeTab?.focus({ preventScroll: true })}>
             <div part="tabs" class="tab-group__tabs" role="tablist">
               <slot name="nav" @slotchange=${this.syncTabsAndPanels}></slot>
             </div>

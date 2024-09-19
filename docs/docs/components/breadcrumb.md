@@ -1,7 +1,7 @@
 ---
 title: Breadcrumb
 description: Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
-layout: component.njk
+layout: component
 ---
 
 Breadcrumbs are usually placed before a page's main content with the current page shown last to indicate the user's position in the navigation.
@@ -32,6 +32,36 @@ For websites, you'll probably want to use links instead. You can make any breadc
   <wa-breadcrumb-item href="https://example.com/home/services/digital">Digital Media</wa-breadcrumb-item>
 
   <wa-breadcrumb-item href="https://example.com/home/services/digital/web-design">Web Design</wa-breadcrumb-item>
+</wa-breadcrumb>
+```
+
+### Prefixes
+
+Use the `prefix` slot to add content before any breadcrumb item.
+
+```html {.example}
+<wa-breadcrumb>
+  <wa-breadcrumb-item>
+    <wa-icon slot="prefix" name="house" variant="solid"></wa-icon>
+    Home
+  </wa-breadcrumb-item>
+  <wa-breadcrumb-item>Articles</wa-breadcrumb-item>
+  <wa-breadcrumb-item>Traveling</wa-breadcrumb-item>
+</wa-breadcrumb>
+```
+
+### Suffixes
+
+Use the `suffix` slot to add content after any breadcrumb item.
+
+```html {.example}
+<wa-breadcrumb>
+  <wa-breadcrumb-item>Documents</wa-breadcrumb-item>
+  <wa-breadcrumb-item>Policies</wa-breadcrumb-item>
+  <wa-breadcrumb-item>
+    Security
+    <wa-icon slot="suffix" name="shield" variant="solid"></wa-icon>
+  </wa-breadcrumb-item>
 </wa-breadcrumb>
 ```
 
@@ -66,12 +96,27 @@ Use the `separator` slot to change the separator that goes between breadcrumb it
 </wa-breadcrumb>
 ```
 
-### Prefixes
+### Custom Colors
 
-Use the `prefix` slot to add content before any breadcrumb item.
+Breadcrumb labels match the color set on `<wa-breadcrumb-item>`. Prefixes, suffixes, and separators can be styled using CSS parts.
 
 ```html {.example}
-<wa-breadcrumb>
+<style>
+  .redcrumbs wa-breadcrumb-item {
+    color: firebrick;
+  }
+  .redcrumbs wa-breadcrumb-item:last-of-type {
+    color: crimson;
+  }
+  .redcrumbs wa-breadcrumb-item::part(separator) {
+    color: pink;
+  }
+  .redcrumbs wa-breadcrumb-item::part(prefix),
+  .redcrumbs wa-breadcrumb-item::part(suffix) {
+    color: currentColor;
+  }
+</style>
+<wa-breadcrumb class="redcrumbs">
   <wa-breadcrumb-item>
     <wa-icon slot="prefix" name="house" variant="solid"></wa-icon>
     Home
@@ -81,24 +126,31 @@ Use the `prefix` slot to add content before any breadcrumb item.
 </wa-breadcrumb>
 ```
 
-### Suffixes
+### With Dropdowns
 
-Use the `suffix` slot to add content after any breadcrumb item.
+Dropdown menus can be placed in the default slot to provide additional options.
 
 ```html {.example}
 <wa-breadcrumb>
-  <wa-breadcrumb-item>Documents</wa-breadcrumb-item>
-  <wa-breadcrumb-item>Policies</wa-breadcrumb-item>
+  <wa-breadcrumb-item>Homepage</wa-breadcrumb-item>
   <wa-breadcrumb-item>
-    Security
-    <wa-icon slot="suffix" name="shield" variant="solid"></wa-icon>
+    <wa-dropdown>
+      <wa-button slot="trigger" size="small" appearance="tinted" pill>
+        <wa-icon label="More options" name="ellipsis" variant="solid"></wa-icon>
+      </wa-button>
+      <wa-menu>
+        <wa-menu-item type="checkbox" checked>Web Design</wa-menu-item>
+        <wa-menu-item type="checkbox">Web Development</wa-menu-item>
+        <wa-menu-item type="checkbox">Marketing</wa-menu-item>
+      </wa-menu>
+    </wa-dropdown>
   </wa-breadcrumb-item>
+  <wa-breadcrumb-item>Our Services</wa-breadcrumb-item>
+  <wa-breadcrumb-item>Digital Media</wa-breadcrumb-item>
 </wa-breadcrumb>
 ```
 
-### With Dropdowns
-
-Dropdown menus can be placed in a prefix or suffix slot to provide additional options.
+Alternatively, you can place dropdown menus in a prefix or suffix slot.
 
 ```html {.example}
 <wa-breadcrumb>
@@ -108,7 +160,7 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
   <wa-breadcrumb-item>
     Web Design
     <wa-dropdown slot="suffix">
-      <wa-button slot="trigger" size="small" pill>
+      <wa-button slot="trigger" size="small" appearance="tinted" pill>
         <wa-icon label="More options" name="ellipsis" variant="solid"></wa-icon>
       </wa-button>
       <wa-menu>

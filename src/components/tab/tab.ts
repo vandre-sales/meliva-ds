@@ -11,7 +11,7 @@ let id = 0;
 
 /**
  * @summary Tabs are used inside [tab groups](/docs/components/tab-group) to represent and activate [tab panels](/docs/components/tab-panel).
- * @documentation https://shoelace.style/components/tab
+ * @documentation https://backers.webawesome.com/docs/components/tab
  * @status stable
  * @since 2.0
  *
@@ -41,7 +41,11 @@ export default class WaTab extends WebAwesomeElement {
   /** Disables the tab and prevents selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  tabIndex = 0;
+  /**
+   * @internal
+   * Need to wrap in a `@property()` otherwise NextJS blows up.
+   */
+  @property({ type: Number, reflect: true }) tabIndex = 0;
 
   connectedCallback() {
     super.connectedCallback();
@@ -66,7 +70,7 @@ export default class WaTab extends WebAwesomeElement {
 
   render() {
     // If the user didn't provide an ID, we'll set one so we can link tabs and tab panels with aria labels
-    this.id = this.id.length > 0 ? this.id : this.componentId;
+    this.id = this.id?.length > 0 ? this.id : this.componentId;
 
     return html`
       <div

@@ -1,10 +1,10 @@
 ---
 title: Localization
 description: Discover how to localize Web Awesome with minimal effort.
-layout: page.njk
+layout: page-outline
 ---
 
-Components can be localized by importing the appropriate translation file and setting the desired [`lang` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang) and/or [`dir` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) on the `<html>` element. Here's an example that renders Web Awesome components in Spanish.
+Components can be localized by importing the appropriate translation file and setting the desired [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang) and/or [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) attributes on the `<html>` element. Here's an example that renders Web Awesome components in Spanish.
 
 ```html
 <html lang="es">
@@ -22,12 +22,43 @@ Through the magic of a mutation observer, changing the `lang` attribute will aut
 
 ## Available Translations
 
-Web Awesome ships with a number of translations. The default is English (US), which also serves as the fallback locale. As such, you do not need to import the English translation. To see a list of all available translations in the latest version, [refer to this directory](https://github.com/shoelace-style/shoelace/tree/current/src/translations).
+Web Awesome ships with a number of translations. The default is English (US), which also serves as the fallback locale. As such, you do not need to import the English translation.
 
-The location of translations depends on how you're consuming Web Awesome.
+Available translations include:
 
-- If you're using the CDN, [import them from the CDN](https://www.jsdelivr.com/package/npm/@shoelace-style/shoelace?path=%CDNDIR%%2Ftranslations)
-- If you're using a bundler, import them from `@shoelace-style/shoelace/%NPMDIR%/translations/[lang].js`
+<div style="columns: 3; gap: 1rem; margin-block-end: 1.5rem;">
+
+- ar
+- da
+- de-ch
+- de
+- en-gb
+- en
+- es
+- fa
+- fr
+- he
+- hr
+- hu
+- id
+- ja
+- nl
+- pl
+- pt
+- ru
+- sl
+- sv
+- tr
+- zh-cn
+- zh-tw
+
+</div>
+
+You can import translations using the following syntax, where `<code>` is replaced with any language code shown above.
+
+```js
+import '{% cdnUrl "translations/<code>.js" %}';
+```
 
 You do not need to load translations up front. You can import them dynamically even after updating the `lang` attribute. Once a translation is registered, localized components will update automatically.
 
@@ -36,7 +67,7 @@ You do not need to load translations up front. You can import them dynamically e
 document.documentElement.lang = 'de';
 
 // Import the translation
-import('/path/to/shoelace/dist/translations/de.js');
+import('{% cdnUrl "translations/<code>.js" %}');
 ```
 
 ### Translation Resolution
@@ -98,9 +129,9 @@ You can provide your own translations if you have specific needs or if you don't
 
 Let's create a Spanish translation as an example. The following assumes you're using TypeScript, but you can also create translations with regular JavaScript.
 
-```js
-import { registerTranslation } from '@shoelace-style/shoelace/dist/utilities/localize';
-import type { Translation } from '@shoelace-style/shoelace/dist/utilities/localize';
+```ts
+import { registerTranslation } from 'path/to/webawesome.js';
+import type { Translation } from 'path/to/webawesome.js';
 
 const translation: Translation = {
   $code: 'es',

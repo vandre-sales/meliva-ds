@@ -19,7 +19,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Ranges allow the user to select a single value within a given range using a slider.
- * @documentation https://shoelace.style/components/range
+ * @documentation https://backers.webawesome.com/docs/components/range
  * @status stable
  * @since 2.0
  *
@@ -44,7 +44,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --thumb-gap - The visual gap between the edges of the thumb and the track.
  * @cssproperty --thumb-shadow - The shadow effects around the edges of the thumb.
  * @cssproperty --thumb-size - The size of the thumb.
- * @cssproperty --tooltip-offset - The vertical distance the tooltip is offset from the track.
+ * @cssproperty --tooltip-offset - The vertical distance the tooltip is offset from the thumb.
  * @cssproperty --track-color-active - The color of the portion of the track that represents the current value.
  * @cssproperty --track-color-inactive - The of the portion of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.
@@ -72,11 +72,29 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
   /** The name of the range, submitted as a name/value pair with form data. */
   @property() name = '';
 
-  /** The current value of the range, submitted as a name/value pair with form data. */
-  @property({ attribute: false, type: Number }) value = 0;
-
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ type: Number, attribute: 'value', reflect: true }) defaultValue = 0;
+  @property({ type: Number, attribute: 'value', reflect: true }) defaultValue = Number(this.getAttribute('value')) || 0;
+
+  private _value: number | null = null;
+
+  /** The current value of the range, submitted as a name/value pair with form data. */
+  get value(): number {
+    if (this.valueHasChanged) {
+      return this._value || 0;
+    }
+
+    return this._value ?? (this.defaultValue || 0);
+  }
+
+  @state()
+  set value(val: number | null) {
+    if (this._value === val) {
+      return;
+    }
+
+    this.valueHasChanged = true;
+    this._value = val;
+  }
 
   /** The range's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
@@ -112,6 +130,16 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
    */
   @property({ reflect: true }) form: null | string = null;
 
+  /**
+   * Used for SSR to render slotted labels. If true, will render slotted label content on first paint.
+   */
+  @property({ attribute: 'with-label', reflect: true, type: Boolean }) withLabel = false;
+
+  /**
+   * Used for SSR to render slotted labels. If true, will render slotted help-text content on first paint.
+   */
+  @property({ attribute: 'with-help-text', reflect: true, type: Boolean }) withHelpText = false;
+
   connectedCallback() {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver(() => this.syncRange());
@@ -131,7 +159,7 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.resizeObserver.unobserve(this.input);
+    this.resizeObserver?.unobserve(this.input);
   }
 
   private handleChange() {
@@ -246,8 +274,8 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
   }
 
   render() {
-    const hasLabelSlot = this.hasSlotController.test('label');
-    const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasLabelSlot = this.hasUpdated ? this.hasSlotController.test('label') : this.withLabel;
+    const hasHelpTextSlot = this.hasUpdated ? this.hasSlotController.test('help-text') : this.withHelpText;
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 

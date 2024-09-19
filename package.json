@@ -1,15 +1,15 @@
 {
-  "name": "@shoelace-style/shoelace",
+  "name": "@shoelace-style/webawesome",
   "description": "A forward-thinking library of web components.",
-  "version": "2.8.0",
-  "homepage": "https://github.com/shoelace-style/shoelace",
+  "version": "3.0.0-alpha.2",
+  "homepage": "https://webawesome.com/",
   "author": "Web Awesome",
   "license": "MIT",
   "customElements": "dist/custom-elements.json",
   "web-types": "./dist/web-types.json",
   "type": "module",
   "types": "dist/webawesome.d.ts",
-  "jsdelivr": "./cdn/autoloader.js",
+  "jsdelivr": "./dist/webawesome.loader.js",
   "exports": {
     ".": {
       "types": "./dist/webawesome.d.ts",
@@ -17,10 +17,9 @@
     },
     "./dist/custom-elements.json": "./dist/custom-elements.json",
     "./dist/webawesome.js": "./dist/webawesome.js",
-    "./dist/autoloader.js": "./dist/autoloader.js",
+    "./dist/webawesome.loader.js": "./dist/webawesome.loader.js",
     "./dist/themes/*": "./dist/themes/*",
     "./dist/components/*": "./dist/components/*",
-    "./dist/utilities/*": "./dist/utilities/*",
     "./dist/react": "./dist/react/index.js",
     "./dist/react/*": "./dist/react/*",
     "./dist/translations/*": "./dist/translations/*"
@@ -36,14 +35,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shoelace-style/shoelace.git"
+    "url": "git+https://github.com/shoelace-style/webawesome.git"
   },
   "bugs": {
-    "url": "https://github.com/shoelace-style/shoelace/issues"
+    "url": "https://github.com/shoelace-style/webawesome/issues"
   },
   "scripts": {
     "start": "node scripts/build.js --develop",
     "build": "node scripts/build.js",
+    "build:alpha": "node scripts/build.js --alpha",
+    "start:alpha": "node scripts/build.js --alpha --develop",
+    "publish-alpha-cdn": "./publish-alpha-cdn.sh",
     "create": "plop --plopfile scripts/plop/plopfile.js",
     "prepare": "npm i --ignore-scripts && npx playwright install",
     "test": "web-test-runner --group default",
@@ -64,7 +66,7 @@
     "@ctrl/tinycolor": "^4.0.2",
     "@floating-ui/dom": "^1.5.3",
     "@shoelace-style/animations": "^1.1.0",
-    "@shoelace-style/localize": "^3.1.2",
+    "@shoelace-style/localize": "^3.2.1",
     "composed-offset-position": "^0.0.4",
     "lit": "^3.0.0",
     "qr-creator": "^1.0.0"
@@ -72,6 +74,8 @@
   "devDependencies": {
     "@11ty/eleventy": "3.0.0-alpha.5",
     "@custom-elements-manifest/analyzer": "^0.9.4",
+    "@lit-labs/eleventy-plugin-lit": "^1.0.3",
+    "@lit-labs/testing": "^0.2.4",
     "@lit/react": "^1.0.0",
     "@open-wc/testing": "^3.2.0",
     "@types/mocha": "^10.0.2",
@@ -121,7 +125,7 @@
     "node-html-parser": "^6.1.13",
     "ora": "^8.0.1",
     "pascal-case": "^3.1.2",
-    "playwright": "^1.42.0",
+    "playwright": "^1.46.1",
     "plop": "^4.0.0",
     "prettier": "^3.0.3",
     "prismjs": "^1.29.0",
@@ -133,6 +137,9 @@
     "typescript": "^5.2.2",
     "user-agent-data-types": "^0.3.1",
     "uuid": "^9.0.1"
+  },
+  "overrides": {
+    "playwright": "^1.46.1"
   },
   "lint-staged": {
     "*.{ts,js}": [

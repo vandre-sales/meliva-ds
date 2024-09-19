@@ -1,7 +1,7 @@
 ---
 title: Range
 description: Ranges allow the user to select a single value within a given range using a slider.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}
@@ -9,7 +9,7 @@ layout: component.njk
 ```
 
 :::info
-This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
+This component works with standard `<form>` elements. Please refer to the section on [form controls](/docs/form-controls) to learn more about form submission and client-side validation.
 :::
 
 ## Examples

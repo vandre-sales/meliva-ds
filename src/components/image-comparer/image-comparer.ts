@@ -14,7 +14,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Compare visual differences between similar photos with a sliding panel.
- * @documentation https://shoelace.style/components/image-comparer
+ * @documentation https://backers.webawesome.com/docs/components/image-comparer
  * @status stable
  * @since 2.0
  *
@@ -96,7 +96,7 @@ export default class WaImageComparer extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.hasUpdated ? this.matches(':dir(rtl)') : this.dir === 'rtl';
 
     return html`
       <div

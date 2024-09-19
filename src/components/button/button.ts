@@ -17,7 +17,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Buttons represent actions that are available to the user.
- * @documentation https://shoelace.style/components/button
+ * @documentation https://backers.webawesome.com/docs/components/button
  * @status stable
  * @since 2.0
  *
@@ -67,11 +67,15 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
   @query('.button') button: HTMLButtonElement | HTMLLinkElement;
 
   @state() private hasFocus = false;
+  @state() visuallyHiddenLabel = false;
   @state() invalid = false;
   @property() title = ''; // make reactive to pass through
 
   /** The button's theme variant. */
-  @property({ reflect: true }) variant: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' | 'text' = 'neutral';
+  @property({ reflect: true }) variant: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' = 'neutral';
+
+  /** The button's visual appearance. */
+  @property({ reflect: true }) appearance: 'filled' | 'tinted' | 'outlined' | 'text' = 'filled';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -79,14 +83,11 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
   /** Draws the button with a caret. Used to indicate that the button triggers a dropdown menu or similar behavior. */
   @property({ type: Boolean, reflect: true }) caret = false;
 
-  /** Disables the button. */
+  /** Disables the button. Does not apply to link buttons. */
   @property({ type: Boolean }) disabled = false;
 
   /** Draws the button in a loading state. */
   @property({ type: Boolean, reflect: true }) loading = false;
-
-  /** Draws an outlined button. */
-  @property({ type: Boolean, reflect: true }) outline = false;
 
   /** Draws a pill-style button with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
@@ -107,7 +108,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
    * The value of the button, submitted as a pair with the button's name as part of the form data, but only when this
    * button is the submitter. This attribute is ignored when `href` is present.
    */
-  @property({ reflect: true }) value = '';
+  @property({ reflect: true }) value: string | null = null;
 
   /** When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`. */
   @property() href = '';
@@ -183,7 +184,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
     if (this.name) {
       button.name = this.name;
     }
-    button.value = this.value;
+    button.value = this.value || '';
 
     ['form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget'].forEach(attr => {
       if (this.hasAttribute(attr)) {
@@ -196,6 +197,15 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
 
   private handleInvalid() {
     this.dispatchEvent(new WaInvalidEvent());
+  }
+
+  private handleLabelSlotChange(event: Event) {
+    // If the only thing slotted in is a visually hidden element, we consider it a visually hidden label and apply a
+    // class so we can adjust styles accordingly.
+    const elements = (event.target as HTMLSlotElement).assignedElements({ flatten: true });
+    if (elements.length === 1 && elements[0].localName === 'wa-visually-hidden') {
+      this.visuallyHiddenLabel = true;
+    }
   }
 
   private isButton() {
@@ -213,7 +223,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
 
   // eslint-disable-next-line
   setValue(..._args: Parameters<WebAwesomeFormAssociatedElement['setValue']>) {
-    // This is just a stub. We dont ever actually want to set a value on the form. That happens when the button is clicked and added
+    // This is just a stub. We don't ever actually want to set a value on the form. That happens when the button is clicked and added
     // via the light dom button.
   }
 
@@ -248,7 +258,6 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
           'button--neutral': this.variant === 'neutral',
           'button--warning': this.variant === 'warning',
           'button--danger': this.variant === 'danger',
-          'button--text': this.variant === 'text',
           'button--small': this.size === 'small',
           'button--medium': this.size === 'medium',
           'button--large': this.size === 'large',
@@ -256,10 +265,13 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
           'button--disabled': this.disabled,
           'button--focused': this.hasFocus,
           'button--loading': this.loading,
-          'button--standard': !this.outline,
-          'button--outline': this.outline,
+          'button--filled': this.appearance === 'filled',
+          'button--tinted': this.appearance === 'tinted',
+          'button--outlined': this.appearance === 'outlined',
+          'button--text': this.appearance === 'text',
           'button--pill': this.pill,
-          'button--rtl': this.localize.dir() === 'rtl'
+          'button--rtl': this.localize.dir() === 'rtl',
+          'button--visually-hidden-label': this.visuallyHiddenLabel
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
@@ -279,7 +291,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
         @click=${this.handleClick}
       >
         <slot name="prefix" part="prefix" class="button__prefix"></slot>
-        <slot part="label" class="button__label"></slot>
+        <slot part="label" class="button__label" @slotchange=${this.handleLabelSlotChange}></slot>
         <slot name="suffix" part="suffix" class="button__suffix"></slot>
         ${
           this.caret

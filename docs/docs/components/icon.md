@@ -1,7 +1,7 @@
 ---
 title: Icon
 description: Icons are symbols that can be used to represent various options within an application.
-layout: component.njk
+layout: component
 ---
 
 Web Awesome comes bundled with over 2,000 free icons courtesy of [Font Awesome](https://fontawesome.com/). These icons are part of the `default` icon library. Font Awesome Pro users can unlock additional icon families. Or, if you prefer, you can register your own [custom icon library](#icon-library).
@@ -16,7 +16,7 @@ Not sure which icon to use? [Find the perfect icon over at Font Awesome!](https:
 
 The default icon library is Font Awesome Free, which comes with two icon families: `classic` and `brands`. Use the `family` attribute to set the icon family.
 
-Many Font Awesome Pro icon families have variants such as `thin`, `light`, `regular`, and `solid`. Font Awesome Pro users can [provide their kit code](/docs/installation) to unlock additional families, including `sharp` and `duotone`. For these icon families, use the `variant` attribute to set the variant.
+Many Font Awesome Pro icon families have variants such as `thin`, `light`, `regular`, and `solid`. Font Awesome Pro users can [provide their kit code](/docs/installation/#using-font-awesome-kit-codes) to unlock additional families, including `sharp` and `duotone`. For these icon families, use the `variant` attribute to set the variant.
 
 ```html {.example}
 <wa-icon family="brands" name="font-awesome"></wa-icon>
@@ -440,7 +440,11 @@ Icons in this library are licensed under the [MIT License](https://github.com/ta
   import { registerIconLibrary } from '/dist/webawesome.js';
 
   registerIconLibrary('tabler', {
-    resolver: name => `https://cdn.jsdelivr.net/npm/@tabler/icons@1.68.0/icons/${name}.svg`
+    resolver: name => `https://cdn.jsdelivr.net/npm/@tabler/icons@1.68.0/icons/${name}.svg`,
+    mutator: svg => {
+      svg.style.fill = 'none';
+      svg.setAttribute('stroke', 'currentColor');
+    }
   });
 </script>
 

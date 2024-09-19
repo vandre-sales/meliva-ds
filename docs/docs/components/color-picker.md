@@ -1,18 +1,15 @@
 ---
 title: Color Picker
 description: Color pickers allow the user to select a color.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}
-<form>
-<wa-color-picker required label="Select a color"></wa-color-picker>
-<wa-button type="submit">Submit</wa-button>
-</form>
+<wa-color-picker label="Select a color" required></wa-color-picker>
 ```
 
 :::info
-This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
+This component works with standard `<form>` elements. Please refer to the section on [form controls](/docs/form-controls) to learn more about form submission and client-side validation.
 :::
 
 ## Examples
@@ -48,7 +45,7 @@ To prevent users from toggling the format themselves, add the `no-format-toggle`
 
 ### Swatches
 
-Use the `swatches` attribute to add convenient presets to the color picker. Any format the color picker can parse is acceptable (including CSS color names), but each value must be separated by a semicolon (`;`). Alternatively, you can pass an array of color values to this property using JavaScript.
+Use the `swatches` attribute to add convenient presets to the color picker. Any format the color picker can parse is acceptable (including [CSS color names](https://www.w3schools.com/colors/colors_names.asp)), but each value must be separated by a semicolon (`;`). Alternatively, you can pass an array of color values to this property using JavaScript.
 
 ```html {.example}
 <wa-color-picker
@@ -70,10 +67,18 @@ Use the `size` attribute to change the color picker's trigger size.
 <wa-color-picker size="large" label="Select a color"></wa-color-picker>
 ```
 
-### Inline
+### Disabled
 
-The color picker can be rendered inline instead of in a dropdown using the `inline` attribute.
+The color picker can be rendered as disabled.
 
 ```html {.example}
-<wa-color-picker inline label="Select a color"></wa-color-picker>
+<wa-color-picker disabled label="Select a color"></wa-color-picker>
+```
+
+### Help Text
+
+Add descriptive help text to a color picker with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
+
+```html {.example}
+<wa-color-picker label="Select a color" help-text="Choose a color with appropate contrast!"></wa-color-picker>
 ```

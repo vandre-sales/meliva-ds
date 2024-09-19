@@ -224,6 +224,7 @@ header {
 #site-search footer {
   flex: 0 0 auto;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   gap: 2rem;
   color: var(--wa-color-text-quiet);
@@ -247,14 +248,5 @@ header {
       width: 1em;
       height: 1em;
     }
-  }
-}
-
-@keyframes show-search-backdrop {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

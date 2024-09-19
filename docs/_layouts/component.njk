@@ -19,7 +19,7 @@
     </wa-badge>
   </div>
   <p class="component-summary">
-    {{ component.summary }}
+    {{ component.summary | inlineMarkdown | safe }}
   </p>
 {% endblock %}
 
@@ -69,41 +69,35 @@
         <thead>
           <tr>
             <th class="table-name">Name</th>
-            <th class="table-attribute">Attribute</th>
             <th class="table-description">Description</th>
             <th class="table-reflects">Reflects</th>
-            <th class="table-type">Type</th>
-            <th class="table-default">Default</th>
           </tr>
         </thead>
         <tbody>
           {% for prop in component.properties %}
             <tr>
               <td class="table-name">
-                <code>{{ prop.name }}</code>
-              </td>
-              <td class="table-attribute">
+                <code>{{ prop.name }}</code><br>
                 {% if prop.attribute %}
-                  <code>{{ prop.attribute }}</code>
+                  <div><small><code>{{ prop.attribute }}</code></small></div>
                 {% endif %}
               </td>
               <td class="table-description">
-                {{ prop.description | inlineMarkdown | safe }}
+                <div>{{ prop.description | inlineMarkdown | safe }}</div>
+                {% if prop.type.text %}
+                  <div><small><strong>Type</strong>&nbsp;<code>{{ prop.type.text | trimPipes | inlineMarkdown | safe }}</code></small></div>
+                {% endif %}
+                {% if prop.default %}
+                  <div><small><strong>Default</strong>&nbsp;<code>{{ prop.default | inlineMarkdown | safe }}</code></small></div>
+                {% endif %}
               </td>
               <td class="table-checkmark">
                 {% if prop.reflects %}
                   <wa-icon name="check"></wa-icon>
                 {% endif %}
               </td>
-              <td class="table-type">
-                {% if prop.type.text %}
-                  <code>{{ prop.type.text | trimPipes | inlineMarkdown | safe }}</code>
-                {% endif %}
-              </td>
               <td class="table-default">
-                {% if prop.default %}
-                  <code>{{ prop.default | inlineMarkdown | safe }}</code>
-                {% endif %}
+
               </td>
             </tr>
           {% endfor %}
@@ -206,17 +200,18 @@
           <tr>
             <th class="table-name">Name</th>
             <th class="table-description">Description</th>
-            <th>Default</th>
           </tr>
         </thead>
         <tbody>
           {% for cssProperty in component.cssProperties %}
             <tr>
               <td class="table-name"><code>{{ cssProperty.name }}</code></td>
-              <td class="table-description">{{ cssProperty.description | inlineMarkdown | safe }}</td>
-              <td class="table-default">
+              <td class="table-description">
+                <div>{{ cssProperty.description | inlineMarkdown | safe }}</div>
                 {% if cssProperty.default %}
-                  <code>{{ cssProperty.default }}</code>
+                  <div>
+                    <small><strong>Default</strong>&nbsp;<code>{{ cssProperty.default }}</code></small>
+                    </div>
                 {% endif %}
               </td>
             </tr>
@@ -236,7 +231,6 @@
           <tr>
             <th class="table-name">Name</th>
             <th class="table-description">Description</th>
-            <th class="table-selector">CSS selector</th>
           </tr>
         </thead>
         <tbody>
@@ -244,7 +238,6 @@
             <tr>
               <td class="table-name"><code>{{ cssPart.name }}</code></td>
               <td class="table-description">{{ cssPart.description | inlineMarkdown | safe }}</td>
-              <td class="table-selector"><code>::part({{ cssPart.name }})</code></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -283,16 +276,16 @@
       <pre><code class="language-js">import '{% cdnUrl component.path %}';</code></pre>
     </wa-tab-panel>
     <wa-tab-panel name="npm">
-      <p>
-        To manually import this component from npm, use the following code.
-      </p>
-      <pre><code class="language-js">import '@shoelace-style/webawesome/{{ component.path }}';</code></pre>
+      Coming soon!
     </wa-tab-panel>
     <wa-tab-panel name="react">
+      Coming soon!
+      {# NOTE - disabled for alpha
       <p>
         To manually import this component from React, use the following code.
       </p>
       <pre><code class="language-js">import '@shoelace-style/webawesome/react/{{ component.tagName | stripPrefix }}';</code></pre>
+      #}
     </wa-tab-panel>
   </wa-tab-group>
 {% endblock %}

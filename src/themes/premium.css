@@ -484,7 +484,7 @@
       inset 0 -0.0625rem 0 0 rgb(0 0 0 / 0.2), var(--wa-shadow-s);
   }
 
-  wa-button[outline] {
+  wa-button[appearance='outlined'] {
     --box-shadow: none;
   }
 

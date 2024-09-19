@@ -5,7 +5,7 @@ import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html } from 'lit';
+import { html, isServer } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { scrollIntoView } from '../../internal/scroll.js';
@@ -32,7 +32,7 @@ import type WaPopup from '../popup/popup.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://shoelace.style/components/select
+ * @documentation https://backers.webawesome.com/docs/components/select
  * @status stable
  * @since 2.0
  *
@@ -43,6 +43,7 @@ import type WaPopup from '../popup/popup.js';
  * @slot - The listbox options. Must be `<wa-option>` elements. You can use `<wa-divider>` to group items visually.
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
+ * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
  * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
@@ -62,8 +63,9 @@ import type WaPopup from '../popup/popup.js';
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The select's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
- * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
+ * @csspart combobox - The container the wraps the prefix, suffix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
+ * @csspart suffix - The container that wraps the suffix slot.
  * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
  * @csspart listbox - The listbox container where options are slotted.
  * @csspart tags - The container that houses option tags when `multiselect` is used.
@@ -76,7 +78,7 @@ import type WaPopup from '../popup/popup.js';
  * @csspart expand-icon - The container that wraps the expand icon.
  *
  * @cssproperty --background-color - The background color of the select's combobox.
- * @cssproperty --border-color - The color of the select's borders, including the listbox.
+ * @cssproperty --border-color - The border color of the select's combobox.
  * @cssproperty --border-radius - The border radius of the select's combobox.
  * @cssproperty --border-style - The style of the select's borders, including the listbox.
  * @cssproperty --border-width - The width of the select's borders, including the listbox.
@@ -87,12 +89,14 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static get validators() {
-    return [
-      ...super.validators,
-      RequiredValidator({
-        validationElement: Object.assign(document.createElement('select'), { required: true })
-      })
-    ];
+    const validators = isServer
+      ? []
+      : [
+          RequiredValidator({
+            validationElement: Object.assign(document.createElement('select'), { required: true })
+          })
+        ];
+    return [...super.validators, ...validators];
   }
 
   assumeInteractionOn = ['wa-blur', 'wa-input'];
@@ -122,14 +126,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
   /** The name of the select, submitted as a name/value pair with form data. */
   @property() name = '';
 
-  /**
-   * The current value of the select, submitted as a name/value pair with form data. When `multiple` is enabled, the
-   * value attribute will be a space-delimited list of values based on the options selected, and the value property will
-   * be an array. **For this reason, values must not contain spaces.**
-   */
-  @property({ attribute: false })
-  value: string | string[] = '';
-
   private _defaultValue: string | string[] = '';
 
   @property({
@@ -140,23 +136,55 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       toAttribute: (value: string | string[]) => (Array.isArray(value) ? value.join(' ') : value)
     }
   })
-  // @ts-expect-error defaultValue () is a property on the host, but is being used a getter / setter here.
   set defaultValue(val: string | string[]) {
+    this._defaultValue = this.convertDefaultValue(val);
+  }
+
+  get defaultValue() {
+    if (!this.hasUpdated) {
+      this._defaultValue = this.convertDefaultValue(this._defaultValue);
+    }
+    return this._defaultValue;
+  }
+
+  /**
+   * @private
+   * A converter for defaultValue from array to string if its multiple. Also fixes some hydration issues.
+   */
+  private convertDefaultValue(val: typeof this.defaultValue) {
     // For some reason this can go off before we've fully updated. So check the attribute too.
     const isMultiple = this.multiple || this.hasAttribute('multiple');
 
     if (!isMultiple && Array.isArray(val)) {
       val = val.join(' ');
     }
-    this._defaultValue = val;
 
-    if (!this.hasInteracted) {
-      this.value = this.defaultValue;
-    }
+    return val;
   }
 
-  get defaultValue() {
-    return this._defaultValue;
+  private _value: string | string[] | null = this.defaultValue;
+
+  /**
+   * The current value of the select, submitted as a name/value pair with form data. When `multiple` is enabled, the
+   * value attribute will be a space-delimited list of values based on the options selected, and the value property will
+   * be an array. **For this reason, values must not contain spaces.**
+   */
+  get value() {
+    if (this.valueHasChanged) {
+      return this._value;
+    }
+
+    return this._value ?? this.defaultValue;
+  }
+
+  @property({ attribute: false })
+  set value(val: string | string[] | null) {
+    if (this._value === val) {
+      return;
+    }
+
+    this.valueHasChanged = true;
+    this._value = val;
   }
 
   /** The select's size. */
@@ -209,6 +237,16 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
 
   /** The select's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
+
+  /**
+   * Used for SSR purposes when a label is slotted in. Will show the label on first render.
+   */
+  @property({ attribute: 'with-label', type: Boolean }) withLabel = false;
+
+  /**
+   * Used for SSR purposes when help-text is slotted in. Will show the help-text on first render.
+   */
+  @property({ attribute: 'with-help-text', type: Boolean }) withHelpText = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -634,7 +672,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       }
     } else {
       this.value = this.selectedOptions[0]?.value ?? '';
-      this.displayLabel = this.selectedOptions[0]?.getTextLabel() ?? '';
+      this.displayLabel = this.selectedOptions[0]?.getTextLabel?.() ?? '';
     }
 
     // Update validity
@@ -765,12 +803,13 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
   }
 
   render() {
-    const hasLabelSlot = this.hasSlotController.test('label');
-    const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasLabelSlot = this.hasUpdated ? this.hasSlotController.test('label') : this.withLabel;
+    const hasHelpTextSlot = this.hasUpdated ? this.hasSlotController.test('help-text') : this.withHelpText;
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const hasClearIcon = this.clearable && !this.disabled && this.value.length > 0;
-    const isPlaceholderVisible = this.placeholder && this.value.length === 0;
+    const hasClearIcon =
+      (this.hasUpdated || isServer) && this.clearable && !this.disabled && this.value && this.value.length > 0;
+    const isPlaceholderVisible = Boolean(this.placeholder && (!this.value || this.value.length === 0));
 
     return html`
       <div
@@ -836,10 +875,15 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
                 placeholder=${this.placeholder}
                 .disabled=${this.disabled}
                 .value=${this.displayLabel}
+                ?required=${this.required}
                 autocomplete="off"
                 spellcheck="false"
                 autocapitalize="off"
                 readonly
+                aria-invalid=${
+                  !this.validity.valid
+                  /** aria-invalid is required because readonly inputs are technically always valid so it never reads 'invalid data' for screen readers. */
+                }
                 aria-controls="listbox"
                 aria-expanded=${this.open ? 'true' : 'false'}
                 aria-haspopup="listbox"
@@ -882,6 +926,8 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
                     </button>
                   `
                 : ''}
+
+              <slot name="suffix" part="suffix" class="select__suffix"></slot>
 
               <slot name="expand-icon" part="expand-icon" class="select__expand-icon">
                 <wa-icon library="system" name="chevron-down" variant="solid"></wa-icon>

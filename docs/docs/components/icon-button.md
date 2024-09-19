@@ -1,10 +1,10 @@
 ---
 title: Icon Button
 description: Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
-layout: component.njk
+layout: component
 ---
 
-For a full list of icons that come bundled with Web Awesome, refer to the [icon component](/components/icon).
+For a full list of icons that come bundled with Web Awesome, refer to the [icon component](/docs/components/icon).
 
 ```html {.example}
 <wa-icon-button name="gear" label="Settings"></wa-icon-button>
@@ -59,7 +59,7 @@ Use the `href` attribute to convert the button to a link.
 
 ### Icon Button with Tooltip
 
-Wrap a tooltip around an icon button to provide contextual information to the user.
+Add a tooltip that references the `id` of the icon button to provide contextual information.
 
 ```html {.example}
 <wa-icon-button id="icon-button" name="gear" variant="solid" label="Settings"></wa-icon-button>

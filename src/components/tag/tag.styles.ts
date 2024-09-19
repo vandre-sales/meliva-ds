@@ -96,7 +96,7 @@ export default css`
   }
 
   .tag__remove {
-    margin-inline-start: var(--wa-space-xs);
+    margin-inline-start: 0.75em;
   }
 
   /*

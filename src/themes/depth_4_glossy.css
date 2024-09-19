@@ -97,7 +97,7 @@
 /* #endregion */
 
 /* #region Buttons */
-wa-button:not([variant='text']) {
+wa-button:not([appearance='text']) {
   --box-shadow: inset 0 0.0625rem 0 0 rgb(255 255 255 / 0.2) /* shine */,
     inset 0 0.125rem 0 0 rgb(255 255 255 / 0.1) /* top highlight */,
     inset 0 1.25em 0 0 rgb(255 255 255 / 0.1) /* upper tint */, inset 0 -1.125em 0 0 rgb(0 0 0 / 0.04) /* lower shade */,
@@ -127,7 +127,7 @@ wa-button:not([variant='text']) {
   }
 }
 
-wa-button:not([outline]) {
+wa-button:not([appearance='outlined']) {
   &[variant='brand'] {
     --background: linear-gradient(var(--wa-color-brand-fill-loud) 25%, var(--wa-color-brand-fill-loud));
     --background-hover: linear-gradient(

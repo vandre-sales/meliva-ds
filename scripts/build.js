@@ -1,6 +1,6 @@
 import { deleteAsync } from 'del';
 import { dirname, join, relative } from 'path';
-import { distDir, docsDir, rootDir, runScript, siteDir } from './utils.js';
+import { distDir, docsDir, cdnDir, rootDir, runScript, siteDir } from './utils.js';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { globby } from 'globby';
@@ -14,16 +14,16 @@ import getPort, { portNumbers } from 'get-port';
 import ora from 'ora';
 import process from 'process';
 
-//
-// TODO - CDN dist and unbundled dist
-//
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const isDeveloping = process.argv.includes('--develop');
+const isAlpha = process.argv.includes('--alpha');
 const spinner = ora({ text: 'Web Awesome', color: 'cyan' }).start();
 const packageData = JSON.parse(await readFile(join(rootDir, 'package.json'), 'utf-8'));
 const version = JSON.stringify(packageData.version.toString());
-let buildContext;
+let buildContexts = {
+  bundledContext: {},
+  unbundledContext: {}
+};
 
 /**
  * Runs the full build.
@@ -37,6 +37,10 @@ async function buildAll() {
     await generateReactWrappers();
     await generateTypes();
     await generateStyles();
+
+    // copy everything to unbundled before we generate bundles.
+    await copy(cdnDir, distDir, { overwrite: true });
+
     await generateBundle();
     await generateDocs();
 
@@ -53,7 +57,9 @@ async function cleanup() {
   spinner.start('Cleaning up dist');
 
   await deleteAsync(distDir);
+  await deleteAsync(cdnDir);
   await mkdir(distDir, { recursive: true });
+  await mkdir(cdnDir, { recursive: true });
 
   spinner.succeed();
 }
@@ -82,7 +88,7 @@ function generateReactWrappers() {
   spinner.start('Generating React wrappers');
 
   try {
-    execSync(`node scripts/make-react.js --outdir "${distDir}"`, { stdio: 'inherit' });
+    execSync(`node scripts/make-react.js --outdir "${cdnDir}"`, { stdio: 'inherit' });
   } catch (error) {
     console.error(`\n\n${error.message}`);
   }
@@ -97,7 +103,16 @@ function generateReactWrappers() {
 async function generateStyles() {
   spinner.start('Copying stylesheets');
 
-  await copy(join(rootDir, 'src/themes'), join(distDir, 'themes'), { overwrite: true });
+  // NOTE - alpha setting omits all stylesheets except for these because we use them in the docs
+  if (isAlpha) {
+    await copy(join(rootDir, 'src/themes/applied.css'), join(cdnDir, 'themes/applied.css'), { overwrite: true });
+    await copy(join(rootDir, 'src/themes/color_standard.css'), join(cdnDir, 'themes/color_standard.css'), {
+      overwrite: true
+    });
+    await copy(join(rootDir, 'src/themes/default.css'), join(cdnDir, 'themes/default.css'), { overwrite: true });
+  } else {
+    await copy(join(rootDir, 'src/themes'), join(cdnDir, 'themes'), { overwrite: true });
+  }
 
   spinner.succeed();
 
@@ -107,11 +122,11 @@ async function generateStyles() {
 /**
  * Runs TypeScript to generate types.
  */
-function generateTypes() {
+async function generateTypes() {
   spinner.start('Running the TypeScript compiler');
 
   try {
-    execSync(`tsc --project ./tsconfig.prod.json --outdir "${distDir}"`);
+    execSync(`tsc --project ./tsconfig.prod.json --outdir "${cdnDir}"`);
   } catch (error) {
     return Promise.reject(error.stdout);
   }
@@ -127,6 +142,7 @@ function generateTypes() {
 async function generateBundle() {
   spinner.start('Bundling with esbuild');
 
+  // Bundled config
   const config = {
     format: 'esm',
     target: 'es2020',
@@ -138,6 +154,7 @@ async function generateBundle() {
       './src/webawesome.ts',
       // Autoloader + utilities
       './src/webawesome.loader.ts',
+      './src/webawesome.ssr-loader.ts',
       // Individual components
       ...(await globby('./src/components/**/!(*.(style|test)).ts')),
       // Translations
@@ -145,23 +162,41 @@ async function generateBundle() {
       // React wrappers
       ...(await globby('./src/react/**/*.ts'))
     ],
-    outdir: distDir,
+    outdir: cdnDir,
     chunkNames: 'chunks/[name].[hash]',
     define: {
       'process.env.NODE_ENV': '"production"' // required by Floating UI
     },
     bundle: true,
     splitting: true,
+    minify: false,
     plugins: [replace({ __WEBAWESOME_VERSION__: version })]
   };
 
-  if (isDeveloping) {
-    // Incremental builds for dev
-    buildContext = await esbuild.context(config);
-    await buildContext.rebuild();
-  } else {
-    // One-time build for production
-    await esbuild.build(config);
+  const unbundledConfig = {
+    ...config,
+    splitting: true,
+    treeShaking: true,
+    // Don't inline libraries like Lit etc.
+    packages: 'external',
+    outdir: distDir
+  };
+
+  try {
+    if (isDeveloping) {
+      buildContexts.bundledContext = await esbuild.context(config);
+      buildContexts.unbundledContext = await esbuild.context(unbundledConfig);
+
+      await buildContexts.bundledContext.rebuild();
+      await buildContexts.unbundledContext.rebuild();
+    } else {
+      // One-time build for production
+      await esbuild.build(config);
+      await esbuild.build(unbundledConfig);
+    }
+  } catch (error) {
+    spinner.fail();
+    console.log(chalk.red(`\n${error}`));
   }
 
   spinner.succeed();
@@ -173,7 +208,8 @@ async function generateBundle() {
 async function regenerateBundle() {
   try {
     spinner.start('Re-bundling with esbuild');
-    await buildContext.rebuild();
+    await buildContexts.bundledContext.rebuild();
+    await buildContexts.unbundledContext.rebuild();
   } catch (error) {
     spinner.fail();
     console.log(chalk.red(`\n${error}`));
@@ -188,8 +224,12 @@ async function regenerateBundle() {
 async function generateDocs() {
   spinner.start('Writing the docs');
 
+  const args = [];
+  if (isAlpha) args.push('--alpha');
+  if (isDeveloping) args.push('--develop');
+
   // 11ty
-  const output = (await runScript(join(__dirname, 'docs.js'), isDeveloping ? ['--develop'] : undefined))
+  const output = (await runScript(join(__dirname, 'docs.js'), args))
     // Cleanup the output
     .replace('[11ty]', '')
     .replace(' seconds', 's')
@@ -202,7 +242,7 @@ async function generateDocs() {
 
   // Copy dist (production only)
   if (!isDeveloping) {
-    await copy(distDir, join(siteDir, 'dist'));
+    await copy(cdnDir, join(siteDir, 'dist'));
   }
 
   spinner.succeed(`Writing the docs ${chalk.gray(`(${output}`)})`);
@@ -242,7 +282,7 @@ if (isDeveloping) {
       server: {
         baseDir: siteDir,
         routes: {
-          '/dist': './dist'
+          '/dist/': './dist-cdn/'
         }
       },
       callbacks: {
@@ -316,9 +356,8 @@ if (isDeveloping) {
 // Cleanup everything when the process terminates
 //
 function terminate() {
-  if (buildContext) {
-    buildContext.dispose();
-  }
+  // dispose of contexts.
+  Object.values(buildContexts).forEach(context => context?.dispose?.());
 
   if (spinner) {
     spinner.stop();

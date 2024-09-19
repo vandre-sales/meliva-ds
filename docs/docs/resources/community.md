@@ -1,7 +1,7 @@
 ---
 title: Community
 description: Web Awesome has a growing community of designers and developers that are building amazing things with web components.
-layout: page.njk
+layout: page
 ---
 
 Web Awesome has a growing community of designers and developers that are building amazing things with web components. We'd love for you to become a part of it!

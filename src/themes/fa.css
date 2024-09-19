@@ -510,7 +510,7 @@
     }
   }
 
-  wa-button:not([variant='text']) {
+  wa-button:not([appearance='text']) {
     --border-color: var(--label-color);
     --border-color-hover: var(--border-color);
     --border-color-active: var(--border-color);
@@ -518,7 +518,7 @@
     --background-active: var(--border-color);
     --label-color-active: var(--background);
 
-    &[outline] {
+    &[appearance='outlined'] {
       --background: var(--wa-color-surface-default);
     }
 

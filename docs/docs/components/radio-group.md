@@ -1,7 +1,7 @@
 ---
 title: Radio Group
 description: Radio groups are used to group multiple radios or radio buttons so they function as a single form control.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}
@@ -28,7 +28,7 @@ Add descriptive help text to a radio group with the `help-text` attribute. For h
 
 ### Radio Buttons
 
-[Radio buttons](/components/radio-button) offer an alternate way to display radio controls. In this case, an internal [button group](/components/button-group) is used to group the buttons into a single, cohesive control.
+[Radio buttons](/docs/components/radio-button) offer an alternate way to display radio controls. In this case, an internal [button group](/docs/components/button-group) is used to group the buttons into a single, cohesive control.
 
 ```html {.example}
 <wa-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1">
@@ -52,7 +52,7 @@ Radios and radio buttons can be disabled by adding the `disabled` attribute to t
 
 ### Sizing Options
 
-The size of [Radios](/components/radio) and [Radio Buttons](/components/radio-buttons) will be determined by the Radio Group's `size` attribute.
+The size of [Radios](/docs/components/radio) and [Radio Buttons](/docs/components/radio-buttons) will be determined by the Radio Group's `size` attribute.
 
 ```html preview
 <wa-radio-group label="Select an option" size="medium" value="medium" class="radio-group-size">
@@ -71,7 +71,7 @@ The size of [Radios](/components/radio) and [Radio Buttons](/components/radio-bu
 ```
 
 :::info
-[Radios](/components/radio) and [Radio Buttons](/components/radio-button) also have a `size` attribute. This can be useful in certain compositions, but it will be ignored when used inside of a Radio Group.
+[Radios](/docs/components/radio) and [Radio Buttons](/docs/components/radio-button) also have a `size` attribute. This can be useful in certain compositions, but it will be ignored when used inside of a Radio Group.
 :::
 
 ### Validation

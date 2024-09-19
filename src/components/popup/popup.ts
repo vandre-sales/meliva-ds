@@ -25,7 +25,7 @@ function isVirtualElement(e: unknown): e is VirtualElement {
 
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
- * @documentation https://shoelace.style/components/popup
+ * @documentation https://backers.webawesome.com/docs/components/popup
  * @status stable
  * @since 2.0
  *

@@ -22,7 +22,7 @@ import type WaPopup from '../popup/popup.js';
 
 /**
  * @summary Dropdowns expose additional content that "drops down" in a panel.
- * @documentation https://shoelace.style/components/dropdown
+ * @documentation https://backers.webawesome.com/docs/components/dropdown
  * @status stable
  * @since 2.0
  *
@@ -38,7 +38,8 @@ import type WaPopup from '../popup/popup.js';
  *
  * @cssproperty --box-shadow - The shadow effects around the dropdown's edges.
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - The component's base wrapper, a `<wa-popup>` element.
+ * @csspart base__popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart trigger - The container that wraps the trigger.
  * @csspart panel - The panel that gets shown when the dropdown is open.
  */
@@ -286,11 +287,23 @@ export default class WaDropdown extends WebAwesomeElement {
     let target: HTMLElement;
 
     if (accessibleTrigger) {
-      switch (accessibleTrigger.tagName.toLowerCase()) {
+      const tagName = accessibleTrigger.tagName.toLowerCase();
+      switch (tagName) {
         // Web Awesome buttons have to update the internal button so it's announced correctly by screen readers
         case 'wa-button':
         case 'wa-icon-button':
           target = (accessibleTrigger as WaButton | WaIconButton).button;
+
+          // Either the tag hasn't registered, or it hasn't rendered.
+          // So, wait for the tag to register, and then try again.
+          if (target === undefined || target === null) {
+            customElements.whenDefined(tagName).then(async () => {
+              await (accessibleTrigger as WaButton | WaIconButton).updateComplete;
+              this.updateAccessibleTrigger();
+            });
+
+            return;
+          }
           break;
 
         default:
@@ -400,6 +413,7 @@ export default class WaDropdown extends WebAwesomeElement {
     return html`
       <wa-popup
         part="base"
+        exportparts="popup:base__popup"
         id="dropdown"
         placement=${this.placement}
         distance=${this.distance}

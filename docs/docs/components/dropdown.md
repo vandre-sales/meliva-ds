@@ -1,12 +1,12 @@
 ---
 title: Dropdown
 description: 'Dropdowns expose additional content that "drops down" in a panel.'
-layout: component.njk
+layout: component
 ---
 
 Dropdowns consist of a trigger and a panel. By default, activating the trigger will expose the panel and interacting outside of the panel will close it.
 
-Dropdowns are designed to work well with [menus](/components/menu) to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. [color picker](/components/color-picker)). The API gives you complete control over showing, hiding, and positioning the panel.
+Dropdowns are designed to work well with [menus](/docs/components/menu) to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. [color picker](/docs/components/color-picker)). The API gives you complete control over showing, hiding, and positioning the panel.
 
 ```html {.example}
 <wa-dropdown>
@@ -35,7 +35,7 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
 
 ### Getting the Selected Item
 
-When dropdowns are used with [menus](/components/menu), you can listen for the [`wa-select`](/components/menu#events) event to determine which menu item was selected. The menu item element will be exposed in `event.detail.item`. You can set `value` props to make it easier to identify commands.
+When dropdowns are used with [menus](/docs/components/menu), you can listen for the [`wa-select`](/docs/components/menu#events) event to determine which menu item was selected. The menu item element will be exposed in `event.detail.item`. You can set `value` props to make it easier to identify commands.
 
 ```html {.example}
 <div class="dropdown-selection">
@@ -142,7 +142,7 @@ The offset of the panel along the trigger can be customized using the `skidding`
 
 ### Submenus
 
-To create a submenu, nest an `<wa-menu slot="submenu">` element in a [menu item](/components/menu-item).
+To create a submenu, nest an `<wa-menu slot="submenu">` element in a [menu item](/docs/components/menu-item).
 
 ```html {.example}
 <wa-dropdown>

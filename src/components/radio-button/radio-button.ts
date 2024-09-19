@@ -13,7 +13,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
- * @documentation https://shoelace.style/components/radio-button
+ * @documentation https://backers.webawesome.com/docs/components/radio-button
  * @status stable
  * @since 2.0
  *
@@ -84,6 +84,21 @@ export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
    */
   @property({ reflect: true }) form: string | null = null;
 
+  /**
+   * Used for SSR. if true, will show slotted prefix on initial render.
+   */
+  @property({ type: Boolean, attribute: 'with-prefix' }) withPrefix = false;
+
+  /**
+   * Used for SSR. if true, will show slotted suffix on initial render.
+   */
+  @property({ type: Boolean, attribute: 'with-suffix' }) withSuffix = false;
+
+  /**
+   * Used for SSR. if true, will show slotted suffix on initial render. (should this be withDefault, since its the default slot??)
+   */
+  @property({ type: Boolean, attribute: 'with-label' }) withLabel = false;
+
   // Needed for Form Validation. Without it we get a console error.
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
@@ -128,6 +143,10 @@ export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
   }
 
   render() {
+    const hasLabel = this.hasUpdated ? this.hasSlotController.test('[default]') : this.withLabel;
+    const hasPrefix = this.hasUpdated ? this.hasSlotController.test('prefix') : this.withPrefix;
+    const hasSuffix = this.hasUpdated ? this.hasSlotController.test('suffix') : this.withSuffix;
+
     return html`
       <div part="base" role="presentation">
         <button
@@ -144,11 +163,11 @@ export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
             'button--checked': this.checked,
             'button--disabled': this.disabled,
             'button--focused': this.hasFocus,
-            'button--outline': true,
+            'button--outlined': true,
             'button--pill': this.pill,
-            'button--has-label': this.hasSlotController.test('[default]'),
-            'button--has-prefix': this.hasSlotController.test('prefix'),
-            'button--has-suffix': this.hasSlotController.test('suffix')
+            'button--has-label': hasLabel,
+            'button--has-prefix': hasPrefix,
+            'button--has-suffix': hasSuffix
           })}
           aria-disabled=${this.disabled}
           type="button"

@@ -13,7 +13,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Split panels display two adjacent panels, allowing the user to reposition them.
- * @documentation https://shoelace.style/components/split-panel
+ * @documentation https://backers.webawesome.com/docs/components/split-panel
  * @status stable
  * @since 2.0
  *
@@ -88,7 +88,7 @@ export default class WaSplitPanel extends WebAwesomeElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.resizeObserver.unobserve(this);
+    this.resizeObserver?.unobserve(this);
   }
 
   private detectSize() {
@@ -105,7 +105,7 @@ export default class WaSplitPanel extends WebAwesomeElement {
   }
 
   private handleDrag(event: PointerEvent) {
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.hasUpdated ? this.matches(':dir(rtl)') : this.dir === 'rtl';
 
     if (this.disabled) {
       return;
@@ -226,7 +226,7 @@ export default class WaSplitPanel extends WebAwesomeElement {
   render() {
     const gridTemplate = this.vertical ? 'gridTemplateRows' : 'gridTemplateColumns';
     const gridTemplateAlt = this.vertical ? 'gridTemplateColumns' : 'gridTemplateRows';
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.hasUpdated ? this.matches(':dir(rtl)') : this.dir === 'rtl';
     const primary = `
       clamp(
         0%,
@@ -239,6 +239,12 @@ export default class WaSplitPanel extends WebAwesomeElement {
       )
     `;
     const secondary = 'auto';
+
+    // @TODO: Create an actual fix for this. [Konnor]
+    if (!this.style) {
+      // @ts-expect-error `this.style` doesn't exist on the server.
+      this.style = {};
+    }
 
     if (this.primary === 'end') {
       if (isRtl && !this.vertical) {

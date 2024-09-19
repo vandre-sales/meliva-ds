@@ -2,7 +2,7 @@ import '../icon-button/icon-button.js';
 import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { html } from 'lit';
+import { html, isServer } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js';
 import { WaAfterHideEvent } from '../../events/after-hide.js';
@@ -17,7 +17,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
- * @documentation https://shoelace.style/components/dialog
+ * @documentation https://backers.webawesome.com/docs/components/dialog
  * @status stable
  * @since 2.0
  *
@@ -153,9 +153,9 @@ export default class WaDialog extends WebAwesomeElement {
 
   private handleDialogClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const button = target.closest('[data-dialog="dismiss"]');
+    const button = target.closest('[data-dialog="close"]');
 
-    // Close when a button with [data-dialog="dismiss"] is clicked
+    // Close when a button with [data-dialog="close"] is clicked
     if (button) {
       event.stopPropagation();
       this.requestClose(button);
@@ -272,6 +272,13 @@ export default class WaDialog extends WebAwesomeElement {
       </dialog>
     `;
   }
+}
+
+// Ugly, but it fixes light dismiss in Safari: https://bugs.webkit.org/show_bug.cgi?id=267688
+if (!isServer) {
+  document.body.addEventListener('pointerdown', () => {
+    /* empty */
+  });
 }
 
 declare global {

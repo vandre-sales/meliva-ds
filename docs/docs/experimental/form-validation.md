@@ -1,7 +1,7 @@
 ---
 title: Form Control Validation
 description: TODO
-layout: page.njk
+layout: page
 ---
 
 Adding the `wa-valid` or `wa-invalid` class to a form control will change its appearance. This is useful for applying validation styles to server-rendered form controls.

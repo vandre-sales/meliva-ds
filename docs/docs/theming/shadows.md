@@ -1,12 +1,21 @@
 ---
 title: Shadows
 description: Elevate your components with Web Awesome's shadow properties.
-layout: page.njk
+layout: page-outline
 ---
 
 Shadows indicate elevation and, often, interactivity. Web Awesome offers highly modular shadow properties to easily create custom shadow effects or transform elements based on specific shadow qualities. Together with [`--wa-color-shadow`](/docs/theming/color/#shadow), these custom properties create realistic shadows for Web Awesome components.
 
-Shadows use a size-based scale where larger shadows have greater offset and blur values to indicate greater distance from the surface below.
+Shadows are constructed using corresponding offset-x, offset-y, blur, and spread properties, detailed in the sections below. In Web Awesome, shadows use a size-based scale where larger shadows have greater offset and blur values to indicate greater distance from the surface below. 
+
+| Custom Property  |  Default Value                                                      |
+| ---------------- | ------------------------------------------------------------------- |
+| `--wa-shadow-xs` | <div class="swatch" style="box-shadow: var(--wa-shadow-xs);"></div> |
+| `--wa-shadow-s`  | <div class="swatch" style="box-shadow: var(--wa-shadow-s);"></div>  |
+| `--wa-shadow-m`  | <div class="swatch" style="box-shadow: var(--wa-shadow-m);"></div>  |
+| `--wa-shadow-l`  | <div class="swatch" style="box-shadow: var(--wa-shadow-l);"></div>  |
+
+Any shadow may be implemented as an inner box shadow using the `inset` keyword, e.g. `box-shadow: inset var(--wa-shadow-xs);`.
 
 ## Horizontal Offset (X)
 
@@ -45,20 +54,9 @@ Each blur property uses a `calc()` function with `--wa-shadow-blur-multiplier` t
 
 Each spread property uses a `calc()` function with `--wa-shadow-spread-multiplier` to uniformly scale spread values. By default, this multiplier is `-0.0625`. The table below lists the result of the calculation.
 
-| Custom Property         |  Default Value                       |
-| ----------------------- | ------------------------------------ |
-| `--wa-shadow-spread-xs` | `0.03125rem` <small>(-0.5px)</small> |
-| `--wa-shadow-spread-s`  | `0.0625rem` <small>(-1px)</small>    |
-| `--wa-shadow-spread-m`  | `0.125rem` <small>(-2px)</small>     |
-| `--wa-shadow-spread-l`  | `0.25rem` <small>(-4px)</small>      |
-
-## Shadows
-
-Shadows are constructed using the corresponding offset-x, offset-y, blur, and spread properties. Any shadow may be implemented as an inner box shadow using the `inset` keyword, e.g. `box-shadow: inset var(--wa-shadow-xs);`.
-
-| Custom Property  |  Default Value                                                      |
-| ---------------- | ------------------------------------------------------------------- |
-| `--wa-shadow-xs` | <div class="swatch" style="box-shadow: var(--wa-shadow-xs);"></div> |
-| `--wa-shadow-s`  | <div class="swatch" style="box-shadow: var(--wa-shadow-s);"></div>  |
-| `--wa-shadow-m`  | <div class="swatch" style="box-shadow: var(--wa-shadow-m);"></div>  |
-| `--wa-shadow-l`  | <div class="swatch" style="box-shadow: var(--wa-shadow-l);"></div>  |
+| Custom Property         |  Default Value                        |
+| ----------------------- | ------------------------------------- |
+| `--wa-shadow-spread-xs` | `-0.03125rem` <small>(-0.5px)</small> |
+| `--wa-shadow-spread-s`  | `-0.0625rem` <small>(-1px)</small>    |
+| `--wa-shadow-spread-m`  | `-0.125rem` <small>(-2px)</small>     |
+| `--wa-shadow-spread-l`  | `-0.25rem` <small>(-4px)</small>      |

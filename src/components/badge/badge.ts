@@ -8,7 +8,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Badges are used to draw attention and display statuses or counts.
- * @documentation https://shoelace.style/components/badge
+ * @documentation https://backers.webawesome.com/docs/components/badge
  * @status stable
  * @since 2.0
  *

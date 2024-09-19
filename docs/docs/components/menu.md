@@ -1,10 +1,10 @@
 ---
 title: Menu
 description: Menus provide a list of options for the user to choose from.
-layout: component.njk
+layout: component
 ---
 
-You can use [menu items](/components/menu-item), [menu labels](/components/menu-label), and [dividers](/components/divider) to compose a menu. Menus support keyboard interactions, including type-to-select an option.
+You can use [menu items](/docs/components/menu-item), [menu labels](/docs/components/menu-label), and [dividers](/docs/components/divider) to compose a menu. Menus support keyboard interactions, including type-to-select an option.
 
 ```html {.example}
 <wa-menu style="max-width: 200px;">
@@ -26,7 +26,7 @@ Menus are intended for system menus (dropdown menus, select menus, context menus
 
 ### In Dropdowns
 
-Menus work really well when used inside [dropdowns](/components/dropdown).
+Menus work really well when used inside [dropdowns](/docs/components/dropdown).
 
 ```html {.example}
 <wa-dropdown>
@@ -41,7 +41,7 @@ Menus work really well when used inside [dropdowns](/components/dropdown).
 
 ### Submenus
 
-To create a submenu, nest an `<wa-menu slot="submenu">` in any [menu item](/components/menu-item).
+To create a submenu, nest an `<wa-menu slot="submenu">` in any [menu item](/docs/components/menu-item).
 
 ```html {.example}
 <wa-menu style="max-width: 200px;">

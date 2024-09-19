@@ -1,88 +1,47 @@
 ---
 title: Customizing
 description: Learn how to customize Web Awesome through parts and custom properties.
-layout: page.njk
+layout: page-outline
 ---
 
-Web Awesome components can be customized at a high level through design tokens. This gives you control over theme colors and general styling. For more advanced customizations, you can make use of CSS parts and custom properties to target individual components.
+Web Awesome components can be customized at a high level through a theming API. This gives you control over theme colors and general styling. For more advanced customizations, you can make use of CSS parts and custom properties to target individual components.
 
-## Design Tokens
+## Themes
 
-Web Awesome makes use of several design tokens to provide a consistent appearance across components. You can customize them and use them in your own application with pure CSS — no preprocessor required.
+Web Awesome uses numerous CSS custom properties that make up a high-level theming API and provide a consistent look and feel across the entire library. You can customize them and use them in your own application just with CSS — no preprocessor required.
 
-Design tokens offer a high-level way to customize the library with minimal effort. There are no component-specific variables, however, as design tokens are intended to be generic and highly reusable. To customize an individual component, refer to the section entitled [CSS Parts](#css-parts).
+Because these custom properties live at the page level, they're prefixed with `--wa-` to avoid collisions with other libraries or your own custom properties.
 
-Design tokens are accessed through CSS custom properties that are defined in your theme. Because design tokens live at the page level, they're prefixed with `--wa-` to avoid collisions with other libraries.
-
-To customize a design token, simply override it in your stylesheet using a `:root` block. Here's an example that changes the primary theme to purple based on existing [color primitives](/tokens/color#primitives).
+To customize a theme, simply override any of these custom properties in your own stylesheet by scoping your styles to `:root`, `:host`, and, if needed, the class for the specific theme you want to override. Here's an example that changes the default brand color (blue) to violet in the light theme using existing [literal colors](/docs/theming/color/#literal-colors).
 
 ```css
-:root {
-  /* Changes the primary theme color to purple using primitives */
-  --wa-color-primary-50: var(--wa-color-purple-50);
-  --wa-color-primary-100: var(--wa-color-purple-100);
-  --wa-color-primary-200: var(--wa-color-purple-200);
-  --wa-color-primary-300: var(--wa-color-purple-300);
-  --wa-color-primary-400: var(--wa-color-purple-400);
-  --wa-color-primary-500: var(--wa-color-purple-500);
-  --wa-color-primary-600: var(--wa-color-purple-600);
-  --wa-color-primary-700: var(--wa-color-purple-700);
-  --wa-color-primary-800: var(--wa-color-purple-800);
-  --wa-color-primary-900: var(--wa-color-purple-900);
-  --wa-color-primary-950: var(--wa-color-purple-950);
+:root,
+:host,
+.wa-theme-default-light {
+  /* Changes the brand color to violet across the library */
+  --wa-color-brand-fill-quiet: var(--wa-color-violet-95);
+  --wa-color-brand-fill-normal: var(--wa-color-violet-90);
+  --wa-color-brand-fill-loud: var(--wa-color-violet-50);
+  --wa-color-brand-border-quiet: var(--wa-color-violet-90);
+  --wa-color-brand-border-normal: var(--wa-color-violet-80);
+  --wa-color-brand-border-loud: var(--wa-color-violet-60);
+  --wa-color-brand-on-quiet: var(--wa-color-violet-40);
+  --wa-color-brand-on-normal: var(--wa-color-violet-30);
+  --wa-color-brand-on-loud: white;
 }
 ```
 
-Many design tokens are described further along in this documentation. For a complete list, refer to `src/themes/default.css` in the project's [source code](https://github.com/shoelace-style/shoelace/blob/current/src/themes/default.css).
+For more examples and further guidance, refer to [Themes](/docs/themes) and the Theming section of this documentation. For a complete list of all custom properties used for theming, refer to `src/themes/default.css` in the project's source code.
 
-## CSS Parts
+## Components
 
-Whereas design tokens offer a high-level way to customize the library, CSS parts offer a low-level way to customize individual components. Again, this is done with pure CSS — no preprocessor required.
+Whereas a theme offers a high-level way to customize the library, components offer different hooks as a low-level way to customize them individually. 
 
-Web Awesome components use a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) to encapsulate their styles and behaviors. As a result, you can't simply target their internals with the usual CSS selectors. Instead, components expose "parts" that can be targeted with the [CSS part selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part), or `::part()`.
+Web Awesome components use a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) to encapsulate their styles and behaviors. As a result, you can't simply target their internals with the usual CSS selectors. Instead, components expose a set of custom properties and CSS parts that can be targeted to customize their appearance.
 
-Here's an example that modifies buttons with the `tomato-button` class.
+### Custom Properties
 
-```html {.example}
-<wa-button class="tomato-button"> Tomato Button </wa-button>
-
-<style>
-  .tomato-button::part(base) {
-    background: var(--wa-color-neutral-0);
-    border: solid 1px tomato;
-  }
-
-  .tomato-button::part(base):hover {
-    background: rgba(255, 99, 71, 0.1);
-  }
-
-  .tomato-button::part(base):active {
-    background: rgba(255, 99, 71, 0.2);
-  }
-
-  .tomato-button::part(base):focus-visible {
-    box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.33);
-  }
-
-  .tomato-button::part(label) {
-    color: tomato;
-  }
-</style>
-```
-
-At first glance, this approach might seem a bit verbose or even limiting, but it comes with a few important advantages:
-
-- Customizations can be made to components with explicit selectors, such as `::part(icon)`, rather than implicit selectors, such as `.button > div > span + .icon`, that are much more fragile.
-
-- The internal structure of a component will likely change as it evolves. By exposing CSS parts through an API, the internals can be reworked without fear of breaking customizations as long as its parts remain intact.
-
-- It encourages us to think more about how components are designed and how customizations should be allowed before users can take advantage of them. Once we opt a part into the component's API, it's guaranteed to be supported and can't be removed until a major version of the library is released.
-
-Most (but not all) components expose parts. You can find them in each component's API documentation under the "CSS Parts" section.
-
-## Custom Properties
-
-For convenience, some components expose CSS custom properties you can override. These are not design tokens, nor do they have the same `--wa-` prefix since they're scoped to a component.
+Components expose custom properties that are scoped to the component, not global, so they do not have the same `--wa-` prefix as a theme's custom properties. These custom properties reflect common qualities of a component, such as `--background-color`, `--border-style`, `--size`, etc.
 
 You can set custom properties on a component in your stylesheet.
 
@@ -106,4 +65,47 @@ Alternatively, you can set them inline directly on the element.
 <wa-avatar style="--size: 6rem;"></wa-avatar>
 ```
 
-Not all components expose CSS custom properties. For those that do, they can be found in the component's API documentation.
+The custom properties exposed by each component can be found in the component's API documentation.
+
+### CSS Parts
+
+CSS parts offer further flexibility to customize individual components. The "parts" exposed by each component can be targeted with the [CSS part selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part), or `::part()`.
+
+Parts allow you to style *any* standard CSS property, not just those exposed through custom properties. Here's an example that modifies buttons with the `gradient-button` class.
+
+```html {.example}
+<wa-button class="gradient-button"> Gradient Button </wa-button>
+
+<style>
+  .gradient-button::part(base) {
+    background: linear-gradient(217deg, var(--wa-color-indigo-50), var(--wa-color-violet-50), var(--wa-color-red-50));
+    border: solid 1px var(--wa-color-violet-50);
+    transition: transform 100ms, box-shadow 100ms;
+  }
+
+  .gradient-button::part(base):hover {
+    box-shadow: var(--wa-shadow-m);
+    transform: translateY(-3px);
+  }
+
+  .gradient-button::part(base):active {
+    box-shadow: inset var(--wa-shadow-s);
+    transform: translateY(0);
+  }
+
+  .gradient-button::part(label) {
+    color: white;
+    text-shadow: rgb(0 0 0 / 0.3) 0 -1px;
+  }
+</style>
+```
+
+CSS parts have a few important advantages:
+
+- Customizations can be made to components with explicit selectors, such as `::part(icon)`, rather than implicit selectors, such as `.button > div > span + .icon`, that are much more fragile.
+
+- The internal structure of a component will likely change as it evolves. By exposing CSS parts through an API, the internals can be reworked without fear of breaking customizations as long as its parts remain intact.
+
+- It encourages us to think more about how components are designed and how customizations should be allowed before users can take advantage of them. Once we opt a part into the component's API, it's guaranteed to be supported and can't be removed until a major version of the library is released.
+
+Most (but not all) components expose parts. You can find them in each component's API documentation under the "CSS Parts" section.

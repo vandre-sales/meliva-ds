@@ -23,6 +23,7 @@ export default css`
     align-items: center;
     font: inherit;
     padding: var(--wa-space-xs) var(--wa-space-m) var(--wa-space-xs) var(--wa-space-2xs);
+    line-height: var(--wa-line-height-condensed);
     transition: fill var(--wa-transition-normal) var(--wa-transition-easing);
     cursor: pointer;
   }

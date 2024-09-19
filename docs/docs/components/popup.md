@@ -1,7 +1,7 @@
 ---
 title: Popup
 description: 'Popup is a utility that lets you declaratively anchor "popup" containers to another element.'
-layout: component.njk
+layout: component
 ---
 
 This component's name is inspired by [`<popup>`](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Popup/explainer.md). It uses [Floating UI](https://floating-ui.com/) under the hood to provide a well-tested, lightweight, and fully declarative positioning utility for tooltips, dropdowns, and more.
@@ -9,7 +9,7 @@ This component's name is inspired by [`<popup>`](https://github.com/MicrosoftEdg
 Popup doesn't provide any styles — just positioning! The popup's preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below.
 
 :::warning
-Popup is a low-level utility built specifically for positioning elements. Do not mistake it for a [tooltip](/components/tooltip) or similar because _it does not facilitate an accessible experience!_ Almost every correct usage of `<wa-popup>` will involve building other components. It should rarely, if ever, occur directly in your HTML.
+Popup is a low-level utility built specifically for positioning elements. Do not mistake it for a [tooltip](/docs/components/tooltip) or similar because _it does not facilitate an accessible experience!_ Almost every correct usage of `<wa-popup>` will involve building other components. It should rarely, if ever, occur directly in your HTML.
 :::
 
 ```html {.example}

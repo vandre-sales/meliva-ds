@@ -5,34 +5,14 @@
   <li><a href="/docs/usage">Usage</a></li>
   <li><a href="/docs/themes">Themes</a></li>
   <li><a href="/docs/customizing">Customizing</a></li>
+  <li><a href="/docs/form-controls">Form Controls</a></li>
   <li><a href="/docs/localization">Localization</a></li>
 </ul>
-
-{# Experimental #}
-<h2>Experimental</h2>
-<ul>
-  <li><a href="/docs/experimental/themer">Theme Builder</a></li>
-  <li><a href="/docs/experimental/style-guide">Style Guide</a></li>
-  <li><a href="/docs/experimental/form-validation">Form Validation Styles</a></li>
-  <li><a href="/docs/experimental/sandbox">Sandbox</a></li>
-  <li style="margin-top: .5rem;"><wa-switch id="theme-toggle">Dark mode</wa-switch></li>
-  <script type="module">
-    // Temporary dark toggle
-    const toggle = document.getElementById('theme-toggle');
-    toggle.checked = document.documentElement.classList.contains('wa-theme-default-dark');
-
-    toggle.addEventListener('wa-change', () => {
-      document.documentElement.classList.toggle('wa-theme-default-dark');
-      localStorage.setItem('theme', toggle.checked ? 'dark' : 'light');
-    });
-  </script>
-</ul>
-
 
 {# Resources #}
 <h2>Resources</h2>
 <ul>
-  <li><a href="https://github.com/shoelace-style/shoelace/discussions">Help &amp; Support</a></li>
+  <li><a href="https://github.com/shoelace-style/webawesome-alpha/discussions" target="_blank">Help &amp; Support</a></li>
   <li><a href="/docs/resources/community">Community</a></li>
   <li><a href="/docs/resources/accessibility">Accessibility</a></li>
   <li><a href="/docs/resources/contributing">Contributing</a></li>
@@ -42,6 +22,9 @@
 {# Components #}
 <h2>Components</h2>
 <ul>
+  <li>
+    <a href="/docs/components/">Components Overview</a>
+  </li>
   <li>
     <a href="/docs/components/animated-image">Animated Image</a>
   </li>
@@ -145,12 +128,6 @@
     <a href="/docs/components/mutation-observer">Mutation Observer</a>
   </li>
   <li>
-    <a href="/docs/components/option">Option</a>
-  </li>
-  <li>
-    <a href="/docs/components/page">Page</a>
-  </li>
-  <li>
     <a href="/docs/components/popup">Popup</a>
   </li>
   <li>
@@ -187,6 +164,11 @@
   </li>
   <li>
     <a href="/docs/components/select">Select</a>
+    <ul>
+      <li>
+        <a href="/docs/components/option">Option</a>
+      </li>
+    </ul>
   </li>
   <li>
     <a href="/docs/components/skeleton">Skeleton</a>
@@ -236,6 +218,9 @@
 {# Theming #}
 <h2>Theming</h2>
 <ul>
+  <li>
+    <a href="/docs/theming/">Theming Overview</a>
+  </li>
   <li>
     <a href="/docs/theming/color">Color</a>
   </li>

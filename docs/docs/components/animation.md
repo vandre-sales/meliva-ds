@@ -1,7 +1,7 @@
 ---
 title: Animation
 description: Animate elements declaratively with nearly 100 baked-in presets, or roll your own with custom keyframes.
-layout: component.njk
+layout: component
 ---
 
 To animate an element, wrap it in `<wa-animation>` and set an animation `name`. The animation will not start until you add the `play` attribute. Refer to the [properties table](#properties) for a list of all animation options.
@@ -50,7 +50,7 @@ This example demonstrates all of the baked-in animations and easings. Animations
 </div>
 
 <script type="module">
-  import { getAnimationNames, getEasingNames } from '/dist/utilities/animation.js';
+  import { getAnimationNames, getEasingNames } from '/dist/webawesome.js';
 
   const container = document.querySelector('.animation-sandbox');
   const animation = container.querySelector('wa-animation');

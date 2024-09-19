@@ -17,7 +17,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Tooltips display additional information based on a specific action.
- * @documentation https://shoelace.style/components/tooltip
+ * @documentation https://backers.webawesome.com/docs/components/tooltip
  * @status stable
  * @since 2.0
  *
@@ -113,6 +113,14 @@ export default class WaTooltip extends WebAwesomeElement {
 
   connectedCallback() {
     super.connectedCallback();
+
+    // TODO: This is a hack that I need to revisit [Konnor]
+    if (this.open) {
+      this.open = false;
+      this.updateComplete.then(() => {
+        this.open = true;
+      });
+    }
 
     // If the user doesn't give us an id, generate one.
     if (!this.id) {

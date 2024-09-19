@@ -1,7 +1,7 @@
 ---
 title: Transitions
 description: Customize your theme's built-in transitions with Web Awesome's transition properties.
-layout: page.njk
+layout: page-outline
 ---
 
 <style>
@@ -28,14 +28,6 @@ layout: page.njk
 
 Transitions can make interactions more lively and emphasize the relationship between a user's action and its outcome.
 
-### Easing
-
-Easing controls the standard `transition-timing-function` used for transitions throughout Web Awesome.
-
-| Custom Property          | Default Value | Preview                                                                                |
-| ------------------------ | ------------- | -------------------------------------------------------------------------------------- |
-| `--wa-transition-easing` | `ease`        | <div class="swatch" style="transition: width 600ms var(--wa-transition-easing)"></div> |
-
 ### Duration
 
 Web Awesome uses different transition durations to make it easy to track a component's state while minimizing sluggish or distracting movement.
@@ -47,3 +39,11 @@ Properties that change between frequent, incidental states, such as hover and fo
 | `--wa-transition-slow`   | `300ms`       | <div class="swatch" style="transition: width var(--wa-transition-slow) var(--wa-transition-easing)"></div>   |
 | `--wa-transition-normal` | `150ms`       | <div class="swatch" style="transition: width var(--wa-transition-normal) var(--wa-transition-easing)"></div> |
 | `--wa-transition-fast`   | `75ms`        | <div class="swatch" style="transition: width var(--wa-transition-fast) var(--wa-transition-easing)"></div>   |
+
+### Easing
+
+Easing controls the standard `transition-timing-function` used for transitions throughout Web Awesome.
+
+| Custom Property          | Default Value | Preview                                                                                |
+| ------------------------ | ------------- | -------------------------------------------------------------------------------------- |
+| `--wa-transition-easing` | `ease`        | <div class="swatch" style="transition: width 600ms var(--wa-transition-easing)"></div> |

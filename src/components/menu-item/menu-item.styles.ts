@@ -20,6 +20,7 @@ export default css`
     align-items: stretch;
     font: inherit;
     padding: var(--wa-space-xs) var(--wa-space-2xs);
+    line-height: var(--wa-line-height-condensed);
     transition: fill var(--wa-transition-normal) var(--wa-transition-easing);
     user-select: none;
     -webkit-user-select: none;

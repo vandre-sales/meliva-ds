@@ -1,7 +1,7 @@
 ---
 title: Usage
 description: Learn more about using custom elements.
-layout: page.njk
+layout: page-outline
 ---
 
 Web Awesome components are just regular HTML elements, or [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to be precise. You can use them like any other element. Each component has detailed documentation that describes its full API, including properties, events, methods, and more.
@@ -21,19 +21,6 @@ Some properties are boolean, so they only have true/false values. To activate a 
 ```html
 <wa-button disabled>Click me</wa-button>
 ```
-
-In rare cases, a property may require an array, an object, or a function. For example, to customize the color picker's list of preset swatches, you set the `swatches` property to an array of colors. This must be done with JavaScript.
-
-```html
-<wa-color-picker></wa-color-picker>
-
-<script>
-  const colorPicker = document.querySelector('wa-color-picker');
-  colorPicker.swatches = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-</script>
-```
-
-Refer to a component's documentation for a complete list of its properties.
 
 ## Events
 
@@ -186,55 +173,5 @@ checkbox.updateComplete.then(() => {
 This time we see an empty string, which means the boolean attribute is now present!
 
 :::info
-Avoid using `setTimeout()` or `requestAnimationFrame()` in situations like this. They might work, but it's far more reliable to use `updateComplete` instead.
+To wait for multiple components to update, you can use `requestAnimationFrame()` instead of awaiting each element.
 :::
-
-## Code Completion
-
-### VS Code
-
-Web Awesome ships with a file called `vscode.html-custom-data.json` that can be used to describe it's custom elements to Visual Studio Code. This enables code completion for Web Awesome components (also known as "code hinting" or "IntelliSense"). To enable it, you need to tell VS Code where the file is.
-
-1. [Install Web Awesome locally](/getting-started/installation#local-installation)
-2. If it doesn't already exist, create a folder called `.vscode` at the root of your project
-3. If it doesn't already exist, create a file inside that folder called `settings.json`
-4. Add the following to the file
-
-```js
-{
-  "html.customData": ["./node_modules/@shoelace-style/shoelace/dist/vscode.html-custom-data.json"]
-}
-```
-
-If `settings.json` already exists, simply add the above line to the root of the object. Note that you may need to restart VS Code for the changes to take effect.
-
-### JetBrains IDEs
-
-If you are using a [JetBrains IDE](https://www.jetbrains.com/) and you are installing Shoelace from NPM, the editor will automatically detect the `web-types.json` file from the package and you should immediately see component information in your editor.
-
-If you are installing from the CDN, you can [download a local copy](https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/web-types.json) and add it to the root of your project. Be sure to add a reference to the `web-types.json` file in your `package.json` in order for your editor to properly detect it.
-
-```json
-{
-  ...
-  "web-types": "./web-types.json"
-  ...
-}
-```
-
-If you are using types from multiple projects, you can add an array of references.
-
-```json
-{
-  ...
-  "web-types": [
-    ...,
-    "./web-types.json"
-  ]
-  ...
-}
-```
-
-### Other Editors
-
-Most popular editors support custom code completion with a bit of configuration. Please [submit a feature request](https://github.com/shoelace-style/shoelace/issues/new/choose) for your editor of choice. PRs are also welcome!

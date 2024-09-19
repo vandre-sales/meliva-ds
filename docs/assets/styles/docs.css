@@ -3,13 +3,20 @@
 @import 'copy-code.css';
 @import 'outline.css';
 @import 'search.css';
+@import 'cera_typeface.css';
+
+:root {
+  --wa-brand-orange: #f36944;
+  --wa-brand-grey: #30323b;
+}
+
+html.wa-theme-default-dark .only-light,
+html:not(.wa-theme-default-dark) .only-dark {
+  display: none;
+}
 
 wa-page {
   --wa-flow-spacing: var(--wa-space-xl);
-}
-
-wa-page[view='desktop'] [data-toggle-nav] {
-  display: none;
 }
 
 /* Header */
@@ -22,31 +29,102 @@ wa-page > header {
   flex: 1 1 auto;
   display: flex;
   align-items: center;
-  max-width: 1200px;
-  height: 60px;
-  padding-inline: 2rem;
+  justify-content: space-between;
+  height: 4rem;
+  padding-inline: var(--wa-space-xl);
+
+  a[href='/'] {
+    color: var(--wa-color-text-normal);
+    line-height: 1;
+  }
+
+  wa-button[data-toggle-nav] {
+    --label-color: currentColor;
+    margin-inline-start: -0.875rem;
+    margin-inline-end: 0;
+
+    &::part(base) {
+      padding: 0;
+      padding-inline: 0.875rem;
+    }
+  }
 
   svg {
     width: auto;
-    max-height: 26px;
+    height: 1.75rem;
   }
-}
 
-/* Navigation sidebar */
-wa-page[view='desktop']::part(navigation) {
-  border-right: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
-}
+  #docs-branding,
+  #docs-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--wa-space-xs);
+  }
 
-wa-page[view='desktop'] > #sidebar {
-  min-width: 320px;
-  padding: 2rem;
+  #version-number {
+    color: var(--wa-color-text-quiet);
+    font-size: var(--wa-font-size-xs);
+    line-height: 1;
+    margin-block-start: var(--wa-space-2xs);
+  }
+  #version-number + wa-badge {
+    --background-color: var(--wa-color-warning-fill-quiet);
+    --content-color: var(--wa-color-warning-on-quiet);
+    font-size: var(--wa-font-size-2xs);
+    text-transform: uppercase;
+  }
+  wa-button#search-trigger {
+    --background-color: var(--wa-form-control-background-color);
+    --border-color: var(--wa-form-control-resting-color);
+  }
+  #search-trigger kbd {
+    font-size: var(--wa-font-size-2xs);
+    line-height: var(--wa-form-control-value-line-height);
+  }
 }
 
 #sidebar,
 #outline {
   h2 {
-    font-size: 1.125rem;
-    margin-block-end: 0.5rem;
+    font-size: var(--wa-font-size-m);
+    margin-block-end: var(--wa-space-m);
+  }
+  h2:not(:first-of-type) {
+    margin-block-start: var(--wa-space-xl);
+  }
+  ul {
+    border-inline-start: var(--wa-border-width-s) solid var(--wa-color-surface-border);
+    font-size: var(--wa-font-size-s);
+    line-height: var(--wa-line-height-condensed);
+    margin: 0;
+    padding-inline-start: var(--wa-space-m);
+  }
+  ul ul {
+    margin-block-start: var(--wa-space-m);
+  }
+  li {
+    list-style: none;
+    margin-block-end: var(--wa-space-m);
+  }
+  li a {
+    color: var(--wa-color-text-normal);
+    text-decoration: none;
+  }
+  li a:hover {
+    text-decoration: underline;
+  }
+}
+
+#sidebar-close-button {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #sidebar-close-button {
+    display: inline-block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
 }
 
@@ -54,11 +132,19 @@ wa-page[view='desktop'] > #sidebar {
   padding-bottom: 1rem;
 }
 
+wa-page::part(menu) {
+  scrollbar-width: thin;
+}
+
 /* Main content */
 wa-page > main {
   max-width: 80ch;
-  padding: 2rem;
+  padding: var(--wa-space-xl);
   margin-inline: auto;
+}
+
+.component-info {
+  margin-block-end: var(--wa-flow-spacing);
 }
 
 /* Current link */
@@ -87,7 +173,7 @@ wa-page > main {
 .callout {
   display: flex;
   gap: 1rem;
-  border: var(--wa-border-style) var(--wa-border-width-m);
+  border: var(--wa-border-style) var(--wa-border-width-s);
   border-radius: var(--wa-border-radius-m);
   padding: 1rem;
   margin-block-end: var(--wa-flow-spacing);
@@ -136,8 +222,65 @@ wa-page > main {
   }
 }
 
-/* Swatches */
+/* Index Pages */
+wa-page > main:has(> .index-grid) {
+  max-width: 120ch;
+  margin-inline: auto;
+}
 
+.index-summary {
+  max-inline-size: 80ch;
+}
+
+.index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20ch, 100%), 1fr));
+  gap: var(--wa-space-2xl);
+}
+
+.index-category {
+  grid-column: 1 / -1;
+  margin-block-end: 0;
+  margin-block-start: var(--wa-space-2xl);
+}
+
+.index-grid a {
+  border-radius: var(--wa-border-radius-m);
+}
+
+.index-grid wa-card {
+  --box-shadow: none;
+  --spacing: var(--wa-space-m);
+  inline-size: 100%;
+}
+
+.index-grid wa-card:hover {
+  --border-color: var(--wa-color-brand-border-loud);
+  --box-shadow: 0 0 0 var(--wa-border-width-s) var(--border-color);
+  & .page-name {
+    color: var(--wa-color-brand-on-quiet);
+  }
+}
+
+.index-grid wa-card [slot='header'] {
+  display: flex;
+}
+
+.index-grid wa-card::part(header) {
+  background-color: var(--wa-color-neutral-fill-quiet);
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: calc(6rem + var(--spacing));
+}
+
+.index-grid .page-name {
+  font-size: var(--wa-font-size-s);
+  font-weight: var(--wa-font-weight-action);
+}
+
+/* Swatches */
 .swatch {
   background-color: transparent;
   border-color: var(--wa-color-neutral-border-normal);
@@ -148,4 +291,50 @@ wa-page > main {
   line-height: 2.5;
   height: 2.5em;
   padding-inline: var(--wa-space-xs);
+}
+
+/* Utilities */
+.two-columns {
+  columns: 2;
+  gap: 1rem;
+}
+
+.component-table td > * + * {
+  margin-block-start: var(--wa-space-s);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+/** mobile */
+@media screen and (max-width: 768px) {
+  wa-page .only-desktop {
+    display: none;
+  }
+}
+
+/** desktop */
+@media screen and not (max-width: 768px) {
+  wa-page [data-toggle-nav],
+  wa-page .only-mobile {
+    display: none;
+  }
+
+  /* Navigation sidebar */
+  wa-page::part(navigation) {
+    border-right: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
+  }
+
+  wa-page > #sidebar {
+    overflow: auto;
+    max-height: 100%;
+    min-width: 300px;
+    padding: var(--wa-space-xl);
+    max-width: 300px;
+  }
+
+  wa-page > main {
+    padding: var(--wa-space-3xl);
+  }
 }

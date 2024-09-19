@@ -21,8 +21,8 @@ import WebAwesomeElement from '../../internal/webawesome-element.js';
 import type { CSSResultGroup, PropertyValueMap } from 'lit';
 
 /**
- * @summary A tree item serves as a hierarchical node that lives inside a [tree](/components/tree).
- * @documentation https://shoelace.style/components/tree-item
+ * @summary A tree item serves as a hierarchical node that lives inside a [tree](/docs/components/tree).
+ * @documentation https://backers.webawesome.com/docs/components/tree-item
  * @status stable
  * @since 2.0
  *
@@ -236,7 +236,7 @@ export default class WaTreeItem extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.hasUpdated ? this.matches(':dir(rtl)') : this.dir === 'rtl';
     const showExpandButton = !this.loading && (!this.isLeaf || this.lazy);
 
     return html`

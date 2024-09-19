@@ -1,13 +1,13 @@
 import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integration';
 import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
-import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
+// import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
 import { parse } from 'comment-parser';
 import { pascalCase } from 'pascal-case';
 import fs from 'fs';
 
 const packageData = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 const { name, description, version, author, homepage, license } = packageData;
-const outdir = 'dist';
+const outdir = 'dist-cdn';
 
 function replace(string, terms) {
   terms.forEach(({ from, to }) => {
@@ -156,19 +156,19 @@ export default {
       referencesTemplate: (_, tag) => [
         {
           name: 'Documentation',
-          url: `https://shoelace.style/components/${tag.replace('wa-', '')}`
+          url: `https://webawesome.com/docs/components/${tag.replace('wa-', '')}`
         }
       ]
     }),
 
     customElementJetBrainsPlugin({
-      outdir: './dist',
+      outdir: './dist-cdn',
       excludeCss: true,
       packageJson: false,
       referencesTemplate: (_, tag) => {
         return {
           name: 'Documentation',
-          url: `https://shoelace.style/components/${tag.replace('wa-', '')}`
+          url: `https://webawesome.com/docs/components/${tag.replace('wa-', '')}`
         };
       }
     })

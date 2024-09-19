@@ -7,7 +7,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Dividers are used to visually separate or group elements.
- * @documentation https://shoelace.style/components/divider
+ * @documentation https://backers.webawesome.com/docs/components/divider
  * @status stable
  * @since 2.0
  *

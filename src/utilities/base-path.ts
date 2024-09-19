@@ -10,8 +10,8 @@ export function setBasePath(path: string) {
  * Gets the library's base path.
  *
  * The base path is used to load assets such as icons and images, so it needs to be set for components to work properly.
- * By default, this script will look for a script ending in webawesome.js or autoloader.js and set the base path to the
- * directory that contains that file. To override this behavior, you can add the data-webawesome attribute to any
+ * By default, this script will look for a script ending in webawesome.js or webawesome.loader.js and set the base path
+ * to the directory that contains that file. To override this behavior, you can add the data-webawesome attribute to any
  * element on the page to point to a local path or a CORS-enabled endpoint, such as a CDN.
  *
  *   <script src="bundle.js" data-webawesome="/custom/base/path"></script>
@@ -29,10 +29,13 @@ export function getBasePath(subpath = '') {
       // Use the data-webawesome attribute
       setBasePath(el.getAttribute('data-webawesome') || '');
     } else {
-      // Look for webawesome.js or autoloader.js
+      // Look for webawesome.js or webawesome.loader.js
       const scripts = [...document.getElementsByTagName('script')] as HTMLScriptElement[];
       const waScript = scripts.find(
-        script => script.src.endsWith('webawesome.js') || script.src.endsWith('webawesome.loader.js')
+        script =>
+          script.src.endsWith('webawesome.js') ||
+          script.src.endsWith('webawesome.loader.js') ||
+          script.src.endsWith('webawesome.ssr-loader.js')
       );
 
       if (waScript) {

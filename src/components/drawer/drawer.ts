@@ -2,7 +2,7 @@ import '../icon-button/icon-button.js';
 import { animateWithClass } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { html } from 'lit';
+import { html, isServer } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js';
 import { WaAfterHideEvent } from '../../events/after-hide.js';
@@ -17,7 +17,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Drawers slide in from a container to expose additional options and information.
- * @documentation https://shoelace.style/components/drawer
+ * @documentation https://backers.webawesome.com/docs/components/drawer
  * @status stable
  * @since 2.0
  *
@@ -93,6 +93,9 @@ export default class WaDrawer extends WebAwesomeElement {
   @property({ attribute: 'light-dismiss', type: Boolean }) lightDismiss = false;
 
   firstUpdated() {
+    if (isServer) {
+      return;
+    }
     if (this.open) {
       this.addOpenListeners();
       this.drawer.showModal();
@@ -102,6 +105,7 @@ export default class WaDrawer extends WebAwesomeElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+
     unlockBodyScrolling(this);
     this.closeWatcher?.destroy();
   }
@@ -161,9 +165,9 @@ export default class WaDrawer extends WebAwesomeElement {
 
   private handleDialogClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const button = target.closest('[data-drawer="dismiss"]');
+    const button = target.closest('[data-drawer="close"]');
 
-    // Close when a button with [data-drawer="dismiss"] is clicked
+    // Close when a button with [data-drawer="close"] is clicked
     if (button) {
       event.stopPropagation();
       this.requestClose(button);
@@ -286,6 +290,13 @@ export default class WaDrawer extends WebAwesomeElement {
       </dialog>
     `;
   }
+}
+
+if (!isServer) {
+  // Ugly, but it fixes light dismiss in Safari: https://bugs.webkit.org/show_bug.cgi?id=267688
+  document.body.addEventListener('pointerdown', () => {
+    /* empty */
+  });
 }
 
 declare global {

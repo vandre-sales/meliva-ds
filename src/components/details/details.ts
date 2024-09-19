@@ -16,7 +16,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.
- * @documentation https://shoelace.style/components/details
+ * @documentation https://backers.webawesome.com/docs/components/details
  * @status stable
  * @since 2.0
  *
@@ -93,7 +93,7 @@ export default class WaDetails extends WebAwesomeElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.detailsObserver.disconnect();
+    this.detailsObserver?.disconnect();
   }
 
   private handleSummaryClick(event: MouseEvent) {
@@ -208,7 +208,7 @@ export default class WaDetails extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = !this.hasUpdated ? this.dir === 'rtl' : this.matches(':dir(rtl)');
 
     return html`
       <details
@@ -236,10 +236,20 @@ export default class WaDetails extends WebAwesomeElement {
 
           <span part="summary-icon" class="details__summary-icon">
             <slot name="expand-icon">
-              <wa-icon library="system" variant="solid" name=${isRtl ? 'chevron-left' : 'chevron-right'}></wa-icon>
+              <wa-icon
+                library="system"
+                variant="solid"
+                name=${isRtl ? 'chevron-left' : 'chevron-right'}
+                fixed-width
+              ></wa-icon>
             </slot>
             <slot name="collapse-icon">
-              <wa-icon library="system" variant="solid" name=${isRtl ? 'chevron-left' : 'chevron-right'}></wa-icon>
+              <wa-icon
+                library="system"
+                variant="solid"
+                name=${isRtl ? 'chevron-left' : 'chevron-right'}
+                fixed-width
+              ></wa-icon>
             </slot>
           </span>
         </summary>

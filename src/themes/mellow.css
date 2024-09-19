@@ -423,7 +423,7 @@
 }
 
 /* #region Custom styles */
-wa-button[outline] {
+wa-button[appearance='outlined'] {
   &[variant='brand'] {
     --border-color: var(--wa-color-brand-border-normal);
   }

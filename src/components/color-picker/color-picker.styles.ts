@@ -32,15 +32,6 @@ export default css`
     -webkit-user-select: none;
   }
 
-  .color-picker--inline {
-    border: var(--border-style) var(--border-width) var(--border-color);
-  }
-
-  .color-picker--inline:focus-visible {
-    outline: var(--wa-focus-ring);
-    outline-offset: var(--wa-focus-ring-offset);
-  }
-
   .color-picker__grid {
     position: relative;
     height: var(--grid-height);
@@ -277,6 +268,10 @@ export default css`
    * Color dropdown
    */
 
+  .color-dropdown {
+    display: flex;
+  }
+
   .color-dropdown::part(panel) {
     max-height: none;
     background-color: var(--background-color);
@@ -286,7 +281,7 @@ export default css`
   }
 
   .color-dropdown__trigger {
-    display: inline-block;
+    display: block;
     position: relative;
     background-color: transparent;
     border: none;
@@ -323,7 +318,7 @@ export default css`
     background-color: currentColor;
     box-shadow:
       inset 0 0 0 0.0625rem var(--wa-form-control-resting-color),
-      inset 0 0 0 0.25rem white;
+      inset 0 0 0 0.25rem var(--wa-color-surface-default);
   }
 
   .color-dropdown__trigger--empty:before {
@@ -339,8 +334,13 @@ export default css`
     outline-offset: var(--wa-focus-ring-offset);
   }
 
-  .color-dropdown__trigger.color-dropdown__trigger--disabled {
+  :host(:disabled) :is(.color-dropdown__label, .color-dropdown__trigger) {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  .form-control.form-control--has-label .form-control__label {
+    cursor: pointer;
+    display: inline-block;
   }
 `;

@@ -1,7 +1,7 @@
 ---
 title: Carousel Item
 description: A carousel item represent a slide within a carousel.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}
@@ -40,5 +40,5 @@ layout: component.njk
 ```
 
 :::info
-Additional demonstrations can be found in the [carousel examples](/components/carousel).
+Additional demonstrations can be found in the [carousel examples](/docs/components/carousel).
 :::

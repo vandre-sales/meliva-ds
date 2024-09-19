@@ -20,18 +20,17 @@ const availableUnits: UnitConfig[] = [
 
 /**
  * @summary Outputs a localized time phrase relative to the current date and time.
- * @documentation https://shoelace.style/components/relative-time
+ * @documentation https://backers.webawesome.com/docs/components/relative-time
  * @status stable
  * @since 2.0
  */
 @customElement('wa-relative-time')
 export default class WaRelativeTime extends WebAwesomeElement {
   private readonly localize = new LocalizeController(this);
-  private updateTimeout: number;
+  private updateTimeout: number | ReturnType<typeof setTimeout>;
 
   @state() private isoTime = '';
   @state() private relativeTime = '';
-  @state() private titleTime = '';
 
   /**
    * The date from which to calculate time from. If not set, the current date and time will be used. When passing a
@@ -72,15 +71,6 @@ export default class WaRelativeTime extends WebAwesomeElement {
     const { unit, value } = availableUnits.find(singleUnit => Math.abs(diff) < singleUnit.max)!;
 
     this.isoTime = then.toISOString();
-    this.titleTime = this.localize.date(then, {
-      month: 'long',
-      year: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      timeZoneName: 'short'
-    });
-
     this.relativeTime = this.localize.relativeTime(Math.round(diff / value), unit, {
       numeric: this.numeric,
       style: this.format
@@ -106,10 +96,10 @@ export default class WaRelativeTime extends WebAwesomeElement {
         nextInterval = getTimeUntilNextUnit('day'); // next day
       }
 
-      this.updateTimeout = window.setTimeout(() => this.requestUpdate(), nextInterval);
+      this.updateTimeout = setTimeout(() => this.requestUpdate(), nextInterval);
     }
 
-    return html` <time datetime=${this.isoTime} title=${this.titleTime}>${this.relativeTime}</time> `;
+    return html` <time datetime=${this.isoTime} title=${this.relativeTime}>${this.relativeTime}</time> `;
   }
 }
 

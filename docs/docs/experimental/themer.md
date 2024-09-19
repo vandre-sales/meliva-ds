@@ -1,7 +1,7 @@
 ---
 meta:
 title: Themer
-layout: page.njk
+layout: page
 hasOutline: false
 ---
 
@@ -534,7 +534,7 @@ hasOutline: false
         <wa-radio-button value="meteor"><wa-icon name="meteor"></wa-icon></wa-radio-button>
         <wa-radio-button value="cat-space"><wa-icon name="cat-space"></wa-icon></wa-radio-button>
         <wa-radio-button value="puzzle-piece"><wa-icon name="puzzle-piece"></wa-icon></wa-radio-button>
-          <wa-button value="[choose]" variant="text" id="icon-chooser-trigger" class="logo-chooser">
+          <wa-button value="[choose]" appearance="text" id="icon-chooser-trigger" class="logo-chooser">
             <wa-tooltip for="icon-chooser-trigger" distance="-3" hoist>Browse Icons</wa-tooltip>
             <wa-icon name="ellipsis" library="fa-classic-regular"></wa-icon>
             <wa-visually-hidden>Browse icons</wa-visually-hidden>
@@ -2040,7 +2040,7 @@ hasOutline: false
             <wa-icon slot="prefix" name="plus" variant="regular"></wa-icon>
             Add to Cart
           </wa-button>
-          <wa-button size="small" outline>
+          <wa-button size="small" appearance="outline">
             <wa-icon slot="prefix" name="bookmark" variant="regular"></wa-icon>
             Save
           </wa-button>
@@ -2063,7 +2063,7 @@ hasOutline: false
             <wa-icon slot="prefix" name="plus" variant="regular"></wa-icon>
             Add to Cart
           </wa-button>
-          <wa-button size="small" outline>
+          <wa-button size="small" appearance="outline">
             <wa-icon slot="prefix" name="bookmark" variant="regular"></wa-icon>
             Save
           </wa-button>
@@ -2085,7 +2085,7 @@ hasOutline: false
             <wa-icon slot="prefix" name="plus" variant="regular"></wa-icon>
             Add to Cart
           </wa-button>
-          <wa-button size="small" outline>
+          <wa-button size="small" appearance="outline">
             <wa-icon slot="prefix" name="bookmark" variant="regular"></wa-icon>
             Save
           </wa-button>

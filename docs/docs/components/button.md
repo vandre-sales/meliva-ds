@@ -1,7 +1,7 @@
 ---
 title: Button
 description: Buttons represent actions that are available to the user.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}
@@ -12,14 +12,51 @@ layout: component.njk
 
 ### Variants
 
-Use the `variant` attribute to set the button's variant.
+Use the `variant` attribute to set the button's semantic variant.
 
 ```html {.example}
+<wa-button variant="neutral">Neutral</wa-button>
 <wa-button variant="brand">Brand</wa-button>
 <wa-button variant="success">Success</wa-button>
-<wa-button variant="neutral">Neutral</wa-button>
 <wa-button variant="warning">Warning</wa-button>
 <wa-button variant="danger">Danger</wa-button>
+```
+
+### Appearance
+
+Use the `appearance` attribute to change the button's visual appearance.
+
+```html {.example}
+<div style="margin-block-end: 1rem;">
+  <wa-button appearance="filled" variant="neutral">Filled</wa-button>
+  <wa-button appearance="tinted" variant="neutral">Tinted</wa-button>
+  <wa-button appearance="outlined" variant="neutral">Outlined</wa-button>
+  <wa-button appearance="text" variant="neutral">Text</wa-button>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-button appearance="filled" variant="brand">Filled</wa-button>
+  <wa-button appearance="tinted" variant="brand">Tinted</wa-button>
+  <wa-button appearance="outlined" variant="brand">Outlined</wa-button>
+  <wa-button appearance="text" variant="brand">Text</wa-button>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-button appearance="filled" variant="success">Filled</wa-button>
+  <wa-button appearance="tinted" variant="success">Tinted</wa-button>
+  <wa-button appearance="outlined" variant="success">Outlined</wa-button>
+  <wa-button appearance="text" variant="success">Text</wa-button>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-button appearance="filled" variant="warning">Filled</wa-button>
+  <wa-button appearance="tinted" variant="warning">Tinted</wa-button>
+  <wa-button appearance="outlined" variant="warning">Outlined</wa-button>
+  <wa-button appearance="text" variant="warning">Text</wa-button>
+</div>
+<div>
+  <wa-button appearance="filled" variant="danger">Filled</wa-button>
+  <wa-button appearance="tinted" variant="danger">Tinted</wa-button>
+  <wa-button appearance="outlined" variant="danger">Outlined</wa-button>
+  <wa-button appearance="text" variant="danger">Text</wa-button>
+</div>
 ```
 
 ### Sizes
@@ -32,18 +69,6 @@ Use the `size` attribute to change a button's size.
 <wa-button size="large">Large</wa-button>
 ```
 
-### Outline Buttons
-
-Use the `outline` attribute to draw outlined buttons with transparent backgrounds.
-
-```html {.example}
-<wa-button variant="brand" outline>Brand</wa-button>
-<wa-button variant="success" outline>Success</wa-button>
-<wa-button variant="neutral" outline>Neutral</wa-button>
-<wa-button variant="warning" outline>Warning</wa-button>
-<wa-button variant="danger" outline>Danger</wa-button>
-```
-
 ### Pill Buttons
 
 Use the `pill` attribute to give buttons rounded edges.
@@ -54,16 +79,6 @@ Use the `pill` attribute to give buttons rounded edges.
 <wa-button size="large" pill>Large</wa-button>
 ```
 
-### Text Buttons
-
-Use the `text` variant to create text buttons that share the same size as regular buttons but don't have backgrounds or borders.
-
-```html {.example}
-<wa-button variant="text" size="small">Text</wa-button>
-<wa-button variant="text" size="medium">Text</wa-button>
-<wa-button variant="text" size="large">Text</wa-button>
-```
-
 ### Link Buttons
 
 It's often helpful to have a button that works like a link. This is possible by setting the `href` attribute, which will make the component render an `<a>` under the hood. This gives you all the default link behavior the browser provides (e.g. [[CMD/CTRL/SHIFT]] + [[CLICK]]) and exposes the `target` and `download` attributes.
@@ -72,7 +87,6 @@ It's often helpful to have a button that works like a link. This is possible by 
 <wa-button href="https://example.com/">Link</wa-button>
 <wa-button href="https://example.com/" target="_blank">New Window</wa-button>
 <wa-button href="/assets/images/logo.svg" download="shoelace.svg">Download</wa-button>
-<wa-button href="https://example.com/" disabled>Disabled</wa-button>
 ```
 
 :::info
@@ -178,7 +192,6 @@ Use the `disabled` attribute to disable a button.
 <wa-button variant="success" disabled>Success</wa-button>
 <wa-button variant="neutral" disabled>Neutral</wa-button>
 <wa-button variant="warning" disabled>Warning</wa-button>
-<wa-button variant="danger" disabled>Danger</wa-button>
 ```
 
 ### Styling Buttons

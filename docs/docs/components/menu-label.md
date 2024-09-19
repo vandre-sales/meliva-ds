@@ -1,7 +1,7 @@
 ---
 title: Menu Label
 description: Menu labels are used to describe a group of menu items.
-layout: component.njk
+layout: component
 ---
 
 ```html {.example}
