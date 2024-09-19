@@ -108,7 +108,7 @@ TODO Page Description
       <li>
         <wa-card>
           <div class="card-top">
-            <div><strong>John Carpenter</strong> <wa-badge variant="brand" style="    --background: var(--wa-color-brand-border-subtle);
+            <div><strong>John Carpenter</strong> <wa-badge  style="    --background: var(--wa-color-brand-border-subtle);
     --border-color: var(--wa-color-brand-text-on-surface);
     --content-color: var(--wa-color-brand-text-on-surface);
 }" pill>Brand</wa-badge><p>Master of Horror</p></div>
@@ -385,7 +385,7 @@ TODO Page Description
     <h3>Client Information</h3>
     <p>Personal details</p>
   </div>
-  <dl>
+  <dl class="ds">
     <div class="dl-item">
     <dt>Beast of Bodmin</dt>
     <dd>A large feline inhabiting Bodmin Moor.</dd>
@@ -405,7 +405,7 @@ TODO Page Description
   </dl>
 </div>
 <style>
-  dl {
+  dl.ds {
     div {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -581,6 +581,365 @@ TODO Page Description
   }
 </style>
 ```
+
+## Data Display
+
+### With icon
+
+```html{.example}
+<div class="data-display">
+  <h3>Last Week</h3>
+  <div class="with-icon">
+    <dl>
+      <wa-card with-footer>
+        <dt>
+          <div class="icon-bg" style="--icon-bg: #9b31ee">
+            <wa-icon style="color: white; font-size: 16px;"  name="users"></wa-icon>
+          </div>
+          <p class="stat-title">Total Subscribers</p>
+        </dt>
+        <dd>
+          <span class="stat">71,897</span>
+          <span style="color: green;"><wa-icon fixed-width name="arrow-up"></wa-icon> 122</span>
+        </dd>
+        <div slot="footer">
+          <a href="#">View all</a>
+        </div>
+      </wa-card>
+     <wa-card with-footer>
+        <dt>
+          <div class="icon-bg" style="--icon-bg: #62e5cf">
+            <wa-icon style="color: white; font-size: 16px;"  name="users"></wa-icon>
+          </div>
+          <p class="stat-title">Total Subscribers</p>
+        </dt>
+        <dd>
+          <span class="stat">71,897</span>
+          <span style="color: green;"><wa-icon fixed-width name="arrow-up"></wa-icon> 122</span>
+        </dd>
+        <div slot="footer">
+          <a href="#">View all</a>
+        </div>
+      </wa-card>
+    </dl>
+    
+    
+  </div>
+  
+</div>
+<style>
+  .with-icon {
+    dl {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 0;
+
+      wa-card::part(body) {
+        
+      }
+
+      wa-card::part(footer) {
+        background: #fafafa;
+        border-bottom-left-radius: var(--wa-panel-border-radius);
+        border-bottom-right-radius: var(--wa-panel-border-radius);
+        padding: 1rem;
+      }
+
+      wa-card dt .icon-bg {
+        --icon-bg: #eee;
+        background: var(--icon-bg);
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1rem;
+        border-radius: 0.5rem;
+        position: absolute;
+      }
+
+      wa-card dt .stat-title {
+    margin-left: 4rem;
+    margin-bottom: 0;
+  }
+
+      wa-card dd {
+                    margin-left: 4rem;
+                    margin-bottom: 0;
+        .stat {
+    font-size: x-large;
+    font-weight: 600;
+    line-height: .5rem;
+  }
+      }
+    }
+  }
+  /* .data-display-with-icon {
+    .def-list-div  {
+      dl {
+    
+  }
+
+  dl wa-card [slot='footer']{
+    padding: .5rem;
+    padding-left: 1.5rem;
+  }
+    }
+
+    .stat-title {
+    margin-left: 4rem;
+    margin-bottom: 0;
+  }
+
+  dd .number {
+    font-size: x-large;
+    font-weight: 600;
+    line-height: .5rem;
+  }
+
+   .icon-bg, dl div:nth-child(odd) {
+    --img-bg: #eee;
+    background: var(--img-bg);
+        
+  }
+   .icon-bg {
+    
+        width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    position: absolute;
+  }
+
+  .data-display-icon wa-card {
+    dd {
+      margin-left: 4rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .data-display-icon wa-card::part(footer) {
+
+  --spacing: 0;
+}
+  } */
+  </style>
+```
+
+### With shared borders
+```html{.example}
+<wa-card class="with-shared-borders">
+  <dl>
+    <div style="--img-bg: transparent; padding: .67rem;">
+      <dt>Total Subscribers</dt>
+      <dd style="margin: 0;">
+        <div class="stat" style="--img-bg: transparent; border: none;">
+          71,897
+          <span class="from-stat">from 70,946</span>
+        </div>
+        <div>
+          <wa-tag size="medium" variant="success" pill>
+            <wa-icon name="arrow-up" style="margin-right: .25rem;"></wa-icon> 12%
+          </wa-tag>
+        </div>
+      </dd>
+    </div>
+    <div style="--img-bg: transparent; padding: .67rem;">
+      <dt>Total Subscribers</dt>
+      <dd style="margin: 0;">
+        <div class="stat" style="--img-bg: transparent; border: none;">
+          71,897
+          <span class="from-stat">from 70,946</span>
+        </div>
+        <div>
+          <wa-tag size="medium" variant="success" pill>
+            <wa-icon name="arrow-up" style="margin-right: .25rem;"></wa-icon> 12%
+          </wa-tag>
+        </div>
+      </dd>
+    </div>
+
+  </dl>
+</wa-card>
+<style>
+  .with-shared-borders {
+    width: 100%;
+    dl {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);  
+      margin: 0;
+      
+      dt {
+        color: #8991A6;
+        font-size: 14px;
+      }
+     
+
+      div {
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-right-color: var(--wa-color-surface-border);
+
+        dd {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+        }
+
+        dd .stat {
+          font-size: x-large;
+          font-weight: 600;
+          line-height: .5rem;
+          color: #6741D9;
+        }
+
+        dd .stat .from-stat {
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          color: #8991A6;
+        }
+      }
+
+      div:last-of-type {
+        border: none;
+      }
+    }
+      
+  
+  }
+
+   wa-card.with-shared-borders::part(body) {
+        padding: 0;
+      }
+
+  wa-card.shared-borders::part(body) {
+
+  --spacing: 0;
+}
+</style>
+```
+
+## Leaderboard
+```html{.example}
+<div class="leaderboard">
+  <h3 style="grid-column: 1/-1">Collective Activity for Yesterday</h3>
+  
+    <wa-card class="activity-card" style="--wa-color-surface-default: tomato; --wa-color-text-normal: white; grid-column: 1/5;">
+      <span>
+        <wa-icon name="book"></wa-icon>
+        Items Studied
+      </span>
+      <div class="leaderboard-number">482,813</div>
+    </wa-card>
+    <wa-card class="activity-card" style="--wa-color-surface-default: cadetblue; --wa-color-text-normal: white; grid-column: 5/9">
+      <span>
+        <wa-icon name="user-ninja"></wa-icon>
+        Items Mastered
+      </span>
+      <div class="leaderboard-number">97,303</div>
+    </wa-card>
+    <wa-card class="activity-card" style="--wa-color-surface-default: rebeccapurple; --wa-color-text-normal: white; grid-column: 9/-1">
+      <span>
+        <wa-icon name="user-ninja"></wa-icon>
+        Items Mastered
+      </span>
+      <div class="leaderboard-number">97,303</div>
+    </wa-card>
+  
+  <wa-card class="card-header" with-header style="grid-column: 2/12">
+    <div slot="header">
+      <div class="leaderboard-badge">
+        <wa-icon name="trophy"></wa-icon>
+      </div>
+      <span>
+        <h4 style="--wa-space-xl: 0;">Study Leaders</h4>
+        items mastered last 7 days
+      </span>
+    </div>
+    <ol class="leaderboard-list">
+      <li>
+        <div>
+        <span>
+          <h5 style="--wa-space-xl: 0">Title</h5>
+          <span style="font-size: x-large;font-weight: 700;">4,500</span>
+        </span>
+        </div>
+      </li>
+      <li>
+        <div>
+          
+        <span>
+          <h5 style="--wa-space-xl: 0">Title</h5>
+          <span style="font-size: x-large;font-weight: 700;">4,500</span>
+        </span>
+        </div>
+      </li>
+      <li>
+        <div>
+        <span>
+          <h5 style="--wa-space-xl: 0">Title</h5>
+          <span style="font-size: x-large;font-weight: 700;">4,500</span>
+        </span>
+        </div>
+      </li>
+      <li>
+        <div>
+        <span>
+          <h5 style="--wa-space-xl: 0">Title</h5>
+          <span style="font-size: x-large;font-weight: 700;">4,500</span>
+        </span>
+        </div>
+      </li>
+    </ol>
+  </wa-card>
+
+</div>
+<style>
+  img.leaderboard-image {
+    width: 50px
+  }
+  .leaderboard {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+
+  .leaderboard-list {
+    li {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--wa-color-surface-border);
+    }
+    li div {
+      display: flex;
+    }
+  }
+  .activity-card {
+
+  }
+
+  .leaderboard .card-header [slot='header'] {
+   display: flex;
+  }
+
+  .leaderboard-number {
+    font-size: xx-large;
+    font-weight: 600;
+  }
+
+  .leaderboard-badge {
+       background: green;
+    color: white;
+    padding: 1rem;
+    border-radius: var(--wa-panel-border-radius);
+    margin-right: .75rem;
+  }
+</style>
+```
+
 
 ### With templates
 
