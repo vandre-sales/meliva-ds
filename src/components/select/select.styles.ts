@@ -244,7 +244,7 @@ export default css`
   }
 
   .select__suffix::slotted(*) {
-    margin-inline-start: var(--sl-spacing-small);
+    margin-inline-start: var(--wa-space-sm);
   }
 
   /* Clear button */
