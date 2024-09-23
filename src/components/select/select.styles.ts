@@ -164,6 +164,10 @@ export default css`
     margin-inline-end: var(--wa-space-s);
   }
 
+  .select--small.select--multiple .select__prefix::slotted(*) {
+    margin-inline-start: var(--wa-space-s);
+  }
+
   .select--small.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-block: 2px;
     padding-inline-start: 0;
@@ -188,6 +192,10 @@ export default css`
     margin-inline-end: var(--wa-space-m);
   }
 
+  .select--medium.select--multiple .select__prefix::slotted(*) {
+    margin-inline-start: var(--wa-space-m);
+  }
+
   .select--medium.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-inline-start: 0;
     padding-block: 3px;
@@ -210,6 +218,10 @@ export default css`
 
   .select--large .select__prefix::slotted(*) {
     margin-inline-end: var(--wa-space-l);
+  }
+
+  .select--large.select--multiple .select__prefix::slotted(*) {
+    margin-inline-start: var(--wa-space-l);
   }
 
   .select--large.select--multiple:not(.select--placeholder-visible) .select__combobox {
