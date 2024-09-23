@@ -234,20 +234,17 @@ export default css`
     border-radius: var(--wa-border-radius-pill);
   }
 
-  /* Prefix */
-  .select__prefix {
+  /* Prefix and Suffix */
+  .select__prefix,
+  .select__suffix {
     flex: 0;
     display: inline-flex;
     align-items: center;
     color: var(--wa-color-neutral-on-quiet);
   }
 
-  /* Suffix */
-  .select__suffix {
-    flex: 0;
-    display: inline-flex;
-    align-items: center;
-    color: var(--wa-form-control-placeholder-color);
+  .select__suffix::slotted(*) {
+    margin-inline-start: var(--sl-spacing-small);
   }
 
   /* Clear button */
