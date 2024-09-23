@@ -12,7 +12,7 @@ Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> bad
 During the alpha period, things might break! We take breaking changes very seriously, but sometimes they're necessary to make the final product that much better. We appreciate your patience!
 :::
 
-## Next
+## 3.0.0-alpha.3
 
 - Added [SSR support](/docs/experimental/ssr/) to all components
 - Added `scroll-margin-top` to children of `wa-page`
@@ -26,7 +26,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Fixed a bug in `<wa-input>` where `minlength` and `maxlength` were not being properly validated. [#35](https://github.com/shoelace-style/webawesome-alpha/issues/35)
 - Fixed a bug in `<wa-carousel>` that made pagination work incorrectly
 
-## 1.0.0-alpha.1
+## 3.0.0-alpha.2
 
 - This is the initial release of Web Awesome alpha!
 
