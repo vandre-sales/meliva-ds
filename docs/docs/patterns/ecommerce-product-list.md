@@ -63,135 +63,104 @@ TODO Page Description
         width: 100%;
         object-fit: cover;
       }
+
+      .grid-item-name {
+        margin-top: 1rem;
+        font-weight: var(--wa-font-weight-bold);
+      }
+
+      .grid-item wa-rating {
+        --symbol-size: var(--wa-font-size-m);
+        margin-top: .5rem;
+      }
+      .grid-item-reviews {
+        --wa-link-decoration-default: none;
+        --wa-color-text-link: var(--wa-color-gray-50);
+        font-size: var(--wa-font-size-m);
+      }
+      .grid-item-price {
+        font-size: var(--wa-font-size-2xl);
+        font-weight: var(--wa-font-weight-bold);
+      }
     }
   </style>
 ```
-## With inline Price
-```html{.example}
-  <div class="with-inline-price">
-    <h2></h2>
-    <div class="grid">
-      <div class="group">
-        <div>
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-        </div>
-        <div>
-          <div>
-            <h3>
-              <a href="#">Basic Tee</a>
-            </h3>
-            <p>Black</p>
-          </div>
-          <div>
-            <p>$35</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-```
-## With CTA Link
-```html{.example}
-  <div class="with-inline-price">
-    <h2></h2>
-    <div class="grid">
-      <div class="group">
-        <div>
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-        </div>
-        <div>
-          <div>
-            <h3>
-              <a href="#">Basic Tee</a>
-            </h3>
-            <p>Black</p>
-          </div>
-          <div>
-            <p>$35</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-```
-
-## With Color Swatches
-```html{.example}
-  <div class="with-inline-price">
-    <h2></h2>
-    <div class="grid">
-      <div class="group">
-        <div>
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-        </div>
-        <div>
-          <div>
-            <h3>
-              <a href="#">Basic Tee</a>
-            </h3>
-            <p>Black</p>
-          </div>
-          <div>
-            <p>$35</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-```
-
-## With Image Overlay
-```html{.example}
-  <div class="with-inline-price">
-    <h2></h2>
-    <div class="grid">
-      <div class="group">
-        <div>
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-        </div>
-        <div>
-          <div>
-            <h3>
-              <a href="#">Basic Tee</a>
-            </h3>
-            <p>Black</p>
-          </div>
-          <div>
-            <p>$35</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-```
-
-## With Border Grid
-```html{.example}
-  <div class="with-inline-price">
-    <h2></h2>
-    <div class="grid">
-      <div class="group">
-        <div>
-          <img src=".jpghttps://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-        </div>
-        <div>
-          <div>
-            <h3>
-              <a href="#">Basic Tee</a>
-            </h3>
-            <p>Black</p>
-          </div>
-          <div>
-            <p>$35</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-```
-
 ## Card with full details
 ```html{.example}
+  <div class="card-with-details">
+   <wa-card with-footer>
+    <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+    <div slot="footer" class="card-footer details">
+      <span class="detail-name">Basic Tee 8-pack</span>
+      <p class="detail-description">Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.</p>
+      <span class="detail-color">8 colors</span>
+      <span class="detail-price">$256</span>
+    </div>
+   </wa-card>
+   <wa-card with-footer>
+    <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+    <div slot="footer" class="card-footer details">
+      <span class="detail-name">Basic Tee 8-pack</span>
+      <p class="detail-description">Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.</p>
+      <span class="detail-color">8 colors</span>
+      <span class="detail-price">$256</span>
+    </div>
+   </wa-card>
+   <wa-card with-footer>
+    <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+    <div slot="footer" class="card-footer details">
+      <span class="detail-name">Basic Tee 8-pack</span>
+      <p class="detail-description">Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.</p>
+      <span class="detail-color">8 colors</span>
+      <span class="detail-price">$256</span>
+    </div>
+   </wa-card>
+   <wa-card with-footer>
+    <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+    <div slot="footer" class="card-footer details">
+      <span class="detail-name">Basic Tee 8-pack</span>
+      <p class="detail-description">Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.</p>
+      <span class="detail-color">8 colors</span>
+      <span class="detail-price">$256</span>
+    </div>
+   </wa-card>
+  </div>
+  <style>
+    .card-with-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .card-with-details wa-card::part(body) {
+        padding: 0;
+      }
+    .card-with-details .card-footer {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .details {
+      .detail-description {
+        color: var(--wa-color-gray-50);
+      }
+      .detail-name {
+        font-size: var(--wa-font-size-l);
+        font-weight: var(--wa-font-weight-action);
+      }
+      .detail-color {
+        color: var(--wa-color-gray-50);
+        font-style: italic;
+      }
+      .detail-price {
+        font-size: var(--wa-font-size-xl);
+        font-weight: var(--wa-font-weight-action);
+      }
+    }
+    
+  </style>
+```
+## With color swatches
+```html{.example}
   <div class="with-inline-price">
     <h2></h2>
     <div class="grid">
@@ -214,3 +183,4 @@ TODO Page Description
     </div>
   </div>
 ```
+
