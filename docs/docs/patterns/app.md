@@ -108,14 +108,81 @@ TODO Page Description
       <li>
         <wa-card>
           <div class="card-top">
-            <div><strong>John Carpenter</strong> <wa-badge  style="    --background: var(--wa-color-brand-border-subtle);
-    --border-color: var(--wa-color-brand-text-on-surface);
-    --content-color: var(--wa-color-brand-text-on-surface);
-}" pill>Brand</wa-badge><p>Master of Horror</p></div>
+            <div>
+              <strong>John Carpenter</strong>
+              <wa-badge pill>Admin</wa-badge>
+              <p>Master of Horror</p>
+            </div>
+          <div>
+            <wa-avatar image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"label="Avatar of a gray tabby kitten looking down">
+            </wa-avatar>
+          </div>
+          </div>
+          <div class="contact-info">
+            <div>
+              <wa-icon name="envelope" style="color: var(--wa-color-brand-spot);"></wa-icon>
+              Email
+            </div>
+            <div>
+              <wa-icon name="phone" style="color: var(--wa-color-brand-spot);">
+              </wa-icon>
+              Phone
+            </div>
+          </div>
+        </wa-card>
+      </li>
+      <li>
+        <wa-card>
+          <div class="card-top">
+            <div>
+              <strong>Tobe Hooper</strong>
+              <wa-badge pill>Admin</wa-badge>
+              <p>Master of Horror</p>
+            </div>
+          <div>
+            <wa-avatar image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" label="Avatar of a gray tabby kitten looking down"></wa-avatar>
+            </div>
+          </div>
+          <div class="contact-info">
+            <div><wa-icon name="envelope" style="color: var(--wa-color-brand-spot);"></wa-icon> Email</div>
+            <div><wa-icon name="phone" style="color: var(--wa-color-brand-spot);"></wa-icon> Phone</div>
+          </div>
+        </wa-card>
+      </li>
+      <li>
+        <wa-card>
+          <div class="card-top">
+            <div>
+              <strong>George A. Romero</strong>
+              <wa-badge pill>Admin</wa-badge>
+              <p>Master of Horror</p>
+              </div>
           <div><wa-avatar
   image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
   label="Avatar of a gray tabby kitten looking down"
-></wa-avatar></div>
+></wa-avatar>
+</div>
+          </div>
+          <div class="contact-info">
+            <div><wa-icon name="envelope" style="color: var(--wa-color-brand-spot);"></wa-icon> Email</div>
+            <div><wa-icon name="phone" style="color: var(--wa-color-brand-spot);"></wa-icon> Phone</div>
+          </div>
+        </wa-card>
+      </li>
+      <li>
+        <wa-card>
+          <div class="card-top">
+            <div>
+              <strong>Alfred Hitchcock</strong>
+              <wa-badge pill>Admin</wa-badge>
+              <p>Master of Horror</p>
+              </div>
+          <div>
+            <wa-avatar
+  image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+  label="Avatar of a gray tabby kitten looking down"
+></wa-avatar>
+</div>
           </div>
 
           <div class="contact-info">
@@ -127,16 +194,15 @@ TODO Page Description
       <li>
         <wa-card>
           <div class="card-top">
-            <div><strong>John Carpenter</strong> <wa-badge variant="brand" style="    --background: var(--wa-color-brand-border-subtle);
-    --border-color: var(--wa-color-brand-text-on-surface);
-    --content-color: var(--wa-color-brand-text-on-surface);
-}" pill>Brand</wa-badge><p>Master of Horror</p></div>
-          <div><wa-avatar
-  image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-  label="Avatar of a gray tabby kitten looking down"
-></wa-avatar></div>
+            <div>
+              <strong>Sam Raimi</strong>
+              <wa-badge pill>Admin</wa-badge>
+              <p>Master of Horror</p>
+            </div>
+            <div>
+              <wa-avatar image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" label="Avatar of a gray tabby kitten looking down"></wa-avatar>
+            </div>
           </div>
-
           <div class="contact-info">
             <div><wa-icon name="envelope" style="color: var(--wa-color-brand-spot);"></wa-icon> Email</div>
             <div><wa-icon name="phone" style="color: var(--wa-color-brand-spot);"></wa-icon> Phone</div>
@@ -146,84 +212,23 @@ TODO Page Description
       <li>
         <wa-card>
           <div class="card-top">
-            <div><strong>John Carpenter</strong> <wa-badge variant="brand" style="    --background: var(--wa-color-brand-border-subtle);
-    --border-color: var(--wa-color-brand-text-on-surface);
-    --content-color: var(--wa-color-brand-text-on-surface);
-}" pill>Brand</wa-badge><p>Master of Horror</p></div>
-          <div><wa-avatar
-  image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-  label="Avatar of a gray tabby kitten looking down"
-></wa-avatar></div>
+            <div>
+              <strong>Wes Craven</strong>
+              <wa-badge pill>Admin</wa-badge>
+              <p>Master of Horror</p>
+            </div>
+          <div>
+            <wa-avatar image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" label="Avatar of a gray tabby kitten looking down"></wa-avatar>
+            </div>
           </div>
-
           <div class="contact-info">
             <div><wa-icon name="envelope" style="color: var(--wa-color-brand-spot);"></wa-icon> Email</div>
             <div><wa-icon name="phone" style="color: var(--wa-color-brand-spot);"></wa-icon> Phone</div>
           </div>
         </wa-card>
       </li>
-      <li>
-        <wa-card>
-          <div class="card-top">
-            <div><strong>John Carpenter</strong> <wa-badge variant="brand" style="    --background: var(--wa-color-brand-border-subtle);
-    --border-color: var(--wa-color-brand-text-on-surface);
-    --content-color: var(--wa-color-brand-text-on-surface);
-}" pill>Brand</wa-badge><p>Master of Horror</p></div>
-          <div><wa-avatar
-  image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-  label="Avatar of a gray tabby kitten looking down"
-></wa-avatar></div>
-          </div>
-
-          <div class="contact-info">
-            <div><wa-icon name="envelope" style="color: var(--wa-color-brand-spot);"></wa-icon> Email</div>
-            <div><wa-icon name="phone" style="color: var(--wa-color-brand-spot);"></wa-icon> Phone</div>
-          </div>
-        </wa-card>
-      </li>
-      <li>
-        <wa-card>
-          <div class="card-top">
-            <div><strong>John Carpenter</strong> <wa-badge variant="brand" style="    --background: var(--wa-color-brand-border-subtle);
-    --border-color: var(--wa-color-brand-text-on-surface);
-    --content-color: var(--wa-color-brand-text-on-surface);
-}" pill>Brand</wa-badge><p>Master of Horror</p></div>
-          <div><wa-avatar
-  image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-  label="Avatar of a gray tabby kitten looking down"
-></wa-avatar></div>
-          </div>
-
-          <div class="contact-info">
-            <div><wa-icon name="envelope" style="color: var(--wa-color-brand-spot);"></wa-icon> Email</div>
-            <div><wa-icon name="phone" style="color: var(--wa-color-brand-spot);"></wa-icon> Phone</div>
-          </div>
-        </wa-card>
-      </li>
-      <li>
-        <wa-card>
-          <div class="card-top">
-            <div><strong>John Carpenter</strong> <wa-badge variant="brand" style="    --background: var(--wa-color-brand-border-subtle);
-    --border-color: var(--wa-color-brand-text-on-surface);
-    --content-color: var(--wa-color-brand-text-on-surface);
-}" pill>Brand</wa-badge><p>Master of Horror</p></div>
-          <div><wa-avatar
-  image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-  label="Avatar of a gray tabby kitten looking down"
-></wa-avatar></div>
-          </div>
-
-          <div class="contact-info">
-            <div><wa-icon name="envelope" style="color: var(--wa-color-brand-spot);"></wa-icon> Email</div>
-            <div><wa-icon name="phone" style="color: var(--wa-color-brand-spot);"></wa-icon> Phone</div>
-          </div>
-        </wa-card>
-      </li>
-   
-
     </ul>
   </div>
-
   <style>
     .grid-list {
       wa-card {
@@ -260,34 +265,12 @@ TODO Page Description
         }
         display: flex;
       }
-
-
       display: grid;
       gap: 1rem;
       grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
       list-style-type: none;
       margin: 0;
     }
-
-    /* @media (min-width: 1140px) {
-      .grid-list {
-        display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      list-style-type: none;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .grid-list {
-        display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      list-style-type: none;
-      }
-    } */
-
-
   </style>
 ```
 
@@ -297,7 +280,7 @@ TODO Page Description
 
 ```html {.example}
   <wa-card with-footer style="width: 100%;" class="simple-pagination">
-    <div>Card body</div>
+    <div></div>
     <div slot="footer" class="footer">
       Showing 1 to 10 of 50 Results
       <span>
@@ -320,7 +303,7 @@ TODO Page Description
 
 ```html {.example}
 <wa-card with-footer style="width: 100%;" class="simple-pagination">
-    <div>Card body</div>
+    <div></div>
     <div slot="footer" class="footer">
       Showing 1 to 10 of 50 Results
       <span>
@@ -423,7 +406,7 @@ TODO Page Description
 </style>
 ```
 
-## FAQ/Details
+## FAQ/Details (WIP)
 
 ```html{.example}
 <div>
@@ -436,7 +419,7 @@ TODO Page Description
 </div>
 ```
 
-## Pricing Tiers
+## Pricing Tiers (WIP)
 
 ```html{.example}
 ```
@@ -675,58 +658,6 @@ TODO Page Description
       }
     }
   }
-  /* .data-display-with-icon {
-    .def-list-div  {
-      dl {
-    
-  }
-
-  dl wa-card [slot='footer']{
-    padding: .5rem;
-    padding-left: 1.5rem;
-  }
-    }
-
-    .stat-title {
-    margin-left: 4rem;
-    margin-bottom: 0;
-  }
-
-  dd .number {
-    font-size: x-large;
-    font-weight: 600;
-    line-height: .5rem;
-  }
-
-   .icon-bg, dl div:nth-child(odd) {
-    --img-bg: #eee;
-    background: var(--img-bg);
-        
-  }
-   .icon-bg {
-    
-        width: 3rem;
-    height: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 1rem;
-    border-radius: 0.5rem;
-    position: absolute;
-  }
-
-  .data-display-icon wa-card {
-    dd {
-      margin-left: 4rem;
-      margin-bottom: 0;
-    }
-  }
-
-  .data-display-icon wa-card::part(footer) {
-
-  --spacing: 0;
-}
-  } */
   </style>
 ```
 
@@ -823,7 +754,7 @@ TODO Page Description
 </style>
 ```
 
-## Leaderboard
+## Leaderboard (Very rough WIP)
 ```html{.example}
 <div class="leaderboard">
   <h3 style="grid-column: 1/-1">Collective Activity for Yesterday</h3>

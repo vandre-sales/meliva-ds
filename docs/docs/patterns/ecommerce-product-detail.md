@@ -20,7 +20,7 @@ TODO Page Description
         <span class="price">$32</span>
         <span class="rating"><wa-rating></wa-rating><a style="margin-left: .5rem; " href="*">36 Reviews</a></span>
         <wa-radio-group style="margin-bottom: 1rem;" label="Select an option" name="a" value="1">
-  <wa-radio-button value="Black">Black <wa-icon name="circle"></wa-icon></wa-radio-button>
+  <wa-radio-button value="Black">Black</wa-radio-button>
   <wa-radio-button value="White">White</wa-radio-button>
   <wa-radio-button value="Gray">Gray</wa-radio-button>
 </wa-radio-group>
@@ -101,8 +101,8 @@ TODO Page Description
               <wa-radio-button value="large">L</wa-radio-button>
               <wa-radio-button value="extra-large">XL</wa-radio-button>
             </wa-radio-group>
-<wa-button size="medium" style="width: 100%; margin-top: auto;margin-bottom: 1rem;">Medium</wa-button>
-<a href="*">View full details</a>
+            <wa-button size="medium" style="width: 100%; margin-top: auto;margin-bottom: 1rem;">Medium</wa-button>
+            <a href="*" style="display: inline-block;width: 100%;text-align: center;">View full details</a>
           </form>
         </section>
       </div>
