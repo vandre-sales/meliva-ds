@@ -10,28 +10,28 @@ TODO Page Description
 ```html{.example}
   <div class="with-product-grid">
     <div class="grid-item">
-      <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+      <img class="grid-item-image" src="/assets/images/patterns/mad-rabbit-tattoo-7N4FMowSGek-unsplash.jpg" />
       <div class="grid-item-name">Shirt</div>
       <wa-rating label="Rating" readonly value="3"></wa-rating>
       <a class="grid-item-reviews" href="#">38 Reviews</a>
       <div class="grid-item-price">$170</div>
     </div>
     <div class="grid-item">
-      <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+      <img class="grid-item-image" src="/assets/images/patterns/mad-rabbit-tattoo-7N4FMowSGek-unsplash.jpg" />
       <div class="grid-item-name">Shirt</div>
       <wa-rating label="Rating" readonly value="3"></wa-rating>
       <a class="grid-item-reviews" href="#">38 Reviews</a>
       <div class="grid-item-price">$170</div>
     </div>
     <div class="grid-item">
-      <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+      <img class="grid-item-image" src="/assets/images/patterns/mad-rabbit-tattoo-7N4FMowSGek-unsplash.jpg" />
       <div class="grid-item-name">Shirt</div>
       <wa-rating label="Rating" readonly value="3"></wa-rating>
       <a class="grid-item-reviews" href="#">38 Reviews</a>
       <div class="grid-item-price">$170</div>
     </div>
     <div class="grid-item">
-      <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+      <img class="grid-item-image" src="/assets/images/patterns/mad-rabbit-tattoo-7N4FMowSGek-unsplash.jpg" />
       <div class="grid-item-name">Shirt</div>
       <wa-rating label="Rating" readonly value="3"></wa-rating>
       <a class="grid-item-reviews" href="#">38 Reviews</a>
@@ -89,7 +89,7 @@ TODO Page Description
 ```html{.example}
   <div class="card-with-details">
    <wa-card with-footer>
-    <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+    <img class="grid-item-image" src="/assets/images/patterns/mad-rabbit-tattoo-7N4FMowSGek-unsplash.jpg" />
     <div slot="footer" class="card-footer details">
       <span class="detail-name">Basic Tee 8-pack</span>
       <p class="detail-description">Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.</p>
@@ -98,7 +98,7 @@ TODO Page Description
     </div>
    </wa-card>
    <wa-card with-footer>
-    <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+    <img class="grid-item-image" src="/assets/images/patterns/mad-rabbit-tattoo-7N4FMowSGek-unsplash.jpg" />
     <div slot="footer" class="card-footer details">
       <span class="detail-name">Basic Tee 8-pack</span>
       <p class="detail-description">Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.</p>
@@ -107,7 +107,7 @@ TODO Page Description
     </div>
    </wa-card>
    <wa-card with-footer>
-    <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+    <img class="grid-item-image" src="/assets/images/patterns/mad-rabbit-tattoo-7N4FMowSGek-unsplash.jpg" />
     <div slot="footer" class="card-footer details">
       <span class="detail-name">Basic Tee 8-pack</span>
       <p class="detail-description">Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.</p>
@@ -116,7 +116,7 @@ TODO Page Description
     </div>
    </wa-card>
    <wa-card with-footer>
-    <img class="grid-item-image" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" />
+    <img class="grid-item-image" src="/assets/images/patterns/mad-rabbit-tattoo-7N4FMowSGek-unsplash.jpg" />
     <div slot="footer" class="card-footer details">
       <span class="detail-name">Basic Tee 8-pack</span>
       <p class="detail-description">Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.</p>
