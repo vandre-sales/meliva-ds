@@ -12,6 +12,7 @@ TODO Page Description
 ```html{.example}
 <div>
   <wa-dialog label="You've run out of free articles... loser" with-header class="dialog-header">
+    <p>All kidding aside, our industry is dying and we need money. Subscribe to get access to 
     <wa-button href="#">Register</wa-button>
   Already a subscriber? <a href="#">Login</a>
 </wa-dialog>
