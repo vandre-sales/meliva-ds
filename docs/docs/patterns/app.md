@@ -878,7 +878,7 @@ TODO Page Description
     <div class="card-body">
       <div class="plan-title">Basic Plan</div>
       <span class="plan-price">
-        <span style="font-size: xxx-large; font-weight: 800;">$10</span>
+        <span style="font-size: xxx-large; font-weight: 800;letter-spacing: -2.5px;">$10</span>
         <span style="margin-left: 0.5rem;">
           <p style="margin-bottom: 0;">per user</p>
           <p style="margin-bottom: 0;">per month</p>
@@ -917,25 +917,25 @@ TODO Page Description
   </wa-card>
   <wa-card with-footer class="plan">
     <div class="card-body">
-      <div class="plan-title" style="display: flex; justify-content: space-between;">Basic Plan <wa-badge variant="success" pill>Most Popular</wa-badge></div>
+      <div class="plan-title" style="display: flex; justify-content: space-between;">Business Plan <wa-badge variant="success" pill>Most Popular</wa-badge></div>
       <span class="plan-price">
-        <span style="font-size: xxx-large; font-weight: 800;">$10</span>
+        <span style="font-size: xxx-large; font-weight: 800;"letter-spacing: -2.5px;>$20</span>
         <span style="margin-left: 0.5rem;">
           <p style="margin-bottom: 0;">per user</p>
           <p style="margin-bottom: 0;">per month</p>
         </span>
       </span>
-      <p>Basic features for up to 10 users.</p>
+      <p>Growing teams up to 20 users.</p>
       <wa-button style="width: 100%; margin-bottom: 1rem;">Get Started</wa-button>
       <wa-button style="width: 100%; margin-bottom: 1rem;" appearance="outlined">Talk to sales</wa-button>
     </div>
       <div slot="footer" class="features">
         <span class="list-title">Features</span>
-        <p style="margin-bottom: var(--wa-space-s);">Everything in our free plans plus...</p>
+        <p style="margin-bottom: var(--wa-space-s);">Everything in Basic plus...</p>
         <ul>
           <li>
             <wa-icon name="circle-check" style="color: #63e6be; margin-right: .25rem;"></wa-icon>
-            Access to basic features
+            200+ integrations
           </li>
           <li>
             <wa-icon name="circle-check" style="color: #63e6be; margin-right: .25rem;"></wa-icon>
@@ -960,7 +960,7 @@ TODO Page Description
     <div class="card-body">
       <div class="plan-title">Basic Plan</div>
       <span class="plan-price">
-        <span style="font-size: xxx-large; font-weight: 800;">$10</span>
+        <span style="font-size: xxx-large; font-weight: 800;"letter-spacing: -2.5px;>$40</span>
         <span style="margin-left: 0.5rem;">
           <p style="margin-bottom: 0;">per user</p>
           <p style="margin-bottom: 0;">per month</p>
@@ -1000,6 +1000,9 @@ TODO Page Description
 </div>
 <style>
 .pricing {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   .plan {
   }
   .plan-title {
@@ -1026,6 +1029,19 @@ TODO Page Description
   }
 }
 </style>
+```
+```html{.example}
+  <div>
+    <wa-card>
+      <div class="card-body">
+        <wa-details summary="Toggle Me">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</wa-details>
+
+      </div>
+    </wa-card>
+  </div>
 ```
 ### With templates
 
