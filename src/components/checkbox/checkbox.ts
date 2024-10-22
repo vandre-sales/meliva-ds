@@ -212,11 +212,11 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
   render() {
     const hasHelpTextSlot = isServer ? true : this.hasSlotController.test('help-text');
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const isIndeterminate = !this.checked && this.indeterminate
+    const isIndeterminate = !this.checked && this.indeterminate;
 
-    const iconName = isIndeterminate ? "indeterminate" : "check"
-    const iconState = isIndeterminate ? "indeterminate" : "check"
-    const iconVisible = this.checked || this.indeterminate
+    const iconName = isIndeterminate ? 'indeterminate' : 'check';
+    const iconState = isIndeterminate ? 'indeterminate' : 'check';
+    const iconVisible = this.checked || this.indeterminate;
 
     //
     // NOTE: we use a `<div>` around the label slot because of this Chrome bug.
@@ -270,7 +270,12 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
               @focus=${this.handleFocus}
             />
 
-            <wa-icon part=${`${iconState}-icon`} class=${`checkbox__${iconState}-icon ${iconVisible ? "" : "checkbox__icon--invisible"}`} library="system" name=${iconName}></wa-icon>
+            <wa-icon
+              part=${`${iconState}-icon`}
+              class=${`checkbox__${iconState}-icon ${iconVisible ? '' : 'checkbox__icon--invisible'}`}
+              library="system"
+              name=${iconName}
+            ></wa-icon>
           </span>
 
           <div part="label" class="checkbox__label">
