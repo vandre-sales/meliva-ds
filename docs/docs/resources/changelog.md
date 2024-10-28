@@ -18,6 +18,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Added more resilient support for lazy loaded options in `<wa-select>`
 - Fixed a bug in `<wa-relative-time>` where the title attribute would show with redundant info
 - Fixed a bug in `<wa-tooltip>` that caused a memory leak in disconnected elements
+- Fixed a bug in `<wa-select>` that prevented label changes in `<wa-option>` from updating the controller
 - Improved alignment of the play icon in `<wa-animated-image>`
 
 ## 3.0.0-alpha.3
