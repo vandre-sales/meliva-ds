@@ -20,6 +20,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Fixed a bug in `<wa-tooltip>` that caused a memory leak in disconnected elements
 - Fixed a bug in `<wa-select>` that prevented label changes in `<wa-option>` from updating the controller
 - Improved alignment of the play icon in `<wa-animated-image>`
+- Improved behavior of link buttons to not set `noreferrer noopener` by default
 
 ## 3.0.0-alpha.3
 
