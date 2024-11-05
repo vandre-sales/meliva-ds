@@ -19,6 +19,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Fixed a bug in `<wa-relative-time>` where the title attribute would show with redundant info
 - Fixed a bug in `<wa-tooltip>` that caused a memory leak in disconnected elements
 - Fixed a bug in `<wa-select>` that prevented label changes in `<wa-option>` from updating the controller
+- Fixed a bug in `<wa-carousel>` that caused interactive elements to be activated when dragging
 - Improved alignment of the play icon in `<wa-animated-image>`
 - Improved behavior of link buttons to not set `noreferrer noopener` by default
 
