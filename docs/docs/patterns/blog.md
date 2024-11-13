@@ -119,7 +119,7 @@ TODO Page Description
 <wa-card class="news-letter-signup">
   <h2>Subscribe to our Newsletter</h2>
   <p>To get the latest and most quality design resources</p>
-  <div class="subscribe-input"> <wa-input></wa-input><wa-button> <wa-icon name="search"></wa-icon></wa-button></div>
+  <div class="subscribe-input"> <wa-input></wa-input><wa-button>Subscribe</wa-button></div>
 </wa-card>
 <style>
   .news-letter-signup {
@@ -147,9 +147,88 @@ TODO Page Description
 <wa-card with-header>
   <div slot="header">
     Recent Articles
-   
+  </div>
+  <div class="body">
+    <div class="post-list">
+      <div class="post-list-item" style="display: flex; align-items: center;">
+        <img src="/assets/images/patterns/flower-crop-1.jpg" />
+        <div class="post-list-item-info" style="display: flex;flex-direction: column;">
+          <span style="font-size: small;"> <wa-icon fixed-width name="mug-hot"></wa-icon> Lifestyle</span>
+          <span style="font-size: larger;font-weight: 600;">Your bones don't break</span>
+          <span style="font-size: small;font-style: italic; font-weight: 600; color: var(--wa-color-text-quiet)">Jules</span>
+        </div>
+      </div>
+      <div class="post-list-item" style="display: flex; align-items: center; flex-direction: row-reverse;justify-content: flex-end">
+        <img class="last" src="/assets/images/patterns/flower-crop-2.jpg" />
+        <div class="post-list-item-info" style="display: flex;flex-direction: column; margin-right: 1rem;">
+          <span style="font-size: small;"><wa-icon fixed-width name="user-nurse"> </wa-icon>Health</span>
+          <span style="font-size: larger;font-weight: 600;">That's clear. Your cells react to bacteria</span>
+          <span style="font-size: small;font-style: italic; font-weight: 600; color: var(--wa-color-text-quiet)">Mr. Glass</span>
+        </div>
+      </div>
+      <div  class="post-list-item" style="display: flex; align-items: center; flex-direction: row-reverse;justify-content: flex-end">
+        <img style="display:none;" src="#"/>
+        <div class="post-list-item-info" style="display: flex;flex-direction: column;">
+          <span style="font-size: small;"><wa-icon fixed-width name="football"></wa-icon> Sports</span>
+          <span style="font-size: larger;font-weight: 600;">Do you see any Teletubbies in here?</span>
+          <span style="font-size: small;font-style: italic; font-weight: 600; color: var(--wa-color-text-quiet)">Nick Fury</span>
+        </div>
+      </div>
+      <div class="post-list-item" style="display: flex; align-items: center;">
+        <img src="/assets/images/patterns/flower-crop-3.jpg" />
+        <div class="post-list-item-info" style="display: flex;flex-direction: column;">
+          <span style="font-size: small;">Lifestyle</span>
+          <span style="font-size: larger;font-weight: 600;">Your bones don't break</span>
+          <span style="font-size: small;font-style: italic; font-weight: 600; color: var(--wa-color-text-quiet)">Jules</span>
+        </div>
+      </div>
+      <div class="post-list-item" style="display: flex; align-items: center;">
+        <img src="/assets/images/patterns/flower-crop-1.jpg" />
+        <div class="post-list-item-info" style="display: flex;flex-direction: column;">
+          <span style="font-size: small;">Lifestyle</span>
+          <span style="font-size: larger;font-weight: 600;">Your bones don't break</span>
+          <span style="font-size: small;font-style: italic; font-weight: 600; color: var(--wa-color-text-quiet)">Jules</span>
+        </div>
+      </div>
+    </div>
   </div>
 </wa-card>
+<style>
+  .post-list {
+    .post-list-item {
+      border-bottom: 1px solid var(--wa-color-surface-border);
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+
+      img {
+        margin-right: 1rem;
+        object-fit: cover; 
+        min-width: 50px;
+        min-height: 50px; 
+        width: 100px; 
+        height: 100px;
+        border-radius: var(--wa-border-radius-circle);
+      }
+      img.last {
+        margin-right: 0;
+      }
+
+      .post-list-item-info span:first-of-type {
+        display: flex;
+        align-items: center;
+      }
+
+      .post-list-item-info span wa-icon {
+        margin-right: 0.25rem;
+      }
+    }
+    .post-list-item:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+</style>
 ```
 
 ### Related Posts
