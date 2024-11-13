@@ -541,7 +541,8 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     }
   }
 
-  private handleDefaultSlotChange() {
+  /* @internal - used by options to update labels */
+  public handleDefaultSlotChange() {
     if (!customElements.get('wa-option')) {
       customElements.whenDefined('wa-option').then(() => this.handleDefaultSlotChange());
     }

@@ -99,6 +99,7 @@ export default class WaCarousel extends WebAwesomeElement {
   @state() dragging = false;
 
   private autoplayController = new AutoplayController(this, () => this.next());
+  private dragStartPosition: [number, number] = [-1, -1];
   private readonly localize = new LocalizeController(this);
   private mutationObserver: MutationObserver;
 
@@ -155,6 +156,20 @@ export default class WaCarousel extends WebAwesomeElement {
     return [...this.children].filter(
       (el: HTMLElement) => this.isCarouselItem(el) && (!excludeClones || !el.hasAttribute('data-clone'))
     ) as WaCarouselItem[];
+  }
+
+  private handleClick(event: MouseEvent) {
+    if (this.dragging && this.dragStartPosition[0] > 0 && this.dragStartPosition[1] > 0) {
+      const deltaX = Math.abs(this.dragStartPosition[0] - event.clientX);
+      const deltaY = Math.abs(this.dragStartPosition[1] - event.clientY);
+      const delta = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+      // Prevents clicks on interactive elements while dragging if the click is within a small range. This prevents
+      // accidental drags from interfering with intentional clicks.
+      if (delta >= 10) {
+        event.preventDefault();
+      }
+    }
   }
 
   private handleKeyDown(event: KeyboardEvent) {
@@ -214,6 +229,7 @@ export default class WaCarousel extends WebAwesomeElement {
       // Start dragging if it hasn't yet
       this.scrollContainer.style.setProperty('scroll-snap-type', 'none');
       this.dragging = true;
+      this.dragStartPosition = [event.clientX, event.clientY];
     }
 
     this.scrollContainer.scrollBy({
@@ -261,6 +277,7 @@ export default class WaCarousel extends WebAwesomeElement {
       scrollContainer.style.removeProperty('scroll-snap-type');
 
       this.dragging = false;
+      this.dragStartPosition = [-1, -1];
       this.handleScrollEnd();
     });
   };
@@ -359,10 +376,10 @@ export default class WaCarousel extends WebAwesomeElement {
       this.createClones();
     }
 
-    this.synchronizeSlides();
-
     // Because the DOM may be changed, restore the scroll position to the active slide
     this.goToSlide(this.activeSlide, 'auto');
+
+    this.synchronizeSlides();
   }
 
   private createClones() {
@@ -536,6 +553,7 @@ export default class WaCarousel extends WebAwesomeElement {
           @mousedown="${this.handleMouseDragStart}"
           @scroll="${this.handleScroll}"
           @scrollend=${this.handleScrollEnd}
+          @click=${this.handleClick}
         >
           <slot @slotchange=${() => this.requestUpdate()}></slot>
         </div>
