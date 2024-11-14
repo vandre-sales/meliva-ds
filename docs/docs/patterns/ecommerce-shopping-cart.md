@@ -1,5 +1,5 @@
 ---
-title: Product Landing
+title: E-commerce - Shopping Cart
 description: TODO
 layout: page.njk
 ---
