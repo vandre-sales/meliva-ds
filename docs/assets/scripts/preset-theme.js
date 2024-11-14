@@ -6,24 +6,27 @@
     presetTheme = newPresetTheme;
     localStorage.setItem('presetTheme', presetTheme);
 
-    const stylesheet = document.getElementById("theme-stylesheet")
+    const stylesheet = document.getElementById('theme-stylesheet');
 
-    const newStylesheet = Object.assign(document.createElement("link"), {
+    const newStylesheet = Object.assign(document.createElement('link'), {
       href: `/dist/themes/${presetTheme}.css`,
-      rel: "preload",
-      as: "style"
-    })
+      rel: 'preload',
+      as: 'style'
+    });
 
-    newStylesheet.addEventListener("load", () => {
-      newStylesheet.rel = "stylesheet"
-      newStylesheet.id = stylesheet.id
-      requestAnimationFrame(() => {
-        stylesheet.remove()
-      })
-    }, { once: true })
+    newStylesheet.addEventListener(
+      'load',
+      () => {
+        newStylesheet.rel = 'stylesheet';
+        newStylesheet.id = stylesheet.id;
+        requestAnimationFrame(() => {
+          stylesheet.remove();
+        });
+      },
+      { once: true }
+    );
 
-    document.head.append(newStylesheet)
-
+    document.head.append(newStylesheet);
 
     // Update the UI
     updateSelection();
@@ -35,14 +38,14 @@
   function updateSelection(container = document) {
     const menu = container.querySelector('#preset-theme-selector wa-menu');
     if (!menu) return;
-    [...menu.querySelectorAll('wa-menu-item')].forEach(async (item) => {
-      const isChecked = item.getAttribute('value') === presetTheme
+    [...menu.querySelectorAll('wa-menu-item')].forEach(async item => {
+      const isChecked = item.getAttribute('value') === presetTheme;
       if (isChecked) {
-        container.querySelector("#preset-theme-selector__text").textContent = item.innerText
+        container.querySelector('#preset-theme-selector__text').textContent = item.innerText;
       }
-      await customElements.whenDefined(item.localName)
-      await item.updateComplete
-      item.checked = isChecked
+      await customElements.whenDefined(item.localName);
+      await item.updateComplete;
+      item.checked = isChecked;
     });
   }
 
@@ -64,17 +67,17 @@
 
   // Update the color scheme when the preference changes
   window.matchMedia('(prefers-preset-theme: dark)').addEventListener('change', () => setPresetTheme(presetTheme));
-  updateSelection()
+  updateSelection();
 
   /**
    * Without this, there's a flash of the incorrect preset theme.
    */
-  function updateSelectionBeforeTurboLoad (e) {
+  function updateSelectionBeforeTurboLoad(e) {
     const newElement = e.detail.newBody || e.detail.newFrame || e.detail.newStream;
     if (!newElement) {
       return;
     }
-    updateSelection(newElement)
+    updateSelection(newElement);
   }
 
   ['turbo:before-render', 'turbo:before-stream-render', 'turbo:before-frame-render'].forEach(eventName => {

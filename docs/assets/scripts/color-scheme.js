@@ -5,7 +5,7 @@
   function setColorScheme(newColorScheme) {
     colorScheme = newColorScheme;
     localStorage.setItem('colorScheme', colorScheme);
-    const presetTheme = window.getPresetTheme()
+    const presetTheme = window.getPresetTheme();
 
     // Update the UI
     updateSelection();
@@ -17,10 +17,10 @@
   function updateSelection() {
     const menu = document.querySelector('#color-scheme-selector wa-menu');
     if (!menu) return;
-    [...menu.querySelectorAll('wa-menu-item')].forEach(async (item) => {
-      await customElements.whenDefined(item.localName)
-      await item.updateComplete
-      item.checked = item.getAttribute('value') === colorScheme
+    [...menu.querySelectorAll('wa-menu-item')].forEach(async item => {
+      await customElements.whenDefined(item.localName);
+      await item.updateComplete;
+      item.checked = item.getAttribute('value') === colorScheme;
     });
   }
 
