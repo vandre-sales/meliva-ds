@@ -33,7 +33,7 @@ TODO Page Description
   <wa-card>
     <div class="card-body">
       <div style="border-bottom: 1px solid var(--wa-color-surface-border);margin-bottom: 1rem; padding-bottom: 1rem;">
-        <img src="/assets/images/patterns/article-flower.jpg" />
+        <img src="https://img.fortawesome.com/cfa83f3c/article-flower.jpg" alt="">
         <h2 style="margin-bottom: var(--wa-space-s);">Title</h2>
         <p style="margin-bottom: var(--wa-space-3xs);">Well, the way they make shows is, they make one show. That show's called a pilot.</p>
       
@@ -41,14 +41,14 @@ TODO Page Description
       </div>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
         <div>
-            <img src="/assets/images/patterns/article-flower.jpg" />
+            <img src="https://img.fortawesome.com/cfa83f3c/article-flower.jpg" alt="">
        
         <p style="margin-bottom: var(--wa-space-3xs);">Normally, both your asses would be dead as fucking fried chicken.</p>
       
       <span style="font-size: small;font-weight: 600;font-style: italic;">sub-title</span>
         </div>
         <div>
-            <img src="/assets/images/patterns/article-flower.jpg" />
+            <img src="https://img.fortawesome.com/cfa83f3c/article-flower.jpg" alt="">
        
         <p style="margin-bottom: var(--wa-space-3xs);">Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.</p>
       
@@ -63,28 +63,37 @@ TODO Page Description
 ## Footer 
 ```html{.example}
 <div class="news-footer">
-  <div class="logo"> <wa-icon name="user-secret"></wa-icon> <h1 style="--wa-space-xl: 0;">Daily Snoop</h1></div>
+  <div class="container">
+  <!-- <div class="logo"> <wa-icon name="user-secret"></wa-icon> <h1 style="--wa-space-xl: 0;">Daily Snoop</h1></div> -->
   <div class="nav">
     <section>
-      <h4 style="--wa-space-xl: 0;">Title</h4>
+      <h4 style="--wa-space-xl: 0;">News</h4>
       <ul>
-      <li>list 1</li>
-      <li>list 2</li>
+      <li><a href="#">U.S.</a></li>
+      <li><a href="#">World</a></li>
+      <li><a href="#">Politics</a></li>
+      <li><a href="#">Education</a></li>
+      <li><a href="#">Sports</a></li>
+      <li><a href="#">Business</a></li>
+      <li><a href="#">Tech</a></li>
+      <li><a href="#">Science</a></li>
     </ul>
     </section>
     <section>
-      <h4 style="--wa-space-xl: 0;">Title</h4>
+      <h4 style="--wa-space-xl: 0;">Arts</h4>
       <ul>
-      <li>list 1</li>
-      <li>list 2</li>
+      <li><a href="#">Book Review</a></li>
+      <li><a href="#">Dance</a></li>
+      <li><a href="#">Movies</a></li>
+      <li><a href="#">Pop Culture</a></li>
     </ul>
     </section>
     <section>
       <h4 style="--wa-space-xl: 0;">Subscriptions</h4>
-      <ul>
-      <li><a href="#">Crossword</a></li>
-      <li><a href="#">Newsletters</a></li>
-      <li><a href="#">Podcast</a></li>
+      <ul class="list">
+      <li><a href="#"><wa-icon fixed-width name="game-board-simple"></wa-icon> Crossword</a></li>
+      <li><a href="#"><wa-icon fixed-width name="paper-plane"></wa-icon> Newsletters</a></li>
+      <li><a href="#"><wa-icon fixed-width name="microphone-lines"></wa-icon> Podcast</a></li>
     </ul>
     </section>
   </div>
@@ -102,10 +111,20 @@ TODO Page Description
       <wa-icon family="brands" name="mastodon"></wa-icon> 
     </a>
   </div>
+  <div>
+    <img src="https://img.fortawesome.com/cfa83f3c/app_store.svg" alt="">
+    <img src="https://img.fortawesome.com/cfa83f3c/google_play.svg" alt="">
+  </div>
   <div class="legal">&#169 2024 All rights reserved.</div>
+  </div>
 </div>
 <style>
   .news-footer {
+  
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
     .logo {
       display: flex;
       align-items: center;
@@ -125,6 +144,16 @@ TODO Page Description
     }
     .social a:not(:last-child) {
       margin-right: 1rem;
+    }
+    section ul li a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      --wa-color-text-link: var(--wa-color-gray-20);
+
+      wa-icon {
+        margin-right: .5rem;
+      }
     }
   }
 </style>
