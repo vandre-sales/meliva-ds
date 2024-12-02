@@ -23,9 +23,16 @@ table code {
 	<tr>
 		<th><code>{{ name }}{{ "()" if type == "method" }}</code></th>
 		<td>
+			{% if thingComponents.length > 1 %}
+				<details open>
+					<summary><strong>{{ thingComponents.length }}</strong> components</summary>
+			{% endif %}
 			{% for component in thingComponents  %}
 				<a href="../{{ component.slug }}"><code>&lt;{{ component.tagName }}&gt;</code></a>
 			{%- endfor -%}
+			{% if thingComponents.length > 1 %}
+				</details>
+			{% endif %}
 		</td>
 	</tr>
 	{%- endfor %}
