@@ -9,7 +9,13 @@ table code {
 }
 </style>
 
-<wa-input type=search label="Filter by name:" clearable id="name_search"></wa-input>
+<fieldset id="name_search_group">
+	<legend>Filter by name</legend>
+	<wa-input type=search clearable id="name_search"></wa-input>
+	<wa-checkbox id="name_search_i" checked>Case sensitive</wa-checkbox>
+	<wa-checkbox id="name_search_regexp">Regular expression</wa-checkbox>
+</fieldset>
+
 <script>
 {
 	let url = new URL(location);
@@ -22,14 +28,35 @@ table code {
 	let url = new URL(location);
 	let pushedURL = false;
 
+	let matchers = {
+		default (textContent, query) {
+			return textContent.includes(query);
+		},
+
+		i (textContent, query) {
+			return textContent.toLowerCase().includes(query.toLowerCase());
+		},
+
+		regexp (textContent, query) {
+			query.lastIndex = 0;
+			return query.test(textContent);
+		}
+	}
+
 	function filterByName (value) {
 		let previousFilter = url.searchParams.get("name") || "";
 		url = new URL(location);
 
 		if (value) {
+			let isRegexp = name_search_regexp.checked;
+			let i = !name_search_i.checked;
+			let query = isRegexp ? new RegExp(value, "gmsv" + (i ? "i" : "")) : value;
+			let matcher = isRegexp ? matchers.regexp : i ? matchers.i : matchers.default;
+
 			for (let th of document.querySelectorAll("table tbody th:first-child")) {
 				let tr = th.parentNode;
-				tr.toggleAttribute("hidden", !th.textContent.includes(value));
+				let matches = matcher(th.textContent, query);
+				tr.toggleAttribute("hidden", !matches);
 			}
 			url.searchParams.set("name", value);
 		}
@@ -64,7 +91,7 @@ table code {
 		filterByName(name_search.value);
 	}
 
-	name_search.addEventListener("wa-input", e => filterByName(e.target.value));
+	name_search_group.addEventListener("wa-input", e => filterByName(name_search.value));
 </script>
 
 {% for type, all in componentsBy -%}
