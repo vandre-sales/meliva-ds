@@ -502,7 +502,7 @@ describe('<wa-select>', () => {
         expect(displayInput.value).to.equal('Option 1');
 
         option.textContent = 'updated';
-        await oneEvent(option, 'slotchange');
+        await aTimeout(250);
         await el.updateComplete;
 
         expect(displayInput.value).to.equal('updated');
