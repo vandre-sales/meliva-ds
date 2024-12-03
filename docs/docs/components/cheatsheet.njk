@@ -33,10 +33,11 @@ table code {
 		let caseSensitive = !matcherId.startsWith("i");
 		let isRegexp = matcherId.endsWith("regexp");
 
-		name_search_i.toggleAttribute("checked", caseSensitive);
-		name_search_regexp.toggleAttribute("checked", isRegexp);
-
-		customElements.whenDefined("wa-checkbox").then(() => {
+		customElements.whenDefined("wa-checkbox").then(async () => {
+			await Promise.all([
+				name_search_i.updateComplete,
+				name_search_regexp.updateComplete,
+			]);
 			name_search_i.checked = caseSensitive;
 			name_search_regexp.checked = isRegexp;
 		});
