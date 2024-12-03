@@ -27,6 +27,20 @@ table code {
 	if (url.searchParams.get("name")) {
 		name_search.value = url.searchParams.get("name");
 	}
+
+	if (url.searchParams.get("match")) {
+		let matcherId = url.searchParams.get("match");
+		let caseSensitive = !matcherId.startsWith("i");
+		let isRegexp = matcherId.endsWith("regexp");
+
+		name_search_i.toggleAttribute("checked", caseSensitive);
+		name_search_regexp.toggleAttribute("checked", isRegexp);
+
+		customElements.whenDefined("wa-checkbox").then(() => {
+			name_search_i.checked = caseSensitive;
+			name_search_regexp.checked = isRegexp;
+		});
+	}
 }
 </script>
 <script type=module>
@@ -45,8 +59,10 @@ table code {
 		regexp (textContent, query) {
 			query.lastIndex = 0;
 			return query.test(textContent);
-		}
-	}
+		},
+	};
+
+	matchers.iregexp = matchers.regexp; // i is baked into the query
 
 	function filterByName (value) {
 		let previousFilter = url.searchParams.get("name") || "";
@@ -56,7 +72,8 @@ table code {
 			let isRegexp = name_search_regexp.checked;
 			let i = !name_search_i.checked;
 			let query = isRegexp ? new RegExp(value, "gmsv" + (i ? "i" : "")) : value;
-			let matcher = isRegexp ? matchers.regexp : i ? matchers.i : matchers.default;
+			let matcherId = (i ? "i" : "") + (isRegexp ? "regexp" : "");
+			let matcher = matchers[matcherId] ?? matchers.default;
 
 			for (let th of document.querySelectorAll("table tbody th:first-child")) {
 				let tr = th.parentNode;
@@ -64,12 +81,20 @@ table code {
 				tr.toggleAttribute("hidden", !matches);
 			}
 			url.searchParams.set("name", value);
+
+			if (matcherId) {
+				url.searchParams.set("match", matcherId);
+			}
+			else {
+				url.searchParams.delete("match");
+			}
 		}
 		else {
 			for (let tr of document.querySelectorAll("table tbody tr[hidden]")) {
 				tr.removeAttribute("hidden");
 			}
 			url.searchParams.delete("name");
+			url.searchParams.delete("match");
 		}
 
 		if (value !== previousFilter) {
