@@ -53,7 +53,7 @@ export function anchorHeadingsPlugin(options = {}) {
         if (!id) {
           const slug = createId(clone.textContent ?? '') ?? uuid().slice(-12);
           id = slug;
-          let suffix = 0;
+          let suffix = 1;
 
           // Make sure the slug is unique in the document
           while (doc.getElementById(id) !== null) {
