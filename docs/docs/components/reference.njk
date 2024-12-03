@@ -9,8 +9,40 @@ table code {
 }
 </style>
 
+<wa-input type=search label="Filter by name:" clearable id="name_search"></wa-input>
+<script>
+name_search.addEventListener("wa-input", e => {
+	let value = e.target.value;
+
+	if (value) {
+		for (let th of document.querySelectorAll("table tbody th:first-child")) {
+			let tr = th.parentNode;
+			tr.toggleAttribute("hidden", !th.textContent.includes(value));
+		}
+	}
+	else {
+		for (let tr of document.querySelectorAll("table tbody tr[hidden]")) {
+			tr.removeAttribute("hidden");
+		}
+	}
+
+	// Update heading counts
+	for (let h2 of document.querySelectorAll("h2:has(+ table)")) {
+		let count = h2.querySelector(".count");
+		if (!count) continue;
+		let table = h2.nextElementSibling;
+		let visibleRows = table.querySelectorAll("tbody tr:not([hidden])").length;
+		count.textContent = visibleRows;
+	}
+});
+</script>
+
 {% for type, all in componentsBy -%}
-<h2>All {{ "CSS custom properties" if type == "cssProperty" else ("CSS parts" if type == "cssPart" else (type | title) + "s") }}</h2>
+{% set typeTitle = "CSS custom properties" if type == "cssProperty" else ("CSS parts" if type == "cssPart" else (type | title) + "s") %}
+<h2 id="{{ typeTitle | slugify }}">
+	All <span class="count">{{ (all | keys).length }}</span>
+	{{ typeTitle }}
+</h2>
 
 <table>
 	<thead>
