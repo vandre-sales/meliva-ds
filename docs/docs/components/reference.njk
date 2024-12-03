@@ -12,7 +12,15 @@ table code {
 <wa-input type=search label="Filter by name:" clearable id="name_search"></wa-input>
 <script>
 {
-
+	let url = new URL(location);
+	if (url.searchParams.get("name")) {
+		name_search.value = url.searchParams.get("name");
+	}
+}
+</script>
+<script type=module>
+	let url = new URL(location);
+	let pushedURL = false;
 
 	function filterByName (value) {
 		let previousFilter = url.searchParams.get("name") || "";
@@ -43,21 +51,20 @@ table code {
 			let table = h2.nextElementSibling;
 			let visibleRows = table.querySelectorAll("tbody tr:not([hidden])").length;
 			count.textContent = visibleRows;
+			let outlineLink = document.querySelector(`#outline-standard a[href="#${ h2.id }"]`);
+			if (outlineLink) {
+				// Why not just = h2.textContent? To skip the "Jump to heading" link
+				outlineLink.textContent = "";
+				outlineLink.append(...[...h2.childNodes].slice(0, 3).map(n => n.cloneNode(true)));
+			}
 		}
 	}
 
-	let url = new URL(location);
-
-	if (url.searchParams.get("name")) {
-		filterByName(name_search.value = url.searchParams.get("name"));
+	if (name_search.value) {
+		filterByName(name_search.value);
 	}
 
-	let pushedURL = false;
-
-	name_search.addEventListener("wa-input", e => {
-		filterByName(e.target.value);
-	});
-}
+	name_search.addEventListener("wa-input", e => filterByName(e.target.value));
 </script>
 
 {% for type, all in componentsBy -%}
