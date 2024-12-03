@@ -11,30 +11,53 @@ table code {
 
 <wa-input type=search label="Filter by name:" clearable id="name_search"></wa-input>
 <script>
-name_search.addEventListener("wa-input", e => {
-	let value = e.target.value;
+{
 
-	if (value) {
-		for (let th of document.querySelectorAll("table tbody th:first-child")) {
-			let tr = th.parentNode;
-			tr.toggleAttribute("hidden", !th.textContent.includes(value));
+
+	function filterByName (value) {
+		let previousFilter = url.searchParams.get("name") || "";
+		url = new URL(location);
+
+		if (value) {
+			for (let th of document.querySelectorAll("table tbody th:first-child")) {
+				let tr = th.parentNode;
+				tr.toggleAttribute("hidden", !th.textContent.includes(value));
+			}
+			url.searchParams.set("name", value);
+		}
+		else {
+			for (let tr of document.querySelectorAll("table tbody tr[hidden]")) {
+				tr.removeAttribute("hidden");
+			}
+			url.searchParams.delete("name");
+		}
+
+		if (value !== previousFilter) {
+			history[pushedURL ? "replaceState" : "pushState"](null, "", url);
+		}
+
+		// Update heading counts
+		for (let h2 of document.querySelectorAll("h2:has(+ table)")) {
+			let count = h2.querySelector(".count");
+			if (!count) continue;
+			let table = h2.nextElementSibling;
+			let visibleRows = table.querySelectorAll("tbody tr:not([hidden])").length;
+			count.textContent = visibleRows;
 		}
 	}
-	else {
-		for (let tr of document.querySelectorAll("table tbody tr[hidden]")) {
-			tr.removeAttribute("hidden");
-		}
+
+	let url = new URL(location);
+
+	if (url.searchParams.get("name")) {
+		filterByName(name_search.value = url.searchParams.get("name"));
 	}
 
-	// Update heading counts
-	for (let h2 of document.querySelectorAll("h2:has(+ table)")) {
-		let count = h2.querySelector(".count");
-		if (!count) continue;
-		let table = h2.nextElementSibling;
-		let visibleRows = table.querySelectorAll("tbody tr:not([hidden])").length;
-		count.textContent = visibleRows;
-	}
-});
+	let pushedURL = false;
+
+	name_search.addEventListener("wa-input", e => {
+		filterByName(e.target.value);
+	});
+}
 </script>
 
 {% for type, all in componentsBy -%}
