@@ -20,6 +20,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Added support for <kbd>Enter</kbd> to `<wa-split-panel>` to align with ARIA APG's [window splitter pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)
 - Added more resilient support for lazy loaded options in `<wa-select>`
 - Added support for vertical button groups
+- Added the `focus()` method to `<wa-radio-group>`
 - Fixed a bug in `<wa-rating>` when using `precision`
 - Fixed a bug in `<wa-rating>` that allowed tabbing into the rating when readonly
 - Fixed a bug in `<wa-relative-time>` where the title attribute would show with redundant info
