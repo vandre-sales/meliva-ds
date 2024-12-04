@@ -32,6 +32,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Fixed a bug with certain bundlers when using dynamic imports
 - Improved alignment of the play icon in `<wa-animated-image>`
 - Improved behavior of link buttons to not set `noreferrer noopener` by default
+- Updated all checks for directionality to use `this.localize.dir()` instead of `el.matches(:dir(rtl))` so older browsers don't error out
 
 ## 3.0.0-alpha.3
 

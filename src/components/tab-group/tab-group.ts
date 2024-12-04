@@ -50,14 +50,13 @@ import type WaTabPanel from '../tab-panel/tab-panel.js';
 export default class WaTabGroup extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  private readonly localize = new LocalizeController(this);
-
   private activeTab?: WaTab;
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
   private tabs: WaTab[] = [];
   private focusableTabs: WaTab[] = [];
   private panels: WaTabPanel[] = [];
+  private readonly localize = new LocalizeController(this);
 
   @query('.tab-group') tabGroup: HTMLElement;
   @query('.tab-group__body') body: HTMLSlotElement;
@@ -196,7 +195,7 @@ export default class WaTabGroup extends WebAwesomeElement {
     // Move focus left or right
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       const activeEl = this.tabs.find(t => t.matches(':focus'));
-      const isRtl = this.matches(':dir(rtl)');
+      const isRtl = this.localize.dir() === 'rtl';
       let nextTab: null | WaTab = null;
 
       if (activeEl?.tagName.toLowerCase() === 'wa-tab') {
@@ -371,7 +370,7 @@ export default class WaTabGroup extends WebAwesomeElement {
   }
 
   render() {
-    const isRtl = this.hasUpdated ? this.matches(':dir(rtl)') : this.dir === 'rtl';
+    const isRtl = this.hasUpdated ? this.localize.dir() === 'rtl' : this.dir === 'rtl';
 
     return html`
       <div

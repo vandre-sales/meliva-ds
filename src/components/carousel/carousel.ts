@@ -176,7 +176,7 @@ export default class WaCarousel extends WebAwesomeElement {
   private handleKeyDown(event: KeyboardEvent) {
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       const target = event.target as HTMLElement;
-      const isRtl = this.matches(':dir(rtl)');
+      const isRtl = this.localize.dir() === 'rtl';
       const isFocusInPagination = target.closest('[part~="pagination-item"]') !== null;
       const isNext =
         event.key === 'ArrowDown' || (!isRtl && event.key === 'ArrowRight') || (isRtl && event.key === 'ArrowLeft');
@@ -501,7 +501,7 @@ export default class WaCarousel extends WebAwesomeElement {
       : clamp(index, 0, slides.length - slidesPerPage);
     this.activeSlide = newActiveSlide;
 
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.localize.dir() === 'rtl';
 
     // Get the index of the next slide. For looping carousel it adds `slidesPerPage`
     // to normalize the starting index in order to ignore the first nth clones.
@@ -552,7 +552,7 @@ export default class WaCarousel extends WebAwesomeElement {
     }
 
     // We can't rely on `this.matches()` on the server.
-    const isRTL = isServer ? this.dir === 'rtl' : this.matches(':dir(rtl)');
+    const isRTL = isServer ? this.dir === 'rtl' : this.localize.dir() === 'rtl';
 
     return html`
       <div part="base" class="carousel">
