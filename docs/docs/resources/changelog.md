@@ -17,17 +17,17 @@ During the alpha period, things might break! We take breaking changes very serio
 - Added the Finnish translation
 - Added the Italian translation
 - Added the Ukrainian translation
-- Added support for <kbd>Enter</kbd> to `<sl-split-panel>` to align with ARIA APG's [window splitter pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)
+- Added support for <kbd>Enter</kbd> to `<wa-split-panel>` to align with ARIA APG's [window splitter pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)
 - Added more resilient support for lazy loaded options in `<wa-select>`
 - Added support for vertical button groups
 - Fixed a bug in `<wa-rating>` when using `precision`
-- Fixed a bug in `<sl-rating>` that allowed tabbing into the rating when readonly
+- Fixed a bug in `<wa-rating>` that allowed tabbing into the rating when readonly
 - Fixed a bug in `<wa-relative-time>` where the title attribute would show with redundant info
-- Fixed a bug in `<sl-select>` that caused the placeholder to display incorrectly when using placeholder and multiple
+- Fixed a bug in `<wa-select>` that caused the placeholder to display incorrectly when using placeholder and multiple
 - Fixed a bug in `<wa-tooltip>` that caused a memory leak in disconnected elements
 - Fixed a bug in `<wa-select>` that prevented label changes in `<wa-option>` from updating the controller
 - Fixed a bug in `<wa-carousel>` that caused interactive elements to be activated when dragging
-- Fixed a bug in `<wa-tab-group>` that prevented changing tabs by setting `active` on `<sl-tab>` elements
+- Fixed a bug in `<wa-tab-group>` that prevented changing tabs by setting `active` on `<wa-tab>` elements
 - Improved alignment of the play icon in `<wa-animated-image>`
 - Improved behavior of link buttons to not set `noreferrer noopener` by default
 
