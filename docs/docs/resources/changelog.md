@@ -18,6 +18,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Added more resilient support for lazy loaded options in `<wa-select>`
 - Added support for vertical button groups
 - Fixed a bug in `<wa-rating>` when using `precision`
+- Fixed a bug in `<sl-rating>` that allowed tabbing into the rating when readonly
 - Fixed a bug in `<wa-relative-time>` where the title attribute would show with redundant info
 - Fixed a bug in `<wa-tooltip>` that caused a memory leak in disconnected elements
 - Fixed a bug in `<wa-select>` that prevented label changes in `<wa-option>` from updating the controller
