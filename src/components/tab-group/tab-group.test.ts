@@ -86,6 +86,13 @@ describe('<wa-tab-group>', () => {
         expect(tabGroup).to.be.visible;
       });
 
+      it('should not throw error when unmounted too fast', async () => {
+        const el = await fixture(html` <div></div> `);
+
+        el.innerHTML = '<sl-tab-group></sl-tab-group>';
+        el.innerHTML = '';
+      });
+
       it('is accessible', async () => {
         const tabGroup = await fixture<WaTabGroup>(html`
           <wa-tab-group>
