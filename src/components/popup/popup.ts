@@ -276,7 +276,7 @@ export default class WaPopup extends WebAwesomeElement {
 
   private start() {
     // We can't start the positioner without an anchor
-    if (!this.anchorEl) {
+    if (!this.anchorEl || !this.active) {
       return;
     }
 
