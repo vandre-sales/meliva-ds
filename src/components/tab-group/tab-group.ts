@@ -96,6 +96,16 @@ export default class WaTabGroup extends WebAwesomeElement {
       // Sync tabs when disabled states change
       if (mutations.some(m => m.attributeName === 'disabled')) {
         this.syncTabsAndPanels();
+        // sync tabs when active state on tab changes
+      } else if (mutations.some(m => m.attributeName === 'active')) {
+        const tabs = mutations
+          .filter(m => m.attributeName === 'active' && (m.target as HTMLElement).tagName.toLowerCase() === 'wa-tab')
+          .map(m => m.target as WaTab);
+        const newActiveTab = tabs.find(tab => tab.active);
+
+        if (newActiveTab) {
+          this.setActiveTab(newActiveTab);
+        }
       }
     });
 
