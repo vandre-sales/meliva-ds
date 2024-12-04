@@ -14,6 +14,7 @@ During the alpha period, things might break! We take breaking changes very serio
 
 ## Next
 
+- Added the Ukrainian translation
 - Added support for <kbd>Enter</kbd> to `<sl-split-panel>` to align with ARIA APG's [window splitter pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)
 - Added more resilient support for lazy loaded options in `<wa-select>`
 - Added support for vertical button groups
