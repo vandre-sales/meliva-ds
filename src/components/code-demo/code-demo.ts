@@ -37,9 +37,12 @@ const URL_ATTRIBUTES = ['src', 'href'];
  * @csspart preview - The container of the code example preview.
  * @csspart controls - The container of the control buttons.
  * @csspart button - The control buttons.
- * @csspart toggle - The toggle button.
- * @csspart edit - The edit button.
+ * @csspart open-button - The open in new tab button.
+ * @csspart toggle-button - The toggle button.
+ * @csspart edit-button - The edit button.
  * @csspart iframe - The iframe that contains the preview (in isolated demos).
+ * @csspart viewport-demo - The viewport demo container (in isolated demos).
+ * @csspart viewport-controls - The viewport demo controls (in isolated demos).
  *
  * @cssproperty --preview-backdrop - The color behind the preview, shown when it is resized
  * @cssproperty --preview-background - The background color of the preview.
@@ -85,7 +88,7 @@ export default class WaCodeDemo extends WebAwesomeElement {
     if (this.viewport) {
       // Viewport emulation
       viewportHTML = html`
-        <wa-viewport-demo .viewport=${this.viewport}>
+        <wa-viewport-demo .viewport=${this.viewport} part="viewport-demo" exportparts="controls:viewport-controls">
           <iframe title="Code preview" srcdoc="${code}" part="iframe"></iframe>
         </wa-viewport-demo>
       `;
@@ -104,7 +107,7 @@ export default class WaCodeDemo extends WebAwesomeElement {
       <div id="buttons" part="controls">
         <button
           type="button"
-          part="toggle button"
+          part="toggle-button button"
           aria-expanded="${this.open ? 'true' : 'false'}"
           aria-controls="source"
           @click=${this.toggle}
@@ -113,12 +116,12 @@ export default class WaCodeDemo extends WebAwesomeElement {
           <wa-icon name="chevron-down"></wa-icon>
         </button>
         ${this.viewport
-          ? html`<button type="button" part="open button" @click=${this.openInNewTab}>
+          ? html`<button type="button" part="open-button button" @click=${this.openInNewTab}>
               <wa-icon name="arrow-up-right-from-square"></wa-icon>
               Open
             </button>`
           : ''}
-        <button type="button" part="edit button" @click=${this.edit}>
+        <button type="button" part="edit-button button" @click=${this.edit}>
           <wa-icon name="pen-to-square"></wa-icon>
           Edit
         </button>

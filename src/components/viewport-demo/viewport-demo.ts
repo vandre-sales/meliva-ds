@@ -57,6 +57,8 @@ export const viewportPropertyConverter = {
  *
  * @slot - The iframe (usually an `<iframe>` element).
  *
+ * @csspart frame - The visible frame around the viewport.
+ *
  * @cssproperty --viewport-initial-aspect-ratio - The initial aspect ratio of the viewport, when the `viewport` attribute is used. Defaults to `16 / 9`.
  * @cssproperty --viewport-bezel-width - The width of the bezel around the viewport. Defaults to `0.25em`.
  * @cssproperty --viewport-background - The background color of the viewport. Defaults to `var(--wa-color-surface-default, canvas)`.
@@ -285,7 +287,7 @@ export default class WaViewportDemo extends WebAwesomeElement {
     }
 
     return html`
-      <div id="viewport" part="viewport" style=${styleMap(viewportStyle)}>
+      <div id="viewport" part="frame" style=${styleMap(viewportStyle)}>
         <span part="controls">
           ${dimensions}
           <span class="zoom">

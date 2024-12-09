@@ -9,6 +9,8 @@ export default css`
     --viewport-padding: var(--wa-space-2xl, 2rem);
     --viewport-initial-aspect-ratio: 16 / 9;
     --viewport-bezel-width: 0.25em;
+
+    display: contents;
   }
 
   #viewport {
@@ -17,11 +19,7 @@ export default css`
     display: flex;
     flex-flow: column;
     align-items: end;
-
     width: 100%;
-    --_aspect-ratio: calc(var(--viewport-width-px) / var(--viewport-height-px));
-    --aspect-ratio: var(--_aspect-ratio, var(--viewport-initial-aspect-ratio));
-
     height: fit-content;
     min-width: var(--viewport-min-width, 2em);
     max-width: min(var(--viewport-max-width), 100%);
@@ -50,6 +48,8 @@ export default css`
 
     /* User has not yet resized the viewport */
     &:not([style*='height:']) ::slotted(iframe) {
+      --_aspect-ratio: calc(var(--viewport-width-px) / var(--viewport-height-px));
+      --aspect-ratio: var(--_aspect-ratio, var(--viewport-initial-aspect-ratio));
       aspect-ratio: var(--aspect-ratio);
     }
   }

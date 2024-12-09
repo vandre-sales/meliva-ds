@@ -84,13 +84,13 @@ export default css`
     }
   }
 
-  [part~='toggle'] wa-icon {
+  [part~='toggle-button'] wa-icon {
     transition-property: rotate;
   }
 
   :host(:not([open])) {
     #source,
-    [part~='toggle'] wa-icon {
+    [part~='toggle-button'] wa-icon {
       transition-duration: var(--code-collapse-duration);
     }
 
@@ -103,7 +103,7 @@ export default css`
 
   :host([open]) {
     #source,
-    [part~='toggle'] wa-icon {
+    [part~='toggle-button'] wa-icon {
       transition-duration: var(--code-expand-duration);
     }
 
@@ -120,7 +120,7 @@ export default css`
       }
     }
 
-    [part~='toggle'] wa-icon {
+    [part~='toggle-button'] wa-icon {
       rotate: 180deg;
     }
   }
@@ -188,7 +188,7 @@ export default css`
         outline: var(--wa-focus-ring);
       }
 
-      &[part~='toggle'] {
+      &[part~='toggle-button'] {
         flex: 1;
       }
     }
