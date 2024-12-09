@@ -5,7 +5,7 @@ export default css`
     --preview-background: var(--wa-color-surface-default, canvas);
     --preview-backdrop: var(--wa-color-surface-lowered, rgb(0 0 0 / 0.25));
     --preview-resize: inline;
-    --preview-min-width: min-content;
+    --preview-min-width: 10em;
     --preview-max-width: 100%;
     --preview-padding: var(--wa-space-2xl, 2rem);
     --divider-width: var(--wa-border-width-s, 1px);
@@ -39,20 +39,17 @@ export default css`
     border-start-start-radius: inherit;
     border-start-end-radius: inherit;
     background: var(--preview-background);
+    resize: var(--preview-resize);
+    contain: inline-size; /* Safari chokes on scaled down viewports without this */
 
-    &:has(#viewport) {
-      background: var(--preview-backdrop);
-    }
-
-    &:not(:has(#viewport)) {
+    :host(:not([viewport])) & {
       max-width: min(var(--preview-max-width), 100%);
-      min-width: var(--preview-min-width, min-content);
-    }
-
-    &:not(:has(#viewport)),
-    #viewport {
-      resize: var(--preview-resize);
+      min-width: var(--preview-min-width);
       overflow: auto;
+
+      @container style(--preview-resize: none) {
+        overflow: visible;
+      }
     }
 
     > :first-child {

@@ -132,13 +132,7 @@ export default class WaViewportDemo extends WebAwesomeElement {
   private innerHeight: number = 0;
 
   @state()
-  private hostHOffset: number = 0;
-
-  @state()
   private iframeHOffset: number = 0;
-
-  @state()
-  private viewportHOffset: number = 0;
 
   @state()
   private availableWidth = 0;
@@ -199,14 +193,8 @@ export default class WaViewportDemo extends WebAwesomeElement {
         this.iframeHOffset = getHorizontalOffsets(getComputedStyle(this.iframe));
       }
 
-      if (this.viewportElement) {
-        this.viewportHOffset = getHorizontalOffsets(getComputedStyle(this.viewportElement));
-      }
-
-      this.hostHOffset = getHorizontalOffsets(getComputedStyle(this));
-
-      const width = this.getBoundingClientRect().width;
-      this.availableWidth = width - this.hostHOffset - this.viewportHOffset - this.iframeHOffset;
+      const width = this.viewportElement.clientWidth;
+      this.availableWidth = width - this.iframeHOffset;
     }
   }
 

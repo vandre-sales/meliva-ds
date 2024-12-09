@@ -47,7 +47,7 @@ const URL_ATTRIBUTES = ['src', 'href'];
  * @cssproperty --preview-resize - The CSS `resize` property value used for the preview. Default: `inline`, for horizontal resizing.
  * @cssproperty --viewport-initial-aspect-ratio - The initial aspect ratio of the viewport, when the `viewport` attribute is used. Defaults to `16 / 9`.
  * @cssproperty --preview-max-width - The maximum width of the preview. Defaults to `100%`.
- * @cssproperty --preview-min-width - The minimum width of the preview. Defaults to `min-content`.
+ * @cssproperty --preview-min-width - The minimum width of the preview. Defaults to `4em`.
  * @cssproperty --divider-width - The width of the divider. Defaults to `var(--wa-border-width-s)`.
  * @cssproperty --code-collapse-duration - The duration of the code collapse animation (for supporting browsers). Defaults to `var(--wa-transition-normal)`.
  *
