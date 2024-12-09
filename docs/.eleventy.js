@@ -26,6 +26,8 @@ export default function (eleventyConfig) {
     eleventyConfig.ignores.add('**/layout/**');
     eleventyConfig.ignores.add('**/patterns/**');
     eleventyConfig.ignores.add('**/style-utilities/**');
+    eleventyConfig.ignores.add('**/components/code-demo.md');
+    eleventyConfig.ignores.add('**/components/viewport-demo.md');
   }
 
   // Add template data
