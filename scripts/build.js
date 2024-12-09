@@ -106,7 +106,9 @@ async function generateStyles() {
   // NOTE - alpha setting omits all stylesheets except for these because we use them in the docs
   if (isAlpha) {
     await copy(join(rootDir, 'src/themes/applied.css'), join(cdnDir, 'themes/applied.css'), { overwrite: true });
+    await copy(join(rootDir, 'src/themes/classic.css'), join(cdnDir, 'themes/classic.css'), { overwrite: true });
     await copy(join(rootDir, 'src/themes/default.css'), join(cdnDir, 'themes/default.css'), { overwrite: true });
+    await copy(join(rootDir, 'src/themes/forms.css'), join(cdnDir, 'themes/forms.css'), { overwrite: true });
     await copy(join(rootDir, 'src/themes/layout.css'), join(cdnDir, 'themes/layout.css'), { overwrite: true });
     await copy(join(rootDir, 'src/themes/utilities.css'), join(cdnDir, 'themes/utilities.css'), { overwrite: true });
   } else {

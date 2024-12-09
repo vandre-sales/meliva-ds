@@ -1,6 +1,6 @@
 ---
-title: Sample Docs Page
-description: TODO
+title: Sample Documentation Page
+description: A sample page for a documentation website using Web Awesome's page component.
 layout: blank
 ---
 
