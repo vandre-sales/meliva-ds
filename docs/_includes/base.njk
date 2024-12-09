@@ -88,39 +88,11 @@
         </div>
 
         <div id="docs-toolbar">
-          {# Preset theme selector #}
-          <wa-dropdown id="preset-theme-selector">
-            <wa-button slot="trigger" appearance="tinted" size="small" pill caret>
-              <wa-icon slot="prefix" name="paintbrush" variant="regular"></wa-icon>
-              <span id="preset-theme-selector__text" class="only-desktop">Default</span>
-            </wa-button>
-            <wa-menu>
-              <wa-menu-item type="checkbox" value="default">Default</wa-menu-item>
-              <wa-menu-item type="checkbox" value="classic">Classic</wa-menu-item>
-              <wa-menu-item data-alpha="remove" type="checkbox" value="fa">Font Awesome</wa-menu-item>
-              <wa-menu-item data-alpha="remove" type="checkbox" value="active">Active</wa-menu-item>
-              <wa-menu-item data-alpha="remove" type="checkbox" value="brutalist">Brutalism</wa-menu-item>
-              <wa-menu-item data-alpha="remove" type="checkbox" value="glassy">Glassy</wa-menu-item>
-              <wa-menu-item data-alpha="remove" type="checkbox" value="migration">Migration</wa-menu-item>
-              <wa-menu-item data-alpha="remove" type="checkbox" value="playful">Playful</wa-menu-item>
-              <wa-menu-item data-alpha="remove" type="checkbox" value="premium">Premium</wa-menu-item>
-            </wa-menu>
-          </wa-dropdown>
-          {# Color scheme selector #}
-          <wa-dropdown id="color-scheme-selector">
-            <wa-button slot="trigger" appearance="tinted" size="small" pill caret title="Press \ to toggle">
-              <wa-icon class="only-light" slot="prefix" name="sun" variant="regular"></wa-icon>
-              <wa-icon class="only-dark" slot="prefix" name="moon" variant="regular"></wa-icon>
-              <span class="only-light only-desktop">Light</span>
-              <span class="only-dark only-desktop">Dark</span>
-            </wa-button>
-            <wa-menu>
-              <wa-menu-item type="checkbox" value="light">Light</wa-menu-item>
-              <wa-menu-item type="checkbox" value="dark">Dark</wa-menu-item>
-              <wa-divider></wa-divider>
-              <wa-menu-item type="checkbox" value="auto">System</wa-menu-item>
-            </wa-menu>
-          </wa-dropdown>
+          {# Desktop selectors #}
+          <div class="only-desktop">
+            {% include "preset-theme-selector.njk" %}
+            {% include "color-scheme-selector.njk" %}
+          </div>
 
           {# Search #}
           <wa-button id="search-trigger" appearance="outlined" size="small" data-search>
@@ -135,6 +107,13 @@
       {% if hasSidebar %}
         <aside slot="navigation" id="sidebar" class="docs-aside" data-remember-scroll>
           <wa-icon-button id="sidebar-close-button" name="xmark" label="Close" data-drawer="close"></wa-icon-button>
+
+          {# Mobile selectors #}
+          <div class="only-mobile">
+            {% include "preset-theme-selector.njk" %}
+            {% include "color-scheme-selector.njk" %}
+          </div>
+
           <nav>
             {% include "sidebar.njk" %}
           </nav>
