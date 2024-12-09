@@ -17,6 +17,10 @@
     >
       {{ component.status }}
     </wa-badge>
+    {# TODO - add a pro flag for pro components #}
+    {% if component.tagName == 'wa-page' %}
+      <wa-badge class="pro">PRO</wa-badge>
+    {% endif %}
   </div>
   <p class="component-summary">
     {{ component.summary | inlineMarkdown | safe }}

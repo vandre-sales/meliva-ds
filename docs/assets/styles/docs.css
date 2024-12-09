@@ -113,6 +113,26 @@ wa-page > header {
   li a:hover {
     text-decoration: underline;
   }
+
+  li wa-badge::part(base) {
+    font-size: var(--wa-font-size-2xs);
+    font-weight: var(--wa-font-weight-bold);
+  }
+
+  li wa-icon {
+    color: var(--wa-color-text-quiet);
+    vertical-align: middle;
+
+    &[name='flask'] {
+      margin-inline: 0.125em;
+    }
+  }
+}
+
+/* Pro badges */
+wa-badge.pro::part(base) {
+  background-color: var(--wa-brand-orange);
+  border-color: var(--wa-brand-orange);
 }
 
 #sidebar-close-button {
@@ -141,6 +161,14 @@ wa-page > main {
   max-width: 80ch;
   padding: var(--wa-space-xl);
   margin-inline: auto;
+}
+
+h1.title wa-badge {
+  vertical-align: middle;
+
+  &::part(base) {
+    font-size: 1.5rem;
+  }
 }
 
 .component-info {

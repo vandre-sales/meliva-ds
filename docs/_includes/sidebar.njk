@@ -128,6 +128,11 @@
     <a href="/docs/components/mutation-observer">Mutation Observer</a>
   </li>
   <li>
+    <a href="/docs/components/page">Page</a>
+    <wa-icon name="flask"></wa-icon>
+    <wa-badge class="pro">PRO</wa-badge>
+  </li>
+  <li>
     <a href="/docs/components/popup">Popup</a>
   </li>
   <li>
@@ -216,6 +221,7 @@
 </ul>
 
 {# Layout #}
+{% if not isAlpha %}
 <h2>Layout</h2>
 <ul>
   <li><a href="/docs/layout">Layout Overview</a></li>
@@ -227,8 +233,10 @@
   <li><a href="/docs/layout/split">Split</a></li>
   <li><a href="/docs/layout/stack">Stack</a></li>
 </ul>
+{% endif %}
 
 {# Patterns #}
+{% if not isAlpha %}
 <h2>Patterns</h2>
 <ul>
   <li>
@@ -242,14 +250,14 @@
       <li><a href="/docs/patterns/ecommerce-category-preview">Category Previews</a></li>
       <li><a href="/docs/patterns/ecommerce-shopping-cart">Shopping Carts</a></li>
        <li><a href="/docs/patterns/ecommerce-category-filter">Category Filters</a></li>
-      <li><a href="/docs/patterns/ecommerce-product-detail">Product Detail</a></li>
-      <li><a href="/docs/patterns/ecommerce-order-summmary">Order Summaries</a></li>
+      <li><a href="/docs/patterns/ecommerce-product-detail">Product Detail</a></li>mary">Order Summaries</a></li>
       <li><a href="/docs/patterns/ecommerce-order-history">Order History</a></li>
     </ul>
   </li>
   <li><a href="/docs/patterns/blog">Blog</a></li>
   <li><a href="/docs/patterns/news">News</a></li>
 </ul>
+{% endif %}
 
 {# Theming #}
 <h2>Theming</h2>
@@ -284,6 +292,7 @@
 </ul>
 
 {# Style Utilities #}
+{% if not isAlpha %}
 <h2>Style Utilities</h2>
 <ul>
   <li><a href="/docs/style-utilities/align-items">Align Items</a></li>
@@ -291,3 +300,4 @@
   <li><a href="/docs/style-utilities/gap">Gap</a></li>
   <li><a href="/docs/style-utilities/text">Text</a></li>
 </ul>
+{% endif %}
