@@ -6,7 +6,6 @@ name: SSR Tests
 on:
   push:
     branches: [next]
-  pull_request: {}
 
 jobs:
   ssr_test:
