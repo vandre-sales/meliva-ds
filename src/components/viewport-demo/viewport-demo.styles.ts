@@ -2,9 +2,10 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --viewport-background: var(--wa-color-surface-default, canvas);
+    --viewport-background-color: var(--wa-color-surface-default, canvas);
     --viewport-resize: both;
-    --viewport-min-width: 2em;
+    --viewport-min-width: 10em;
+    --viewport-min-height: 5em;
     --viewport-max-width: 100%;
     --viewport-padding: var(--wa-space-2xl, 2rem);
     --viewport-initial-aspect-ratio: 16 / 9;
@@ -23,6 +24,7 @@ export default css`
     height: fit-content;
     min-width: var(--viewport-min-width, 2em);
     max-width: min(var(--viewport-max-width), 100%);
+    min-height: var(--viewport-min-height);
     resize: var(--viewport-resize);
     overflow: auto;
 
@@ -31,16 +33,16 @@ export default css`
     border-radius: calc(var(--wa-border-radius-s));
 
     /* Window-like frame styling */
+    --button-params: 0.4em / 0.5em 0.5em border-box;
     background:
-      radial-gradient(circle closest-side, var(--wa-color-red-60) 80%, var(--wa-color-red-50) 98%, transparent) 0.4em,
+      radial-gradient(circle closest-side, var(--wa-color-red-60) 80%, var(--wa-color-red-50) 98%, transparent) 0.4em
+        var(--button-params),
       radial-gradient(circle closest-side, var(--wa-color-yellow-80) 80%, var(--wa-color-yellow-70) 98%, transparent)
-        1.1em,
+        1.1em var(--button-params),
       radial-gradient(circle closest-side, var(--wa-color-green-70) 80%, var(--wa-color-green-60) 98%, transparent)
-        1.8em;
-    background-color: var(--wa-color-gray-95);
-    background-size: 0.5em 0.5em;
-    background-position-y: 0.4em;
-    background-origin: border-box;
+        1.8em var(--button-params),
+      linear-gradient(to top, var(--viewport-background-color) 60%, transparent 70%) bottom padding-box,
+      var(--wa-color-gray-95);
     background-repeat: no-repeat;
     box-shadow:
       0 0 0 1px var(--wa-color-gray-90),
@@ -62,8 +64,12 @@ export default css`
 
     /* Divide with var(--zoom) to get lengths that stay constant regardless of zoom level */
     border: calc(1px / var(--zoom)) solid var(--wa-color-gray-90);
-    padding: 0em; /* we want this to be scaled by the zoom level */
-    background: var(--viewport-background);
+
+    /* If we just set a background-color, Safari will not show the resizer because the iframe is over it.
+      So instead, we make sure that the bottom of the iframe is transparent, and is covered by a gradient on the parent.
+      Why not ONLY specify the gradient on the parent? Because there is no flexible way to know how tall it should be.
+     */
+    background: linear-gradient(to bottom, var(--viewport-background-color) 60%, transparent 70%);
   }
 
   [part~='controls'] {
