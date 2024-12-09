@@ -66,6 +66,7 @@ export default css`
     overflow: hidden;
     transition-property: height, display;
     transition-behavior: allow-discrete;
+    display: block;
 
     &::slotted(pre) {
       position: relative;
@@ -82,46 +83,41 @@ export default css`
     &:not(:has(+ #buttons)) {
       border-bottom: none;
     }
-  }
 
-  [part~='toggle-button'] wa-icon {
-    transition-property: rotate;
-  }
-
-  :host(:not([open])) {
-    #source,
-    [part~='toggle-button'] wa-icon {
-      transition-duration: var(--code-collapse-duration);
-    }
-
-    #source {
-      /* Collapsed */
+    /* Collapsed */
+    &:not(:host([open]) *) {
       height: 0px;
       display: none;
     }
-  }
 
-  :host([open]) {
-    #source,
-    [part~='toggle-button'] wa-icon {
-      transition-duration: var(--code-expand-duration);
-    }
-
-    #source {
-      /* Expanded */
+    /* Expanded */
+    &:is(:host([open]) *) {
       height: auto;
       display: block;
-    }
 
-    @starting-style {
-      #source {
+      @starting-style {
         height: 0px;
         display: block;
       }
     }
+  }
 
-    [part~='toggle-button'] wa-icon {
+  [part~='toggle-button'] wa-icon {
+    transition-property: rotate;
+
+    &:is(:host([open]) *) {
       rotate: 180deg;
+    }
+  }
+
+  #source,
+  [part~='toggle-button'] wa-icon {
+    &:not(:host([open]) *) {
+      transition-duration: var(--code-collapse-duration);
+    }
+
+    &:is(:host([open]) *) {
+      transition-duration: var(--code-expand-duration);
     }
   }
 
