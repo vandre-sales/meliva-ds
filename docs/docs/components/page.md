@@ -160,6 +160,8 @@ You can override the default spacing for each slot with your own CSS. In this ex
 
 ### Documentation
 
+A sample documentation page using [all available slots](#slots). The navigation menu collapses into a drawer at a custom `mobile-breakpoint` of 920px. It can be opened using a button with `[data-toggle-nav]` that appears in the `subheader` slot. The `aside` slot is also hidden below 920px.
+
 ```html {.example viewport="1600"}
 <wa-page mobile-breakpoint="920">
   <div slot="banner" class="wa-body-s">
@@ -392,6 +394,8 @@ You can override the default spacing for each slot with your own CSS. In this ex
 ```
 
 ### Media
+
+A sample media app page using `header`, `navigation-header`, `main-header`, and `main-footer` along with the default slot. The navigation menu collapses into a drawer at the default `mobile-breakpoint` and can be opened using a button with `[data-toggle-nav]` that appears in the `header` slot.
 
 ```html {.example viewport="1600"}
 <wa-page class="wa-theme-default-dark">
