@@ -1,8 +1,10 @@
-async function run () {
+async function run() {
   await customElements.whenDefined('wa-checkbox');
   let container = document.getElementById('page_slots_demo');
 
-  if (!container) { return }
+  if (!container) {
+    return;
+  }
 
   let fieldset = container.querySelector('fieldset');
   let iframe = container.querySelector('iframe');
@@ -46,8 +48,7 @@ async function run () {
   render();
 }
 
-;(async () => {
-  await run()
-  document.addEventListener("turbo:load", run)
-})()
-
+(async () => {
+  await run();
+  document.addEventListener('turbo:load', run);
+})();
