@@ -123,7 +123,7 @@ Alternatively, you can apply `nav-state="open"` and `nav-state="closed"` to the 
 
 ### Documentation Layout
 
-```html {.example data-viewport="1400"}
+```html {.example viewport="1400"}
 <style>
   wa-page {
     --menu-width: 15rem;
