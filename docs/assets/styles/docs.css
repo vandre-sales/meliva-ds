@@ -25,13 +25,22 @@ wa-page::part(header) {
   border-bottom: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);
 }
 
+wa-page::part(drawer__body) {
+  padding-top: 0px;
+}
+
+wa-page::part(drawer__header-actions) {
+  align-self: center;
+}
+
 wa-page > header {
   flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  padding-inline: var(--wa-space-xl);
+  padding-inline-start: var(--wa-space-m);
+  padding-inline-end: var(--wa-space-s);
 
   a[href='/'] {
     color: var(--wa-color-text-normal);
