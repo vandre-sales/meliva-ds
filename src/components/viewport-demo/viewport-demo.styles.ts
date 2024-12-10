@@ -119,17 +119,5 @@ export default css`
     [part~='zoom-out']::part(base) {
       cursor: zoom-out;
     }
-
-    /* Quick hack to disable zooming in Firefox and Safari */
-    @supports not (scroll-timeline: none) {
-      [part~='zoom-in'],
-      [part~='zoom-out'] {
-        display: none;
-      }
-
-      wa-icon {
-        display: inline;
-      }
-    }
   }
 `;

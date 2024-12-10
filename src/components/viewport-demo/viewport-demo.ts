@@ -142,6 +142,9 @@ export default class WaViewportDemo extends WebAwesomeElement {
   @state()
   private contentWindow: Window | null;
 
+  @state()
+  private needsInternalZoom: boolean | undefined;
+
   private resizeObserver: ResizeObserver;
 
   connectedCallback(): void {
@@ -167,24 +170,27 @@ export default class WaViewportDemo extends WebAwesomeElement {
 
   // Called when this.iframe.contentWindow changes
   private handleIframeLoad() {
-    this.contentWindow = this.iframe.contentWindow;
-    if (this.contentWindow) {
+    if (this.iframe.contentWindow) {
+      this.contentWindow = this.iframe.contentWindow;
       this.updateCS();
       this.updateZoom();
 
       this.handleViewportResize();
       this.contentWindow.addEventListener('resize', () => this.handleViewportResize());
-      this.updateComplete.then(() => {
-        const innerWidth = this.contentWindow?.innerWidth || 0;
-        const availableWidth = Math.round(this.availableWidth);
-        const ratio = availableWidth / innerWidth;
 
-        if (Math.abs(ratio - this.computedZoom) > 0.01) {
-          // The actual iframe content is not zoomed. This is a known Safari bug.
-          // We need to zoom the iframe content manually.
-          this.iframe.contentDocument!.documentElement.style.setProperty('zoom', this.computedZoom + '');
-        }
-      });
+      if (this.needsInternalZoom === undefined) {
+        this.updateComplete.then(() => {
+          const innerWidth = this.contentWindow?.innerWidth || 0;
+          const availableWidth = Math.round(this.availableWidth);
+          const ratio = availableWidth / innerWidth;
+
+          if (Math.abs(ratio - this.computedZoom) > 0.01) {
+            // The actual iframe content is not zoomed. This is a known Safari bug.
+            // We need to zoom the iframe content manually.
+            this.needsInternalZoom = true;
+          }
+        });
+      }
     }
   }
 
@@ -270,6 +276,31 @@ export default class WaViewportDemo extends WebAwesomeElement {
     }
   }
 
+  updated(changedProperties: Map<string | number | symbol, unknown>) {
+    super.updated(changedProperties);
+
+    if (
+      this.contentWindow &&
+      ['computedZoom', 'needsInternalZoom', 'contentWindow'].some(p => changedProperties.has(p))
+    ) {
+      if (changedProperties.has('computedZoom')) {
+        this.viewportElement.style.setProperty('--zoom', this.computedZoom + '');
+      }
+
+      if (this.needsInternalZoom) {
+        const innerWidth = this.contentWindow?.innerWidth || 0;
+        const availableWidth = Math.round(this.availableWidth);
+        const ratio = availableWidth / innerWidth;
+
+        if (Math.abs(ratio - this.computedZoom) > 0.01) {
+          // The actual iframe content is not zoomed. This is a known Safari bug.
+          // We need to zoom the iframe content manually.
+          this.iframe.contentDocument!.documentElement.style.setProperty('zoom', this.computedZoom + '');
+        }
+      }
+    }
+  }
+
   render() {
     const width = this.innerWidth || (isViewportDimensions(this.viewport) ? this.viewport.width : 0);
     const height = this.innerHeight || (isViewportDimensions(this.viewport) ? this.viewport.height : 0);
@@ -324,10 +355,7 @@ export default class WaViewportDemo extends WebAwesomeElement {
     this.iframe = slot.assignedElements()[0] as HTMLIFrameElement;
 
     if (this.iframe) {
-      this.contentWindow = this.iframe.contentWindow;
-      if (this.contentWindow) {
-        this.handleIframeLoad();
-      }
+      this.handleIframeLoad();
       this.iframe.addEventListener('load', () => this.handleIframeLoad());
     }
   }
