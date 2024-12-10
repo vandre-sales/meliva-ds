@@ -299,7 +299,10 @@ export default class WaViewportDemo extends WebAwesomeElement {
               part="zoom-out button"
               >-</wa-icon-button
             >
-            <span class="zoom-level"> ${Math.round(this.computedZoom * 100)}%</span>
+            <span class="zoom-level">
+              <wa-icon name="magnifying-glass-plus"></wa-icon>
+              ${Math.round(this.computedZoom * 100)}%
+            </span>
             <wa-icon-button
               name="square-plus"
               variant="regular"

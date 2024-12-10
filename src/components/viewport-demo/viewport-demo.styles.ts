@@ -85,6 +85,7 @@ export default css`
     }
 
     wa-icon {
+      display: none;
       vertical-align: -0.1em;
       font-size: 85%;
       color: var(--wa-color-gray-70);
@@ -108,15 +109,27 @@ export default css`
       color: var(--wa-color-text-quiet);
       opacity: 80%;
     }
-  }
 
-  [part~='zoom-in'],
-  [part~='zoom-in']::part(base) {
-    cursor: zoom-in;
-  }
+    [part~='zoom-in'],
+    [part~='zoom-in']::part(base) {
+      cursor: zoom-in;
+    }
 
-  [part~='zoom-out'],
-  [part~='zoom-out']::part(base) {
-    cursor: zoom-out;
+    [part~='zoom-out'],
+    [part~='zoom-out']::part(base) {
+      cursor: zoom-out;
+    }
+
+    /* Quick hack to disable zooming in Firefox and Safari */
+    @supports not (interpolate-size: allow-keywords) {
+      [part~='zoom-in'],
+      [part~='zoom-out'] {
+        display: none;
+      }
+
+      wa-icon {
+        display: inline;
+      }
+    }
   }
 `;
