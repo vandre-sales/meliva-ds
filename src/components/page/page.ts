@@ -23,7 +23,7 @@ if (typeof ResizeObserver === 'undefined') {
 }
 
 /**
- * @summary Pages offer an easy way to scaffold pages using minimal markup.
+ * @summary Pages offer an easy way to scaffold entire page layouts using minimal markup.
  * @documentation https://backers.webawesome.com/docs/components/page
  * @status experimental
  * @since 3.0
@@ -32,9 +32,9 @@ if (typeof ResizeObserver === 'undefined') {
  * @slot banner - The banner that gets display above the header. The banner will not be shown if no content is provided.
  * @slot header - The header to display at the top of the page. If a banner is present, the header will appear below the banner. The header will not be shown if there is no content.
  * @slot subheader - A subheader to display below the `header`. This is a good place to put things like breadcrumbs.
- * @slot menu - The left side of the page. If you slot an element in here, you will override the default "navigation" slot and will be handling navigation on your own. This also will not disable the fallback behavior of the navigation button. This section "sticks" to the top as the page scrolls.
+ * @slot menu - The left side of the page. If you slot an element in here, you will override the default `navigation` slot and will be handling navigation on your own. This also will not disable the fallback behavior of the navigation button. This section "sticks" to the top as the page scrolls.
  * @slot navigation-header - The header for a navigation area. On mobile this will be the header for `<wa-drawer>`.
- * @slot navigation - The main content to display in the navigation area.
+ * @slot navigation - The main content to display in the navigation area. This is displayed on the left side of the page, if `menu` is not used. This section "sticks" to the top as the page scrolls.
  * @slot navigation-footer - The footer for a navigation area. On mobile this will be the footer for `<wa-drawer>`.
  * @slot main-header - Header to display inline above the main content.
  * @slot main-footer - Footer to display inline below the main content.

@@ -73,7 +73,7 @@ layout: blank
     <a href="#" class="wa-cluster wa-align-items-baseline wa-gap-xs" style="flex-wrap: nowrap;">
       <wa-icon name="gift"></wa-icon>
       <span>Give a Hoot for the Holidays: Donate now and double your impact.</span>
-    </div>
+    </a>
   </div>
   <header slot="header" class="wa-split">
     <div class="wa-cluster">
