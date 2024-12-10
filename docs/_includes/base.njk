@@ -58,10 +58,24 @@
         return colorScheme === 'dark';
       }
 
-      const stylesheet = document.getElementById("theme-stylesheet")
-      let preset = getPresetTheme()
+      const oldStylesheet = document.querySelector("#theme-stylesheet")
 
-      stylesheet.href = `/dist/themes/${preset}.css`
+      const newStylesheet = document.createElement("link")
+
+      let preset = getPresetTheme()
+      newStylesheet.href = `/dist/themes/${preset}.css`
+      newStylesheet.rel = "preload"
+      newStylesheet.as = "style"
+
+      document.head.append(newStylesheet)
+
+      function updateStylesheet () {
+        newStylesheet.rel = "stylesheet"
+        newStylesheet.id = "theme-stylesheet"
+        requestAnimationFrame(() => oldStylesheet.remove())
+      }
+
+      newStylesheet.addEventListener("load", updateStylesheet)
 
       document.documentElement.classList.toggle(
         `wa-theme-${preset}-dark`,
