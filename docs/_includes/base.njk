@@ -31,7 +31,7 @@
 
     {# Web Awesome #}
     <script type="module" src="/dist/webawesome.ssr-loader.js"></script>
-    <link rel="stylesheet" id="theme-stylesheet" />
+    <link rel="stylesheet" id="theme-stylesheet" href="/dist/themes/default.css" />
     <link rel="stylesheet" href="/dist/themes/applied.css" />
     <link id="color-stylesheet" rel="stylesheet" href="/dist/themes/layout.css" />
     <link id="color-stylesheet" rel="stylesheet" href="/dist/themes/utilities.css" />
@@ -58,10 +58,24 @@
         return colorScheme === 'dark';
       }
 
-      const stylesheet = document.getElementById("theme-stylesheet")
-      let preset = getPresetTheme()
+      const oldStylesheet = document.querySelector("#theme-stylesheet")
 
-      stylesheet.href = `/dist/themes/${preset}.css`
+      const newStylesheet = document.createElement("link")
+
+      let preset = getPresetTheme()
+      newStylesheet.href = `/dist/themes/${preset}.css`
+      newStylesheet.rel = "preload"
+      newStylesheet.as = "style"
+
+      document.head.append(newStylesheet)
+
+      function updateStylesheet () {
+        newStylesheet.rel = "stylesheet"
+        newStylesheet.id = "theme-stylesheet"
+        requestAnimationFrame(() => oldStylesheet.remove())
+      }
+
+      newStylesheet.addEventListener("load", updateStylesheet)
 
       document.documentElement.classList.toggle(
         `wa-theme-${preset}-dark`,
