@@ -51,12 +51,15 @@ const templates = {
   },
   new(pre, code, { open, first }) {
     const attributes = {
-      include: 'link[rel=stylesheet]',
-      open
+      open,
+      include: `link[rel=stylesheet][href^='/dist/']`
     };
 
-    if (code.hasAttribute('data-viewport')) {
-      attributes.viewport = code.getAttribute('data-viewport');
+    for (const attribute of ['viewport', 'include']) {
+      if (code.hasAttribute(attribute)) {
+        attributes[attribute] = code.getAttribute(attribute);
+        code.removeAttribute(attribute);
+      }
     }
 
     const attributesString = Object.entries(attributes)
@@ -80,9 +83,9 @@ const templates = {
     }
 
     let preview = '';
-    // if (attributes.viewport === undefined) {
-    preview = `<div style="display:contents" slot="preview">${code.textContent}</div>`;
-    // }
+    if (attributes.viewport === undefined) {
+      preview = `<div style="display:contents" slot="preview">${code.textContent}</div>`;
+    }
 
     return `${includes}
       <wa-code-demo ${attributesString}>

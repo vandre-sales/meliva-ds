@@ -120,12 +120,12 @@ and turned off by using `no-` followed by the class name (e.g. `no-edit` to hide
 the class modifiers currently supported are:
 - `open` - expands the code (default: true for the first code example in the page, false for all others)
 - `new` - Uses `<wa-code-demo>` (default: true). Disable to use the old, non-component demo code.
-- `edit` - Enable the CodePen button (default: true) (old only)
+- `edit` - Enable the CodePen button (default: true) _(old only)_
 
-Attribute modifiers are only supported on the new code demo component:
-- `data-viewport` - Render the code in an iframe (no zooming)
-- `data-viewport="300"` - Set an initial virtual viewport width, the page will be scaled to fit
-- `data-viewport="1600x1000"` - Set an initial virtual width and height of the viewport
+The `viewport` and `include` attributes of [`<wa-code-demo>`](../components/code-demo/) can also be specified.
+By default, `include` is set to `link[rel=stylesheet]` to include all stylesheets on the page for non-isolated demos,
+and `link[rel=stylesheet][href^="/dist/"]` for isolated demos.
+Attributes are specified as described in the [`markdown-it-attrs` documentation](https://www.npmjs.com/package/markdown-it-attrs).
 
 This particular syntax was chosen for a few reasons:
 
