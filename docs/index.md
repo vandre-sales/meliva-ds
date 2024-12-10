@@ -209,7 +209,7 @@ layout: page
     & > * + * {
       flex-grow: 1;
     }
-    & wa-callout::part(base),
+    & wa-callout,
     & wa-button::part(base) {
       height: 100%;
       width: 100%;
