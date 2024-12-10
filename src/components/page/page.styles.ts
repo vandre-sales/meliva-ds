@@ -48,6 +48,7 @@ export default css`
     flex-wrap: wrap;
     gap: var(--wa-space-m);
     padding: var(--wa-space-m);
+    flex: 1 1 auto;
   }
 
   ::slotted([slot='subheader']) {
@@ -169,6 +170,12 @@ export default css`
   }
   [part~='header'] {
     top: var(--banner-height);
+
+    /** Make the header flex so that you don't unexpectedly have the default toggle button appearing above a slotted div because block elements are fun. */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
   [part~='subheader'] {
     top: calc(var(--header-height) + var(--banner-height));
@@ -246,12 +253,34 @@ export default css`
   [part~='drawer']::part(dialog) {
     background-color: var(--wa-color-surface-default);
   }
+
+  /* Set these on the slot because we don't always control the navigation-toggle since that may be slotted. */
+  slot[name~='navigation-toggle'],
+  :host([disable-navigation-toggle]) slot[name~='navigation-toggle'] {
+    display: none;
+  }
+
+  /* Sometimes the media query in the viewport is stubborn in iframes. This is an extra check to make it behave properly. */
+  :host(:not([disable-navigation-toggle])[view='mobile']) slot[name~='navigation-toggle'] {
+    display: contents;
+  }
+
+  [part~='navigation-toggle'] {
+    /* Use only a margin-inline-start because the slotted header is expected to have default padding so it looks really awkward if this sets a margin-inline-end and the slotted header has a padding-inline-start. */
+    margin-inline-start: var(--wa-space-m);
+  }
 `;
 
 export const mobileStyles = (breakpoint: number) => `
   @media screen and (
     max-width: ${(Number.isSafeInteger(breakpoint) ? breakpoint.toString() : '768') + 'px'}
   ) {
-    [part~='navigation'] { display: none; }
+    [part~='navigation'] {
+      display: none;
+    }
+
+    :host(:not([disable-navigation-toggle])) slot[name~='navigation-toggle'] {
+      display: contents;
+    }
   }
 `;
