@@ -158,73 +158,7 @@ You can override the default spacing for each slot with your own CSS. In this ex
 
 ## Examples
 
-### Documentation Layout
-
 ```html {.example viewport="1400"}
-<style>
-  wa-page {
-    --menu-width: 15rem;
-    --aside-width: 15rem;
-  }
-  wa-page[view='desktop'] [data-toggle-nav] {
-    display: none;
-  }
-  wa-page[view='mobile'] {
-    --menu-width: auto;
-    --aside-width: auto;
-  }
-  wa-page[view='mobile'] [slot='aside'] {
-    display: none;
-  }
-  wa-page[view='mobile'] #brand-name {
-    display: none;
-  }
-  wa-page[view='mobile'] #search {
-    display: none;
-  }
-  [slot='banner'] {
-    --wa-color-text-link: var(--wa-color-neutral-on-loud);
-    background-color: var(--wa-color-neutral-fill-loud);
-  }
-  [slot='header'] {
-    --wa-link-decoration-default: none;
-    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
-  }
-  [slot*='header'] a {
-    font-weight: var(--wa-font-weight-action);
-  }
-  [slot='subheader'] {
-    background-color: var(--wa-color-surface-lowered);
-    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
-  }
-  [slot='navigation-header'] {
-    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
-  }
-  wa-page[view='desktop'] [slot*='navigation'] {
-    border-inline-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
-  }
-  [slot*='navigation'] a {
-    --wa-color-text-link: var(--wa-color-text-normal);
-  }
-  [slot='navigation-footer'] {
-    border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
-  }
-  [slot='main-header'],
-  main,
-  [slot='main-footer'] {
-    max-inline-size: 60rem;
-    margin-inline: auto;
-  }
-  [slot='main-footer'] {
-    border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
-  }
-  [slot='footer'] {
-    --wa-color-text-link: var(--wa-color-text-quiet);
-    background-color: var(--wa-color-surface-lowered);
-    font-size: var(--wa-font-size-s);
-  }
-</style>
-
 <wa-page mobile-breakpoint="920">
   <div slot="banner" class="wa-body-s">
     <a href="#" class="wa-cluster wa-align-items-baseline wa-gap-xs" style="flex-wrap: nowrap;">
@@ -393,4 +327,64 @@ You can override the default spacing for each slot with your own CSS. In this ex
     </div>
   </footer>
 </wa-page>
+
+<style>
+  wa-page {
+    --menu-width: 15rem;
+    --aside-width: 15rem;
+  }
+  wa-page[view='desktop'] [data-toggle-nav] {
+    display: none;
+  }
+  wa-page[view='mobile'] {
+    --menu-width: auto;
+    --aside-width: auto;
+  }
+  wa-page[view='mobile'] [slot='aside'],
+  wa-page[view='mobile'] #brand-name,
+  wa-page[view='mobile'] #search {
+    display: none;
+  }
+  [slot='banner'] {
+    --wa-color-text-link: var(--wa-color-neutral-on-loud);
+    background-color: var(--wa-color-neutral-fill-loud);
+  }
+  [slot='header'] {
+    --wa-link-decoration-default: none;
+    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+  }
+  [slot*='header'] a {
+    font-weight: var(--wa-font-weight-action);
+  }
+  [slot='subheader'] {
+    background-color: var(--wa-color-surface-lowered);
+    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+  }
+  [slot='navigation-header'] {
+    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+  }
+  wa-page[view='desktop'] [slot*='navigation'] {
+    border-inline-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+  }
+  [slot*='navigation'] a {
+    --wa-color-text-link: var(--wa-color-text-normal);
+  }
+  [slot='navigation-footer'] {
+    border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+  }
+  [slot='main-header'],
+  main,
+  [slot='main-footer'] {
+    max-inline-size: 60rem;
+    margin-inline: auto;
+  }
+  [slot='main-footer'] {
+    border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+  }
+  [slot='footer'] {
+    --wa-color-text-link: var(--wa-color-text-quiet);
+    background-color: var(--wa-color-surface-lowered);
+    font-size: var(--wa-font-size-s);
+  }
+</style>
 ```
