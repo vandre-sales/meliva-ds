@@ -109,4 +109,14 @@ export default css`
       opacity: 80%;
     }
   }
+
+  [part~='zoom-in'],
+  [part~='zoom-in']::part(base) {
+    cursor: zoom-in;
+  }
+
+  [part~='zoom-out'],
+  [part~='zoom-out']::part(base) {
+    cursor: zoom-out;
+  }
 `;
