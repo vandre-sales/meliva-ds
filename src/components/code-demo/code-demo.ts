@@ -1,4 +1,5 @@
 import '../icon/icon.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { getInnerHTML, HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
@@ -78,11 +79,9 @@ export default class WaCodeDemo extends WebAwesomeElement {
   private readonly hasSlotController = new HasSlotController(this, 'preview');
 
   render() {
-    const code = this.getDemoHTML({ type: 'preview' });
-    // FIXME Ideally we don't want to render the contents of the code element anywhere if a custom preview is provided.
+    // NOTE We don't want to render the contents of the code element anywhere if a custom preview is provided.
     // That way, providing a custom preview can also be used to sanitize the code.
-    const customPreview = this.hasUpdated ? this.hasSlotController.test('preview') : true;
-
+    const code = this.getDemoHTML({ type: 'preview' });
     let viewportHTML: string | TemplateResult = '';
 
     if (this.viewport) {
@@ -94,11 +93,14 @@ export default class WaCodeDemo extends WebAwesomeElement {
       `;
     }
 
+    const customPreview = this.hasUpdated ? this.hasSlotController.test('preview') : true;
+
     return html`
       <div id="preview" part="preview">
         ${viewportHTML}
         <slot
           name="preview"
+          class=${classMap({ 'has-slotted': customPreview })}
           @slotchange=${this.handleSlotChange}
           .innerHTML=${customPreview || this.viewport ? '' : code}
         ></slot>
@@ -180,7 +182,7 @@ export default class WaCodeDemo extends WebAwesomeElement {
     let code;
     const customPreview = this.hasUpdated ? this.hasSlotController.test('preview') : true;
     if (options.type === 'preview' && customPreview && this.previewSlot) {
-      code = getInnerHTML(this.previewSlot);
+      code = getHTML(this.previewSlot.assignedNodes({ flatten: true }));
     } else {
       code = this.querySelector?.('code')?.textContent ?? this.textContent;
     }
@@ -197,10 +199,12 @@ export default class WaCodeDemo extends WebAwesomeElement {
   private handleSlotChange(e: Event) {
     const slot = e.target as HTMLSlotElement;
 
-    if (slot.name === 'preview') {
+    if (slot.name === 'preview' && !this.viewport) {
       const assignedNodes = slot.assignedNodes();
 
       for (const node of assignedNodes) {
+        // Unwrap templates
+        // FIXME this will mess up the order of the nodes if there are mixed templates & regular nodes
         if (node.nodeName === 'TEMPLATE') {
           const content = (node as HTMLTemplateElement).content;
           const clone = content.cloneNode(true);
@@ -359,4 +363,14 @@ function dedent(code: string) {
   }
 
   return code.replace(new RegExp(`^${minIndent}`, 'gm'), '');
+}
+
+function getHTML(nodes: Iterable<Node>): string {
+  return getInnerHTML(nodes, node => {
+    if (node.nodeType === Node.ELEMENT_NODE && node.nodeName === 'TEMPLATE') {
+      const template = node as HTMLTemplateElement;
+      return template.innerHTML;
+    }
+    return undefined;
+  });
 }
