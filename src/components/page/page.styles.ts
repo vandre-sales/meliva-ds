@@ -3,6 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     display: block;
+    background-color: var(--wa-color-surface-default);
     box-sizing: border-box;
     height: 100%;
     --menu-width: auto;
@@ -12,6 +13,83 @@ export default css`
     --header-height: 0px;
     --subheader-height: 0px;
     --scroll-margin-top: calc(var(--header-height, 0px) + var(--subheader-height, 0px));
+  }
+
+  ::slotted(
+      :is(
+          [slot='banner'],
+          [slot='header'],
+          [slot='subheader'],
+          [slot='navigation-header'],
+          [slot='navigation'],
+          [slot='navigation-footer'],
+          [slot='menu'],
+          [slot='main-header'],
+          [slot='main-footer'],
+          [slot='aside'],
+          [slot='footer']
+        )
+    ) {
+    background-color: var(--wa-color-surface-default);
+  }
+
+  ::slotted([slot='banner']) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--wa-space-m);
+    padding: var(--wa-space-xs) var(--wa-space-m);
+  }
+
+  ::slotted([slot='header']) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--wa-space-m);
+    padding: var(--wa-space-m);
+    flex: 1 1 auto;
+  }
+
+  ::slotted([slot='subheader']) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--wa-space-m);
+    padding: var(--wa-space-xs) var(--wa-space-m);
+  }
+
+  ::slotted([slot*='navigation']),
+  ::slotted([slot='menu']),
+  ::slotted([slot='aside']) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wa-space-m);
+    padding: var(--wa-space-m);
+  }
+
+  ::slotted([slot='main-header']) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--wa-space-m);
+    padding: var(--wa-space-m) var(--wa-space-3xl);
+  }
+
+  ::slotted(:not([slot])) {
+    padding: var(--wa-space-3xl);
+  }
+
+  ::slotted([slot='main-footer']),
+  ::slotted([slot='footer']) {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--wa-space-m);
+    padding: var(--wa-space-3xl);
   }
 
   :host([disable-sticky~='banner']) :is([part~='header'], [part~='subheader']) {
@@ -92,6 +170,12 @@ export default css`
   }
   [part~='header'] {
     top: var(--banner-height);
+
+    /** Make the header flex so that you don't unexpectedly have the default toggle button appearing above a slotted div because block elements are fun. */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
   [part~='subheader'] {
     top: calc(var(--header-height) + var(--banner-height));
@@ -165,12 +249,38 @@ export default css`
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
   }
+
+  [part~='drawer']::part(dialog) {
+    background-color: var(--wa-color-surface-default);
+  }
+
+  /* Set these on the slot because we don't always control the navigation-toggle since that may be slotted. */
+  slot[name~='navigation-toggle'],
+  :host([disable-navigation-toggle]) slot[name~='navigation-toggle'] {
+    display: none;
+  }
+
+  /* Sometimes the media query in the viewport is stubborn in iframes. This is an extra check to make it behave properly. */
+  :host(:not([disable-navigation-toggle])[view='mobile']) slot[name~='navigation-toggle'] {
+    display: contents;
+  }
+
+  [part~='navigation-toggle'] {
+    /* Use only a margin-inline-start because the slotted header is expected to have default padding so it looks really awkward if this sets a margin-inline-end and the slotted header has a padding-inline-start. */
+    margin-inline-start: var(--wa-space-m);
+  }
 `;
 
 export const mobileStyles = (breakpoint: number) => `
   @media screen and (
     max-width: ${(Number.isSafeInteger(breakpoint) ? breakpoint.toString() : '768') + 'px'}
   ) {
-    [part~='navigation'] { display: none; }
+    [part~='navigation'] {
+      display: none;
+    }
+
+    :host(:not([disable-navigation-toggle])) slot[name~='navigation-toggle'] {
+      display: contents;
+    }
   }
 `;
