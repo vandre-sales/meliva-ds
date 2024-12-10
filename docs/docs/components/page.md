@@ -1,15 +1,29 @@
 ---
 title: Page
-description: Layouts offer an easy way to scaffold pages using minimal markup.
+description: Pages offer an easy way to scaffold entire page layouts using minimal markup.
 layout: component
 isPro: true
 ---
 
-The layout component is designed to power full webpages. It is flexible enough to handle most modern designs and includes a simple mechanism for handling desktop and mobile navigation.
+The page component is designed to power full webpages. It is flexible enough to handle most modern designs and includes a simple mechanism for handling desktop and mobile navigation.
 
-A number of sections are available as part of the layout, most of which are optional. Content is populated by [slotting elements](/docs/usage/#slots) into various locations.
+## Using `wa-page`
+
+A number of sections are available as part of the page component, most of which are optional. Content is populated by [slotting elements](/docs/usage/#slots) into various locations.
 
 This component _does not_ implement any [content sectioning](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning) or "semantic elements" internally (such as `<main>`, `<header>`, `<footer>`, etc.). Instead, we recommended that you slot in content sectioning elements wherever you feel they're appropriate.
+
+When using `<wa-page>`, make sure to zero out all paddings and margins on `<html>` and `<body>`, otherwise you may see unexpected gaps. We highly recommend adding the following styles when using `<wa-page>`:
+
+```css
+html,
+body {
+  min-height: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+```
 
 ## Layout Anatomy
 
@@ -53,11 +67,15 @@ This example localizes the "skip to content" link for German users.
 </wa-page>
 ```
 
-## Spacing
+## Responsiveness
 
-Each slot specifies default padding and `display: flex` to set gaps between the slot's direct children. You can drop elements into each slot, and reasonable spacing is already applied for you.
+A page isn't very opinionated when it comes to responsive behaviors, but there are tools in place to help make responsiveness easy.
 
-Some slots have additional flexbox properties set by default. The following slots specify `justify-content: space-between` to evenly distribute child elements horizontally:
+### Default Slot Styles
+
+Each slot is a [flex container](https://developer.mozilla.org/en-US/docs/Glossary/Flex_Container) and specifies some flex properties so that your content is reasonably responsive by default.
+
+The following slots specify `justify-content: space-between` and `flex-wrap: wrap` to evenly distribute child elements horizontally and allow them to wrap when space is limited:
 - `header`
 - `subheader`
 - `main-header`
@@ -70,35 +88,19 @@ The following slots specify `flex-direction: column` to arrange child elements v
 - `navigation-footer`
 - `aside`
 
-You can specify your own padding, display, and flex properties for each slot with your own CSS. In this example, we're setting our own `gap` and `padding` for the `footer` slot:
-```css
-[slot="footer"] {
-  gap: var(--wa-space-xl);
-  padding: var(--wa-space-xl);
-}
-```
+And the `banner` slot specifies `justify-content: center` to horizontally center its child elements.
 
-When using `<wa-page>`, make sure to zero out all paddings and margins on `<html>` and `<body>`, otherwise you may see unexpected gaps. The following styles are highly recommended when using `<wa-page>`.
+You can override the default display and flex properties for each slot with your own CSS.
 
-```css
-html,
-body {
-  min-height: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
-```
+### Responsive Navigation
 
-## Responsiveness
-
-The layout component tries not to have too many opinions in terms of responsive behaviors — you get to decide with your own CSS and media queries how your content responds! However, the navigation menu _does_ respond by collapsing on smaller screens. The breakpoint at which this occurs is 768px by default, but you can change it using the `mobile-breakpoint` attribute.
+When you use the `navigation` slot, your slotted content automatically collapses into a drawer on smaller screens. The breakpoint at which this occurs is 768px by default, but you can change it using the `mobile-breakpoint` attribute.
 
 ```html
 <wa-page mobile-breakpoint="600"> ... </wa-page>
 ```
 
-You can provide a button to toggle the navigation menu anywhere inside the layout by adding the `data-toggle-nav` attribute. (This _does not_ have to be a Web Awesome button.)
+You can provide a button to toggle the navigation menu anywhere inside the layout by giving your element the `data-toggle-nav` attribute. (This _does not_ have to be a Web Awesome button.)
 
 ```html
 <wa-page mobile-breakpoint="600">
@@ -114,10 +116,45 @@ Alternatively, you can apply `nav-state="open"` and `nav-state="closed"` to the 
 <wa-page nav-state="open"> ... </wa-page>
 ```
 
-## Providing Navigation Items
+`<wa-page>` is given the attribute `view="mobile"` or `view="desktop"` when the viewport narrower or wider than the `mobile-breakpoint` value, respectively. You can leverage these attributes to change styles depending on the size of the viewport. This is especially useful to hide your `data-toggle-nav` button when the viewport is wider:
+```css
+wa-page[view='desktop'] [data-toggle-nav] {
+  display: none;
+}
+```
 
-- TODO - example with navigation items
-- TODO - example with`<h2>` and `<a>` as navigation items
+### Widths and Heights
+
+There are a number of [CSS custom properties](#css-custom-properties) you can use to set specific widths and heights for many slots on your page. 
+
+If you specify `--menu-width` to apply a specific width to your `navigation` slot, space will still be reserved on the page even below the `mobile-breakpoint`. To collapse this space on smaller screens, add the following code to your styles:
+```css
+wa-page[view='mobile'] {
+  --menu-width: auto;
+}
+```
+
+You can use a similar approach for `--aside-width` to hide the `aside` slot on smaller screens. Be sure to also specify `display: none` for the slot:
+```css
+wa-page[view='mobile'] {
+  --aside-width: auto;
+}
+wa-page[view='mobile'] [slot='aside'] {
+  display: none;
+}
+```
+
+## Spacing
+
+A page specifies default `padding` within each slot and a `gap` between the slot's direct children. You can drop elements into any slot, and reasonable spacing is already applied for you.
+
+You can override the default spacing for each slot with your own CSS. In this example, we're setting custom `gap` and `padding` for the `footer` slot:
+```css
+[slot="footer"] {
+  gap: var(--wa-space-xl);
+  padding: var(--wa-space-xl);
+}
+```
 
 ## Examples
 
