@@ -31,7 +31,9 @@ This image depicts a page's anatomy, including the default positions of each sec
 
 Most slots are optional. Slots that have no content will not be shown, allowing you to opt-in to just the sections you actually need.
 
-![Screenshot of Layout Anatomy showing various slots](/assets/images/layout-anatomy.svg)
+{% include "page-demo.njk" %}
+
+<!-- ![Screenshot of Layout Anatomy showing various slots](/assets/images/layout-anatomy.svg) -->
 
 :::info
 If you're not familiar with how slots work in HTML, you might want to [learn more about slots](/docs/usage/#slots) before using this component.
@@ -125,7 +127,7 @@ wa-page[view='desktop'] [data-toggle-nav] {
 
 ### Widths and Heights
 
-There are a number of [CSS custom properties](#css-custom-properties) you can use to set specific widths and heights for many slots on your page. 
+There are a number of [CSS custom properties](#css-custom-properties) you can use to set specific widths and heights for many slots on your page.
 
 If you specify `--menu-width` to apply a specific width to your `navigation` slot, space will still be reserved on the page even below the `mobile-breakpoint`. To collapse this space on smaller screens, add the following code to your styles:
 ```css
