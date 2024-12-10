@@ -80,9 +80,9 @@ const templates = {
     }
 
     let preview = '';
-    // if (attributes.viewport === undefined) {
-    preview = `<div style="display:contents" slot="preview">${code.textContent}</div>`;
-    // }
+    if (attributes.viewport === undefined) {
+      preview = `<div style="display:contents" slot="preview">${code.textContent}</div>`;
+    }
 
     return `${includes}
       <wa-code-demo ${attributesString}>
