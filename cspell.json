@@ -188,7 +188,8 @@
     "webawesomer",
     "WEBP",
     "Webpacker",
-    "xmark"
+    "xmark",
+    "zoomable"
   ],
   "ignorePaths": [
     "package.json",

@@ -412,7 +412,6 @@ You can override the default spacing for each slot with your own CSS. In this ex
   <div slot="navigation-header" class="wa-split">
     <h2 class="wa-heading-s">For You</h2>
     <wa-icon-button id="settings" name="gear" label="Settings"></wa-icon-button>
-    <wa-tooltip for="settings" placement="bottom" distance="2">Settings</wa-tooltip>
   </div>
   <nav slot="navigation">
     <h3 class="wa-heading-xs">Discover</h3>
