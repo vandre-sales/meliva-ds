@@ -61,6 +61,10 @@ export default css`
     }
   }
 
+  wa-viewport-demo + slot[name='preview'].has-slotted {
+    display: none;
+  }
+
   #source {
     border-block-end: inherit;
     overflow: hidden;
