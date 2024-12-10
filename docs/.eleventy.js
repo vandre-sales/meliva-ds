@@ -146,6 +146,7 @@ export default function (eleventyConfig) {
   // }
 
   return {
+    markdownTemplateEngine: 'njk',
     dir: {
       includes: '_includes',
       layouts: '_layouts'
