@@ -5,6 +5,7 @@ body {
 
 wa-page {
   margin: var(--wa-space-xs);
+  margin-inline-start: 0;
   &::part(base),
   &::part(main),
   &::part(navigation),
@@ -13,16 +14,19 @@ wa-page {
   }
 }
 
+:is([slot='banner'], [slot='header'], [slot='subheader'], [slot='footer'], [slot*='navigation']) {
+  margin-inline-start: var(--wa-space-xs);
+}
+
 .slot-content[slot='banner'],
 .slot-content[slot='header'],
-.slot-content[slot='subheader'],
-.slot-content[slot='footer'] {
-  xmargin-inline: var(--wa-space-m);
+.slot-content[slot='subheader'] {
+  outline: 2px solid var(--wa-color-surface-default);
 }
 
 .slot-content {
   padding: var(--wa-space-m);
-  border-radius: var(--wa-border-radius-m);
+  border-radius: var(--wa-border-radius-s);
   align-content: center;
   justify-content: center;
   text-align: center;
