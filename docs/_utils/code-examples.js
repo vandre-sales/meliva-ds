@@ -78,7 +78,13 @@ const templates = {
 
     let preview = '';
     if (attributes.viewport === undefined) {
+      // Slot in pre-rendered preview
       preview = `<div style="display:contents" slot="preview">${code.textContent}</div>`;
+
+      // Run preview scripts as modules to prevent collisions
+      const root = parse(preview, { blockTextElements: { script: true } });
+      root.querySelectorAll('script').forEach(script => script.setAttribute('type', 'module'));
+      preview = root.toString();
     }
 
     return `${includes}

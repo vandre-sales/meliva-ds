@@ -121,7 +121,7 @@ export default css`
     }
 
     /* Quick hack to disable zooming in Firefox and Safari */
-    @supports not (interpolate-size: allow-keywords) {
+    @supports not (scroll-timeline: none) {
       [part~='zoom-in'],
       [part~='zoom-out'] {
         display: none;
