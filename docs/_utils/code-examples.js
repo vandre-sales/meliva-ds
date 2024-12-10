@@ -75,12 +75,12 @@ const templates = {
     if (first) {
       includes = `
         <template class="wa-code-demo-include-isolated">
-          <script src="/dist/webawesome/loader.js" type="module"></script>
+          <script src="/dist/webawesome.loader.js" type="module"></script>
         </template>`;
     }
 
     let preview = '';
-    if (!attributes.viewport) {
+    if (attributes.viewport === undefined) {
       preview = `<div style="display:contents" slot="preview">${code.textContent}</div>`;
     }
 
