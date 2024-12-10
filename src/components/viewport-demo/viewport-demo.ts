@@ -291,11 +291,21 @@ export default class WaViewportDemo extends WebAwesomeElement {
         <span part="controls">
           ${dimensions}
           <span class="zoom">
-            <wa-icon-button name="square-minus" variant="regular" @click=${() => this.zoomOut()} part="zoom-out button"
+            <wa-icon-button
+              name="square-minus"
+              variant="regular"
+              label="Zoom out"
+              @click=${() => this.zoomOut()}
+              part="zoom-out button"
               >-</wa-icon-button
             >
             <span class="zoom-level"> ${Math.round(this.computedZoom * 100)}%</span>
-            <wa-icon-button name="square-plus" variant="regular" @click=${() => this.zoomIn()} part="zoom-in button"
+            <wa-icon-button
+              name="square-plus"
+              variant="regular"
+              label="Zoom in"
+              @click=${() => this.zoomIn()}
+              part="zoom-in button"
               >+</wa-icon-button
             >
           </span>
