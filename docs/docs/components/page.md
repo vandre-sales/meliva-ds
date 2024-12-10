@@ -123,9 +123,9 @@ wa-page[view='desktop'] [data-toggle-nav] {
 }
 ```
 
-### Widths and Heights
+### Custom Widths
 
-There are a number of [CSS custom properties](#css-custom-properties) you can use to set specific widths and heights for many slots on your page. 
+You specify widths for some slots on your page with [CSS custom properties](#css-custom-properties) for `--menu-width`, `--main-width`, and `--aside-width`.
 
 If you specify `--menu-width` to apply a specific width to your `navigation` slot, space will still be reserved on the page even below the `mobile-breakpoint`. To collapse this space on smaller screens, add the following code to your styles:
 ```css
