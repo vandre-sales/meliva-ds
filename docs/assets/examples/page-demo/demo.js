@@ -40,3 +40,11 @@ function render() {
 }
 fieldset?.addEventListener('input', render);
 render();
+
+//
+// TODO - fix Turbo caching. When this is removed, visiting the <wa-page> docs via Turbo will cause the <iframe srcdoc>
+// to not render. Even with this, there are console errors when leaving the page.
+//
+// NOTE - the iframe already has `data-turbo="false"` and `data-turbo-temporary` on it.
+//
+document.body.setAttribute('data-turbo', 'false');
