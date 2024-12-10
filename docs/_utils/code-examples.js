@@ -49,18 +49,12 @@ const templates = {
       </div>
     `;
   },
-  new(pre, code, { open, first }) {
-    const attributes = {
+  new(pre, code, { open, first, attributes }) {
+    attributes = {
       open,
-      include: `link[rel=stylesheet][href^='/dist/']`
+      include: `link[rel=stylesheet][href^='/dist/']`,
+      ...attributes
     };
-
-    for (const attribute of ['viewport', 'include']) {
-      if (code.hasAttribute(attribute)) {
-        attributes[attribute] = code.getAttribute(attribute);
-        code.removeAttribute(attribute);
-      }
-    }
 
     const attributesString = Object.entries(attributes)
       .map(([key, value]) => {
@@ -100,11 +94,16 @@ const templates = {
  * Eleventy plugin to turn `<code class="example">` blocks into live examples.
  */
 export function codeExamplesPlugin(eleventyConfig, options = {}) {
-  options = {
+  const defaultOptions = {
     container: 'body',
-    firstOpen: true,
-    ...options
+    defaultOpen: (code, { outputPathIndex }) => {
+      return (
+        outputPathIndex === 1 && // is first
+        code.textContent.length < 500
+      ); // is short
+    }
   };
+  options = { ...defaultOptions, ...options };
 
   const stats = {
     inputPaths: {},
@@ -139,7 +138,7 @@ export function codeExamplesPlugin(eleventyConfig, options = {}) {
         edit: true,
         buttons: true,
         new: true, // comment this line to default back to the old demos
-        open: options.firstOpen ? first : false // default to first open
+        attributes: {}
       };
 
       for (const prop of ['new', 'open', 'buttons', 'edit']) {
@@ -150,9 +149,28 @@ export function codeExamplesPlugin(eleventyConfig, options = {}) {
         }
       }
 
-      if (code.hasAttribute('data-viewport')) {
-        // viewport attribute only works on the new syntax
+      for (const attribute of ['viewport', 'include']) {
+        if (code.hasAttribute(attribute)) {
+          localOptions.attributes[attribute] = code.getAttribute(attribute);
+          code.removeAttribute(attribute);
+        }
+      }
+
+      if (Object.keys(localOptions.attributes).length > 0) {
+        // attributes only work on the new syntax
         localOptions.new = true;
+      }
+
+      if (localOptions.open === undefined) {
+        if (localOptions.defaultOpen === true) {
+          localOptions.open = localOptions.defaultOpen;
+        } else if (typeof localOptions.defaultOpen === 'function') {
+          localOptions.open = localOptions.defaultOpen(code, {
+            pre,
+            inputPathIndex: stats.inputPaths[inputPath],
+            outputPathIndex: stats.outputPaths[outputPath]
+          });
+        }
       }
 
       const template = localOptions.new ? 'new' : 'old';
