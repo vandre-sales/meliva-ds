@@ -7,15 +7,15 @@ isPro: true
 
 The layout component is designed to power full webpages. It is flexible enough to handle most modern designs and includes a simple mechanism for handling desktop and mobile navigation.
 
-A number of sections are available as part of the layout, most of which are optional. Content is added by [slotting elements](/docs/usage/#slots) into various locations.
+A number of sections are available as part of the layout, most of which are optional. Content is populated by [slotting elements](/docs/usage/#slots) into various locations.
 
-This component _does not_ implement any [content sectioning](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning) or "semantic elements" internally (such as `<main>`, `<header>`, `<footer>`, etc.). Instead, it is recommended that you slot in content sectioning elements wherever you feel they're appropriate.
+This component _does not_ implement any [content sectioning](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning) or "semantic elements" internally (such as `<main>`, `<header>`, `<footer>`, etc.). Instead, we recommended that you slot in content sectioning elements wherever you feel they're appropriate.
 
 ## Layout Anatomy
 
-This image depicts the layout's anatomy, including the default positions of each section. The labels represent the [named slots](#slots) you can use to populate them.
+This image depicts a page's anatomy, including the default positions of each section. The labels represent the [named slots](#slots) you can use to populate them.
 
-Most slots are optional. Slots that have no content will not be shown, allowing you to opt-in to just the sections of the layout you actually need.
+Most slots are optional. Slots that have no content will not be shown, allowing you to opt-in to just the sections you actually need.
 
 ![Screenshot of Layout Anatomy showing various slots](/assets/images/layout-anatomy.svg)
 
@@ -25,36 +25,18 @@ If you're not familiar with how slots work in HTML, you might want to [learn mor
 
 ## Sticky Sections
 
-The following sections of the layout are "sticky" by default, meaning they remain in position as the user scrolls.
+The following sections of a page are "sticky" by default, meaning they remain in position as the user scrolls.
 
 - `banner`
 - `header`
 - `sub-header`
+- `navigation` (or `menu`)
 - `aside`
-- `menu`
 
-This is often desirable, but you can change this behavior using the `disable-sticky` attribute. Use a space-delimited list of names to tell the layout which sections should not be sticky.
+This is often desirable, but you can change this behavior using the `disable-sticky` attribute. Use a space-delimited list of names to tell the page which sections should not be sticky.
 
 ```html
 <wa-page disable-sticky="header aside"> ... </wa-page>
-```
-
-## How to Apply Spacing to Your Layout
-
-The layout component _does not_ apply spacing for you. You can apply the appropriate paddings or margins directly to the elements you slot in to fine tune your spacing needs.
-
-TODO - add example here
-
-When using `<wa-page>`, make sure to zero out all paddings and margins on `<html>` and `<body>`, otherwise you may see unexpected gaps. The following styles are highly recommended when using `<wa-page>`.
-
-```css
-html,
-body {
-  min-height: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
 ```
 
 ## Skip To Content
@@ -69,6 +51,43 @@ This example localizes the "skip to content" link for German users.
   <span slot="skip-to-content">Zum Inhalt springen</span>
   ...
 </wa-page>
+```
+
+## Spacing
+
+Each slot specifies default padding and `display: flex` to set gaps between the slot's direct children. You can drop elements into each slot, and reasonable spacing is already applied for you.
+
+Some slots have additional flexbox properties set by default. The following slots specify `justify-content: space-between` to evenly distribute child elements horizontally:
+- `header`
+- `subheader`
+- `main-header`
+- `main-footer`
+- `footer`
+
+The following slots specify `flex-direction: column` to arrange child elements vertically:
+- `navigation-header`
+- `navigation` (or `menu`)
+- `navigation-footer`
+- `aside`
+
+You can specify your own padding, display, and flex properties for each slot with your own CSS. In this example, we're setting our own `gap` and `padding` for the `footer` slot:
+```css
+[slot="footer"] {
+  gap: var(--wa-space-xl);
+  padding: var(--wa-space-xl);
+}
+```
+
+When using `<wa-page>`, make sure to zero out all paddings and margins on `<html>` and `<body>`, otherwise you may see unexpected gaps. The following styles are highly recommended when using `<wa-page>`.
+
+```css
+html,
+body {
+  min-height: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
 ```
 
 ## Responsiveness
@@ -102,18 +121,9 @@ Alternatively, you can apply `nav-state="open"` and `nav-state="closed"` to the 
 
 ## Examples
 
-### Hero Layout
+### Documentation Layout
 
-- TODO - Sticky header + main + footer
+```html {.example data-viewport}
+<wa-button>Test</wa-button>
+```
 
-### Blog Layout
-
-- TODO - Sticky header + main + aside + footer (blog)
-
-### App Layout
-
-- TODO - Menu + main, plus maybe headers and footers in each (app)
-
-### Docs Layout
-
-- TODO - Menu + main + aside + footer (docs)
