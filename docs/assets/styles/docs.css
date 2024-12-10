@@ -38,9 +38,7 @@ wa-page > header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4rem;
-  padding-inline-start: var(--wa-space-m);
-  padding-inline-end: var(--wa-space-s);
+  padding-inline: var(--wa-space-xl);
 
   a[href='/'] {
     color: var(--wa-color-text-normal);
@@ -49,6 +47,7 @@ wa-page > header {
 
   wa-button[data-toggle-nav] {
     --label-color: currentColor;
+    font-size: 1rem;
     margin-inline-start: -0.875rem;
     margin-inline-end: 0;
 
@@ -96,11 +95,10 @@ wa-page > header {
 #outline {
   h2 {
     font-size: var(--wa-font-size-m);
-    margin-block-end: var(--wa-space-m);
-
-    &:not(:first-of-type) {
-      margin-block-start: var(--wa-space-xl);
-    }
+    margin: 0;
+  }
+  h2:not(:first-child) {
+    margin-block-start: var(--wa-space-xs);
   }
   ul {
     border-inline-start: var(--wa-border-width-s) solid var(--wa-color-surface-border);
@@ -114,7 +112,9 @@ wa-page > header {
   }
   li {
     list-style: none;
-    margin-block-end: var(--wa-space-m);
+  }
+  li + li {
+    margin-block-start: var(--wa-space-m);
   }
   li a {
     color: var(--wa-color-text-normal);
