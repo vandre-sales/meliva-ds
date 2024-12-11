@@ -1,4 +1,5 @@
 import '../icon-button/icon-button.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { getComputedStyle } from '../../internal/computedStyle.js';
 import { html } from 'lit';
@@ -72,7 +73,7 @@ export const viewportPropertyConverter = {
 export default class WaViewportDemo extends WebAwesomeElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  @query('#viewport')
+  @query('[part~=frame]')
   private viewportElement: HTMLElement;
 
   /** Renders in an iframe */
@@ -318,7 +319,12 @@ export default class WaViewportDemo extends WebAwesomeElement {
     }
 
     return html`
-      <div id="viewport" part="frame" style=${styleMap(viewportStyle)}>
+      <div
+        id="viewport"
+        part="frame"
+        style=${styleMap(viewportStyle)}
+        class=${classMap({ 'needs-internal-zoom': this.needsInternalZoom! })}
+      >
         <span part="controls">
           ${dimensions}
           <span class="zoom">

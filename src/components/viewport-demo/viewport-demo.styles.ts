@@ -14,7 +14,7 @@ export default css`
     display: contents;
   }
 
-  #viewport {
+  [part~='frame'] {
     --zoom: 1;
 
     display: flex;
@@ -78,6 +78,13 @@ export default css`
     font-size: var(--wa-font-size-xs);
     padding-block-end: 0.25em;
     padding-inline: 1em 0.2em;
+    white-space: nowrap;
+
+    /* Until we can implement info that is not lying, we don’t show it when it's lying */
+    .needs-internal-zoom & > * {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
 
     .dimensions {
       word-spacing: -0.15em;
