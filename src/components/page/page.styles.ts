@@ -34,7 +34,7 @@ export default css`
     flex-wrap: wrap;
     gap: var(--wa-space-m);
     padding: var(--wa-space-m);
-    flex: 1 1 auto;
+    flex: auto;
   }
 
   ::slotted([slot='subheader']) {
@@ -84,6 +84,7 @@ export default css`
   :host([disable-sticky~='header']) [part~='subheader'] {
     --header-height: 0px !important;
   }
+
   /* Nothing else depends on subheader-height. */
   :host([disable-sticky~='subheader']) {
   }
@@ -92,6 +93,7 @@ export default css`
     height: unset;
     max-height: unset;
   }
+
   :host([disable-sticky~='banner']) [part~='banner'],
   :host([disable-sticky~='header']) [part~='header'],
   :host([disable-sticky~='subheader']) [part~='subheader'],
@@ -100,11 +102,13 @@ export default css`
     position: static;
     overflow: unset;
   }
+
   :host([disable-sticky~='aside']) [part~='aside'],
   :host([disable-sticky~='menu']) [part~='menu'] {
     height: auto;
     max-height: auto;
   }
+
   [part~='base'] {
     min-height: 100%;
     display: grid;
@@ -118,6 +122,7 @@ export default css`
       'body'
       'footer';
   }
+
   /* Grid areas */
   [part~='banner'] {
     grid-area: banner;
@@ -193,6 +198,7 @@ export default css`
   [part~='main-footer'] {
     grid-area: main-footer;
   }
+
   /* Visually hidden */
   .skip-to-content:not(:focus-within) {
     position: absolute !important;
@@ -205,6 +211,7 @@ export default css`
     white-space: nowrap !important;
     padding: 0 !important;
   }
+
   .skip-to-content {
     position: absolute;
     top: var(--wa-space-m);
@@ -219,6 +226,7 @@ export default css`
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }
+
   [part~='menu'],
   [part~='aside'] {
     position: sticky;
@@ -252,7 +260,8 @@ export default css`
   }
 
   [part~='navigation-toggle'] {
-    /* Use only a margin-inline-start because the slotted header is expected to have default padding so it looks really awkward if this sets a margin-inline-end and the slotted header has a padding-inline-start. */
+    /* Use only a margin-inline-start because the slotted header is expected to have default padding
+       so it looks really awkward if this sets a margin-inline-end and the slotted header has a padding-inline-start. */
     margin-inline-start: var(--wa-space-m);
   }
 `;
