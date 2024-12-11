@@ -585,7 +585,7 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
 
 <style>
   wa-page {
-    --menu-width: 18rem;
+    --menu-width: 30ch;
     --wa-tooltip-arrow-size: 0;
     background-color: var(--wa-color-surface-lowered);
   }
@@ -680,7 +680,10 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     border: none;
     color: var(--wa-color-brand-on-loud);
     font-size: 3rem;
-    padding: 1.5rem;
+    padding: 0.5em 0.45em 0.5em 0.55em;
+  }
+  [slot='main-footer'].wa-grid > * {
+    max-inline-size: 30ch;
   }
 </style>
 ```
