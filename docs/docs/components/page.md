@@ -17,11 +17,11 @@ Most slots are optional. Slots that have no content will not be shown, allowing 
 
 <!-- ![Screenshot of Layout Anatomy showing various slots](/assets/images/layout-anatomy.svg) -->
 
+## Using `wa-page`
+
 :::info
 If you're not familiar with how slots work in HTML, you might want to [learn more about slots](/docs/usage/#slots) before using this component.
 :::
-
-## Using `wa-page`
 
 A number of sections are available as part of the page component, most of which are optional. Content is populated by [slotting elements](/docs/usage/#slots) into various locations.
 
@@ -40,6 +40,11 @@ body {
 ```
 
 ## Examples
+
+:::warning
+Open demos in a new tab to examine their behavior in different window sizes.
+The previews below use simulated zooming which, depending on your browser, may not be accurate.
+:::
 
 ### Documentation
 
