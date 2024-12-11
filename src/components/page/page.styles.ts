@@ -15,21 +15,7 @@ export default css`
     --scroll-margin-top: calc(var(--header-height, 0px) + var(--subheader-height, 0px));
   }
 
-  ::slotted(
-      :is(
-          [slot='banner'],
-          [slot='header'],
-          [slot='subheader'],
-          [slot='navigation-header'],
-          [slot='navigation'],
-          [slot='navigation-footer'],
-          [slot='menu'],
-          [slot='main-header'],
-          [slot='main-footer'],
-          [slot='aside'],
-          [slot='footer']
-        )
-    ) {
+  slot[name]:not([name='skip-to-content'], [name='navigation-toggle'])::slotted(*) {
     background-color: var(--wa-color-surface-default);
   }
 
