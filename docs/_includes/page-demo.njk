@@ -19,4 +19,8 @@
 <iframe srcdoc="" id="page_slots_iframe"></iframe>
 </wa-viewport-demo>
 </div>
-<script type="module" src="/assets/examples/page-demo/demo.js"></script>
+
+<script type="module">
+  const cacheBust = new Date().toString()
+  import(`/assets/examples/page-demo/demo.js?${cacheBust}`)
+</script>
