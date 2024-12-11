@@ -11,22 +11,31 @@ export default css`
     --viewport-initial-aspect-ratio: 16 / 9;
     --viewport-bezel-width: 0.25em;
 
-    display: contents;
+    display: block;
+    /* Needed for measuring the available space */
+    contain: inline-size;
+    container-type: inline-size;
+    container-name: host;
   }
 
   [part~='frame'] {
-    --zoom: 1;
+    --zoom: 1; /* overridden by JS */
+    --available-width: calc((100cqw - var(--offset-inline, 0px)));
+    --iframe-manual-aspect-ratio: calc(var(--iframe-manual-width-px) / var(--iframe-manual-height-px));
+    --iframe-manual-width: calc(var(--iframe-manual-width-px) * 1px * var(--zoom));
+    --iframe-manual-height: calc(var(--iframe-manual-height-px) * 1px * var(--zoom));
+    --width: var(--iframe-manual-width, var(--available-width));
+    --height-auto: calc(var(--width) / (var(--aspect-ratio)));
+
+    --_aspect-ratio: calc(var(--viewport-width-px) / var(--viewport-height-px));
+    --aspect-ratio: var(--_aspect-ratio, var(--viewport-initial-aspect-ratio));
 
     display: flex;
     flex-flow: column;
-    align-items: end;
-    width: 100%;
+    align-items: start;
+
+    width: fit-content;
     height: fit-content;
-    min-width: var(--viewport-min-width, 2em);
-    max-width: min(var(--viewport-max-width), 100%);
-    min-height: var(--viewport-min-height);
-    resize: var(--viewport-resize);
-    overflow: auto;
 
     /* Style frame like a window */
     border: var(--viewport-bezel-width) solid transparent;
@@ -41,39 +50,56 @@ export default css`
         1.1em var(--button-params),
       radial-gradient(circle closest-side, var(--wa-color-green-70) 80%, var(--wa-color-green-60) 98%, transparent)
         1.8em var(--button-params),
-      linear-gradient(to top, var(--viewport-background-color) 60%, transparent 70%) bottom padding-box,
       var(--wa-color-gray-95);
     background-repeat: no-repeat;
     box-shadow:
       0 0 0 1px var(--wa-color-gray-90),
       var(--wa-shadow-m);
 
+    &.resized {
+      aspect-ratio: var(--iframe-manual-aspect-ratio);
+    }
+
     /* User has not yet resized the viewport */
-    &:not([style*='height:']) ::slotted(iframe) {
-      --_aspect-ratio: calc(var(--viewport-width-px) / var(--viewport-height-px));
-      --aspect-ratio: var(--_aspect-ratio, var(--viewport-initial-aspect-ratio));
+    &:not(.resized) ::slotted(iframe),
+    &:not(.resized) slot {
+      /* Will only be set if we have BOTH width and height */
       aspect-ratio: var(--aspect-ratio);
     }
   }
 
+  slot {
+    display: block;
+    overflow: clip;
+    width: var(--width);
+    max-width: var(--available-width);
+    height: var(--iframe-manual-height, var(--height-auto));
+  }
+
   ::slotted(iframe) {
     display: block;
-    width: 100%;
-    height: 100%;
-    zoom: var(--zoom);
+    flex: auto;
+    scale: var(--zoom);
+    transform-origin: top left;
+    resize: var(--viewport-resize);
+    overflow: auto;
+
+    /* The width and height specified here are only applied if the iframe is not manually resized */
+    width: calc(var(--available-width) / var(--zoom));
+    height: calc(var(--height-auto) / var(--zoom));
+
+    min-width: calc(var(--viewport-min-width, 10em) / var(--zoom));
+    max-width: calc(var(--available-width) / var(--zoom)) !important;
+    min-height: calc(var(--viewport-min-height) / var(--zoom));
 
     /* Divide with var(--zoom) to get lengths that stay constant regardless of zoom level */
     border: calc(1px / var(--zoom)) solid var(--wa-color-gray-90);
-
-    /* If we just set a background-color, Safari will not show the resizer because the iframe is over it.
-      So instead, we make sure that the bottom of the iframe is transparent, and is covered by a gradient on the parent.
-      Why not ONLY specify the gradient on the parent? Because there is no flexible way to know how tall it should be.
-     */
-    background: linear-gradient(to bottom, var(--viewport-background-color) 60%, transparent 70%);
+    background: var(--viewport-background-color);
   }
 
   [part~='controls'] {
     display: flex;
+    align-self: end;
     margin-top: -0.2em;
     font-size: var(--wa-font-size-xs);
     padding-block-end: 0.25em;
