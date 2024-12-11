@@ -99,7 +99,9 @@ export default css`
 
   [part~='controls'] {
     display: flex;
+    align-items: center;
     align-self: end;
+    gap: 0.3em;
     margin-top: -0.2em;
     font-size: var(--wa-font-size-xs);
     padding-block-end: 0.25em;

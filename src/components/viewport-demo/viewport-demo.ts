@@ -328,10 +328,11 @@ export default class WaViewportDemo extends WebAwesomeElement {
       '--zoom': this.computedZoom,
       '--offset-inline': this.offsetInline + 'px'
     };
-    const viewportClasses: Record<string, any> = {
-      'resized-width': this.iframeManualWidth,
-      'resized-height': this.iframeManualHeight,
-      resized: this.iframeManualWidth || this.iframeManualHeight
+    const resized = Boolean(this.iframeManualWidth || this.iframeManualHeight);
+    const viewportClasses = {
+      'resized-width': Boolean(this.iframeManualWidth),
+      'resized-height': Boolean(this.iframeManualHeight),
+      resized
     };
 
     if (this.iframeManualWidth) {
@@ -352,6 +353,16 @@ export default class WaViewportDemo extends WebAwesomeElement {
     return html`
       <div id="viewport" part="frame" style=${styleMap(viewportStyle)} class=${classMap(viewportClasses)}>
         <span part="controls">
+          ${resized
+            ? html`<wa-icon-button
+                name="arrow-rotate-left"
+                variant="regular"
+                label="Revert resizing"
+                @click=${() => this.iframe.removeAttribute('style')}
+                part="undo button"
+                >-</wa-icon-button
+              >`
+            : ''}
           ${dimensions}
           <span class="zoom">
             <wa-icon-button
