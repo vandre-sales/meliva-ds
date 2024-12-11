@@ -16,11 +16,11 @@ export default css`
   }
 
   slot[name]:not([name='skip-to-content'], [name='navigation-toggle'])::slotted(*) {
+    display: flex;
     background-color: var(--wa-color-surface-default);
   }
 
   ::slotted([slot='banner']) {
-    display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--wa-space-m);
@@ -28,7 +28,6 @@ export default css`
   }
 
   ::slotted([slot='header']) {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -38,7 +37,6 @@ export default css`
   }
 
   ::slotted([slot='subheader']) {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -49,14 +47,12 @@ export default css`
   ::slotted([slot*='navigation']),
   ::slotted([slot='menu']),
   ::slotted([slot='aside']) {
-    display: flex;
     flex-direction: column;
     gap: var(--wa-space-m);
     padding: var(--wa-space-m);
   }
 
   ::slotted([slot='main-header']) {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -70,7 +66,6 @@ export default css`
 
   ::slotted([slot='main-footer']),
   ::slotted([slot='footer']) {
-    display: flex;
     align-items: start;
     justify-content: space-between;
     flex-wrap: wrap;
