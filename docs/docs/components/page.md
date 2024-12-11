@@ -295,7 +295,7 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
       <wa-icon name="record-vinyl"></wa-icon>
       <span class="wa-heading-m">radiogaga</span>
     </div>
-    <wa-input placeholder="Search" style="max-inline-size: 100%;">
+    <wa-input id="search-header" placeholder="Search" style="max-inline-size: 100%;">
       <wa-icon slot="prefix" name="magnifying-glass" ></wa-icon>
     </wa-input>
     <div class="wa-cluster">
@@ -304,8 +304,13 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     </div>
   </header>
   <div slot="navigation-header" class="wa-split">
-    <h2 class="wa-heading-s">For You</h2>
-    <wa-icon-button id="settings" name="gear" label="Settings"></wa-icon-button>
+    <wa-input id="search-nav-drawer" placeholder="Search" style="max-inline-size: 100%;">
+      <wa-icon slot="prefix" name="magnifying-glass" ></wa-icon>
+    </wa-input>
+    <div class="wa-split">
+      <h2 class="wa-heading-s">For You</h2>
+      <wa-icon-button id="settings" name="gear" label="Settings"></wa-icon-button>
+    </div>
   </div>
   <nav slot="navigation">
     <h3 class="wa-heading-xs">Discover</h3>
@@ -399,7 +404,7 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
   </div>
   <main>
     <div class="wa-stack wa-gap-3xl">
-      <div class="wa-flank wa-gap-3xl" style="--flank-size: 35%; --content-percentage: 55%;">
+      <div class="wa-flank wa-gap-3xl" style="--content-percentage: 40%;">
         <div class="wa-frame wa-border-radius-l" style="max-inline-size: 40ch;">
           <img src="https://images.unsplash.com/photo-1732430579016-8d5e5ebd3c99?q=20" alt="Home for the Holidays album artwork" />
         </div>
@@ -585,15 +590,21 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
 
 <style>
   wa-page {
-    --menu-width: 18rem;
+    --menu-width: 30ch;
     --wa-tooltip-arrow-size: 0;
     background-color: var(--wa-color-surface-lowered);
   }
-  wa-page[view='desktop'] [data-toggle-nav] {
+  wa-page[view='desktop'] :is([data-toggle-nav], #search-nav-drawer) {
     display: none;
   }
   wa-page[view='mobile'] {
     --menu-width: auto;
+  }
+  wa-page[view='mobile'] #search-header {
+    display: none;
+  }
+  wa-page[view='mobile'] :is([slot*='main'], main) {
+    padding: var(--wa-space-xl);
   }
   wa-page,
   [slot='header'],
@@ -611,7 +622,8 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
   }
   [slot='navigation-header'],
   [slot='main-header'] {
-    padding-block-end: 0;
+    padding-block-end: 0 !important;
+    padding-block-start: var(--wa-space-3xl);
   }
   [slot='navigation'] a {
     --wa-color-text-link: var(--wa-color-text-normal);
@@ -680,7 +692,10 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     border: none;
     color: var(--wa-color-brand-on-loud);
     font-size: 3rem;
-    padding: 1.5rem;
+    padding: 0.5em 0.45em 0.5em 0.55em;
+  }
+  [slot='main-footer'].wa-grid > * {
+    max-inline-size: 30ch;
   }
 </style>
 ```
