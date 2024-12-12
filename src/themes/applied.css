@@ -63,28 +63,30 @@ body {
 }
 
 /* Content flow */
-/* address,
-audio,
-blockquote,
-dd,
-details,
-dl,
-figure,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-iframe,
-ol,
-p,
-pre,
-table,
-ul,
-video {
+:is(
+    address,
+    audio,
+    blockquote,
+    dd,
+    details,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    iframe,
+    ol,
+    p,
+    pre,
+    table,
+    ul,
+    video
+  ):has(+ *) {
   margin: 0 0 var(--wa-space-xl) 0;
-} */
+}
 
 /* Headings & text */
 h1,

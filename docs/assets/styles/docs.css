@@ -455,6 +455,7 @@ wa-page > main:has(> .index-grid) {
 
 .table-scroll {
   overflow-x: auto;
+  margin-block-end: var(--wa-flow-spacing);
 }
 
 /** mobile */
