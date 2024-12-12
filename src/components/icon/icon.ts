@@ -5,11 +5,10 @@ import { isTemplateResult } from 'lit/directive-helpers.js';
 import { WaErrorEvent } from '../../events/error.js';
 import { WaLoadEvent } from '../../events/load.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './icon.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 
-import type { CSSResultGroup, HTMLTemplateResult, PropertyValues } from 'lit';
+import type { HTMLTemplateResult, PropertyValues } from 'lit';
 
 const CACHEABLE_ERROR = Symbol();
 const RETRYABLE_ERROR = Symbol();
@@ -42,7 +41,7 @@ interface IconSource {
  */
 @customElement('wa-icon')
 export default class WaIcon extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private initialRender = false;
 

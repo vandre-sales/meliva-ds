@@ -10,10 +10,8 @@ import { WaChangeEvent } from '../../events/change.js';
 import { WaInputEvent } from '../../events/input.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './radio-group.styles.js';
-import type { CSSResultGroup } from 'lit';
 import type WaRadio from '../radio/radio.js';
 import type WaRadioButton from '../radio-button/radio-button.js';
 
@@ -43,7 +41,7 @@ import type WaRadioButton from '../radio-button/radio-button.js';
  */
 @customElement('wa-radio-group')
 export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static shadowStyle = [formControlStyles, styles];
 
   static get validators() {
     const validators = isServer

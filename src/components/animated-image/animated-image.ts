@@ -4,10 +4,8 @@ import { html } from 'lit';
 import { WaErrorEvent } from '../../events/error.js';
 import { WaLoadEvent } from '../../events/load.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './animated-image.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary A component for displaying animated GIFs and WEBPs that play and pause on interaction.
@@ -30,7 +28,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-animated-image')
 export default class WaAnimatedImage extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   @query('.animated-image__animated') animatedImage: HTMLImageElement;
 

@@ -9,11 +9,9 @@ import { WaHideEvent } from '../../events/hide.js';
 import { waitForEvent } from '../../internal/event.js';
 import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './tooltip.styles.js';
 import WaPopup from '../popup/popup.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Tooltips display additional information based on a specific action.
@@ -45,7 +43,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-tooltip')
 export default class WaTooltip extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
   static dependencies = { 'wa-popup': WaPopup };
 
   private hoverTimeout: number;

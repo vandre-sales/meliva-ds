@@ -13,10 +13,9 @@ import { range } from 'lit/directives/range.js';
 import { waitForEvent } from '../../internal/event.js';
 import { WaSlideChangeEvent } from '../../events/slide-change.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './carousel.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup, PropertyValueMap } from 'lit';
+import type { PropertyValueMap } from 'lit';
 import type WaCarouselItem from '../carousel-item/carousel-item.js';
 
 /**
@@ -53,7 +52,7 @@ import type WaCarouselItem from '../carousel-item/carousel-item.js';
  */
 @customElement('wa-carousel')
 export default class WaCarousel extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   /** When set, allows the user to navigate the carousel in the same direction indefinitely. */
   @property({ type: Boolean, reflect: true }) loop = false;

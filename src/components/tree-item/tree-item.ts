@@ -15,10 +15,9 @@ import { WaLazyChangeEvent } from '../../events/lazy-change.js';
 import { WaLazyLoadEvent } from '../../events/lazy-load.js';
 import { watch } from '../../internal/watch.js';
 import { when } from 'lit/directives/when.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './tree-item.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup, PropertyValueMap } from 'lit';
+import type { PropertyValueMap } from 'lit';
 
 /**
  * @summary A tree item serves as a hierarchical node that lives inside a [tree](/docs/components/tree).
@@ -72,7 +71,7 @@ import type { CSSResultGroup, PropertyValueMap } from 'lit';
  */
 @customElement('wa-tree-item')
 export default class WaTreeItem extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   static isTreeItem(node: Node) {
     return node instanceof Element && node.getAttribute('role') === 'treeitem';

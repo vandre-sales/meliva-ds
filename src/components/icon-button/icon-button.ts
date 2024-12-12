@@ -6,9 +6,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { WaBlurEvent } from '../../events/blur.js';
 import { WaFocusEvent } from '../../events/focus.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './icon-button.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
@@ -27,7 +25,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-icon-button')
 export default class WaIconButton extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   @query('.icon-button') button: HTMLButtonElement | HTMLLinkElement;
 

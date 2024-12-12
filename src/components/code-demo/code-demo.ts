@@ -4,11 +4,10 @@ import { customElement, property, query } from 'lit/decorators.js';
 import { getInnerHTML, HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { viewportPropertyConverter } from '../viewport-demo/viewport-demo.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './code-demo.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 
-import type { CSSResultGroup, TemplateResult } from 'lit';
+import type { TemplateResult } from 'lit';
 import type { ViewportDimensions } from '../viewport-demo/viewport-demo.js';
 
 interface DemoHTMLOptions {
@@ -58,7 +57,7 @@ const URL_ATTRIBUTES = ['src', 'href'];
  */
 @customElement('wa-code-demo')
 export default class WaCodeDemo extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   @query('slot[name=preview]')
   private previewSlot: HTMLSlotElement;

@@ -12,10 +12,8 @@ import { WaFocusEvent } from '../../events/focus.js';
 import { WaInputEvent } from '../../events/input.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './range.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Ranges allow the user to select a single value within a given range using a slider.
@@ -52,7 +50,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-range')
 export default class WaRange extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static shadowStyle = [formControlStyles, styles];
 
   static get validators() {
     return [...super.validators, MirrorValidator()];

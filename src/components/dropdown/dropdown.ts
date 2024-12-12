@@ -10,10 +10,8 @@ import { WaHideEvent } from '../../events/hide.js';
 import { waitForEvent } from '../../internal/event.js';
 import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './dropdown.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 import type { WaSelectEvent } from '../../events/select.js';
 import type WaButton from '../button/button.js';
 import type WaIconButton from '../icon-button/icon-button.js';
@@ -45,7 +43,7 @@ import type WaPopup from '../popup/popup.js';
  */
 @customElement('wa-dropdown')
 export default class WaDropdown extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   @query('.dropdown') popup: WaPopup;
   @query('.dropdown__trigger') trigger: HTMLSlotElement;

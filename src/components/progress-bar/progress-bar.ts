@@ -4,10 +4,8 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './progress-bar.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Progress bars are used to show the status of an ongoing operation.
@@ -29,7 +27,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-progress-bar')
 export default class WaProgressBar extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
   private readonly localize = new LocalizeController(this);
 
   /** The current progress as a percentage, 0 to 100. */

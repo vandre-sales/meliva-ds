@@ -9,10 +9,8 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { WaChangeEvent } from '../../events/change.js';
 import { WaHoverEvent } from '../../events/hover.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './rating.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Ratings give users a way to quickly view and provide feedback.
@@ -36,7 +34,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-rating')
 export default class WaRating extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private readonly localize = new LocalizeController(this);
 

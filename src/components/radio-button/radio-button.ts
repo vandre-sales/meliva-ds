@@ -7,9 +7,7 @@ import { WaBlurEvent } from '../../events/blur.js';
 import { WaFocusEvent } from '../../events/focus.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './radio-button.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
@@ -49,7 +47,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-radio-button')
 export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
 

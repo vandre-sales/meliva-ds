@@ -10,10 +10,8 @@ import { WaAfterShowEvent } from '../../events/after-show.js';
 import { WaHideEvent } from '../../events/hide.js';
 import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './drawer.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Drawers slide in from a container to expose additional options and information.
@@ -60,7 +58,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-drawer')
 export default class WaDrawer extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private readonly localize = new LocalizeController(this);
   private originalTrigger: HTMLElement | null;

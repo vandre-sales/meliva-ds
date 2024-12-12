@@ -22,10 +22,9 @@ import { WaInputEvent } from '../../events/input.js';
 import { WaInvalidEvent } from '../../events/invalid.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './color-picker.styles.js';
-import type { CSSResultGroup, PropertyValues } from 'lit';
+import type { PropertyValues } from 'lit';
 import type WaDropdown from '../dropdown/dropdown.js';
 import type WaInput from '../input/input.js';
 
@@ -106,7 +105,7 @@ declare const EyeDropper: EyeDropperConstructor;
  */
 @customElement('wa-color-picker')
 export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static shadowStyle = [formControlStyles, styles];
 
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 

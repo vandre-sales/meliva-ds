@@ -6,10 +6,8 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { WaRepositionEvent } from '../../events/reposition.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './split-panel.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Split panels display two adjacent panels, allowing the user to reposition them.
@@ -37,7 +35,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-split-panel')
 export default class WaSplitPanel extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private cachedPositionInPixels: number;
   private isCollapsed = false;

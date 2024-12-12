@@ -11,9 +11,7 @@ import { WaFocusEvent } from '../../events/focus.js';
 import { WaInvalidEvent } from '../../events/invalid.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './button.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Buttons represent actions that are available to the user.
@@ -55,7 +53,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-button')
 export default class WaButton extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   static get validators() {
     return [...super.validators, MirrorValidator()];

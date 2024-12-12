@@ -3,11 +3,10 @@ import { customElement, property, query } from 'lit/decorators.js';
 import { html, isServer } from 'lit';
 import { live } from 'lit/directives/live.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import componentStyles from '../../styles/component.styles.js';
 import mobileStyles from './page.mobile.styles.js';
 import styles from './page.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup, PropertyValues } from 'lit';
+import type { PropertyValues } from 'lit';
 import type WaDrawer from '../drawer/drawer.js';
 
 if (typeof ResizeObserver === 'undefined') {
@@ -74,7 +73,7 @@ if (typeof ResizeObserver === 'undefined') {
  */
 @customElement('wa-page')
 export default class WaPage extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private headerResizeObserver = this.slotResizeObserver('header');
   private subheaderResizeObserver = this.slotResizeObserver('subheader');

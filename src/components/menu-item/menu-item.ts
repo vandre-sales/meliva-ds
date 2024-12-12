@@ -8,10 +8,9 @@ import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { SubmenuController } from './submenu-controller.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './menu-item.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup, PropertyValues } from 'lit';
+import type { PropertyValues } from 'lit';
 
 /**
  * @summary Menu items provide options for the user to pick from in a menu.
@@ -42,7 +41,7 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
  */
 @customElement('wa-menu-item')
 export default class WaMenuItem extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private cachedTextLabel: string;
   private readonly localize = new LocalizeController(this);

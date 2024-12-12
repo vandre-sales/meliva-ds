@@ -8,10 +8,8 @@ import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { WaCopyEvent } from '../../events/copy.js';
 import { WaErrorEvent } from '../../events/error.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './copy-button.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 import type WaTooltip from '../tooltip/tooltip.js';
 
 /**
@@ -46,7 +44,7 @@ import type WaTooltip from '../tooltip/tooltip.js';
  */
 @customElement('wa-copy-button')
 export default class WaCopyButton extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private readonly localize = new LocalizeController(this);
 

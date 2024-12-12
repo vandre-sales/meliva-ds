@@ -4,10 +4,8 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { WaErrorEvent } from '../../events/error.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './avatar.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Avatars are used to represent a person or object.
@@ -33,7 +31,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-avatar')
 export default class WaAvatar extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   @state() private hasError = false;
 

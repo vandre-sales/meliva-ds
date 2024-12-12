@@ -9,10 +9,8 @@ import { scrollIntoView } from '../../internal/scroll.js';
 import { WaTabHideEvent } from '../../events/tab-hide.js';
 import { WaTabShowEvent } from '../../events/tab-show.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './tab-group.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 import type WaTab from '../tab/tab.js';
 import type WaTabPanel from '../tab-panel/tab-panel.js';
 
@@ -48,7 +46,7 @@ import type WaTabPanel from '../tab-panel/tab-panel.js';
  */
 @customElement('wa-tab-group')
 export default class WaTabGroup extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private activeTab?: WaTab;
   private mutationObserver: MutationObserver;

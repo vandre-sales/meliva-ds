@@ -2,10 +2,8 @@ import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
 import { WaMutationEvent } from '../../events/mutation.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './mutation-observer.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary The Mutation Observer component offers a thin, declarative interface to the [`MutationObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver).
@@ -19,7 +17,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-mutation-observer')
 export default class WaMutationObserver extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private mutationObserver: MutationObserver;
 

@@ -22,10 +22,9 @@ import { waitForEvent } from '../../internal/event.js';
 import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './select.styles.js';
-import type { CSSResultGroup, TemplateResult } from 'lit';
+import type { TemplateResult } from 'lit';
 import type { WaRemoveEvent } from '../../events/remove.js';
 import type WaOption from '../option/option.js';
 import type WaPopup from '../popup/popup.js';
@@ -86,7 +85,7 @@ import type WaPopup from '../popup/popup.js';
  */
 @customElement('wa-select')
 export default class WaSelect extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static shadowStyle = [formControlStyles, styles];
 
   static get validators() {
     const validators = isServer

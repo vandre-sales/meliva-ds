@@ -6,9 +6,7 @@ import { WaBlurEvent } from '../../events/blur.js';
 import { WaFocusEvent } from '../../events/focus.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './radio.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Radios allow the user to select a single option from a group.
@@ -42,7 +40,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-radio')
 export default class WaRadio extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   @state() checked = false;
   @state() protected hasFocus = false;

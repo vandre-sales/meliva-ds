@@ -1,9 +1,7 @@
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './button-group.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Button groups can be used to group related buttons into sections.
@@ -17,7 +15,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-button-group')
 export default class WaButtonGroup extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   @query('slot') defaultSlot: HTMLSlotElement;
 

@@ -4,10 +4,8 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './option.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Options define the selectable items within various form controls such as [select](/docs/components/select).
@@ -34,7 +32,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-option')
 export default class WaOption extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   // @ts-expect-error - Controller is currently unused
   private readonly localize = new LocalizeController(this);

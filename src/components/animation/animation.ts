@@ -5,10 +5,8 @@ import { WaCancelEvent } from '../../events/cancel.js';
 import { WaFinishEvent } from '../../events/finish.js';
 import { WaStartEvent } from '../../events/start.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './animation.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Animate elements declaratively with nearly 100 baked-in presets, or roll your own with custom keyframes. Powered by the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
@@ -25,7 +23,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-animation')
 export default class WaAnimation extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private animation?: Animation;
   private hasStarted = false;

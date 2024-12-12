@@ -10,10 +10,8 @@ import { WaAfterShowEvent } from '../../events/after-show.js';
 import { WaHideEvent } from '../../events/hide.js';
 import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './dialog.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
@@ -55,7 +53,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-dialog')
 export default class WaDialog extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private readonly localize = new LocalizeController(this);
   private originalTrigger: HTMLElement | null;

@@ -5,10 +5,8 @@ import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { offsetParent } from 'composed-offset-position';
 import { WaRepositionEvent } from '../../events/reposition.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './popup.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 export interface VirtualElement {
   getBoundingClientRect: () => DOMRect;
@@ -57,7 +55,7 @@ function isVirtualElement(e: unknown): e is VirtualElement {
  */
 @customElement('wa-popup')
 export default class WaPopup extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private anchorEl: Element | VirtualElement | null;
   private cleanup: ReturnType<typeof autoUpdate> | undefined;

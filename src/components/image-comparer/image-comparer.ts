@@ -8,10 +8,8 @@ import { LocalizeController } from '../../utilities/localize.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { WaChangeEvent } from '../../events/change.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './image-comparer.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Compare visual differences between similar photos with a sliding panel.
@@ -40,7 +38,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-image-comparer')
 export default class WaImageComparer extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private readonly localize = new LocalizeController(this);
 

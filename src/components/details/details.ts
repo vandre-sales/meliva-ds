@@ -10,10 +10,8 @@ import { WaHideEvent } from '../../events/hide.js';
 import { waitForEvent } from '../../internal/event.js';
 import { WaShowEvent } from '../../events/show.js';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './details.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.
@@ -51,7 +49,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-details')
 export default class WaDetails extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private detailsObserver: MutationObserver;
   private readonly localize = new LocalizeController(this);

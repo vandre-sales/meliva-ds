@@ -4,10 +4,8 @@ import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { WaRemoveEvent } from '../../events/remove.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './tag.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Tags are used as labels to organize things or to indicate a selection.
@@ -35,7 +33,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-tag')
 export default class WaTag extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   private readonly localize = new LocalizeController(this);
 

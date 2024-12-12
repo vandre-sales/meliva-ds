@@ -1,12 +1,31 @@
 import { CustomErrorValidator } from './validators/custom-error-validator.js';
-import { isServer, LitElement, type PropertyValues } from 'lit';
+import { isServer, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { WaInvalidEvent } from '../events/invalid.js';
+import componentStyles from '../styles/component.styles.js';
+import type { CSSResult, CSSResultGroup, PropertyValues } from 'lit';
 
 export default class WebAwesomeElement extends LitElement {
   // Make localization attributes reactive
   @property() dir: string;
   @property() lang: string;
+
+  /**
+   * One or more styles for the element’s own shadow DOM.
+   * Shared component styles will automatically be added.
+   * If that is not desirable, the subclass can define its own styles property.
+   */
+  static shadowStyle?: CSSResultGroup | CSSResult;
+
+  /** The base styles property will only get called if the subclass does not define a styles property of its own */
+  static get styles(): CSSResultGroup {
+    const shadowStyle = this.shadowStyle
+      ? Array.isArray(this.shadowStyle)
+        ? this.shadowStyle
+        : [this.shadowStyle]
+      : [];
+    return [componentStyles, ...shadowStyle];
+  }
 
   @property({ type: Boolean, reflect: true, attribute: 'did-ssr' }) didSSR = isServer || Boolean(this.shadowRoot);
 

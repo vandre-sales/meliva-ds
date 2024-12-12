@@ -2,10 +2,8 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
 import { watch } from '../../internal/watch.js';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './tab.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 let id = 0;
 
@@ -25,7 +23,7 @@ let id = 0;
  */
 @customElement('wa-tab')
 export default class WaTab extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
   public slot = 'nav'; // Auto-slot into nav slot
 
   private readonly attrId = ++id;

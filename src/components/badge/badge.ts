@@ -1,10 +1,8 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 import styles from './badge.styles.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Badges are used to draw attention and display statuses or counts.
@@ -25,7 +23,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-badge')
 export default class WaBadge extends WebAwesomeElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static shadowStyle = styles;
 
   /** The badge's theme variant. */
   @property({ reflect: true }) variant: 'brand' | 'success' | 'neutral' | 'warning' | 'danger' = 'brand';

@@ -11,10 +11,9 @@ import { WaFocusEvent } from '../../events/focus.js';
 import { WaInputEvent } from '../../events/input.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './switch.styles.js';
-import type { CSSResultGroup, PropertyValues } from 'lit';
+import type { PropertyValues } from 'lit';
 
 /**
  * @summary Switches allow the user to toggle an option on or off.
@@ -53,7 +52,7 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
  */
 @customElement('wa-switch')
 export default class WaSwitch extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static shadowStyle = [formControlStyles, styles];
 
   static get validators() {
     return [...super.validators, MirrorValidator()];

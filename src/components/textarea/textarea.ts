@@ -11,10 +11,8 @@ import { WaFocusEvent } from '../../events/focus.js';
 import { WaInputEvent } from '../../events/input.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import styles from './textarea.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.
@@ -47,7 +45,7 @@ import type { CSSResultGroup } from 'lit';
  */
 @customElement('wa-textarea')
 export default class WaTextarea extends WebAwesomeFormAssociatedElement {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static shadowStyle = [formControlStyles, styles];
   static get validators() {
     return [...super.validators, MirrorValidator()];
   }
