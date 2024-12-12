@@ -103,11 +103,11 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
     <a href="#conservation">Conservation</a>
   </nav>
   <nav slot="navigation-footer">
-    <a href="#" class="wa-flank" style="--flank-size: 1.25em;">
+    <a href="#" class="wa-flank">
       <wa-icon name="camera"></wa-icon>
       <span>Photo Gallery</span>
     </a>
-    <a href="#" class="wa-flank" style="--flank-size: 1.25em;">
+    <a href="#" class="wa-flank">
       <wa-icon name="map-location-dot"></wa-icon>
       <span>Interactive Range Map</span>
     </a>
@@ -266,6 +266,9 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
   [slot='navigation-footer'] {
     border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
   }
+  [slot='navigation-footer'] .wa-flank {
+    --flank-size: 1.25em;
+  }
   [slot='main-header'],
   main,
   [slot='main-footer'] {
@@ -281,6 +284,11 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
     font-size: var(--wa-font-size-s);
   }
 </style>
+
+<script>
+  const sectionAnchors = document.querySelectorAll("[slot*='navigation'] a[href*='#']");
+  sectionAnchors.forEach((sectionAnchor) => sectionAnchor.setAttribute("data-drawer", "close"));
+</script>
 ```
 
 ### Media
@@ -698,6 +706,11 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     max-inline-size: 30ch;
   }
 </style>
+
+<script>
+  const sectionAnchors = document.querySelectorAll("[slot*='navigation'] a[href*='#']");
+  sectionAnchors.forEach((sectionAnchor) => sectionAnchor.setAttribute("data-drawer", "close"));
+</script>
 ```
 
 
