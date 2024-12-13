@@ -210,8 +210,8 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
   }
 
   render() {
-    const hasHelpTextSlot = isServer ? true : this.hasSlotController.test('hint');
-    const hasHelpText = this.hint ? true : !!hasHelpTextSlot;
+    const hasHintSlot = isServer ? true : this.hasSlotController.test('hint');
+    const hasHint = this.hint ? true : !!hasHintSlot;
     const isIndeterminate = !this.checked && this.indeterminate;
 
     const iconName = isIndeterminate ? 'indeterminate' : 'check';
@@ -230,7 +230,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
           'form-control--small': this.size === 'small',
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
-          'form-control--has-hint': hasHelpText
+          'form-control--has-hint': hasHint
         })}
       >
         <label
@@ -283,12 +283,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
           </div>
         </label>
 
-        <div
-          aria-hidden=${hasHelpText ? 'false' : 'true'}
-          class="form-control__hint"
-          id="hint"
-          part="form-control-hint"
-        >
+        <div aria-hidden=${hasHint ? 'false' : 'true'} class="form-control__hint" id="hint" part="form-control-hint">
           <slot name="hint">${this.hint}</slot>
         </div>
       </div>
