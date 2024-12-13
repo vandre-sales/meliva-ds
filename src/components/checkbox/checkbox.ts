@@ -33,7 +33,7 @@ import type { PropertyValues } from 'lit';
  * @event wa-input - Emitted when the checkbox receives input.
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
- * @csspart label - The component's label .
+ * @csspart base - The component's label .
  * @csspart control - The square container that wraps the checkbox's checked state.
  * @csspart control--checked - Matches the control part when the checkbox is checked.
  * @csspart control--indeterminate - Matches the control part when the checkbox is indeterminate.
@@ -220,7 +220,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
 
     //
     // NOTE: we use a `<div>` around the label slot because of this Chrome bug.
-    //
+    // Fixed in Chrome 119
     // https://bugs.chromium.org/p/chromium/issues/detail?id=1413733
     //
     return html`
@@ -234,7 +234,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
         })}
       >
         <label
-          part="label"
+          part="base"
           class=${classMap({
             checkbox: true,
             'checkbox--checked': this.checked,
