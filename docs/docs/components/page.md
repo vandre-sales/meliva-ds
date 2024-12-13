@@ -227,18 +227,26 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
     --menu-width: 15rem;
     --aside-width: 15rem;
   }
-  wa-page[view='desktop'] [data-toggle-nav] {
-    display: none;
+  wa-page[view='desktop'] {
+    [data-toggle-nav] {
+      display: none;
+    }
+
+    [slot*='navigation'] {
+      border-inline-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+    }
   }
   wa-page[view='mobile'] {
     --menu-width: auto;
     --aside-width: auto;
+
+    [slot='aside'],
+    #brand-name,
+    #search {
+      display: none;
+    }
   }
-  wa-page[view='mobile'] [slot='aside'],
-  wa-page[view='mobile'] #brand-name,
-  wa-page[view='mobile'] #search {
-    display: none;
-  }
+
   [slot='banner'] {
     --wa-color-text-link: var(--wa-color-neutral-on-loud);
     background-color: var(--wa-color-neutral-fill-loud);
@@ -257,9 +265,7 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
   [slot='navigation-header'] {
     border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
   }
-  wa-page[view='desktop'] [slot*='navigation'] {
-    border-inline-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
-  }
+
   [slot*='navigation'] a {
     --wa-color-text-link: var(--wa-color-text-normal);
   }
@@ -602,18 +608,22 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     --wa-tooltip-arrow-size: 0;
     background-color: var(--wa-color-surface-lowered);
   }
-  wa-page[view='desktop'] :is([data-toggle-nav], #search-nav-drawer) {
-    display: none;
+  wa-page[view='desktop'] {
+    :is([data-toggle-nav], #search-nav-drawer) {
+      display: none;
+    }
   }
   wa-page[view='mobile'] {
     --menu-width: auto;
+
+    #search-header {
+      display: none;
+    }
+    :is([slot*='main'], main) {
+      padding: var(--wa-space-xl);
+    }
   }
-  wa-page[view='mobile'] #search-header {
-    display: none;
-  }
-  wa-page[view='mobile'] :is([slot*='main'], main) {
-    padding: var(--wa-space-xl);
-  }
+
   wa-page,
   [slot='header'],
   wa-page[view='desktop'] [slot*='navigation'] {
@@ -822,9 +832,10 @@ You can use a similar approach for `--aside-width` to hide the `aside` slot on s
 ```css
 wa-page[view='mobile'] {
   --aside-width: auto;
-}
-wa-page[view='mobile'] [slot='aside'] {
-  display: none;
+
+   [slot='aside'] {
+    display: none;
+  }
 }
 ```
 
