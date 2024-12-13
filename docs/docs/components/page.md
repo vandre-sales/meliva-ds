@@ -619,7 +619,7 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     #search-header {
       display: none;
     }
-    :is([slot*='main'], main) {
+    [slot*='main'], main {
       padding: var(--wa-space-xl);
     }
   }
@@ -643,37 +643,41 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     padding-block-end: 0 !important;
     padding-block-start: var(--wa-space-3xl);
   }
-  [slot='navigation'] a {
-    --wa-color-text-link: var(--wa-color-text-normal);
-    --wa-link-decoration-default: none;
-    --wa-link-decoration-hover: none;
-    --flank-size: 2rem;
-    font-weight: var(--wa-font-weight-action);
-    gap: 0.5rem;
+  [slot='navigation'] {
+    a {
+      --wa-color-text-link: var(--wa-color-text-normal);
+      --wa-link-decoration-default: none;
+      --wa-link-decoration-hover: none;
+      --flank-size: 2rem;
+      font-weight: var(--wa-font-weight-action);
+      gap: 0.5rem;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+
+      a {
+        border-radius: var(--wa-border-radius-s);
+        padding: var(--wa-space-xs);
+
+        &:hover {
+          background-color: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-brand-fill-quiet));
+        }
+      }
+    }
+    wa-icon {
+      align-items: center;
+      aspect-ratio: 1;
+      color: var(--wa-color-brand-fill-loud);
+      display: flex;
+      height: var(--flank-size);
+      justify-content: center;
+    }
+    #recent wa-icon {
+      border-radius: var(--wa-border-radius-xs);
+    }
   }
-  [slot='navigation'] ul {
-    list-style: none;
-    margin: 0;
-  }
-  [slot='navigation'] ul a {
-    border-radius: var(--wa-border-radius-s);
-    padding: var(--wa-space-xs);
-  }
-  [slot='navigation'] ul a:hover,
-  main ol li:hover {
-    background-color: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-brand-fill-quiet));
-  }
-  [slot='navigation'] wa-icon {
-    align-items: center;
-    aspect-ratio: 1;
-    color: var(--wa-color-brand-fill-loud);
-    display: flex;
-    height: var(--flank-size);
-    justify-content: center;
-  }
-  [slot='navigation'] #recent wa-icon {
-    border-radius: var(--wa-border-radius-xs);
-  }
+
   [slot='main-header'] {
     border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
     border-inline: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
@@ -685,12 +689,18 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
   }
   main ol li {
     padding: var(--wa-space-m);
-  }
-  main ol li .wa-flank {
-    --flank-size: 2rem;
-  }
-  main ol li:not(:first-child) {
-    border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+
+    &:hover {
+      background-color: color-mix(in oklab, var(--wa-color-surface-default), var(--wa-color-brand-fill-quiet));
+    }
+
+    &:not(:first-child) {
+      border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+    }
+
+    .wa-flank {
+      --flank-size: 2rem;
+    }
   }
   main,
   [slot='main-footer'] {
