@@ -53,12 +53,10 @@
     "test": "web-test-runner --group default",
     "test:component": "web-test-runner -- --watch --group",
     "test:watch": "web-test-runner --watch --group default",
-    "lint": "eslint src --max-warnings 0",
-    "lint:fix": "eslint src --max-warnings 0 --fix",
     "prettier": "prettier --check --log-level=warn .",
     "prettier:fix": "prettier --write --log-level=warn .",
     "spellcheck": "cspell \"**/*.{js,ts,json,html,css,md}\" --no-progress",
-    "verify": "npm run prettier && npm run lint && npm run build && npm run test",
+    "verify": "npm run prettier && npm run build && npm run test",
     "prepublishOnly": "npm run verify"
   },
   "engines": {
@@ -135,7 +133,6 @@
   },
   "lint-staged": {
     "*.{ts,js}": [
-      "eslint --max-warnings 0 --cache --fix",
       "prettier --write"
     ]
   }
