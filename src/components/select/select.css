@@ -231,15 +231,7 @@
 }
 
 /* Pills */
-.select--pill.select--small .select__combobox {
-  border-radius: var(--wa-border-radius-pill);
-}
-
-.select--pill.select--medium .select__combobox {
-  border-radius: var(--wa-border-radius-pill);
-}
-
-.select--pill.select--large .select__combobox {
+.select--pill {
   border-radius: var(--wa-border-radius-pill);
 }
 

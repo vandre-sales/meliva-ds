@@ -197,18 +197,10 @@
 }
 
 /*
-   * Pill modifier
-   */
+ * Pill modifier
+ */
 
-.input--pill.input--small {
-  border-radius: var(--wa-border-radius-pill);
-}
-
-.input--pill.input--medium {
-  border-radius: var(--wa-border-radius-pill);
-}
-
-.input--pill.input--large {
+.input--pill {
   border-radius: var(--wa-border-radius-pill);
 }
 
