@@ -46,7 +46,7 @@ describe('<wa-color-picker>', () => {
             },
             afterMouseMove: () => {
               expect(inputHandler).to.have.been.calledTwice;
-            }
+            },
           });
 
           expect(changeHandler).to.have.been.calledOnce;
@@ -75,7 +75,7 @@ describe('<wa-color-picker>', () => {
             afterMouseMove: () => {
               // It's not twice because you can't change the hue of white!
               expect(inputHandler).to.have.been.calledOnce;
-            }
+            },
           });
 
           await el.updateComplete;
@@ -106,7 +106,7 @@ describe('<wa-color-picker>', () => {
             },
             afterMouseMove: () => {
               expect(inputHandler).to.have.been.calledTwice;
-            }
+            },
           });
 
           await el.updateComplete;

@@ -75,7 +75,7 @@ export default class WaFormatDate extends WebAwesomeElement {
           second: this.second,
           timeZoneName: this.timeZoneName,
           timeZone: this.timeZone,
-          hour12: hour12
+          hour12: hour12,
         })}
       </time>
     `;

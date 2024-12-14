@@ -50,7 +50,7 @@ export default class WaCard extends WebAwesomeElement {
           card: true,
           'card--has-footer': this.withFooter,
           'card--has-image': this.withImage,
-          'card--has-header': this.withHeader
+          'card--has-header': this.withHeader,
         })}
       >
         <slot name="image" part="image" class="card__image"></slot>

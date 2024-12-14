@@ -36,7 +36,7 @@ const components = manifest.modules.flatMap(module => {
         slug: declaration.tagName.replace(/^wa-/, ''),
         methods,
         attributes,
-        properties
+        properties,
       };
     });
 });

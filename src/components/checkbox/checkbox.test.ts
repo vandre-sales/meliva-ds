@@ -122,7 +122,7 @@ describe('<wa-checkbox>', () => {
 
       it('Should keep its form value when going from checked -> unchecked -> checked', async () => {
         const form = await fixture<HTMLFormElement>(
-          html`<form><wa-checkbox name="test" value="myvalue" checked>Checked</wa-checkbox></form>`
+          html`<form><wa-checkbox name="test" value="myvalue" checked>Checked</wa-checkbox></form>`,
         );
         const checkbox = form.querySelector('wa-checkbox')!;
 

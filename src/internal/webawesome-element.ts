@@ -27,7 +27,7 @@ export default class WebAwesomeElement extends LitElement {
 
     // Convert any string styles to Lit’s CSSResult
     const shadowStyles = [componentStyles, ...shadowStyle].map(style =>
-      typeof style === 'string' ? unsafeCSS(style) : style
+      typeof style === 'string' ? unsafeCSS(style) : style,
     );
 
     return shadowStyles;
@@ -48,7 +48,7 @@ export default class WebAwesomeElement extends LitElement {
           if (obj.reflect && this[prop] != null) {
             this.initialReflectedProperties.set(prop, this[prop]);
           }
-        }
+        },
       );
 
       this.#hasRecordedInitialProperties = true;
@@ -459,7 +459,7 @@ export class WebAwesomeFormAssociatedElement
 
     const flags: Partial<ValidityKey> = {
       // Don't trust custom errors from the Browser. Safari breaks the spec.
-      customError: Boolean(this.customError)
+      customError: Boolean(this.customError),
     };
 
     const formControl = this.validationTarget || this.input || undefined;

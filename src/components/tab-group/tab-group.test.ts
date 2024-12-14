@@ -31,7 +31,7 @@ const getClientRectangles = (tabGroup: WaTabGroup): ClientRectangles => {
     const body = shadowRoot.querySelector<HTMLElement>('[part=body]');
     return {
       body: body?.getBoundingClientRect(),
-      navigation: nav?.getBoundingClientRect()
+      navigation: nav?.getBoundingClientRect(),
     };
   }
   return {};
@@ -198,7 +198,7 @@ describe('<wa-tab-group>', () => {
           for (let i = 0; i < n; i++) {
             result.push(
               html`<wa-tab panel="tab-${i}">Tab ${i}</wa-tab>
-                <wa-tab-panel name="tab-${i}">Content of tab ${i}0</wa-tab-panel> `
+                <wa-tab-panel name="tab-${i}">Content of tab ${i}0</wa-tab-panel> `,
             );
           }
           return result;
@@ -214,7 +214,7 @@ describe('<wa-tab-group>', () => {
             source?: string | undefined,
             lineno?: number | undefined,
             colno?: number | undefined,
-            error?: Error | undefined
+            error?: Error | undefined,
           ) => {
             if ((event as string).includes('ResizeObserver') || event === 'Script error.') {
               return true;
@@ -289,7 +289,7 @@ describe('<wa-tab-group>', () => {
         it.skip('does scroll on scroll button click', async () => {
           const numberOfElements = 15;
           const tabGroup = await fixture<WaTabGroup>(
-            html`<wa-tab-group> ${generateTabs(numberOfElements)} </wa-tab-group>`
+            html`<wa-tab-group> ${generateTabs(numberOfElements)} </wa-tab-group>`,
           );
 
           await waitForScrollButtonsToBeRendered(tabGroup);
@@ -319,7 +319,7 @@ describe('<wa-tab-group>', () => {
       describe('tab selection', () => {
         const expectCustomTabToBeActiveAfter = async (
           tabGroup: WaTabGroup,
-          action: () => Promise<void>
+          action: () => Promise<void>,
         ): Promise<void> => {
           const generalHeader = await waitForHeaderToBeActive(tabGroup, 'general-header');
           generalHeader.focus();
@@ -337,7 +337,7 @@ describe('<wa-tab-group>', () => {
 
         const expectGeneralTabToBeStillActiveAfter = async (
           tabGroup: WaTabGroup,
-          action: () => Promise<void>
+          action: () => Promise<void>,
         ): Promise<void> => {
           const generalHeader = await waitForHeaderToBeActive(tabGroup, 'general-header');
           generalHeader.focus();

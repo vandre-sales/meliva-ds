@@ -5,7 +5,7 @@ import { docsDir, siteDir } from './utils.js';
 
 const elev = new Eleventy(docsDir, siteDir, {
   quietMode: true,
-  configPath: join(docsDir, '.eleventy.js')
+  configPath: join(docsDir, '.eleventy.js'),
 });
 
 // Cleanup

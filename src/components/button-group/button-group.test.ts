@@ -41,7 +41,7 @@ describe('<wa-button-group>', () => {
 
           const allButtons = group.querySelectorAll('wa-button');
           const hasGroupClass = Array.from(allButtons).every(button =>
-            button.classList.contains('wa-button-group__button')
+            button.classList.contains('wa-button-group__button'),
           );
           expect(hasGroupClass).to.be.true;
 

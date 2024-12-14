@@ -245,7 +245,7 @@ export default class WaDrawer extends WebAwesomeElement {
           'drawer--start': this.placement === 'start',
           'drawer--rtl': this.localize.dir() === 'rtl',
           'drawer--with-header': this.withHeader,
-          'drawer--with-footer': this.withFooter
+          'drawer--with-footer': this.withFooter,
         })}
         @cancel=${this.handleDialogCancel}
         @click=${this.handleDialogClick}

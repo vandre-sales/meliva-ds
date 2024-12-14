@@ -102,13 +102,13 @@ export default class WaIcon extends WebAwesomeElement {
     if (this.name && library) {
       return {
         url: library.resolver(this.name, this.family, this.variant),
-        fromLibrary: true
+        fromLibrary: true,
       };
     }
 
     return {
       url: this.src,
-      fromLibrary: false
+      fromLibrary: false,
     };
   }
 

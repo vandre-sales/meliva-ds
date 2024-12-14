@@ -40,7 +40,7 @@ describe('<wa-radio-button>', () => {
           radioGroup.updateComplete,
           radio1.updateComplete,
           radio2.updateComplete,
-          radio3.updateComplete
+          radio3.updateComplete,
         ]);
 
         expect(radio1.classList.contains('wa-button-group__button')).to.be.true;

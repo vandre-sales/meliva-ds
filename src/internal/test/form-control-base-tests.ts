@@ -16,7 +16,7 @@ export function runFormControlBaseTests<T extends WebAwesomeFormControl = WebAwe
         tagName: string;
         init?: (control: T) => void;
         variantName: string;
-      }
+      },
 ) {
   const isStringArg = typeof tagNameOrConfig === 'string';
   const tagName = isStringArg ? tagNameOrConfig : tagNameOrConfig.tagName;
@@ -56,7 +56,7 @@ export function runFormControlBaseTests<T extends WebAwesomeFormControl = WebAwe
 function runAllValidityTests(
   tagName: string, //
   displayName: string,
-  renderControl: (fixture: typeof hydratedFixture | typeof clientFixture) => () => Promise<WebAwesomeFormControl>
+  renderControl: (fixture: typeof hydratedFixture | typeof clientFixture) => () => Promise<WebAwesomeFormControl>,
 ) {
   // This needs to be outside the describe block other wise everything breaks because "describe" blocks cannot be async.
   // https://github.com/mochajs/mocha/issues/2116

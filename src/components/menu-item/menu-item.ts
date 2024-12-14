@@ -178,7 +178,7 @@ export default class WaMenuItem extends WebAwesomeElement {
           'menu-item--disabled': this.disabled,
           'menu-item--loading': this.loading,
           'menu-item--has-submenu': this.isSubmenu(),
-          'menu-item--submenu-expanded': isSubmenuExpanded
+          'menu-item--submenu-expanded': isSubmenuExpanded,
         })}
         ?aria-haspopup="${this.isSubmenu()}"
         ?aria-expanded="${isSubmenuExpanded ? true : false}"

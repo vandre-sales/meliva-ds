@@ -153,7 +153,7 @@ export default class WaSplitPanel extends WebAwesomeElement {
 
         this.position = clamp(this.pixelsToPercentage(newPositionInPixels), 0, 100);
       },
-      initialEvent: event
+      initialEvent: event,
     });
   }
 

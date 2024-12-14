@@ -40,7 +40,7 @@ export function highlightCode(code, language = 'plain') {
 export function highlightCodePlugin(options = {}) {
   options = {
     container: 'body',
-    ...options
+    ...options,
   };
 
   return function (eleventyConfig) {

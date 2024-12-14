@@ -14,7 +14,7 @@ describe('<wa-animation>', () => {
     describe(`with "${fixture.type}" rendering`, () => {
       it('renders', async () => {
         const animationContainer = await fixture<WaAnimation>(
-          html`<wa-animation>${unsafeHTML(boxToAnimate)}</wa-animation>`
+          html`<wa-animation>${unsafeHTML(boxToAnimate)}</wa-animation>`,
         );
 
         expect(animationContainer).to.exist;
@@ -22,7 +22,7 @@ describe('<wa-animation>', () => {
 
       it('is accessible', async () => {
         const animationContainer = await fixture<WaAnimation>(
-          html`<wa-animation>${unsafeHTML(boxToAnimate)}</wa-animation>`
+          html`<wa-animation>${unsafeHTML(boxToAnimate)}</wa-animation>`,
         );
 
         await expect(animationContainer).to.be.accessible();
@@ -33,7 +33,7 @@ describe('<wa-animation>', () => {
           const animationContainer = await fixture<WaAnimation>(
             html`<wa-animation name="bounce" easing="ease-in-out" duration="10"
               >${unsafeHTML(boxToAnimate)}</wa-animation
-            >`
+            >`,
           );
           await aTimeout(0);
 
@@ -44,7 +44,7 @@ describe('<wa-animation>', () => {
           const animationContainer = await fixture<WaAnimation>(
             html`<wa-animation name="bounce" easing="ease-in-out" duration="10"
               >${unsafeHTML(boxToAnimate)}</wa-animation
-            >`
+            >`,
           );
 
           const startPromise = oneEvent(animationContainer, 'wa-start');
@@ -56,7 +56,9 @@ describe('<wa-animation>', () => {
 
       it('emits the correct event on animation end', async () => {
         const animationContainer = await fixture<WaAnimation>(
-          html`<wa-animation name="bounce" easing="ease-in-out" duration="1">${unsafeHTML(boxToAnimate)}</wa-animation>`
+          html`<wa-animation name="bounce" easing="ease-in-out" duration="1"
+            >${unsafeHTML(boxToAnimate)}</wa-animation
+          >`,
         );
 
         const endPromise = oneEvent(animationContainer, 'wa-finish');
@@ -69,7 +71,7 @@ describe('<wa-animation>', () => {
         const animationContainer = await fixture<WaAnimation>(
           html`<wa-animation name="bounce" easing="ease-in-out" duration="1000"
             >${unsafeHTML(boxToAnimate)}</wa-animation
-          >`
+          >`,
         );
 
         const endPromise = oneEvent(animationContainer, 'wa-finish');
@@ -84,7 +86,9 @@ describe('<wa-animation>', () => {
 
       it('can be cancelled', async () => {
         const animationContainer = await fixture<WaAnimation>(
-          html`<wa-animation name="bounce" easing="ease-in-out" duration="1">${unsafeHTML(boxToAnimate)}</wa-animation>`
+          html`<wa-animation name="bounce" easing="ease-in-out" duration="1"
+            >${unsafeHTML(boxToAnimate)}</wa-animation
+          >`,
         );
         let animationHasFinished = false;
         oneEvent(animationContainer, 'wa-finish').then(() => (animationHasFinished = true));

@@ -31,7 +31,7 @@ export default class WaSkeleton extends WebAwesomeElement {
         class=${classMap({
           skeleton: true,
           'skeleton--pulse': this.effect === 'pulse',
-          'skeleton--sheen': this.effect === 'sheen'
+          'skeleton--sheen': this.effect === 'sheen',
         })}
       >
         <div part="indicator" class="skeleton__indicator"></div>

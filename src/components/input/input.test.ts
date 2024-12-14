@@ -105,7 +105,7 @@ describe('<wa-input>', () => {
 
         it('should not add a value to the form if disabled', async () => {
           const form = await fixture<HTMLFormElement>(
-            html` <form><wa-input name="name" disabled required></wa-input></form>`
+            html` <form><wa-input name="name" disabled required></wa-input></form>`,
           );
           const el = form.querySelector('wa-input')!;
           el.value = 'blah';

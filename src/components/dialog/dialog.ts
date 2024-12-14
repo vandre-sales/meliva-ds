@@ -228,7 +228,7 @@ export default class WaDialog extends WebAwesomeElement {
           dialog: true,
           'dialog--open': this.open,
           'dialog--with-header': this.withHeader,
-          'dialog--with-footer': this.withFooter
+          'dialog--with-footer': this.withFooter,
         })}
         @cancel=${this.handleDialogCancel}
         @click=${this.handleDialogClick}

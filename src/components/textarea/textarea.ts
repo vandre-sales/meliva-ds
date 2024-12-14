@@ -154,8 +154,8 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
     converter: {
       // Allow "true|false" attribute values but keep the property boolean
       fromAttribute: value => (!value || value === 'false' ? false : true),
-      toAttribute: value => (value ? 'true' : 'false')
-    }
+      toAttribute: value => (value ? 'true' : 'false'),
+    },
   })
   spellcheck = true;
 
@@ -270,7 +270,7 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
 
     return {
       top: this.input.scrollTop,
-      left: this.input.scrollTop
+      left: this.input.scrollTop,
     };
   }
 
@@ -278,7 +278,7 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
   setSelectionRange(
     selectionStart: number,
     selectionEnd: number,
-    selectionDirection: 'forward' | 'backward' | 'none' = 'none'
+    selectionDirection: 'forward' | 'backward' | 'none' = 'none',
   ) {
     this.input.setSelectionRange(selectionStart, selectionEnd, selectionDirection);
   }
@@ -288,7 +288,7 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
     replacement: string,
     start?: number,
     end?: number,
-    selectMode: 'select' | 'start' | 'end' | 'preserve' = 'preserve'
+    selectMode: 'select' | 'start' | 'end' | 'preserve' = 'preserve',
   ) {
     const selectionStart = start ?? this.input.selectionStart;
     const selectionEnd = end ?? this.input.selectionEnd;
@@ -348,7 +348,7 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
               'textarea--empty': !this.value,
               'textarea--resize-none': this.resize === 'none',
               'textarea--resize-vertical': this.resize === 'vertical',
-              'textarea--resize-auto': this.resize === 'auto'
+              'textarea--resize-auto': this.resize === 'auto',
             })}
           >
             <textarea
@@ -388,7 +388,7 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
           part="hint"
           aria-hidden=${hasHint ? 'false' : 'true'}
           class=${classMap({
-            'has-slotted': hasHint
+            'has-slotted': hasHint,
           })}
           >${this.hint}</slot
         >

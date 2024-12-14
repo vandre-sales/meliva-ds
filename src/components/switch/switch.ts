@@ -254,7 +254,7 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
             'switch--focused': this.hasFocus,
             'switch--small': this.size === 'small',
             'switch--medium': this.size === 'medium',
-            'switch--large': this.size === 'large'
+            'switch--large': this.size === 'large',
           })}
         >
           <input
@@ -289,7 +289,7 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
           name="hint"
           part="hint"
           class=${classMap({
-            'has-slotted': hasHint
+            'has-slotted': hasHint,
           })}
           aria-hidden=${hasHint ? 'false' : 'true'}
           >${this.hint}</slot

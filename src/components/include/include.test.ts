@@ -19,7 +19,7 @@ const stubbedFetchResponse: Response = {
   formData: sinon.fake(),
   bodyUsed: false,
   body: null,
-  clone: sinon.fake()
+  clone: sinon.fake(),
 };
 
 async function delayResolve(resolveValue: string) {
@@ -40,7 +40,7 @@ describe('<wa-include>', () => {
           ...stubbedFetchResponse,
           ok: true,
           status: 200,
-          text: () => delayResolve('"id": 1')
+          text: () => delayResolve('"id": 1'),
         });
         const loadHandler = sinon.spy();
         document.addEventListener('wa-load', loadHandler);
@@ -59,7 +59,7 @@ describe('<wa-include>', () => {
           ...stubbedFetchResponse,
           ok: false,
           status: 404,
-          text: () => delayResolve('{}')
+          text: () => delayResolve('{}'),
         });
         const loadHandler = sinon.spy();
         document.addEventListener('wa-include-error', loadHandler);

@@ -75,7 +75,7 @@ export default class WaMutationObserver extends WebAwesomeElement {
         attributeFilter,
         attributeOldValue: this.attrOldValue,
         characterData: this.charData,
-        characterDataOldValue: this.charDataOldValue
+        characterDataOldValue: this.charDataOldValue,
       });
     } catch {
       //

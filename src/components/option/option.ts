@@ -131,7 +131,7 @@ export default class WaOption extends WebAwesomeElement {
           'option--current': this.current,
           'option--disabled': this.disabled,
           'option--selected': this.selected,
-          'option--hover': this.hasHover
+          'option--hover': this.hasHover,
         })}
         @mouseenter=${this.handleMouseEnter}
         @mouseleave=${this.handleMouseLeave}

@@ -46,7 +46,7 @@ export default class WaBadge extends WebAwesomeElement {
           'badge--warning': this.variant === 'warning',
           'badge--danger': this.variant === 'danger',
           'badge--pill': this.pill,
-          'badge--pulse': this.pulse
+          'badge--pulse': this.pulse,
         })}
         role="status"
       >

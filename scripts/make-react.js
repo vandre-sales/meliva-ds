@@ -65,8 +65,8 @@ for await (const component of components) {
       export default reactWrapper
     `,
     Object.assign(prettierConfig, {
-      parser: 'babel-ts'
-    })
+      parser: 'babel-ts',
+    }),
   );
 
   index.push(`export { default as ${component.name} } from './${tagWithoutPrefix}/index.js';`);

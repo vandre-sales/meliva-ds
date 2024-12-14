@@ -94,7 +94,7 @@ export default class WaAvatar extends WebAwesomeElement {
           avatar: true,
           'avatar--circle': this.shape === 'circle',
           'avatar--rounded': this.shape === 'rounded',
-          'avatar--square': this.shape === 'square'
+          'avatar--square': this.shape === 'square',
         })}
         role="img"
         aria-label=${this.label}

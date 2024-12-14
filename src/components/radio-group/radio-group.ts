@@ -52,9 +52,9 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
               required: true,
               type: 'radio',
               // we need an id that's guaranteed to be unique; users will never see this
-              name: uniqueId('__wa-radio')
-            })
-          })
+              name: uniqueId('__wa-radio'),
+            }),
+          }),
         ];
     return [...super.validators, ...validators];
   }
@@ -185,7 +185,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
         } else {
           radio.checked = false;
         }
-      })
+      }),
     );
 
     this.hasButtonGroup = radios.some(radio => radio.tagName.toLowerCase() === 'wa-radio-button');
@@ -356,7 +356,7 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
           name="hint"
           part="hint"
           class=${classMap({
-            'has-slotted': hasHint
+            'has-slotted': hasHint,
           })}
           aria-hidden=${hasHint ? 'false' : 'true'}
           >${this.hint}</slot

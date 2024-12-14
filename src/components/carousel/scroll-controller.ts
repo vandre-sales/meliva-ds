@@ -104,7 +104,7 @@ export class ScrollController<T extends ScrollHost> implements ReactiveControlle
   handleDrag(event: PointerEvent) {
     this.host.scrollContainer.scrollBy({
       left: -event.movementX,
-      top: -event.movementY
+      top: -event.movementY,
     });
   }
 

@@ -130,9 +130,9 @@ export default class WaTreeItem extends WebAwesomeElement {
       [
         // We can't animate from 'auto', so use the scroll height for now
         { height: `${this.childrenContainer.scrollHeight}px`, opacity: '1', overflow: 'hidden' },
-        { height: '0', opacity: '0', overflow: 'hidden' }
+        { height: '0', opacity: '0', overflow: 'hidden' },
       ],
-      { duration, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' }
+      { duration, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' },
     );
     this.childrenContainer.hidden = true;
 
@@ -166,12 +166,12 @@ export default class WaTreeItem extends WebAwesomeElement {
       this.childrenContainer,
       [
         { height: '0', opacity: '0', overflow: 'hidden' },
-        { height: `${this.childrenContainer.scrollHeight}px`, opacity: '1', overflow: 'hidden' }
+        { height: `${this.childrenContainer.scrollHeight}px`, opacity: '1', overflow: 'hidden' },
       ],
       {
         duration,
-        easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)'
-      }
+        easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+      },
     );
     this.childrenContainer.style.height = 'auto';
 
@@ -229,7 +229,7 @@ export default class WaTreeItem extends WebAwesomeElement {
   getChildrenItems({ includeDisabled = true }: { includeDisabled?: boolean } = {}): WaTreeItem[] {
     return this.childrenSlot
       ? ([...this.childrenSlot.assignedElements({ flatten: true })].filter(
-          (item: WaTreeItem) => WaTreeItem.isTreeItem(item) && (includeDisabled || !item.disabled)
+          (item: WaTreeItem) => WaTreeItem.isTreeItem(item) && (includeDisabled || !item.disabled),
         ) as WaTreeItem[])
       : [];
   }
@@ -248,7 +248,7 @@ export default class WaTreeItem extends WebAwesomeElement {
           'tree-item--disabled': this.disabled,
           'tree-item--leaf': this.isLeaf,
           'tree-item--has-expand-button': showExpandButton,
-          'tree-item--rtl': this.localize.dir() === 'rtl'
+          'tree-item--rtl': this.localize.dir() === 'rtl',
         })}"
       >
         <div
@@ -267,13 +267,13 @@ export default class WaTreeItem extends WebAwesomeElement {
             part="expand-button"
             class=${classMap({
               'tree-item__expand-button': true,
-              'tree-item__expand-button--visible': showExpandButton
+              'tree-item__expand-button--visible': showExpandButton,
             })}
             aria-hidden="true"
           >
             ${when(
               this.loading,
-              () => html` <wa-spinner part="spinner" exportparts="base:spinner__base"></wa-spinner> `
+              () => html` <wa-spinner part="spinner" exportparts="base:spinner__base"></wa-spinner> `,
             )}
             <slot class="tree-item__expand-icon-slot" name="expand-icon">
               <wa-icon name=${isRtl ? 'chevron-left' : 'chevron-right'} library="system" variant="solid"></wa-icon>
@@ -303,7 +303,7 @@ export default class WaTreeItem extends WebAwesomeElement {
                 ?indeterminate="${this.indeterminate}"
                 tabindex="-1"
               ></wa-checkbox>
-            `
+            `,
           )}
 
           <slot class="tree-item__label" part="label"></slot>

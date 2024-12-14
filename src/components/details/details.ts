@@ -150,12 +150,12 @@ export default class WaDetails extends WebAwesomeElement {
         this.body,
         [
           { height: '0', opacity: '0' },
-          { height: `${this.body.scrollHeight}px`, opacity: '1' }
+          { height: `${this.body.scrollHeight}px`, opacity: '1' },
         ],
         {
           duration,
-          easing: 'linear'
-        }
+          easing: 'linear',
+        },
       );
       this.body.style.height = 'auto';
 
@@ -176,9 +176,9 @@ export default class WaDetails extends WebAwesomeElement {
         this.body,
         [
           { height: `${this.body.scrollHeight}px`, opacity: '1' },
-          { height: '0', opacity: '0' }
+          { height: '0', opacity: '0' },
         ],
-        { duration, easing: 'linear' }
+        { duration, easing: 'linear' },
       );
       this.body.style.height = 'auto';
 
@@ -217,7 +217,7 @@ export default class WaDetails extends WebAwesomeElement {
           details: true,
           'details--open': this.open,
           'details--disabled': this.disabled,
-          'details--rtl': isRtl
+          'details--rtl': isRtl,
         })}
       >
         <summary

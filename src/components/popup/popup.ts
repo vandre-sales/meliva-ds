@@ -150,8 +150,8 @@ export default class WaPopup extends WebAwesomeElement {
       },
       toAttribute: (value: []) => {
         return value.join(' ');
-      }
-    }
+      },
+    },
   })
   flipFallbackPlacements = '';
 
@@ -312,7 +312,7 @@ export default class WaPopup extends WebAwesomeElement {
     //
     const middleware = [
       // The offset middleware goes first
-      offset({ mainAxis: this.distance, crossAxis: this.skidding })
+      offset({ mainAxis: this.distance, crossAxis: this.skidding }),
     ];
 
     // First we sync width/height
@@ -324,8 +324,8 @@ export default class WaPopup extends WebAwesomeElement {
             const syncHeight = this.sync === 'height' || this.sync === 'both';
             this.popup.style.width = syncWidth ? `${rects.reference.width}px` : '';
             this.popup.style.height = syncHeight ? `${rects.reference.height}px` : '';
-          }
-        })
+          },
+        }),
       );
     } else {
       // Cleanup styles if we're not matching width/height
@@ -341,8 +341,8 @@ export default class WaPopup extends WebAwesomeElement {
           // @ts-expect-error - We're converting a string attribute to an array here
           fallbackPlacements: this.flipFallbackPlacements,
           fallbackStrategy: this.flipFallbackStrategy === 'best-fit' ? 'bestFit' : 'initialPlacement',
-          padding: this.flipPadding
-        })
+          padding: this.flipPadding,
+        }),
       );
     }
 
@@ -351,8 +351,8 @@ export default class WaPopup extends WebAwesomeElement {
       middleware.push(
         shift({
           boundary: this.shiftBoundary,
-          padding: this.shiftPadding
-        })
+          padding: this.shiftPadding,
+        }),
       );
     }
 
@@ -374,8 +374,8 @@ export default class WaPopup extends WebAwesomeElement {
             } else {
               this.style.removeProperty('--auto-size-available-width');
             }
-          }
-        })
+          },
+        }),
       );
     } else {
       // Cleanup styles if we're no longer using auto-size
@@ -388,8 +388,8 @@ export default class WaPopup extends WebAwesomeElement {
       middleware.push(
         arrow({
           element: this.arrowEl,
-          padding: this.arrowPadding
-        })
+          padding: this.arrowPadding,
+        }),
       );
     }
 
@@ -409,8 +409,8 @@ export default class WaPopup extends WebAwesomeElement {
       strategy: this.strategy,
       platform: {
         ...platform,
-        getOffsetParent
-      }
+        getOffsetParent,
+      },
     }).then(({ x, y, middlewareData, placement }) => {
       //
       // Even though we have our own localization utility, it uses different heuristics to determine RTL. Because of
@@ -425,7 +425,7 @@ export default class WaPopup extends WebAwesomeElement {
 
       Object.assign(this.popup.style, {
         left: `${x}px`,
-        top: `${y}px`
+        top: `${y}px`,
       });
 
       if (this.arrow) {
@@ -463,7 +463,7 @@ export default class WaPopup extends WebAwesomeElement {
           right,
           bottom,
           left,
-          [staticSide]: 'calc(var(--arrow-size-diagonal) * -1)'
+          [staticSide]: 'calc(var(--arrow-size-diagonal) * -1)',
         });
       }
     });
@@ -557,7 +557,7 @@ export default class WaPopup extends WebAwesomeElement {
         part="hover-bridge"
         class=${classMap({
           'popup-hover-bridge': true,
-          'popup-hover-bridge--visible': this.hoverBridge && this.active
+          'popup-hover-bridge--visible': this.hoverBridge && this.active,
         })}
       ></span>
 
@@ -567,7 +567,7 @@ export default class WaPopup extends WebAwesomeElement {
           popup: true,
           'popup--active': this.active,
           'popup--fixed': this.strategy === 'fixed',
-          'popup--has-arrow': this.arrow
+          'popup--has-arrow': this.arrow,
         })}
       >
         <slot></slot>

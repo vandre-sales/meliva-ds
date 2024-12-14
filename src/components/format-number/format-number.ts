@@ -56,7 +56,7 @@ export default class WaFormatNumber extends WebAwesomeElement {
       minimumFractionDigits: this.minimumFractionDigits,
       maximumFractionDigits: this.maximumFractionDigits,
       minimumSignificantDigits: this.minimumSignificantDigits,
-      maximumSignificantDigits: this.maximumSignificantDigits
+      maximumSignificantDigits: this.maximumSignificantDigits,
     });
   }
 }

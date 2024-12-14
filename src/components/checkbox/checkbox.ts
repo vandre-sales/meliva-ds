@@ -69,9 +69,9 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
             // Use a checkbox so we get "free" translation strings.
             validationElement: Object.assign(document.createElement('input'), {
               type: 'checkbox',
-              required: true
-            })
-          })
+              required: true,
+            }),
+          }),
         ];
     return [...super.validators, ...validators];
   }
@@ -223,7 +223,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
       <div
         class=${classMap({
           'form-control--has-hint': hasHint,
-          'form-control': true
+          'form-control': true,
         })}
       >
         <label part="base">

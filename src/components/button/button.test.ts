@@ -14,7 +14,7 @@ describe('<wa-button>', () => {
 
     init: (control: WaButton) => {
       control.type = 'button';
-    }
+    },
   });
   runFormControlBaseTests({
     tagName: 'wa-button',
@@ -22,7 +22,7 @@ describe('<wa-button>', () => {
 
     init: (control: WaButton) => {
       control.type = 'submit';
-    }
+    },
   });
   runFormControlBaseTests({
     tagName: 'wa-button',
@@ -30,7 +30,7 @@ describe('<wa-button>', () => {
 
     init: (control: WaButton) => {
       control.href = 'some-url';
-    }
+    },
   });
 
   for (const fixture of fixtures) {
@@ -282,7 +282,7 @@ describe('<wa-button>', () => {
             html`<form>
               <wa-button type="submit" name="btn-1" value="value-1">Button 1</wa-button>
               <wa-button type="submit" name="btn-2" value="value-2">Button 2</wa-button>
-            </form>`
+            </form>`,
           );
 
           let formData = new FormData(form);

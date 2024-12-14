@@ -31,7 +31,7 @@ const translation: Translation = {
   selectAColorFromTheScreen: 'انتخاب یک رنگ از صفحه نمایش',
   showPassword: 'نمایش رمز',
   slideNum: slide => `اسلاید ${slide}`,
-  toggleColorFormat: 'تغییر قالب رنگ'
+  toggleColorFormat: 'تغییر قالب رنگ',
 };
 
 registerTranslation(translation);

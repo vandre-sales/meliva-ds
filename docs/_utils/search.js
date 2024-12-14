@@ -19,7 +19,7 @@ export function searchPlugin(options = {}) {
     getDescription: doc => doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? '',
     getHeadings: doc => [...doc.querySelectorAll('h1, h2, h3, h4, h5, h6')].map(heading => heading.textContent ?? ''),
     getContent: doc => doc.querySelector('body')?.textContent ?? '',
-    ...options
+    ...options,
   };
 
   return function (eleventyConfig) {
@@ -32,8 +32,8 @@ export function searchPlugin(options = {}) {
           noscript: false,
           style: false,
           pre: false,
-          code: false
-        }
+          code: false,
+        },
       });
 
       // Remove content that shouldn't be searchable to reduce the index size
@@ -46,7 +46,7 @@ export function searchPlugin(options = {}) {
         description: collapseWhitespace(options.getDescription(doc)),
         headings: options.getHeadings(doc).map(collapseWhitespace),
         content: collapseWhitespace(options.getContent(doc)),
-        url: this.page.url === '/' ? '/' : this.page.url.replace(/\/$/, '')
+        url: this.page.url === '/' ? '/' : this.page.url.replace(/\/$/, ''),
       });
 
       return content;

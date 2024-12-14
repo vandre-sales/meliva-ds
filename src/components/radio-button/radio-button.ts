@@ -166,7 +166,7 @@ export default class WaRadioButton extends WebAwesomeFormAssociatedElement {
             'button--pill': this.pill,
             'button--has-label': hasLabel,
             'button--has-prefix': hasPrefix,
-            'button--has-suffix': hasSuffix
+            'button--has-suffix': hasSuffix,
           })}
           aria-disabled=${this.disabled}
           type="button"

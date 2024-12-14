@@ -92,8 +92,8 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
       ? []
       : [
           RequiredValidator({
-            validationElement: Object.assign(document.createElement('select'), { required: true })
-          })
+            validationElement: Object.assign(document.createElement('select'), { required: true }),
+          }),
         ];
     return [...super.validators, ...validators];
   }
@@ -132,8 +132,8 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     reflect: true,
     converter: {
       fromAttribute: (value: string) => value.split(' '),
-      toAttribute: (value: string | string[]) => (Array.isArray(value) ? value.join(' ') : value)
-    }
+      toAttribute: (value: string | string[]) => (Array.isArray(value) ? value.join(' ') : value),
+    },
   })
   set defaultValue(val: string | string[]) {
     this._defaultValue = this.convertDefaultValue(val);
@@ -799,7 +799,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
-          'form-control--has-hint': hasHint
         })}
       >
         <label
@@ -935,7 +934,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
           name="hint"
           part="hint"
           class=${classMap({
-            'has-slotted': hasHint
+            'has-slotted': hasHint,
           })}
           aria-hidden=${hasHint ? 'false' : 'true'}
           >${this.hint}</slot

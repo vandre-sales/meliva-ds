@@ -75,7 +75,7 @@ export default class WaTag extends WebAwesomeElement {
 
           // Modifiers
           'tag--pill': this.pill,
-          'tag--removable': this.removable
+          'tag--removable': this.removable,
         })}
       >
         <slot part="content" class="tag__content"></slot>

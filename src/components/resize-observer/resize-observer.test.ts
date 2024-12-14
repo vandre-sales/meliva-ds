@@ -9,7 +9,7 @@ describe('<wa-resize-observer>', () => {
         const el = await fixture(
           html`<wa-resize-observer>
             <div>Resize this box and watch the console 👉</div>
-          </wa-resize-observer>`
+          </wa-resize-observer>`,
         );
 
         await expect(el).to.be.accessible();

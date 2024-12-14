@@ -215,7 +215,7 @@ export default class WaCopyButton extends WebAwesomeElement {
           class=${classMap({
             'copy-button': true,
             'copy-button--success': this.status === 'success',
-            'copy-button--error': this.status === 'error'
+            'copy-button--error': this.status === 'error',
           })}
           for="copy-button"
           placement=${this.tooltipPlacement}

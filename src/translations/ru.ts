@@ -31,7 +31,7 @@ const translation: Translation = {
   selectAColorFromTheScreen: 'Выберите цвет на экране',
   showPassword: 'Показать пароль',
   slideNum: slide => `Слайд ${slide}`,
-  toggleColorFormat: 'Переключить цветовую модель'
+  toggleColorFormat: 'Переключить цветовую модель',
 };
 
 registerTranslation(translation);

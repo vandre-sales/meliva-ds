@@ -31,7 +31,7 @@ const translation: Translation = {
   selectAColorFromTheScreen: 'Szín választása a képernyőről',
   showPassword: 'Jelszó megjelenítése',
   slideNum: slide => `${slide}. dia`,
-  toggleColorFormat: 'Színformátum változtatása'
+  toggleColorFormat: 'Színformátum változtatása',
 };
 
 registerTranslation(translation);

@@ -8,7 +8,7 @@ const translation: Translation = {
   $name: 'Deutsch (Schweiz)',
 
   close: 'Schliessen',
-  resize: 'Grösse ändern'
+  resize: 'Grösse ändern',
 };
 
 registerTranslation(translation);

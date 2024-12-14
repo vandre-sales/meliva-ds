@@ -23,7 +23,7 @@ describe('<wa-progress-ring>', () => {
 
         beforeEach(async () => {
           el = await fixture<WaProgressRing>(
-            html`<wa-progress-ring title="Titled Progress Ring" value="25"></wa-progress-ring>`
+            html`<wa-progress-ring title="Titled Progress Ring" value="25"></wa-progress-ring>`,
           );
           base = el.shadowRoot!.querySelector('[part~="base"]')!;
         });
@@ -44,7 +44,7 @@ describe('<wa-progress-ring>', () => {
       describe('when provided a ariaLabel, and value parameter', () => {
         beforeEach(async () => {
           el = await fixture<WaProgressRing>(
-            html`<wa-progress-ring ariaLabel="Labelled Progress Ring" value="25"></wa-progress-ring>`
+            html`<wa-progress-ring ariaLabel="Labelled Progress Ring" value="25"></wa-progress-ring>`,
           );
         });
 

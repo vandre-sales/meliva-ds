@@ -189,8 +189,8 @@ export default class WaRating extends WebAwesomeElement {
     this.dispatchEvent(
       new WaHoverEvent({
         phase: 'move',
-        value: this.hoverValue
-      })
+        value: this.hoverValue,
+      }),
     );
   }
 
@@ -199,8 +199,8 @@ export default class WaRating extends WebAwesomeElement {
     this.dispatchEvent(
       new WaHoverEvent({
         phase: this.isHovering ? 'start' : 'end',
-        value: this.hoverValue
-      })
+        value: this.hoverValue,
+      }),
     );
   }
 
@@ -232,7 +232,7 @@ export default class WaRating extends WebAwesomeElement {
           rating: true,
           'rating--readonly': this.readonly,
           'rating--disabled': this.disabled,
-          'rating--rtl': isRtl
+          'rating--rtl': isRtl,
         })}
         role="slider"
         aria-label=${this.label}
@@ -262,7 +262,7 @@ export default class WaRating extends WebAwesomeElement {
                   class=${classMap({
                     rating__symbol: true,
                     'rating__partial-symbol-container': true,
-                    'rating__symbol--hover': this.isHovering && Math.ceil(displayValue) === index + 1
+                    'rating__symbol--hover': this.isHovering && Math.ceil(displayValue) === index + 1,
                   })}
                   role="presentation"
                 >
@@ -270,7 +270,7 @@ export default class WaRating extends WebAwesomeElement {
                     style=${styleMap({
                       clipPath: isRtl
                         ? `inset(0 ${(displayValue - index) * 100}% 0 0)`
-                        : `inset(0 0 0 ${(displayValue - index) * 100}%)`
+                        : `inset(0 0 0 ${(displayValue - index) * 100}%)`,
                     })}
                   >
                     ${unsafeHTML(this.getSymbol(index + 1))}
@@ -280,7 +280,7 @@ export default class WaRating extends WebAwesomeElement {
                     style=${styleMap({
                       clipPath: isRtl
                         ? `inset(0 0 0 ${100 - (displayValue - index) * 100}%)`
-                        : `inset(0 ${100 - (displayValue - index) * 100}% 0 0)`
+                        : `inset(0 ${100 - (displayValue - index) * 100}% 0 0)`,
                     })}
                   >
                     ${unsafeHTML(this.getSymbol(index + 1))}
@@ -294,7 +294,7 @@ export default class WaRating extends WebAwesomeElement {
                 class=${classMap({
                   rating__symbol: true,
                   'rating__symbol--hover': this.isHovering && Math.ceil(displayValue) === index + 1,
-                  'rating__symbol--active': displayValue >= index + 1
+                  'rating__symbol--active': displayValue >= index + 1,
                 })}
                 role="presentation"
               >

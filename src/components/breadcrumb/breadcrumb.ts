@@ -50,7 +50,7 @@ export default class WaBreadcrumb extends WebAwesomeElement {
 
   private handleSlotChange() {
     const items = [...this.defaultSlot.assignedElements({ flatten: true })].filter(
-      item => item.tagName.toLowerCase() === 'wa-breadcrumb-item'
+      item => item.tagName.toLowerCase() === 'wa-breadcrumb-item',
     ) as WaBreadcrumbItem[];
 
     items.forEach((item, index) => {

@@ -82,9 +82,9 @@ export default class WaQrCode extends WebAwesomeElement {
         fill: this.fill,
         background: this.background,
         // We draw the canvas larger and scale its container down to avoid blurring on high-density displays
-        size: this.size * 2
+        size: this.size * 2,
       },
-      this.canvas
+      this.canvas,
     );
 
     this.generated = true;

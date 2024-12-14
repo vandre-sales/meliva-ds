@@ -36,7 +36,7 @@ export function registerIconLibrary(name: string, options: Omit<IconLibrary, 'na
     name,
     resolver: options.resolver,
     mutator: options.mutator,
-    spriteSheet: options.spriteSheet
+    spriteSheet: options.spriteSheet,
   });
 
   // Redraw watched icons

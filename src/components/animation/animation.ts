@@ -136,7 +136,7 @@ export default class WaAnimation extends WebAwesomeElement {
       endDelay: this.endDelay,
       fill: this.fill,
       iterationStart: this.iterationStart,
-      iterations: this.iterations
+      iterations: this.iterations,
     });
     this.animation.playbackRate = this.playbackRate;
     this.animation.addEventListener('cancel', this.handleAnimationCancel);
@@ -171,7 +171,7 @@ export default class WaAnimation extends WebAwesomeElement {
     'fill',
     'iterations',
     'iterationsStart',
-    'keyframes'
+    'keyframes',
   ])
   handleAnimationChange() {
     if (!this.hasUpdated) {

@@ -27,7 +27,7 @@ export const defaultValue =
       this: ReactiveElement & { [name: string]: unknown },
       name,
       old,
-      value
+      value,
     ) {
       const options = ctor.getPropertyOptions(propertyName);
       const attributeName = typeof options.attribute === 'string' ? options.attribute : propertyName;

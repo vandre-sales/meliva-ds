@@ -71,8 +71,8 @@ export default function (eleventyConfig) {
       selector: 'h2, h3',
       ifEmpty: doc => {
         doc.querySelector('#outline')?.remove();
-      }
-    })
+      },
+    }),
   );
 
   // Add current link classes
@@ -93,19 +93,19 @@ export default function (eleventyConfig) {
       // Replace [issue:1234] with a link to the issue on GitHub
       {
         replace: /\[pr:([0-9]+)\]/gs,
-        replaceWith: '<a href="https://github.com/shoelace-style/webawesome/pull/$1">#$1</a>'
+        replaceWith: '<a href="https://github.com/shoelace-style/webawesome/pull/$1">#$1</a>',
       },
       // Replace [pr:1234] with a link to the pull request on GitHub
       {
         replace: /\[issue:([0-9]+)\]/gs,
-        replaceWith: '<a href="https://github.com/shoelace-style/webawesome/issues/$1">#$1</a>'
+        replaceWith: '<a href="https://github.com/shoelace-style/webawesome/issues/$1">#$1</a>',
       },
       // Replace [discuss:1234] with a link to the discussion on GitHub
       {
         replace: /\[discuss:([0-9]+)\]/gs,
-        replaceWith: '<a href="https://github.com/shoelace-style/webawesome/discussions/$1">#$1</a>'
-      }
-    ])
+        replaceWith: '<a href="https://github.com/shoelace-style/webawesome/discussions/$1">#$1</a>',
+      },
+    ]),
   );
 
   const omittedModules = [];
@@ -124,7 +124,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPlugin(litPlugin, {
     mode: 'worker',
-    componentModules
+    componentModules,
   });
 
   // Build the search index
@@ -132,8 +132,8 @@ export default function (eleventyConfig) {
     searchPlugin({
       filename: '',
       selectorsToIgnore: ['code.example'],
-      getContent: doc => doc.querySelector('#content')?.textContent ?? ''
-    })
+      getContent: doc => doc.querySelector('#content')?.textContent ?? '',
+    }),
   );
 
   // Production-only plugins
@@ -149,8 +149,8 @@ export default function (eleventyConfig) {
     markdownTemplateEngine: 'njk',
     dir: {
       includes: '_includes',
-      layouts: '_layouts'
+      layouts: '_layouts',
     },
-    templateFormats: ['njk', 'md']
+    templateFormats: ['njk', 'md'],
   };
 }

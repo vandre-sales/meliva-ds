@@ -31,7 +31,7 @@ const translation: Translation = {
   selectAColorFromTheScreen: 'בחור צבע מהמסך',
   showPassword: 'הראה סיסמה',
   slideNum: slide => `שקופית ${slide}`,
-  toggleColorFormat: 'החלף פורמט צבע'
+  toggleColorFormat: 'החלף פורמט צבע',
 };
 
 registerTranslation(translation);

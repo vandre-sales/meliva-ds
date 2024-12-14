@@ -31,7 +31,7 @@ const translation: Translation = {
   selectAColorFromTheScreen: 'Selecteer een kleur van het scherm',
   showPassword: 'Laat wachtwoord zien',
   slideNum: slide => `Schuif ${slide}`,
-  toggleColorFormat: 'Wissel kleurnotatie'
+  toggleColorFormat: 'Wissel kleurnotatie',
 };
 
 registerTranslation(translation);

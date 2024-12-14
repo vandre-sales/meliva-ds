@@ -15,7 +15,7 @@ const availableUnits: UnitConfig[] = [
   { max: 518400000, value: 86400000, unit: 'day' }, // max 6 days
   { max: 2419200000, value: 604800000, unit: 'week' }, // max 28 days
   { max: 28512000000, value: 2592000000, unit: 'month' }, // max 11 months
-  { max: Infinity, value: 31536000000, unit: 'year' }
+  { max: Infinity, value: 31536000000, unit: 'year' },
 ];
 
 /**
@@ -73,7 +73,7 @@ export default class WaRelativeTime extends WebAwesomeElement {
     this.isoTime = then.toISOString();
     this.relativeTime = this.localize.relativeTime(Math.round(diff / value), unit, {
       numeric: this.numeric,
-      style: this.format
+      style: this.format,
     });
 
     // If sync is enabled, update as time passes

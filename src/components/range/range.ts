@@ -284,7 +284,7 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
         class=${classMap({
           'form-control': true,
           'form-control--medium': true, // range only has one size
-          'form-control--has-label': hasLabel
+          'form-control--has-label': hasLabel,
         })}
       >
         <label
@@ -306,7 +306,7 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
               'range--rtl': this.localize.dir() === 'rtl',
               'range--tooltip-visible': this.hasTooltip,
               'range--tooltip-top': this.tooltip === 'top',
-              'range--tooltip-bottom': this.tooltip === 'bottom'
+              'range--tooltip-bottom': this.tooltip === 'bottom',
             })}
             @mousedown=${this.handleThumbDragStart}
             @mouseup=${this.handleThumbDragEnd}
@@ -345,7 +345,7 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
           name="hint"
           part="hint"
           class=${classMap({
-            'has-slotted': hasHint
+            'has-slotted': hasHint,
           })}
           aria-hidden=${hasHint ? 'false' : 'true'}
           >${this.hint}</slot

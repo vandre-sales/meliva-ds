@@ -326,7 +326,7 @@ describe('<wa-radio-group>', () => {
             const validFocusHandler = sinon.spy();
 
             Array.from(el.querySelectorAll<WaRadio>('wa-radio')).forEach(radio =>
-              radio.addEventListener('wa-focus', validFocusHandler)
+              radio.addEventListener('wa-focus', validFocusHandler),
             );
 
             expect(validFocusHandler).to.not.have.been.called;

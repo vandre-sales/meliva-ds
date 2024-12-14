@@ -276,7 +276,7 @@ export default class WaTabGroup extends WebAwesomeElement {
         this.localize.dir() === 'rtl'
           ? this.nav.scrollLeft + this.nav.clientWidth
           : this.nav.scrollLeft - this.nav.clientWidth,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 
@@ -286,7 +286,7 @@ export default class WaTabGroup extends WebAwesomeElement {
         this.localize.dir() === 'rtl'
           ? this.nav.scrollLeft - this.nav.clientWidth
           : this.nav.scrollLeft + this.nav.clientWidth,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 
@@ -294,7 +294,7 @@ export default class WaTabGroup extends WebAwesomeElement {
     options = {
       emitEvents: true,
       scrollBehavior: 'auto',
-      ...options
+      ...options,
     };
 
     if (tab !== this.activeTab && !tab.disabled) {
@@ -383,7 +383,7 @@ export default class WaTabGroup extends WebAwesomeElement {
           'tab-group--start': this.placement === 'start',
           'tab-group--end': this.placement === 'end',
           'tab-group--rtl': isRtl,
-          'tab-group--has-scroll-controls': this.hasScrollControls
+          'tab-group--has-scroll-controls': this.hasScrollControls,
         })}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}

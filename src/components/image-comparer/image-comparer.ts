@@ -59,7 +59,7 @@ export default class WaImageComparer extends WebAwesomeElement {
         this.position = parseFloat(clamp((x / width) * 100, 0, 100).toFixed(2));
         if (isRtl) this.position = 100 - this.position;
       },
-      initialEvent: event
+      initialEvent: event,
     });
   }
 
@@ -105,7 +105,7 @@ export default class WaImageComparer extends WebAwesomeElement {
         id="image-comparer"
         class=${classMap({
           'image-comparer': true,
-          'image-comparer--rtl': isRtl
+          'image-comparer--rtl': isRtl,
         })}
         @keydown=${this.handleKeyDown}
       >
@@ -118,7 +118,7 @@ export default class WaImageComparer extends WebAwesomeElement {
             part="after"
             class="image-comparer__after"
             style=${styleMap({
-              clipPath: isRtl ? `inset(0 0 0 ${100 - this.position}%)` : `inset(0 ${100 - this.position}% 0 0)`
+              clipPath: isRtl ? `inset(0 0 0 ${100 - this.position}%)` : `inset(0 ${100 - this.position}% 0 0)`,
             })}
           >
             <slot name="after"></slot>
@@ -129,7 +129,7 @@ export default class WaImageComparer extends WebAwesomeElement {
           part="divider"
           class="image-comparer__divider"
           style=${styleMap({
-            left: isRtl ? `${100 - this.position}%` : `${this.position}%`
+            left: isRtl ? `${100 - this.position}%` : `${this.position}%`,
           })}
           @mousedown=${this.handleDrag}
           @touchstart=${this.handleDrag}
