@@ -1,10 +1,10 @@
-import '../icon/icon.js';
-import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
-import styles from './breadcrumb.css';
+import { customElement, property, query } from 'lit/decorators.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
 import type WaBreadcrumbItem from '../breadcrumb-item/breadcrumb-item.js';
+import '../icon/icon.js';
+import styles from './breadcrumb.css';
 
 /**
  * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.

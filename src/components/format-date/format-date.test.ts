@@ -1,7 +1,7 @@
 import { expect } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
 import { html } from 'lit';
 import sinon from 'sinon';
+import { fixtures } from '../../internal/test/fixture.js';
 import type WaFormatDate from './format-date.js';
 
 describe('<wa-format-date>', () => {

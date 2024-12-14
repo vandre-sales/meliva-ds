@@ -1,6 +1,6 @@
 import { expect } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
 import { html } from 'lit';
+import { fixtures } from '../../internal/test/fixture.js';
 import type WaProgressRing from './progress-ring.js';
 
 describe('<wa-progress-ring>', () => {

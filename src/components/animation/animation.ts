@@ -1,12 +1,12 @@
-import { animations } from './animations.js';
-import { customElement, property, queryAsync } from 'lit/decorators.js';
 import { html } from 'lit';
+import { customElement, property, queryAsync } from 'lit/decorators.js';
 import { WaCancelEvent } from '../../events/cancel.js';
 import { WaFinishEvent } from '../../events/finish.js';
 import { WaStartEvent } from '../../events/start.js';
 import { watch } from '../../internal/watch.js';
-import styles from './animation.css';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import styles from './animation.css';
+import { animations } from './animations.js';
 
 /**
  * @summary Animate elements declaratively with nearly 100 baked-in presets, or roll your own with custom keyframes. Powered by the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).

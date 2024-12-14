@@ -1,14 +1,7 @@
-import '../icon/icon.js';
-import '../popup/popup.js';
-import '../tag/tag.js';
-import { animateWithClass } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { HasSlotController } from '../../internal/slot.js';
+import type { TemplateResult } from 'lit';
 import { html, isServer } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
-import { RequiredValidator } from '../../internal/validators/required-validator.js';
-import { scrollIntoView } from '../../internal/scroll.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { WaAfterHideEvent } from '../../events/after-hide.js';
 import { WaAfterShowEvent } from '../../events/after-show.js';
@@ -18,16 +11,23 @@ import { WaClearEvent } from '../../events/clear.js';
 import { WaFocusEvent } from '../../events/focus.js';
 import { WaHideEvent } from '../../events/hide.js';
 import { WaInputEvent } from '../../events/input.js';
-import { waitForEvent } from '../../internal/event.js';
+import type { WaRemoveEvent } from '../../events/remove.js';
 import { WaShowEvent } from '../../events/show.js';
+import { animateWithClass } from '../../internal/animate.js';
+import { waitForEvent } from '../../internal/event.js';
+import { scrollIntoView } from '../../internal/scroll.js';
+import { HasSlotController } from '../../internal/slot.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
-import styles from './select.css';
-import type { TemplateResult } from 'lit';
-import type { WaRemoveEvent } from '../../events/remove.js';
+import { LocalizeController } from '../../utilities/localize.js';
+import '../icon/icon.js';
 import type WaOption from '../option/option.js';
+import '../popup/popup.js';
 import type WaPopup from '../popup/popup.js';
+import '../tag/tag.js';
+import styles from './select.css';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.

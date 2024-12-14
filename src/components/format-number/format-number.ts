@@ -1,6 +1,6 @@
 import { customElement, property } from 'lit/decorators.js';
-import { LocalizeController } from '../../utilities/localize.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
 
 /**
  * @summary Formats a number using the specified locale and options.

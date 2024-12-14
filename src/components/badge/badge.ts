@@ -1,8 +1,8 @@
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import styles from './badge.css';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import styles from './badge.css';
 
 /**
  * @summary Badges are used to draw attention and display statuses or counts.

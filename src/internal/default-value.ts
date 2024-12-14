@@ -14,8 +14,8 @@
 //  @defaultValue('checked') defaultChecked = false;
 //
 
-import { defaultConverter } from 'lit';
 import type { ReactiveElement } from 'lit';
+import { defaultConverter } from 'lit';
 
 export const defaultValue =
   (propertyName = 'value') =>

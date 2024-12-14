@@ -1,12 +1,12 @@
 import { aTimeout, expect, nextFrame, oneEvent, waitUntil } from '@open-wc/testing';
-import { clickOnElement, dragElement, moveMouseOnElement } from '../../internal/test.js';
-import { clientFixture } from '../../internal/test/fixture.js';
+import { resetMouse } from '@web/test-runner-commands';
 import { html } from 'lit';
 import { map } from 'lit/directives/map.js';
 import { range } from 'lit/directives/range.js';
-import { resetMouse } from '@web/test-runner-commands';
-import sinon from 'sinon';
 import type { SinonStub } from 'sinon';
+import sinon from 'sinon';
+import { clickOnElement, dragElement, moveMouseOnElement } from '../../internal/test.js';
+import { clientFixture } from '../../internal/test/fixture.js';
 import type WaCarousel from './carousel.js';
 
 describe('<wa-carousel>', () => {

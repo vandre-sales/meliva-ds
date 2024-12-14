@@ -1,9 +1,9 @@
 /**
  * @module components Fetches components from custom-elements.json and exposes them in a saner format.
  */
+import { readFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { readFileSync } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

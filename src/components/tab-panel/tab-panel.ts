@@ -1,9 +1,9 @@
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { watch } from '../../internal/watch.js';
-import styles from './tab-panel.css';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import styles from './tab-panel.css';
 
 let id = 0;
 

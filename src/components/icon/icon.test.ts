@@ -1,6 +1,6 @@
 import { aTimeout, elementUpdated, expect, oneEvent } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
 import { html } from 'lit';
+import { fixtures } from '../../internal/test/fixture.js';
 
 // Make sure this is `dist-cdn/` otherwise you will get an error.
 import { registerIconLibrary } from '../../../dist-cdn/webawesome.js';

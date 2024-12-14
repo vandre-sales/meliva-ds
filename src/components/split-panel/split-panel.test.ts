@@ -1,9 +1,9 @@
-import { dragElement } from '../../internal/test.js';
 import { expect, oneEvent } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
-import { html } from 'lit';
-import { queryByTestId } from '../../internal/test/data-testid-helpers.js';
 import { resetMouse } from '@web/test-runner-commands';
+import { html } from 'lit';
+import { dragElement } from '../../internal/test.js';
+import { queryByTestId } from '../../internal/test/data-testid-helpers.js';
+import { fixtures } from '../../internal/test/fixture.js';
 import type WaSplitPanel from './split-panel.js';
 
 const DIVIDER_WIDTH_IN_PX = 4;

@@ -1,8 +1,8 @@
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import styles from './card.css';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import styles from './card.css';
 
 /**
  * @summary Cards can be used to group related subjects in a container.

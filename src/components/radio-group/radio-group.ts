@@ -1,19 +1,19 @@
-import '../button-group/button-group.js';
-import '../radio/radio.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { HasSlotController } from '../../internal/slot.js';
 import { html, isServer } from 'lit';
-import { RequiredValidator } from '../../internal/validators/required-validator.js';
-import { uniqueId } from '../../internal/math.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { WaChangeEvent } from '../../events/change.js';
 import { WaInputEvent } from '../../events/input.js';
+import { uniqueId } from '../../internal/math.js';
+import { HasSlotController } from '../../internal/slot.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
-import styles from './radio-group.css';
-import type WaRadio from '../radio/radio.js';
+import '../button-group/button-group.js';
 import type WaRadioButton from '../radio-button/radio-button.js';
+import '../radio/radio.js';
+import type WaRadio from '../radio/radio.js';
+import styles from './radio-group.css';
 
 /**
  * @summary Radio groups are used to group multiple [radios](/docs/components/radio) or [radio buttons](/docs/components/radio-button) so they function as a single form control.

@@ -1,6 +1,6 @@
+import type { ReactiveController, ReactiveElement } from 'lit';
 import { prefersReducedMotion } from '../../internal/animate.js';
 import { waitForEvent } from '../../internal/event.js';
-import type { ReactiveController, ReactiveElement } from 'lit';
 
 interface ScrollHost extends ReactiveElement {
   scrollContainer: HTMLElement;

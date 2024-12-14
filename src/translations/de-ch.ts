@@ -1,6 +1,6 @@
+import type { Translation } from '../utilities/localize.js';
 import { registerTranslation } from '../utilities/localize.js';
 import baseTranslation from './de.js';
-import type { Translation } from '../utilities/localize.js';
 
 const translation: Translation = {
   ...baseTranslation,

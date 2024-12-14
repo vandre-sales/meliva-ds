@@ -1,17 +1,17 @@
-import '../icon/icon.js';
-import { animate, parseDuration } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
+import { customElement, property, query } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { WaAfterHideEvent } from '../../events/after-hide.js';
 import { WaAfterShowEvent } from '../../events/after-show.js';
 import { WaHideEvent } from '../../events/hide.js';
-import { waitForEvent } from '../../internal/event.js';
 import { WaShowEvent } from '../../events/show.js';
+import { animate, parseDuration } from '../../internal/animate.js';
+import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
-import styles from './details.css';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
+import '../icon/icon.js';
+import styles from './details.css';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.

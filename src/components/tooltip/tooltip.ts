@@ -1,17 +1,17 @@
-import { animateWithClass } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { uniqueId } from '../../internal/math.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { WaAfterHideEvent } from '../../events/after-hide.js';
 import { WaAfterShowEvent } from '../../events/after-show.js';
 import { WaHideEvent } from '../../events/hide.js';
-import { waitForEvent } from '../../internal/event.js';
 import { WaShowEvent } from '../../events/show.js';
+import { animateWithClass } from '../../internal/animate.js';
+import { waitForEvent } from '../../internal/event.js';
+import { uniqueId } from '../../internal/math.js';
 import { watch } from '../../internal/watch.js';
-import styles from './tooltip.css';
-import WaPopup from '../popup/popup.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import WaPopup from '../popup/popup.js';
+import styles from './tooltip.css';
 
 /**
  * @summary Tooltips display additional information based on a specific action.

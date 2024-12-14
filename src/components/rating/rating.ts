@@ -1,16 +1,16 @@
-import '../icon/icon.js';
-import { clamp } from '../../internal/math.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
+import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { WaChangeEvent } from '../../events/change.js';
 import { WaHoverEvent } from '../../events/hover.js';
+import { clamp } from '../../internal/math.js';
 import { watch } from '../../internal/watch.js';
-import styles from './rating.css';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
+import '../icon/icon.js';
+import styles from './rating.css';
 
 /**
  * @summary Ratings give users a way to quickly view and provide feedback.

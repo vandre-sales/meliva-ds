@@ -1,11 +1,11 @@
 import { aTimeout, expect, oneEvent } from '@open-wc/testing';
+import { sendKeys } from '@web/test-runner-commands';
+import { html } from 'lit';
+import sinon from 'sinon';
 import { clickOnElement, dragElement } from '../../internal/test.js';
 import { fixtures } from '../../internal/test/fixture.js';
-import { html } from 'lit';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
-import { sendKeys } from '@web/test-runner-commands';
 import { serialize } from '../../utilities/form.js';
-import sinon from 'sinon';
 import type WaColorPicker from './color-picker.js';
 
 describe('<wa-color-picker>', () => {

@@ -1,12 +1,12 @@
-import '../icon-button/icon-button.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { getComputedStyle } from '../../internal/computedStyle.js';
 import { html } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import { getComputedStyle } from '../../internal/computedStyle.js';
 import { watch } from '../../internal/watch.js';
-import styles from './viewport-demo.css';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import '../icon-button/icon-button.js';
+import styles from './viewport-demo.css';
 
 export interface ViewportDimensions {
   width: number;

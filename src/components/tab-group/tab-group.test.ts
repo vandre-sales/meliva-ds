@@ -1,16 +1,16 @@
 import { aTimeout, elementUpdated, expect, oneEvent, waitUntil } from '@open-wc/testing';
-import { clickOnElement } from '../../internal/test.js';
-import { clientFixture, fixtures } from '../../internal/test/fixture.js';
-import { html } from 'lit';
-import { isElementVisibleFromOverflow } from '../../internal/test/element-visible-overflow.js';
-import { queryByTestId } from '../../internal/test/data-testid-helpers.js';
 import { sendKeys } from '@web/test-runner-commands';
-import { waitForScrollingToEnd } from '../../internal/test/wait-for-scrolling.js';
 import type { HTMLTemplateResult } from 'lit';
+import { html } from 'lit';
 import type { WaTabShowEvent } from '../../events/tab-show.js';
+import { clickOnElement } from '../../internal/test.js';
+import { queryByTestId } from '../../internal/test/data-testid-helpers.js';
+import { isElementVisibleFromOverflow } from '../../internal/test/element-visible-overflow.js';
+import { clientFixture, fixtures } from '../../internal/test/fixture.js';
+import { waitForScrollingToEnd } from '../../internal/test/wait-for-scrolling.js';
+import type WaTabPanel from '../tab-panel/tab-panel.js';
 import type WaTab from '../tab/tab.js';
 import type WaTabGroup from './tab-group.js';
-import type WaTabPanel from '../tab-panel/tab-panel.js';
 
 interface ClientRectangles {
   body?: DOMRect;

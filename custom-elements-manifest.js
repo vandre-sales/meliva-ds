@@ -2,8 +2,8 @@ import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integrat
 import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
 // import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
 import { parse } from 'comment-parser';
-import { pascalCase } from 'pascal-case';
 import fs from 'fs';
+import { pascalCase } from 'pascal-case';
 
 const packageData = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 const { name, description, version, author, homepage, license } = packageData;

@@ -1,21 +1,21 @@
-import '../icon/icon.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
-import { HasSlotController } from '../../internal/slot.js';
+import type { PropertyValues } from 'lit';
 import { html, isServer } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { WaBlurEvent } from '../../events/blur.js';
 import { WaChangeEvent } from '../../events/change.js';
 import { WaFocusEvent } from '../../events/focus.js';
 import { WaInputEvent } from '../../events/input.js';
+import { HasSlotController } from '../../internal/slot.js';
+import { RequiredValidator } from '../../internal/validators/required-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
 import sizeStyles from '../../styles/shadow/size.css';
+import '../icon/icon.js';
 import styles from './checkbox.css';
-import type { PropertyValues } from 'lit';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
@@ -222,7 +222,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
     return html`
       <div
         class=${classMap({
-          'form-control--has-hint': hasHint
+          'form-control--has-hint': hasHint,
           'form-control': true
         })}
       >

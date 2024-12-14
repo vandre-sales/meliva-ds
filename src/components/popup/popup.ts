@@ -1,12 +1,12 @@
 import { arrow, autoUpdate, computePosition, flip, offset, platform, shift, size } from '@floating-ui/dom';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
-import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { offsetParent } from 'composed-offset-position';
+import { html } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { WaRepositionEvent } from '../../events/reposition.js';
-import styles from './popup.css';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
+import styles from './popup.css';
 
 export interface VirtualElement {
   getBoundingClientRect: () => DOMRect;

@@ -1,10 +1,7 @@
 import { aTimeout, expect, oneEvent } from '@open-wc/testing';
-import {
-  clientFixture
-  // hydratedFixture
-} from '../../internal/test/fixture.js';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { clientFixture } from '../../internal/test/fixture.js';
 import type WaAnimation from './animation.js';
 
 describe('<wa-animation>', () => {

@@ -1,9 +1,9 @@
-import { CustomErrorValidator } from './validators/custom-error-validator.js';
-import { isServer, LitElement, unsafeCSS } from 'lit';
+import type { CSSResult, CSSResultGroup, PropertyValues } from 'lit';
+import { LitElement, isServer, unsafeCSS } from 'lit';
 import { property } from 'lit/decorators.js';
 import { WaInvalidEvent } from '../events/invalid.js';
 import componentStyles from '../styles/shadow/component.css';
-import type { CSSResult, CSSResultGroup, PropertyValues } from 'lit';
+import { CustomErrorValidator } from './validators/custom-error-validator.js';
 
 export default class WebAwesomeElement extends LitElement {
   // Make localization attributes reactive

@@ -1,22 +1,22 @@
 import '../../internal/scrollend-polyfill.js';
 
+import type { PropertyValueMap } from 'lit';
+import { html, isServer } from 'lit';
+import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { map } from 'lit/directives/map.js';
+import { range } from 'lit/directives/range.js';
+import { WaSlideChangeEvent } from '../../events/slide-change.js';
+import { prefersReducedMotion } from '../../internal/animate.js';
+import { waitForEvent } from '../../internal/event.js';
+import { clamp } from '../../internal/math.js';
+import { watch } from '../../internal/watch.js';
+import WebAwesomeElement from '../../internal/webawesome-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
+import type WaCarouselItem from '../carousel-item/carousel-item.js';
 import '../icon/icon.js';
 import { AutoplayController } from './autoplay-controller.js';
-import { clamp } from '../../internal/math.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
-import { html, isServer } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
-import { map } from 'lit/directives/map.js';
-import { prefersReducedMotion } from '../../internal/animate.js';
-import { range } from 'lit/directives/range.js';
-import { waitForEvent } from '../../internal/event.js';
-import { WaSlideChangeEvent } from '../../events/slide-change.js';
-import { watch } from '../../internal/watch.js';
 import styles from './carousel.css';
-import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { PropertyValueMap } from 'lit';
-import type WaCarouselItem from '../carousel-item/carousel-item.js';
 
 /**
  * @summary Carousels display an arbitrary number of content slides along a horizontal or vertical axis.

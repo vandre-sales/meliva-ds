@@ -1,6 +1,6 @@
 import { aTimeout, expect, waitUntil } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
 import { html } from 'lit';
+import { fixtures } from '../../internal/test/fixture.js';
 import type WaAvatar from './avatar.js';
 
 // The default avatar background just misses AA contrast, but the next step up is way too dark. Since avatars aren't

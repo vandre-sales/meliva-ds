@@ -1,8 +1,8 @@
 import { expect } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
 import { html } from 'lit';
-import type WaRadioButton from './radio-button.js';
+import { fixtures } from '../../internal/test/fixture.js';
 import type WaRadioGroup from '../radio-group/radio-group.js';
+import type WaRadioButton from './radio-button.js';
 
 describe('<wa-radio-button>', () => {
   for (const fixture of fixtures) {

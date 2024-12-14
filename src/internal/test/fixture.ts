@@ -3,8 +3,8 @@
  * These fixtures will also auto-load all of our components.
  */
 
+import { ssrFixture as LitSSRFixture, cleanupFixtures } from '@lit-labs/testing/fixtures.js';
 import { aTimeout, expect, fixture } from '@open-wc/testing';
-import { cleanupFixtures, ssrFixture as LitSSRFixture } from '@lit-labs/testing/fixtures.js';
 import type { LitElement, TemplateResult } from 'lit';
 import type WebAwesomeElement from '../webawesome-element.js';
 

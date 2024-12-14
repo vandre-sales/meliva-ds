@@ -1,8 +1,8 @@
 import { aTimeout, expect, waitUntil } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
 import { html } from 'lit';
-import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import sinon from 'sinon';
+import { fixtures } from '../../internal/test/fixture.js';
+import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import type WaButton from './button.js';
 
 const variants = ['brand', 'success', 'neutral', 'warning', 'danger'];

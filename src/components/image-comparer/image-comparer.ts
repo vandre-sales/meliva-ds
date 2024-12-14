@@ -1,15 +1,15 @@
-import '../icon/icon.js';
-import { clamp } from '../../internal/math.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
-import { drag } from '../../internal/drag.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
+import { customElement, property, query } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { WaChangeEvent } from '../../events/change.js';
+import { drag } from '../../internal/drag.js';
+import { clamp } from '../../internal/math.js';
 import { watch } from '../../internal/watch.js';
-import styles from './image-comparer.css';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
+import '../icon/icon.js';
+import styles from './image-comparer.css';
 
 /**
  * @summary Compare visual differences between similar photos with a sliding panel.

@@ -1,18 +1,18 @@
 import { parse } from 'path';
-import { markdown } from './_utils/markdown.js';
 import { anchorHeadingsPlugin } from './_utils/anchor-headings.js';
 import { codeExamplesPlugin } from './_utils/code-examples.js';
 import { copyCodePlugin } from './_utils/copy-code.js';
-import { removeDataAlphaElements } from './_utils/remove-data-alpha-elements.js';
 import { currentLink } from './_utils/current-link.js';
 import { highlightCodePlugin } from './_utils/highlight-code.js';
+import { markdown } from './_utils/markdown.js';
+import { removeDataAlphaElements } from './_utils/remove-data-alpha-elements.js';
 // import { formatCodePlugin } from './_utils/format-code.js';
+import litPlugin from '@lit-labs/eleventy-plugin-lit';
+import { readFile } from 'fs/promises';
+import componentList from './_data/componentList.js';
+import { outlinePlugin } from './_utils/outline.js';
 import { replaceTextPlugin } from './_utils/replace-text.js';
 import { searchPlugin } from './_utils/search.js';
-import { readFile } from 'fs/promises';
-import { outlinePlugin } from './_utils/outline.js';
-import componentList from './_data/componentList.js';
-import litPlugin from '@lit-labs/eleventy-plugin-lit';
 
 import process from 'process';
 

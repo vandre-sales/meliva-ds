@@ -1,18 +1,18 @@
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
-import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
+import { customElement, eventOptions, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { LocalizeController } from '../../utilities/localize.js';
-import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { WaBlurEvent } from '../../events/blur.js';
 import { WaChangeEvent } from '../../events/change.js';
 import { WaFocusEvent } from '../../events/focus.js';
 import { WaInputEvent } from '../../events/input.js';
+import { HasSlotController } from '../../internal/slot.js';
+import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
+import { LocalizeController } from '../../utilities/localize.js';
 import styles from './range.css';
 
 /**
@@ -33,7 +33,7 @@ import styles from './range.css';
  * @csspart form-control - The form control that wraps the label, input, and hint.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The range's wrapper.
- * @csspart form-control-hint - The hint's wrapper.
+ * @csspart hint - The hint's wrapper.
  * @csspart base - The component's base wrapper.
  * @csspart input - The internal `<input>` element.
  * @csspart tooltip - The range's tooltip.
@@ -284,8 +284,7 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
         class=${classMap({
           'form-control': true,
           'form-control--medium': true, // range only has one size
-          'form-control--has-label': hasLabel,
-          'form-control--has-hint': hasHint
+          'form-control--has-label': hasLabel
         })}
       >
         <label
@@ -342,9 +341,15 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
           </div>
         </div>
 
-        <div part="form-control-hint" id="hint" class="form-control__hint" aria-hidden=${hasHint ? 'false' : 'true'}>
-          <slot name="hint">${this.hint}</slot>
-        </div>
+        <slot
+          name="hint"
+          part="hint"
+          class=${classMap({
+            'has-slotted': hasHint
+          })}
+          aria-hidden=${hasHint ? 'false' : 'true'}
+          >${this.hint}</slot
+        >
       </div>
     `;
   }

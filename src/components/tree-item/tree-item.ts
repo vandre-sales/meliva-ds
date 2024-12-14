@@ -1,23 +1,23 @@
-import '../checkbox/checkbox.js';
-import '../icon/icon.js';
-import '../spinner/spinner.js';
-import { animate, parseDuration } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
+import type { PropertyValueMap } from 'lit';
 import { html } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { live } from 'lit/directives/live.js';
-import { LocalizeController } from '../../utilities/localize.js';
+import { when } from 'lit/directives/when.js';
 import { WaAfterCollapseEvent } from '../../events/after-collapse.js';
 import { WaAfterExpandEvent } from '../../events/after-expand.js';
 import { WaCollapseEvent } from '../../events/collapse.js';
 import { WaExpandEvent } from '../../events/expand.js';
 import { WaLazyChangeEvent } from '../../events/lazy-change.js';
 import { WaLazyLoadEvent } from '../../events/lazy-load.js';
+import { animate, parseDuration } from '../../internal/animate.js';
 import { watch } from '../../internal/watch.js';
-import { when } from 'lit/directives/when.js';
-import styles from './tree-item.css';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import type { PropertyValueMap } from 'lit';
+import { LocalizeController } from '../../utilities/localize.js';
+import '../checkbox/checkbox.js';
+import '../icon/icon.js';
+import '../spinner/spinner.js';
+import styles from './tree-item.css';
 
 /**
  * @summary A tree item serves as a hierarchical node that lives inside a [tree](/docs/components/tree).

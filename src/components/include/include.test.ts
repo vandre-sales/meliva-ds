@@ -1,7 +1,7 @@
 import { aTimeout, expect, waitUntil } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
 import { html } from 'lit';
 import sinon from 'sinon';
+import { fixtures } from '../../internal/test/fixture.js';
 import type WaInclude from './include.js';
 
 const stubbedFetchResponse: Response = {

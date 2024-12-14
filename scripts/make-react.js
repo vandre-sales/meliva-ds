@@ -1,7 +1,7 @@
 import commandLineArgs from 'command-line-args';
+import { deleteSync } from 'del';
 import fs from 'fs';
 import path from 'path';
-import { deleteSync } from 'del';
 import prettier from 'prettier';
 import { default as prettierConfig } from '../prettier.config.js';
 import { getAllComponents } from './shared.js';

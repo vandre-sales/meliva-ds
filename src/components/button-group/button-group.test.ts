@@ -1,6 +1,6 @@
 import { elementUpdated, expect } from '@open-wc/testing';
-import { fixtures } from '../../internal/test/fixture.js';
 import { html } from 'lit';
+import { fixtures } from '../../internal/test/fixture.js';
 import type WaButtonGroup from './button-group.js';
 
 describe('<wa-button-group>', () => {
