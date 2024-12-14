@@ -35,7 +35,7 @@ import styles from './radio-group.css';
  * @csspart form-control - The form control that wraps the label, input, and hint.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
- * @csspart form-control-hint - The hint's wrapper.
+ * @csspart hint - The hint's wrapper.
  * @csspart button-group - The button group that wraps radio buttons.
  * @csspart button-group__base - The button group's `base` part.
  */
@@ -326,7 +326,6 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
           'form-control--large': this.size === 'large',
           'form-control--radio-group': true,
           'form-control--has-label': hasLabel,
-          'form-control--has-hint': hasHint
         })}
         role="radiogroup"
         aria-labelledby="label"
@@ -353,9 +352,15 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
             : defaultSlot}
         </div>
 
-        <div part="form-control-hint" id="hint" class="form-control__hint" aria-hidden=${hasHint ? 'false' : 'true'}>
-          <slot name="hint">${this.hint}</slot>
-        </div>
+        <slot
+          name="hint"
+          part="hint"
+          class=${classMap({
+            'has-slotted': hasHint
+          })}
+          aria-hidden=${hasHint ? 'false' : 'true'}
+          >${this.hint}</slot
+        >
       </fieldset>
     `;
   }

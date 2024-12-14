@@ -1119,7 +1119,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             'form-control--medium': this.size === 'medium',
             'form-control--large': this.size === 'large',
             'form-control--has-label': hasLabel,
-            'form-control--has-hint': hasHint
           })}
           part="trigger-container form-control"
           slot="trigger"
@@ -1168,9 +1167,14 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             aria-describedby="hint"
           ></button>
 
-          <div part="form-control-hint" id="hint" class="form-control__hint">
-            <slot name="hint">${this.hint}</slot>
-          </div>
+          <slot
+            name="hint"
+            part="hint"
+            class=${classMap({
+              'has-slotted': hasHint
+            })}
+            >${this.hint}</slot
+          >
         </div>
         ${colorPicker}
       </wa-dropdown>

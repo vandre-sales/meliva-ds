@@ -32,7 +32,7 @@ import styles from './textarea.css';
  * @csspart form-control - The form control that wraps the label, input, and hint.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
- * @csspart form-control-hint - The hint's wrapper.
+ * @csspart hint - The hint's wrapper.
  * @csspart base - The component's base wrapper.
  * @csspart textarea - The internal `<textarea>` control.
  *
@@ -322,7 +322,6 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
-          'form-control--has-hint': hasHint
         })}
       >
         <label
@@ -384,9 +383,15 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
           </div>
         </div>
 
-        <div part="form-control-hint" id="hint" class="form-control__hint" aria-hidden=${hasHint ? 'false' : 'true'}>
-          <slot name="hint">${this.hint}</slot>
-        </div>
+        <slot
+          name="hint"
+          part="hint"
+          aria-hidden=${hasHint ? 'false' : 'true'}
+          class=${classMap({
+            'has-slotted': hasHint
+          })}
+          >${this.hint}</slot
+        >
       </div>
     `;
   }

@@ -34,7 +34,7 @@ import styles from './switch.css';
  * @csspart control - The control that houses the switch's thumb.
  * @csspart thumb - The switch's thumb.
  * @csspart label - The switch's label.
- * @csspart form-control-hint - The hint's wrapper.
+ * @csspart hint - The hint's wrapper.
  *
  * @cssproperty --background-color - The switch's background color.
  * @cssproperty --background-color-checked - The switch's background color when checked.
@@ -243,7 +243,6 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
           'form-control--small': this.size === 'small',
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
-          'form-control--has-hint': hasHint
         })}
       >
         <label
@@ -286,9 +285,15 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
           </div>
         </label>
 
-        <div aria-hidden=${hasHint ? 'false' : 'true'} class="form-control__hint" id="hint" part="form-control-hint">
-          <slot name="hint">${this.hint}</slot>
-        </div>
+        <slot
+          name="hint"
+          part="hint"
+          class=${classMap({
+            'has-slotted': hasHint
+          })}
+          aria-hidden=${hasHint ? 'false' : 'true'}
+          >${this.hint}</slot
+        >
       </div>
     `;
   }

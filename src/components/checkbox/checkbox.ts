@@ -41,7 +41,7 @@ import styles from './checkbox.css';
  * @csspart checked-icon - The checked icon, a `<wa-icon>` element.
  * @csspart indeterminate-icon - The indeterminate icon, a `<wa-icon>` element.
  * @csspart label - The container that wraps the checkbox's label.
- * @csspart form-control-hint - The hint's wrapper.
+ * @csspart hint - The hint's wrapper.
  *
  * @cssproperty --background-color - The checkbox's background color.
  * @cssproperty --background-color-checked - The checkbox's background color when checked.
@@ -252,9 +252,14 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
           <slot part="label"></slot>
         </label>
 
-        <div aria-hidden=${hasHint ? 'false' : 'true'} class="form-control__hint" id="hint" part="form-control-hint">
-          <slot name="hint">${this.hint}</slot>
-        </div>
+        <slot
+          name="hint"
+          aria-hidden=${hasHint ? 'false' : 'true'}
+          class="${classMap({ 'has-slotted': hasHint })}"
+          id="hint"
+          part="hint"
+          >${this.hint}</slot
+        >
       </div>
     `;
   }

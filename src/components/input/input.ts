@@ -44,7 +44,7 @@ import styles from './input.css';
  * @csspart form-control - The form control that wraps the label, input, and hint.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
- * @csspart form-control-hint - The hint's wrapper.
+ * @csspart hint - The hint's wrapper.
  * @csspart base - The component's base wrapper.
  * @csspart input - The internal `<input>` control.
  * @csspart prefix - The container that wraps the prefix.
@@ -411,7 +411,6 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
-          'form-control--has-hint': hasHint
         })}
       >
         <label
@@ -528,9 +527,15 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
           </div>
         </div>
 
-        <div part="form-control-hint" id="hint" class="form-control__hint" aria-hidden=${hasHint ? 'false' : 'true'}>
-          <slot name="hint">${this.hint}</slot>
-        </div>
+        <slot
+          name="hint"
+          part="hint"
+          class=${classMap({
+            'has-slotted': hasHint
+          })}
+          aria-hidden=${hasHint ? 'false' : 'true'}
+          >${this.hint}</slot
+        >
       </div>
     `;
   }
