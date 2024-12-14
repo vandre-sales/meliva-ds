@@ -1,3 +1,5 @@
+@import url('utilities/visually-hidden.css');
+
 /**
  * Applied styles are used to "reset" a page and provide defaults for typography and native HTML elements based on
  * Web Awesome's design tokens.
@@ -456,17 +458,6 @@ textarea {
 }
 
 /* Utilities */
-.wa-visually-hidden:not(:focus-within) {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  clip: rect(0 0 0 0) !important;
-  clip-path: inset(50%) !important;
-  border: none !important;
-  overflow: hidden !important;
-  white-space: nowrap !important;
-  padding: 0 !important;
-}
 
 table.wa-alternating-row-colors tbody tr:nth-child(2n + 1) {
   background-color: color-mix(in oklab, var(--wa-color-neutral-fill-normal), transparent 80%);
