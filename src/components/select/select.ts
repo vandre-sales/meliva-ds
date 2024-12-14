@@ -21,6 +21,7 @@ import { RequiredValidator } from '../../internal/validators/required-validator.
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
+import sizeStyles from '../../styles/shadow/size.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon/icon.js';
 import type WaOption from '../option/option.js';
@@ -85,7 +86,7 @@ import styles from './select.css';
  */
 @customElement('wa-select')
 export default class WaSelect extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [formControlStyles, styles];
+  static shadowStyle = [formControlStyles, sizeStyles, styles];
 
   static get validators() {
     const validators = isServer
@@ -107,10 +108,10 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
   private closeWatcher: CloseWatcher | null;
 
   @query('.select') popup: WaPopup;
-  @query('.select__combobox') combobox: HTMLSlotElement;
-  @query('.select__display-input') displayInput: HTMLInputElement;
-  @query('.select__value-input') valueInput: HTMLInputElement;
-  @query('.select__listbox') listbox: HTMLSlotElement;
+  @query('.combobox') combobox: HTMLSlotElement;
+  @query('.display-input') displayInput: HTMLInputElement;
+  @query('.value-input') valueInput: HTMLInputElement;
+  @query('.listbox') listbox: HTMLSlotElement;
 
   /** Where to anchor native constraint validation */
   get validationTarget() {
@@ -328,7 +329,7 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
 
   private handleDocumentKeyDown = (event: KeyboardEvent) => {
     const target = event.target as HTMLElement;
-    const isClearButton = target.closest('.select__clear') !== null;
+    const isClearButton = target.closest('[part~="clear-button"]') !== null;
     const isIconButton = target.closest('wa-icon-button') !== null;
 
     // Ignore presses when the target is an icon button (e.g. the remove button in `<wa-tag>`)
@@ -795,9 +796,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
         part="form-control"
         class=${classMap({
           'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
         })}
       >
@@ -815,19 +813,12 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
           <wa-popup
             class=${classMap({
               select: true,
-              'select--standard': true,
-              'select--filled': this.filled,
-              'select--pill': this.pill,
-              'select--open': this.open,
-              'select--disabled': this.disabled,
-              'select--multiple': this.multiple,
-              'select--focused': this.hasFocus,
-              'select--placeholder-visible': isPlaceholderVisible,
-              'select--top': this.placement === 'top',
-              'select--bottom': this.placement === 'bottom',
-              'select--small': this.size === 'small',
-              'select--medium': this.size === 'medium',
-              'select--large': this.size === 'large'
+              open: this.open,
+              disabled: this.disabled,
+              enabled: !this.disabled,
+              multiple: this.multiple,
+              focused: this.hasFocus,
+              'placeholder-visible': isPlaceholderVisible,
             })}
             placement=${this.placement}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
@@ -839,16 +830,16 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
           >
             <div
               part="combobox"
-              class="select__combobox"
+              class="combobox"
               slot="anchor"
               @keydown=${this.handleComboboxKeyDown}
               @mousedown=${this.handleComboboxMouseDown}
             >
-              <slot part="prefix" name="prefix" class="select__prefix"></slot>
+              <slot part="prefix" name="prefix" class="prefix"></slot>
 
               <input
                 part="display-input"
-                class="select__display-input"
+                class="display-input"
                 type="text"
                 placeholder=${this.placeholder}
                 .disabled=${this.disabled}
@@ -875,10 +866,10 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
               />
 
               <!-- Tags need to wait for first hydration before populating otherwise it will create a hydration mismatch. -->
-              ${this.multiple && this.hasUpdated ? html`<div part="tags" class="select__tags">${this.tags}</div>` : ''}
+              ${this.multiple && this.hasUpdated ? html`<div part="tags" class="tags">${this.tags}</div>` : ''}
 
               <input
-                class="select__value-input"
+                class="value-input"
                 type="text"
                 ?disabled=${this.disabled}
                 ?required=${this.required}
@@ -892,7 +883,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
                 ? html`
                     <button
                       part="clear-button"
-                      class="select__clear"
                       type="button"
                       aria-label=${this.localize.term('clearEntry')}
                       @mousedown=${this.handleClearMouseDown}
@@ -906,27 +896,26 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
                   `
                 : ''}
 
-              <slot name="suffix" part="suffix" class="select__suffix"></slot>
+              <slot name="suffix" part="suffix" class="suffix"></slot>
 
-              <slot name="expand-icon" part="expand-icon" class="select__expand-icon">
+              <slot name="expand-icon" part="expand-icon" class="expand-icon">
                 <wa-icon library="system" name="chevron-down" variant="solid"></wa-icon>
               </slot>
             </div>
 
-            <div
+            <slot
               id="listbox"
               role="listbox"
               aria-expanded=${this.open ? 'true' : 'false'}
               aria-multiselectable=${this.multiple ? 'true' : 'false'}
               aria-labelledby="label"
               part="listbox"
-              class="select__listbox"
+              class="listbox"
               tabindex="-1"
               @mouseup=${this.handleOptionClick}
               @slotchange=${this.handleDefaultSlotChange}
             >
-              <slot></slot>
-            </div>
+            </slot>
           </wa-popup>
         </div>
 
