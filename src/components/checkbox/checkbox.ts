@@ -13,6 +13,7 @@ import { WaInputEvent } from '../../events/input.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
+import sizeStyles from '../../styles/shadow/size.css';
 import styles from './checkbox.css';
 import type { PropertyValues } from 'lit';
 
@@ -55,7 +56,7 @@ import type { PropertyValues } from 'lit';
  */
 @customElement('wa-checkbox')
 export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [formControlStyles, styles];
+  static shadowStyle = [formControlStyles, sizeStyles, styles];
 
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
@@ -221,11 +222,8 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
     return html`
       <div
         class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
           'form-control--has-hint': hasHint
+          'form-control': true
         })}
       >
         <label part="base">

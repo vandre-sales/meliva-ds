@@ -38,6 +38,7 @@
   display: block;
   color: var(--wa-color-text-quiet);
   margin-top: var(--wa-space-3xs);
+  font-size: var(--size-smaller, 85%);
 
   &:is(.form-control--small *) {
     font-size: var(--wa-font-size-xs);
