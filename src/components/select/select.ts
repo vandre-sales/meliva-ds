@@ -240,25 +240,26 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
    * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted
    * HTML of the symbol to render at the specified value.
    */
-  @property() getTag: (option: WaOption, index: number) => TemplateResult | string | HTMLElement = option => {
-    return html`
-      <wa-tag
-        part="tag"
-        exportparts="
+  @property({ attribute: false }) getTag: (option: WaOption, index: number) => TemplateResult | string | HTMLElement =
+    option => {
+      return html`
+        <wa-tag
+          part="tag"
+          exportparts="
               base:tag__base,
               content:tag__content,
               remove-button:tag__remove-button,
               remove-button__base:tag__remove-button__base
             "
-        ?pill=${this.pill}
-        size=${this.size}
-        removable
-        @wa-remove=${(event: WaRemoveEvent) => this.handleTagRemove(event, option)}
-      >
-        ${option.getTextLabel()}
-      </wa-tag>
-    `;
-  };
+          ?pill=${this.pill}
+          size=${this.size}
+          removable
+          @wa-remove=${(event: WaRemoveEvent) => this.handleTagRemove(event, option)}
+        >
+          ${option.getTextLabel()}
+        </wa-tag>
+      `;
+    };
 
   connectedCallback() {
     super.connectedCallback();
