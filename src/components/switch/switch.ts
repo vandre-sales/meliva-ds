@@ -71,7 +71,7 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
   private _value: string | null = null;
 
   /** The current value of the switch, submitted as a name/value pair with form data. */
-  get value() {
+  get value(): string | null {
     if (this.valueHasChanged) {
       return this._value;
     }
@@ -99,10 +99,11 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
   @property({ type: Boolean }) disabled = false;
 
   /** Draws the switch in a checked state. */
-  @property({ type: Boolean, attribute: false }) checked = this.hasAttribute('checked');
+  @property({ type: Boolean, attribute: false }) checked: boolean = this.hasAttribute('checked');
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ type: Boolean, attribute: 'checked', reflect: true }) defaultChecked = this.hasAttribute('checked');
+  @property({ type: Boolean, attribute: 'checked', reflect: true }) defaultChecked: boolean =
+    this.hasAttribute('checked');
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you

@@ -64,7 +64,7 @@ export default class WaAnimation extends WebAwesomeElement {
   @property() fill: FillMode = 'auto';
 
   /** The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops. */
-  @property({ type: Number }) iterations = Infinity;
+  @property({ type: Number }) iterations: number = Infinity;
 
   /** The offset at which to start the animation, usually between 0 (start) and 1 (end). */
   @property({ attribute: 'iteration-start', type: Number }) iterationStart = 0;

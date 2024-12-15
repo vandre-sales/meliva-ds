@@ -88,7 +88,7 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
   private _value: string | null = this.getAttribute('value') ?? null;
 
   /** The value of the checkbox, submitted as a name/value pair with form data. */
-  get value() {
+  get value(): string | null {
     return this._value ?? 'on';
   }
 
@@ -110,10 +110,11 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
   /** Draws the checkbox in a checked state. */
-  @property({ type: Boolean, attribute: false }) checked = this.hasAttribute('checked');
+  @property({ type: Boolean, attribute: false }) checked: boolean = this.hasAttribute('checked');
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ type: Boolean, reflect: true, attribute: 'checked' }) defaultChecked = this.hasAttribute('checked');
+  @property({ type: Boolean, reflect: true, attribute: 'checked' }) defaultChecked: boolean =
+    this.hasAttribute('checked');
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
