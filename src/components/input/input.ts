@@ -116,7 +116,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
   }
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ attribute: 'value', reflect: true }) defaultValue: null | string = this.getAttribute('value') || null;
+  @property({ attribute: 'value', reflect: true }) defaultValue: string | null = this.getAttribute('value') || null;
 
   /** The input's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';

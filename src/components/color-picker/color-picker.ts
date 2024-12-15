@@ -177,7 +177,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
   }
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ attribute: 'value', reflect: true }) defaultValue: null | string = this.getAttribute('value') || null;
+  @property({ attribute: 'value', reflect: true }) defaultValue: string | null = this.getAttribute('value') || null;
 
   @property({ attribute: 'with-label', reflect: true, type: Boolean }) withLabel = false;
   @property({ attribute: 'with-hint', reflect: true, type: Boolean }) withHint = false;

@@ -103,7 +103,7 @@ export default class WaTooltip extends WebAwesomeElement {
    */
   @property({ type: Boolean }) hoist = false;
 
-  @property() for: null | string = null;
+  @property() for: string | null = null;
 
   @state() anchor: null | Element = null;
 

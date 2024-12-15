@@ -126,7 +126,7 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
    */
-  @property({ reflect: true }) form: null | string = null;
+  @property({ reflect: true }) form: string | null = null;
 
   /**
    * Used for SSR to render slotted labels. If true, will render slotted label content on first paint.
