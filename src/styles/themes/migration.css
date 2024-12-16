@@ -126,7 +126,7 @@
   /* Shadow specifies the default color for box shadows that indicate elevation. */
   --wa-color-shadow: color-mix(
     in oklab,
-    var(--wa-color-base-05) calc(var(--wa-shadow-blur-multiplier) * 8% + 6%),
+    var(--wa-color-base-05) calc(var(--wa-shadow-blur-scale) * 8% + 6%),
     transparent
   );
 
@@ -242,16 +242,16 @@
    */
   /* Space is designed to scale according to a single base value.
    * The base value is intended for calculations and is not used by components directly. */
-  --wa-space-multiplier: 1;
-  --wa-space-3xs: calc(var(--wa-space-multiplier) * 0.125rem); /* 2px */
-  --wa-space-2xs: calc(var(--wa-space-multiplier) * 0.25rem); /* 4px */
-  --wa-space-xs: calc(var(--wa-space-multiplier) * 0.5rem); /* 8px */
-  --wa-space-s: calc(var(--wa-space-multiplier) * 0.75rem); /* 12px */
-  --wa-space-m: calc(var(--wa-space-multiplier) * 1rem); /* 16px */
-  --wa-space-l: calc(var(--wa-space-multiplier) * 1.25rem); /* 20px */
-  --wa-space-xl: calc(var(--wa-space-multiplier) * 1.5rem); /* 24px */
-  --wa-space-2xl: calc(var(--wa-space-multiplier) * 2rem); /* 32px */
-  --wa-space-3xl: calc(var(--wa-space-multiplier) * 3rem); /* 48px */
+  --wa-space-scale: 1;
+  --wa-space-3xs: calc(var(--wa-space-scale) * 0.125rem); /* 2px */
+  --wa-space-2xs: calc(var(--wa-space-scale) * 0.25rem); /* 4px */
+  --wa-space-xs: calc(var(--wa-space-scale) * 0.5rem); /* 8px */
+  --wa-space-s: calc(var(--wa-space-scale) * 0.75rem); /* 12px */
+  --wa-space-m: calc(var(--wa-space-scale) * 1rem); /* 16px */
+  --wa-space-l: calc(var(--wa-space-scale) * 1.25rem); /* 20px */
+  --wa-space-xl: calc(var(--wa-space-scale) * 1.5rem); /* 24px */
+  --wa-space-2xl: calc(var(--wa-space-scale) * 2rem); /* 32px */
+  --wa-space-3xl: calc(var(--wa-space-scale) * 3rem); /* 48px */
 
   /**
    * Borders
@@ -260,10 +260,10 @@
 
   /* Border widths are designed to scale according to a single base value.
      * The base value is intended for calculations and is not used by components directly. */
-  --wa-border-width-multiplier: calc(1 / 14);
-  --wa-border-width-s: calc(var(--wa-border-width-multiplier) * 1rem);
-  --wa-border-width-m: calc(var(--wa-border-width-multiplier) * 2rem);
-  --wa-border-width-l: calc(var(--wa-border-width-multiplier) * 3rem);
+  --wa-border-width-scale: calc(1 / 14);
+  --wa-border-width-s: calc(var(--wa-border-width-scale) * 1rem);
+  --wa-border-width-m: calc(var(--wa-border-width-scale) * 2rem);
+  --wa-border-width-l: calc(var(--wa-border-width-scale) * 3rem);
 
   --wa-form-control-border-style: var(--wa-border-style);
   --wa-form-control-border-width: var(--wa-border-width-s);
@@ -276,11 +276,11 @@
    */
   /* Corners are designed to scale according to a single base value.
    * The base value is intended for calculations and is not used by components directly. */
-  --wa-border-radius-multiplier: 0.375;
-  --wa-border-radius-xs: calc(var(--wa-border-radius-multiplier) * 0.75rem);
-  --wa-border-radius-s: calc(var(--wa-border-radius-multiplier) * 1rem);
-  --wa-border-radius-m: calc(var(--wa-border-radius-multiplier) * 2rem);
-  --wa-border-radius-l: calc(var(--wa-border-radius-multiplier) * 3rem);
+  --wa-border-radius-scale: 0.375;
+  --wa-border-radius-xs: calc(var(--wa-border-radius-scale) * 0.75rem);
+  --wa-border-radius-s: calc(var(--wa-border-radius-scale) * 1rem);
+  --wa-border-radius-m: calc(var(--wa-border-radius-scale) * 2rem);
+  --wa-border-radius-l: calc(var(--wa-border-radius-scale) * 3rem);
 
   /* Semantic corner properties create specific shapes beyond the theme's preferred corner styles. */
   --wa-border-radius-pill: 9999px;
@@ -371,7 +371,7 @@
 
   --wa-color-overlay-modal: color-mix(in oklab, black 50%, transparent);
 
-  --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-multiplier) * 16% + 40%), transparent);
+  --wa-color-shadow: color-mix(in oklab, black calc(var(--wa-shadow-blur-scale) * 16% + 40%), transparent);
 
   --wa-color-mix-hover: var(--wa-color-base-70) 20%;
   --wa-color-mix-active: var(--wa-color-base-70) 10%;
