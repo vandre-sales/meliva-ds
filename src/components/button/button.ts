@@ -8,6 +8,7 @@ import { WaInvalidEvent } from '../../events/invalid.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
+import nativeStyles from '../../styles/native/button.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon/icon.js';
 import '../spinner/spinner.js';
@@ -53,7 +54,7 @@ import styles from './button.css';
  */
 @customElement('wa-button')
 export default class WaButton extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = styles;
+  static shadowStyle = [nativeStyles, styles];
 
   static get validators() {
     return [...super.validators, MirrorValidator()];
