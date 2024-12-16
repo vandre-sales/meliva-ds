@@ -28,7 +28,7 @@ Use the `disabled` attribute to prevent the details from expanding.
 
 ### Customizing the Summary Icon
 
-Use the `expand-icon` and `collapse-icon` slots to change the expand and collapse icons, respectively. To disable the animation, override the `rotate` property on the `summary-icon` part as shown below.
+Use the `expand-icon` and `collapse-icon` slots to change the expand and collapse icons, respectively. To disable the animation, override the `rotate` property on the `icon` part as shown below.
 
 ```html {.example}
 <wa-details summary="Toggle Me" class="custom-icons">
@@ -40,8 +40,8 @@ Use the `expand-icon` and `collapse-icon` slots to change the expand and collaps
 </wa-details>
 
 <style>
-  wa-details.custom-icons::part(summary-icon) {
-    /* Disable the expand/collapse animation */
+  /* Disable the expand/collapse animation */
+  wa-details.custom-icons::part(icon) {
     rotate: none;
   }
 </style>
