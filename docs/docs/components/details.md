@@ -65,6 +65,16 @@ Links and other interactive elements will still retain their behavior:
 </wa-details>
 ```
 
+### Right-to-Left languages
+
+The details component automatically adapts to right-to-left languages:
+
+```html {.example}
+<wa-details summary="تبديلني" lang="ar" dir="rtl">
+  استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن
+</wa-details>
+```
+
 ### Grouping Details
 
 Details are designed to function independently, but you can simulate a group or "accordion" where only one is shown at a time by listening for the `wa-show` event.
