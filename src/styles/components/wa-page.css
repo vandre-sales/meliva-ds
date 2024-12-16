@@ -13,3 +13,7 @@
 wa-page :is(*, *:after, *:before) {
   scroll-margin-top: var(--scroll-margin-top);
 }
+
+wa-page[view='desktop'] [data-toggle-nav] {
+  display: none;
+}
