@@ -17,3 +17,9 @@ wa-page :is(*, *:after, *:before) {
 wa-page[view='desktop'] [data-toggle-nav] {
   display: none;
 }
+
+/* Utilities */
+wa-page[view='mobile'] .wa-desktop-only,
+wa-page[view='desktop'] .wa-mobile-only {
+  display: none;
+}
