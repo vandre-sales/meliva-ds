@@ -5,7 +5,7 @@ import { WaAfterShowEvent } from '../../events/after-show.js';
 import { WaHideEvent } from '../../events/hide.js';
 import { WaShowEvent } from '../../events/show.js';
 import { animate, parseDuration } from '../../internal/animate.js';
-import { waitForEvent } from '../../internal/event.js';
+import { getTargetElement, waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -92,6 +92,13 @@ export default class WaDetails extends WebAwesomeElement {
   }
 
   private handleSummaryClick(event: MouseEvent) {
+    let targetElement = getTargetElement(event);
+
+    if (targetElement?.matches('a, button, wa-button, input, wa-input, textarea, wa-textarea, select, wa-select')) {
+      // Let interactive elements handle their own clicks, fixes #309
+      return;
+    }
+
     event.preventDefault();
 
     if (!this.disabled) {

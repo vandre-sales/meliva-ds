@@ -47,6 +47,24 @@ Use the `expand-icon` and `collapse-icon` slots to change the expand and collaps
 </style>
 ```
 
+### HTML in summary
+
+To use HTML in the summary, use the `summary` slot.
+Links and other interactive elements will still retain their behavior:
+
+```html {.example}
+<wa-details>
+  <span slot="summary">
+    Some text
+    <a href="https://webawesome.com" target="_blank">a link</a>
+    more text
+  </span>
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</wa-details>
+```
+
 ### Grouping Details
 
 Details are designed to function independently, but you can simulate a group or "accordion" where only one is shown at a time by listening for the `wa-show` event.
