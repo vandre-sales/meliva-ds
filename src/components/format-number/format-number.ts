@@ -10,6 +10,10 @@ import { LocalizeController } from '../../utilities/localize.js';
  */
 @customElement('wa-format-number')
 export default class WaFormatNumber extends WebAwesomeElement {
+  static get styles() {
+    return [];
+  }
+
   private readonly localize = new LocalizeController(this);
 
   /** The number to format. */
@@ -56,7 +60,7 @@ export default class WaFormatNumber extends WebAwesomeElement {
       minimumFractionDigits: this.minimumFractionDigits,
       maximumFractionDigits: this.maximumFractionDigits,
       minimumSignificantDigits: this.minimumSignificantDigits,
-      maximumSignificantDigits: this.maximumSignificantDigits,
+      maximumSignificantDigits: this.maximumSignificantDigits
     });
   }
 }

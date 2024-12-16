@@ -11,6 +11,10 @@ import { LocalizeController } from '../../utilities/localize.js';
  */
 @customElement('wa-format-date')
 export default class WaFormatDate extends WebAwesomeElement {
+  static get styles() {
+    return [];
+  }
+
   private readonly localize = new LocalizeController(this);
 
   /**
@@ -75,7 +79,7 @@ export default class WaFormatDate extends WebAwesomeElement {
           second: this.second,
           timeZoneName: this.timeZoneName,
           timeZone: this.timeZone,
-          hour12: hour12,
+          hour12: hour12
         })}
       </time>
     `;
