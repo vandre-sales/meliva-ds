@@ -46,6 +46,10 @@ export default function (eleventyConfig) {
     return typeof content === 'string' ? content.replace(/^(\s|\|)/g, '').replace(/(\s|\|)$/g, '') : content;
   });
   eleventyConfig.addFilter('keys', obj => Object.keys(obj));
+  eleventyConfig.addFilter('log', (firstArg, ...rest) => {
+    console.log(firstArg, ...rest);
+    return firstArg;
+  });
 
   // Shortcodes - {% shortCode arg1, arg2 %}
   eleventyConfig.addShortcode('cdnUrl', location => {
