@@ -94,7 +94,7 @@ export default class WaDetails extends WebAwesomeElement {
   private handleSummaryClick(event: MouseEvent) {
     let targetElement = getTargetElement(event);
 
-    if (targetElement?.matches('a, button, wa-button, input, wa-input, textarea, wa-textarea, select, wa-select')) {
+    if (targetElement?.closest('a, button, wa-button, input, wa-input, textarea, wa-textarea, select, wa-select')) {
       // Let interactive elements handle their own clicks, fixes #309
       return;
     }
