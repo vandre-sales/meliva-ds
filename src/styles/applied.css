@@ -1,5 +1,6 @@
 @import url('utilities/visually-hidden.css');
 @import url('components/wa-page.css');
+@import url('./native.css');
 @import url('native/content.css');
 @import url('native/code.css');
 @import url('native/forms.css');
