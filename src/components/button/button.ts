@@ -265,7 +265,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
           'button--text': this.appearance === 'text',
           'button--pill': this.pill,
           'button--rtl': this.localize.dir() === 'rtl',
-          'button--visually-hidden-label': this.visuallyHiddenLabel
+          'button--visually-hidden-label': this.visuallyHiddenLabel,
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
