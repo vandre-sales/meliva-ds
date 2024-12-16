@@ -123,7 +123,7 @@
    * Because solid shadows appear stronger in color than diffused shadows, this helps keep consistent color intensity. */
   --wa-color-shadow: color-mix(
     in oklab,
-    var(--wa-color-gray-40) calc(var(--wa-shadow-blur-multiplier) * 24% + 8%),
+    var(--wa-color-gray-40) calc(var(--wa-shadow-blur-scale) * 24% + 8%),
     transparent
   );
 
@@ -207,16 +207,16 @@
    * with each value rounded to the nearest whole pixel based on a 16px root font size.
    * For larger font sizes, every other step on the scale is skipped in order to maximize variation.
    * A multiplier is provided to uniformly increase or decrease all font sizes. */
-  --wa-font-size-multiplier: 1;
-  --wa-font-size-2xs: calc(0.6875rem * var(--wa-font-size-multiplier)); /* 11px */
-  --wa-font-size-xs: calc(0.75rem * var(--wa-font-size-multiplier)); /* 12px */
-  --wa-font-size-s: calc(0.875rem * var(--wa-font-size-multiplier)); /* 14px */
-  --wa-font-size-m: calc(1rem * var(--wa-font-size-multiplier)); /* 16px */
-  --wa-font-size-l: calc(1.25rem * var(--wa-font-size-multiplier)); /* 20px */
-  --wa-font-size-xl: calc(1.625rem * var(--wa-font-size-multiplier)); /* 26px */
-  --wa-font-size-2xl: calc(2rem * var(--wa-font-size-multiplier)); /* 32px */
-  --wa-font-size-3xl: calc(2.5625rem * var(--wa-font-size-multiplier)); /* 41px */
-  --wa-font-size-4xl: calc(3.25rem * var(--wa-font-size-multiplier)); /* 52px */
+  --wa-font-size-scale: 1;
+  --wa-font-size-2xs: calc(0.6875rem * var(--wa-font-size-scale)); /* 11px */
+  --wa-font-size-xs: calc(0.75rem * var(--wa-font-size-scale)); /* 12px */
+  --wa-font-size-s: calc(0.875rem * var(--wa-font-size-scale)); /* 14px */
+  --wa-font-size-m: calc(1rem * var(--wa-font-size-scale)); /* 16px */
+  --wa-font-size-l: calc(1.25rem * var(--wa-font-size-scale)); /* 20px */
+  --wa-font-size-xl: calc(1.625rem * var(--wa-font-size-scale)); /* 26px */
+  --wa-font-size-2xl: calc(2rem * var(--wa-font-size-scale)); /* 32px */
+  --wa-font-size-3xl: calc(2.5625rem * var(--wa-font-size-scale)); /* 41px */
+  --wa-font-size-4xl: calc(3.25rem * var(--wa-font-size-scale)); /* 52px */
 
   --wa-font-weight-light: 300;
   --wa-font-weight-normal: 400;
@@ -239,16 +239,16 @@
    */
 
   /* A multiplier is provided to uniformly increase or decrease all spacing. */
-  --wa-space-multiplier: 1;
-  --wa-space-3xs: calc(var(--wa-space-multiplier) * 0.125rem); /* 2px */
-  --wa-space-2xs: calc(var(--wa-space-multiplier) * 0.25rem); /* 4px */
-  --wa-space-xs: calc(var(--wa-space-multiplier) * 0.5rem); /* 8px */
-  --wa-space-s: calc(var(--wa-space-multiplier) * 0.75rem); /* 12px */
-  --wa-space-m: calc(var(--wa-space-multiplier) * 1rem); /* 16px */
-  --wa-space-l: calc(var(--wa-space-multiplier) * 1.25rem); /* 20px */
-  --wa-space-xl: calc(var(--wa-space-multiplier) * 1.5rem); /* 24px */
-  --wa-space-2xl: calc(var(--wa-space-multiplier) * 2rem); /* 32px */
-  --wa-space-3xl: calc(var(--wa-space-multiplier) * 3rem); /* 48px */
+  --wa-space-scale: 1;
+  --wa-space-3xs: calc(var(--wa-space-scale) * 0.125rem); /* 2px */
+  --wa-space-2xs: calc(var(--wa-space-scale) * 0.25rem); /* 4px */
+  --wa-space-xs: calc(var(--wa-space-scale) * 0.5rem); /* 8px */
+  --wa-space-s: calc(var(--wa-space-scale) * 0.75rem); /* 12px */
+  --wa-space-m: calc(var(--wa-space-scale) * 1rem); /* 16px */
+  --wa-space-l: calc(var(--wa-space-scale) * 1.25rem); /* 20px */
+  --wa-space-xl: calc(var(--wa-space-scale) * 1.5rem); /* 24px */
+  --wa-space-2xl: calc(var(--wa-space-scale) * 2rem); /* 32px */
+  --wa-space-3xl: calc(var(--wa-space-scale) * 3rem); /* 48px */
 
   /**
    * Borders
@@ -256,17 +256,17 @@
   --wa-border-style: solid;
 
   /* A multiplier is provided to uniformly increase or decrease all border widths. */
-  --wa-border-width-multiplier: 0.0625;
-  --wa-border-width-s: calc(var(--wa-border-width-multiplier) * 1rem);
-  --wa-border-width-m: calc(var(--wa-border-width-multiplier) * 2rem);
-  --wa-border-width-l: calc(var(--wa-border-width-multiplier) * 3rem);
+  --wa-border-width-scale: 0.0625;
+  --wa-border-width-s: calc(var(--wa-border-width-scale) * 1rem);
+  --wa-border-width-m: calc(var(--wa-border-width-scale) * 2rem);
+  --wa-border-width-l: calc(var(--wa-border-width-scale) * 3rem);
 
   /* A multiplier is provided to uniformly increase or decrease all border radii. */
-  --wa-border-radius-multiplier: 0.25;
-  --wa-border-radius-xs: calc(var(--wa-border-radius-multiplier) * 0.5rem);
-  --wa-border-radius-s: calc(var(--wa-border-radius-multiplier) * 1rem);
-  --wa-border-radius-m: calc(var(--wa-border-radius-multiplier) * 2rem);
-  --wa-border-radius-l: calc(var(--wa-border-radius-multiplier) * 3rem);
+  --wa-border-radius-scale: 0.25;
+  --wa-border-radius-xs: calc(var(--wa-border-radius-scale) * 0.5rem);
+  --wa-border-radius-s: calc(var(--wa-border-radius-scale) * 1rem);
+  --wa-border-radius-m: calc(var(--wa-border-radius-scale) * 2rem);
+  --wa-border-radius-l: calc(var(--wa-border-radius-scale) * 3rem);
 
   /* These common border radius properties can create specific shapes beyond the theme's preferred corner styles. */
   --wa-border-radius-pill: 9999px;
@@ -288,29 +288,29 @@
    * A multiplier is provided for each shadow quality to uniformly scale all related values.
    */
 
-  --wa-shadow-offset-x-multiplier: 0;
-  --wa-shadow-offset-x-xs: calc(var(--wa-shadow-offset-x-multiplier) * 0.5rem);
-  --wa-shadow-offset-x-s: calc(var(--wa-shadow-offset-x-multiplier) * 1rem);
-  --wa-shadow-offset-x-m: calc(var(--wa-shadow-offset-x-multiplier) * 2rem);
-  --wa-shadow-offset-x-l: calc(var(--wa-shadow-offset-x-multiplier) * 4rem);
+  --wa-shadow-offset-x-scale: 0;
+  --wa-shadow-offset-x-xs: calc(var(--wa-shadow-offset-x-scale) * 0.5rem);
+  --wa-shadow-offset-x-s: calc(var(--wa-shadow-offset-x-scale) * 1rem);
+  --wa-shadow-offset-x-m: calc(var(--wa-shadow-offset-x-scale) * 2rem);
+  --wa-shadow-offset-x-l: calc(var(--wa-shadow-offset-x-scale) * 4rem);
 
-  --wa-shadow-offset-y-multiplier: 0.0625;
-  --wa-shadow-offset-y-xs: calc(var(--wa-shadow-offset-y-multiplier) * 0.5rem);
-  --wa-shadow-offset-y-s: calc(var(--wa-shadow-offset-y-multiplier) * 1rem);
-  --wa-shadow-offset-y-m: calc(var(--wa-shadow-offset-y-multiplier) * 2rem);
-  --wa-shadow-offset-y-l: calc(var(--wa-shadow-offset-y-multiplier) * 4rem);
+  --wa-shadow-offset-y-scale: 0.0625;
+  --wa-shadow-offset-y-xs: calc(var(--wa-shadow-offset-y-scale) * 0.5rem);
+  --wa-shadow-offset-y-s: calc(var(--wa-shadow-offset-y-scale) * 1rem);
+  --wa-shadow-offset-y-m: calc(var(--wa-shadow-offset-y-scale) * 2rem);
+  --wa-shadow-offset-y-l: calc(var(--wa-shadow-offset-y-scale) * 4rem);
 
-  --wa-shadow-blur-multiplier: 0.125;
-  --wa-shadow-blur-xs: calc(var(--wa-shadow-blur-multiplier) * 0.5rem);
-  --wa-shadow-blur-s: calc(var(--wa-shadow-blur-multiplier) * 1rem);
-  --wa-shadow-blur-m: calc(var(--wa-shadow-blur-multiplier) * 2rem);
-  --wa-shadow-blur-l: calc(var(--wa-shadow-blur-multiplier) * 4rem);
+  --wa-shadow-blur-scale: 0.125;
+  --wa-shadow-blur-xs: calc(var(--wa-shadow-blur-scale) * 0.5rem);
+  --wa-shadow-blur-s: calc(var(--wa-shadow-blur-scale) * 1rem);
+  --wa-shadow-blur-m: calc(var(--wa-shadow-blur-scale) * 2rem);
+  --wa-shadow-blur-l: calc(var(--wa-shadow-blur-scale) * 4rem);
 
-  --wa-shadow-spread-multiplier: 0;
-  --wa-shadow-spread-xs: calc(var(--wa-shadow-spread-multiplier) * 0.5rem);
-  --wa-shadow-spread-s: calc(var(--wa-shadow-spread-multiplier) * 1rem);
-  --wa-shadow-spread-m: calc(var(--wa-shadow-spread-multiplier) * 2rem);
-  --wa-shadow-spread-l: calc(var(--wa-shadow-spread-multiplier) * 4rem);
+  --wa-shadow-spread-scale: 0;
+  --wa-shadow-spread-xs: calc(var(--wa-shadow-spread-scale) * 0.5rem);
+  --wa-shadow-spread-s: calc(var(--wa-shadow-spread-scale) * 1rem);
+  --wa-shadow-spread-m: calc(var(--wa-shadow-spread-scale) * 2rem);
+  --wa-shadow-spread-l: calc(var(--wa-shadow-spread-scale) * 4rem);
 
   --wa-shadow-xs: var(--wa-shadow-offset-x-xs) var(--wa-shadow-offset-y-xs) var(--wa-shadow-blur-xs)
     var(--wa-shadow-spread-xs) var(--wa-color-shadow);
@@ -400,7 +400,7 @@
 
   --wa-color-shadow: color-mix(
     in oklab,
-    var(--wa-color-gray-05) calc(var(--wa-shadow-blur-multiplier) * 32% + 40%),
+    var(--wa-color-gray-05) calc(var(--wa-shadow-blur-scale) * 32% + 40%),
     transparent
   );
 
