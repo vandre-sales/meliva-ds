@@ -244,12 +244,12 @@ describe('<wa-checkbox>', () => {
           `);
           const checkbox = el.querySelector<WaCheckbox>('wa-checkbox')!;
 
-          expect(checkbox.hasAttribute('data-wa-required')).to.be.true;
-          expect(checkbox.hasAttribute('data-wa-optional')).to.be.false;
-          expect(checkbox.hasAttribute('data-wa-invalid')).to.be.true;
-          expect(checkbox.hasAttribute('data-wa-valid')).to.be.false;
-          expect(checkbox.hasAttribute('data-wa-user-invalid')).to.be.false;
-          expect(checkbox.hasAttribute('data-wa-user-valid')).to.be.false;
+          expect(checkbox.hasCustomState('required')).to.be.true;
+          expect(checkbox.hasCustomState('optional')).to.be.false;
+          expect(checkbox.hasCustomState('invalid')).to.be.true;
+          expect(checkbox.hasCustomState('valid')).to.be.false;
+          expect(checkbox.hasCustomState('user-invalid')).to.be.false;
+          expect(checkbox.hasCustomState('user-valid')).to.be.false;
         });
       });
 
