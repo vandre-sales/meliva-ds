@@ -2,6 +2,7 @@ import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import variantStyles from '../../styles/utilities/variants.css';
 import styles from './badge.css';
 
 /**
@@ -23,7 +24,7 @@ import styles from './badge.css';
  */
 @customElement('wa-badge')
 export default class WaBadge extends WebAwesomeElement {
-  static shadowStyle = styles;
+  static shadowStyle = [variantStyles, styles];
 
   /** The badge's theme variant. */
   @property({ reflect: true }) variant: 'brand' | 'success' | 'neutral' | 'warning' | 'danger' = 'brand';
@@ -40,11 +41,6 @@ export default class WaBadge extends WebAwesomeElement {
         part="base"
         class=${classMap({
           badge: true,
-          'badge--brand': this.variant === 'brand',
-          'badge--success': this.variant === 'success',
-          'badge--neutral': this.variant === 'neutral',
-          'badge--warning': this.variant === 'warning',
-          'badge--danger': this.variant === 'danger',
           'badge--pill': this.pill,
           'badge--pulse': this.pulse,
         })}
