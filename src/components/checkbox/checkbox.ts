@@ -13,7 +13,7 @@ import { RequiredValidator } from '../../internal/validators/required-validator.
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
-import sizeStyles from '../../styles/shadow/size.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import '../icon/icon.js';
 import styles from './checkbox.css';
 

@@ -5,7 +5,7 @@ import { WaBlurEvent } from '../../events/blur.js';
 import { WaFocusEvent } from '../../events/focus.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
-import sizeStyles from '../../styles/shadow/size.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import '../icon/icon.js';
 import styles from './radio.css';
 

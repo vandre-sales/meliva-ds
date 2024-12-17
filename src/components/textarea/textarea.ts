@@ -12,7 +12,7 @@ import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
-import sizeStyles from '../../styles/shadow/size.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import styles from './textarea.css';
 
 /**

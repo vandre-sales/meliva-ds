@@ -9,8 +9,8 @@ import { RequiredValidator } from '../../internal/validators/required-validator.
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
-import sizeStyles from '../../styles/shadow/size.css';
 import buttonGroupStyles from '../../styles/utilities/button-group.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import type WaRadioButton from '../radio-button/radio-button.js';
 import '../radio/radio.js';
 import type WaRadio from '../radio/radio.js';
