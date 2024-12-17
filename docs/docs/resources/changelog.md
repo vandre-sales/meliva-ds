@@ -15,10 +15,12 @@ During the alpha period, things might break! We take breaking changes very serio
 ## Next
 
 - Added `checked` and `disabled` custom states to `<wa-checkbox>` and `<wa-radio>`
+scroll-button-end
 - Removed stateful CSS parts in favor of custom states
   - `<wa-checkbox>`: `control--checked`, `control--indeterminate`
   - `<wa-radio>`: `control--checked`
   - `<wa-tree-item>`: `item--disabled`, `item--expanded`, `item--indeterminate`, `item--selected`
+- Renamed the `scroll-button--start` and `scroll-button--end` parts to `scroll-button-start` and `scroll-button-end` in `<wa-tab-group>`
 
 ## 3.0.0-alpha.5
 

@@ -303,7 +303,7 @@ describe('<wa-tab-group>', () => {
           expect(isElementVisibleFromOverflow(tabGroup, firstTab!)).to.be.true;
           expect(isElementVisibleFromOverflow(tabGroup, lastTab!)).to.be.false;
 
-          const scrollToRightButton = tabGroup.shadowRoot?.querySelector('wa-icon-button[part*="scroll-button--end"]');
+          const scrollToRightButton = tabGroup.shadowRoot?.querySelector('wa-icon-button[part*="scroll-button-end"]');
           expect(scrollToRightButton).not.to.be.null;
           await clickOnElement(scrollToRightButton!);
 
