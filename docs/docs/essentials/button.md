@@ -1,6 +1,7 @@
 ---
 title: Button
 tags: essentials
+layout: element
 ---
 
 ```html {.example}

@@ -2,6 +2,7 @@
 title: Select
 description: Selects allow you to choose items from a menu of predefined options.
 tags: component
+essentials: input
 ---
 
 ```html {.example}
