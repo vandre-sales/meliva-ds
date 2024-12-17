@@ -563,7 +563,7 @@
     font-style: italic;
   }
 
-  .blog wa-avatar::part(base) {
+  .blog wa-avatar {
     border-radius: var(--wa-border-radius-circle);
     overflow: hidden;
   }

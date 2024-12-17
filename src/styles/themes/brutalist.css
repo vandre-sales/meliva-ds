@@ -704,7 +704,7 @@
   }
 
   /* imitating the rounded avatar */
-  .blog wa-avatar::part(base) {
+  .blog wa-avatar {
     background-color: transparent;
   }
 
