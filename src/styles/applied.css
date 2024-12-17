@@ -66,27 +66,30 @@ body {
 }
 
 /* Content flow */
-:is(
-    address,
-    audio,
-    blockquote,
-    dd,
-    details,
-    dl,
-    figure,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    iframe,
-    ol,
-    p,
-    pre,
-    table,
-    ul,
-    video
-  ):has(+ *) {
-  margin: 0 0 var(--wa-space-xl) 0;
+address,
+audio,
+blockquote,
+dd,
+details,
+dl,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+iframe,
+ol,
+p,
+pre,
+table,
+ul,
+video,
+wa-callout,
+wa-code-demo,
+wa-viewport-demo {
+  &:where(:not(.wa-off, .wa-off-deep *)):has(+ &) {
+    margin: 0 0 var(--wa-space-xl) 0;
+  }
 }
