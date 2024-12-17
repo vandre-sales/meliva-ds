@@ -8,17 +8,17 @@ tags: essentials
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;" class="wa">
 
 <label for="input-text">Input (text)</label>
-<input type="text" id="input-text" placeholder="placeholder"></input>
+<input type="text" id="input-text" placeholder="placeholder">
 
 <wa-input label="WA Input (text)" type="text" placeholder="placeholder"></wa-input>
 
 <label for="input-number">Input (number)</label>
-<input type="number" id="input-number"></input>
+<input type="number" id="input-number">
 
 <wa-input label="WA Input (number)" type="number"></wa-input>
 
 <label for="input-password">Input (password)</label>
-<input type="password" id="input-password" required></input>
+<input type="password" id="input-password" required>
 
 <wa-input label="WA Input (password)" type="password" required></wa-input>
 
@@ -28,22 +28,22 @@ tags: essentials
 <wa-input label="WA Input (datetime-local)" type="datetime-local"></wa-input>
 
 <label for="input-email">Input (email)</label>
-<input type="email" id="input-email"></input>
+<input type="email" id="input-email">
 
 <wa-input label="WA Input (email)" type="email"></wa-input>
 
 <label for="input-search">Input (search)</label>
-<input type="search" id="input-search"></input>
+<input type="search" id="input-search">
 
 <wa-input label="WA Input (search)" type="search"></wa-input>
 
 <label for="input-tel">Input (tel)</label>
-<input type="tel" id="input-tel"></input>
+<input type="tel" id="input-tel">
 
 <wa-input label="WA Input (tel)" type="tel"></wa-input>
 
 <label for="input-url">Input (url)</label>
-<input type="url" id="input-url"></input>
+<input type="url" id="input-url">
 
 <wa-input label="WA Input (url)" type="url"></wa-input>
 
@@ -86,7 +86,7 @@ tags: essentials
 </fieldset>
 
 <label for="input-range">Input (range)</label>
-<input type="range" id="input-range"></input>
+<input type="range" id="input-range">
 
 <wa-range label="WA Range"></wa-range>
 
