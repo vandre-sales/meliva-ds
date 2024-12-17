@@ -41,6 +41,7 @@
 
 button,
 input:is([type='button'], [type='reset'], [type='submit']),
+:host([href]) a,
 .wa-button:not([part~='base']) {
   display: inline-flex;
   background-color: var(--background-color);
