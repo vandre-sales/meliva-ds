@@ -36,8 +36,6 @@ import styles from './checkbox.css';
  *
  * @csspart base - The component's label .
  * @csspart control - The square container that wraps the checkbox's checked state.
- * @csspart control--checked - Matches the control part when the checkbox is checked.
- * @csspart control--indeterminate - Matches the control part when the checkbox is indeterminate.
  * @csspart checked-icon - The checked icon, a `<wa-icon>` element.
  * @csspart indeterminate-icon - The indeterminate icon, a `<wa-icon>` element.
  * @csspart label - The container that wraps the checkbox's label.
@@ -53,6 +51,11 @@ import styles from './checkbox.css';
  * @cssproperty --box-shadow - The shadow effects around the edges of the checkbox.
  * @cssproperty --checked-icon-color - The color of the checkbox's icon.
  * @cssproperty --toggle-size - The size of the checkbox.
+ *
+ * @cssstate checked - Applied when the checkbox is checked.
+ * @cssstate disabled - Applied when the checkbox is disabled.
+ * @cssstate indeterminate - Applied when the checkbox is in an indeterminate state.
+ *
  */
 @customElement('wa-checkbox')
 export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
@@ -157,18 +160,26 @@ export default class WaCheckbox extends WebAwesomeFormAssociatedElement {
   }
 
   handleValueOrCheckedChange() {
-    this.toggleCustomState('checked', this.checked);
-
     // These @watch() commands seem to override the base element checks for changes, so we need to setValue for the form and and updateValidity()
     this.setValue(this.checked ? this.value : null, this._value);
     this.updateValidity();
   }
 
-  @watch(['checked', 'indeterminate'], { waitUntilFirstUpdate: true })
+  @watch(['checked', 'indeterminate'])
   handleStateChange() {
-    this.input.checked = this.checked; // force a sync update
-    this.input.indeterminate = this.indeterminate; // force a sync update
+    if (this.hasUpdated) {
+      this.input.checked = this.checked; // force a sync update
+      this.input.indeterminate = this.indeterminate; // force a sync update
+    }
+
+    this.toggleCustomState('checked', this.checked);
+    this.toggleCustomState('indeterminate', this.indeterminate);
     this.updateValidity();
+  }
+
+  @watch('disabled')
+  handleDisabledChange() {
+    this.toggleCustomState('disabled', this.disabled);
   }
 
   protected willUpdate(changedProperties: PropertyValues<this>): void {
