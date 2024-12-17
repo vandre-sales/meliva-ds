@@ -29,6 +29,9 @@ export default class WaBadge extends WebAwesomeElement {
   /** The badge's theme variant. */
   @property({ reflect: true }) variant: 'brand' | 'success' | 'neutral' | 'warning' | 'danger' = 'brand';
 
+  /** The badge's visual appearance. */
+  @property({ reflect: true }) appearance: 'filled' | 'tinted' | 'outlined' = 'filled';
+
   /** Draws a pill-style badge with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
 
@@ -36,19 +39,7 @@ export default class WaBadge extends WebAwesomeElement {
   @property({ type: Boolean, reflect: true }) pulse = false;
 
   render() {
-    return html`
-      <span
-        part="base"
-        class=${classMap({
-          badge: true,
-          'badge--pill': this.pill,
-          'badge--pulse': this.pulse,
-        })}
-        role="status"
-      >
-        <slot></slot>
-      </span>
-    `;
+    return html` <slot part="base" role="status"></slot>`;
   }
 }
 

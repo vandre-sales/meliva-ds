@@ -1,27 +1,16 @@
 :host {
-  --border-color: var(--background-color);
-  --border-radius: var(--wa-border-radius-xs);
-  --border-style: var(--wa-border-style);
-  --border-width: var(--wa-border-width-s);
-  --background-color: var(--wa-color-fill-loud);
-  --content-color: var(--wa-color-on-loud);
-
-  display: inline-flex;
-}
-
-.badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: max(var(--wa-font-size-2xs), 0.75em);
   font-weight: var(--wa-font-weight-semibold);
   line-height: 1;
-  background-color: var(--background-color);
-  border-color: var(--border-color);
-  border-radius: var(--border-radius);
-  border-style: var(--border-style);
-  border-width: var(--border-width);
-  color: var(--content-color);
+  background-color: var(--background-color, var(--wa-color-fill-loud));
+  border-color: var(--border-color, transparent);
+  border-radius: var(--wa-border-radius-xs);
+  border-style: var(--wa-border-style);
+  border-width: var(--wa-border-width-s);
+  color: var(--label-color, var(--wa-color-on-loud));
   white-space: nowrap;
   padding: 0.375em 0.625em;
   user-select: none;
@@ -30,12 +19,12 @@
 }
 
 /* Pill modifier */
-.badge--pill {
+:host([pill]) {
   border-radius: var(--wa-border-radius-pill);
 }
 
 /* Pulse modifier */
-.badge--pulse {
+:host([pulse]) {
   --pulse-color: var(--background-color);
 
   animation: pulse 1.5s infinite;
