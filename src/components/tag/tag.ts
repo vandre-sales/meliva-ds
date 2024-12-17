@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { WaRemoveEvent } from '../../events/remove.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import sizeStyles from '../../styles/shadow/size.css';
 import variantStyles from '../../styles/utilities/variants.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon-button/icon-button.js';
@@ -34,7 +34,7 @@ import styles from './tag.css';
  */
 @customElement('wa-tag')
 export default class WaTag extends WebAwesomeElement {
-  static shadowStyle = [variantStyles, styles];
+  static shadowStyle = [sizeStyles, variantStyles, styles];
 
   private readonly localize = new LocalizeController(this);
 
@@ -56,39 +56,23 @@ export default class WaTag extends WebAwesomeElement {
 
   render() {
     return html`
-      <span
-        part="base"
-        class=${classMap({
-          tag: true,
+      <slot part="content" class="tag__content"></slot>
 
-          // Sizes
-          'tag--small': this.size === 'small',
-          'tag--medium': this.size === 'medium',
-          'tag--large': this.size === 'large',
-
-          // Modifiers
-          'tag--pill': this.pill,
-          'tag--removable': this.removable,
-        })}
-      >
-        <slot part="content" class="tag__content"></slot>
-
-        ${this.removable
-          ? html`
-              <wa-icon-button
-                part="remove-button"
-                exportparts="base:remove-button__base"
-                name="xmark"
-                library="system"
-                variant="solid"
-                label=${this.localize.term('remove')}
-                class="tag__remove"
-                @click=${this.handleRemoveClick}
-                tabindex="-1"
-              ></wa-icon-button>
-            `
-          : ''}
-      </span>
+      ${this.removable
+        ? html`
+            <wa-icon-button
+              part="remove-button"
+              exportparts="base:remove-button__base"
+              name="xmark"
+              library="system"
+              variant="solid"
+              label=${this.localize.term('remove')}
+              class="tag__remove"
+              @click=${this.handleRemoveClick}
+              tabindex="-1"
+            ></wa-icon-button>
+          `
+        : ''}
     `;
   }
 }

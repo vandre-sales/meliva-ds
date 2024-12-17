@@ -1,79 +1,43 @@
 :host {
-  --border-radius: var(--wa-border-radius-xs);
-  --border-style: var(--wa-border-style);
-  --border-width: var(--wa-border-width-s);
-
-  --background-color: var(--wa-color-fill-quiet);
-  --border-color: var(--wa-color-border-normal);
-  --content-color: var(--wa-color-on-normal);
-
-  display: inline-block;
-}
-
-.tag {
-  display: flex;
+  display: inline-flex;
+  border-radius: var(--wa-border-radius-s);
   align-items: center;
-  background-color: var(--background-color);
-  border-color: var(--border-color);
-  border-radius: var(--border-radius);
-  border-style: var(--border-style);
-  border-width: var(--border-width);
-  color: var(--content-color);
+  background-color: var(--wa-color-fill-quiet);
+  border-color: var(--wa-color-border-normal);
+  border-style: var(--wa-border-style);
+  border-width: var(--wa-border-width-s);
+  color: var(--wa-color-on-normal);
   line-height: 1;
   white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
+  --size-s: var(--wa-font-size-xs);
+  --size-m: var(--wa-font-size-s);
+  --size-l: var(--wa-font-size-m);
+  --form-control-height: calc(var(--space-smaller) * 2 + 1em * var(--wa-form-control-value-line-height));
+  height: calc(var(--form-control-height) * 0.8);
+  line-height: calc(var(--form-control-height) - var(--wa-form-control-border-width) * 2);
+  padding: 0 var(--space-smaller);
 }
 
-.tag__remove::part(base) {
+[part='remove-button'] {
   color: inherit;
   padding: 0;
+  margin-inline-start: 0.75em;
 }
 
-.tag:hover > wa-icon-button {
+:host(:hover) > wa-icon-button {
   color: color-mix(in oklab, var(--content-color), var(--wa-color-mix-hover));
 }
 
-.tag:active > wa-icon-button {
+:host(:active) > wa-icon-button {
   color: color-mix(in oklab, var(--content-color), var(--wa-color-mix-active));
 }
 
 /*
-   * Size modifiers
-   */
+ * Pill modifier
+ */
 
-.tag--small {
-  font-size: var(--wa-font-size-xs);
-  height: calc(var(--wa-form-control-height-s) * 0.8);
-  line-height: calc(var(--wa-form-control-height-s) - var(--wa-form-control-border-width) * 2);
-  border-radius: var(--wa-border-radius-s);
-  padding: 0 var(--wa-space-xs);
-}
-
-.tag--medium {
-  font-size: var(--wa-font-size-s);
-  height: calc(var(--wa-form-control-height-m) * 0.8);
-  line-height: calc(var(--wa-form-control-height-m) - var(--wa-form-control-border-width) * 2);
-  border-radius: var(--wa-border-radius-s);
-  padding: 0 var(--wa-space-s);
-}
-
-.tag--large {
-  font-size: var(--wa-font-size-m);
-  height: calc(var(--wa-form-control-height-l) * 0.8);
-  line-height: calc(var(--wa-form-control-height-l) - var(--wa-form-control-border-width) * 2);
-  border-radius: var(--wa-border-radius-s);
-  padding: 0 var(--wa-space-m);
-}
-
-.tag__remove {
-  margin-inline-start: 0.75em;
-}
-
-/*
-   * Pill modifier
-   */
-
-.tag--pill {
+:host([pill]) {
   border-radius: var(--wa-border-radius-pill);
 }
