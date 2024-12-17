@@ -328,15 +328,9 @@
 
   --wa-form-control-placeholder-color: var(--wa-color-base-60);
 
-  --wa-form-control-height-s: calc(
-    var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-control-value-line-height)
-  );
-  --wa-form-control-height-m: calc(
-    var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-control-value-line-height)
-  );
-  --wa-form-control-height-l: calc(
-    var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-control-value-line-height)
-  );
+  --wa-form-control-height-s: calc(var(--wa-space-xs) * 2 + 1em * var(--wa-form-control-value-line-height));
+  --wa-form-control-height-m: calc(var(--wa-space-s) * 2 + 1em * var(--wa-form-control-value-line-height));
+  --wa-form-control-height-l: calc(var(--wa-space-m) * 2 + 1em * var(--wa-form-control-value-line-height));
 
   --wa-form-control-required-content: '*';
   --wa-form-control-required-content-color: inherit;
@@ -506,7 +500,7 @@
 
   wa-alert {
     --border-width: 0 0 0 var(--wa-panel-border-width);
-    --content-color: var(--wa-color-text-normal);
+    --text-color: var(--wa-color-text-normal);
     --padding: var(--wa-space-s) var(--wa-space-m);
 
     &::part(icon) {
@@ -551,7 +545,7 @@
 
   wa-badge {
     --border-color: var(--wa-color-surface-border);
-    --content-color: var(--wa-color-base-10);
+    --text-color: var(--wa-color-base-10);
     text-transform: uppercase;
 
     &::part(base) {
@@ -710,7 +704,7 @@
   }
 
   /* imitating the rounded avatar */
-  .blog wa-avatar::part(base) {
+  .blog wa-avatar {
     background-color: transparent;
   }
 

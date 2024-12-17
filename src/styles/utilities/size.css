@@ -19,6 +19,7 @@
   font-size: var(--size-m);
   --size-smaller: var(--size-s);
   --space: var(--space-m);
+  --space-smaller: var(--space-s);
 }
 
 :host([size='small']),
@@ -26,6 +27,7 @@
   font-size: var(--size-s);
   --size-smaller: var(--size-xs);
   --space: var(--space-s);
+  --space-smaller: var(--space-xs);
 }
 
 :host([size='large']),
@@ -33,4 +35,5 @@
   font-size: var(--size-l);
   --size-smaller: var(--size-m);
   --space: var(--space-l);
+  --space-smaller: var(--space-m);
 }

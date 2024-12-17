@@ -157,7 +157,7 @@ Use [CSS parts](#css-parts) to customize the way form controls are drawn. This e
     text-align: right;
   }
 
-  .label-on-left::part(form-control-hint) {
+  .label-on-left::part(hint) {
     grid-column-start: 2;
   }
 </style>

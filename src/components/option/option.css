@@ -1,8 +1,8 @@
 :host {
   --background-color-current: var(--wa-color-brand-fill-loud);
   --background-color-hover: var(--wa-color-neutral-fill-normal);
-  --label-color-current: var(--wa-color-brand-on-loud);
-  --label-color-hover: var(--wa-color-neutral-on-normal);
+  --text-color-current: var(--wa-color-brand-on-loud);
+  --text-color-hover: var(--wa-color-neutral-on-normal);
 
   display: block;
   color: var(--wa-color-text-normal);
@@ -27,13 +27,13 @@
 
 .option--hover:not(.option--current):not(.option--disabled) {
   background-color: var(--background-color-hover);
-  color: var(--label-color-hover);
+  color: var(--text-color-hover);
 }
 
 .option--current,
 .option--current.option--disabled {
   background-color: var(--background-color-current);
-  color: var(--label-color-current);
+  color: var(--text-color-current);
   opacity: 1;
 }
 

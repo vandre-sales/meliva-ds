@@ -9,7 +9,8 @@ import { RequiredValidator } from '../../internal/validators/required-validator.
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
-import '../button-group/button-group.js';
+import buttonGroupStyles from '../../styles/utilities/button-group.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import type WaRadioButton from '../radio-button/radio-button.js';
 import '../radio/radio.js';
 import type WaRadio from '../radio/radio.js';
@@ -41,7 +42,7 @@ import styles from './radio-group.css';
  */
 @customElement('wa-radio-group')
 export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [formControlStyles, styles];
+  static shadowStyle = [sizeStyles, buttonGroupStyles, formControlStyles, styles];
 
   static get validators() {
     const validators = isServer
@@ -314,7 +315,6 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
     const hasHintSlot = this.hasUpdated ? this.hasSlotController.test('hint') : this.withHint;
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHint = this.hint ? true : !!hasHintSlot;
-    const defaultSlot = html` <slot @slotchange=${this.syncRadioElements}></slot> `;
 
     return html`
       <fieldset
@@ -342,15 +342,11 @@ export default class WaRadioGroup extends WebAwesomeFormAssociatedElement {
           <slot name="label">${this.label}</slot>
         </label>
 
-        <div part="form-control-input" class="form-control-input" role="presentation">
-          ${this.hasButtonGroup
-            ? html`
-                <wa-button-group part="button-group" exportparts="base:button-group__base" role="presentation">
-                  ${defaultSlot}
-                </wa-button-group>
-              `
-            : defaultSlot}
-        </div>
+        <slot
+          part="form-control-input"
+          class=${classMap({ 'wa-button-group': this.hasButtonGroup })}
+          @slotchange=${this.syncRadioElements}
+        ></slot>
 
         <slot
           name="hint"

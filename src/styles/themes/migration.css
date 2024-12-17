@@ -329,15 +329,9 @@
 
   --wa-form-control-placeholder-color: var(--wa-color-base-60);
 
-  --wa-form-control-height-s: calc(
-    var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-control-value-line-height)
-  );
-  --wa-form-control-height-m: calc(
-    var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-control-value-line-height)
-  );
-  --wa-form-control-height-l: calc(
-    var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-control-value-line-height)
-  );
+  --wa-form-control-height-s: calc(var(--wa-space-xs) * 2 + 1em * var(--wa-form-control-value-line-height));
+  --wa-form-control-height-m: calc(var(--wa-space-s) * 2 + 1em * var(--wa-form-control-value-line-height));
+  --wa-form-control-height-l: calc(var(--wa-space-m) * 2 + 1em * var(--wa-form-control-value-line-height));
 
   --wa-form-control-required-content: '*';
   --wa-form-control-required-content-color: inherit;
@@ -522,28 +516,28 @@
 
     &[variant='brand'] {
       --background: var(--wa-color-brand-fill-normal);
-      --content-color: var(--wa-color-brand-on-normal);
+      --text-color: var(--wa-color-brand-on-normal);
     }
     &[variant='success'] {
       --background: var(--wa-color-success-fill-normal);
-      --content-color: var(--wa-color-success-on-normal);
+      --text-color: var(--wa-color-success-on-normal);
     }
     &[variant='warning'] {
       --background: var(--wa-color-warning-fill-normal);
-      --content-color: var(--wa-color-warning-on-normal);
+      --text-color: var(--wa-color-warning-on-normal);
     }
     &[variant='danger'] {
       --background: var(--wa-color-danger-fill-normal);
-      --content-color: var(--wa-color-danger-on-normal);
+      --text-color: var(--wa-color-danger-on-normal);
     }
     &[variant='neutral'] {
       --background: var(--wa-color-neutral-fill-normal);
-      --content-color: var(--wa-color-neutral-on-normal);
+      --text-color: var(--wa-color-neutral-on-normal);
     }
   }
 
   wa-button[appearance='outline'] {
-    --border-color: color-mix(in oklab, var(--label-color), transparent 75%);
+    --border-color: color-mix(in oklab, var(--text-color), transparent 75%);
   }
 
   wa-input,
@@ -556,7 +550,7 @@
 
   wa-radio-button:not([checked]) {
     --border-color: var(--wa-color-neutral-border-normal);
-    --label-color: var(--wa-color-text-normal);
+    --text-color: var(--wa-color-text-normal);
   }
 
   wa-switch {

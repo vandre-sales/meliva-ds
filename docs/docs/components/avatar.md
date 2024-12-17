@@ -97,7 +97,7 @@ You can group avatars with a few lines of CSS.
     margin-left: calc(-1 * var(--wa-space-m));
   }
 
-  .avatar-group wa-avatar::part(base) {
+  .avatar-group wa-avatar {
     border: solid 2px var(--wa-color-surface-default);
   }
 </style>

@@ -170,13 +170,13 @@ hasOutline: false
     --wa-form-control-placeholder-color: color-mix(in oklab, var(--wa-color-text-normal), transparent);
 
     --wa-form-control-height-s: calc(
-      var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-control-value-line-height)
+      var(--wa-space-xs) * 2 + 1em * var(--wa-form-control-value-line-height)
     );
     --wa-form-control-height-m: calc(
-      var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-control-value-line-height)
+      var(--wa-space-s) * 2 + 1em * var(--wa-form-control-value-line-height)
     );
     --wa-form-control-height-l: calc(
-      var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-control-value-line-height)
+      var(--wa-space-m) * 2 + 1em * var(--wa-form-control-value-line-height)
     );
 
     --wa-form-control-required-content: '*';
@@ -429,9 +429,9 @@ hasOutline: false
 
   #icon-chooser-trigger {
     --button-group-separator-border: none;
-    --label-color: var(--wa-color-neutral-on-quiet);
-    --label-color-hover: color-mix(in oklab, var(--wa-color-neutral-on-quiet), var(--wa-color-mix-hover));
-    --label-color-active: var(--label-color-hover);
+    --text-color: var(--wa-color-neutral-on-quiet);
+    --text-color-hover: color-mix(in oklab, var(--wa-color-neutral-on-quiet), var(--wa-color-mix-hover));
+    --text-color-active: var(--text-color-hover);
   }
 
   #icon-chooser::part(dialog) {

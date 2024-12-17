@@ -22,7 +22,7 @@ import styles from './progress-bar.css';
  * @cssproperty --height - The progress bar's height.
  * @cssproperty --track-color - The color of the track.
  * @cssproperty --indicator-color - The color of the indicator.
- * @cssproperty --label-color - The color of the label.
+ * @cssproperty --text-color - The color of the label.
  * @cssproperty --box-shadow - The shadow effects around the edges of the progress bar.
  */
 @customElement('wa-progress-bar')

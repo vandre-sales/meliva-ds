@@ -341,15 +341,9 @@
 
   --wa-form-control-placeholder-color: var(--wa-color-base-60);
 
-  --wa-form-control-height-s: calc(
-    var(--wa-space-xs) * 2 + var(--wa-font-size-s) * var(--wa-form-control-value-line-height)
-  );
-  --wa-form-control-height-m: calc(
-    var(--wa-space-s) * 2 + var(--wa-font-size-m) * var(--wa-form-control-value-line-height)
-  );
-  --wa-form-control-height-l: calc(
-    var(--wa-space-m) * 2 + var(--wa-font-size-l) * var(--wa-form-control-value-line-height)
-  );
+  --wa-form-control-height-s: calc(var(--wa-space-xs) * 2 + 1em * var(--wa-form-control-value-line-height));
+  --wa-form-control-height-m: calc(var(--wa-space-s) * 2 + 1em * var(--wa-form-control-value-line-height));
+  --wa-form-control-height-l: calc(var(--wa-space-m) * 2 + 1em * var(--wa-form-control-value-line-height));
 
   --wa-form-control-required-content: '*';
   --wa-form-control-required-content-color: inherit;
@@ -572,7 +566,7 @@
       --button-shadow-inner-a: var(--wa-color-primary-30);
       --button-shadow-inner-b: var(--wa-color-primary-80);
       --button-text-shadow: var(--wa-color-primary-40);
-      --label-color: var(--wa-color-primary-95);
+      --text-color: var(--wa-color-primary-95);
     }
 
     &[variant='success'] {
@@ -640,8 +634,8 @@
   wa-button[appearance='outlined'] {
     --box-shadow: none;
     --border-width: var(--wa-form-control-border-width);
-    --label-color: var(--wa-color-neutral-on-normal);
-    --label-color-hover: var(--wa-color-neutral-on-loud);
+    --text-color: var(--wa-color-neutral-on-normal);
+    --text-color-hover: var(--wa-color-neutral-on-loud);
 
     &::part(label) {
       text-shadow: none;
@@ -694,23 +688,23 @@
 
     &[variant='brand'] {
       --background: var(--wa-color-primary-80);
-      --content-color: var(--wa-color-primary-20);
+      --text-color: var(--wa-color-primary-20);
     }
     &[variant='success'] {
       --background: var(--wa-color-green-80);
-      --content-color: var(--wa-color-green-20);
+      --text-color: var(--wa-color-green-20);
     }
     &[variant='warning'] {
       --background: var(--wa-color-yellow-80);
-      --content-color: var(--wa-color-yellow-20);
+      --text-color: var(--wa-color-yellow-20);
     }
     &[variant='danger'] {
       --background: var(--wa-color-red-80);
-      --content-color: var(--wa-color-red-20);
+      --text-color: var(--wa-color-red-20);
     }
     &[variant='neutral'] {
       --background: white;
-      --content-color: var(--wa-color-base-30);
+      --text-color: var(--wa-color-base-30);
     }
   }
 
@@ -867,7 +861,7 @@
         --button-shadow-inner-a: var(--wa-color-primary-30);
         --button-shadow-inner-b: var(--wa-color-primary-80);
         --button-text-shadow: var(--wa-color-primary-40);
-        --label-color: var(--wa-color-primary-95);
+        --text-color: var(--wa-color-primary-95);
       }
 
       &[variant='success'] {

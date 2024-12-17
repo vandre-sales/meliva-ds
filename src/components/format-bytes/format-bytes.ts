@@ -10,6 +10,10 @@ import { LocalizeController } from '../../utilities/localize.js';
  */
 @customElement('wa-format-bytes')
 export default class WaFormatBytes extends WebAwesomeElement {
+  static get styles() {
+    return [];
+  }
+
   private readonly localize = new LocalizeController(this);
 
   /** The number to format in bytes. */
