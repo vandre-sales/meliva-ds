@@ -40,7 +40,6 @@ export function getTitleFromUrl(url, collection) {
 
 export function breadcrumbs(url, { withCurrent = false } = {}) {
   const parts = url.split('/').filter(Boolean);
-  parts.pop(); // remove current page
   const ret = [];
 
   while (parts.length) {
