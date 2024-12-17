@@ -67,6 +67,19 @@ Alternatively, you can set them inline directly on the element.
 
 The custom properties exposed by each component can be found in the component's API documentation.
 
+### Custom States
+
+Components can expose custom states that allow you to style them based on their current condition using the `:state()` selector. Custom states provide a way to target specific component states that aren't covered by standard pseudo-classes like `:hover` or `:focus`.
+Here's an example that styles a checkbox that's checked.
+
+```css
+wa-checkbox:state(checked) {
+  outline: dotted 2px tomato;
+}
+```
+
+Custom states can be combined with CSS parts and custom properties to create sophisticated customizations. The custom states exposed by each component can be found in the component's API documentation under the "Custom States" section.
+
 ### CSS Parts
 
 CSS parts offer further flexibility to customize individual components. The "parts" exposed by each component can be targeted with the [CSS part selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part), or `::part()`.

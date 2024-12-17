@@ -164,18 +164,18 @@ describe('<wa-range>', () => {
           await range.updateComplete;
 
           expect(range.checkValidity()).to.be.false;
-          expect(range.hasAttribute('data-wa-invalid')).to.be.true;
-          expect(range.hasAttribute('data-wa-valid')).to.be.false;
-          expect(range.hasAttribute('data-wa-user-invalid')).to.be.false;
-          expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
+          expect(range.hasCustomState('invalid')).to.be.true;
+          expect(range.hasCustomState('valid')).to.be.false;
+          expect(range.hasCustomState('user-invalid')).to.be.false;
+          expect(range.hasCustomState('user-valid')).to.be.false;
 
           await clickOnElement(range);
           await range.updateComplete;
           range.blur();
           await range.updateComplete;
 
-          expect(range.hasAttribute('data-wa-user-invalid')).to.be.true;
-          expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
+          expect(range.hasCustomState('user-invalid')).to.be.true;
+          expect(range.hasCustomState('user-valid')).to.be.false;
         });
 
         it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
@@ -185,10 +185,10 @@ describe('<wa-range>', () => {
           range.setCustomValidity('Invalid value');
           await range.updateComplete;
 
-          expect(range.hasAttribute('data-wa-invalid')).to.be.true;
-          expect(range.hasAttribute('data-wa-valid')).to.be.false;
-          expect(range.hasAttribute('data-wa-user-invalid')).to.be.false;
-          expect(range.hasAttribute('data-wa-user-valid')).to.be.false;
+          expect(range.hasCustomState('invalid')).to.be.true;
+          expect(range.hasCustomState('valid')).to.be.false;
+          expect(range.hasCustomState('user-invalid')).to.be.false;
+          expect(range.hasCustomState('user-valid')).to.be.false;
         });
 
         it('should be present in form data when using the form attribute and located outside of a <form>', async () => {

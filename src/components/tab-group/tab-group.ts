@@ -36,8 +36,8 @@ import styles from './tab-group.css';
  * @csspart tabs - The container that wraps the tabs.
  * @csspart body - The tab group's body where tab panels are slotted in.
  * @csspart scroll-button - The previous/next scroll buttons that show when tabs are scrollable, an `<wa-icon-button>`.
- * @csspart scroll-button--start - The starting scroll button.
- * @csspart scroll-button--end - The ending scroll button.
+ * @csspart scroll-button-start - The starting scroll button.
+ * @csspart scroll-button-end - The ending scroll button.
  * @csspart scroll-button__base - The scroll button's exported `base` part.
  *
  * @cssproperty --indicator-color - The color of the active tab indicator.
@@ -392,9 +392,9 @@ export default class WaTabGroup extends WebAwesomeElement {
           ${this.hasScrollControls
             ? html`
                 <wa-icon-button
-                  part="scroll-button scroll-button--start"
+                  part="scroll-button scroll-button-start"
                   exportparts="base:scroll-button__base"
-                  class="tab-group__scroll-button tab-group__scroll-button--start"
+                  class="tab-group__scroll-button tab-group__scroll-button-start"
                   name=${isRtl ? 'chevron-right' : 'chevron-left'}
                   library="system"
                   variant="solid"
@@ -414,9 +414,9 @@ export default class WaTabGroup extends WebAwesomeElement {
           ${this.hasScrollControls
             ? html`
                 <wa-icon-button
-                  part="scroll-button scroll-button--end"
+                  part="scroll-button scroll-button-end"
                   exportparts="base:scroll-button__base"
-                  class="tab-group__scroll-button tab-group__scroll-button--end"
+                  class="tab-group__scroll-button tab-group__scroll-button-end"
                   name=${isRtl ? 'chevron-left' : 'chevron-right'}
                   library="system"
                   variant="solid"
