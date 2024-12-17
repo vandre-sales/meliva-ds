@@ -3,8 +3,6 @@ title: Details
 tags: essentials
 ---
 
-## Details
-
 Individual details look like this.
 
 <details>
@@ -12,8 +10,25 @@ Individual details look like this.
   <p>Ut lectus arcu bibendum at varius. Convallis a cras semper auctor neque vitae. Odio pellentesque diam volutpat commodo sed egestas. Amet dictum sit amet justo donec enim diam vulputate ut.</p>
 </details>
 
-Grouping them provides accordion-style functionality.
+## Examples
 
+### Right-to-Left languages
+
+The details styling automatically adapts to right-to-left languages:
+
+```html {.example}
+<details lang="ar" dir="rtl">
+  <summary>تبديلني</summary>
+  استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن
+</details>
+```
+
+## Accordions
+
+In [modern browsers](https://caniuse.com/mdn-html_elements_details_name),
+grouping `<details>` elements via the `name` attribute provides accordion-style functionality:
+
+```html {.example}
 <details name="details-accordion">
   <summary>Enim diam</summary>
   <p>Nunc faucibus a pellentesque sit amet porttitor. Adipiscing tristique risus nec feugiat in fermentum. Leo duis ut diam quam nulla porttitor massa id. Mauris nunc congue nisi vitae.</p>
@@ -28,3 +43,4 @@ Grouping them provides accordion-style functionality.
   <summary>Ut porttitor</summary>
   <p>Eu facilisis sed odio morbi quis commodo odio aenean sed. Sit amet purus gravida quis blandit turpis cursus. Eu consequat ac felis donec et odio pellentesque diam volutpat.</p>
 </details>
+```

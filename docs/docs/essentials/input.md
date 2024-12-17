@@ -2,79 +2,53 @@
 title: Form Inputs
 tags: essentials
 ---
+<style>
+wa-code-demo::part(preview) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+</style>
 
-## Forms
+## Text fields
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;" class="wa">
-
-<label for="input-text">Input (text)</label>
-<input type="text" id="input-text" placeholder="placeholder">
-
+```html {.example}
+<label>Input (text) <input type="text" placeholder="placeholder"></label>
 <wa-input label="WA Input (text)" type="text" placeholder="placeholder"></wa-input>
 
-<label for="input-number">Input (number)</label>
-<input type="number" id="input-number">
-
+<label>Input (number) <input type="number"></label>
 <wa-input label="WA Input (number)" type="number"></wa-input>
 
-<label for="input-password">Input (password)</label>
-<input type="password" id="input-password" required>
-
+<label>Input (password) <input type="password" required></label>
 <wa-input label="WA Input (password)" type="password" required></wa-input>
 
-<label for="input-datetime-local">Input (datetime-local)</label>
-<input type="datetime-local" id="input-datetime-local"></input>
-
-<wa-input label="WA Input (datetime-local)" type="datetime-local"></wa-input>
-
-<label for="input-email">Input (email)</label>
-<input type="email" id="input-email">
-
+<label>Input (email) <input type="email"></label>
 <wa-input label="WA Input (email)" type="email"></wa-input>
 
-<label for="input-search">Input (search)</label>
-<input type="search" id="input-search">
-
+<label>Input (search) <input type="search"></label>
 <wa-input label="WA Input (search)" type="search"></wa-input>
 
-<label for="input-tel">Input (tel)</label>
-<input type="tel" id="input-tel">
-
+<label>Input (tel) <input type="tel"></label>
 <wa-input label="WA Input (tel)" type="tel"></wa-input>
 
-<label for="input-url">Input (url)</label>
-<input type="url" id="input-url">
-
+<label>Input (url) <input type="url"></label>
 <wa-input label="WA Input (url)" type="url"></wa-input>
 
-<input type="checkbox" id="input-checkbox"></input>
-<label for="input-checkbox">Input (checkbox)</label>
+<label>Textarea <textarea></textarea></label>
+<wa-textarea label="WA Textarea"></wa-textarea>
+```
 
+## Choice inputs
+
+```html {.example}
+<label><input type="checkbox"> Input (checkbox)</label>
 <wa-checkbox>WA Checkbox</wa-checkbox>
-
-<label for="input-color">Input (color)</label>
-<input type="color" id="input-color"></input>
-
-<wa-color-picker label="WA Color Picker"></wa-color-picker>
-
-<label for="input-date">Input (date)</label>
-<input type="date" id="input-date"></input>
-
-<wa-input label="WA Input (date)" type="date"></wa-input>
-
-<label for="input-time">Input (time)</label>
-<input type="time" id="input-time"></input>
-
-<wa-input label="WA Input (time)" type="time"></wa-input>
 
 <fieldset>
   <legend>Radio Group:</legend>
-  <input type="radio" id="radio-1" name="radio" value="radio-1" checked />
-  <label for="radio-1">Radio 1</label>
-  <input type="radio" id="radio-2" name="radio" value="radio-2" />
-  <label for="radio-2">Radio 2</label>
-  <input type="radio" id="radio-3" name="radio" value="radio-3" />
-  <label for="radio-3">Radio 3</label>
+  <label><input type="radio" name="radio" value="radio-1" checked> Radio 1</label>
+  <label><input type="radio"name="radio" value="radio-2" /> Radio 2</label>
+  <label><input type="radio"  name="radio" value="radio-3" /> Radio 3</label>
 </fieldset>
 
 <fieldset>
@@ -84,34 +58,51 @@ tags: essentials
     <wa-radio value="radio-3">Radio</wa-radio>
   </wa-radio-group>
 </fieldset>
+```
 
-<label for="input-range">Input (range)</label>
-<input type="range" id="input-range">
+## Color picker
+
+```html {.example}
+<label>Input (color) <input type="color"></label>
+
+<wa-color-picker label="WA Color Picker"></wa-color-picker>
+```
+
+## Time and date Pickers
+
+```html {.example}
+<label>Input (datetime-local) <input type="datetime-local"></label>
+<wa-input label="WA Input (datetime-local)" type="datetime-local"></wa-input>
+
+<label>Input (date) <input type="date"></label>
+<wa-input label="WA Input (date)" type="date"></wa-input>
+
+<label>Input (time) <input type="time"></label>
+<wa-input label="WA Input (time)" type="time"></wa-input>
+```
+
+## Slider
+
+```html {.example}
+<label>Input (range)<input type="range"></label>
 
 <wa-range label="WA Range"></wa-range>
+```
 
-<div>
-  <label for="textarea">Textarea</label>
-  <textarea id="textarea"></textarea>
-</div>
+## Select dropdown
 
-<wa-textarea label="WA Textarea"></wa-textarea>
-
-<div>
-<label for="select">Select</label>
+```html {.example}
+<label>Select
   <select id="select">
     <option value="option-1">Option 1</option>
     <option value="option-2">Option 2</option>
     <option value="option-3">Option 3</option>
   </select>
-</div>
+</label>
 
 <wa-select label="WA Select">
   <wa-option value="option-1">Option 1</wa-option>
   <wa-option value="option-2">Option 2</wa-option>
   <wa-option value="option-3">Option 3</wa-option>
 </wa-select>
-
-
-</div>
-
+```
