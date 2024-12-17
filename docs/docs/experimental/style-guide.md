@@ -22,9 +22,9 @@ The styles shown below can be all yours by adding Web Awesome's applied styleshe
 <wa-button>WA Button</wa-button>
 
 <label for="input-text">Input (text)</label>
-<input type="text" id="input-text"></input>
+<input type="text" id="input-text" placeholder="placeholder"></input>
 
-<wa-input label="WA Input (text)" type="text"></wa-input>
+<wa-input label="WA Input (text)" type="text" placeholder="placeholder"></wa-input>
 
 <label for="input-number">Input (number)</label>
 <input type="number" id="input-number"></input>
@@ -32,9 +32,34 @@ The styles shown below can be all yours by adding Web Awesome's applied styleshe
 <wa-input label="WA Input (number)" type="number"></wa-input>
 
 <label for="input-password">Input (password)</label>
-<input type="password" id="input-password"></input>
+<input type="password" id="input-password" required></input>
 
-<wa-input label="WA Input (password)" type="password"></wa-input>
+<wa-input label="WA Input (password)" type="password" required></wa-input>
+
+<label for="input-datetime-local">Input (datetime-local)</label>
+<input type="datetime-local" id="input-datetime-local"></input>
+
+<wa-input label="WA Input (datetime-local)" type="datetime-local"></wa-input>
+
+<label for="input-email">Input (email)</label>
+<input type="email" id="input-email"></input>
+
+<wa-input label="WA Input (email)" type="email"></wa-input>
+
+<label for="input-search">Input (search)</label>
+<input type="search" id="input-search"></input>
+
+<wa-input label="WA Input (search)" type="search"></wa-input>
+
+<label for="input-tel">Input (tel)</label>
+<input type="tel" id="input-tel"></input>
+
+<wa-input label="WA Input (tel)" type="tel"></wa-input>
+
+<label for="input-url">Input (url)</label>
+<input type="url" id="input-url"></input>
+
+<wa-input label="WA Input (url)" type="url"></wa-input>
 
 <input type="checkbox" id="input-checkbox"></input>
 <label for="input-checkbox">Input (checkbox)</label>

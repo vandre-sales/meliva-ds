@@ -1,63 +1,13 @@
 :host {
-  --background-color: var(--wa-form-control-background-color);
-  --border-color: var(--wa-form-control-resting-color);
-  --border-radius: var(--wa-form-control-border-radius);
-  --border-style: var(--wa-form-control-border-style);
-  --border-width: var(--wa-form-control-border-width);
-  --box-shadow: initial;
-
   display: block;
 }
 
-:host([filled]) {
-  --background-color: var(--wa-color-neutral-fill-quiet);
-  --border-color: var(--background-color);
-}
-
 .input {
-  background-color: var(--background-color);
-  border-color: var(--border-color);
-  border-radius: var(--border-radius);
-  border-style: var(--border-style);
-  border-width: var(--border-width);
-  box-shadow: var(--box-shadow);
   flex: 1 1 auto;
-  display: inline-flex;
+  display: flex;
   align-items: stretch;
   justify-content: start;
   position: relative;
-  width: 100%;
-  font: inherit;
-  vertical-align: middle;
-  overflow: hidden;
-  cursor: text;
-  transition:
-    background var(--wa-transition-normal) var(--wa-transition-easing),
-    border var(--wa-transition-normal) var(--wa-transition-easing),
-    outline var(--wa-transition-fast) var(--wa-transition-easing);
-}
-
-/* Standard inputs */
-.input--standard.input--focused:not(.input--disabled) {
-  outline: var(--wa-focus-ring);
-  outline-offset: var(--wa-focus-ring-offset);
-  border-color: var(--wa-form-control-activated-color);
-}
-
-.input--standard.input--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Filled inputs */
-.input--filled.input--focused:not(.input--disabled) {
-  outline: var(--wa-focus-ring);
-  outline-offset: var(--wa-focus-ring-offset);
-}
-
-.input--filled.input--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .input__control {
@@ -65,8 +15,6 @@
   min-width: 0;
   height: 100%;
   font: inherit;
-  line-height: var(--wa-form-control-value-line-height);
-  color: var(--wa-form-control-value-color);
   border: none;
   /* prettier-ignore */
   background-color: rgb(118 118 118 / 0); /* ensures proper placeholder styles in webkit's date input */
@@ -82,28 +30,6 @@
 .input__control::-webkit-search-results-button,
 .input__control::-webkit-search-results-decoration {
   -webkit-appearance: none;
-}
-
-.input__control:-webkit-autofill,
-.input__control:-webkit-autofill:hover,
-.input__control:-webkit-autofill:focus,
-.input__control:-webkit-autofill:active {
-  box-shadow: none;
-  -webkit-text-fill-color: var(--wa-color-brand-on-normal);
-  caret-color: var(--wa-form-control-value-color);
-}
-
-.input--filled .input__control:-webkit-autofill,
-.input--filled .input__control:-webkit-autofill:hover,
-.input--filled .input__control:-webkit-autofill:focus,
-.input--filled .input__control:-webkit-autofill:active {
-  box-shadow: none;
-}
-
-.input__control::placeholder {
-  color: var(--wa-form-control-placeholder-color);
-  user-select: none;
-  -webkit-user-select: none;
 }
 
 .input__control:focus {
@@ -193,14 +119,6 @@
   .input__suffix ::slotted(*) {
     margin-inline-end: var(--wa-space-l);
   }
-}
-
-/*
- * Pill modifier
- */
-
-.input--pill {
-  border-radius: var(--wa-border-radius-pill);
 }
 
 /*
