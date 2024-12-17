@@ -537,7 +537,7 @@
   }
 
   wa-button[appearance='outline'] {
-    --border-color: color-mix(in oklab, var(--label-color), transparent 75%);
+    --border-color: color-mix(in oklab, var(--text-color), transparent 75%);
   }
 
   wa-input,
@@ -550,7 +550,7 @@
 
   wa-radio-button:not([checked]) {
     --border-color: var(--wa-color-neutral-border-normal);
-    --label-color: var(--wa-color-text-normal);
+    --text-color: var(--wa-color-text-normal);
   }
 
   wa-switch {

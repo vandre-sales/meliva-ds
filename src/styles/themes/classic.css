@@ -365,14 +365,14 @@ wa-radio-button {
   --border-color: var(--wa-form-control-resting-color);
   --border-color-active: var(--background-color-active);
   --border-color-hover: var(--background-color-hover);
-  --label-color-active: var(--label-color-hover);
-  --label-color-hover: var(--wa-color-brand-on-loud);
+  --text-color-active: var(--text-color-hover);
+  --text-color-hover: var(--wa-color-brand-on-loud);
   --indicator-color: var(--wa-background-color);
 
   &[checked] {
     --background-color: var(--wa-form-control-activated-color);
     --border-color: var(--background-color);
-    --label-color: var(--wa-color-brand-on-loud);
+    --text-color: var(--wa-color-brand-on-loud);
   }
 }
 

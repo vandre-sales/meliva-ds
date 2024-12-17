@@ -566,7 +566,7 @@
       --button-shadow-inner-a: var(--wa-color-primary-30);
       --button-shadow-inner-b: var(--wa-color-primary-80);
       --button-text-shadow: var(--wa-color-primary-40);
-      --label-color: var(--wa-color-primary-95);
+      --text-color: var(--wa-color-primary-95);
     }
 
     &[variant='success'] {
@@ -634,8 +634,8 @@
   wa-button[appearance='outlined'] {
     --box-shadow: none;
     --border-width: var(--wa-form-control-border-width);
-    --label-color: var(--wa-color-neutral-on-normal);
-    --label-color-hover: var(--wa-color-neutral-on-loud);
+    --text-color: var(--wa-color-neutral-on-normal);
+    --text-color-hover: var(--wa-color-neutral-on-loud);
 
     &::part(label) {
       text-shadow: none;
@@ -861,7 +861,7 @@
         --button-shadow-inner-a: var(--wa-color-primary-30);
         --button-shadow-inner-b: var(--wa-color-primary-80);
         --button-text-shadow: var(--wa-color-primary-40);
-        --label-color: var(--wa-color-primary-95);
+        --text-color: var(--wa-color-primary-95);
       }
 
       &[variant='success'] {

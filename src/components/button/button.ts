@@ -47,9 +47,9 @@ import styles from './button.css';
  * @cssproperty --border-color - The color of the button's border when the button is not being interacted with.
  * @cssproperty --border-color-active - The color of the button's border when active.
  * @cssproperty --border-color-hover - The color of the button's border on hover.
- * @cssproperty --label-color - The color of the button's label when the button is not being interacted with.
- * @cssproperty --label-color-active - The color of the button's label when active.
- * @cssproperty --label-color-hover - The color of the button's label on hover.
+ * @cssproperty --text-color - The color of the button's label when the button is not being interacted with.
+ * @cssproperty --text-color-active - The color of the button's label when active.
+ * @cssproperty --text-color-hover - The color of the button's label on hover.
  */
 @customElement('wa-button')
 export default class WaButton extends WebAwesomeFormAssociatedElement {

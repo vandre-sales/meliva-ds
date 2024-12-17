@@ -2,7 +2,7 @@
   --height: 1.25rem;
   --track-color: var(--wa-color-neutral-fill-normal);
   --indicator-color: var(--wa-color-brand-fill-loud);
-  --label-color: var(--wa-color-brand-on-loud);
+  --text-color: var(--wa-color-brand-on-loud);
   --box-shadow: none;
 
   display: block;
@@ -21,7 +21,7 @@
   height: 100%;
   font: inherit;
   background-color: var(--indicator-color);
-  color: var(--label-color);
+  color: var(--text-color);
   text-align: center;
   line-height: var(--height);
   white-space: nowrap;

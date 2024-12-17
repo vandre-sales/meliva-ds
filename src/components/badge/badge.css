@@ -10,7 +10,7 @@
   border-radius: var(--wa-border-radius-xs);
   border-style: var(--wa-border-style);
   border-width: var(--wa-border-width-s);
-  color: var(--label-color, var(--wa-color-on-loud));
+  color: var(--text-color, var(--wa-color-on-loud));
   white-space: nowrap;
   padding: 0.375em 0.625em;
   user-select: none;

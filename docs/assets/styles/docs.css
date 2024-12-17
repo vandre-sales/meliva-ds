@@ -46,7 +46,7 @@ wa-page > header {
   }
 
   wa-button[data-toggle-nav] {
-    --label-color: currentColor;
+    --text-color: currentColor;
     font-size: 1rem;
     margin-inline-start: -0.875rem;
     margin-inline-end: 0;

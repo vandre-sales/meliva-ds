@@ -38,9 +38,9 @@ import styles from './radio-button.css';
  * @cssproperty --box-shadow - The shadow effects around the edges of the button.
  * @cssproperty --indicator-color - The color of the checked button indicator.
  * @cssproperty --indicator-width - The width of the checked button indicator.
- * @cssproperty --label-color - The color of the button's label.
- * @cssproperty --label-color-active - The color of the button's label when active.
- * @cssproperty --label-color-hover - The color of the button's label on hover.
+ * @cssproperty --text-color - The color of the button's label.
+ * @cssproperty --text-color-active - The color of the button's label when active.
+ * @cssproperty --text-color-hover - The color of the button's label on hover.
  *
  * @csspart base - The internal `<button>` element.
  * @csspart checked - The internal button element when the radio button is checked.
