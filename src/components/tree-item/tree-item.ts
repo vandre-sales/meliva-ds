@@ -44,10 +44,6 @@ import styles from './tree-item.css';
  *
  * @csspart base - The component's base wrapper.
  * @csspart item - The tree item's container. This element wraps everything except slotted tree item children.
- * @csspart item--disabled - Applied when the tree item is disabled.
- * @csspart item--expanded - Applied when the tree item is expanded.
- * @csspart item--indeterminate - Applied when the selection is indeterminate.
- * @csspart item--selected - Applied when the tree item is selected.
  * @csspart indentation - The tree item's indentation container.
  * @csspart expand-button - The container that wraps the tree item's expand button and spinner.
  * @csspart spinner - The spinner that shows when a lazy tree item is in the loading state.
@@ -57,8 +53,6 @@ import styles from './tree-item.css';
  * @csspart checkbox - The checkbox that shows when using multiselect.
  * @csspart checkbox__base - The checkbox's exported `base` part.
  * @csspart checkbox__control - The checkbox's exported `control` part.
- * @csspart checkbox__control--checked - The checkbox's exported `control--checked` part.
- * @csspart checkbox__control--indeterminate - The checkbox's exported `control--indeterminate` part.
  * @csspart checkbox__checked-icon - The checkbox's exported `checked-icon` part.
  * @csspart checkbox__indeterminate-icon - The checkbox's exported `indeterminate-icon` part.
  * @csspart checkbox__label - The checkbox's exported `label` part.
@@ -68,6 +62,11 @@ import styles from './tree-item.css';
  * @cssproperty --expand-button-color - The color of the expand button.
  * @cssproperty [--show-duration=200ms] - The animation duration when expanding tree items.
  * @cssproperty [--hide-duration=200ms] - The animation duration when collapsing tree items.
+ *
+ * @cssstate disabled - Applied when the tree item is disabled.
+ * @cssstate expanded - Applied when the tree item is expanded.
+ * @cssstate indeterminate - Applied when the selection is indeterminate.
+ * @cssstate selected - Applied when the tree item is selected.
  */
 @customElement('wa-tree-item')
 export default class WaTreeItem extends WebAwesomeElement {
@@ -189,11 +188,23 @@ export default class WaTreeItem extends WebAwesomeElement {
 
   @watch('disabled')
   handleDisabledChange() {
+    this.toggleCustomState('disabled', this.disabled);
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+  }
+
+  @watch('expanded')
+  handleExpandedState() {
+    this.toggleCustomState('expanded', this.expanded);
+  }
+
+  @watch('indeterminate')
+  handleIndeterminateStateChange() {
+    this.toggleCustomState('indeterminate', this.indeterminate);
   }
 
   @watch('selected')
   handleSelectedChange() {
+    this.toggleCustomState('selected', this.selected);
     this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
   }
 
@@ -251,16 +262,7 @@ export default class WaTreeItem extends WebAwesomeElement {
           'tree-item--rtl': this.localize.dir() === 'rtl',
         })}"
       >
-        <div
-          class="tree-item__item"
-          part="
-            item
-            ${this.disabled ? 'item--disabled' : ''}
-            ${this.expanded ? 'item--expanded' : ''}
-            ${this.indeterminate ? 'item--indeterminate' : ''}
-            ${this.selected ? 'item--selected' : ''}
-          "
-        >
+        <div class="tree-item__item" part="item">
           <div class="tree-item__indentation" part="indentation"></div>
 
           <div
@@ -291,8 +293,6 @@ export default class WaTreeItem extends WebAwesomeElement {
                 exportparts="
                     base:checkbox__base,
                     control:checkbox__control,
-                    control--checked:checkbox__control--checked,
-                    control--indeterminate:checkbox__control--indeterminate,
                     checked-icon:checkbox__checked-icon,
                     indeterminate-icon:checkbox__indeterminate-icon,
                     label:checkbox__label
