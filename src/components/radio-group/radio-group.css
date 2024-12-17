@@ -17,3 +17,7 @@
   content: var(--wa-form-control-required-content);
   margin-inline-start: var(--wa-form-control-required-content-offset);
 }
+
+.wa-button-group {
+  display: flex;
+}

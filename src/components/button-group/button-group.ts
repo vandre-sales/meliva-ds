@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import buttonGroupStyles from '../../styles/utilities/button-group.css';
 import styles from './button-group.css';
 
 /**
@@ -15,7 +16,7 @@ import styles from './button-group.css';
  */
 @customElement('wa-button-group')
 export default class WaButtonGroup extends WebAwesomeElement {
-  static shadowStyle = styles;
+  static shadowStyle = [buttonGroupStyles, styles];
 
   @query('slot') defaultSlot: HTMLSlotElement;
 
@@ -82,20 +83,19 @@ export default class WaButtonGroup extends WebAwesomeElement {
   }
 
   render() {
-    // eslint-disable-next-line lit-a11y/mouse-events-have-key-events
     return html`
-      <div
+      <slot
         part="base"
-        class="button-group"
+        class="wa-button-group"
         role="${this.disableRole ? 'presentation' : 'group'}"
         aria-label=${this.label}
+        aria-orientation=${this.orientation}
         @focusout=${this.handleBlur}
         @focusin=${this.handleFocus}
         @mouseover=${this.handleMouseOver}
         @mouseout=${this.handleMouseOut}
-      >
-        <slot @slotchange=${this.handleSlotChange}></slot>
-      </div>
+        @slotchange=${this.handleSlotChange}
+      ></slot>
     `;
   }
 }
