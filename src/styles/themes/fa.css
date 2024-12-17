@@ -471,7 +471,7 @@
   }
 
   wa-alert {
-    --content-color: var(--wa-color-text-normal);
+    --text-color: var(--wa-color-text-normal);
     --icon-color: var(--border-color);
 
     .wa-theme-fa-dark & {

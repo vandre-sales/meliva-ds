@@ -20,7 +20,7 @@ import styles from './badge.css';
  * @cssproperty --border-radius - The radius of the badge's corners.
  * @cssproperty --border-style - The style of the badge's border.
  * @cssproperty --border-width - The width of the badge's border.
- * @cssproperty --content-color - The color of the badge's content.
+ * @cssproperty --text-color - The color of the badge's content.
  */
 @customElement('wa-badge')
 export default class WaBadge extends WebAwesomeElement {

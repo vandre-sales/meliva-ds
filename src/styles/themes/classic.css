@@ -341,7 +341,7 @@
  */
 wa-avatar {
   --background-color: var(--wa-color-neutral-fill-loud);
-  --content-color: var(--wa-color-neutral-on-loud);
+  --text-color: var(--wa-color-neutral-on-loud);
 }
 
 wa-button,
@@ -384,7 +384,7 @@ wa-breadcrumb {
 wa-callout {
   --background-color: var(--wa-color-surface-raised);
   --border-width: var(--wa-border-width-l) var(--wa-border-width-s) var(--wa-border-width-s) var(--wa-border-width-s);
-  --content-color: var(--wa-color-text-normal);
+  --text-color: var(--wa-color-text-normal);
   --spacing: var(--wa-space-l);
 
   font-size: var(--wa-font-size-s);
