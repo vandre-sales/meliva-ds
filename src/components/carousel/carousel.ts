@@ -39,8 +39,8 @@ import styles from './carousel.css';
  * @csspart pagination-item--active - Applied when the item is active.
  * @csspart navigation - The navigation wrapper.
  * @csspart navigation-button - The navigation button.
- * @csspart navigation-button--previous - Applied to the previous button.
- * @csspart navigation-button--next - Applied to the next button.
+ * @csspart navigation-button-previous - Applied to the previous button.
+ * @csspart navigation-button-next - Applied to the next button.
  *
  * @cssproperty [--aspect-ratio=16/9] - The aspect ratio of each slide.
  * @cssproperty --navigation-color - The color of the navigation arrows.
@@ -596,11 +596,11 @@ export default class WaCarousel extends WebAwesomeElement {
           ? html`
               <div part="navigation" class="carousel__navigation">
                 <button
-                  part="navigation-button navigation-button--previous"
+                  part="navigation-button navigation-button-previous"
                   class="${classMap({
                     'carousel__navigation-button': true,
-                    'carousel__navigation-button--previous': true,
-                    'carousel__navigation-button--disabled': !prevEnabled,
+                    'carousel__navigation-button-previous': true,
+                    'carousel__navigation-button-disabled': !prevEnabled,
                   })}"
                   aria-label="${this.localize.term('previousSlide')}"
                   aria-controls="scroll-container"
@@ -613,11 +613,11 @@ export default class WaCarousel extends WebAwesomeElement {
                 </button>
 
                 <button
-                  part="navigation-button navigation-button--next"
+                  part="navigation-button navigation-button-next"
                   class=${classMap({
                     'carousel__navigation-button': true,
-                    'carousel__navigation-button--next': true,
-                    'carousel__navigation-button--disabled': !nextEnabled,
+                    'carousel__navigation-button-next': true,
+                    'carousel__navigation-button-disabled': !nextEnabled,
                   })}
                   aria-label="${this.localize.term('nextSlide')}"
                   aria-controls="scroll-container"
