@@ -21,33 +21,33 @@
 
 {# Components #}
 <wa-details{{ ' open' if '/components/' in page.url }}>
-<h2 slot=summary>
-  <a href="/docs/components/" title="Overview">Components
-    <wa-icon name="grid-2"></wa-icon>
-  </a>
-</h2>
+  <h2 slot=summary>
+    <a href="/docs/components/" title="Overview">Components
+      <wa-icon name="grid-2"></wa-icon>
+    </a>
+  </h2>
 
-<ul>
-  {% for component in collections.component | sort %}
-  {% if not component.data.parent and not (isAlpha and component.data.isAlpha) %}
-  <li>
-    <a href="/docs/components/{{ component.fileSlug }}">{{ component.data.title }}</a>
+  <ul>
+    {% for component in collections.component | sort %}
+    {% if not component.data.parent and not (isAlpha and component.data.isAlpha) %}
+    <li>
+      <a href="/docs/components/{{ component.fileSlug }}">{{ component.data.title }}</a>
 
-    {% if components[component.fileSlug].status == 'experimental' %}<wa-icon name="flask"></wa-icon>{% endif %}
-    {% if component.data.isPro %}<wa-badge class="pro">PRO</wa-badge>{% endif %}
-    <ul>
-    {% for child in collections.component | sort %}
-      {% if child.data.parent == component.fileSlug and not (isAlpha and child.data.isAlpha) %}
-        <li>
-          <a href="/docs/components/{{ child.fileSlug }}">{{ child.data.title }}</a>
-        </li>
-      {% endif %}
+      {% if components[component.fileSlug].status == 'experimental' %}<wa-icon name="flask"></wa-icon>{% endif %}
+      {% if component.data.isPro %}<wa-badge class="pro">PRO</wa-badge>{% endif %}
+      <ul>
+      {% for child in collections.component | sort %}
+        {% if child.data.parent == component.fileSlug and not (isAlpha and child.data.isAlpha) %}
+          <li>
+            <a href="/docs/components/{{ child.fileSlug }}">{{ child.data.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </li>
+    {% endif %}
     {% endfor %}
-    </ul>
-  </li>
-  {% endif %}
-  {% endfor %}
-</ul>
+  </ul>
 </wa-details>
 
 {# Layout #}
