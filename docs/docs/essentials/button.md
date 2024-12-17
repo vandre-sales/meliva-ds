@@ -10,7 +10,7 @@ title: Button
 
 ### Variants
 
-Use the `variant` attribute to set the button's semantic variant.
+Use the variant utility classes to set the button's semantic variant.
 
 ```html {.example}
 <button class="wa-neutral">Neutral</button>
@@ -22,7 +22,7 @@ Use the `variant` attribute to set the button's semantic variant.
 
 ### Appearance
 
-Use the `appearance` attribute to change the button's visual appearance.
+Use the appearance utility classes to change the button's visual appearance:
 
 ```html {.example}
 <div style="margin-block-end: 1rem;">
