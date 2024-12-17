@@ -24,13 +24,6 @@ import styles from './tag.css';
  * @csspart content - The tag's content.
  * @csspart remove-button - The tag's remove button, an `<wa-icon-button>`.
  * @csspart remove-button__base - The remove button's exported `base` part.
- *
- * @cssproperty --background-color - The tag's background color.
- * @cssproperty --border-color - The color of the tag's border.
- * @cssproperty --border-radius - The radius of the tag's corners.
- * @cssproperty --border-style - The style of the tag's border.
- * @cssproperty --border-width - The width of the tag's border.
- * @cssproperty --content-color - The color of the tag's content.
  */
 @customElement('wa-tag')
 export default class WaTag extends WebAwesomeElement {
