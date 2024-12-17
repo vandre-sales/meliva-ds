@@ -2,6 +2,7 @@ import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
+import appearanceStyles from '../../styles/utilities/appearance.css';
 import variantStyles from '../../styles/utilities/variants.css';
 import styles from './badge.css';
 
@@ -24,7 +25,7 @@ import styles from './badge.css';
  */
 @customElement('wa-badge')
 export default class WaBadge extends WebAwesomeElement {
-  static shadowStyle = [variantStyles, styles];
+  static shadowStyle = [variantStyles, appearanceStyles, styles];
 
   /** The badge's theme variant. */
   @property({ reflect: true }) variant: 'brand' | 'success' | 'neutral' | 'warning' | 'danger' = 'brand';

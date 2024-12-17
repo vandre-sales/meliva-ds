@@ -22,6 +22,43 @@ Set the `variant` attribute to change the badge's variant.
 <wa-badge variant="danger">Danger</wa-badge>
 ```
 
+### Appearance
+
+Use the `appearance` attribute to change the badge's visual appearance.
+
+```html {.example}
+<div style="margin-block-end: 1rem;">
+  <wa-badge appearance="filled" variant="neutral">Filled</wa-badge>
+  <wa-badge appearance="tinted outlined" variant="neutral">Both</wa-badge>
+  <wa-badge appearance="tinted" variant="neutral">Tinted</wa-badge>
+  <wa-badge appearance="outlined" variant="neutral">Outlined</wa-badge>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-badge appearance="filled" variant="brand">Filled</wa-badge>
+  <wa-badge appearance="tinted outlined" variant="brand">Both</wa-badge>
+  <wa-badge appearance="tinted" variant="brand">Tinted</wa-badge>
+  <wa-badge appearance="outlined" variant="brand">Outlined</wa-badge>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-badge appearance="filled" variant="success">Filled</wa-badge>
+  <wa-badge appearance="tinted outlined" variant="success">Both</wa-badge>
+  <wa-badge appearance="tinted" variant="success">Tinted</wa-badge>
+  <wa-badge appearance="outlined" variant="success">Outlined</wa-badge>
+</div>
+<div style="margin-block-end: 1rem;">
+  <wa-badge appearance="filled" variant="warning">Filled</wa-badge>
+  <wa-badge appearance="tinted outlined" variant="warning">Both</wa-badge>
+  <wa-badge appearance="tinted" variant="warning">Tinted</wa-badge>
+  <wa-badge appearance="outlined" variant="warning">Outlined</wa-badge>
+</div>
+<div>
+  <wa-badge appearance="filled" variant="danger">Filled</wa-badge>
+  <wa-badge appearance="tinted outlined" variant="danger">Both</wa-badge>
+  <wa-badge appearance="tinted" variant="danger">Tinted</wa-badge>
+  <wa-badge appearance="outlined" variant="danger">Outlined</wa-badge>
+</div>
+```
+
 ### Pill Badges
 
 Use the `pill` attribute to give badges rounded edges.
