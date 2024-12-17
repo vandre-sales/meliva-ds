@@ -1,7 +1,7 @@
 :is(button, input:where([type='button'], [type='reset'], [type='submit'])):where(:not(:host *, .wa-off, .wa-off *)),
 :host,
 .wa-button:where(:not([part~='base'])) {
-  --background-color: var(--color-fill-loud, var(--wa-color-neutral-fill-loud));
+  --background-color: var(--wa-color-fill-loud, var(--wa-color-neutral-fill-loud));
   --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
   --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
 
@@ -10,7 +10,7 @@
   --border-color-active: var(--border-color);
   --border-width: max(1px, var(--wa-form-control-border-width));
 
-  --label-color: var(--color-on-loud, var(--wa-color-neutral-on-loud));
+  --label-color: var(--wa-color-on-loud, var(--wa-color-neutral-on-loud));
   --label-color-hover: var(--label-color);
   --label-color-active: var(--label-color);
 
@@ -99,29 +99,29 @@ input:is([type='button'], [type='reset'], [type='submit']),
 .wa-outlined,
 :host([appearance~='outlined']) {
   --background-color: transparent;
-  --background-color-hover: var(--color-fill-quiet);
+  --background-color-hover: var(--wa-color-fill-quiet);
   --background-color-active: color-mix(in oklab, var(--background-color-hover), transparent 20%);
 
-  --border-color: var(--color-border-loud);
-  --border-color-hover: var(--color-border-loud);
+  --border-color: var(--wa-color-border-loud);
+  --border-color-hover: var(--wa-color-border-loud);
 
-  --label-color: var(--color-on-quiet);
-  --label-color-hover: var(--color-on-quiet);
+  --label-color: var(--wa-color-on-quiet);
+  --label-color-hover: var(--wa-color-on-quiet);
 }
 
 .wa-filled,
 :host([appearance~='filled']) {
-  --background-color: var(--color-fill-loud, var(--wa-color-neutral-fill-loud));
+  --background-color: var(--wa-color-fill-loud, var(--wa-color-neutral-fill-loud));
   --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
   --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
 
-  --label-color: var(--color-on-loud, var(--wa-color-neutral-on-loud));
+  --label-color: var(--wa-color-on-loud, var(--wa-color-neutral-on-loud));
 }
 
 .wa-tinted,
 :host([appearance~='tinted']) {
-  --background-color: var(--color-fill-normal, var(--wa-color-neutral-fill-normal));
-  --label-color: var(--color-on-normal, var(--wa-color-neutral-on-normal));
+  --background-color: var(--wa-color-fill-normal, var(--wa-color-neutral-fill-normal));
+  --label-color: var(--wa-color-on-normal, var(--wa-color-neutral-on-normal));
 
   --background-color-hover: color-mix(in oklab, var(--background-color), transparent 10%);
   --background-color-active: color-mix(in oklab, var(--background-color), transparent 20%);
@@ -130,9 +130,9 @@ input:is([type='button'], [type='reset'], [type='submit']),
 .wa-text,
 :host([appearance~='text']) {
   --background-color: transparent;
-  --label-color: var(--color-on-quiet);
+  --label-color: var(--wa-color-on-quiet);
 
-  --background-color-hover: var(--color-fill-quiet);
+  --background-color-hover: var(--wa-color-fill-quiet);
   --background-color-active: color-mix(in oklab, var(--background-color-hover), transparent 20%);
 }
 
