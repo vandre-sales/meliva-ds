@@ -10,6 +10,7 @@ import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import nativeStyles from '../../styles/native/button.css';
 import sizeStyles from '../../styles/shadow/size.css';
+import appearanceStyles from '../../styles/utilities/appearance.css';
 import variantStyles from '../../styles/utilities/variants.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon/icon.js';
@@ -52,7 +53,7 @@ import styles from './button.css';
  */
 @customElement('wa-button')
 export default class WaButton extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [variantStyles, sizeStyles, nativeStyles, styles];
+  static shadowStyle = [variantStyles, appearanceStyles, sizeStyles, nativeStyles, styles];
 
   static get validators() {
     return [...super.validators, MirrorValidator()];

@@ -10,6 +10,7 @@
 
 @import url('shadow/size.css');
 @import url('utilities/variants.css');
+@import url('utilities/appearance.css');
 
 /**
  * Applied styles are used to "reset" a page and provide defaults for typography and native HTML elements based on
