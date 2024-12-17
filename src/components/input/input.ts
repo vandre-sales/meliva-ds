@@ -12,6 +12,7 @@ import { HasSlotController } from '../../internal/slot.js';
 import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
+import nativeStyles from '../../styles/native/input.css';
 import formControlStyles from '../../styles/shadow/form-control.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import type WaButton from '../button/button.js';
@@ -61,7 +62,7 @@ import styles from './input.css';
  */
 @customElement('wa-input')
 export default class WaInput extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [formControlStyles, styles];
+  static shadowStyle = [formControlStyles, nativeStyles, styles];
 
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
@@ -206,8 +207,8 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
     converter: {
       // Allow "true|false" attribute values but keep the property boolean
       fromAttribute: value => (!value || value === 'false' ? false : true),
-      toAttribute: value => (value ? 'true' : 'false'),
-    },
+      toAttribute: value => (value ? 'true' : 'false')
+    }
   })
   spellcheck = true;
 
@@ -289,7 +290,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
           }
 
           const button = formElements.find(
-            (el: HTMLButtonElement) => el.type === 'submit' && !el.matches(':disabled'),
+            (el: HTMLButtonElement) => el.type === 'submit' && !el.matches(':disabled')
           ) as undefined | HTMLButtonElement | WaButton;
 
           // No button found, don't submit.
@@ -339,7 +340,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
   setSelectionRange(
     selectionStart: number,
     selectionEnd: number,
-    selectionDirection: 'forward' | 'backward' | 'none' = 'none',
+    selectionDirection: 'forward' | 'backward' | 'none' = 'none'
   ) {
     this.input.setSelectionRange(selectionStart, selectionEnd, selectionDirection);
   }
@@ -349,7 +350,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
     replacement: string,
     start?: number,
     end?: number,
-    selectMode: 'select' | 'start' | 'end' | 'preserve' = 'preserve',
+    selectMode: 'select' | 'start' | 'end' | 'preserve' = 'preserve'
   ) {
     const selectionStart = start ?? this.input.selectionStart!;
     const selectionEnd = end ?? this.input.selectionEnd!;
@@ -410,7 +411,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
           'form-control--small': this.size === 'small',
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
+          'form-control--has-label': hasLabel
         })}
       >
         <label
@@ -440,7 +441,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
               'input--disabled': this.disabled,
               'input--focused': this.hasFocus,
               'input--empty': !this.value,
-              'input--no-spin-buttons': this.noSpinButtons,
+              'input--no-spin-buttons': this.noSpinButtons
             })}
           >
             <span part="prefix" class="input__prefix">
@@ -531,7 +532,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
           name="hint"
           part="hint"
           class=${classMap({
-            'has-slotted': hasHint,
+            'has-slotted': hasHint
           })}
           aria-hidden=${hasHint ? 'false' : 'true'}
           >${this.hint}</slot
