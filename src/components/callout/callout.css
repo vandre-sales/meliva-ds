@@ -2,6 +2,9 @@
   --icon-color: currentColor;
   --icon-size: var(--wa-font-size-l);
   --spacing: var(--wa-space-m);
+  --background-color: var(--wa-color-fill-quiet);
+  --border-color: var(--wa-color-border-quiet);
+  --content-color: var(--wa-color-on-normal);
 
   position: relative;
   display: flex;
@@ -13,36 +16,6 @@
   border-width: var(--wa-panel-border-width);
   color: var(--content-color);
   padding: var(--spacing);
-}
-
-:host([variant='brand']) {
-  --background-color: var(--wa-color-brand-fill-quiet);
-  --border-color: var(--wa-color-brand-border-quiet);
-  --content-color: var(--wa-color-brand-on-normal);
-}
-
-:host([variant='success']) {
-  --background-color: var(--wa-color-success-fill-quiet);
-  --border-color: var(--wa-color-success-border-quiet);
-  --content-color: var(--wa-color-success-on-normal);
-}
-
-:host([variant='neutral']) {
-  --background-color: var(--wa-color-neutral-fill-quiet);
-  --border-color: var(--wa-color-neutral-border-quiet);
-  --content-color: var(--wa-color-neutral-on-normal);
-}
-
-:host([variant='warning']) {
-  --background-color: var(--wa-color-warning-fill-quiet);
-  --border-color: var(--wa-color-warning-border-quiet);
-  --content-color: var(--wa-color-warning-on-normal);
-}
-
-:host([variant='danger']) {
-  --background-color: var(--wa-color-danger-fill-quiet);
-  --border-color: var(--wa-color-danger-border-quiet);
-  --content-color: var(--wa-color-danger-on-normal);
 }
 
 [part~='icon'] {
