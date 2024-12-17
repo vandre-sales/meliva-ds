@@ -6,6 +6,18 @@ import componentStyles from '../styles/shadow/component.css';
 import { CustomErrorValidator } from './validators/custom-error-validator.js';
 
 export default class WebAwesomeElement extends LitElement {
+  constructor() {
+    super();
+
+    try {
+      this.internals = this.attachInternals();
+    } catch (_e) {
+      /* Need to tell people if they need a polyfill. */
+      /* eslint-disable-next-line */
+      console.error('Element internals are not supported in your browser. Consider using a polyfill');
+    }
+  }
+
   // Make localization attributes reactive
   @property() dir: string;
   @property() lang: string;
@@ -39,6 +51,8 @@ export default class WebAwesomeElement extends LitElement {
 
   // Store the constructor value of all `static properties = {}`
   initialReflectedProperties: Map<string, unknown> = new Map();
+
+  internals: ElementInternals;
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
     if (!this.#hasRecordedInitialProperties) {
@@ -98,6 +112,52 @@ export default class WebAwesomeElement extends LitElement {
       throw e;
     }
   }
+
+  /** Adds a custom state to the element. */
+  addCustomState(state: string) {
+    try {
+      (this.internals.states as Set<string>).add(state);
+    } catch (_) {
+      // Without this, test suite errors.
+    }
+  }
+
+  /** Removes a custom state from the element. */
+  deleteCustomState(state: string) {
+    try {
+      (this.internals.states as Set<string>).delete(state);
+    } catch (_) {
+      // Without this, test suite errors.
+    }
+  }
+
+  /** Toggles a custom state on the element. */
+  toggleCustomState(state: string, force: boolean) {
+    if (force) {
+      this.addCustomState(state);
+      return;
+    }
+
+    if (!force) {
+      this.deleteCustomState(state);
+      return;
+    }
+
+    this.toggleCustomState(state, !this.hasCustomState(state));
+  }
+
+  /** Determines if the element has the specified custom state. */
+  hasCustomState(state: string) {
+    let bool = false;
+
+    try {
+      bool = (this.internals.states as Set<string>).has(state);
+    } catch (_) {
+      // Without this, test suite errors.
+    }
+
+    return bool;
+  }
 }
 
 export interface Validator<T extends WebAwesomeFormAssociatedElement = WebAwesomeFormAssociatedElement> {
@@ -141,12 +201,6 @@ export interface WebAwesomeFormControl extends WebAwesomeElement {
   getForm: () => HTMLFormElement | null;
   reportValidity: () => boolean;
   setCustomValidity: (message: string) => void;
-
-  // Custom state methods
-  hasCustomState: (state: string) => boolean;
-  addCustomState: (state: string) => void;
-  deleteCustomState(state: string): void;
-  toggleCustomState(state: string, force: boolean): void;
 
   // Form properties
   hasInteracted: boolean;
@@ -197,9 +251,6 @@ export class WebAwesomeFormAssociatedElement
 
   required: boolean = false;
 
-  // Form validation methods
-  internals: ElementInternals;
-
   assumeInteractionOn: string[] = ['wa-input'];
 
   // Additional
@@ -218,14 +269,6 @@ export class WebAwesomeFormAssociatedElement
 
   constructor() {
     super();
-
-    try {
-      this.internals = this.attachInternals();
-    } catch (_e) {
-      /* Need to tell people if they need a polyfill. */
-      /* eslint-disable-next-line */
-      console.error('Element internals are not supported in your browser. Consider using a polyfill');
-    }
 
     if (!isServer) {
       // eslint-disable-next-line
@@ -495,51 +538,5 @@ export class WebAwesomeFormAssociatedElement
     }
 
     this.setValidity(flags, finalMessage, formControl);
-  }
-
-  /** Adds a custom state to the element. */
-  addCustomState(state: string) {
-    try {
-      (this.internals.states as Set<string>).add(state);
-    } catch (_) {
-      // Without this, test suite errors.
-    }
-  }
-
-  /** Removes a custom state from the element. */
-  deleteCustomState(state: string) {
-    try {
-      (this.internals.states as Set<string>).delete(state);
-    } catch (_) {
-      // Without this, test suite errors.
-    }
-  }
-
-  /** Toggles a custom state on the element. */
-  toggleCustomState(state: string, force: boolean) {
-    if (force) {
-      this.addCustomState(state);
-      return;
-    }
-
-    if (!force) {
-      this.deleteCustomState(state);
-      return;
-    }
-
-    this.toggleCustomState(state, !this.hasCustomState(state));
-  }
-
-  /** Determines if the element has the specified custom state. */
-  hasCustomState(state: string) {
-    let bool = false;
-
-    try {
-      bool = (this.internals.states as Set<string>).has(state);
-    } catch (_) {
-      // Without this, test suite errors.
-    }
-
-    return bool;
   }
 }
