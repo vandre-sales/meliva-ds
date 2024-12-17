@@ -61,14 +61,6 @@ export default class WaTag extends WebAwesomeElement {
         class=${classMap({
           tag: true,
 
-          // Types
-          'tag--brand': this.variant === 'brand',
-          'tag--success': this.variant === 'success',
-          'tag--neutral': this.variant === 'neutral',
-          'tag--warning': this.variant === 'warning',
-          'tag--danger': this.variant === 'danger',
-          'tag--text': this.variant === 'text',
-
           // Sizes
           'tag--small': this.size === 'small',
           'tag--medium': this.size === 'medium',
