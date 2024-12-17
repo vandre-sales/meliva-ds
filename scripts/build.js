@@ -1,4 +1,3 @@
-import { litCssPlugin } from '@konnorr/esbuild-plugin-lit-css';
 import browserSync from 'browser-sync';
 import chalk from 'chalk';
 import { execSync } from 'child_process';
@@ -182,7 +181,7 @@ async function generateBundle() {
     bundle: true,
     splitting: true,
     minify: false,
-    plugins: [replace({ __WEBAWESOME_VERSION__: version }), litCssPlugin()],
+    plugins: [replace({ __WEBAWESOME_VERSION__: version })],
     loader: {
       '.css': 'text',
     },

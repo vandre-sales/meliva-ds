@@ -76,8 +76,6 @@ wa-page > header {
     margin-block-start: var(--wa-space-2xs);
   }
   #version-number + wa-badge {
-    --background-color: var(--wa-color-warning-fill-quiet);
-    --text-color: var(--wa-color-warning-on-quiet);
     font-size: var(--wa-font-size-2xs);
     text-transform: uppercase;
   }

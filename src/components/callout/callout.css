@@ -2,19 +2,16 @@
   --icon-color: currentColor;
   --icon-size: var(--wa-font-size-l);
   --spacing: var(--wa-space-m);
-  --background-color: var(--wa-color-fill-quiet);
-  --border-color: var(--wa-color-border-quiet);
-  --text-color: var(--wa-color-on-normal);
 
   position: relative;
   display: flex;
   align-items: stretch;
   border-radius: var(--wa-panel-border-radius);
-  background-color: var(--background-color);
-  border-color: var(--border-color);
+  background-color: var(--background-color, var(--wa-color-fill-quiet));
+  border-color: var(--border-color, var(--wa-color-border-quiet));
   border-style: var(--wa-panel-border-style);
   border-width: var(--wa-panel-border-width);
-  color: var(--text-color);
+  color: var(--text-color, var(--wa-color-on-normal));
   padding: var(--spacing);
 }
 
