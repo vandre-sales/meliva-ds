@@ -113,33 +113,33 @@ export default class WebAwesomeElement extends LitElement {
     }
   }
 
+  /** Checks if states are supported by the element */
+  private hasStatesSupport(): boolean {
+    return this.internals?.states instanceof Set;
+  }
+
   /** Adds a custom state to the element. */
   addCustomState(state: string) {
-    try {
-      (this.internals.states as Set<string>).add(state);
-    } catch (_) {
-      // Without this, test suite errors.
+    if (this.hasStatesSupport()) {
+      this.internals.states.add(state);
     }
   }
 
   /** Removes a custom state from the element. */
   deleteCustomState(state: string) {
-    try {
-      (this.internals.states as Set<string>).delete(state);
-    } catch (_) {
-      // Without this, test suite errors.
+    if (this.hasStatesSupport()) {
+      this.internals.states.delete(state);
     }
   }
 
   /** Toggles a custom state on the element. */
-  toggleCustomState(state: string, force: boolean) {
-    if (force) {
-      this.addCustomState(state);
-      return;
-    }
-
-    if (!force) {
-      this.deleteCustomState(state);
+  toggleCustomState(state: string, force?: boolean) {
+    if (typeof force === 'boolean') {
+      if (force) {
+        this.addCustomState(state);
+      } else {
+        this.deleteCustomState(state);
+      }
       return;
     }
 
@@ -147,16 +147,8 @@ export default class WebAwesomeElement extends LitElement {
   }
 
   /** Determines if the element has the specified custom state. */
-  hasCustomState(state: string) {
-    let bool = false;
-
-    try {
-      bool = (this.internals.states as Set<string>).has(state);
-    } catch (_) {
-      // Without this, test suite errors.
-    }
-
-    return bool;
+  hasCustomState(state: string): boolean {
+    return this.hasStatesSupport() ? this.internals.states.has(state) : false;
   }
 }
 
