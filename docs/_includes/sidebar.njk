@@ -50,6 +50,21 @@
   </ul>
 </wa-details>
 
+<wa-details{{ ' open' if '/essentials/' in page.url }}>
+  <h2 slot=summary>
+    <a href="/docs/essentials/" title="Overview">Essentials
+      <wa-icon name="grid-2"></wa-icon>
+    </a>
+  </h2>
+  <ul>
+    {% for page in collections.essentials | sort %}
+    <li>
+      <a href="/docs/essentials/{{ page.fileSlug }}">{{ page.data.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</wa-details>
+
 {# Layout #}
 {% if not isAlpha %}
 <h2>

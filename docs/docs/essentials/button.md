@@ -1,9 +1,13 @@
 ---
 title: Button
+tags: essentials
 ---
 
 ```html {.example}
 <button>Button</button>
+<input type="button" value="Input (button)">
+<input type="reset" value="Input (reset)">
+<input type="submit" value="Input (submit)">
 ```
 
 ## Examples

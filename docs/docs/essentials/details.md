@@ -1,0 +1,30 @@
+---
+title: Details
+tags: essentials
+---
+
+## Details
+
+Individual details look like this.
+
+<details>
+  <summary>Tincidunt nunc pulvinar</summary>
+  <p>Ut lectus arcu bibendum at varius. Convallis a cras semper auctor neque vitae. Odio pellentesque diam volutpat commodo sed egestas. Amet dictum sit amet justo donec enim diam vulputate ut.</p>
+</details>
+
+Grouping them provides accordion-style functionality.
+
+<details name="details-accordion">
+  <summary>Enim diam</summary>
+  <p>Nunc faucibus a pellentesque sit amet porttitor. Adipiscing tristique risus nec feugiat in fermentum. Leo duis ut diam quam nulla porttitor massa id. Mauris nunc congue nisi vitae.</p>
+</details>
+
+<details name="details-accordion">
+  <summary>Arcu non odio</summary>
+  <p>Sed libero enim sed faucibus turpis in eu mi bibendum. Nunc mi ipsum faucibus vitae aliquet nec. Ultricies tristique nulla aliquet enim tortor. Tellus at urna condimentum mattis pellentesque.</p>
+</details>
+
+<details name="details-accordion">
+  <summary>Ut porttitor</summary>
+  <p>Eu facilisis sed odio morbi quis commodo odio aenean sed. Sit amet purus gravida quis blandit turpis cursus. Eu consequat ac felis donec et odio pellentesque diam volutpat.</p>
+</details>
