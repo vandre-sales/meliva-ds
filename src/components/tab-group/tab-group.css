@@ -40,20 +40,20 @@
   width: var(--wa-space-xl);
 }
 
-.tab-group__scroll-button--start {
+.tab-group__scroll-button-start {
   left: 0;
 }
 
-.tab-group__scroll-button--end {
+.tab-group__scroll-button-end {
   right: 0;
 }
 
-.tab-group--rtl .tab-group__scroll-button--start {
+.tab-group--rtl .tab-group__scroll-button-start {
   left: auto;
   right: 0;
 }
 
-.tab-group--rtl .tab-group__scroll-button--end {
+.tab-group--rtl .tab-group__scroll-button-end {
   left: 0;
   right: auto;
 }

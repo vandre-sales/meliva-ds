@@ -24,7 +24,6 @@ import styles from './radio.css';
  *
  * @csspart base - The component's base wrapper.
  * @csspart control - The circular container that wraps the radio's checked state.
- * @csspart control--checked - The radio control when the radio is checked.
  * @csspart checked-icon - The checked icon.
  * @csspart label - The container that wraps the radio's label.
  *
@@ -38,6 +37,9 @@ import styles from './radio.css';
  * @cssproperty --checked-icon-color - The color of the radio's checked icon.
  * @cssproperty --checked-icon-scale - The size of the checked icon relative to the radio.
  * @cssproperty --toggle-size - The size of the radio.
+ *
+ * @cssstate checked - Applied when the control is checked.
+ * @cssstate disabled - Applied when the control is disabled.
  */
 @customElement('wa-radio')
 export default class WaRadio extends WebAwesomeFormAssociatedElement {
@@ -92,6 +94,7 @@ export default class WaRadio extends WebAwesomeFormAssociatedElement {
 
   @watch('checked')
   handleCheckedChange() {
+    this.toggleCustomState('checked', this.checked);
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
     this.tabIndex = this.checked ? 0 : -1;
   }
@@ -105,6 +108,7 @@ export default class WaRadio extends WebAwesomeFormAssociatedElement {
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
+    this.toggleCustomState('disabled', this.disabled);
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
 
@@ -124,7 +128,7 @@ export default class WaRadio extends WebAwesomeFormAssociatedElement {
           'radio--disabled': this.disabled,
         })}
       >
-        <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="radio__control">
+        <span part="control" class="radio__control">
           ${this.checked
             ? html`
                 <svg
