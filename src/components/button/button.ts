@@ -9,6 +9,8 @@ import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import nativeStyles from '../../styles/native/button.css';
+import sizeStyles from '../../styles/shadow/size.css';
+import variantStyles from '../../styles/utilities/variants.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon/icon.js';
 import '../spinner/spinner.js';
@@ -38,23 +40,19 @@ import styles from './button.css';
  * @csspart caret - The button's caret icon, a `<wa-icon>` element.
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  *
- * @cssproperty --background-color - The button's background color.
+ * @cssproperty --background-color - The button's background color when the button is not being interacted with.
  * @cssproperty --background-color-active - The button's background color when active.
  * @cssproperty --background-color-hover - The button's background color on hover.
- * @cssproperty --border-color - The color of the button's border.
+ * @cssproperty --border-color - The color of the button's border when the button is not being interacted with.
  * @cssproperty --border-color-active - The color of the button's border when active.
  * @cssproperty --border-color-hover - The color of the button's border on hover.
- * @cssproperty --border-radius - The radius of the button's corners.
- * @cssproperty --border-style - The style of the button's border.
- * @cssproperty --border-width - The width of the button's border. Expects a single value.
- * @cssproperty --box-shadow - The shadow effects around the edges of the button.
- * @cssproperty --label-color - The color of the button's label.
+ * @cssproperty --label-color - The color of the button's label when the button is not being interacted with.
  * @cssproperty --label-color-active - The color of the button's label when active.
  * @cssproperty --label-color-hover - The color of the button's label on hover.
  */
 @customElement('wa-button')
 export default class WaButton extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [nativeStyles, styles];
+  static shadowStyle = [variantStyles, sizeStyles, nativeStyles, styles];
 
   static get validators() {
     return [...super.validators, MirrorValidator()];
@@ -63,7 +61,7 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
   assumeInteractionOn = ['click'];
   private readonly localize = new LocalizeController(this);
 
-  @query('.button') button: HTMLButtonElement | HTMLLinkElement;
+  @query('.wa-button') button: HTMLButtonElement | HTMLLinkElement;
 
   @state() private hasFocus = false;
   @state() visuallyHiddenLabel = false;
@@ -236,6 +234,17 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
     this.button.blur();
   }
 
+  getBoundingClientRect(): DOMRect {
+    let rect = super.getBoundingClientRect();
+    let buttonRect = this.button.getBoundingClientRect();
+
+    if (rect.width === 0 && buttonRect.width > 0) {
+      return buttonRect;
+    }
+
+    return rect;
+  }
+
   render() {
     const isLink = this.isLink();
     const tag = isLink ? literal`a` : literal`button`;
@@ -247,25 +256,13 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
         part="base"
         class=${classMap({
           button: true,
-          'button--brand': this.variant === 'brand',
-          'button--success': this.variant === 'success',
-          'button--neutral': this.variant === 'neutral',
-          'button--warning': this.variant === 'warning',
-          'button--danger': this.variant === 'danger',
-          'button--small': this.size === 'small',
-          'button--medium': this.size === 'medium',
-          'button--large': this.size === 'large',
-          'button--caret': this.caret,
-          'button--disabled': this.disabled,
-          'button--focused': this.hasFocus,
-          'button--loading': this.loading,
-          'button--filled': this.appearance === 'filled',
-          'button--tinted': this.appearance === 'tinted',
-          'button--outlined': this.appearance === 'outlined',
-          'button--text': this.appearance === 'text',
-          'button--pill': this.pill,
-          'button--rtl': this.localize.dir() === 'rtl',
-          'button--visually-hidden-label': this.visuallyHiddenLabel,
+          'wa-button': true,
+          caret: this.caret,
+          disabled: this.disabled,
+          focused: this.hasFocus,
+          loading: this.loading,
+          rtl: this.localize.dir() === 'rtl',
+          'visually-hidden-label': this.visuallyHiddenLabel,
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
@@ -284,27 +281,19 @@ export default class WaButton extends WebAwesomeFormAssociatedElement {
         @invalid=${this.isButton() ? this.handleInvalid : null}
         @click=${this.handleClick}
       >
-        <slot name="prefix" part="prefix" class="button__prefix"></slot>
-        <slot part="label" class="button__label" @slotchange=${this.handleLabelSlotChange}></slot>
-        <slot name="suffix" part="suffix" class="button__suffix"></slot>
+        <slot name="prefix" part="prefix" class="prefix"></slot>
+        <slot part="label" class="label" @slotchange=${this.handleLabelSlotChange}></slot>
+        <slot name="suffix" part="suffix" class="suffix"></slot>
         ${
           this.caret
             ? html`
-                <wa-icon
-                  part="caret"
-                  class="button__caret"
-                  library="system"
-                  name="chevron-down"
-                  variant="solid"
-                ></wa-icon>
+                <wa-icon part="caret" class="caret" library="system" name="chevron-down" variant="solid"></wa-icon>
               `
             : ''
         }
         ${this.loading ? html`<wa-spinner part="spinner"></wa-spinner>` : ''}
       </${tag}>
     `;
-    /* eslint-enable lit/no-invalid-html */
-    /* eslint-enable lit/binding-positions */
   }
 }
 declare global {

@@ -1,59 +1,142 @@
-:is(button, input:is([type='button'], [type='reset'], [type='submit'])):where(:not(:host button)),
-:host {
-  --background-color: var(--wa-color-neutral-fill-loud);
+:is(button, input:where([type='button'], [type='reset'], [type='submit'])):where(:not(:host *, .wa-off, .wa-off *)),
+:host,
+.wa-button:where(:not([part~='base'])) {
+  --background-color: var(--color-fill-loud, var(--wa-color-neutral-fill-loud));
   --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
   --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
-  --border-color: initial;
+
+  --border-color: transparent;
   --border-color-hover: var(--border-color);
   --border-color-active: var(--border-color);
-  --border-radius: var(--wa-form-control-border-radius);
-  --border-style: var(--wa-border-style);
-  --border-width: var(--wa-form-control-border-width);
-  --box-shadow: initial;
-  --label-color: var(--wa-color-neutral-on-loud);
+  --border-width: max(1px, var(--wa-form-control-border-width));
+
+  --label-color: var(--color-on-loud, var(--wa-color-neutral-on-loud));
   --label-color-hover: var(--label-color);
   --label-color-active: var(--label-color);
-}
 
-button,
-input:is([type='button'], [type='reset'], [type='submit']),
-:host([href]) a {
-  background-color: var(--background-color);
-  border-color: var(--border-color, var(--background-color));
-  border-radius: var(--border-radius);
-  border-style: var(--border-style);
-  border-width: max(1px, var(--border-width));
-  box-shadow: var(--box-shadow);
-  color: var(--label-color);
-  cursor: pointer;
-  font-family: inherit;
-  font-size: var(--wa-font-size-m);
-  font-weight: var(--wa-font-weight-action);
-  height: var(--wa-form-control-height-m);
-  line-height: calc(var(--wa-form-control-height-m) - var(--border-width) * 2);
-  padding: 0 var(--wa-space-m);
+  border-radius: var(--wa-form-control-border-radius);
+  border-style: var(--wa-border-style);
+  border-width: var(--border-width);
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   white-space: nowrap;
   vertical-align: middle;
-  transition:
-    background var(--wa-transition-fast) var(--wa-transition-easing),
-    border var(--wa-transition-fast) var(--wa-transition-easing),
-    box-shadow var(--wa-transition-fast) var(--wa-transition-easing),
-    color var(--wa-transition-fast) var(--wa-transition-easing);
+  transition-property: background, border, box-shadow, color;
+  transition-duration: var(--wa-transition-fast);
+  transition-timing-function: var(--wa-transition-easing);
+  cursor: pointer;
+  padding: 0 var(--space, var(--wa-space-m));
+  font-family: inherit;
+  font-size: var(--size, var(--wa-font-size-m));
+  font-weight: var(--wa-font-weight-action);
+  --form-control-height: calc(
+    2 * var(--space-smaller, var(--wa-space-s)) + 1em * var(--wa-form-control-value-line-height)
+  );
+  height: var(--form-control-height);
+  line-height: calc(var(--form-control-height) - var(--border-width) * 2);
 }
 
-:is(button, input:is([type='button'], [type='reset'], [type='submit'])):where(:not(:host button)):hover,
-:is(:host button, :host([href]) a):hover:not(.button--disabled, .button--loading) {
-  background-color: var(--background-color-hover, var(--background-color));
-  border-color: var(--border-color-hover, var(--border-color, var(--background-color-hover)));
-  color: var(--label-color-hover, var(--label-color));
+button,
+input:is([type='button'], [type='reset'], [type='submit']),
+.wa-button:not([part~='base']) {
+  display: inline-flex;
+  background-color: var(--background-color);
+  border-color: var(--border-color, var(--background-color));
+  color: var(--label-color);
+
+  /* Interactive */
+  &:where(:not(:disabled, [disabled], :host([disabled]) *, .loading)) {
+    &:hover {
+      background-color: var(--background-color-hover, var(--background-color));
+      border-color: var(--border-color-hover, var(--border-color, var(--background-color-hover)));
+      color: var(--label-color-hover, var(--label-color));
+    }
+
+    &:active {
+      background-color: var(--background-color-active, var(--background-color));
+      border-color: var(--border-color-active, var(--border-color, var(--background-color-active)));
+      color: var(--label-color-active, var(--label-color));
+    }
+  }
+
+  /*
+   * States
+   */
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: var(--wa-focus-ring);
+    outline-offset: var(--wa-focus-ring-offset);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    /* When disabled, prevent mouse events from bubbling up from children */
+    * {
+      pointer-events: none;
+    }
+  }
 }
 
-:is(button, input:is([type='button'], [type='reset'], [type='submit'])):where(:not(:host button)):active,
-:is(:host button, :host([href]) a):active:not(.button--disabled, .button--loading) {
-  background-color: var(--background-color-active, var(--background-color));
-  border-color: var(--border-color-active, var(--border-color, var(--background-color-active)));
-  color: var(--label-color-active, var(--label-color));
+/**
+ * Utilities
+ */
+
+/* Styles */
+
+.wa-outlined,
+:host([appearance~='outlined']) {
+  --background-color: transparent;
+  --background-color-hover: var(--color-fill-quiet);
+  --background-color-active: color-mix(in oklab, var(--background-color-hover), transparent 20%);
+
+  --border-color: var(--color-border-loud);
+  --border-color-hover: var(--color-border-loud);
+
+  --label-color: var(--color-on-quiet);
+  --label-color-hover: var(--color-on-quiet);
+}
+
+.wa-filled,
+:host([appearance~='filled']) {
+  --background-color: var(--color-fill-loud, var(--wa-color-neutral-fill-loud));
+  --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
+  --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
+
+  --label-color: var(--color-on-loud, var(--wa-color-neutral-on-loud));
+}
+
+.wa-tinted,
+:host([appearance~='tinted']) {
+  --background-color: var(--color-fill-normal, var(--wa-color-neutral-fill-normal));
+  --label-color: var(--color-on-normal, var(--wa-color-neutral-on-normal));
+
+  --background-color-hover: color-mix(in oklab, var(--background-color), transparent 10%);
+  --background-color-active: color-mix(in oklab, var(--background-color), transparent 20%);
+}
+
+.wa-text,
+:host([appearance~='text']) {
+  --background-color: transparent;
+  --label-color: var(--color-on-quiet);
+
+  --background-color-hover: var(--color-fill-quiet);
+  --background-color-active: color-mix(in oklab, var(--background-color-hover), transparent 20%);
+}
+
+.wa-pill,
+:host([pill]) {
+  border-radius: var(--wa-border-radius-pill);
 }

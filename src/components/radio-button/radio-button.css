@@ -1,6 +1,15 @@
-.button__prefix,
-.button__suffix,
-.button__label {
+:host {
+  display: contents;
+}
+
+:where([part~='base']) {
+  all: inherit;
+  display: inline-flex;
+}
+
+.prefix,
+.suffix,
+.label {
   display: inline-flex;
   position: relative;
   align-items: center;
@@ -18,4 +27,21 @@
   outline: dotted 1px red;
   opacity: 0;
   z-index: -1;
+}
+
+/*
+ * Checked buttons
+ */
+
+:host([checked]) {
+  --background-color: var(--wa-color-brand-fill-quiet);
+  --background-color-hover: var(--background-color);
+  --border-color: var(--wa-form-control-activated-color);
+  --label-color: var(--wa-color-brand-on-normal);
+  --indicator-color: var(--border-color);
+  --indicator-width: var(--wa-border-width-s);
+
+  box-shadow:
+    var(--box-shadow, 0 0 transparent),
+    inset 0 0 0 var(--indicator-width) var(--indicator-color);
 }
