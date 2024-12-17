@@ -142,6 +142,12 @@ export interface WebAwesomeFormControl extends WebAwesomeElement {
   reportValidity: () => boolean;
   setCustomValidity: (message: string) => void;
 
+  // Custom state methods
+  hasCustomState: (state: string) => boolean;
+  addCustomState: (state: string) => void;
+  deleteCustomState(state: string): void;
+  toggleCustomState(state: string, force: boolean): void;
+
   // Form properties
   hasInteracted: boolean;
   valueHasChanged?: boolean;
