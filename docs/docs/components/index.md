@@ -294,7 +294,7 @@ layout: page-outline
       <span class="page-name">Details</span>
     </wa-card>
   </a>
-  <a href="/docs/components/dialog">
+  <a href="/docs/components/dialog" data-keywords="modal">
     <wa-card with-header>
       <div slot="header">
         {% include "svgs/dialog.njk" %}
