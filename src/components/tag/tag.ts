@@ -2,7 +2,7 @@ import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { WaRemoveEvent } from '../../events/remove.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import sizeStyles from '../../styles/shadow/size.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import variantStyles from '../../styles/utilities/variants.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon-button/icon-button.js';

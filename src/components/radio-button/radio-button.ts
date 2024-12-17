@@ -8,7 +8,7 @@ import { HasSlotController } from '../../internal/slot.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import nativeStyles from '../../styles/native/button.css';
-import sizeStyles from '../../styles/shadow/size.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import variantStyles from '../../styles/utilities/variants.css';
 import buttonStyles from '../button/button.css';
 import styles from './radio-button.css';
