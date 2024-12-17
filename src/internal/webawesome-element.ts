@@ -497,8 +497,6 @@ export class WebAwesomeFormAssociatedElement
       (this.internals.states as Set<string>).add(state);
     } catch (_) {
       // Without this, test suite errors.
-    } finally {
-      this.setAttribute(`data-wa-${state}`, '');
     }
   }
 
@@ -507,8 +505,6 @@ export class WebAwesomeFormAssociatedElement
       (this.internals.states as Set<string>).delete(state);
     } catch (_) {
       // Without this, test suite errors.
-    } finally {
-      this.removeAttribute(`data-wa-${state}`);
     }
   }
 
