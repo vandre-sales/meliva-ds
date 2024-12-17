@@ -8,7 +8,7 @@
 @import url('native/tables.css');
 @import url('native/blockquote.css');
 
-@import url('shadow/size.css');
+@import url('utilities/size.css');
 @import url('utilities/variants.css');
 @import url('utilities/appearance.css');
 
