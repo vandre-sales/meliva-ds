@@ -4,7 +4,7 @@
   --spacing: var(--wa-space-m);
   --background-color: var(--wa-color-fill-quiet);
   --border-color: var(--wa-color-border-quiet);
-  --content-color: var(--wa-color-on-normal);
+  --text-color: var(--wa-color-on-normal);
 
   position: relative;
   display: flex;
@@ -14,7 +14,7 @@
   border-color: var(--border-color);
   border-style: var(--wa-panel-border-style);
   border-width: var(--wa-panel-border-width);
-  color: var(--content-color);
+  color: var(--text-color);
   padding: var(--spacing);
 }
 

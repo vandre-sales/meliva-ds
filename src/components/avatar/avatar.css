@@ -1,6 +1,6 @@
 :host {
   --background-color: var(--wa-color-neutral-fill-normal);
-  --content-color: var(--wa-color-neutral-on-normal);
+  --text-color: var(--wa-color-neutral-on-normal);
   --size: 3rem;
 
   display: inline-flex;
@@ -12,7 +12,7 @@
   background-color: var(--background-color);
   font: inherit;
   font-size: calc(var(--size) * 0.4);
-  color: var(--content-color);
+  color: var(--text-color);
   user-select: none;
   -webkit-user-select: none;
   vertical-align: middle;

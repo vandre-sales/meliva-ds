@@ -28,11 +28,11 @@
 }
 
 :host(:hover) > wa-icon-button {
-  color: color-mix(in oklab, var(--content-color), var(--wa-color-mix-hover));
+  color: color-mix(in oklab, var(--text-color), var(--wa-color-mix-hover));
 }
 
 :host(:active) > wa-icon-button {
-  color: color-mix(in oklab, var(--content-color), var(--wa-color-mix-active));
+  color: color-mix(in oklab, var(--text-color), var(--wa-color-mix-active));
 }
 
 /*

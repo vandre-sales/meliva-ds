@@ -429,9 +429,9 @@ hasOutline: false
 
   #icon-chooser-trigger {
     --button-group-separator-border: none;
-    --label-color: var(--wa-color-neutral-on-quiet);
-    --label-color-hover: color-mix(in oklab, var(--wa-color-neutral-on-quiet), var(--wa-color-mix-hover));
-    --label-color-active: var(--label-color-hover);
+    --text-color: var(--wa-color-neutral-on-quiet);
+    --text-color-hover: color-mix(in oklab, var(--wa-color-neutral-on-quiet), var(--wa-color-mix-hover));
+    --text-color-active: var(--text-color-hover);
   }
 
   #icon-chooser::part(dialog) {

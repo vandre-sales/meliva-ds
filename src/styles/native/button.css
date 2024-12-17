@@ -10,9 +10,9 @@
   --border-color-active: var(--border-color);
   --border-width: max(1px, var(--wa-form-control-border-width));
 
-  --label-color: var(--wa-color-on-loud, var(--wa-color-neutral-on-loud));
-  --label-color-hover: var(--label-color);
-  --label-color-active: var(--label-color);
+  --text-color: var(--wa-color-on-loud, var(--wa-color-neutral-on-loud));
+  --text-color-hover: var(--text-color);
+  --text-color-active: var(--text-color);
 
   border-radius: var(--wa-form-control-border-radius);
   border-style: var(--wa-border-style);
@@ -45,20 +45,20 @@ input:is([type='button'], [type='reset'], [type='submit']),
   display: inline-flex;
   background-color: var(--background-color);
   border-color: var(--border-color, var(--background-color));
-  color: var(--label-color);
+  color: var(--text-color);
 
   /* Interactive */
   &:where(:not(:disabled, [disabled], :host([disabled]) *, .loading)) {
     &:hover {
       background-color: var(--background-color-hover, var(--background-color));
       border-color: var(--border-color-hover, var(--border-color, var(--background-color-hover)));
-      color: var(--label-color-hover, var(--label-color));
+      color: var(--text-color-hover, var(--text-color));
     }
 
     &:active {
       background-color: var(--background-color-active, var(--background-color));
       border-color: var(--border-color-active, var(--border-color, var(--background-color-active)));
-      color: var(--label-color-active, var(--label-color));
+      color: var(--text-color-active, var(--text-color));
     }
   }
 

@@ -500,7 +500,7 @@
 
   wa-alert {
     --border-width: 0 0 0 var(--wa-panel-border-width);
-    --content-color: var(--wa-color-text-normal);
+    --text-color: var(--wa-color-text-normal);
     --padding: var(--wa-space-s) var(--wa-space-m);
 
     &::part(icon) {
@@ -545,7 +545,7 @@
 
   wa-badge {
     --border-color: var(--wa-color-surface-border);
-    --content-color: var(--wa-color-base-10);
+    --text-color: var(--wa-color-base-10);
     text-transform: uppercase;
 
     &::part(base) {

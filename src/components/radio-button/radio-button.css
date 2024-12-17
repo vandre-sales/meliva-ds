@@ -37,7 +37,7 @@
   --background-color: var(--wa-color-brand-fill-quiet);
   --background-color-hover: var(--background-color);
   --border-color: var(--wa-form-control-activated-color);
-  --label-color: var(--wa-color-brand-on-normal);
+  --text-color: var(--wa-color-brand-on-normal);
   --indicator-color: var(--border-color);
   --indicator-width: var(--wa-border-width-s);
 

@@ -471,7 +471,7 @@
   }
 
   wa-alert {
-    --content-color: var(--wa-color-text-normal);
+    --text-color: var(--wa-color-text-normal);
     --icon-color: var(--border-color);
 
     .wa-theme-fa-dark & {
@@ -505,12 +505,12 @@
   }
 
   wa-button:not([appearance='text']) {
-    --border-color: var(--label-color);
+    --border-color: var(--text-color);
     --border-color-hover: var(--border-color);
     --border-color-active: var(--border-color);
     --box-shadow-color: var(--border-color);
     --background-active: var(--border-color);
-    --label-color-active: var(--background);
+    --text-color-active: var(--background);
 
     &[appearance='outlined'] {
       --background: var(--wa-color-surface-default);
@@ -564,13 +564,13 @@
     --background-active: var(--wa-color-neutral-on-quiet);
     --border-color-active: var(--background-active);
     --box-shadow: var(--wa-shadow-offset-x-s) var(--wa-shadow-offset-y-s) var(--wa-shadow-blur-s) var(--border-color);
-    --label-color-active: var(--wa-color-surface-default);
+    --text-color-active: var(--wa-color-surface-default);
 
     &:active,
     &[checked] {
       --background: var(--wa-color-neutral-on-quiet);
       --box-shadow: none;
-      --label-color: var(--wa-color-surface-default);
+      --text-color: var(--wa-color-surface-default);
       transform: translateX(var(--wa-shadow-offset-x-s)) translateY(var(--wa-shadow-offset-y-s));
     }
   }

@@ -46,7 +46,7 @@ wa-page > header {
   }
 
   wa-button[data-toggle-nav] {
-    --label-color: currentColor;
+    --text-color: currentColor;
     font-size: 1rem;
     margin-inline-start: -0.875rem;
     margin-inline-end: 0;
@@ -77,7 +77,7 @@ wa-page > header {
   }
   #version-number + wa-badge {
     --background-color: var(--wa-color-warning-fill-quiet);
-    --content-color: var(--wa-color-warning-on-quiet);
+    --text-color: var(--wa-color-warning-on-quiet);
     font-size: var(--wa-font-size-2xs);
     text-transform: uppercase;
   }
