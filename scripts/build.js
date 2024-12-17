@@ -338,9 +338,9 @@ if (isDeveloping) {
         filename.includes('components/') && filename.includes('.ts') && !isCssStylesheet && !isTestFile;
 
       // Re-bundle when relevant files change
-      if (!isTestFile && !isCssStylesheet) {
-        await regenerateBundle();
-      }
+      if (isTestFile) { return }
+
+      await regenerateBundle();
 
       // Copy stylesheets when CSS files change
       if (isCssStylesheet) {
@@ -350,8 +350,10 @@ if (isDeveloping) {
       // Regenerate metadata when components change
       if (isComponent) {
         await generateManifest();
-        await generateDocs();
       }
+
+      // This needs to be outside of "isComponent" check because SSR needs to run on CSS files too.
+      await generateDocs();
 
       reload();
     } catch (err) {
