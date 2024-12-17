@@ -1,4 +1,6 @@
-:is(button, input:where([type='button'], [type='reset'], [type='submit'])):where(:not(:host *, .wa-off, .wa-off *)),
+:is(button, input:where([type='button'], [type='reset'], [type='submit'])):where(
+    :not(:host *, .wa-off, .wa-off-deep *)
+  ),
 :host,
 .wa-button:where(:not([part~='base'])) {
   --background-color: var(--wa-color-fill-loud, var(--wa-color-neutral-fill-loud));
