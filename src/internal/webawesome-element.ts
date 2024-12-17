@@ -491,7 +491,7 @@ export class WebAwesomeFormAssociatedElement
     this.setValidity(flags, finalMessage, formControl);
   }
 
-  // Custom states
+  /** Adds a custom state to the element. */
   addCustomState(state: string) {
     try {
       (this.internals.states as Set<string>).add(state);
@@ -500,6 +500,7 @@ export class WebAwesomeFormAssociatedElement
     }
   }
 
+  /** Removes a custom state from the element. */
   deleteCustomState(state: string) {
     try {
       (this.internals.states as Set<string>).delete(state);
@@ -508,6 +509,7 @@ export class WebAwesomeFormAssociatedElement
     }
   }
 
+  /** Toggles a custom state on the element. */
   toggleCustomState(state: string, force: boolean) {
     if (force) {
       this.addCustomState(state);
@@ -522,6 +524,7 @@ export class WebAwesomeFormAssociatedElement
     this.toggleCustomState(state, !this.hasCustomState(state));
   }
 
+  /** Determines if the element has the specified custom state. */
   hasCustomState(state: string) {
     let bool = false;
 
@@ -529,10 +532,6 @@ export class WebAwesomeFormAssociatedElement
       bool = (this.internals.states as Set<string>).has(state);
     } catch (_) {
       // Without this, test suite errors.
-    } finally {
-      if (!bool) {
-        bool = this.hasAttribute(`data-wa-${state}`);
-      }
     }
 
     return bool;
