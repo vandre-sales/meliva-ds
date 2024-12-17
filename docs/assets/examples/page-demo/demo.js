@@ -10,7 +10,7 @@ let includes = `${stylesheets}
   <link rel="stylesheet" href="/assets/examples/page-demo/page.css">`;
 
 function render() {
-  let slots = Array.from(fieldset.querySelectorAll('wa-checkbox[name=slot]:is([data-wa-checked])'));
+  let slots = Array.from(fieldset.querySelectorAll('wa-checkbox[name=slot]:state(checked)'));
   let slotsHTML = slots
     .map(slot => {
       let name = slot.getAttribute('value');
