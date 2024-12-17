@@ -3,10 +3,6 @@
   --content-color: var(--wa-color-neutral-on-normal);
   --size: 3rem;
 
-  display: inline-block;
-}
-
-.avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -20,19 +16,15 @@
   user-select: none;
   -webkit-user-select: none;
   vertical-align: middle;
-}
-
-:host([shape='circle']) {
   border-radius: var(--wa-border-radius-circle);
 }
 
-.rounded,
-.rounded .image {
-  border-radius: var(--wa-border-radius-s);
+:host([shape='square']) {
+  border-radius: 0;
 }
 
-.square {
-  border-radius: 0;
+:host([shape='rounded']) {
+  border-radius: var(--wa-border-radius-s);
 }
 
 .icon {
@@ -59,4 +51,5 @@
   height: 100%;
   object-fit: cover;
   overflow: hidden;
+  border-radius: inherit;
 }
