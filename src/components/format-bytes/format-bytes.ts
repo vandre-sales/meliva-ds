@@ -40,7 +40,7 @@ export default class WaFormatBytes extends WebAwesomeElement {
     return this.localize.number(valueToFormat, {
       style: 'unit',
       unit,
-      unitDisplay: this.display
+      unitDisplay: this.display,
     });
   }
 }
