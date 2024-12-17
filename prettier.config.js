@@ -15,7 +15,15 @@ const config = {
   tabWidth: 2,
   useTabs: false,
   organizeImportsSkipDestructiveCodeActions: true,
-  plugins: ['prettier-plugin-organize-imports'],
+  plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-jinja-template'],
+  overrides: [
+    {
+      files: ['*.njk'],
+      options: {
+        parser: 'jinja-template',
+      },
+    },
+  ],
 };
 
 export default config;
