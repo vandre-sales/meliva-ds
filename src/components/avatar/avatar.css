@@ -22,21 +22,20 @@
   vertical-align: middle;
 }
 
-.avatar--circle,
-.avatar--circle .avatar__image {
+:host([shape='circle']) {
   border-radius: var(--wa-border-radius-circle);
 }
 
-.avatar--rounded,
-.avatar--rounded .avatar__image {
+.rounded,
+.rounded .image {
   border-radius: var(--wa-border-radius-s);
 }
 
-.avatar--square {
+.square {
   border-radius: 0;
 }
 
-.avatar__icon {
+.icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,12 +46,12 @@
   height: 100%;
 }
 
-.avatar__initials {
+.initials {
   line-height: 1;
   text-transform: uppercase;
 }
 
-.avatar__image {
+.image {
   position: absolute;
   top: 0;
   left: 0;

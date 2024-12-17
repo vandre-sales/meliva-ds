@@ -65,7 +65,7 @@ export default class WaAvatar extends WebAwesomeElement {
     const avatarWithImage = html`
       <img
         part="image"
-        class="avatar__image"
+        class="image"
         src="${this.image}"
         loading="${this.loading}"
         alt=""
@@ -76,10 +76,10 @@ export default class WaAvatar extends WebAwesomeElement {
     let avatarWithoutImage = html``;
 
     if (this.initials) {
-      avatarWithoutImage = html`<div part="initials" class="avatar__initials">${this.initials}</div>`;
+      avatarWithoutImage = html`<div part="initials" class="initials">${this.initials}</div>`;
     } else {
       avatarWithoutImage = html`
-        <div part="icon" class="avatar__icon" aria-hidden="true">
+        <div part="icon" class="icon" aria-hidden="true">
           <slot name="icon">
             <wa-icon name="user" library="system" variant="solid"></wa-icon>
           </slot>
@@ -92,9 +92,9 @@ export default class WaAvatar extends WebAwesomeElement {
         part="base"
         class=${classMap({
           avatar: true,
-          'avatar--circle': this.shape === 'circle',
-          'avatar--rounded': this.shape === 'rounded',
-          'avatar--square': this.shape === 'square',
+          circle: this.shape === 'circle',
+          rounded: this.shape === 'rounded',
+          square: this.shape === 'square',
         })}
         role="img"
         aria-label=${this.label}
