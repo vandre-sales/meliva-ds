@@ -4,17 +4,13 @@ description: Browse the library of customizable, framework-friendly web componen
 layout: page-outline
 ---
 
-<style>
-  wa-card#drawer-card::part(header) {
-    --spacing: 0;
-    justify-content: flex-end;
-    overflow: hidden;
-  }
-</style>
-
 <p class="index-summary">Components are the essential building blocks to create intuitive, cohesive experiences. Browse the library of customizable, framework-friendly web components included in Web Awesome.</p>
 
-<div class="index-grid">
+<div id="component-filter">
+  <wa-input type="search" placeholder="Search components" clearable autofocus></wa-input>
+</div>
+
+<div id="component-grid" class="index-grid">
   <h2 class="index-category">Actions</h2>
   <a href="/docs/components/button">
     <wa-card with-header>
@@ -114,7 +110,7 @@ layout: page-outline
       <span class="page-name">Skeleton</span>
     </wa-card>
   </a>
-  <a href="/docs/components/spinner">
+  <a href="/docs/components/spinner" data-keywords="loader">
     <wa-card with-header>
       <div slot="header">
         {% include "svgs/spinner.njk" %}
@@ -198,7 +194,7 @@ layout: page-outline
       <span class="page-name">Color Picker</span>
     </wa-card>
   </a>
-  <a href="/docs/components/input">
+  <a href="/docs/components/input" data-keywords="textfield text field">
     <wa-card with-header>
       <div slot="header">
         {% include "svgs/input.njk" %}
@@ -238,7 +234,7 @@ layout: page-outline
       <span class="page-name">Select</span>
     </wa-card>
   </a>
-  <a href="/docs/components/switch">
+  <a href="/docs/components/switch" data-keywords="toggle">
     <wa-card with-header>
       <div slot="header">
         {% include "svgs/switch.njk" %}
@@ -421,3 +417,54 @@ layout: page-outline
     </wa-card>
   </a>
 </div>
+
+<script type="module">
+  const container = document.getElementById('component-filter');
+  const grid = document.getElementById('component-grid');
+  const input = container.querySelector('wa-input');
+
+  function updateResults() {
+    const filter = input.value.toLowerCase().trim();
+    
+    // Hide headings while filtering
+    grid.querySelectorAll('h2').forEach(heading => {
+      heading.hidden = filter === '' ? false : true;
+    });
+
+    // Show matching components
+    grid.querySelectorAll('a').forEach(link => {
+      const content = link.textContent.toLowerCase();
+      const keywords = link.getAttribute('data-keywords') || '';
+      const isMatch = filter === '' || (content + keywords).includes(filter);
+      link.classList.toggle('hidden', !isMatch);
+    });
+  }
+
+  input.addEventListener('wa-input', updateResults);
+</script>
+
+<style>
+  wa-card#drawer-card::part(header) {
+    --spacing: 0;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  #component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--wa-space-m);
+    margin-block-start: var(--wa-space-2xl);
+
+    > a {
+      position: static;
+      visibility: visible;
+
+      &.hidden {
+        display: block;  
+        position: absolute;
+        visibility: hidden;
+      }
+    }    
+  }
+</style>
