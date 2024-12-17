@@ -330,7 +330,7 @@ describe('<wa-carousel>', () => {
             </wa-carousel>
           `);
           const expectedSlides = el.querySelectorAll('.expected');
-          const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button--next')!;
+          const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button-next')!;
 
           // Act
           await clickOnElement(nextButton);
@@ -359,7 +359,7 @@ describe('<wa-carousel>', () => {
             </wa-carousel>
           `);
           const expectedSlides = el.querySelectorAll('.expected');
-          const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button--next')!;
+          const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button-next')!;
 
           // Act
           await clickOnElement(nextButton);
@@ -506,7 +506,7 @@ describe('<wa-carousel>', () => {
                 <wa-carousel-item>Node 3</wa-carousel-item>
               </wa-carousel>
             `);
-            const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button--next')!;
+            const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button-next')!;
             sandbox.stub(el, 'next');
 
             await el.updateComplete;
@@ -529,7 +529,7 @@ describe('<wa-carousel>', () => {
                   <wa-carousel-item>Node 3</wa-carousel-item>
                 </wa-carousel>
               `);
-              const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button--next')!;
+              const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button-next')!;
               sandbox.stub(el, 'next');
 
               el.goToSlide(2, 'auto');
@@ -556,7 +556,7 @@ describe('<wa-carousel>', () => {
                     <wa-carousel-item>Node 3</wa-carousel-item>
                   </wa-carousel>
                 `);
-                const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button--next')!;
+                const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button-next')!;
 
                 el.goToSlide(2, 'auto');
                 await oneEvent(el.scrollContainer, 'scrollend');
@@ -597,7 +597,7 @@ describe('<wa-carousel>', () => {
             await oneEvent(el.scrollContainer, 'scrollend');
             await el.updateComplete;
 
-            const previousButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button--previous')!;
+            const previousButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button-previous')!;
             sandbox.stub(el, 'previous');
 
             await el.updateComplete;
@@ -622,7 +622,7 @@ describe('<wa-carousel>', () => {
               `);
 
               const previousButton: HTMLElement = el.shadowRoot!.querySelector(
-                '.carousel__navigation-button--previous',
+                '.carousel__navigation-button-previous',
               )!;
               sandbox.stub(el, 'previous');
               await el.updateComplete;
@@ -648,7 +648,7 @@ describe('<wa-carousel>', () => {
                 `);
 
                 const previousButton: HTMLElement = el.shadowRoot!.querySelector(
-                  '.carousel__navigation-button--previous',
+                  '.carousel__navigation-button-previous',
                 )!;
                 await el.updateComplete;
 
