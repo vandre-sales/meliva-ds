@@ -418,8 +418,13 @@ layout: page-outline
   </a>
 </div>
 
+<div id="component-filter-empty" hidden>
+  No results
+</div>
+
 <script type="module">
   const container = document.getElementById('component-filter');
+  const empty = document.getElementById('component-filter-empty');
   const grid = document.getElementById('component-grid');
   const input = container.querySelector('wa-input');
 
@@ -438,6 +443,13 @@ layout: page-outline
       const isMatch = filter === '' || (content + keywords).includes(filter);
       link.classList.toggle('hidden', !isMatch);
     });
+
+    // Show empty state when there's a search filter and no results
+    if (filter !== '' && grid.querySelector('a:not(.hidden)') === null) {
+      empty.hidden = false;
+    } else {
+      empty.hidden = true;
+    }
   }
 
   input.addEventListener('wa-input', updateResults);
@@ -466,5 +478,15 @@ layout: page-outline
         visibility: hidden;
       }
     }    
+  }
+
+  #component-filter-empty {
+    border: dashed var(--wa-border-width-m) var(--wa-color-neutral-border-quiet);
+    border-radius: var(--wa-border-radius-m);
+    font-size: var(--wa-font-size-l);
+    color: var(--wa-color-text-quiet);
+    text-align: center;
+    padding-block: var(--wa-space-2xl);
+    margin-block-start: 0
   }
 </style>
