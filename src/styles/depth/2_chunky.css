@@ -82,7 +82,7 @@ wa-button {
 wa-input,
 wa-select,
 wa-textarea {
-  &:not([filled]):not([disabled]) {
+  &:not([appearance='filled']):not([disabled]) {
     --box-shadow: var(--wa-shadow-xs);
   }
 }

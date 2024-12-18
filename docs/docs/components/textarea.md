@@ -47,12 +47,12 @@ Use the `placeholder` attribute to add a placeholder.
 <wa-textarea placeholder="Type something"></wa-textarea>
 ```
 
-### Filled Textareas
+### Appearance
 
-Add the `filled` attribute to draw a filled textarea.
+Use the `appearance` attribute to change the textarea's visual appearance.
 
 ```html {.example}
-<wa-textarea placeholder="Type something" filled></wa-textarea>
+<wa-textarea placeholder="Type something" appearance="filled"></wa-textarea>
 ```
 
 ### Disabled
