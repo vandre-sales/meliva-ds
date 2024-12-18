@@ -3,12 +3,11 @@ label {
   color: var(--wa-form-control-label-color);
   font-weight: var(--wa-form-control-label-font-weight);
   line-height: var(--wa-form-control-label-line-height);
-  margin-bottom: var(--wa-space-xs);
 }
 
-input:is([type='checkbox'], [type='radio']) + label,
-label:has(input:is([type='checkbox'], [type='radio'])) {
-  margin-bottom: 0;
+label + input:not([type='checkbox'], [type='radio']),
+label > input:not([type='checkbox'], [type='radio']) {
+  margin-block-start: var(--wa-space-xs);
 }
 
 label:has(+ input:required)::after,
