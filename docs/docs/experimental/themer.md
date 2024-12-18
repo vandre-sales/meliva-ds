@@ -2486,7 +2486,7 @@ hasOutline: false
             </div>
             <span class="name">
               <b>Seraph</b>
-              <span class="finish">Tinted</span>
+              <span class="finish">Filled</span>
             </span>
             <wa-input type="number" value="2"></wa-input>
             <span class="price">$180.00</span>

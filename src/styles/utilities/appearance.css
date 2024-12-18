@@ -24,8 +24,8 @@
   }
 }
 
-.wa-tinted,
-:host([appearance~='tinted']) {
+.wa-filled,
+:host([appearance~='filled']) {
   --background-color: var(--wa-color-fill-normal, var(--wa-color-neutral-fill-normal));
   --text-color: var(--wa-color-on-normal, var(--wa-color-neutral-on-normal));
 
