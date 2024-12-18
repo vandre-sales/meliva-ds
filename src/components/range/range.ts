@@ -62,7 +62,6 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
   @query('.control') input: HTMLInputElement;
   @query('.tooltip') output: HTMLOutputElement | null;
 
-  @state() private hasFocus = false;
   @state() private hasTooltip = false;
   @property() title = ''; // make reactive to pass through
 
@@ -171,13 +170,11 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
   }
 
   private handleBlur() {
-    this.hasFocus = false;
     this.hasTooltip = false;
     this.dispatchEvent(new WaBlurEvent());
   }
 
   private handleFocus() {
-    this.hasFocus = true;
     this.hasTooltip = true;
     this.dispatchEvent(new WaFocusEvent());
   }
