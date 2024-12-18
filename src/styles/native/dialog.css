@@ -1,6 +1,6 @@
 /* <dialog> by itself or <wa-dialog> */
 :host,
-dialog:not(:host *, .wa-off, .wa-off-deep *) {
+dialog:not(:host *) {
   width: 31rem;
   max-width: calc(100% - var(--wa-space-2xl));
   max-height: calc(100% - var(--wa-space-2xl));
@@ -14,7 +14,7 @@ dialog:not(:host *, .wa-off, .wa-off-deep *) {
 }
 
 /* <dialog> wherever it is */
-dialog:not(.wa-off, .wa-off-deep *) {
+dialog {
   flex-direction: column;
   inset: 0;
 

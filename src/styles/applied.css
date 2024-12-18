@@ -90,7 +90,7 @@ video,
 wa-callout,
 wa-code-demo,
 wa-viewport-demo {
-  &:where(:not(.wa-off, .wa-off-deep *)):has(+ *) {
+  &:has(+ *) {
     margin: 0 0 var(--wa-space-xl) 0;
   }
 }
