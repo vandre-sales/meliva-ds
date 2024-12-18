@@ -2,6 +2,7 @@
 title: Button
 tags: essentials
 layout: element
+component: button
 ---
 
 ```html {.example}
