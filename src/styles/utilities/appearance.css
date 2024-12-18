@@ -11,8 +11,8 @@
   --text-color-hover: var(--wa-color-on-quiet);
 }
 
-.wa-filled,
-:host([appearance~='filled']) {
+.wa-accent,
+:host([appearance~='accent']) {
   --background-color: var(--wa-color-fill-loud);
   --background-color-hover: color-mix(in oklab, var(--background-color), var(--wa-color-mix-hover));
   --background-color-active: color-mix(in oklab, var(--background-color), var(--wa-color-mix-active));
