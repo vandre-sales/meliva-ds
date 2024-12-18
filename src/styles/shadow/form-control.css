@@ -1,32 +1,25 @@
-.form-control .label {
-  display: none;
-}
-
 /* Label */
-.form-control--has-label .label {
+[part~='form-control-label'] {
   display: block;
   color: var(--wa-form-control-label-color);
   font-weight: var(--wa-form-control-label-font-weight);
   line-height: var(--wa-form-control-label-line-height);
   margin-block-end: var(--wa-space-xs);
+  font-size: var(--wa-font-size-m);
 
   &:is(.form-control--small *) {
     font-size: var(--wa-font-size-s);
   }
 
-  &:is(.form-control--medium *) {
-    font-size: var(--wa-font-size-m);
-  }
-
   &:is(.form-control--large *) {
     font-size: var(--wa-font-size-l);
   }
-}
 
-:host([required]) .form-control--has-label .label::after {
-  content: var(--wa-form-control-required-content);
-  margin-inline-start: var(--wa-form-control-required-content-offset);
-  color: var(--wa-form-control-required-content-color);
+  :host([required]) &::after {
+    content: var(--wa-form-control-required-content);
+    margin-inline-start: var(--wa-form-control-required-content-offset);
+    color: var(--wa-form-control-required-content-color);
+  }
 }
 
 /* Help text */

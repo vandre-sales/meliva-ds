@@ -31,11 +31,10 @@ import styles from './range.css';
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and hint.
- * @csspart form-control-label - The label's wrapper.
- * @csspart form-control-input - The range's wrapper.
+ * @csspart form-control-label - The input's label.
+ * @csspart form-control-input - The input's wrapper.
  * @csspart hint - The hint's wrapper.
- * @csspart base - The component's base wrapper.
- * @csspart input - The internal `<input>` element.
+ * @csspart base - The internal `<input>` element.
  * @csspart tooltip - The range's tooltip.
  *
  * @cssproperty --thumb-color - The color of the thumb.
@@ -280,73 +279,53 @@ export default class WaRange extends WebAwesomeFormAssociatedElement {
 
     // NOTE - always bind value after min/max, otherwise it will be clamped
     return html`
-      <div
-        part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--medium': true, // range only has one size
-          'form-control--has-label': hasLabel,
-        })}
-      >
-        <label part="form-control-label" class="label" for="input" aria-hidden=${hasLabel ? 'false' : 'true'}>
-          <slot name="label">${this.label}</slot>
-        </label>
+      ${hasLabel
+        ? html`<label part="form-control-label" class="label" for="input">
+            <slot name="label">${this.label}</slot>
+          </label>`
+        : ''}
 
-        <div part="form-control-input" class="form-control-input">
-          <div
-            part="base"
-            class=${classMap({
-              range: true,
-              'range--disabled': this.disabled,
-              'range--focused': this.hasFocus,
-              'range--rtl': this.localize.dir() === 'rtl',
-              'range--tooltip-visible': this.hasTooltip,
-              'range--tooltip-top': this.tooltip === 'top',
-              'range--tooltip-bottom': this.tooltip === 'bottom',
-            })}
-            @mousedown=${this.handleThumbDragStart}
-            @mouseup=${this.handleThumbDragEnd}
-            @touchstart=${this.handleThumbDragStart}
-            @touchend=${this.handleThumbDragEnd}
-          >
-            <input
-              part="input"
-              id="input"
-              class="control"
-              title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
-              type="range"
-              name=${ifDefined(this.name)}
-              ?disabled=${this.disabled}
-              min=${ifDefined(this.min)}
-              max=${ifDefined(this.max)}
-              step=${ifDefined(this.step)}
-              .value=${live(this.value.toString())}
-              aria-describedby="hint"
-              @change=${this.handleChange}
-              @focus=${this.handleFocus}
-              @input=${this.handleInput}
-              @blur=${this.handleBlur}
-            />
-            ${this.tooltip !== 'none' && !this.disabled
-              ? html`
-                  <output part="tooltip" class="tooltip">
-                    ${typeof this.tooltipFormatter === 'function' ? this.tooltipFormatter(this.value) : this.value}
-                  </output>
-                `
-              : ''}
-          </div>
-        </div>
-
-        <slot
-          name="hint"
-          part="hint"
-          class=${classMap({
-            'has-slotted': hasHint,
-          })}
-          aria-hidden=${hasHint ? 'false' : 'true'}
-          >${this.hint}</slot
-        >
+      <div part="form-control-input">
+        <input
+          part="base"
+          id="input"
+          class="control"
+          title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
+          type="range"
+          name=${ifDefined(this.name)}
+          ?disabled=${this.disabled}
+          min=${ifDefined(this.min)}
+          max=${ifDefined(this.max)}
+          step=${ifDefined(this.step)}
+          .value=${live(this.value.toString())}
+          aria-describedby="hint"
+          @change=${this.handleChange}
+          @focus=${this.handleFocus}
+          @input=${this.handleInput}
+          @blur=${this.handleBlur}
+          @mousedown=${this.handleThumbDragStart}
+          @mouseup=${this.handleThumbDragEnd}
+          @touchstart=${this.handleThumbDragStart}
+          @touchend=${this.handleThumbDragEnd}
+        />
+        ${this.tooltip !== 'none' && !this.disabled
+          ? html`
+              <output part="tooltip" class="${classMap({ tooltip: true, visible: this.hasTooltip })}">
+                ${typeof this.tooltipFormatter === 'function' ? this.tooltipFormatter(this.value) : this.value}
+              </output>
+            `
+          : ''}
       </div>
+
+      <slot
+        name="hint"
+        part="hint"
+        class=${classMap({
+          'has-slotted': hasHint,
+        })}
+        aria-hidden=${hasHint ? 'false' : 'true'}
+        >${this.hint}</slot
+      >
     `;
   }
 }
