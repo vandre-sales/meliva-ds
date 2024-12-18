@@ -12,7 +12,7 @@ component: dialog
 <dialog id="dialog-overview">
 	<header>
 		<h2>Dialog</h2>
-		<button data-dialog="close" class="wa-text">✖️</button>
+		<button data-dialog="close" class="wa-plain">✖️</button>
 	</header>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   <footer>

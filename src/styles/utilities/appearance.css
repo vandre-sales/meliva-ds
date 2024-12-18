@@ -37,8 +37,8 @@
   }
 }
 
-.wa-text,
-:host([appearance~='text']) {
+.wa-plain,
+:host([appearance~='plain']) {
   --background-color: transparent;
   --text-color: var(--wa-color-on-quiet);
 
