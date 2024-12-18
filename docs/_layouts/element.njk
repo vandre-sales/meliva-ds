@@ -24,6 +24,9 @@
       <wa-badge class="pro">PRO</wa-badge>
     {% endif %}
   </div>
+  {% if description -%}
+    <p class="summary">{{ description | inlineMarkdown | safe }}</p>
+  {%- endif %}
   {% if component %}
   <wa-callout variant="success">
     <wa-icon slot="icon" name="lightbulb" variant="regular"></wa-icon>
