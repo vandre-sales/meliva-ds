@@ -1,9 +1,7 @@
 /* Shadow styles for elements that have a size attribute. */
 
 :host,
-.wa-size-s,
-.wa-size-m,
-.wa-size-l {
+:where(.wa-size-s, .wa-size-m, .wa-size-l) {
   /* Defaults. Components are expected to override these */
   --size-xs: var(--wa-font-size-xs, 0.75rem); /* Used for hints etc */
   --size-s: var(--wa-font-size-s, 0.875rem); /* size=small */
@@ -14,6 +12,8 @@
   --space-s: var(--wa-space-s, 0.75rem);
   --space-m: var(--wa-space-m, 1rem);
   --space-l: var(--wa-space-l, 1.25rem);
+
+  font-size: var(--wa-size);
 }
 
 :root,
@@ -26,7 +26,7 @@
 
 :host([size='small']),
 .wa-size-s {
-  font-size: var(--size-s);
+  --wa-size: var(--size-s);
   --wa-size-smaller: var(--size-xs);
   --wa-space: var(--space-s);
   --wa-space-smaller: var(--space-xs);
@@ -35,7 +35,7 @@
 :root, /* Medium size is the default */
 :host,
 .wa-size-m {
-  font-size: var(--size-m, var(--wa-font-size-m));
+  --wa-size: var(--size-m, var(--wa-font-size-m));
   --wa-size-smaller: var(--size-s, var(--wa-font-size-s));
   --wa-space: var(--space-m, var(--wa-space-m));
   --wa-space-smaller: var(--space-s, var(--wa-space-s));
@@ -43,7 +43,7 @@
 
 :host([size='large']),
 .wa-size-l {
-  font-size: var(--size-l);
+  --wa-size: var(--size-l);
   --wa-size-smaller: var(--size-m);
   --wa-space: var(--space-l);
   --wa-space-smaller: var(--space-m);
