@@ -100,7 +100,7 @@ You can make a tab closable by adding a close button next to the tab and inside 
 <wa-tab-group class="tabs-closable">
   <wa-tab panel="general">General</wa-tab>
   <wa-tab panel="closable">Closable</wa-tab>
-  <wa-icon-button tabindex="-1" name="xmark" label="Close the closable tab"></wa-icon-button>
+  <wa-icon-button slot="nav" tabindex="-1" name="xmark" label="Close the closable tab"></wa-icon-button>
   <wa-tab panel="closable-2">Advanced</wa-tab>
 
   <wa-tab-panel name="general">This is the general tab panel.</wa-tab-panel>
