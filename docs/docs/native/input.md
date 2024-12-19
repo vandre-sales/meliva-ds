@@ -61,10 +61,30 @@ wa-code-demo::part(preview) {
 
 ## Color picker
 
-```html {.example}
-<label>Input (color) <input type="color"></label>
+Basic:
 
-<wa-color-picker label="WA Color Picker"></wa-color-picker>
+```html {.example}
+<label>Input (color) <input type="color" value="#ff0066"></label>
+<wa-color-picker label="WA Color Picker" value="#ff0066"></wa-color-picker>
+```
+
+With swatches:
+
+```html {.example}
+<label>Input (color) <input type="color" value="#ff0066" list="swatches"></label>
+<datalist id="swatches">
+  <option value="#0070ef">Web Awesome Blue</option>
+  <option>#f5a623</option>
+  <option>#f8e71c</option>
+  <option>#8b572a</option>
+  <option>#7ed321</option>
+  <option>#417505</option>
+  <option>#bd10e0</option>
+  <option>#9013fe</option>
+</datalist>
+
+<wa-color-picker label="WA Color Picker" value="#ff0066"
+ swatches="#0070ef; #f5a623; #f8e71c; #8b572a; #7ed321; #417505; #bd10e0; #9013fe;"></wa-color-picker>
 ```
 
 ## Time and date Pickers
