@@ -14,6 +14,28 @@ During the alpha period, things might break! We take breaking changes very serio
 
 ## Next
 
+### Native styles
+
+- Added native styles for
+  [buttons](/docs/native/button),
+  [input fields](/docs/native/input),
+  [dialogs](/docs/native/dialog),
+  [details](/docs/native/details),
+  [tables](/docs/native/table),
+  [lists](/docs/native/lists),
+  and most [content elements](/docs/native/content).
+
+### Style utilities
+
+- Added [color variant utilities](/docs/utilities/color/)
+- Added [appearance utilities](/docs/utilities/appearance/)
+- Added [size utilities](/docs/utilities/size/)
+- Added [layout utilities](/docs/layout/#utilities)
+- Added [visually hidden](/docs/utilities/a11y/#visually-hidden) utility
+- Added [`<wa-page>`](/docs/components/page/#styles) native styles and utilities
+
+### Components
+- `<wa-page>`: `mobile-breakpoint` now takes any CSS length, not just pixels
 - Added `checked` and `disabled` custom states to `<wa-checkbox>` and `<wa-radio>`
 - Added `disabled`, `expanded`, `indeterminate`, and `selected` custom states to `<wa-tree-item>`
 - Renamed the `navigation-button--previous` and `navigation-button--next` parts to `navigation-button-previous` and `navigation-button-next` in `<wa-carousel>`
