@@ -5,8 +5,8 @@ label {
   line-height: var(--wa-form-control-label-line-height);
 }
 
-label + input:not([type='checkbox'], [type='radio']),
-label > input:not([type='checkbox'], [type='radio']) {
+label + :is(input:not([type='checkbox'], [type='radio']), textarea),
+label > :is(input:not([type='checkbox'], [type='radio']), textarea) {
   margin-block-start: var(--wa-space-xs);
 }
 
