@@ -77,3 +77,12 @@ export function isArray(value) {
 export function toArray(value) {
   return isArray(value) ? value : [value];
 }
+
+export function sort(arr, key = 'data.title') {
+  key = key.split('.');
+  return arr.sort((a, b) => {
+    let aVal = key.reduce((obj, i) => obj?.[i], a);
+    let bVal = key.reduce((obj, i) => obj?.[i], b);
+    return aVal.localeCompare(bVal);
+  });
+}

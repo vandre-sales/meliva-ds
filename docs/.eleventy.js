@@ -43,15 +43,6 @@ export default function (eleventyConfig) {
     eleventyConfig.addFilter(name, filters[name]);
   }
 
-  eleventyConfig.addFilter('sort', (arr, key = 'data.title') => {
-    key = key.split('.');
-    return arr.sort((a, b) => {
-      let aVal = key.reduce((obj, i) => obj?.[i], a);
-      let bVal = key.reduce((obj, i) => obj?.[i], b);
-      return aVal.localeCompare(bVal);
-    });
-  });
-
   // Shortcodes - {% shortCode arg1, arg2 %}
   eleventyConfig.addShortcode('cdnUrl', location => {
     return `https://early.webawesome.com/webawesome@${packageData.version}/dist/` + location.replace(/^\//, '');
