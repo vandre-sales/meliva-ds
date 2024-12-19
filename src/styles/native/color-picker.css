@@ -1,0 +1,31 @@
+input[type='color'] {
+  border-radius: calc(infinity * 1px);
+  background: transparent;
+  padding: 3px;
+  aspect-ratio: 1;
+  width: calc(var(--wa-form-control-height) - 2px);
+  height: auto;
+  border: var(--wa-border-width-s) var(--wa-border-style) var(--wa-form-control-resting-color);
+  cursor: pointer;
+  forced-color-adjust: none;
+
+  &::-webkit-color-swatch-wrapper {
+    border-radius: inherit;
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: inherit;
+  }
+
+  &::-moz-color-swatch {
+    border: none;
+    border-radius: inherit;
+  }
+
+  &:focus-visible {
+    outline: var(--wa-focus-ring);
+    outline-offset: var(--wa-focus-ring-offset);
+  }
+}

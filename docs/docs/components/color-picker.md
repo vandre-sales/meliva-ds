@@ -2,6 +2,7 @@
 title: Color Picker
 description: Color pickers allow the user to select a color.
 tags: component
+native: input
 ---
 
 ```html {.example}

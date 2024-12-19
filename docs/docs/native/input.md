@@ -1,11 +1,12 @@
 ---
 title: Form Inputs
-tags: essentials
+tags: native
 layout: element
 component:
  - input
  - select
  - textarea
+ - range
 elements:
   "<input>": https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
   "<textarea>": https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
@@ -53,28 +54,37 @@ wa-code-demo::part(preview) {
 <label><input type="checkbox"> Input (checkbox)</label>
 <wa-checkbox>WA Checkbox</wa-checkbox>
 
-<fieldset>
-  <legend>Radio Group:</legend>
-  <label><input type="radio" name="radio" value="radio-1" checked> Radio 1</label>
-  <label><input type="radio"name="radio" value="radio-2" /> Radio 2</label>
-  <label><input type="radio"  name="radio" value="radio-3" /> Radio 3</label>
-</fieldset>
+<label><input type="radio" name="radio" value="radio-1" checked>Radio</label>
 
-<fieldset>
-  <wa-radio-group label="WA Radio Group:" name="wa-radio" value="radio-1">
-    <wa-radio value="radio-1">Radio</wa-radio>
-    <wa-radio value="radio-2">Radio</wa-radio>
-    <wa-radio value="radio-3">Radio</wa-radio>
-  </wa-radio-group>
-</fieldset>
+<wa-radio value="radio-1">WA Radio</wa-radio>
 ```
 
 ## Color picker
 
-```html {.example}
-<label>Input (color) <input type="color"></label>
+Basic:
 
-<wa-color-picker label="WA Color Picker"></wa-color-picker>
+```html {.example}
+<label>Input (color) <input type="color" value="#ff0066"></label>
+<wa-color-picker label="WA Color Picker" value="#ff0066"></wa-color-picker>
+```
+
+With swatches:
+
+```html {.example}
+<label>Input (color) <input type="color" value="#ff0066" list="swatches"></label>
+<datalist id="swatches">
+  <option value="#0070ef">Web Awesome Blue</option>
+  <option>#f5a623</option>
+  <option>#f8e71c</option>
+  <option>#8b572a</option>
+  <option>#7ed321</option>
+  <option>#417505</option>
+  <option>#bd10e0</option>
+  <option>#9013fe</option>
+</datalist>
+
+<wa-color-picker label="WA Color Picker" value="#ff0066"
+ swatches="#0070ef; #f5a623; #f8e71c; #8b572a; #7ed321; #417505; #bd10e0; #9013fe;"></wa-color-picker>
 ```
 
 ## Time and date Pickers
@@ -90,15 +100,14 @@ wa-code-demo::part(preview) {
 <wa-input label="WA Input (time)" type="time"></wa-input>
 ```
 
-## Slider
+## Sliders
 
 ```html {.example}
 <label>Input (range)<input type="range"></label>
-
 <wa-range label="WA Range"></wa-range>
 ```
 
-## Select dropdown
+## Select dropdowns
 
 ```html {.example}
 <label>Select
