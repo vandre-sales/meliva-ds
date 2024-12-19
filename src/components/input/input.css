@@ -14,12 +14,14 @@
   border-color: inherit;
   border-style: inherit;
   border-radius: inherit;
+  transition: inherit;
 }
 
 input {
   flex: 1 1 auto;
   min-width: 0;
   height: 100%;
+  transition: inherit;
 
   /* prettier-ignore */
   background-color: rgb(118 118 118 / 0); /* ensures proper placeholder styles in webkit's date input */
