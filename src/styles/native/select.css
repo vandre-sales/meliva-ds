@@ -47,7 +47,7 @@ select:focus,
   outline-offset: var(--wa-focus-ring-offset);
 }
 
-/* Replace native checkbox styles */
+/* Replace native select caret */
 select {
   appearance: none;
 }
