@@ -8,6 +8,9 @@
   align-items: stretch;
   justify-content: start;
   position: relative;
+  font-size: inherit;
+  --form-control-height: calc(2 * var(--wa-space-smaller) + 1em * var(--wa-form-control-value-line-height));
+  height: var(--form-control-height);
 }
 
 .control {
@@ -23,6 +26,8 @@
   margin: 0;
   cursor: inherit;
   -webkit-appearance: none;
+  height: calc(var(--form-control-height) - var(--border-width) * 2);
+  padding: 0 var(--wa-space);
 }
 
 .control::-webkit-search-decoration,
@@ -42,94 +47,30 @@
   flex: 0 0 auto;
   align-items: center;
   cursor: default;
-}
 
-.prefix ::slotted(wa-icon),
-.suffix ::slotted(wa-icon) {
-  color: var(--wa-color-neutral-on-quiet);
-}
-
-/*
-   * Size modifiers
-   */
-.input--small {
-  font-size: var(--wa-font-size-s);
-  height: var(--wa-form-control-height-s);
-
-  .control {
-    height: calc(var(--wa-form-control-height-s) - var(--border-width) * 2);
-    padding: 0 var(--wa-space-s);
-  }
-
-  .clear,
-  .password-toggle {
-    width: calc(1em + var(--wa-space-s) * 2);
-  }
-
-  .prefix ::slotted(*) {
-    margin-inline-start: var(--wa-space-s);
-  }
-
-  .suffix ::slotted(*) {
-    margin-inline-end: var(--wa-space-s);
+  ::slotted(wa-icon) {
+    color: var(--wa-color-neutral-on-quiet);
   }
 }
 
-.input--medium {
-  font-size: var(--wa-font-size-m);
-  height: var(--wa-form-control-height-m);
-
-  .control {
-    height: calc(var(--wa-form-control-height-m) - var(--border-width) * 2);
-    padding: 0 var(--wa-space-m);
-  }
-
-  .clear,
-  .password-toggle {
-    width: calc(1em + var(--wa-space-m) * 2);
-  }
-
-  .prefix ::slotted(*) {
-    margin-inline-start: var(--wa-space-m);
-  }
-
-  .suffix ::slotted(*) {
-    margin-inline-end: var(--wa-space-m);
-  }
+.prefix ::slotted(*) {
+  margin-inline-start: var(--wa-space);
 }
 
-.input--large {
-  font-size: var(--wa-font-size-l);
-  height: var(--wa-form-control-height-l);
-
-  .control {
-    height: calc(var(--wa-form-control-height-l) - var(--border-width) * 2);
-    padding: 0 var(--wa-space-l);
-  }
-
-  .clear,
-  .password-toggle {
-    width: calc(1em + var(--wa-space-l) * 2);
-  }
-
-  .prefix ::slotted(*) {
-    margin-inline-start: var(--wa-space-l);
-  }
-
-  .suffix ::slotted(*) {
-    margin-inline-end: var(--wa-space-l);
-  }
+.suffix ::slotted(*) {
+  margin-inline-end: var(--wa-space);
 }
 
 /*
-   * Clearable + Password Toggle
-   */
+ * Clearable + Password Toggle
+ */
 
 .clear,
 .password-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: calc(1em + var(--wa-space) * 2);
   font-size: inherit;
   color: var(--wa-color-neutral-on-quiet);
   border: none;
