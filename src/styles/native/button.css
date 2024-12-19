@@ -32,9 +32,7 @@
   font-family: inherit;
   font-size: var(--wa-size, var(--wa-font-size-m));
   font-weight: var(--wa-font-weight-action);
-  --form-control-height: calc(
-    2 * var(--wa-space-smaller, var(--wa-space-s)) + 1em * var(--wa-form-control-value-line-height)
-  );
+  --form-control-height: calc(2 * var(--wa-space-smaller) + 1em * var(--wa-form-control-value-line-height));
   height: var(--form-control-height);
   line-height: calc(var(--form-control-height) - var(--border-width) * 2);
 }
