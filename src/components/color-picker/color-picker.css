@@ -246,19 +246,19 @@
     0.25rem 0.25rem;
 }
 
-.color-picker--disabled {
+:host([disabled]) {
   opacity: 0.5;
   cursor: not-allowed;
-}
 
-.color-picker--disabled .grid,
-.color-picker--disabled .grid-handle,
-.color-picker--disabled .slider,
-.color-picker--disabled .slider-handle,
-.color-picker--disabled .preview,
-.color-picker--disabled .swatch,
-.color-picker--disabled .swatch-color {
-  pointer-events: none;
+  .grid,
+  .grid-handle,
+  .slider,
+  .slider-handle,
+  .preview,
+  .swatch,
+  .swatch-color {
+    pointer-events: none;
+  }
 }
 
 /*
@@ -311,12 +311,12 @@
   outline: none;
 }
 
-.trigger:focus-visible:not(.trigger--disabled) {
+.trigger:focus-visible:not(.trigger:disabled) {
   outline: var(--wa-focus-ring);
   outline-offset: var(--wa-focus-ring-offset);
 }
 
-:host(:disabled) :is(.label, .trigger) {
+:host([disabled]) :is(.label, .trigger) {
   opacity: 0.5;
   cursor: not-allowed;
 }

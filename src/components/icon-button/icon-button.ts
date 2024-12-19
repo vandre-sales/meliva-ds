@@ -111,7 +111,6 @@ export default class WaIconButton extends WebAwesomeFormAssociatedElement {
         part="base"
         class=${classMap({
           'icon-button': true,
-          'icon-button--disabled': !isLink && this.disabled,
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : 'button')}

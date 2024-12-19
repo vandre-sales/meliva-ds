@@ -887,7 +887,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
         part="base"
         class=${classMap({
           'color-picker': true,
-          'color-picker--disabled': this.disabled,
         })}
         aria-disabled=${this.disabled ? 'true' : 'false'}
         tabindex="-1"
@@ -1144,7 +1143,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             part="trigger form-control-input"
             class=${classMap({
               trigger: true,
-              'trigger--disabled': this.disabled,
               'trigger--empty': this.isEmpty,
               'transparent-bg': true,
               'form-control-input': true,
@@ -1155,6 +1153,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             type="button"
             aria-labelledby="form-control-label"
             aria-describedby="hint"
+            .disabled=${this.disabled}
           ></button>
 
           <slot

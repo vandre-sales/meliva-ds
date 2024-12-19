@@ -174,7 +174,6 @@ export default class WaMenuItem extends WebAwesomeElement {
         class=${classMap({
           'menu-item': true,
           'menu-item--checked': this.checked,
-          'menu-item--disabled': this.disabled,
           'menu-item--loading': this.loading,
           'menu-item--has-submenu': this.isSubmenu(),
           'menu-item--submenu-expanded': isSubmenuExpanded,

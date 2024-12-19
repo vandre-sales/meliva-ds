@@ -93,7 +93,7 @@ slot:not([name])::slotted(wa-icon) {
   border-inline-start: solid 3px transparent;
 }
 
-.tree-item--disabled .item {
+:host([disabled]) .item {
   opacity: 0.5;
   outline: none;
   cursor: not-allowed;

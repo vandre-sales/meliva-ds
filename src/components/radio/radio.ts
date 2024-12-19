@@ -126,7 +126,6 @@ export default class WaRadio extends WebAwesomeFormAssociatedElement {
         class=${classMap({
           radio: true,
           'radio--checked': this.checked,
-          'radio--disabled': this.disabled,
         })}
       >
         <span part="control" class="control">
