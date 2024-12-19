@@ -78,11 +78,16 @@ export function toArray(value) {
   return isArray(value) ? value : [value];
 }
 
+export function deepValue(obj, key) {
+  key = Array.isArray(key) ? key : key.split('.');
+  return key.reduce((subObj, property) => subObj?.[property], obj);
+}
+
 export function sort(arr, key = 'data.title') {
   key = key.split('.');
   return arr.sort((a, b) => {
-    let aVal = key.reduce((obj, i) => obj?.[i], a);
-    let bVal = key.reduce((obj, i) => obj?.[i], b);
+    let aVal = deepValue(a, key);
+    let bVal = deepValue(b, key);
     return aVal.localeCompare(bVal);
   });
 }
