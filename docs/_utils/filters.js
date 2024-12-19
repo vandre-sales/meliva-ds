@@ -77,3 +77,59 @@ export function isArray(value) {
 export function toArray(value) {
   return isArray(value) ? value : [value];
 }
+
+export function deepValue(obj, key) {
+  key = Array.isArray(key) ? key : key.split('.');
+  return key.reduce((subObj, property) => subObj?.[property], obj);
+}
+
+function isNumeric(value) {
+  return typeof value === 'number' || (typeof value === 'string' && !isNaN(value));
+}
+
+function isEmpty(value) {
+  return value === null || value === undefined || value === '';
+}
+
+function compare(a, b) {
+  let isEmptyA = isEmpty(a);
+  let isEmptyB = isEmpty(b);
+
+  if (isEmptyA) {
+    if (isEmptyB) {
+      return 0;
+    } else {
+      return 1;
+    }
+  } else if (isEmptyB) {
+    return -1;
+  }
+
+  // Both strings, and at least one non-numeric
+  if (isNumeric(a) || isNumeric(b)) {
+    return a - b;
+  }
+
+  return (a + '').localeCompare(b);
+}
+
+/** Sort an array of objects */
+export function sort(arr, keys = ['data.order', 'data.title']) {
+  keys = toArray(keys);
+
+  return arr.sort((a, b) => {
+    let aValues = keys.map(key => deepValue(a, key));
+    let bValues = keys.map(key => deepValue(b, key));
+
+    for (let i = 0; i < aValues.length; i++) {
+      let aVal = aValues[i];
+      let bVal = bValues[i];
+      let result = compare(aVal, bVal);
+
+      // They are not equal in terms of comparison OR we're at the last key
+      if (result !== 0 || i === aValues.length - 1) {
+        return result;
+      }
+    }
+  });
+}
