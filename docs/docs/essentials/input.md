@@ -54,20 +54,9 @@ wa-code-demo::part(preview) {
 <label><input type="checkbox"> Input (checkbox)</label>
 <wa-checkbox>WA Checkbox</wa-checkbox>
 
-<fieldset>
-  <legend>Radio Group:</legend>
-  <label><input type="radio" name="radio" value="radio-1" checked> Radio 1</label>
-  <label><input type="radio"name="radio" value="radio-2" /> Radio 2</label>
-  <label><input type="radio"  name="radio" value="radio-3" /> Radio 3</label>
-</fieldset>
+<label><input type="radio" name="radio" value="radio-1" checked>Radio</label>
 
-<fieldset>
-  <wa-radio-group label="WA Radio Group:" name="wa-radio" value="radio-1">
-    <wa-radio value="radio-1">Radio</wa-radio>
-    <wa-radio value="radio-2">Radio</wa-radio>
-    <wa-radio value="radio-3">Radio</wa-radio>
-  </wa-radio-group>
-</fieldset>
+<wa-radio value="radio-1">WA Radio</wa-radio>
 ```
 
 ## Color picker
