@@ -173,7 +173,6 @@ export default class WaMenuItem extends WebAwesomeElement {
         part="base"
         class=${classMap({
           'menu-item': true,
-          'menu-item--rtl': isRtl,
           'menu-item--checked': this.checked,
           'menu-item--disabled': this.disabled,
           'menu-item--loading': this.loading,

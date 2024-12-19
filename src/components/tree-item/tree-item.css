@@ -70,7 +70,7 @@ slot:not([name])::slotted(wa-icon) {
   rotate: 90deg;
 }
 
-.tree-item--expanded.tree-item--rtl .expand-button {
+.tree-item--expanded:dir(rtl) .expand-button {
   rotate: -90deg;
 }
 

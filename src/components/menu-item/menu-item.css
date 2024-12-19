@@ -134,7 +134,7 @@ wa-popup::part(popup) {
   margin-left: var(--submenu-offset);
 }
 
-.menu-item--rtl wa-popup::part(popup) {
+wa-popup:dir(rtl)::part(popup) {
   margin-left: calc(-1 * var(--submenu-offset));
 }
 

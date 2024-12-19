@@ -259,7 +259,6 @@ export default class WaTreeItem extends WebAwesomeElement {
           'tree-item--disabled': this.disabled,
           'tree-item--leaf': this.isLeaf,
           'tree-item--has-expand-button': showExpandButton,
-          'tree-item--rtl': this.localize.dir() === 'rtl',
         })}"
       >
         <div class="item" part="item">
