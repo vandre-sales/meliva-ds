@@ -80,6 +80,14 @@ input:where(:not(
   }
 }
 
+.wa-text-field input {
+  /*
+    Fixes an alignment issue with placeholders.
+    https://github.com/shoelace-style/webawesome/issues/342
+  */
+  height: 100%;
+}
+
 .wa-text-field input,
 .wa-text-field textarea {
   padding: 0;

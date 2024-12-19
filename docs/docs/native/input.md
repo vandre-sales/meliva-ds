@@ -15,7 +15,7 @@ elements:
 <style>
 wa-code-demo::part(preview) {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(150px, 1fr) minmax(150px, 1fr);
   gap: 2rem;
 }
 </style>
