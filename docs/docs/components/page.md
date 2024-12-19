@@ -1,7 +1,7 @@
 ---
 title: Page
 description: Pages offer an easy way to scaffold entire page layouts using minimal markup.
-tags: component
+tags: ["component", "layout"]
 isPro: true
 order: 1
 ---

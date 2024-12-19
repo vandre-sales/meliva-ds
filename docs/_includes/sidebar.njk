@@ -58,30 +58,47 @@
   </h2>
   <ul>
     {% for page in collections.native | sort %}
+    {% if page.fileSlug != 'native' and not page.unlisted %}
     <li>
       <a href="/docs/native/{{ page.fileSlug }}">{{ page.data.title }}</a>
     </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</wa-details>
+
+<wa-details {{ 'open' if '/utilities/' in page.url }}>
+  <h2 slot=summary>
+    <a href="/docs/utilities/" title="Overview">Style utilities
+      <wa-icon name="grid-2"></wa-icon>
+    </a>
+  </h2>
+  <ul>
+    {% for page in collections.utilities | sort %}
+    {% if page.fileSlug != 'utilities' and not page.unlisted %}
+    <li>
+      <a href="/docs/utilities/{{ page.fileSlug }}">{{ page.data.title }}</a>
+    </li>
+    {% endif %}
     {% endfor %}
   </ul>
 </wa-details>
 
 {# Layout #}
-{% if not isAlpha %}
 <h2>
   <a href="/docs/layout" title="Overview">Layout
     <wa-icon name="grid-2"></wa-icon>
   </a>
 </h2>
 <ul>
-  <li><a href="/docs/components/page">Page</a></li>
-  <li><a href="/docs/layout/cluster">Cluster</a></li>
-  <li><a href="/docs/layout/flank">Flank</a></li>
-  <li><a href="/docs/layout/frame">Frame</a></li>
-  <li><a href="/docs/layout/grid">Grid</a></li>
-  <li><a href="/docs/layout/split">Split</a></li>
-  <li><a href="/docs/layout/stack">Stack</a></li>
+  {% for page in collections.layout | sort %}
+    {% if page.fileSlug != 'layout' and not page.unlisted %}
+    <li>
+      <a href="{{ page.url }}">{{ page.data.title }}</a>
+    </li>
+    {% endif %}
+  {% endfor %}
 </ul>
-{% endif %}
 
 {# Patterns #}
 {% if not isAlpha %}
@@ -137,14 +154,3 @@
     <a href="/docs/theming/component-groups">Component Groups</a>
   </li>
 </ul>
-
-{# Style Utilities #}
-{% if not isAlpha %}
-<h2>Style Utilities</h2>
-<ul>
-  <li><a href="/docs/style-utilities/align-items">Align Items</a></li>
-  <li><a href="/docs/style-utilities/border-radius">Border Radius</a></li>
-  <li><a href="/docs/style-utilities/gap">Gap</a></li>
-  <li><a href="/docs/style-utilities/text">Text</a></li>
-</ul>
-{% endif %}
