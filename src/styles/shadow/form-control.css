@@ -5,15 +5,6 @@
   font-weight: var(--wa-form-control-label-font-weight);
   line-height: var(--wa-form-control-label-line-height);
   margin-block-end: var(--wa-space-xs);
-  font-size: var(--wa-font-size-m);
-
-  &:is(.form-control--small *) {
-    font-size: var(--wa-font-size-s);
-  }
-
-  &:is(.form-control--large *) {
-    font-size: var(--wa-font-size-l);
-  }
 
   :host([required]) &::after {
     content: var(--wa-form-control-required-content);
@@ -23,31 +14,14 @@
 }
 
 /* Help text */
-[part~='form-control-hint'],
 [part~='hint'] {
-  display: inline-block;
+  display: block;
   color: var(--wa-color-text-quiet);
   margin-block-start: var(--wa-space-xs);
   font-size: var(--wa-size-smaller, 85%);
   line-height: var(--wa-form-control-label-line-height);
 
-  &:is(.form-control--small *) {
-    font-size: var(--wa-font-size-xs);
-  }
-
-  &:is(.form-control--medium *) {
-    font-size: var(--wa-font-size-s);
-  }
-
-  &:is(.form-control--large *) {
-    font-size: var(--wa-font-size-m);
-  }
-
-  &:is(.form-control--radio-group *) {
-    margin-top: var(--wa-space-2xs);
-  }
-
-  &:not(.has-slotted, .form-control--has-hint) {
+  &:not(.has-slotted, .form-control--has-hint *) {
     display: none;
   }
 }
