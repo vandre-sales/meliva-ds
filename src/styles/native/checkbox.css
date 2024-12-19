@@ -15,8 +15,11 @@ label:has(input[type='checkbox']):where(:not(:host *)),
   --checked-icon-color: var(--wa-color-brand-on-loud);
   --toggle-size: 1lh;
 
+  color: var(--wa-form-control-value-color);
   display: inline-flex;
   line-height: var(--wa-form-control-value-line-height);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Replace native checkbox styles */
@@ -50,7 +53,6 @@ input[type='checkbox']:where(:not(:host *)),
   border-width: var(--border-width);
   background-color: var(--background-color);
   box-shadow: var(--box-shadow);
-  color: var(--wa-form-control-value-color);
   transition:
     background var(--wa-transition-normal),
     border-color var(--wa-transition-fast),
