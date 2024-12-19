@@ -10,7 +10,7 @@ You may have noticed that some Web Awesome components like `<wa-button>` allow y
 {%- endif %}
 {%- endfor %}
 
-You can create the same effect on any element by using the variant utility classes:
+You can create the same effect on any element by using the color variant utility classes:
 
 - `.wa-brand`
 - `.wa-neutral`
@@ -38,7 +38,7 @@ This is all we need to do:
 	background-color: var(--wa-color-fill-quiet);
 	border: 1px solid var(--wa-color-border-quiet);
 	color: var(--wa-color-on-quiet);
-	padding: 1rem;
+	padding: var(--wa-space-m) var(--wa-space-l);
   }
 </style>
 ```
