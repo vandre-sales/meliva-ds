@@ -77,7 +77,6 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
 
   @query('.control') input: HTMLInputElement;
 
-  @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
 
   /**
@@ -230,7 +229,6 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
   @property({ attribute: 'with-hint', type: Boolean }) withHint = false;
 
   private handleBlur() {
-    this.hasFocus = false;
     this.dispatchEvent(new WaBlurEvent());
   }
 
@@ -253,7 +251,6 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
   }
 
   private handleFocus() {
-    this.hasFocus = true;
     this.dispatchEvent(new WaFocusEvent());
   }
 
@@ -405,42 +402,14 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
       (typeof this.value === 'number' || (this.value && this.value.length > 0));
 
     return html`
-      <div
-        part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
-        })}
-      >
+      <div part="form-control" class="form-control">
         <label part="form-control-label" class="label" for="input" aria-hidden=${hasLabel ? 'false' : 'true'}>
           <slot name="label">${this.label}</slot>
         </label>
 
         <div part="form-control-input" class="form-control-input">
-          <div
-            part="base"
-            class=${classMap({
-              input: true,
-
-              // Sizes
-              'input--small': this.size === 'small',
-              'input--medium': this.size === 'medium',
-              'input--large': this.size === 'large',
-
-              // States
-              'input--pill': this.pill,
-              'input--disabled': this.disabled,
-              'input--focused': this.hasFocus,
-              'input--empty': !this.value,
-              'input--no-spin-buttons': this.noSpinButtons,
-            })}
-          >
-            <span part="prefix" class="prefix">
-              <slot name="prefix"></slot>
-            </span>
+          <div part="base" class="input">
+            <slot name="prefix" part="prefix" class="prefix"></slot>
 
             <input
               part="input"
@@ -516,9 +485,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
                 `
               : ''}
 
-            <span part="suffix" class="suffix">
-              <slot name="suffix"></slot>
-            </span>
+            <slot name="suffix" part="suffix" class="suffix"></slot>
           </div>
         </div>
 

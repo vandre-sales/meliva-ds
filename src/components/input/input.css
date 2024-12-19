@@ -9,7 +9,6 @@
   justify-content: start;
   position: relative;
   font-size: inherit;
-
   height: var(--wa-form-control-height);
 }
 
@@ -48,16 +47,16 @@
   align-items: center;
   cursor: default;
 
-  ::slotted(wa-icon) {
+  &::slotted(wa-icon) {
     color: var(--wa-color-neutral-on-quiet);
   }
 }
 
-.prefix ::slotted(*) {
+.prefix::slotted(*) {
   margin-inline-start: var(--wa-space);
 }
 
-.suffix ::slotted(*) {
+.suffix::slotted(*) {
   margin-inline-end: var(--wa-space);
 }
 
@@ -98,7 +97,7 @@
 }
 
 /* Hide the built-in number spinner */
-.input--no-spin-buttons input[type='number'] {
+:host([no-spin-buttons]) input[type='number'] {
   -moz-appearance: textfield;
 
   &::-webkit-outer-spin-button,

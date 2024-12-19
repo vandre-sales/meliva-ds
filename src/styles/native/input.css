@@ -78,20 +78,17 @@
       border var(--wa-transition-normal),
       outline var(--wa-transition-fast);
     transition-timing-function: var(--wa-transition-easing);
-
-    &:not(.input--small, .input--large) {
-      height: var(--wa-form-control-height-m);
-    }
+    height: var(--wa-form-control-height);
   }
 
   /* Style focused inputs */
-  :is(input:where(:not(:host input)):focus, :host .input--focused:not(.input--disabled)):where(&) {
+  :is(input:where(:not(:host input)):focus, :host .input:focus-within:not(:has(> input:disabled))):where(&) {
     outline: var(--wa-focus-ring);
     outline-offset: var(--wa-focus-ring-offset);
   }
 
   /* Style disabled inputs */
-  :is(input:where(:not(:host input)):disabled, :host .input--disabled):where(&) {
+  :is(input:where(:not(:host input)):disabled, :host .input:has(input:disabled)):where(&) {
     cursor: not-allowed;
     opacity: 0.5;
   }
