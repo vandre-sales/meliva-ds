@@ -1,6 +1,7 @@
 .wa-text-field,
 :host,
-input:not(
+textarea,
+input:where(:not(
     /* Exclude inputs that don't accept text */
     [type='button'],
     [type='checkbox'],
@@ -12,9 +13,9 @@ input:not(
     [type='range'],
     [type='reset'],
     [type='submit']
-  ) {
+  )) {
   /* Style native inputs and <wa-input>'s visible container */
-  &:where(:not(.wa-text-field *, :host input)) {
+  &:where(:not(.wa-text-field *, :host input, :host textarea)) {
     /* Do NOT reset --background-color and --border-color here so they trickle in from the appearance utils
      * Instead we provide the fallback when setting
      */
@@ -39,12 +40,11 @@ input:not(
   }
 
   /* Style text controls of inputs, including within <wa-input> */
-  &:not(:host, input:where(.wa-text-field *)) {
+  &:where(:not(:host, .wa-text-field :is(input, textarea))) {
     background-color: var(--background-color, var(--wa-form-control-background-color));
     border-width: var(--border-width);
     box-shadow: var(--box-shadow);
-    padding: 0 var(--wa-space);
-    height: var(--wa-form-control-height);
+    padding: var(--wa-space-smaller) var(--wa-space);
 
     /* Style focused inputs */
     &:focus-within {
@@ -60,14 +60,16 @@ input:not(
     }
   }
 
-  &:where(input) {
+  &:where(input, textarea) {
     /* Actual inputs */
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus,
-    &:-webkit-autofill:active {
-      box-shadow: none;
-      caret-color: var(--wa-form-control-value-color);
+    &:autofill {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: none;
+        caret-color: var(--wa-form-control-value-color);
+      }
     }
 
     &::placeholder {
@@ -78,7 +80,8 @@ input:not(
   }
 }
 
-.wa-text-field input {
+.wa-text-field input,
+.wa-text-field textarea {
   padding: 0;
   border: none;
   outline: none;

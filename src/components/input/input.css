@@ -10,11 +10,14 @@
   align-items: stretch;
   justify-content: start;
   position: relative;
-  height: var(--wa-form-control-height);
+
   border-color: inherit;
   border-style: inherit;
   border-radius: inherit;
   transition: inherit;
+
+  height: var(--wa-form-control-height);
+  padding-block: 0;
 }
 
 input {
@@ -26,6 +29,7 @@ input {
   /* prettier-ignore */
   background-color: rgb(118 118 118 / 0); /* ensures proper placeholder styles in webkit's date input */
   height: calc(var(--wa-form-control-height) - var(--border-width) * 2);
+  padding-block: 0;
 }
 
 input::-webkit-search-decoration,

@@ -1,13 +1,26 @@
 :host {
-  display: block;
+  display: flex;
+  flex-flow: column;
+  border-width: 0;
 }
 
-:host([appearance='filled']) {
-  --background-color: var(--wa-color-neutral-fill-quiet);
-  --border-color: var(--background-color);
+.wa-text-field {
+  display: grid;
+  align-items: center;
+  padding: 0;
+  border-color: inherit;
+  border-style: inherit;
+  border-radius: inherit;
+  transition: inherit;
 }
 
-.control,
+textarea[part] {
+  padding: var(--wa-space);
+  border-radius: inherit;
+  border: var(--border-width) solid transparent; /* make resizer look a little nicer */
+}
+
+textarea,
 .size-adjuster {
   grid-area: 1 / 1 / 2 / 2;
 }
@@ -18,38 +31,26 @@
   opacity: 0;
 }
 
-.control {
-  border: none;
-  background: none;
-  box-shadow: none;
-  cursor: inherit;
+textarea::-webkit-search-decoration,
+textarea::-webkit-search-cancel-button,
+textarea::-webkit-search-results-button,
+textarea::-webkit-search-results-decoration {
   -webkit-appearance: none;
-}
-
-.control::-webkit-search-decoration,
-.control::-webkit-search-cancel-button,
-.control::-webkit-search-results-button,
-.control::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-}
-
-.control:focus {
-  outline: none;
 }
 
 /*
  * Resize types
  */
 
-.textarea--resize-none .control {
+:host([resize='none']) textarea {
   resize: none;
 }
 
-.textarea--resize-vertical .control {
+:host([resize='vertical']) textarea {
   resize: vertical;
 }
 
-.textarea--resize-auto .control {
+:host([resize='auto']) textarea {
   height: auto;
   resize: none;
   overflow-y: hidden;
