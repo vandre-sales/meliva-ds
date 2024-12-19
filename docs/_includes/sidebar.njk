@@ -129,28 +129,11 @@
   </a>
 </h2>
 <ul>
-  <li>
-    <a href="/docs/theming/color">Color</a>
-  </li>
-  <li>
-    <a href="/docs/theming/typography">Typography</a>
-  </li>
-  <li>
-    <a href="/docs/theming/space">Space</a>
-  </li>
-  <li>
-    <a href="/docs/theming/borders">Borders</a>
-  </li>
-  <li>
-    <a href="/docs/theming/focus">Focus</a>
-  </li>
-  <li>
-    <a href="/docs/theming/shadows">Shadows</a>
-  </li>
-  <li>
-    <a href="/docs/theming/transitions">Transitions</a>
-  </li>
-  <li>
-    <a href="/docs/theming/component-groups">Component Groups</a>
-  </li>
+{% for page in collections.theming | sort %}
+  {% if page.fileSlug != 'theming' and not page.unlisted %}
+    <li>
+      <a href="/docs/theming/{{ page.fileSlug }}">{{ page.data.title }}</a>
+    </li>
+  {% endif %}
+{% endfor %}
 </ul>
