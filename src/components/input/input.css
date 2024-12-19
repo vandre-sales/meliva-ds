@@ -1,42 +1,39 @@
 :host {
-  display: block;
+  display: flex;
+  flex-flow: column;
+  border-width: 0;
 }
 
-.input {
-  flex: 1 1 auto;
+.wa-text-field {
+  flex: auto;
   display: flex;
   align-items: stretch;
   justify-content: start;
   position: relative;
-  font-size: inherit;
   height: var(--wa-form-control-height);
+  border-color: inherit;
+  border-style: inherit;
+  border-radius: inherit;
 }
 
-.control {
+input {
   flex: 1 1 auto;
   min-width: 0;
   height: 100%;
-  font: inherit;
-  border: none;
+
   /* prettier-ignore */
   background-color: rgb(118 118 118 / 0); /* ensures proper placeholder styles in webkit's date input */
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
-  cursor: inherit;
-  -webkit-appearance: none;
   height: calc(var(--wa-form-control-height) - var(--border-width) * 2);
-  padding: 0 var(--wa-space);
 }
 
-.control::-webkit-search-decoration,
-.control::-webkit-search-cancel-button,
-.control::-webkit-search-results-button,
-.control::-webkit-search-results-decoration {
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
   -webkit-appearance: none;
 }
 
-.control:focus {
+input:focus {
   outline: none;
 }
 
@@ -53,11 +50,11 @@
 }
 
 .prefix::slotted(*) {
-  margin-inline-start: var(--wa-space);
+  margin-inline-end: var(--wa-space);
 }
 
 .suffix::slotted(*) {
-  margin-inline-end: var(--wa-space);
+  margin-inline-start: var(--wa-space);
 }
 
 /*
@@ -69,7 +66,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: calc(1em + var(--wa-space) * 2);
   font-size: inherit;
   color: var(--wa-color-neutral-on-quiet);
   border: none;

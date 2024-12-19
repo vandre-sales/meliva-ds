@@ -44,21 +44,16 @@ import styles from './input.css';
  * @event wa-input - Emitted when the control receives input.
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
- * @csspart form-control - The form control that wraps the label, input, and hint.
- * @csspart form-control-label - The label's wrapper.
- * @csspart form-control-input - The input's wrapper.
+ * @csspart label - The label
  * @csspart hint - The hint's wrapper.
- * @csspart base - The component's base wrapper.
- * @csspart input - The internal `<input>` control.
+ * @csspart input - The wrapper being rendered as an input
+ * @csspart base - The internal `<input>` control.
  * @csspart prefix - The container that wraps the prefix.
  * @csspart clear-button - The clear button.
  * @csspart password-toggle-button - The password toggle button.
  * @csspart suffix - The container that wraps the suffix.
  *
  * @cssproperty --background-color - The input's background color.
- * @cssproperty --border-color - The color of the input's borders.
- * @cssproperty --border-radius - The radius of the input's corners.
- * @cssproperty --border-style - The style of the input's borders.
  * @cssproperty --border-width - The width of the input's borders. Expects a single value.
  * @cssproperty --box-shadow - The shadow effects around the edges of the input.
  */
@@ -76,7 +71,7 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
   private readonly hasSlotController = new HasSlotController(this, 'hint', 'label');
   private readonly localize = new LocalizeController(this);
 
-  @query('.control') input: HTMLInputElement;
+  @query('input') input: HTMLInputElement;
 
   @property() title = ''; // make reactive to pass through
 
@@ -403,103 +398,99 @@ export default class WaInput extends WebAwesomeFormAssociatedElement {
       (typeof this.value === 'number' || (this.value && this.value.length > 0));
 
     return html`
-      <div part="form-control" class="form-control">
-        <label part="form-control-label" class="label" for="input" aria-hidden=${hasLabel ? 'false' : 'true'}>
-          <slot name="label">${this.label}</slot>
-        </label>
+      <label part="form-control-label label" class="label" for="input" aria-hidden=${hasLabel ? 'false' : 'true'}>
+        <slot name="label">${this.label}</slot>
+      </label>
 
-        <div part="form-control-input" class="form-control-input">
-          <div part="base" class="input">
-            <slot name="prefix" part="prefix" class="prefix"></slot>
+      <div part="input" class="wa-text-field">
+        <slot name="prefix" part="prefix" class="prefix"></slot>
 
-            <input
-              part="input"
-              id="input"
-              class="control"
-              type=${this.type === 'password' && this.passwordVisible ? 'text' : this.type}
-              title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
-              name=${ifDefined(this.name)}
-              ?disabled=${this.disabled}
-              ?readonly=${this.readonly}
-              ?required=${this.required}
-              placeholder=${ifDefined(this.placeholder)}
-              minlength=${ifDefined(this.minlength)}
-              maxlength=${ifDefined(this.maxlength)}
-              min=${ifDefined(this.min)}
-              max=${ifDefined(this.max)}
-              step=${ifDefined(this.step as number)}
-              .value=${live(this.value || '')}
-              autocapitalize=${ifDefined(this.autocapitalize)}
-              autocomplete=${ifDefined(this.autocomplete)}
-              autocorrect=${ifDefined(this.autocorrect)}
-              ?autofocus=${this.autofocus}
-              spellcheck=${this.spellcheck}
-              pattern=${ifDefined(this.pattern)}
-              enterkeyhint=${ifDefined(this.enterkeyhint)}
-              inputmode=${ifDefined(this.inputmode)}
-              aria-describedby="hint"
-              @change=${this.handleChange}
-              @input=${this.handleInput}
-              @keydown=${this.handleKeyDown}
-              @focus=${this.handleFocus}
-              @blur=${this.handleBlur}
-            />
+        <input
+          part="base"
+          id="input"
+          class="control"
+          type=${this.type === 'password' && this.passwordVisible ? 'text' : this.type}
+          title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
+          name=${ifDefined(this.name)}
+          ?disabled=${this.disabled}
+          ?readonly=${this.readonly}
+          ?required=${this.required}
+          placeholder=${ifDefined(this.placeholder)}
+          minlength=${ifDefined(this.minlength)}
+          maxlength=${ifDefined(this.maxlength)}
+          min=${ifDefined(this.min)}
+          max=${ifDefined(this.max)}
+          step=${ifDefined(this.step as number)}
+          .value=${live(this.value || '')}
+          autocapitalize=${ifDefined(this.autocapitalize)}
+          autocomplete=${ifDefined(this.autocomplete)}
+          autocorrect=${ifDefined(this.autocorrect)}
+          ?autofocus=${this.autofocus}
+          spellcheck=${this.spellcheck}
+          pattern=${ifDefined(this.pattern)}
+          enterkeyhint=${ifDefined(this.enterkeyhint)}
+          inputmode=${ifDefined(this.inputmode)}
+          aria-describedby="hint"
+          @change=${this.handleChange}
+          @input=${this.handleInput}
+          @keydown=${this.handleKeyDown}
+          @focus=${this.handleFocus}
+          @blur=${this.handleBlur}
+        />
 
-            ${isClearIconVisible
-              ? html`
-                  <button
-                    part="clear-button"
-                    class="clear"
-                    type="button"
-                    aria-label=${this.localize.term('clearEntry')}
-                    @click=${this.handleClearClick}
-                    tabindex="-1"
-                  >
-                    <slot name="clear-icon">
-                      <wa-icon name="circle-xmark" library="system" variant="regular"></wa-icon>
-                    </slot>
-                  </button>
-                `
-              : ''}
-            ${this.passwordToggle && !this.disabled
-              ? html`
-                  <button
-                    part="password-toggle-button"
-                    class="password-toggle"
-                    type="button"
-                    aria-label=${this.localize.term(this.passwordVisible ? 'hidePassword' : 'showPassword')}
-                    @click=${this.handlePasswordToggle}
-                    tabindex="-1"
-                  >
-                    ${this.passwordVisible
-                      ? html`
-                          <slot name="show-password-icon">
-                            <wa-icon name="eye-slash" library="system" variant="regular"></wa-icon>
-                          </slot>
-                        `
-                      : html`
-                          <slot name="hide-password-icon">
-                            <wa-icon name="eye" library="system" variant="regular"></wa-icon>
-                          </slot>
-                        `}
-                  </button>
-                `
-              : ''}
+        ${isClearIconVisible
+          ? html`
+              <button
+                part="clear-button"
+                class="clear"
+                type="button"
+                aria-label=${this.localize.term('clearEntry')}
+                @click=${this.handleClearClick}
+                tabindex="-1"
+              >
+                <slot name="clear-icon">
+                  <wa-icon name="circle-xmark" library="system" variant="regular"></wa-icon>
+                </slot>
+              </button>
+            `
+          : ''}
+        ${this.passwordToggle && !this.disabled
+          ? html`
+              <button
+                part="password-toggle-button"
+                class="password-toggle"
+                type="button"
+                aria-label=${this.localize.term(this.passwordVisible ? 'hidePassword' : 'showPassword')}
+                @click=${this.handlePasswordToggle}
+                tabindex="-1"
+              >
+                ${this.passwordVisible
+                  ? html`
+                      <slot name="show-password-icon">
+                        <wa-icon name="eye-slash" library="system" variant="regular"></wa-icon>
+                      </slot>
+                    `
+                  : html`
+                      <slot name="hide-password-icon">
+                        <wa-icon name="eye" library="system" variant="regular"></wa-icon>
+                      </slot>
+                    `}
+              </button>
+            `
+          : ''}
 
-            <slot name="suffix" part="suffix" class="suffix"></slot>
-          </div>
-        </div>
-
-        <slot
-          name="hint"
-          part="hint"
-          class=${classMap({
-            'has-slotted': hasHint,
-          })}
-          aria-hidden=${hasHint ? 'false' : 'true'}
-          >${this.hint}</slot
-        >
+        <slot name="suffix" part="suffix" class="suffix"></slot>
       </div>
+
+      <slot
+        name="hint"
+        part="hint"
+        class=${classMap({
+          'has-slotted': hasHint,
+        })}
+        aria-hidden=${hasHint ? 'false' : 'true'}
+        >${this.hint}</slot
+      >
     `;
   }
 }
