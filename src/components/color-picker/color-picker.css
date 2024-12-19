@@ -284,23 +284,8 @@
   border: none;
   cursor: pointer;
   forced-color-adjust: none;
-}
-
-.trigger.trigger--small {
-  width: var(--wa-form-control-height-s);
-  height: var(--wa-form-control-height-s);
-  border-radius: var(--trigger-border-radius);
-}
-
-.trigger.trigger--medium {
-  width: var(--wa-form-control-height-m);
-  height: var(--wa-form-control-height-m);
-  border-radius: var(--trigger-border-radius);
-}
-
-.trigger.trigger--large {
-  width: var(--wa-form-control-height-l);
-  height: var(--wa-form-control-height-l);
+  width: var(--wa-form-control-height);
+  height: var(--wa-form-control-height);
   border-radius: var(--trigger-border-radius);
 }
 

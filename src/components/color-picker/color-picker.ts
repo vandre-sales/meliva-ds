@@ -17,6 +17,7 @@ import { RequiredValidator } from '../../internal/validators/required-validator.
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../button-group/button-group.js';
 import '../button/button.js';
@@ -105,7 +106,7 @@ declare const EyeDropper: EyeDropperConstructor;
  */
 @customElement('wa-color-picker')
 export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [formControlStyles, styles];
+  static shadowStyle = [sizeStyles, formControlStyles, styles];
 
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 
@@ -1112,9 +1113,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
           class=${classMap({
             container: true,
             'form-control': true,
-            'form-control--small': this.size === 'small',
-            'form-control--medium': this.size === 'medium',
-            'form-control--large': this.size === 'large',
             'form-control--has-label': hasLabel,
           })}
           part="trigger-container form-control"
@@ -1148,9 +1146,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
             class=${classMap({
               trigger: true,
               'trigger--disabled': this.disabled,
-              'trigger--small': this.size === 'small',
-              'trigger--medium': this.size === 'medium',
-              'trigger--large': this.size === 'large',
               'trigger--empty': this.isEmpty,
               'trigger--focused': this.hasFocus,
               'transparent-bg': true,
