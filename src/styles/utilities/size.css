@@ -16,6 +16,14 @@
   --space-l: var(--wa-space-l, 1.25rem);
 }
 
+:root,
+:host,
+.wa-size-s,
+.wa-size-m,
+.wa-size-l {
+  --wa-form-control-height: calc(2 * var(--wa-space-smaller) + 1em * var(--wa-form-control-value-line-height));
+}
+
 :host([size='small']),
 .wa-size-s {
   font-size: var(--size-s);

@@ -2,7 +2,6 @@
   --size-s: var(--wa-font-size-xs);
   --size-m: var(--wa-font-size-s);
   --size-l: var(--wa-font-size-m);
-  --form-control-height: calc(2 * var(--wa-space-smaller) + 1em * var(--wa-form-control-value-line-height));
 
   display: inline-flex;
   border-radius: var(--wa-border-radius-s);
@@ -16,8 +15,8 @@
   white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
-  height: calc(var(--form-control-height) * 0.8);
-  line-height: calc(var(--form-control-height) - var(--wa-form-control-border-width) * 2);
+  height: calc(var(--wa-form-control-height) * 0.8);
+  line-height: calc(var(--wa-form-control-height) - var(--wa-form-control-border-width) * 2);
   padding: 0 var(--wa-space-smaller);
 }
 
