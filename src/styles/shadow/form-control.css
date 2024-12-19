@@ -28,7 +28,7 @@
   display: inline-block;
   color: var(--wa-color-text-quiet);
   margin-block-start: var(--wa-space-xs);
-  font-size: var(--size-smaller, 85%);
+  font-size: var(--wa-size-smaller, 85%);
   line-height: var(--wa-form-control-label-line-height);
 
   &:is(.form-control--small *) {

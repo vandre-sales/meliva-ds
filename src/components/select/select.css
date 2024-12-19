@@ -64,7 +64,7 @@
 
   min-height: var(--wa-form-control-height-m);
   padding-block: 0;
-  padding-inline: var(--space);
+  padding-inline: var(--wa-space);
 
   :host([size='small']) & {
     min-height: var(--wa-form-control-height-s);
@@ -192,7 +192,7 @@
 }
 
 .prefix::slotted(*) {
-  margin-inline-end: var(--space);
+  margin-inline-end: var(--wa-space);
 }
 
 /* Clear button */
@@ -207,7 +207,7 @@
   padding: 0;
   transition: color var(--wa-transition-normal);
   cursor: pointer;
-  margin-inline-start: var(--space);
+  margin-inline-start: var(--wa-space);
 
   &:focus {
     outline: none;
