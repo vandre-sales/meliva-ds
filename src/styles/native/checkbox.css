@@ -1,5 +1,5 @@
-input[type='checkbox']:where(:not(:host *, .wa-off, .wa-off-deep *)),
-label:has(input[type='checkbox']):where(:not(:host *, .wa-off, .wa-off-deep *)),
+input[type='checkbox']:where(:not(:host *)),
+label:has(input[type='checkbox']):where(:not(:host *)),
 :host {
   --background-color: var(--wa-form-control-background-color);
   --background-color-checked: var(--wa-form-control-activated-color);
@@ -20,7 +20,7 @@ label:has(input[type='checkbox']):where(:not(:host *, .wa-off, .wa-off-deep *)),
 }
 
 /* Replace native checkbox styles */
-input[type='checkbox']:where(:not(:host *, .wa-off, .wa-off-deep *)) {
+input[type='checkbox']:where(:not(:host *)) {
   appearance: none;
   margin: 0;
 
@@ -35,7 +35,7 @@ input[type='checkbox']:where(:not(:host *, .wa-off, .wa-off-deep *)) {
   }
 }
 
-input[type='checkbox']:where(:not(:host *, .wa-off, .wa-off-deep *)),
+input[type='checkbox']:where(:not(:host *)),
 :host .control {
   flex: 0 0 auto;
   position: relative;
@@ -62,15 +62,15 @@ input[type='checkbox']:where(:not(:host *, .wa-off, .wa-off-deep *)),
 }
 
 /* Set cursor for input and labels */
-input[type='checkbox']:where(:not(:host *, .wa-off, .wa-off-deep *)),
-label:has(input[type='checkbox']):where(:not(:host *, .wa-off, .wa-off-deep *)),
-input[type='checkbox']:where(:not(:host *, .wa-off, .wa-off-deep *)) + label,
+input[type='checkbox']:where(:not(:host *)),
+label:has(input[type='checkbox']):where(:not(:host *)),
+input[type='checkbox']:where(:not(:host *)) + label,
 :host [part~='base'] {
   cursor: pointer;
 }
 
 /* Checked */
-input[type='checkbox']:is(:checked, :indeterminate):where(:not(:host *, .wa-off, .wa-off-deep *)),
+input[type='checkbox']:is(:checked, :indeterminate):where(:not(:host *)),
 [part~='base'] .control:has(:checked, :indeterminate) /* scoping this rule to :host breaks in Firefox */ {
   color: var(--checked-icon-color);
   border-color: var(--border-color-checked);
@@ -78,15 +78,15 @@ input[type='checkbox']:is(:checked, :indeterminate):where(:not(:host *, .wa-off,
 }
 
 /* Focus */
-input[type='checkbox']:focus-visible:where(:not(:host *, .wa-off, .wa-off-deep *)),
+input[type='checkbox']:focus-visible:where(:not(:host *)),
 [part~='base'] .control:has(> input:focus-visible:not(:disabled)) /* scoping this rule to :host breaks in Firefox */ {
   outline: var(--wa-focus-ring);
   outline-offset: var(--wa-focus-ring-offset);
 }
 
 /* Disabled */
-input[type='checkbox']:disabled:where(:not(:host *, .wa-off, .wa-off-deep *)),
-label:has(input[type='checkbox']:disabled):where(:not(:host *, .wa-off, .wa-off-deep *)),
+input[type='checkbox']:disabled:where(:not(:host *)),
+label:has(input[type='checkbox']:disabled):where(:not(:host *)),
 :host [part~='base']:has(input:disabled) {
   opacity: 0.5;
   cursor: not-allowed;
