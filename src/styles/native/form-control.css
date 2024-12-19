@@ -3,16 +3,10 @@ label {
   color: var(--wa-form-control-label-color);
   font-weight: var(--wa-form-control-label-font-weight);
   line-height: var(--wa-form-control-label-line-height);
+  position: relative;
 }
 
 label + :is(input:not([type='checkbox'], [type='radio']), textarea, select),
 label > :is(input:not([type='checkbox'], [type='radio']), textarea, select) {
   margin-block-start: var(--wa-space-xs);
-}
-
-label:has(+ input:required)::after,
-label:has(input:required)::after {
-  content: var(--wa-form-control-required-content);
-  margin-inline-start: var(--wa-form-control-required-content-offset);
-  color: var(--wa-form-control-required-content-color);
 }
