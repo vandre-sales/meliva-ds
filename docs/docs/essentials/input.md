@@ -6,6 +6,7 @@ component:
  - input
  - select
  - textarea
+ - range
 elements:
   "<input>": https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
   "<textarea>": https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
@@ -90,15 +91,14 @@ wa-code-demo::part(preview) {
 <wa-input label="WA Input (time)" type="time"></wa-input>
 ```
 
-## Slider
+## Sliders
 
 ```html {.example}
 <label>Input (range)<input type="range"></label>
-
 <wa-range label="WA Range"></wa-range>
 ```
 
-## Select dropdown
+## Select dropdowns
 
 ```html {.example}
 <label>Select
