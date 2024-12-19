@@ -11,7 +11,7 @@ We also provide styles that make native HTML elements look good so you can conti
 To use all Web Awesome Native Styles, include the following stylesheet in your project:
 
 ```html
-<link rel="stylesheet" href="{% cdnUrl 'styles/themes/applied.css' %}" />
+<link rel="stylesheet" href="{% cdnUrl 'styles/applied.css' %}" />
 ```
 
 Here’s what we have so far:
@@ -34,7 +34,7 @@ Instead of including Native Styles with a `<link>` element, you can include it l
 
 ```html
 <style>
-@import url('{% cdnUrl 'styles/themes/applied.css' %}') layer(wa);
+@import url('{% cdnUrl 'styles/applied.css' %}') layer(wa);
 
 @layer wa {
   .wa-off,

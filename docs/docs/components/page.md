@@ -40,6 +40,10 @@ body {
 }
 ```
 
+::info
+If you use [native styles](/docs/native/), this is already taken care of.
+:::
+
 ## Examples
 
 :::warning
@@ -64,7 +68,7 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
   <header slot="header" class="wa-split">
     <div class="wa-cluster">
       <wa-icon name="feather-pointed" style="color: var(--wa-color-brand-fill-loud); font-size: 1.5em;"></wa-icon>
-      <span id="brand-name" class="wa-heading-s">Audubon Worldwide</span>
+      <span id="brand-name" class="wa-heading-s wa-desktop-only">Audubon Worldwide</span>
       <a href="#">Our Work</a>
       <a href="#">About Us</a>
       <a href="#">Discover</a>
@@ -84,7 +88,7 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
         <wa-breadcrumb-item>Great Horned Owl</wa-breadcrumb-item>
       </wa-breadcrumb>
     </div>
-    <wa-input id="search" placeholder="Search" size="small" style="max-inline-size: 12rem;">
+    <wa-input id="search" class="wa-desktop-only" placeholder="Search" size="small" style="max-inline-size: 12rem;">
       <wa-icon slot="prefix" name="magnifying-glass"></wa-icon>
     </wa-input>
   </nav>
@@ -161,7 +165,7 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
       </ul>
     </section>
   </footer>
-  <aside slot="aside">
+  <aside slot="aside" class="wa-desktop-only">
     <h2 class="wa-heading-m">Discover More Birds</h2>
     <wa-card with-image>
       <div slot="image" class="wa-frame">
@@ -229,10 +233,6 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
     --aside-width: 15rem;
   }
   wa-page[view='desktop'] {
-    [data-toggle-nav] {
-      display: none;
-    }
-
     [slot*='navigation'] {
       border-inline-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
     }
@@ -240,12 +240,6 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
   wa-page[view='mobile'] {
     --menu-width: auto;
     --aside-width: auto;
-
-    [slot='aside'],
-    #brand-name,
-    #search {
-      display: none;
-    }
   }
 
   [slot='banner'] {
@@ -272,9 +266,10 @@ It can be opened using a button with `[data-toggle-nav]` that appears in the `su
   }
   [slot='navigation-footer'] {
     border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
-  }
-  [slot='navigation-footer'] .wa-flank {
-    --flank-size: 1.25em;
+
+    .wa-flank {
+      --flank-size: 1.25em;
+    }
   }
   [slot='main-header'],
   main,
@@ -310,7 +305,7 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
       <wa-icon name="record-vinyl"></wa-icon>
       <span class="wa-heading-m">radiogaga</span>
     </div>
-    <wa-input id="search-header" placeholder="Search" style="max-inline-size: 100%;">
+    <wa-input id="search-header" placeholder="Search" class="wa-desktop-only" style="max-inline-size: 100%;">
       <wa-icon slot="prefix" name="magnifying-glass" ></wa-icon>
     </wa-input>
     <div class="wa-cluster">
@@ -319,7 +314,7 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     </div>
   </header>
   <div slot="navigation-header" class="wa-split">
-    <wa-input id="search-nav-drawer" placeholder="Search" style="max-inline-size: 100%;">
+    <wa-input id="search-nav-drawer" placeholder="Search" style="max-inline-size: 100%;" class="wa-mobile-only">
       <wa-icon slot="prefix" name="magnifying-glass" ></wa-icon>
     </wa-input>
     <div class="wa-split">
@@ -609,17 +604,10 @@ A sample media app page using `header`, `navigation-header`, `main-header`, and 
     --wa-tooltip-arrow-size: 0;
     background-color: var(--wa-color-surface-lowered);
   }
-  wa-page[view='desktop'] {
-    :is([data-toggle-nav], #search-nav-drawer) {
-      display: none;
-    }
-  }
+
   wa-page[view='mobile'] {
     --menu-width: auto;
 
-    #search-header {
-      display: none;
-    }
     [slot*='main'], main {
       padding: var(--wa-space-xl);
     }
@@ -846,6 +834,10 @@ wa-page[view='desktop'] [data-toggle-nav] {
 }
 ```
 
+::info
+If you use [native styles](/docs/native/), this is already taken care for you, and the `data-toggle-nav` button is already hidden on wider screens.
+:::
+
 #### Custom Widths
 
 You specify widths for some slots on your page with [CSS custom properties](#css-custom-properties) for `--menu-width`, `--main-width`, and `--aside-width`.
@@ -880,3 +872,16 @@ You can override the default spacing for each slot with your own CSS. In this ex
 }
 ```
 
+## Utility classes
+
+[Native styles](/docs/native/) define a few useful defaults for `<wa-page>`, as well as
+two utility classes you can use for common responsive design tasks:
+- `.wa-mobile-only` hides an element on the desktop view
+- `.wa-desktop-only` hides an element on the mobile view
+
+
+If you don’t want to use [native styles](/docs/native/), you can include this stylesheet in your project to use these:
+
+```html
+<link rel="stylesheet" href="{% cdnUrl 'styles/components/page.css' %}" />
+```

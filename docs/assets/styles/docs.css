@@ -483,11 +483,6 @@ wa-page > main:has(> .index-grid) {
 
 /** desktop */
 @media screen and not (max-width: 768px) {
-  wa-page [data-toggle-nav],
-  wa-page .only-mobile {
-    display: none;
-  }
-
   /* Navigation sidebar */
   wa-page::part(navigation) {
     border-right: var(--wa-border-style) var(--wa-panel-border-width) var(--wa-color-neutral-border-quiet);

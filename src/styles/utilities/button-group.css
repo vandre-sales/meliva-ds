@@ -13,8 +13,8 @@
   > :focus,
   &::slotted(:focus),
   > [aria-checked='true'],
-  > [checked],
   &::slotted([aria-checked='true']),
+  > [checked],
   &::slotted([checked]) {
     z-index: 2 !important;
   }
