@@ -182,16 +182,34 @@
 
 .user-input {
   display: flex;
+  align-items: center;
   padding: 0 var(--spacing) var(--spacing) var(--spacing);
 }
 
 .user-input wa-input {
   min-width: 0; /* fix input width in Safari */
   flex: 1 1 auto;
+
+  &::part(form-control-label) {
+    /* Visually hidden */
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    border: none !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    padding: 0 !important;
+  }
 }
 
 .user-input wa-button-group {
   margin-inline-start: var(--spacing);
+
+  &::part(base) {
+    flex-wrap: nowrap;
+  }
 }
 
 .user-input wa-button:first-of-type {
