@@ -27,6 +27,10 @@
   margin-inline-start: 0.75em;
 }
 
+[part='remove-button']::part(base) {
+  padding: 0;
+}
+
 :host(:hover) > wa-icon-button {
   color: color-mix(in oklab, var(--text-color), var(--wa-color-mix-hover));
 }
