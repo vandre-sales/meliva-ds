@@ -16,18 +16,6 @@
   display: inline-block;
 }
 
-:host([size='small']) {
-  font-size: var(--wa-font-size-s);
-}
-
-:host([size='medium']) {
-  font-size: var(--wa-font-size-m);
-}
-
-:host([size='large']) {
-  font-size: var(--wa-font-size-l);
-}
-
 .switch {
   position: relative;
   display: flex;

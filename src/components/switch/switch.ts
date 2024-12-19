@@ -13,6 +13,7 @@ import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
+import sizeStyles from '../../styles/utilities/size.css';
 import styles from './switch.css';
 
 /**
@@ -52,7 +53,7 @@ import styles from './switch.css';
  */
 @customElement('wa-switch')
 export default class WaSwitch extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [formControlStyles, styles];
+  static shadowStyle = [formControlStyles, sizeStyles, styles];
 
   static get validators() {
     return [...super.validators, MirrorValidator()];
@@ -238,14 +239,7 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
     const hasHint = this.hint ? true : !!hasHintSlot;
 
     return html`
-      <div
-        class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-        })}
-      >
+      <div class="form-control">
         <label
           part="base"
           class=${classMap({
@@ -253,9 +247,6 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
             'switch--checked': this.checked,
             'switch--disabled': this.disabled,
             'switch--focused': this.hasFocus,
-            'switch--small': this.size === 'small',
-            'switch--medium': this.size === 'medium',
-            'switch--large': this.size === 'large',
           })}
         >
           <input
