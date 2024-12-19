@@ -21,6 +21,7 @@ import { RequiredValidator } from '../../internal/validators/required-validator.
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-element.js';
 import formControlStyles from '../../styles/shadow/form-control.css';
+import appearanceStyles from '../../styles/utilities/appearance.css';
 import sizeStyles from '../../styles/utilities/size.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon/icon.js';
@@ -86,7 +87,7 @@ import styles from './select.css';
  */
 @customElement('wa-select')
 export default class WaSelect extends WebAwesomeFormAssociatedElement {
-  static shadowStyle = [formControlStyles, sizeStyles, styles];
+  static shadowStyle = [appearanceStyles, formControlStyles, sizeStyles, styles];
 
   static get validators() {
     const validators = isServer
