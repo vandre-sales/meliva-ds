@@ -1,5 +1,5 @@
 /* Label */
-[part~='form-control-label'] {
+:is([part~='form-control-label'], [part~='label']):has(*:not(:empty)) {
   display: block;
   color: var(--wa-form-control-label-color);
   font-weight: var(--wa-form-control-label-font-weight);
