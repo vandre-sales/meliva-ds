@@ -888,7 +888,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
         class=${classMap({
           'color-picker': true,
           'color-picker--disabled': this.disabled,
-          'color-picker--focused': this.hasFocus,
         })}
         aria-disabled=${this.disabled ? 'true' : 'false'}
         tabindex="-1"
@@ -1147,7 +1146,6 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
               trigger: true,
               'trigger--disabled': this.disabled,
               'trigger--empty': this.isEmpty,
-              'trigger--focused': this.hasFocus,
               'transparent-bg': true,
               'form-control-input': true,
             })}

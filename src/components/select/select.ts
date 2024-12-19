@@ -119,7 +119,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
     return this.valueInput;
   }
 
-  @state() private hasFocus = false;
   @state() displayLabel = '';
   @state() currentOption: WaOption;
   @state() selectedOptions: WaOption[] = [];
@@ -311,13 +310,11 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
   }
 
   private handleFocus() {
-    this.hasFocus = true;
     this.displayInput.setSelectionRange(0, 0);
     this.dispatchEvent(new WaFocusEvent());
   }
 
   private handleBlur() {
-    this.hasFocus = false;
     this.dispatchEvent(new WaBlurEvent());
   }
 
@@ -819,7 +816,6 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
               disabled: this.disabled,
               enabled: !this.disabled,
               multiple: this.multiple,
-              focused: this.hasFocus,
               'placeholder-visible': isPlaceholderVisible,
             })}
             placement=${this.placement}

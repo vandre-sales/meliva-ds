@@ -63,7 +63,6 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
 
-  @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
 
   /** The name of the switch, submitted as a name/value pair with form data. */
@@ -131,7 +130,6 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
   }
 
   private handleBlur() {
-    this.hasFocus = false;
     this.dispatchEvent(new WaBlurEvent());
   }
 
@@ -146,7 +144,6 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
   }
 
   private handleFocus() {
-    this.hasFocus = true;
     this.dispatchEvent(new WaFocusEvent());
   }
 
@@ -244,7 +241,6 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
         class=${classMap({
           checked: this.checked,
           disabled: this.disabled,
-          focused: this.hasFocus,
         })}
       >
         <input
