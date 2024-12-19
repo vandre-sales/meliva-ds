@@ -55,13 +55,16 @@ input[type='range'] {
       0 0 0 var(--thumb-gap) var(--wa-color-surface-default);
     -webkit-appearance: none;
     margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
-    cursor: pointer;
   }
 
   &:enabled {
     &:focus-visible::-webkit-slider-thumb {
       outline: var(--wa-focus-ring);
       outline-offset: var(--wa-focus-ring-offset);
+    }
+
+    &::-webkit-slider-thumb {
+      cursor: pointer;
     }
 
     &::-webkit-slider-thumb:active {
@@ -98,7 +101,6 @@ input[type='range'] {
     transition-property: background-color, border-color, box-shadow, color;
     transition-duration: var(--wa-transition-normal);
     transition-timing-function: var(--wa-transition-easing);
-    cursor: pointer;
   }
 
   &:enabled {
@@ -107,19 +109,30 @@ input[type='range'] {
       outline-offset: var(--wa-focus-ring-offset);
     }
 
+    &::-moz-range-thumb {
+      cursor: pointer;
+    }
+
     &::-moz-range-thumb:active {
       cursor: grabbing;
     }
   }
+}
 
-  /* States */
+/* States */
+/* nesting these styles yields broken results in Safari */
 
-  &:focus-visible {
-    outline: none;
-  }
+input[type='range']:focus {
+  outline: none;
+}
 
-  &:disabled {
-    opacity: 0.5;
+:host :has(:disabled) input[type='range'],
+input[type='range']:not(:host *):disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+
+  &::-moz-range-thumb,
+  &::-webkit-slider-thumb {
     cursor: not-allowed;
   }
 }
