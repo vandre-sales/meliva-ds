@@ -239,54 +239,49 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
     const hasHint = this.hint ? true : !!hasHintSlot;
 
     return html`
-      <div class="form-control">
-        <label
-          part="base"
-          class=${classMap({
-            switch: true,
-            'switch--checked': this.checked,
-            'switch--disabled': this.disabled,
-            'switch--focused': this.hasFocus,
-          })}
-        >
-          <input
-            class="input"
-            type="checkbox"
-            title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
-            name=${this.name}
-            value=${ifDefined(this.value)}
-            .checked=${live(this.checked)}
-            .disabled=${this.disabled}
-            .required=${this.required}
-            role="switch"
-            aria-checked=${this.checked ? 'true' : 'false'}
-            aria-describedby="hint"
-            @click=${this.handleClick}
-            @input=${this.handleInput}
-            @blur=${this.handleBlur}
-            @focus=${this.handleFocus}
-            @keydown=${this.handleKeyDown}
-          />
+      <label
+        part="base"
+        class=${classMap({
+          checked: this.checked,
+          disabled: this.disabled,
+          focused: this.hasFocus,
+        })}
+      >
+        <input
+          class="input"
+          type="checkbox"
+          title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
+          name=${this.name}
+          value=${ifDefined(this.value)}
+          .checked=${live(this.checked)}
+          .disabled=${this.disabled}
+          .required=${this.required}
+          role="switch"
+          aria-checked=${this.checked ? 'true' : 'false'}
+          aria-describedby="hint"
+          @click=${this.handleClick}
+          @input=${this.handleInput}
+          @blur=${this.handleBlur}
+          @focus=${this.handleFocus}
+          @keydown=${this.handleKeyDown}
+        />
 
-          <span part="control" class="control">
-            <span part="thumb" class="thumb"></span>
-          </span>
+        <span part="control" class="switch">
+          <span part="thumb" class="thumb"></span>
+        </span>
 
-          <div part="label" class="label">
-            <slot></slot>
-          </div>
-        </label>
+        <slot part="label" class="label"></slot>
+      </label>
 
-        <slot
-          name="hint"
-          part="hint"
-          class=${classMap({
-            'has-slotted': hasHint,
-          })}
-          aria-hidden=${hasHint ? 'false' : 'true'}
-          >${this.hint}</slot
-        >
-      </div>
+      <slot
+        name="hint"
+        part="hint"
+        class=${classMap({
+          'has-slotted': hasHint,
+        })}
+        aria-hidden=${hasHint ? 'false' : 'true'}
+        >${this.hint}</slot
+      >
     `;
   }
 }
