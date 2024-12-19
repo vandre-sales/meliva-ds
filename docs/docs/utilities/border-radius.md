@@ -1,7 +1,7 @@
 ---
 title: Border Radius
-description: Border radius utility classes set an element's border radius property. 
-layout: page-outline
+description: Border radius utility classes set an element's border radius property.
+tags: ["utilities"]
 ---
 
 <style>
@@ -11,7 +11,7 @@ layout: page-outline
   }
 </style>
 
-Web Awesome includes classes to set an element's `border-radius` property. They can be used alongside Web Awesome layout utilities, like [frame](/docs/layout/frame), to round all corners of an element. 
+Web Awesome includes classes to set an element's `border-radius` property. They can be used alongside Web Awesome layout utilities, like [frame](/docs/layout/frame), to round all corners of an element.
 
 Each class corresponds to one of the [`--wa-border-radius-*`](/docs/theming/borders/#radius) properties in your theme.
 
