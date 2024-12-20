@@ -408,14 +408,6 @@ layout: page-outline
       <span class="page-name">Resize Observer</span>
     </wa-card>
   </a>
-  <a href="/docs/components/visually-hidden">
-    <wa-card with-header>
-      <div slot="header">
-        {% include "svgs/visually-hidden.njk" %}
-      </div>
-      <span class="page-name">Visually Hidden</span>
-    </wa-card>
-  </a>
 </div>
 
 <div id="component-filter-empty" hidden>
@@ -430,7 +422,7 @@ layout: page-outline
 
   function updateResults() {
     const filter = input.value.toLowerCase().trim();
-    
+
     // Hide headings while filtering
     grid.querySelectorAll('h2').forEach(heading => {
       heading.hidden = filter === '' ? false : true;
@@ -473,11 +465,11 @@ layout: page-outline
       visibility: visible;
 
       &.hidden {
-        display: block;  
+        display: block;
         position: absolute;
         visibility: hidden;
       }
-    }    
+    }
   }
 
   #component-filter-empty {

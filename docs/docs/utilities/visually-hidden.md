@@ -1,7 +1,7 @@
 ---
 title: Visually Hidden
 description: The visually hidden utility makes content accessible to assistive devices without displaying it on the screen.
-noAlpha: true
+icon: visually-hidden
 ---
 
 `.wa-visually-hidden` `.wa-visually-hidden-force`
