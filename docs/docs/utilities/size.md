@@ -1,6 +1,7 @@
 ---
 title: Size
 description: Size utilities give elements one of three preset sizes (small, medium, or large).
+icon: theming/space
 ---
 
 Some Web Awesome components, like `<wa-button>`, allow you to change their size to one of three presets: `small`, `medium`, and `large` by using a `size` attribute:

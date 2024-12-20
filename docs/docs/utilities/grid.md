@@ -3,6 +3,7 @@ title: Grid
 description: 'Use the `wa-grid` class to arrange elements into rows and columns that automatically adapt to the available space.'
 tags: ["utilities", "layout"]
 layout: element
+icon: layout/grid
 ---
 
 <style>

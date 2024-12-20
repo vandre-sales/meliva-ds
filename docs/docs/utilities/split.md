@@ -3,6 +3,7 @@ title: Split
 description: 'Use the `wa-split` class to distribute two or more items evenly across available space, either in a row or a column.'
 tags: ["utilities", "layout"]
 layout: element
+icon: layout/split
 ---
 
 <style>

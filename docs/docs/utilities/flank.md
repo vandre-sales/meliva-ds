@@ -3,6 +3,7 @@ title: Flank
 description: 'Use the `wa-flank` class to position two items side-by-side, with one item positioned alongside, or _flanking_, content that stretches to fill the available space.'
 tags: ["utilities", "layout"]
 layout: element
+icon: layout/flank
 ---
 
 <style>

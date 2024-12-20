@@ -16,26 +16,15 @@ To use all Web Awesome Native Styles, include the following stylesheet in your p
 
 Here’s what we have so far:
 
-<!-- TODO make nice cards for these -->
 <div id="component-grid" class="index-grid">
   <!-- <h2 class="index-category">Actions</h2> -->
 
   {%- for page in collections.native | sort -%}
   {%- if page.fileSlug != 'native' -%}
-  <a href="{{ page.url }}">
-    <wa-card with-header>
-      <div slot="header">
-        {% include "svgs/" + (page.data.icon or "thumbnail-placeholder") + ".njk" %}
-      </div>
-      <span class="page-name">{{ page.data.title }}</span>
-    </wa-card>
-  </a>
+    {% include "page-card.njk" %}
   {%- endif -%}
   {%- endfor -%}
 </div>
-<ul>
-
-</ul>
 
 ## Opting Out of Native Styles
 

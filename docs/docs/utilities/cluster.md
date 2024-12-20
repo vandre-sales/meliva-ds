@@ -3,6 +3,7 @@ title: Cluster
 description: 'Use the `wa-cluster` class to arrange elements inline with even spacing, allowing items to wrap when space is limited.'
 tags: ["utilities", "layout"]
 layout: element
+icon: layout/cluster
 ---
 
 <style>

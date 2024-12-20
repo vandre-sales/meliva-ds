@@ -3,6 +3,7 @@ title: Frame
 description: 'Use the `wa-frame` class to create a responsive container with consistent proportions to enclose content.'
 tags: ["utilities", "layout"]
 layout: element
+icon: layout/frame
 ---
 
 <style>
