@@ -163,8 +163,8 @@ layout: page
       background-color: var(--wa-brand-orange);
       color: white;
       border-radius: 0.25rem;
-      height: 2rem;
-      width: 2rem;
+      aspect-ratio: 1;
+      padding: 0.5em;
     }
     & h3 {
       font-size: 1rem;
