@@ -1,7 +1,6 @@
 .wa-button-group {
   display: inline-flex;
   position: relative;
-  flex-wrap: wrap;
   isolation: isolate;
 
   > :hover,
