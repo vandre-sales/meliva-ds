@@ -254,7 +254,7 @@ export default class WaCodeDemo extends WebAwesomeElement {
    */
   public edit() {
     const markup = this.getDemoHTML({ isolated: true, absolutize: true, prettyWhitespace: true });
-    const css = 'body {\n  font: 16px sans-serif;\n  padding: 2rem;\n}';
+    const css = 'body {\n  padding: 2rem !important;\n}';
     const js = '';
 
     const form = Object.assign(document.createElement('form'), {
