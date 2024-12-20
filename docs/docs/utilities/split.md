@@ -1,7 +1,8 @@
 ---
 title: Split
-description: Browse the library of customizable, framework-friendly web components included in Web Awesome.
+description: 'Use the `wa-split` class to distribute two or more items evenly across available space, either in a row or a column.'
 tags: ["utilities", "layout"]
+layout: element
 ---
 
 <style>
@@ -18,8 +19,6 @@ tags: ["utilities", "layout"]
     min-inline-size: 4rem;
   }
 </style>
-
-Use the `wa-split` class to distribute two or more items evenly across available space, either in a row or a column.
 
 ```html {.example}
 <div class="wa-split">

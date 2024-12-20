@@ -1,8 +1,9 @@
 ---
 title: Color Variants
+description: Color utilities allow you to apply the brand, neutral, success, warning, and danger colors from your theme to any element.
 ---
 
-You may have noticed that some Web Awesome components like `<wa-button>` allow you to change the color by using a `variant` attribute:
+Some Web Awesome components, like `<wa-button>`, allow you to change the color by using a `variant` attribute:
 
 {% for component in componentsBy.attribute.variant %}
 {% if component.fileSlug != "icon" or component.fileSlug != "icon-button" -%}

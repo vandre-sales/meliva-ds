@@ -10,19 +10,7 @@
     {% for tag, url in elements %}
       <code class="tag"><a href="{{ url }}">{{ tag }}</a></code>
     {% endfor %}
-    {% if since %}<wa-badge variant="neutral">Since {{ since }}</wa-badge>{% endif %}
-    {% if status %}
-      <wa-badge
-        {% if status == 'stable' %}variant="brand"{% endif %}
-        {% if status == 'experimental' %}variant="warning"{% endif %}
-      >
-        {{ status }}
-      </wa-badge>
-    {% endif %}
-
-    {% if isPro %}
-      <wa-badge class="pro">PRO</wa-badge>
-    {% endif %}
+    {% include '../_includes/status.njk' %}
   </div>
   {% if description -%}
     <p class="summary">{{ description | inlineMarkdown | safe }}</p>

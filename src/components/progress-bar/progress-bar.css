@@ -37,7 +37,8 @@
 :host([indeterminate]) .indicator {
   position: absolute;
   inset-block: 0;
-  animation: indeterminate 2.5s infinite cubic-bezier(0.37, 0, 0.63, 1);
+  inline-size: 50%;
+  animation: wa-progress-indeterminate 2.5s infinite cubic-bezier(0.37, 0, 0.63, 1);
 }
 
 @media (forced-colors: active) {
@@ -52,15 +53,13 @@
   }
 }
 
-@keyframes indeterminate {
+@keyframes wa-progress-indeterminate {
   0% {
     inset-inline-start: -50%;
-    width: 50%;
   }
 
   75%,
   100% {
     inset-inline-start: 100%;
-    width: 50%;
   }
 }

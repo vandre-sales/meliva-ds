@@ -2,6 +2,7 @@
 title: Progress Bar
 description: Progress bars are used to show the status of an ongoing operation.
 tags: component
+native: progress
 ---
 
 ```html {.example}

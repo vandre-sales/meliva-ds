@@ -1,7 +1,8 @@
 ---
 title: Stack
-description: Browse the library of customizable, framework-friendly web components included in Web Awesome.
+description: 'Use `wa-stack` to arrange elements in the block direction with even spacing.'
 tags: ["utilities", "layout"]
+layout: element
 ---
 
 <style>
@@ -18,8 +19,6 @@ tags: ["utilities", "layout"]
     min-inline-size: 4rem;
   }
 </style>
-
-Use `wa-stack` to arrange elements in the block direction with even spacing.
 
 ```html {.example}
 <div class="wa-stack">
