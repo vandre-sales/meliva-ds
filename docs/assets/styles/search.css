@@ -4,8 +4,12 @@
   top: 0;
   border-radius: var(--wa-border-radius-m);
   padding: 0;
-  margin: 10rem auto;
+  margin: 0 auto;
   overflow: hidden;
+
+  &::part(base) {
+    margin-block: 10rem;
+  }
 
   &::part(body) {
     padding: 0;
@@ -18,7 +22,10 @@
 
   @media screen and (max-width: 900px) {
     max-width: calc(100% - 2rem);
-    margin-block: 1rem;
+
+    &::part(base) {
+      margin-block: 1rem;
+    }
   }
 }
 
