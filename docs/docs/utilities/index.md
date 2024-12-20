@@ -5,7 +5,7 @@ description: Web Awesome provides a few style utilities to customize styles in w
 layout: page-outline
 ---
 
-## Usage
+## Installation
 
 To use all Web Awesome page styles (including [native styles](/docs/native/)), include the following stylesheet in your project:
 

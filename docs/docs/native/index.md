@@ -8,7 +8,7 @@ Web Awesome works _with_ the platform, rather than trying to reinvent it.
 If all you need is styles, you don’t need to use new `<wa-*>` elements!
 We also provide styles that make native HTML elements look good so you can continue using what you know and gradually adopt Web Awesome as you see fit.
 
-## Usage
+## Installation
 
 To use all Web Awesome page styles (including [utilities](/docs/utilities/)), include the following stylesheet in your project:
 
