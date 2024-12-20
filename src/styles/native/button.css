@@ -96,5 +96,5 @@ input:is([type='button'], [type='reset'], [type='submit']),
 
 .wa-pill,
 :host([pill]) {
-  border-radius: var(--wa-border-radius-pill);
+  border-radius: var(--wa-border-radius-pill) !important;
 }
