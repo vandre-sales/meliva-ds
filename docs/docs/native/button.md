@@ -4,6 +4,7 @@ description: 'Button styles apply your Web Awesome theme to native HTML buttons.
 tags: native
 layout: element
 component: button
+icon: button
 ---
 
 ```html {.example}

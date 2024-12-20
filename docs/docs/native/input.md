@@ -3,6 +3,7 @@ title: Form Inputs
 description: 'Form input styles apply your Web Awesome theme to HTML elements like text fields, checkboxes, and more. Form inputs are interactive, allowing users to enter data or control an interface.'
 tags: native
 layout: element
+icon: input
 component:
  - input
  - select

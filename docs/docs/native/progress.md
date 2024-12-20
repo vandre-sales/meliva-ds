@@ -8,6 +8,7 @@ component:
  - progress-bar
 elements:
   "<progress>": https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress
+icon: progress-bar
 ---
 
 

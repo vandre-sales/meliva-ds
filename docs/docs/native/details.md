@@ -4,6 +4,7 @@ description: 'Details styles apply your Web Awesome theme to the HTML `<details>
 tags: native
 layout: element
 component: details
+icon: details
 elements:
   "<details>": https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details
 ---

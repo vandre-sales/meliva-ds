@@ -3,6 +3,7 @@ title: Dialog
 description: 'Dialog styles apply your Web Awesome theme to the HTML `<dialog>` element. Dialogs, also called "modals", appear above the page and interrupt a user''s focus.'
 tags: native
 layout: element
+icon: dialog
 elements:
   "<dialog>":  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
 component: dialog
