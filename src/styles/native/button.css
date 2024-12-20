@@ -14,7 +14,24 @@
   --text-color-hover: var(--text-color);
   --text-color-active: var(--text-color);
 
-  border-radius: var(--wa-form-control-border-radius);
+  /* These allow button groups to zero out border-radius on the first and last buttons */
+  border-start-start-radius: var(
+    /* top left */ --wa-border-block-start-radius,
+    var(--wa-border-inline-start-radius, var(--wa-form-control-border-radius))
+  );
+  border-start-end-radius: var(
+    /* top right */ --wa-border-block-start-radius,
+    var(--wa-border-inline-end-radius, var(--wa-form-control-border-radius))
+  );
+  border-end-start-radius: var(
+    /* bottom left */ --wa-border-block-end-radius,
+    var(--wa-border-inline-start-radius, var(--wa-form-control-border-radius))
+  );
+  border-end-end-radius: var(
+    /* bottom right */ --wa-border-block-end-radius,
+    var(--wa-border-inline-end-radius, var(--wa-form-control-border-radius))
+  );
+
   border-style: var(--wa-border-style);
   border-width: var(--border-width);
   align-items: center;
@@ -96,5 +113,5 @@ input:is([type='button'], [type='reset'], [type='submit']),
 
 .wa-pill,
 :host([pill]) {
-  border-radius: var(--wa-border-radius-pill) !important;
+  border-radius: var(--wa-border-radius-pill);
 }

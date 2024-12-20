@@ -2,7 +2,6 @@
   --box-shadow: var(--wa-shadow-m);
 
   display: inline-block;
-  border-radius: var(--wa-form-control-border-radius);
 }
 
 .dropdown::part(popup) {
@@ -27,12 +26,6 @@
 
 #trigger {
   display: block; /* for boundingClientRect */
-
-  &,
-  &::slotted(*) {
-    /* Otherwise button groups don't work well with dropdown, see #348 */
-    border-radius: inherit !important;
-  }
 }
 
 .panel {
