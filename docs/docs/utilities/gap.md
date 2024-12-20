@@ -1,6 +1,6 @@
 ---
 title: Gap
-description: Gap utility classes set the gap property of flex and grid containers, like other Web Awesome layout utilities.
+description: Gap utilities set the gap property of flex and grid containers, like other Web Awesome layout utilities.
 tags: ["utilities", "layout"]
 ---
 

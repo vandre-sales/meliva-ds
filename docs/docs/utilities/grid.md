@@ -1,7 +1,8 @@
 ---
 title: Grid
-description: Browse the library of customizable, framework-friendly web components included in Web Awesome.
+description: 'Use the `wa-grid` class to arrange elements into rows and columns that automatically adapt to the available space.'
 tags: ["utilities", "layout"]
+layout: element
 ---
 
 <style>
@@ -18,8 +19,6 @@ tags: ["utilities", "layout"]
     min-inline-size: 4rem;
   }
 </style>
-
-Use the `wa-grid` class to arrange elements into rows and columns that automatically adapt to the available space.
 
 ```html {.example}
 <div class="wa-grid">

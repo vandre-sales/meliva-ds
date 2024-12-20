@@ -1,7 +1,8 @@
 ---
 title: Frame
-description: Browse the library of customizable, framework-friendly web components included in Web Awesome.
+description: 'Use the `wa-frame` class to create a responsive container with consistent proportions to enclose content.'
 tags: ["utilities", "layout"]
+layout: element
 ---
 
 <style>
@@ -17,8 +18,6 @@ tags: ["utilities", "layout"]
     min-inline-size: 4rem;
   }
 </style>
-
-Use the `wa-frame` class to create a responsive container with consistent proportions to enclose content.
 
 ```html {.example}
 <div class="wa-frame" style="max-inline-size: 20rem;">
