@@ -17,7 +17,12 @@ input {
 }
 
 [part~='icon'] {
-  display: inline-flex;
+  display: flex;
+
+  /* Without this, Safari renders the icon slightly to the left */
+  &::part(svg) {
+    translate: 0.0009765625em;
+  }
 
   input:not(:checked, :indeterminate) + & {
     visibility: hidden;
