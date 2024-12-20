@@ -57,8 +57,12 @@ slot[name]:not([name='skip-to-content'], [name='navigation-toggle'])::slotted(*)
   padding: var(--wa-space-m) var(--wa-space-3xl);
 }
 
-::slotted(:not([slot])) {
-  padding: var(--wa-space-3xl);
+slot:not([name]) {
+  /* See #331 */
+  &::slotted(main),
+  &::slotted(section) {
+    padding: var(--wa-space-3xl);
+  }
 }
 
 ::slotted([slot='main-footer']),
