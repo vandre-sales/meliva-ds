@@ -22,7 +22,7 @@
 .wa-size-m,
 .wa-size-l {
   --_wa-form-control-height: calc(2 * var(--wa-space-smaller) + 1em * var(--wa-form-control-value-line-height));
-  --wa-form-control-height: var(--wa-form-control-height-raw);
+  --wa-form-control-height: var(--_wa-form-control-height);
 
   @supports (height: round(1.2px, 1px)) {
     --wa-form-control-height: round(var(--_wa-form-control-height), 1px);
