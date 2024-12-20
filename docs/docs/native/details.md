@@ -18,7 +18,7 @@ Details show a brief summary and expand to show additional content.
 
 ## Examples
 
-### Right-to-Left languages
+### Right-to-Left Languages
 
 The details styling automatically adapts to right-to-left languages:
 

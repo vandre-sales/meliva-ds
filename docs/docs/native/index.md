@@ -25,7 +25,7 @@ Here’s what we have so far:
   {%- endfor -%}
 </ul>
 
-## Opting out of Native Styles
+## Opting Out of Native Styles
 
 So you've decided to use Native Styles and now you need to style an element or a part of a page completely differently, what to do?
 You can create an opt-out with the power of [CSS Cascade Layers](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_layers)!

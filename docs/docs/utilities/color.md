@@ -1,5 +1,5 @@
 ---
-title: Color variants
+title: Color Variants
 ---
 
 You may have noticed that some Web Awesome components like `<wa-button>` allow you to change the color by using a `variant` attribute:

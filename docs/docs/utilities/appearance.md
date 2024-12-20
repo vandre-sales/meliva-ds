@@ -1,5 +1,5 @@
 ---
-title: Appearance variants
+title: Appearance Variants
 ---
 
 You may have noticed that some Web Awesome components like `<wa-button>` allow you to change their overall style by using an `appearance` attribute:
@@ -47,7 +47,7 @@ This is all we need to do:
 </style>
 ```
 
-## With color variants
+## With Color Variants
 
 These properties also work well with the [color variants](/docs/utilities/color/) utility classes:
 
