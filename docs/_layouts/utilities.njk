@@ -7,8 +7,9 @@
 {% block beforeContent %}
   <h1 class="title">{{ title }}</h1>
   <div class="component-info">
-    {% for tag, url in elements %}
-      <code class="tag"><a href="{{ url }}">{{ tag }}</a></code>
+
+    {% for className in classes %}
+      <code class="class">.{{ className }}</code>
     {% endfor %}
     {% include '../_includes/status.njk' %}
   </div>
