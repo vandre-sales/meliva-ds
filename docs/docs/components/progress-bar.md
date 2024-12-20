@@ -5,7 +5,7 @@ tags: component
 ---
 
 ```html {.example}
-<wa-progress-bar value="50"></wa-progress-bar>
+<wa-progress-bar value="40"></wa-progress-bar>
 ```
 
 ## Examples
@@ -13,6 +13,7 @@ tags: component
 ### Labels
 
 Use the `label` attribute to label the progress bar and tell assistive devices how to announce it.
+This will not be visible to sighted users.
 
 ```html {.example}
 <wa-progress-bar value="50" label="Upload progress"></wa-progress-bar>
@@ -20,10 +21,10 @@ Use the `label` attribute to label the progress bar and tell assistive devices h
 
 ### Custom Height
 
-Use the `--height` custom property to set the progress bar's height.
+Use the `height` CSS property to set the progress bar's height.
 
 ```html {.example}
-<wa-progress-bar value="50" style="--height: 6px;"></wa-progress-bar>
+<wa-progress-bar value="50" style="height: 6px;"></wa-progress-bar>
 ```
 
 ### Showing Values
@@ -31,17 +32,19 @@ Use the `--height` custom property to set the progress bar's height.
 Use the default slot to show a value.
 
 ```html {.example}
-<wa-progress-bar value="50" class="progress-bar-values">50%</wa-progress-bar>
+<div class="wa-stack">
+  <wa-progress-bar value="50" id="progress-bar-demo">50%</wa-progress-bar>
 
-<br />
-
-<wa-button circle><wa-icon name="minus" variant="solid" label="Decrease"></wa-icon></wa-button>
-<wa-button circle><wa-icon name="plus" variant="solid" label="Increase"></wa-icon></wa-button>
+  <div>
+    <wa-icon-button pill name="minus" label="Decrease"></wa-icon-button>
+    <wa-icon-button pill name="plus" label="Increase"></wa-icon-button>
+  </div>
+</div>
 
 <script>
-  const progressBar = document.querySelector('.progress-bar-values');
-  const subtractButton = progressBar.nextElementSibling.nextElementSibling;
-  const addButton = subtractButton.nextElementSibling;
+  const progressBar = document.querySelector('#progress-bar-demo');
+  const subtractButton = document.querySelector('wa-icon-button[name="minus"]');
+  const addButton = document.querySelector('wa-icon-button[name="plus"]');
 
   addButton.addEventListener('click', () => {
     const value = Math.min(100, progressBar.value + 10);
