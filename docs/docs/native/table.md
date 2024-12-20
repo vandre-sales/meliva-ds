@@ -1,5 +1,6 @@
 ---
 title: Table
+description: 'Table styles apply your Web Awesome theme to the HTML table content. Tables structure data in rows and columns, making it easy to look up information in a complex data set.'
 tags: native
 layout: element
 elements:

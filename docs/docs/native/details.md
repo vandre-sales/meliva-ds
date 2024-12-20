@@ -1,13 +1,12 @@
 ---
 title: Details
+description: 'Details styles apply your Web Awesome theme to the HTML `<details>` element. Details show a brief summary and expand to show additional content.'
 tags: native
 layout: element
 component: details
 elements:
   "<details>": https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details
 ---
-
-Details show a brief summary and expand to show additional content.
 
 ```html {.example}
 <details>

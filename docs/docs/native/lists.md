@@ -1,5 +1,6 @@
 ---
 title: Lists
+description: 'List styles apply your Web Awesome theme to HTML lists, such as bulleted, numbered, or description lists.'
 tags: native
 layout: element
 elements:
