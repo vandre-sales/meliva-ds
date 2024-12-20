@@ -2,6 +2,8 @@
 {% set hasOutline = true %}
 {% set component = components[page.fileSlug] %}
 {% set description = component.summary %}
+{% set status = component.status %}
+{% set since = component.since %}
 
 {% extends '../_includes/base.njk' %}
 
@@ -10,15 +12,8 @@
   <h1 class="title">{{ title }}</h1>
   <div class="component-info">
     <code class="tag">&lt;{{ component.tagName }}&gt;</code>
-    <wa-badge variant="neutral">Since {{ component.since }}</wa-badge>
-    <wa-badge
-      {% if component.status == 'stable' %}variant="brand"{% endif %}
-      {% if component.status == 'experimental' %}variant="warning"{% endif %}
-    >
-      {{ component.status }}
-    </wa-badge>
 
-    {% if isPro %}<wa-badge class="pro">PRO</wa-badge>{% endif %}
+    {% include '../_includes/status.njk' %}
   </div>
   <p class="summary">
     {{ component.summary | inlineMarkdown | safe }}
