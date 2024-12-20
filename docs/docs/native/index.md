@@ -8,13 +8,21 @@ Web Awesome works _with_ the platform, rather than trying to reinvent it.
 If all you need is styles, you don’t need to use new `<wa-*>` elements!
 We also provide styles that make native HTML elements look good so you can continue using what you know and gradually adopt Web Awesome as you see fit.
 
-To use all Web Awesome Native Styles, include the following stylesheet in your project:
+## Usage
+
+To use all Web Awesome page styles (including [utilities](/docs/utilities/)), include the following stylesheet in your project:
 
 ```html
-<link rel="stylesheet" href="{% cdnUrl 'styles/applied.css' %}" />
+<link rel="stylesheet" href="{% cdnUrl 'styles/webawesome.css' %}" />
 ```
 
-Here’s what we have so far:
+Or, to _only_ include styles for built-in elements:
+
+```html
+<link rel="stylesheet" href="{% cdnUrl 'styles/native.css' %}" />
+```
+
+## Elements
 
 <div id="component-grid" class="index-grid">
   <!-- <h2 class="index-category">Actions</h2> -->
@@ -35,7 +43,7 @@ Instead of including Native Styles with a `<link>` element, you can include it l
 
 ```html
 <style>
-@import url('{% cdnUrl 'styles/applied.css' %}') layer(wa);
+@import url('{% cdnUrl 'styles/webawesome.css' %}') layer(wa);
 
 @layer wa {
   .wa-off,
