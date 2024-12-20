@@ -1,6 +1,6 @@
 ---
 title: Dialog
-description: 'Dialogs, sometimes called "modals", appear above the page and require the user''s immediate attention.'
+description: 'Dialog styles apply your Web Awesome theme to the HTML `<dialog>` element. Dialogs, also called "modals", appear above the page and interrupt a user''s focus.'
 tags: native
 layout: element
 elements:
