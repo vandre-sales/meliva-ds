@@ -139,14 +139,16 @@ Pill buttons are supported through the button's `pill` attribute.
 </wa-button-group>
 ```
 
-### Dropdowns in Button Groups
+### Dropdowns and Native Buttons in Button Groups
 
-Dropdowns can be placed inside button groups as long as the trigger is an `<wa-button>` element.
+Other elements can also be placed inside button groups:
+- Native buttons as long as their [native styles](/docs/native/button) are included
+- Dropdowns as long as the trigger is either a `<wa-button>`, or a `<button>` with [native styles](/docs/native/button) included.
 
 ```html {.example}
 <wa-button-group label="Example Button Group">
   <wa-button>Button</wa-button>
-  <wa-button>Button</wa-button>
+  <button>Native Button</button>
   <wa-dropdown hoist>
     <wa-button slot="trigger" caret>Dropdown</wa-button>
     <wa-menu>
