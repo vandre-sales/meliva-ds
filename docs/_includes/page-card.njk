@@ -1,3 +1,4 @@
+ {%- if not page.data.unlisted -%}
  <a href="{{ page.url }}">
 	<wa-card with-header>
 		<div slot="header">
@@ -6,3 +7,4 @@
 		<span class="page-name">{{ page.data.title }}</span>
 	</wa-card>
 </a>
+{%- endif -%}
