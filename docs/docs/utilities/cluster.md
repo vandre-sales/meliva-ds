@@ -1,7 +1,8 @@
 ---
 title: Cluster
-description: Browse the library of customizable, framework-friendly web components included in Web Awesome.
+description: 'Use the `wa-cluster` class to arrange elements inline with even spacing, allowing items to wrap when space is limited.'
 tags: ["utilities", "layout"]
+layout: element
 ---
 
 <style>
@@ -18,8 +19,6 @@ tags: ["utilities", "layout"]
     min-inline-size: 4rem;
   }
 </style>
-
-Use the `wa-cluster` class to arrange elements inline with even spacing, allowing items to wrap when space is limited.
 
 ```html {.example}
 <div class="wa-cluster">

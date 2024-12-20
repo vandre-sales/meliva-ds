@@ -1,6 +1,6 @@
 ---
 title: Border Radius
-description: Border radius utility classes set an element's border radius property.
+description: Border radius utilities set an element's border radius property.
 tags: ["utilities"]
 ---
 

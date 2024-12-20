@@ -1,8 +1,9 @@
 ---
 title: Size
+description: Size utilities give elements one of three preset sizes (small, medium, or large).
 ---
 
-You may have noticed that some Web Awesome components like `<wa-button>` allow you to change their size to one of three presets: `small`, `medium`, and `large` by using a `size` attribute:
+Some Web Awesome components, like `<wa-button>`, allow you to change their size to one of three presets: `small`, `medium`, and `large` by using a `size` attribute:
 
 {% for component in componentsBy.attribute.size %}
 - <a href="../{{ component.url }}"><code>&lt;{{ component.tagName }}&gt;</code></a>

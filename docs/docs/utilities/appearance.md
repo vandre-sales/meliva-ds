@@ -1,8 +1,9 @@
 ---
 title: Appearance Variants
+description: Appearance utilities apply a collection of properties to achieve certain effects, like making elements accented, outlined, filled, or plain.
 ---
 
-You may have noticed that some Web Awesome components like `<wa-button>` allow you to change their overall style by using an `appearance` attribute:
+Some Web Awesome components, like `<wa-button>`, allow you to change their overall style by using an `appearance` attribute:
 
 {% for component in componentsBy.attribute.appearance %}
 - <a href="../{{ component.url }}"><code>&lt;{{ component.tagName }}&gt;</code></a>

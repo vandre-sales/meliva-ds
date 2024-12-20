@@ -1,7 +1,8 @@
 ---
 title: Flank
-description: Browse the library of customizable, framework-friendly web components included in Web Awesome.
+description: 'Use the `wa-flank` class to position two items side-by-side, with one item positioned alongside, or _flanking_, content that stretches to fill the available space.'
 tags: ["utilities", "layout"]
+layout: element
 ---
 
 <style>
@@ -19,7 +20,7 @@ tags: ["utilities", "layout"]
   }
 </style>
 
-Use the `wa-flank` class to position two items side-by-side, with one item positioned alongside, or _flanking_, content that stretches to fill the available space. When space is limited, the items wrap.
+When space is limited, the items wrap.
 
 ```html {.example}
 <div class="wa-flank">
