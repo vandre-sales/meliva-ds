@@ -1,5 +1,6 @@
 .wa-button-group {
   display: inline-flex;
+  align-items: center;
   position: relative;
   isolation: isolate;
 
