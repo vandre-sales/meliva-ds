@@ -2,11 +2,22 @@
 title: Native Styles
 description: Native Styles use your theme to style native HTML elements to match the look and feel of Web Awesome components.
 layout: page-outline
+categories: ['forms', 'apps', 'content']
+override:tags: []
 ---
 
 Web Awesome works _with_ the platform, rather than trying to reinvent it.
 If all you need is styles, you don’t need to use new `<wa-*>` elements!
 We also provide styles that make native HTML elements look good so you can continue using what you know and gradually adopt Web Awesome as you see fit.
+
+<div id="component-grid" class="index-grid">
+  {% for category, pages in collections.native | groupByTags(categories) -%}
+  <h2 class="index-category">{{ category | capitalize }}</h2>
+    {%- for page in pages -%}
+        {% include "page-card.njk" %}
+    {%- endfor -%}
+  {%- endfor -%}
+</div>
 
 ## Installation
 
@@ -21,18 +32,6 @@ Or, to _only_ include styles for built-in elements:
 ```html
 <link rel="stylesheet" href="{% cdnUrl 'styles/native.css' %}" />
 ```
-
-## Elements
-
-<div id="component-grid" class="index-grid">
-  <!-- <h2 class="index-category">Actions</h2> -->
-
-  {%- for page in collections.native | sort -%}
-  {%- if page.fileSlug != 'native' -%}
-    {% include "page-card.njk" %}
-  {%- endif -%}
-  {%- endfor -%}
-</div>
 
 ## Opting Out of Native Styles
 

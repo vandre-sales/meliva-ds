@@ -133,3 +133,32 @@ export function sort(arr, keys = ['data.order', 'data.title']) {
     }
   });
 }
+
+export function groupByTags(collection, tags) {
+  let ret = Object.fromEntries(tags.map(tag => [tag, []]));
+  ret.other = [];
+
+  for (let item of collection) {
+    let categorized = false;
+
+    for (let tag of tags) {
+      if (item.data.tags.includes(tag)) {
+        ret[tag].push(item);
+        categorized = true;
+      }
+    }
+
+    if (!categorized) {
+      ret.other.push(item);
+    }
+  }
+
+  // Remove empty categories
+  for (let category in ret) {
+    if (ret[category].length === 0) {
+      delete ret[category];
+    }
+  }
+
+  return ret;
+}
