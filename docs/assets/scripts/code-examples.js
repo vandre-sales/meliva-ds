@@ -22,7 +22,7 @@ document.addEventListener('click', event => {
       `<link rel="stylesheet" href="${cdnUrl}styles/webawesome.css">\n` +
       `<link rel="stylesheet" href="${cdnUrl}styles/utilities.css">\n\n` +
       `${code.textContent}`;
-    const css = 'html > body {\n  font: 16px sans-serif;\n  padding: 2rem;\n}';
+    const css = 'html > body {\n  padding: 2rem !important;\n}';
     const js = '';
 
     const form = document.createElement('form');
