@@ -47,7 +47,7 @@ For example, assume we wanted to make a custom `.tag` class with size variants.
 </style>
 ```
 
-## Advanced: Customizing the three sizes
+## Advanced: Customizing Sizes
 
 But what if you are creating a style that should **generally** be smaller (e.g. a badge) or larger (e.g. a pull quote)?
 For example, suppose we wanted to define a custom `.tag2` class just like `.tag` in the previous section,

@@ -46,7 +46,7 @@ Adding a label may seem redundant at times, but they're very helpful for unsight
 </wa-card>
 ```
 
-### Force visually hidden
+### Force Visually Hidden
 
 There are cases where you want to _always_ visually hide certain content, even when it's focused.
 For example when hiding a checkbox to render a custom one:

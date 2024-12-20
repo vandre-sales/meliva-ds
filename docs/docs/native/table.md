@@ -46,7 +46,7 @@ elements:
 </table>
 ```
 
-## Alternating rows
+## Alternating Rows
 
 You can use the `wa-zebra-rows` class to add alternating row colors to your table:
 

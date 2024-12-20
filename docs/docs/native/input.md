@@ -20,7 +20,7 @@ wa-code-demo::part(preview) {
 }
 </style>
 
-## Text fields
+## Text Fields
 
 ```html {.example}
 <label>Input (text) <input type="text" placeholder="placeholder"></label>
@@ -48,7 +48,7 @@ wa-code-demo::part(preview) {
 <wa-textarea label="WA Textarea"></wa-textarea>
 ```
 
-## Choice inputs
+## Choice Inputs
 
 ```html {.example}
 <label><input type="checkbox"> Input (checkbox)</label>
@@ -59,7 +59,7 @@ wa-code-demo::part(preview) {
 <wa-radio value="radio-1">WA Radio</wa-radio>
 ```
 
-## Color picker
+## Color Picker
 
 Basic:
 
@@ -87,7 +87,7 @@ With swatches:
  swatches="#0070ef; #f5a623; #f8e71c; #8b572a; #7ed321; #417505; #bd10e0; #9013fe;"></wa-color-picker>
 ```
 
-## Time and date Pickers
+## Time and Date Pickers
 
 ```html {.example}
 <label>Input (datetime-local) <input type="datetime-local"></label>
@@ -107,7 +107,7 @@ With swatches:
 <wa-range label="WA Range"></wa-range>
 ```
 
-## Select dropdowns
+## Select Dropdowns
 
 ```html {.example}
 <label>Select
