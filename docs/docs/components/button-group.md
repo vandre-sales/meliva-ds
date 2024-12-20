@@ -147,7 +147,7 @@ Dropdowns can be placed inside button groups as long as the trigger is an `<wa-b
 <wa-button-group label="Example Button Group">
   <wa-button>Button</wa-button>
   <wa-button>Button</wa-button>
-  <wa-dropdown>
+  <wa-dropdown hoist>
     <wa-button slot="trigger" caret>Dropdown</wa-button>
     <wa-menu>
       <wa-menu-item>Item 1</wa-menu-item>
@@ -165,7 +165,7 @@ Create a split button using a button and a dropdown. Use a [visually hidden](/do
 ```html {.example}
 <wa-button-group label="Example Button Group">
   <wa-button variant="brand">Save</wa-button>
-  <wa-dropdown placement="bottom-end">
+  <wa-dropdown placement="bottom-end" hoist>
     <wa-button slot="trigger" variant="brand" caret>
       <span class="wa-visually-hidden">More options</span>
     </wa-button>
