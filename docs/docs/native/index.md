@@ -19,6 +19,8 @@ We also provide styles that make native HTML elements look good so you can conti
   {%- endfor -%}
 </div>
 
+<br> {# Temp fix for spacing issue #}
+
 ## Installation
 
 To use all Web Awesome page styles (including [utilities](/docs/utilities/)), include the following stylesheet in your project:

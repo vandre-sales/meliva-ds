@@ -16,6 +16,8 @@ categories: ["layout"]
   {%- endfor -%}
 </div>
 
+<br> {# Temp fix for spacing issue #}
+
 ## Installation
 
 To use all Web Awesome page styles (including [native styles](/docs/native/)), include the following stylesheet in your project:
