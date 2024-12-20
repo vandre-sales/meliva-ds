@@ -7,14 +7,8 @@ override:tags: []
 categories: ["layout"]
 ---
 
-<div id="component-grid" class="index-grid">
-  {% for category, pages in collections.utilities | groupByTags(categories) -%}
-  <h2 class="index-category">{{ category | capitalize }}</h2>
-    {%- for page in pages -%}
-        {% include "page-card.njk" %}
-    {%- endfor -%}
-  {%- endfor -%}
-</div>
+{% set allPages = collections.utilities %}
+{% include "grouped-pages.njk" %}
 
 <br> {# Temp fix for spacing issue #}
 

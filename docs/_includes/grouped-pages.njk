@@ -1,0 +1,13 @@
+{# Cards for pages listed by category #}
+
+{% for category, pages in allPages | groupByTags(categories) -%}
+<section id="{{ category }}" class="index-grid">
+  <h2 class="index-category">{{ category | capitalize }}</h2>
+    {%- for page in pages -%}
+      {%- if not page.data.unlisted -%}
+        {% include "page-card.njk" %}
+      {%- endif -%}
+    {%- endfor -%}
+</section>
+{%- endfor -%}
+

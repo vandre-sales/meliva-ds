@@ -10,14 +10,8 @@ Web Awesome works _with_ the platform, rather than trying to reinvent it.
 If all you need is styles, you don’t need to use new `<wa-*>` elements!
 We also provide styles that make native HTML elements look good so you can continue using what you know and gradually adopt Web Awesome as you see fit.
 
-<div id="component-grid" class="index-grid">
-  {% for category, pages in collections.native | groupByTags(categories) -%}
-  <h2 class="index-category">{{ category | capitalize }}</h2>
-    {%- for page in pages -%}
-        {% include "page-card.njk" %}
-    {%- endfor -%}
-  {%- endfor -%}
-</div>
+{% set allPages = collections.native %}
+{% include "grouped-pages.njk" %}
 
 <br> {# Temp fix for spacing issue #}
 
