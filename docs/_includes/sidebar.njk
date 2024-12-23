@@ -36,7 +36,7 @@
       {% if components[component.fileSlug].status == 'experimental' %}<wa-icon name="flask"></wa-icon>{% endif %}
       {% if component.data.isPro %}<wa-badge class="pro">PRO</wa-badge>{% endif %}
       <ul>
-      {% for child in collections.component | sort %}
+      {% for child in collections.components | sort %}
         {% if child.data.parent == component.fileSlug and not (isAlpha and child.data.noAlpha) %}
           <li>
             <a href="/docs/components/{{ child.fileSlug }}">{{ child.data.title }}</a>
