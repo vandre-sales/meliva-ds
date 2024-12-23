@@ -29,7 +29,7 @@
 
   <ul>
     {% for component in collections.components | sort %}
-    {% if not component.data.parent and not (isAlpha and component.data.noAlpha) %}
+    {% if not component.data.parent and not (isAlpha and component.data.noAlpha) and not component.data.unlisted %}
     <li>
       <a href="/docs/components/{{ component.fileSlug }}">{{ component.data.title }}</a>
 
