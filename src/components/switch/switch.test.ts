@@ -330,17 +330,17 @@ describe('<wa-switch>', () => {
       });
 
       // https://github.com/shoelace-style/webawesome-alpha/discussions/124
-      it("Should properly flag changes to checked and reflect", async () => {
-        const el = await fixture<WaSwitch>(html`<wa-switch></wa-switch>`)
-        await el.updateComplete
-        expect(el.checked).to.equal(false)
+      it('Should properly flag changes to checked and reflect', async () => {
+        const el = await fixture<WaSwitch>(html`<wa-switch></wa-switch>`);
+        await el.updateComplete;
+        expect(el.checked).to.equal(false);
 
-        el.checked = true
+        el.checked = true;
 
-        await el.updateComplete
+        await el.updateComplete;
 
-        expect(el.checked).to.equal(true)
-      })
+        expect(el.checked).to.equal(true);
+      });
     });
   }
 });
