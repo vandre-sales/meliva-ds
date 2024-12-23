@@ -28,7 +28,7 @@
   </h2>
 
   <ul>
-    {% for component in collections.component | sort %}
+    {% for component in collections.components | sort %}
     {% if not component.data.parent and not (isAlpha and component.data.noAlpha) %}
     <li>
       <a href="/docs/components/{{ component.fileSlug }}">{{ component.data.title }}</a>
