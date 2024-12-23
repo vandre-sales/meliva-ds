@@ -4,6 +4,7 @@ description: Radios allow the user to select a single option from a group.
 tags: component
 parent: radio-group
 native: radio
+icon: radio-group
 ---
 
 Radios are designed to be used with [radio groups](/docs/components/radio-group).

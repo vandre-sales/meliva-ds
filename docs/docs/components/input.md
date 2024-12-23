@@ -1,8 +1,9 @@
 ---
 title: Input
 description: Inputs collect data from the user.
-tags: component
+tags: [inputs, forms]
 native: input
+keywords: textfield text field
 ---
 
 ```html {.example}
