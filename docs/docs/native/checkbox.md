@@ -28,7 +28,7 @@ Use the `checked` attribute to activate the checkbox.
 Use the `indeterminate` JS property to make the checkbox indeterminate.
 
 ```html {.example}
-<label><input type="checkbox" checked class="indeterminate"> Indeterminate</label>
+<label><input type="checkbox" class="indeterminate"> Indeterminate</label>
 <script>
   document.querySelector(".indeterminate").indeterminate = true;
 </script>
