@@ -71,7 +71,7 @@ override:tags: []
 
   #component-filter-empty {
     border: dashed var(--wa-border-width-m) var(--wa-color-neutral-border-quiet);
-    border-radius: var(--wa-border-radius-m);
+    border-radius: var(--wa-border-radius-l);
     font-size: var(--wa-font-size-l);
     color: var(--wa-color-text-quiet);
     text-align: center;
