@@ -14,6 +14,7 @@ During the alpha period, things might break! We take breaking changes very serio
 
 # Next
 
+- Improved performance of `<wa-select>` when using a large number of options
 - Updated the Japanese translation
 
 ## 3.0.0-alpha.7
