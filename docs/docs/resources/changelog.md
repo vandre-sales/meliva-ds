@@ -12,6 +12,10 @@ Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> bad
 During the alpha period, things might break! We take breaking changes very seriously, but sometimes they're necessary to make the final product that much better. We appreciate your patience!
 :::
 
+# Next
+
+- Updated the Japanese translation
+
 ## 3.0.0-alpha.7
 
 - Renamed applied.css to webawesome.css
