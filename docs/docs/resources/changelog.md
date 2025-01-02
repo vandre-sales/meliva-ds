@@ -18,9 +18,12 @@ During the alpha period, things might break! We take breaking changes very serio
 - Fixed a bug in the `wa-split` CSS utility that caused it to behave incorrectly
 - Improved performance of `<wa-select>` when using a large number of options
 - Updated the Japanese translation
-- Removed the `--wa-border-radius-xs` theme token and `wa-border-radius-xs` utility class in favor of a simpler border radius scale
-  - `--wa-border-radius-s` is now the smallest border radius token, matching the value of the previous `--wa-border-radius-xs` token
-  - The `--wa-border-radius-m` and `--wa-border-radius-l` values have decreased
+- Updated the `--wa-border-radius-*` scale for better DX
+  - Changed the value of `--wa-border-radius-scale` to `1` and updated calculations of size-based `--wa-border-radius-*` tokens
+  - Removed unused `--wa-border-radius-xs` theme token and `wa-border-radius-xs` utility class
+  - Decreased the size of the scale so that `--wa-border-radius-s` is now the smallest border radius token, matching the value of the previous `--wa-border-radius-xs` token
+- Changed the value of `--wa-border-width-scale` to `1` and updated calculations of size-based `--wa-border-width-*` tokens
+
 
 ## 3.0.0-alpha.7
 
