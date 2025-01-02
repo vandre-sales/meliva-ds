@@ -15,6 +15,7 @@ During the alpha period, things might break! We take breaking changes very serio
 ## Next
 
 - Fixed a bug in `<wa-switch>` where it would not properly change its "checked" state when its property changed.
+- Updated the Japanese translation
 
 ## 3.0.0-alpha.7
 
