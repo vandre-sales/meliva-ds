@@ -12,9 +12,10 @@ Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> bad
 During the alpha period, things might break! We take breaking changes very seriously, but sometimes they're necessary to make the final product that much better. We appreciate your patience!
 :::
 
-# Next
+## Next
 
 - Improved performance of `<wa-select>` when using a large number of options
+- Fixed a bug in `<wa-switch>` where it would not properly change its "checked" state when its property changed.
 - Updated the Japanese translation
 
 ## 3.0.0-alpha.7
