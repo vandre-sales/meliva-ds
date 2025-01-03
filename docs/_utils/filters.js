@@ -198,3 +198,41 @@ export function getCategoryTitle(category, categories) {
   // Capitalized
   return category.charAt(0).toUpperCase() + category.slice(1);
 }
+
+const IDENTITY = x => x;
+
+/**
+ * Helper to print out one or more HTML attributes, especially conditional ones.
+ * Usage in 11ty:
+ * - Single attribute: `<foo{{ value | attr(name) }}>`
+ * - Multiple attributes: `<foo{{ { name1: value1, name2: value2 } | attr }}>`
+ *
+ * @overload
+ * @param {any} value - The attribute value If falsey, the attribute is not printed. If `true` the attribute is printed without a value.
+ * @param {string} name - The name of the attribute
+ *
+ * @overload
+ * @param {Object<string, any>} obj - Map of attribute names to values
+ *
+ * @returns {string} The attribute string. No `| safe` is needed.
+ */
+export function attr(value, name) {
+  const safe = this?.env.filters.safe ?? IDENTITY;
+
+  if (arguments.length === 1 && value && typeof value === 'object') {
+    // Called with a single object argument of names to values
+    let ret = Object.entries(obj)
+      .map(([name, value]) => attr(value, name))
+      .join('');
+    return safe(ret);
+  }
+
+  if (!value) {
+    // false, "", null, undefined
+    return '';
+  }
+
+  let ret = ' ' + name + (value === true ? '' : `="${value}"`);
+
+  return safe(ret);
+}
