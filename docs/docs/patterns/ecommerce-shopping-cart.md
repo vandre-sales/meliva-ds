@@ -1,6 +1,7 @@
 ---
-title: E-commerce - Shopping Cart
+title: Shopping Cart
 description: TODO
+parent: ecommerce
 ---
 
 TODO Page Description

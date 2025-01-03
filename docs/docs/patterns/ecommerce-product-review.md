@@ -1,6 +1,7 @@
 ---
-title: E-commerce - Product Reviews
+title: Product Reviews
 description: TODO
+parent: ecommerce
 ---
 
 TODO Page Description

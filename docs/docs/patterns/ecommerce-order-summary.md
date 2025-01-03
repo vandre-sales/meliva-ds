@@ -1,6 +1,7 @@
 ---
-title: E-commerce - Product List
+title: Product List
 description: TODO
+parent: ecommerce
 ---
 
 TODO Page Description

@@ -1,6 +1,7 @@
 ---
-title: E-commerce - Order History
+title: Order History
 description: TODO
+parent: ecommerce
 ---
 
 TODO Page Description

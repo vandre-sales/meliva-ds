@@ -1,6 +1,7 @@
 ---
-title: E-commerce - Category Filter
+title: Category Filter
 description: TODO
+parent: ecommerce
 ---
 
 TODO Page Description

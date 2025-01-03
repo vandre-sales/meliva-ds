@@ -1,6 +1,7 @@
 ---
-title: E-commerce - Category Preview
+title: Category Preview
 description: TODO
+parent: ecommerce
 ---
 
 TODO Page Description
