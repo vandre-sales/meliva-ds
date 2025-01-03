@@ -12,7 +12,9 @@
   </h2>
   <ul>
     {% for page in collections[tag] | sort %}
-      {% include 'sidebar-link.njk' %}
+      {% if not page.data.parent -%}
+        {% include 'sidebar-link.njk' %}
+      {%- endif %}
     {% endfor %}
   </ul>
 </wa-details>
