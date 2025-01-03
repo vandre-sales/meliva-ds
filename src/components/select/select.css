@@ -2,11 +2,6 @@
   display: block;
 }
 
-:host([appearance='filled']) {
-  --background-color: var(--wa-color-neutral-fill-quiet);
-  --border-color: var(--background-color);
-}
-
 /** The popup */
 .select {
   flex: 1 1 auto;
