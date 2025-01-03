@@ -10,8 +10,9 @@ categories: ["layout"]
 {% set allPages = collections.utilities %}
 {% include "grouped-pages.njk" %}
 
-<br> {# Temp fix for spacing issue #}
 
+<br> {# Temp fix for spacing issue #}
+{% markdown %}
 ## Installation
 
 To use all Web Awesome page styles (including [native styles](/docs/native/)), include the following stylesheet in your project:
@@ -27,3 +28,4 @@ Or, to _only_ include utilities:
 ```
 
 You can also include individual utilities following the instructions in their pages.
+{% endmarkdown %}
