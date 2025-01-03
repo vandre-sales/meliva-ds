@@ -1,7 +1,6 @@
 ---
 title: E-commerce - Product Reviews
 description: TODO
-layout: pattern.njk
 ---
 
 TODO Page Description
