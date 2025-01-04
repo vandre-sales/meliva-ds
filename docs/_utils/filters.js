@@ -38,8 +38,12 @@ export function getTitleFromUrl(url, collection) {
   return item?.data.title || '';
 }
 
+export function split(text, separator) {
+  return (text + '').split(separator).filter(Boolean);
+}
+
 export function breadcrumbs(url, { withCurrent = false } = {}) {
-  const parts = url.split('/').filter(Boolean);
+  const parts = split(url, '/');
   const ret = [];
 
   while (parts.length) {

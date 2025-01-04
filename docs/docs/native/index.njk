@@ -1,7 +1,7 @@
 ---
 title: Native Styles
 description: Native Styles use your theme to style native HTML elements to match the look and feel of Web Awesome components.
-layout: page-outline
+layout: overview
 categories: ['forms', 'apps', 'content']
 override:tags: []
 ---
@@ -10,13 +10,7 @@ override:tags: []
 Web Awesome works _with_ the platform, rather than trying to reinvent it.
 If all you need is styles, you don’t need to use new `<wa-*>` elements!
 We also provide styles that make native HTML elements look good so you can continue using what you know and gradually adopt Web Awesome as you see fit.
-{% endmarkdown %}
 
-{% set allPages = collections.native %}
-{% include "grouped-pages.njk" %}
-
-<br> {# Temp fix for spacing issue #}
-{% markdown %}
 ## Installation
 
 To use all Web Awesome page styles (including [utilities](/docs/utilities/)), include the following stylesheet in your project:
