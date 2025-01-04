@@ -113,13 +113,13 @@ function compare(a, b) {
   return (a + '').localeCompare(b);
 }
 
-/** Sort an array of objects */
-export function sort(arr, keys = ['data.order', 'data.title']) {
-  keys = toArray(keys);
+/** Sort an array of objects by one or more of their properties */
+export function sort(arr, by = { 'data.order': 1, 'data.title': '' }) {
+  let keys = Array.isArray(by) ? by : Object.keys(by);
 
   return arr.sort((a, b) => {
-    let aValues = keys.map(key => deepValue(a, key));
-    let bValues = keys.map(key => deepValue(b, key));
+    let aValues = keys.map(key => deepValue(a, key) ?? by[key]);
+    let bValues = keys.map(key => deepValue(b, key) ?? by[key]);
 
     for (let i = 0; i < aValues.length; i++) {
       let aVal = aValues[i];
