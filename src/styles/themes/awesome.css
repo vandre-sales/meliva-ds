@@ -152,7 +152,7 @@
    */
   --wa-color-surface-raised: var(--wa-color-gray-10);
   --wa-color-surface-default: var(--wa-color-gray-05);
-  --wa-color-surface-lowered: var(--wa-color-gray-05);
+  --wa-color-surface-lowered: color-mix(in oklab, var(--wa-color-surface-default), black 20%);
   --wa-color-surface-border: var(--wa-color-gray-20);
 
   --wa-color-text-normal: var(--wa-color-gray-95);
@@ -297,14 +297,13 @@ wa-callout {
 }
 
 wa-card {
-  --background-color: var(--wa-color-surface-raised);
-  --border-style: none;
+  background-color: var(--wa-color-surface-raised);
 }
 wa-card::part(header) {
-  border-bottom: var(--border-width) dotted var(--border-color);
+  border-bottom-style: dotted;
 }
 wa-card::part(footer) {
-  border-top: var(--border-width) dotted var(--border-color);
+  border-top-style: dotted;
 }
 
 input[type='checkbox'],
