@@ -1,14 +1,9 @@
 {# Preset theme selector #}
 <wa-select appearance="filled" size="small" value="default" pill class="preset-theme-selector">
   <wa-icon slot="prefix" name="paintbrush" variant="regular"></wa-icon>
-  <wa-option value="default" data-description="Your trusty companion, like a perfectly broken-in pair of jeans.">Default</wa-option>
-  <wa-option value="classic" data-description="Timeless elegance that never goes out of style.">Classic</wa-option>
-  <wa-option value="awesome" data-description="Punchy and vibrant, the rockstar of themes.">Awesome</wa-option>
-  <wa-option value="active" data-description="Energetic and tactile, always in motion.">Active</wa-option>
-  <wa-option value="brutalist" data-description="Sharp, square, and unapologetically bold.">Brutalist</wa-option>
-  <wa-option data-alpha="remove" value="glassy" data-description="TODO">Glassy</wa-option>
-  <wa-option value="mellow" data-description="Soft and soothing, like a lazy Sunday morning.">Mellow</wa-option>
-  <wa-option value="tailspin" data-description="Like a bird in flight, guiding you from there to here.">Tailspin</wa-option>
-  <wa-option data-alpha="remove" value="playful" data-description="TODO">Playful</wa-option>
-  <wa-option data-alpha="remove" value="premium" data-description="TODO">Premium</wa-option>
+  {% for theme in collections.theme | sort %}
+    <wa-option value="{{ theme.page.fileSlug }}"{{ ' data-alpha="remove"' if theme.noAlpha }}>
+      {{ theme.data.title }}
+    </wa-option>
+  {% endfor %}
 </wa-select>
