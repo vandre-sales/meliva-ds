@@ -27,7 +27,7 @@ During the alpha period, things might break! We take breaking changes very serio
   - Playful
 - Added docs on themes and palettes
 - Separated colors and typography out from themes so they can be used independently
-- Added testsuite to ensure all color palettes provide the color contrast they are supposed to
+- Added test suite to ensure all color palettes provide the color contrast they are supposed to
 - Added `.wa-invert` utility class to invert the current color scheme
 - Added `:state(blank)` to `<wa-input>`, `<wa-textarea>`, and `<wa-select>` to style form inputs differently when empty.
 
