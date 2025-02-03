@@ -68,7 +68,6 @@ import styles from './select.css';
  * @csspart listbox - The listbox container where options are slotted.
  * @csspart tags - The container that houses option tags when `multiselect` is used.
  * @csspart tag - The individual tags that represent each multiselect option.
- * @csspart tag__base - The tag's base part.
  * @csspart tag__content - The tag's content part.
  * @csspart tag__remove-button - The tag's remove button.
  * @csspart tag__remove-button__base - The tag's remove button base part.
@@ -661,7 +660,18 @@ export default class WaSelect extends WebAwesomeFormAssociatedElement {
         </div>`;
       } else if (index === this.maxOptionsVisible) {
         // Hit tag limit
-        return html`<wa-tag>+${this.selectedOptions.length - index}</wa-tag>`;
+        return html`
+          <wa-tag
+            part="tag"
+            exportparts="
+              base:tag__base,
+              content:tag__content,
+              remove-button:tag__remove-button,
+              remove-button__base:tag__remove-button__base
+            "
+            >+${this.selectedOptions.length - index}</wa-tag
+          >
+        `;
       }
       return html``;
     });
