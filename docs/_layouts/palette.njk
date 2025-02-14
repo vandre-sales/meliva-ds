@@ -1,17 +1,24 @@
 {% set hasSidebar = true %}
 {% set hasOutline = true %}
-{# {% set forceTheme = page.fileSlug %} #}
+{% set paletteId = page.fileSlug %}
 
 {% extends '../_layouts/block.njk' %}
 
-{% set paletteId = page.fileSlug %}
+{% block head %}
+<style>@import url('/dist/styles/color/{{ paletteId }}.css') layer(palette.{{ paletteId }});</style>
+<link href="{{ page.url }}../tweak.css" rel="stylesheet">
+{% endblock %}
 
 {% block afterContent %}
-<style>@import url('/dist/styles/color/{{ paletteId }}.css') layer(palette.{{ paletteId }});</style>
 
 {% set tints = ["95", "90", "80", "70", "60", "50", "40", "30", "20", "10", "05"] %}
+{% set maxChroma = 0 %}
+<div id="palette-app">
+<div
+  :class="{ tweaking: tweaking.chroma, 'tweaking-chroma': tweaking.chroma, 'tweaking-hue': tweaking.chroma }"
+  :style="{ '--chroma-scale': chromaScale }">
 
-<table class="colors wa-palette-{{ paletteId }}">
+<table class="colors main wa-palette-{{ paletteId }}">
   <thead>
     <tr>
       <th></th>
@@ -21,17 +28,57 @@
       {%- endfor %}
     </tr>
   </thead>
+{# Initialize to last hue before gray #}
+{%- set hueBefore = hues[hues|length - 2] -%}
 {% for hue in hues -%}
-<tr>
-  <th>{{ hue | capitalize }}</th>
-  <td class="core-column">
-    <div class="color swatch" style="background-color: var(--wa-color-{{ hue }}); color: var(--wa-color-{{ hue }}-{{ '05' if palettes[paletteId][hue].maxChromaTint > 60 else '95' }});">
+{%- set coreColor = palettes[paletteId][hue][palettes[paletteId][hue].maxChromaTint] -%}
+{%- set maxChroma = coreColor.c if coreColor.c > maxChroma else maxChroma -%}
+<tr data-hue="{{ hue }}" class="color-scale" :class="{tweaking: tweaking.{{ hue }}, tweaked: hueShifts.{{ hue }} }"
+    :style="{ '--hue-shift': hueShifts.{{ hue }} || '' }">
+  <th>
+    {{ hue | capitalize }}
+  </th>
+  <td class="core-column" style="--color: var(--wa-color-{{ hue }})">
+    {% if hue !== 'gray' %}
+    {%- set hueAfter = hues[loop.index0 + 1] -%}
+    {%- set hueAfter = hues[0] if hueAfter == 'gray' else hueAfter -%}
+    {%- set minShift = hueRanges[hue].min - coreColor.h | round -%}
+    {%- set maxShift = hueRanges[hue].max - coreColor.h | round -%}
+    <wa-dropdown>
+    <div slot="trigger" id="core-{{ hue }}-swatch" data-tint="core" class="color swatch" style="background-color: var(--wa-color-{{ hue }}); color: var(--wa-color-{{ hue }}-{{ '05' if palettes[paletteId][hue].maxChromaTint > 60 else '95' }});">
       {{ palettes[paletteId][hue].maxChromaTint }}
-      <wa-copy-button value="--wa-color-{{ hue }}" copy-label="--wa-color-{{ hue }}"></wa-copy-button>
+      <wa-icon name="sliders-simple" class="tweak-icon"></wa-icon>
     </div>
+    <div class="popup">
+      <div class="decorated-slider hue-shift-slider" style="--min: {{ minShift }}; --max: {{ maxShift }};">
+        <wa-slider name="{{ hue }}-shift" v-model="hueShifts.{{ hue }}" value="0"
+          min="{{ minShift }}" max="{{ maxShift }}" step="1"
+          @input="tweaking.hue = tweaking.{{hue}} = true"
+          @change="tweaking.hue = tweaking.{{ hue }} = false">
+          <div slot="label">
+            Tweak {{ hue }} hue
+            <wa-icon-button @click="hueShifts.{{ hue }} = 0" class="clear-button" name="circle-xmark" library="system" variant="regular" label="Reset"></wa-icon-button>
+          </div>
+        </wa-slider>
+        <div class="label-min">More {{hueBefore}}</div>
+        <div class="label-max">More {{hueAfter}}</div>
+      </div>
+      <div class="wa-gap-s">
+        <code>--wa-color-{{ hue }}</code>
+        <wa-copy-button value="--wa-color-{{ hue }}" copy-label="--wa-color-{{ hue }}"></wa-copy-button>
+      </div>
+    </div>`
+    </wa-dropdown>
+    {%- set hueBefore = hue -%}
+    {% else %}
+    <div id="core-{{ hue }}-swatch" class="color swatch" data-tint="core" style="background-color: var(--wa-color-{{ hue }}); color: var(--wa-color-{{ hue }}-{{ '05' if palettes[paletteId][hue].maxChromaTint > 60 else '95' }});">
+      {{ palettes[paletteId][hue].maxChromaTint }}
+    </div>
+    {% endif %}
   </td>
   {% for tint in tints -%}
-    <td>
+    {%- set color = palettes[paletteId][hue][tint] -%}
+    <td data-tint="{{ tint }}" style="--color: var(--wa-color-{{ hue }}-{{ tint }})">
       <div class="color swatch" style="background-color: var(--wa-color-{{ hue }}-{{ tint }})">
         <wa-copy-button value="--wa-color-{{ hue }}-{{ tint }}" copy-label="--wa-color-{{ hue }}-{{ tint }}"></wa-copy-button>
       </div>
@@ -40,6 +87,37 @@
 </tr>
 {%- endfor %}
 </table>
+
+{% set chromaScaleBounds = [
+(0.08 / maxChroma) | number({maximumFractionDigits: 2}),
+(0.3 / maxChroma]) | number({maximumFractionDigits: 2}) -%}
+<div class="decorated-slider chroma-scale-slider wa-palette-{{ paletteId }}"
+:class="{ tweaked: chromaScale !== 1 }"
+style="--min: {{ chromaScaleBounds[0] }}; --max: {{ chromaScaleBounds[1] }};">
+  <wa-slider name="chroma-scale" v-model="chromaScale" value="1" step="0.01"
+    min="{{ chromaScaleBounds[0] }}" max="{{ chromaScaleBounds[1] }}"
+    @input="tweaking.chroma = true"
+    @change="tweaking.chroma = false">
+    <div slot="label">
+      Overall colorfulness
+      <wa-icon-button @click="chromaScale = 1" class="clear-button" name="circle-xmark" library="system" variant="regular" label="Reset"></wa-icon-button>
+    </div>
+  </wa-slider>
+  <div class="label-min">More muted</div>
+  <div class="label-max">More vibrant</div>
+</div>
+
+</div>
+</div>
+
+<script>
+  globalThis.wa_data = {
+    paletteId: '{{ paletteId }}',
+    colors: {{ palettes[paletteId] | dump | safe }},
+    maxChroma: {{ maxChroma }},
+  }
+</script>
+<script type="module" src="{{ page.url }}../tweak.js"></script>
 
 <h2>Used By</h2>
 
@@ -65,6 +143,7 @@ A difference of `40` ensures a minimum **3:1** contrast ratio, suitable for larg
 {% endmarkdown %}
 
 {% set difference = 40 %}
+{% set minContrast = 3 %}
 {% include "contrast-table.njk" %}
 
 {% markdown %}
@@ -84,6 +163,7 @@ A difference of `50` ensures a minimum **4.5:1** contrast ratio, suitable for no
 {% endmarkdown %}
 
 {% set difference = 50 %}
+{% set minContrast = 4.5 %}
 {% include "contrast-table.njk" %}
 
 {% markdown %}
@@ -102,6 +182,7 @@ A difference of `60` ensures a minimum **7:1** contrast ratio, suitable for all 
 {% endmarkdown %}
 
 {% set difference = 60 %}
+{% set minContrast = 7 %}
 {% include "contrast-table.njk" %}
 
 {% markdown %}
@@ -114,7 +195,7 @@ This also goes for a difference of `65`:
 {% include "contrast-table.njk" %}
 
 {% markdown %}
-## How to use this palette
+## How to use this palette { #usage }
 
 If you are using a Web Awesome theme that uses this palette, it will already be included.
 To use a different palette than a theme default, or to use it in a custom theme, you can import this palette directly from the Web Awesome CDN.
