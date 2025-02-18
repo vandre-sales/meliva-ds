@@ -156,7 +156,7 @@ wa-page > header {
 }
 
 /* Pro badges */
-wa-badge.pro::part(base) {
+wa-badge.pro {
   background-color: var(--wa-brand-orange);
   border-color: var(--wa-brand-orange);
 }
@@ -187,6 +187,29 @@ wa-badge.pro::part(base) {
         }
       }
     }
+  }
+
+  wa-icon-button.delete {
+    vertical-align: -0.2em;
+    margin-inline-start: var(--wa-space-xs);
+
+    &:not(li:hover > *, :focus) {
+      opacity: 0;
+    }
+  }
+}
+
+wa-icon-button.delete {
+  &:hover {
+    color: var(--wa-color-danger-on-quiet);
+  }
+
+  &::part(base):hover {
+    background: var(--wa-color-danger-fill-quiet);
+  }
+
+  &:not(:hover, :focus) {
+    opacity: 0.5;
   }
 }
 
@@ -232,16 +255,32 @@ wa-page > main {
   margin-inline: auto;
 }
 
-h1.title wa-badge {
-  vertical-align: middle;
+h1.title {
+  wa-icon-button {
+    font-size: var(--wa-font-size-l);
+    color: var(--wa-color-text-quiet);
 
-  &::part(base) {
+    &:not(:hover, :focus) {
+      opacity: 0.5;
+    }
+  }
+
+  wa-badge {
+    vertical-align: middle;
     font-size: 1.5rem;
   }
 }
 
 .block-info {
+  display: flex;
+  gap: var(--wa-space-xs);
+  flex-wrap: wrap;
+  align-items: center;
   margin-block-end: var(--wa-flow-spacing);
+
+  code {
+    line-height: var(--wa-line-height-condensed);
+  }
 }
 
 /* Current link */
@@ -498,6 +537,27 @@ table.colors {
 .value-up {
   --icon: '▲';
   --icon-color: var(--wa-color-success-fill-quiet);
+}
+
+.icon-modifier {
+  position: relative;
+  display: inline-flex;
+
+  .modifier {
+    position: absolute;
+    bottom: -0.1em;
+    right: -0.3em;
+    font-size: 60%;
+
+    &::part(svg) {
+      stroke: var(--background-color, var(--wa-color-surface-default));
+      stroke-width: 100px;
+      paint-order: stroke;
+      overflow: visible;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
 }
 
 /* Layout Examples */
