@@ -12,7 +12,7 @@ Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> bad
 During the alpha period, things might break! We take breaking changes very seriously, but sometimes they're necessary to make the final product that much better. We appreciate your patience!
 :::
 
-## Next
+## 3.0.0-alpha.11
 
 ### Color Palettes
 
@@ -46,12 +46,10 @@ You can find them in the first column of each color palette.
   - Fixed a bug that prevented slots from showing automatically without `with-` attributes
 - Fixed a bug in `<wa-select>` that prevented the description from being read by screen readers
 
-
 ### Docs
 
 - Added an orientation example to the native radio docs
 - Fixed a number of broken event listeners throughout the docs
-
 
 ## 3.0.0-alpha.10
 
