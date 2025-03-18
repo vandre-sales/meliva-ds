@@ -1,3 +1,4 @@
+import * as path from 'node:path';
 import { anchorHeadingsPlugin } from './_utils/anchor-headings.js';
 import { codeExamplesPlugin } from './_utils/code-examples.js';
 import { copyCodePlugin } from './_utils/copy-code.js';
@@ -16,7 +17,10 @@ import { searchPlugin } from './_utils/search.js';
 
 import process from 'process';
 
-const packageData = JSON.parse(await readFile('./package.json', 'utf-8'));
+import * as url from 'url';
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+const packageData = JSON.parse(await readFile(path.join(__dirname, '..', 'package.json'), 'utf-8'));
 const isAlpha = process.argv.includes('--alpha');
 const isDev = process.argv.includes('--develop');
 
@@ -24,6 +28,12 @@ const globalData = {
   package: packageData,
   isAlpha,
   layout: 'page.njk',
+
+  server: {
+    head: '',
+    loginOrAvatar: '',
+    flashes: '',
+  },
 };
 
 const passThroughExtensions = ['js', 'css', 'png', 'svg', 'jpg', 'mp4'];
@@ -55,7 +65,12 @@ export default function (eleventyConfig) {
 
   // Shortcodes - {% shortCode arg1, arg2 %}
   eleventyConfig.addShortcode('cdnUrl', location => {
-    return `https://early.webawesome.com/webawesome@${packageData.version}/dist/` + location.replace(/^\//, '');
+    return `https://early.webawesome.com/webawesome@${packageData.version}/dist/` + (location || '').replace(/^\//, '');
+  });
+
+  // Turns `{% server_variable "foo" %} into `{{ server.foo | safe }}`
+  eleventyConfig.addShortcode('server', function (property) {
+    return `{{ server.${property} | safe }}`;
   });
 
   // Paired shortcodes - {% shortCode %}content{% endShortCode %}
@@ -131,7 +146,8 @@ export default function (eleventyConfig) {
       .filter(component => !omittedModules.includes(component.tagName.split(/wa-/)[1]))
       .map(component => {
         const name = component.tagName.split(/wa-/)[1];
-        return `./dist/components/${name}/${name}.js`;
+        const componentDirectory = process.env.UNBUNDLED_DIST_DIRECTORY || path.join('.', 'dist');
+        return path.join(componentDirectory, 'components', name, `${name}.js`);
       });
 
     eleventyConfig.addPlugin(litPlugin, {
