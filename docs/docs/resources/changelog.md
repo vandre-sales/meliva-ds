@@ -16,7 +16,12 @@ During the alpha period, things might break! We take breaking changes very serio
 
 - Fixed the search dialog's styles so it doesn't jump around as you search
 - Removed close watcher logic to backdrop hide animation bugs in `<wa-dialog>` and `<wa-drawer>`; this logic is already handled and we'll revisit `CloseWatcher` when browser support is better and behaviors are consistent
+- Fixed a bug that caused dropdowns inside button groups to show with a vertical misalignment
 - Revert `<wa-dialog>` structure and CSS to fix clipped content in dialogs (WA-A #123) and light dismiss in iOS Safari (WA-A #201)
+- Fixed a bug in `<wa-progress>` that prevented Safari from animation progress changes
+- Fixed the missing indeterminate icon in native checkbox styles
+- Fixed a bug where changing a `<wa-option>` label wouldn't update the display label in `<wa-select>`
+- Fixed a bug in `<wa-radio>` where elements would stack instead of display inline
 
 ### Enhancements
 
@@ -24,6 +29,8 @@ During the alpha period, things might break! We take breaking changes very serio
 - Added an `orange` scale to all color palettes
 - Added the `.wa-cloak` utility to prevent FOUCE
 - Added the `allDefined()` utility for awaiting component registration
+- Added default spacing to icons slotted into `<wa-tab>`
+- Fixed `wa-pill` class for text fields
 
 ### Bugfixes
 
@@ -33,6 +40,9 @@ During the alpha period, things might break! We take breaking changes very serio
 - Fixed `pill` style for `<wa-input>` elements
 - Fixed a bug in `<wa-color-picker>` that prevented light dismiss from working when clicking immediately above the color picker dropdown
 - Fixed a bug in `<wa-select multiple>` that sometimes resulted in empty `<div>` elements being output
+- Fixed a bug in `<wa-radio-button>` that prevented the pill effect from applying properly
+- Fixed a bug in `<wa-radio-button>` that prevented active buttons from receiving the correct styles
+- Fixed a bug in `<wa-button>` that prevented the focus ring from showing in Safari
 
 ## 3.0.0-alpha.11
 
