@@ -12,16 +12,7 @@ Components with the <wa-badge variant="warning" pill>Experimental</wa-badge> bad
 During the alpha period, things might break! We take breaking changes very seriously, but sometimes they're necessary to make the final product that much better. We appreciate your patience!
 :::
 
-## Next
-
-- Fixed the search dialog's styles so it doesn't jump around as you search
-- Removed close watcher logic to backdrop hide animation bugs in `<wa-dialog>` and `<wa-drawer>`; this logic is already handled and we'll revisit `CloseWatcher` when browser support is better and behaviors are consistent
-- Fixed a bug that caused dropdowns inside button groups to show with a vertical misalignment
-- Revert `<wa-dialog>` structure and CSS to fix clipped content in dialogs (WA-A #123) and light dismiss in iOS Safari (WA-A #201)
-- Fixed a bug in `<wa-progress>` that prevented Safari from animation progress changes
-- Fixed the missing indeterminate icon in native checkbox styles
-- Fixed a bug where changing a `<wa-option>` label wouldn't update the display label in `<wa-select>`
-- Fixed a bug in `<wa-radio>` where elements would stack instead of display inline
+## 1.0.0-alpha.12
 
 ### Enhancements
 
@@ -32,7 +23,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Added default spacing to icons slotted into `<wa-tab>`
 - Fixed `wa-pill` class for text fields
 
-### Bugfixes
+### Bug fixes
 
 - Specifying inherited CSS properties on `<wa-tooltip>` now works as expected ([thanks Dennis!](https://github.com/shoelace-style/webawesome-alpha/discussions/203))
 - Fixed a bug in `<wa-select>` that made it hard to use with VueJS, Svelte, and many other frameworks
@@ -43,6 +34,14 @@ During the alpha period, things might break! We take breaking changes very serio
 - Fixed a bug in `<wa-radio-button>` that prevented the pill effect from applying properly
 - Fixed a bug in `<wa-radio-button>` that prevented active buttons from receiving the correct styles
 - Fixed a bug in `<wa-button>` that prevented the focus ring from showing in Safari
+- Fixed the search dialog's styles so it doesn't jump around as you search
+- Removed close watcher logic to backdrop hide animation bugs in `<wa-dialog>` and `<wa-drawer>`; this logic is already handled and we'll revisit `CloseWatcher` when browser support is better and behaviors are consistent
+- Fixed a bug that caused dropdowns inside button groups to show with a vertical misalignment
+- Revert `<wa-dialog>` structure and CSS to fix clipped content in dialogs (WA-A #123) and light dismiss in iOS Safari (WA-A #201)
+- Fixed a bug in `<wa-progress>` that prevented Safari from animation progress changes
+- Fixed the missing indeterminate icon in native checkbox styles
+- Fixed a bug where changing a `<wa-option>` label wouldn't update the display label in `<wa-select>`
+- Fixed a bug in `<wa-radio>` where elements would stack instead of display inline
 
 ## 3.0.0-alpha.11
 
