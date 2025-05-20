@@ -7,11 +7,11 @@ import { watch } from '../../internal/watch.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon/icon.js';
-import styles from './comparer.css';
+import styles from './comparison.css';
 
 /**
  * @summary Compare visual differences between similar content with a sliding panel.
- * @documentation https://backers.webawesome.com/docs/components/comparer
+ * @documentation https://backers.webawesome.com/docs/components/comparison
  * @status stable
  * @since 2.0
  *
@@ -33,9 +33,11 @@ import styles from './comparer.css';
  * @cssproperty --divider-width - The width of the dividing line.
  * @cssproperty --handle-color - The color of the icon used inside the handle.
  * @cssproperty --handle-size - The size of the compare handle.
+ *
+ * @cssstate dragging - Applied when the comparison is being dragged.
  */
-@customElement('wa-comparer')
-export default class WaComparer extends WebAwesomeElement {
+@customElement('wa-comparison')
+export default class WaComparison extends WebAwesomeElement {
   static shadowStyle = styles;
 
   private readonly localize = new LocalizeController(this);
@@ -53,8 +55,12 @@ export default class WaComparer extends WebAwesomeElement {
 
     drag(this, {
       onMove: x => {
+        this.toggleCustomState('dragging', true);
         this.position = parseFloat(clamp((x / width) * 100, 0, 100).toFixed(2));
         if (isRtl) this.position = 100 - this.position;
+      },
+      onStop: () => {
+        this.toggleCustomState('dragging', false);
       },
       initialEvent: event,
     });
@@ -97,7 +103,7 @@ export default class WaComparer extends WebAwesomeElement {
     const isRtl = this.hasUpdated ? this.localize.dir() === 'rtl' : this.dir === 'rtl';
 
     return html`
-      <div class="image" part="base">
+      <div id="comparison" class="image" part="base">
         <div part="before" class="before">
           <slot name="before"></slot>
         </div>
@@ -130,7 +136,7 @@ export default class WaComparer extends WebAwesomeElement {
           aria-valuenow=${this.position}
           aria-valuemin="0"
           aria-valuemax="100"
-          aria-controls="comparer"
+          aria-controls="comparison"
           tabindex="0"
         >
           <slot name="handle">
@@ -144,6 +150,6 @@ export default class WaComparer extends WebAwesomeElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'wa-comparer': WaComparer;
+    'wa-comparison': WaComparison;
   }
 }

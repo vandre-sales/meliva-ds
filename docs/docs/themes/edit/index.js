@@ -2,11 +2,13 @@
 import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.esm-browser.js';
 import { pairingsList, sameAs } from '/assets/data/fonts.js';
 import { allHues, cdnUrl, iconLibraries } from '/assets/data/index.js';
-import { themeDefaults } from '/assets/data/theming.js';
+import palettes from '/assets/data/palettes.js';
+import themes from '/assets/data/themes.js';
+import { getPath, themeDefaults } from '/assets/data/theming.js';
 import Prism from '/assets/scripts/prism.js';
 import { getThemeCode } from '/assets/scripts/tweak/code.js';
-import { deepClone, deepEach, deepMerge } from '/assets/scripts/util/deep.js';
-import { capitalize, slugify } from '/assets/scripts/util/string.js';
+import { deepClone, deepEach, deepEntries, deepGet, deepMerge } from '/assets/scripts/util/deep.js';
+import { camelCase, capitalize, slugify } from '/assets/scripts/util/string.js';
 import {
   ColorSelect,
   EditableText,
@@ -19,11 +21,10 @@ import {
   ThemeCard,
   UiPanel,
   UiPanelContainer,
+  UiSlider,
 } from '/assets/vue/components/index.js';
 import content from '/assets/vue/directives/content.js';
 import savedMixin from '/assets/vue/mixins/saved.js';
-import palettes from '/docs/palettes/data.js';
-import themes from '/docs/themes/data.js';
 
 let appSpec = {
   mixins: [savedMixin],
@@ -44,19 +45,7 @@ let appSpec = {
       id: id === 'edit' ? 'custom' : id,
       isCustom,
       urlParams: location.search,
-      theme: {
-        base: isCustom ? '' : id,
-        palette: '',
-        typography: '',
-        colors: '',
-        brand: '',
-        icon: {
-          kit: '',
-          library: '',
-          family: '',
-          style: '',
-        },
-      },
+      theme: getBlankTheme(isCustom ? '' : id),
       ui: {
         panel: 'styles',
         showCode: false,
@@ -82,11 +71,58 @@ let appSpec = {
     });
 
     if (location.search) {
-      let urlTheme = this.permalink.getAll();
+      let urlTheme = this.permalink.toObject({
+        ignoreKeys: ['panel', 'color-scheme'],
+        getPath,
+      });
       deepMerge(this.theme, urlTheme, { emptyValues: [undefined, ''] });
+
+      if (this.permalink.has('panel')) {
+        this.ui.panel = this.permalink.get('panel');
+      }
     }
 
     this.isCreated = true;
+  },
+
+  mounted() {
+    let { preview, previewInvert } = this.$refs;
+
+    if (!preview || !previewInvert) {
+      return;
+    }
+
+    let contentWindow, contentWindowInvert;
+
+    preview.addEventListener('load', () => {
+      try {
+        contentWindow = preview.contentWindow;
+      } catch (e) {}
+
+      if (contentWindow) {
+        contentWindow.addEventListener('scroll', e => {
+          let { scrollX, scrollY } = contentWindow;
+          if (contentWindowInvert) {
+            contentWindowInvert.scrollTo(scrollX, scrollY);
+          }
+        });
+      }
+    });
+
+    previewInvert.addEventListener('load', () => {
+      try {
+        contentWindowInvert = previewInvert.contentWindow;
+      } catch (e) {}
+
+      if (contentWindowInvert) {
+        contentWindowInvert.addEventListener('scroll', e => {
+          let { scrollX, scrollY } = contentWindowInvert;
+          if (contentWindow) {
+            contentWindow.scrollTo(scrollX, scrollY);
+          }
+        });
+      }
+    });
   },
 
   computed: {
@@ -139,6 +175,16 @@ let appSpec = {
       return ret;
     },
 
+    customizations() {
+      return deepEntries(this.theme, {
+        filter: (value, key, parent, path) => {
+          let fullPath = [...path, key];
+          let defaultValue = deepGet(this.defaults, fullPath);
+          return key !== 'base' && typeof value !== 'object' && value !== '' && value !== defaultValue;
+        },
+      });
+    },
+
     computed() {
       let ret = deepClone(themeDefaults);
 
@@ -185,22 +231,23 @@ let appSpec = {
     tweaked() {
       return Object.values(this.theme).filter(Boolean).length > 0;
     },
+
+    urlParamsInvert() {
+      let invert = 'color-scheme=invert';
+      return (this.urlParams ? this.urlParams + '&' : '?') + invert;
+    },
   },
 
   watch: {
     theme: {
       deep: true,
-      handler() {
-        this.permalink.setAll(this.theme, this.defaults);
+      async handler() {
+        await this.$nextTick(); // give defaults a chance to update
 
-        // Update page URL
+        this.permalink.setAll(this.theme, this.defaults);
         this.permalink.updateLocation();
-        let theme = JSON.parse(JSON.stringify(this.theme));
-        this.$refs.preview?.contentWindow.postMessage({
-          type: 'updatePreview',
-          theme,
-          id: this.slug,
-        });
+
+        this.updatePreview();
 
         this.unsavedChanges = true;
       },
@@ -231,6 +278,30 @@ let appSpec = {
       console.log(...args);
       return args[0];
     },
+
+    updatePreview() {
+      // Update page URL
+      let theme = JSON.parse(JSON.stringify(this.theme));
+      let message = {
+        type: 'updatePreview',
+        theme,
+        id: this.slug,
+      };
+
+      this.$refs.preview?.contentWindow.postMessage(message);
+      this.$refs.previewInvert?.contentWindow.postMessage(message);
+    },
+
+    resetTo(base) {
+      let kit = this.theme.icon.kit;
+      let theme = getBlankTheme(base);
+
+      if (kit) {
+        theme.icon.kit = kit;
+      }
+
+      return (this.theme = theme);
+    },
   },
 
   components: {
@@ -245,6 +316,7 @@ let appSpec = {
     UiPanel,
     UiPanelContainer,
     SwatchSelect,
+    UiSlider,
   },
 
   directives: { content },
@@ -267,3 +339,23 @@ function init() {
 
 init();
 addEventListener('turbo:render', init);
+
+function getBlankTheme(base) {
+  return {
+    base,
+    palette: '',
+    typography: '',
+    colors: '',
+    brand: '',
+    icon: {
+      kit: '',
+      library: '',
+      family: '',
+      style: '',
+    },
+    rounding: '',
+    spacing: '',
+    borderWidth: '',
+    dimensionality: '',
+  };
+}

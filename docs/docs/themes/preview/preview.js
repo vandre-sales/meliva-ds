@@ -1,7 +1,7 @@
-import palettes from '../../palettes/data.js';
-import themes from '../data.js';
 import { allHues } from '/assets/data/index.js';
-import { themeConfig, themeDefaults, themeParams } from '/assets/data/theming.js';
+import palettes from '/assets/data/palettes.js';
+import themes from '/assets/data/themes.js';
+import { getPath, themeConfig, themeDefaults, themeParams } from '/assets/data/theming.js';
 import Permalink from '/assets/scripts/permalink.js';
 import { getThemeCode } from '/assets/scripts/tweak/code.js';
 import { deepClone, deepEach, deepGet, deepMerge } from '/assets/scripts/util/deep.js';
@@ -58,9 +58,17 @@ export const documentTheme = { ...theme };
 if (location.search) {
   let permalink = new Permalink();
   // Apply any overrides from URL
-  let urlOverrides = permalink.getAll();
+  let urlOverrides = permalink.toObject({
+    ignoreKeys: ['color-scheme'],
+    getPath,
+  });
 
   updateTheme(urlOverrides, { silent: true });
+
+  let colorScheme = permalink.get('color-scheme');
+  if (colorScheme) {
+    document.body.classList.add('wa-' + colorScheme);
+  }
 }
 
 theme.base ??= 'default';
@@ -168,6 +176,8 @@ export async function updatePreview(options = {}) {
   let changeDom = false;
 
   // DOM diffing of old and new <link> elements
+  // We want to keep any <link> elements that have not changed,
+  // and add any new ones near the old ones, in the right order
   for (let aspect of themeParams) {
     allStylesheets[aspect] ??= {};
     let stylesheets = allStylesheets[aspect];
@@ -238,7 +248,15 @@ export async function updatePreview(options = {}) {
             first.before(link);
           } else {
             // If no first, it means we didn't find any theme stylesheets
-            document.head.append(link);
+            // We may still have <style> elements though
+            let firstStyleElement = document.querySelector(
+              'style:is(.wa-themer, .wa-palette, [class^="wa-theme-"], [class*=" wa-theme-"])',
+            );
+            if (firstStyleElement) {
+              firstStyleElement.before(link);
+            } else {
+              document.head.append(link);
+            }
           }
         }
 

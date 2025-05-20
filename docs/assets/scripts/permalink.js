@@ -1,4 +1,5 @@
 import { deepEach, deepGet, deepSet } from './util/deep.js';
+import { camelCase, kebabCase } from './util/string.js';
 
 export default class Permalink extends URLSearchParams {
   /** Params changed since last URL I/O */
@@ -22,15 +23,16 @@ export default class Permalink extends URLSearchParams {
   setAll(values, defaults) {
     deepEach(values, (value, key, parent, path) => {
       let fullPath = [...path, key];
-      let param = fullPath.join('-');
-      let defaultValue = deepGet(defaults, fullPath);
+      let param = fullPath.map(kebabCase).join('-');
 
       if (typeof value === 'object') {
         // We'll handle this when we descend into it
         return;
       }
 
-      if (!value || value === defaultValue) {
+      let defaultValue = deepGet(defaults, fullPath);
+
+      if (equals(value, defaultValue)) {
         // Remove the param from the URL
         this.delete(param);
         return;
@@ -40,17 +42,36 @@ export default class Permalink extends URLSearchParams {
     });
   }
 
-  getAll(...args) {
-    if (args.length > 0) {
-      return super.getAll(...args);
-    }
+  /**
+   * Convert the URL params to a (potentially nested) object.
+   * @param {object} options - Options object.
+   * @param {(key: string, value: string) => string[]} options.getPath - Function to get the path of a param.
+   * @returns {object} The nested object.
+   */
+  toObject(options = {}) {
+    // Default getPath() assumes hyphens always mean nesting
+    let { ignoreKeys = [], getPath = param => param.split('-') } = options;
 
     // Get all values as a nested object
-    // Assumes that hyphens always mean nesting
+
     let obj = {};
 
     for (let [key, value] of this.entries()) {
-      let path = key.split('-');
+      let path = getPath(key, value);
+
+      if (path === null || ignoreKeys.includes(key)) {
+        // Skip this param
+        continue;
+      }
+
+      // Default to key if `getPath()` returns undefined
+      path ??= key;
+
+      path = Array.isArray(path) ? path : [path];
+
+      // Camel case any remaining hyphens
+      path = path.map(camelCase);
+
       deepSet(obj, path, value);
     }
 

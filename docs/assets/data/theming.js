@@ -41,7 +41,10 @@ export const themeConfig = {
     },
   },
   icon: {
-    library: { cssProperty: '--wa-icon-library', default: 'default' },
+    library: {
+      cssProperty: '--wa-icon-library',
+      default: 'default',
+    },
     family: {
       cssProperty: '--wa-icon-family',
       default(baseTheme) {
@@ -55,7 +58,40 @@ export const themeConfig = {
       },
     },
   },
+  rounding: {
+    cssProperty: '--wa-border-radius-scale',
+    default(baseTheme) {
+      return baseTheme?.rounding ?? 1;
+    },
+  },
+  spacing: {
+    cssProperty: '--wa-space-scale',
+    default(baseTheme) {
+      return baseTheme?.spacing ?? 1;
+    },
+  },
+  borderWidth: {
+    cssProperty: '--wa-border-width-scale',
+    default(baseTheme) {
+      return baseTheme?.borderWidth ?? 1;
+    },
+  },
+  dimensionality: {
+    url: id => `styles/themes/${id}/dimension.css`,
+    docs: '/docs/themes/',
+    icon: 'cube',
+    default() {
+      return this.base;
+    },
+  },
 };
+
+export function getPath(key) {
+  if (key.startsWith('icon-')) {
+    // TODO detect what the nested prefixes are from theme config metadata
+    return ['icon', ...key.slice(5)];
+  }
+}
 
 // Shallow remixing params in correct order
 // base must be first. brand needs to come after palette, which needs to come after colors.
