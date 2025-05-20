@@ -20,12 +20,13 @@ then
     echo "🚀 OK, blasting off..."
 
     # build it
-    npm run build
+    npm run build || { echo >&2 "❌ Something went wrong."; exit 1; }
 
     # copy dist-cdn to the CDN
-    aws --profile early-webawesome-com --endpoint-url https://c0c64e1b38a89d8ae060d40170ceef46.r2.cloudflarestorage.com s3 cp ./dist-cdn s3://early-webawesome-com/webawesome@$version/dist --recursive
+    aws --profile early-webawesome-com --endpoint-url https://c0c64e1b38a89d8ae060d40170ceef46.r2.cloudflarestorage.com s3 cp ./dist-cdn s3://early-webawesome-com/webawesome@$version/dist --recursive || { echo >&2 "❌ Something went wrong."; exit 1; }
 
     echo
     echo "✅ All done. Now go make something awesome!"
     echo
+    exit 0
 fi
