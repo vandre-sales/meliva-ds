@@ -15,6 +15,7 @@ During the alpha period, things might break! We take breaking changes very serio
 ## Next
 
 - 🚨 BREAKING: Renamed the `classic` theme to `shoelace`
+- 🚨 BREAKING: Renamed `pulse` attribute in `<wa-badge>` to `attention="pulse"` and added `attention="bounce"` [issue:#940]
 - Fixed a bug in `<wa-radio-group>` that caused radios to uncheck when assigning a numeric value [issue:924]
 
 ## 3.0.0-alpha.13
