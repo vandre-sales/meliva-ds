@@ -13,7 +13,7 @@ describe('<wa-format-number>', () => {
 
           expect(el.lang).to.be.undefined;
           expect(el.type).to.equal('decimal');
-          expect(el.noGrouping).to.be.false;
+          expect(el.withoutGrouping).to.be.false;
           expect(el.currency).to.equal('USD');
           expect(el.currencyDisplay).to.equal('symbol');
           expect(el.minimumIntegerDigits).to.be.undefined;
@@ -48,10 +48,10 @@ describe('<wa-format-number>', () => {
         });
       });
 
-      describe('noGrouping property', () => {
+      describe('withoutGrouping property', () => {
         it(`number has correct grouping format: no grouping`, async () => {
           const el = await fixture<WaFormatNumber>(html`
-            <wa-format-number value="1000" no-grouping></wa-format-number>
+            <wa-format-number value="1000" without-grouping></wa-format-number>
           `);
           const expected = new Intl.NumberFormat('en-US', { useGrouping: false }).format(1000);
           expect(el.shadowRoot?.textContent).to.equal(expected);
