@@ -14,10 +14,12 @@ During the alpha period, things might break! We take breaking changes very serio
 
 ## Next
 
+- 🚨 BREAKING: Removed the extra dash in the `<wa-carousel>` CSS part name `pagination-item--active` => `pagination-item-active`
 - 🚨 BREAKING: Renamed the `classic` theme to `shoelace`
 - 🚨 BREAKING: Renamed `pulse` attribute in `<wa-badge>` to `attention="pulse"` and added `attention="bounce"` [issue:#940]
 - 🚨 BREAKING: Renamed the `vertical` attribute to `orientation="vertical"` in `<wa-split-panel>` and `<wa-divider>` to align with other components and the platform [issue:674]
 - Fixed a bug in `<wa-radio-group>` that caused radios to uncheck when assigning a numeric value [issue:924]
+- Fixed `<wa-button-group>` so dividers properly show between buttons
 
 ## 3.0.0-alpha.13
 
