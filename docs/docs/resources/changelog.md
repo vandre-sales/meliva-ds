@@ -29,6 +29,7 @@ During the alpha period, things might break! We take breaking changes very serio
 - Added a `min-block-size` to `<wa-divider orientation="vertical">` to ensure the divider is visible regardless of container height [issue:675]
 - Fixed a bug in `<wa-radio-group>` that caused radios to uncheck when assigning a numeric value [issue:924]
 - Fixed `<wa-button-group>` so dividers properly show between buttons
+- Removed the experimental `<wa-code-demo>` component
 
 ## 3.0.0-alpha.13
 
