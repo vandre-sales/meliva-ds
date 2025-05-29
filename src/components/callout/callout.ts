@@ -27,13 +27,7 @@ export default class WaCallout extends WebAwesomeElement {
   static shadowStyle = [variantStyles, appearanceStyles, sizeStyles, styles];
 
   /** The callout's theme variant. Defaults to `brand` if not within another element with a variant. */
-  @property({ reflect: true, initial: 'brand' }) variant:
-    | 'brand'
-    | 'neutral'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'inherit' = 'inherit';
+  @property({ reflect: true }) variant: 'brand' | 'neutral' | 'success' | 'warning' | 'danger' | 'brand' = 'brand';
 
   /** The callout's visual appearance. */
   @property({ reflect: true }) appearance:
@@ -45,7 +39,7 @@ export default class WaCallout extends WebAwesomeElement {
     | 'outlined accent' = 'outlined filled';
 
   /** The callout's size. */
-  @property({ reflect: true, initial: 'medium' }) size: 'small' | 'medium' | 'large' | 'inherit' = 'inherit';
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   render() {
     return html`

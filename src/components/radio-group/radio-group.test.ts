@@ -249,23 +249,6 @@ describe('<wa-radio-group>', () => {
       });
     });
 
-    describe('when a size is applied', () => {
-      it('should apply the same size to all radios', async () => {
-        const radioGroup = await fixture<WaRadioGroup>(html`
-          <wa-radio-group size="large">
-            <wa-radio id="radio-1" value="1"></wa-radio>
-            <wa-radio id="radio-2" value="2"></wa-radio>
-          </wa-radio-group>
-        `);
-        const [radio1, radio2] = radioGroup.querySelectorAll('wa-radio');
-
-        expect(radio1.size).to.equal('inherit');
-        expect(radio1.getComputed('size')).to.equal('large');
-        expect(radio2.size).to.equal('inherit');
-        expect(radio2.getComputed('size')).to.equal('large');
-      });
-    });
-
     describe('when handling focus', () => {
       const doAction = async (instance: WaRadioGroup, type: string) => {
         if (type === 'focus') {
