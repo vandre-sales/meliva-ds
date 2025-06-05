@@ -193,11 +193,13 @@ By design, a drawer's height will never exceed 100% of its container. As such, d
 
 ### Header Actions
 
-The header shows a functional close button by default. You can use the `header-actions` slot to add additional [icon buttons](/docs/components/icon-button) if needed.
+The header shows a functional close button by default. You can use the `header-actions` slot to add additional [buttons](/docs/components/button) if needed.
 
 ```html {.example}
 <wa-drawer label="Drawer" class="drawer-header-actions">
-  <wa-icon-button class="new-window" slot="header-actions" name="arrow-up-right-from-square" variant="solid"></wa-icon-button>
+  <wa-button class="new-window" slot="header-actions" appearance="plain">
+    <wa-icon name="arrow-up-right-from-square" variant="solid" label="Open in new window"></wa-icon>
+  </wa-button>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <wa-button slot="footer" variant="brand" data-drawer="close">Close</wa-button>
 </wa-drawer>
