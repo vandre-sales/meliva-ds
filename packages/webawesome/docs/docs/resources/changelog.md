@@ -38,6 +38,16 @@ During the alpha period, things might break! We take breaking changes very serio
   - Added convenience tokens for `--wa-font-size-smaller` and `--wa-font-size-larger`
   - Updated components to use relative `em` values for internal padding and margin wherever appropriate
 - 🚨 BREAKING: removed the `hint` property and slot from `<wa-radio>`; please apply hints directly to `<wa-radio-group>` instead
+- 🚨 BREAKING: redesigned `<wa-slider>` with extensive new functionality
+  - Added support for range sliders with dual thumbs using the `range` attribute
+  - Added vertical orientation support with `orientation="vertical"`
+  - Added visual markers at each step with `with-markers`
+  - Added contextual reference labels with `with-references` and the `reference` slot
+  - Added tooltips showing current values with `with-tooltip`
+  - Added customizable indicator offset with `indicator-offset` attribute
+  - Added value formatting support with the `valueFormatter` property
+  - Improved the styling API to be consistent and more powerful (no more browser-specific selectors and pseudo elements to style)
+  - Updated to use consistent `with-*` attribute naming pattern
 - 🚨 BREAKING: removed `<wa-icon-button>`; use `<wa-button><wa-icon name="..." label="..."></wa-icon></wa-button>` instead
 - Added a new free component: `<wa-popover>` (#2 of 14 per stretch goals)
 - Added a new free component: `<wa-zoomable-frame>` (#3 of 14 per stretch goals)
