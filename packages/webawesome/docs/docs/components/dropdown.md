@@ -7,28 +7,38 @@ icon: dropdown
 
 Dropdowns consist of a trigger and a panel. By default, activating the trigger will expose the panel and interacting outside of the panel will close it.
 
-Dropdowns are designed to work well with [menus](/docs/components/menu) to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. [color picker](/docs/components/color-picker)). The API gives you complete control over showing, hiding, and positioning the panel.
+Dropdowns are designed to work well with [dropdown items](/docs/components/dropdown-item) to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications. The API gives you complete control over showing, hiding, and positioning the panel.
 
 ```html {.example}
 <wa-dropdown>
   <wa-button slot="trigger" caret>Dropdown</wa-button>
-  <wa-menu>
-    <wa-menu-item>Dropdown Item 1</wa-menu-item>
-    <wa-menu-item>Dropdown Item 2</wa-menu-item>
-    <wa-menu-item>Dropdown Item 3</wa-menu-item>
-    <wa-divider></wa-divider>
-    <wa-menu-item type="checkbox" checked>Checkbox</wa-menu-item>
-    <wa-menu-item disabled>Disabled</wa-menu-item>
-    <wa-divider></wa-divider>
-    <wa-menu-item>
-      Prefix
-      <wa-icon slot="prefix" name="gift" variant="solid"></wa-icon>
-    </wa-menu-item>
-    <wa-menu-item>
-      Suffix Icon
-      <wa-icon slot="suffix" name="heart" variant="solid"></wa-icon>
-    </wa-menu-item>
-  </wa-menu>
+
+  <wa-dropdown-item>
+    <wa-icon slot="icon" name="scissors"></wa-icon>
+    Cut
+  </wa-dropdown-item>
+  <wa-dropdown-item>
+    <wa-icon slot="icon" name="copy"></wa-icon>
+    Copy
+  </wa-dropdown-item>
+  <wa-dropdown-item>
+    <wa-icon slot="icon" name="paste"></wa-icon>
+    Paste
+  </wa-dropdown-item>
+  <wa-divider></wa-divider>
+  <wa-dropdown-item>
+    Show images
+    <wa-dropdown-item slot="submenu" value="show-all-images">Show All Images</wa-dropdown-item>
+    <wa-dropdown-item slot="submenu" value="show-thumbnails">Show Thumbnails</wa-dropdown-item>
+  </wa-dropdown-item>
+  <wa-divider></wa-divider>
+  <wa-dropdown-item type="checkbox" checked>Emoji Shortcuts<wa-dropdown-item>
+  <wa-dropdown-item type="checkbox" checked>Word Wrap</wa-dropdown-item>
+  <wa-divider></wa-divider>
+  <wa-dropdown-item variant="danger">
+    <wa-icon slot="icon" name="trash"></wa-icon>
+    Delete
+  </wa-dropdown-item>
 </wa-dropdown>
 ```
 
@@ -36,17 +46,16 @@ Dropdowns are designed to work well with [menus](/docs/components/menu) to provi
 
 ### Getting the Selected Item
 
-When dropdowns are used with [menus](/docs/components/menu), you can listen for the [`wa-select`](/docs/components/menu#events) event to determine which menu item was selected. The menu item element will be exposed in `event.detail.item`. You can set `value` props to make it easier to identify commands.
+When an item is selected, the `wa-select` event will be emitted by the dropdown. You can inspect `event.detail.item` to get a reference to the selected item. If you've provided a value for each [dropdown item](/docs/components/dropdown-item), it will be available in `event.detail.item.value`.
 
 ```html {.example}
 <div class="dropdown-selection">
   <wa-dropdown>
-    <wa-button slot="trigger" caret>Edit</wa-button>
-    <wa-menu>
-      <wa-menu-item value="cut">Cut</wa-menu-item>
-      <wa-menu-item value="copy">Copy</wa-menu-item>
-      <wa-menu-item value="paste">Paste</wa-menu-item>
-    </wa-menu>
+    <wa-button slot="trigger" caret>View</wa-button>
+    <wa-dropdown-item value="full-screen">Enter full screen</wa-dropdown-item>
+    <wa-dropdown-item value="actual">Actual size</wa-dropdown-item>
+    <wa-dropdown-item value="zoom-in">Zoom in</wa-dropdown-item>
+    <wa-dropdown-item value="zoom-out">Zoom out</wa-dropdown-item>
   </wa-dropdown>
 </div>
 
@@ -55,36 +64,172 @@ When dropdowns are used with [menus](/docs/components/menu), you can listen for 
   const dropdown = container.querySelector('wa-dropdown');
 
   dropdown.addEventListener('wa-select', event => {
-    const selectedItem = event.detail.item;
-    console.log(selectedItem.value);
+    console.log(event.detail.item.value);
   });
 </script>
 ```
 
-Alternatively, you can listen for the `click` event on individual menu items. Note that, using this approach, disabled menu items will still emit a `click` event.
+:::info
+To keep the dropdown open after selection, call `event.preventDefault()` in the `wa-select` event's callback.
+:::
+
+### Showing Icons
+
+Use the `icon` slot to add icons to [dropdown items](/docs/components/dropdown-item). This works best with [icon](/docs/components/icon) elements.
 
 ```html {.example}
-<div class="dropdown-selection-alt">
+<wa-dropdown>
+  <wa-button slot="trigger" caret>Edit</wa-button>
+
+  <wa-dropdown-item value="cut">
+    <wa-icon slot="icon" name="scissors"></wa-icon>
+    Cut
+  </wa-dropdown-item>
+
+  <wa-dropdown-item value="copy">
+    <wa-icon slot="icon" name="copy"></wa-icon>
+    Copy
+  </wa-dropdown-item>
+
+  <wa-dropdown-item value="paste">
+    <wa-icon slot="icon" name="paste"></wa-icon>
+    Paste
+  </wa-dropdown-item>
+
+  <wa-dropdown-item value="delete">
+    <wa-icon slot="icon" name="trash"></wa-icon>
+    Delete
+  </wa-dropdown-item>
+</wa-dropdown>
+```
+
+### Showing Labels & Dividers
+
+Use any heading, e.g. `<h1>`–`<h6>` to add labels and the [`<wa-divider>`](/docs/components/divider) element for separators.
+
+```html {.example}
+<wa-dropdown>
+  <wa-button slot="trigger" caret>Device</wa-button>
+
+  <h3>Type</h3>
+  <wa-dropdown-item value="phone">Phone</wa-dropdown-item>
+  <wa-dropdown-item value="tablet">Tablet</wa-dropdown-item>
+  <wa-dropdown-item value="desktop">Desktop</wa-dropdown-item>
+
+  <wa-divider></wa-divider>
+
+  <wa-dropdown-item value="more">More options…</wa-dropdown-item>
+</wa-dropdown>
+```
+
+### Showing Details
+
+Use the `details` slot to display details, such as keyboard shortcuts, inside [dropdown items](/docs/components/dropdown-item).
+
+```html {.example}
+<wa-dropdown>
+  <wa-button slot="trigger" caret>Message</wa-button>
+
+  <wa-dropdown-item value="reply">
+    Reply
+    <span slot="details">⌘R</span>
+  </wa-dropdown-item>
+
+  <wa-dropdown-item value="forward">
+    Forward
+    <span slot="details">⌘F</span>
+  </wa-dropdown-item>
+
+  <wa-dropdown-item value="move">
+    Move
+    <span slot="details">⌘M</span>
+  </wa-dropdown-item>
+
+  <wa-divider></wa-divider>
+
+  <wa-dropdown-item value="archive">
+    Archive
+    <span slot="details">⌘A</span>
+  </wa-dropdown-item>
+
+  <wa-dropdown-item value="delete" variant="danger">
+    Delete
+    <span slot="details">Del</span>
+  </wa-dropdown-item>
+</wa-dropdown>
+```
+
+### Checkable Items
+
+You can turn a [dropdown item](/docs/components/dropdown-item) into a checkable option by setting `type="checkbox"`. Add the `checked` attribute to make it checked initially. When clicked, the item's checked state will toggle and the dropdown will close. You can cancel the `wa-select` event if you want to keep it open instead.
+
+```html {.example}
+<div class="dropdown-checkboxes">
   <wa-dropdown>
-    <wa-button slot="trigger" caret>Edit</wa-button>
-    <wa-menu>
-      <wa-menu-item value="cut">Cut</wa-menu-item>
-      <wa-menu-item value="copy">Copy</wa-menu-item>
-      <wa-menu-item value="paste">Paste</wa-menu-item>
-    </wa-menu>
+    <wa-button slot="trigger" caret>View</wa-button>
+
+    <wa-dropdown-item type="checkbox" value="canvas" checked>Show canvas</wa-dropdown-item>
+    <wa-dropdown-item type="checkbox" value="grid" checked>Show grid</wa-dropdown-item>
+    <wa-dropdown-item type="checkbox" value="source">Show source</wa-dropdown-item>
+
+    <wa-divider></wa-divider>
+
+    <wa-dropdown-item value="preferences">Preferences…</wa-dropdown-item>
   </wa-dropdown>
 </div>
 
 <script>
-  const container = document.querySelector('.dropdown-selection-alt');
-  const cut = container.querySelector('wa-menu-item[value="cut"]');
-  const copy = container.querySelector('wa-menu-item[value="copy"]');
-  const paste = container.querySelector('wa-menu-item[value="paste"]');
+  const container = document.querySelector('.dropdown-checkboxes');
+  const dropdown = container.querySelector('wa-dropdown');
 
-  cut.addEventListener('click', () => console.log('cut'));
-  copy.addEventListener('click', () => console.log('copy'));
-  paste.addEventListener('click', () => console.log('paste'));
+  dropdown.addEventListener('wa-select', event => {
+    if (event.detail.item.type === 'checkbox') {
+      // Checkbox
+      console.log(event.detail.item.value, event.detail.item.checked ? 'checked' : 'unchecked');
+    } else {
+      // Not a checkbox
+      console.log(event.detail.item.value);
+    }
+  });
 </script>
+```
+
+:::info
+When a checkable option exists anywhere in the dropdown, all items will receive additional padding so they align properly.
+:::
+
+### Destructive Items
+
+Add `variant="danger"` to any [dropdown item](/docs/components/dropdown-item) to highlight that it's a dangerous action.
+
+```html {.example}
+<wa-dropdown>
+  <wa-button slot="trigger" caret>Project</wa-button>
+
+  <wa-dropdown-item value="share">
+    <wa-icon slot="icon" name="share"></wa-icon>
+    Share
+  </wa-dropdown-item>
+
+  <wa-dropdown-item value="preferences">
+    <wa-icon slot="icon" name="gear"></wa-icon>
+    Preferences
+  </wa-dropdown-item>
+
+  <wa-divider></wa-divider>
+
+  <h3>Danger zone</h3>
+
+  <wa-dropdown-item value="archive">
+    <wa-icon slot="icon" name="archive"></wa-icon>
+    Archive
+  </wa-dropdown-item>
+
+  <wa-dropdown-item value="delete" variant="danger">
+    <wa-icon slot="icon" name="trash"></wa-icon>
+    Delete
+  </wa-dropdown-item>
+</wa-dropdown>
 ```
 
 ### Placement
@@ -92,16 +237,18 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 The preferred placement of the dropdown can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport.
 
 ```html {.example}
-<wa-dropdown placement="top-start">
-  <wa-button slot="trigger" caret>Edit</wa-button>
-  <wa-menu>
-    <wa-menu-item>Cut</wa-menu-item>
-    <wa-menu-item>Copy</wa-menu-item>
-    <wa-menu-item>Paste</wa-menu-item>
-    <wa-divider></wa-divider>
-    <wa-menu-item>Find</wa-menu-item>
-    <wa-menu-item>Replace</wa-menu-item>
-  </wa-menu>
+<wa-dropdown placement="right-start">
+  <wa-button slot="trigger">
+    File formats
+    <wa-icon slot="suffix" name="chevron-right"></wa-icon>
+  </wa-button>
+
+  <wa-dropdown-item value="pdf">PDF Document</wa-dropdown-item>
+  <wa-dropdown-item value="docx">Word Document</wa-dropdown-item>
+  <wa-dropdown-item value="xlsx">Excel Spreadsheet</wa-dropdown-item>
+  <wa-dropdown-item value="pptx">PowerPoint Presentation</wa-dropdown-item>
+  <wa-dropdown-item value="txt">Plain Text</wa-dropdown-item>
+  <wa-dropdown-item value="json">JSON File</wa-dropdown-item>
 </wa-dropdown>
 ```
 
@@ -112,71 +259,111 @@ The distance from the panel to the trigger can be customized using the `distance
 ```html {.example}
 <wa-dropdown distance="30">
   <wa-button slot="trigger" caret>Edit</wa-button>
-  <wa-menu>
-    <wa-menu-item>Cut</wa-menu-item>
-    <wa-menu-item>Copy</wa-menu-item>
-    <wa-menu-item>Paste</wa-menu-item>
-    <wa-divider></wa-divider>
-    <wa-menu-item>Find</wa-menu-item>
-    <wa-menu-item>Replace</wa-menu-item>
-  </wa-menu>
+
+  <wa-dropdown-item>Cut</wa-dropdown-item>
+  <wa-dropdown-item>Copy</wa-dropdown-item>
+  <wa-dropdown-item>Paste</wa-dropdown-item>
+
+  <wa-divider></wa-divider>
+
+  <wa-dropdown-item>Find</wa-dropdown-item>
+  <wa-dropdown-item>Replace</wa-dropdown-item>
 </wa-dropdown>
 ```
 
-### Skidding
+### Offset
 
-The offset of the panel along the trigger can be customized using the `skidding` attribute. This value is specified in pixels.
+The offset of the panel along the trigger can be customized using the `offset` attribute. This value is specified in pixels.
 
 ```html {.example}
-<wa-dropdown skidding="30">
+<wa-dropdown offset="30">
   <wa-button slot="trigger" caret>Edit</wa-button>
-  <wa-menu>
-    <wa-menu-item>Cut</wa-menu-item>
-    <wa-menu-item>Copy</wa-menu-item>
-    <wa-menu-item>Paste</wa-menu-item>
-    <wa-divider></wa-divider>
-    <wa-menu-item>Find</wa-menu-item>
-    <wa-menu-item>Replace</wa-menu-item>
-  </wa-menu>
+
+  <wa-dropdown-item>Cut</wa-dropdown-item>
+  <wa-dropdown-item>Copy</wa-dropdown-item>
+  <wa-dropdown-item>Paste</wa-dropdown-item>
+
+  <wa-divider></wa-divider>
+
+  <wa-dropdown-item>Find</wa-dropdown-item>
+  <wa-dropdown-item>Replace</wa-dropdown-item>
 </wa-dropdown>
 ```
 
 ### Submenus
 
-To create a submenu, nest an `<wa-menu slot="submenu">` element in a [menu item](/docs/components/menu-item).
+To create submenus, nest [dropdown items](/docs/components/dropdown-item) inside of a dropdown item and assign `slot="submenu"` to each one. You can also add [dividers](/docs/components/divider) as needed.
 
 ```html {.example}
-<wa-dropdown>
-  <wa-button slot="trigger" caret>Edit</wa-button>
+<div class="dropdown-submenus">
+  <wa-dropdown>
+    <wa-button slot="trigger" caret>Export</wa-button>
 
-  <wa-menu style="max-width: 200px;">
-    <wa-menu-item value="undo">Undo</wa-menu-item>
-    <wa-menu-item value="redo">Redo</wa-menu-item>
+    <wa-dropdown-item>
+      Documents
+      <wa-dropdown-item slot="submenu" value="pdf">PDF</wa-dropdown-item>
+      <wa-dropdown-item slot="submenu" value="docx">Word Document</wa-dropdown-item>
+    </wa-dropdown-item>
+
+    <wa-dropdown-item>
+      Spreadsheets
+      <wa-dropdown-item slot="submenu">
+        Excel Formats
+        <wa-dropdown-item slot="submenu" value="xlsx">Excel (.xlsx)</wa-dropdown-item>
+        <wa-dropdown-item slot="submenu" value="xls">Excel 97-2003 (.xls)</wa-dropdown-item>
+        <wa-dropdown-item slot="submenu" value="csv">CSV (.csv)</wa-dropdown-item>
+      </wa-dropdown-item>
+
+      <wa-dropdown-item slot="submenu">
+        Other Formats
+        <wa-dropdown-item slot="submenu" value="ods">OpenDocument (.ods)</wa-dropdown-item>
+        <wa-dropdown-item slot="submenu" value="tsv">Tab-separated (.tsv)</wa-dropdown-item>
+        <wa-dropdown-item slot="submenu" value="json">JSON (.json)</wa-dropdown-item>
+      </wa-dropdown-item>
+
+      <wa-dropdown-item slot="submenu" value="numbers">Apple Numbers</wa-dropdown-item>
+    </wa-dropdown-item>
+
     <wa-divider></wa-divider>
-    <wa-menu-item value="cut">Cut</wa-menu-item>
-    <wa-menu-item value="copy">Copy</wa-menu-item>
-    <wa-menu-item value="paste">Paste</wa-menu-item>
-    <wa-divider></wa-divider>
-    <wa-menu-item>
-      Find
-      <wa-menu slot="submenu">
-        <wa-menu-item value="find">Find…</wa-menu-item>
-        <wa-menu-item value="find-previous">Find Next</wa-menu-item>
-        <wa-menu-item value="find-next">Find Previous</wa-menu-item>
-      </wa-menu>
-    </wa-menu-item>
-    <wa-menu-item>
-      Transformations
-      <wa-menu slot="submenu">
-        <wa-menu-item value="uppercase">Make uppercase</wa-menu-item>
-        <wa-menu-item value="lowercase">Make lowercase</wa-menu-item>
-        <wa-menu-item value="capitalize">Capitalize</wa-menu-item>
-      </wa-menu>
-    </wa-menu-item>
-  </wa-menu>
-</wa-dropdown>
+
+    <wa-dropdown-item>
+      Options
+      <wa-dropdown-item slot="submenu" type="checkbox" value="compress">Compress files</wa-dropdown-item>
+      <wa-dropdown-item slot="submenu" type="checkbox" checked value="metadata">Include metadata</wa-dropdown-item>
+      <wa-dropdown-item slot="submenu" type="checkbox" value="password">Password protect</wa-dropdown-item>
+    </wa-dropdown-item>
+  </wa-dropdown>
+</div>
+
+<script>
+  const container = document.querySelector('.dropdown-submenus');
+  const dropdown = container.querySelector('wa-dropdown');
+
+  dropdown.addEventListener('wa-select', event => {
+    console.log(event.detail.item.value);
+  });
+</script>
 ```
+
+:::info
+Dropdown items that have a submenu will not dispatch the `wa-select` event. However, items inside the submenu will, unless they also have a submenu.
+:::
 
 :::warning
 As a UX best practice, avoid using more than one level of submenu when possible.
 :::
+
+### Disabling Items
+
+Add the `disabled` attribute to any [dropdown item](/docs/components/dropdown-item) to disable it.
+
+```html {.example}
+<wa-dropdown>
+  <wa-button slot="trigger" caret>Payment method</wa-button>
+
+  <wa-dropdown-item value="cash">Cash</wa-dropdown-item>
+  <wa-dropdown-item value="check" disabled>Personal check</wa-dropdown-item>
+  <wa-dropdown-item value="credit">Credit card</wa-dropdown-item>
+  <wa-dropdown-item value="gift-card">Gift card</wa-dropdown-item>
+</wa-dropdown>
+```

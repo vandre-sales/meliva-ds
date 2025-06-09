@@ -1,60 +1,93 @@
 :host {
-  --box-shadow: var(--wa-shadow-m);
-
-  display: inline-block;
+  --show-duration: 50ms;
+  --hide-duration: 50ms;
+  display: contents;
 }
 
-.dropdown::part(popup) {
-  z-index: 900;
+#menu {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  width: max-content;
+  margin: 0;
+  padding: 0.25em;
+  border: var(--wa-border-style) var(--wa-border-width-s) var(--wa-color-surface-border);
+  border-radius: var(--wa-border-radius-m);
+  background-color: var(--wa-color-surface-raised);
+  box-shadow: var(--wa-shadow-m);
+  color: var(--wa-color-text-normal);
+  text-align: start;
+  user-select: none;
+
+  &.show {
+    animation: show var(--show-duration) ease;
+  }
+
+  &.hide {
+    animation: show var(--hide-duration) ease reverse;
+  }
+
+  ::slotted(h1),
+  ::slotted(h2),
+  ::slotted(h3),
+  ::slotted(h4),
+  ::slotted(h5),
+  ::slotted(h6) {
+    display: block !important;
+    margin: 0.25em 0 !important;
+    padding: 0.25em 0.75em !important;
+    color: var(--wa-color-text-quiet) !important;
+    font-family: var(--wa-font-family-body) !important;
+    font-weight: var(--wa-font-weight-semibold) !important;
+    font-size: var(--wa-font-size-smaller) !important;
+  }
+
+  ::slotted(wa-divider) {
+    --spacing: 0.25em; /* Component-specific, left as-is */
+  }
 }
 
-.dropdown[data-current-placement^='top']::part(popup) {
+wa-popup[data-current-placement^='top'] #menu {
   transform-origin: bottom;
 }
 
-.dropdown[data-current-placement^='bottom']::part(popup) {
+wa-popup[data-current-placement^='bottom'] #menu {
   transform-origin: top;
 }
 
-.dropdown[data-current-placement^='left']::part(popup) {
+wa-popup[data-current-placement^='left'] #menu {
   transform-origin: right;
 }
 
-.dropdown[data-current-placement^='right']::part(popup) {
+wa-popup[data-current-placement^='right'] #menu {
   transform-origin: left;
 }
 
-#trigger {
-  display: block; /* for boundingClientRect */
+wa-popup[data-current-placement='left-start'] #menu {
+  transform-origin: right top;
 }
 
-.panel {
-  font: inherit;
-  box-shadow: var(--box-shadow);
-  border-radius: var(--wa-border-radius-m);
-  pointer-events: none;
+wa-popup[data-current-placement='left-end'] #menu {
+  transform-origin: right bottom;
 }
 
-.dropdown-open .panel {
-  display: block;
-  pointer-events: all;
+wa-popup[data-current-placement='right-start'] #menu {
+  transform-origin: left top;
 }
 
-/* Sizes */
-:host([size='small']) ::slotted(wa-menu) {
-  font-size: var(--wa-font-size-s);
+wa-popup[data-current-placement='right-end'] #menu {
+  transform-origin: left bottom;
 }
 
-:host([size='medium']) ::slotted(wa-menu) {
-  font-size: var(--wa-font-size-m);
-}
-
-:host([size='large']) ::slotted(wa-menu) {
-  font-size: var(--wa-font-size-l);
-}
-
-/* When users slot a menu, make sure it conforms to the popup's auto-size */
-::slotted(wa-menu) {
-  max-width: var(--auto-size-available-width) !important;
-  max-height: var(--auto-size-available-height) !important;
+@keyframes show {
+  from {
+    scale: 0.9;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
 }

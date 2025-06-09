@@ -1,63 +1,81 @@
+// dropdown.ts
+import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
+import type { PropertyValues } from 'lit';
 import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import { WaAfterHideEvent } from '../../events/after-hide.js';
 import { WaAfterShowEvent } from '../../events/after-show.js';
 import { WaHideEvent } from '../../events/hide.js';
-import type { WaSelectEvent } from '../../events/select.js';
+import { WaSelectEvent } from '../../events/select.js';
 import { WaShowEvent } from '../../events/show.js';
 import { animateWithClass } from '../../internal/animate.js';
-import { waitForEvent } from '../../internal/event.js';
-import { watch } from '../../internal/watch.js';
+import { uniqueId } from '../../internal/math.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import sizeStyles from '../../styles/utilities/size.css';
+import { LocalizeController } from '../../utilities/localize.js';
 import type WaButton from '../button/button.js';
-import type WaMenu from '../menu/menu.js';
-import '../popup/popup.js';
-import type WaPopup from '../popup/popup.js';
+import '../dropdown-item/dropdown-item.js';
+import type WaDropdownItem from '../dropdown-item/dropdown-item.js';
+import WaPopup from '../popup/popup.js'; // Added import for wa-popup
 import styles from './dropdown.css';
 
+const openDropdowns = new Set<WaDropdown>();
+
 /**
- * @summary Dropdowns expose additional content that "drops down" in a panel.
+ * @summary Dropdowns display a list of options that can be triggered by a button or other element. They support
+ *  keyboard navigation, submenus, and various customization options.
  * @documentation https://backers.webawesome.com/docs/components/dropdown
  * @status stable
  * @since 2.0
  *
+ * @dependency wa-dropdown-item
  * @dependency wa-popup
  *
- * @slot - The dropdown's main content.
- * @slot trigger - The dropdown's trigger, usually a `<wa-button>` element.
+ * @event wa-show - Emitted when the dropdown is about to show.
+ * @event wa-after-show - Emitted after the dropdown has been shown.
+ * @event wa-hide - Emitted when the dropdown is about to hide.
+ * @event wa-after-hide - Emitted after the dropdown has been hidden.
+ * @event wa-select - Emitted when an item in the dropdown is selected.
  *
- * @event wa-show - Emitted when the dropdown opens.
- * @event wa-after-show - Emitted after the dropdown opens and all animations are complete.
- * @event wa-hide - Emitted when the dropdown closes.
- * @event wa-after-hide - Emitted after the dropdown closes and all animations are complete.
+ * @slot - The dropdown's items, typically `<wa-dropdown-item>` elements.
+ * @slot trigger - The element that triggers the dropdown, such as a `<wa-button>` or `<button>`.
  *
- * @cssproperty --box-shadow - The shadow effects around the dropdown's edges.
+ * @csspart base - The component's host element.
+ * @csspart menu - The dropdown menu container.
  *
- * @csspart base - The component's base wrapper, a `<wa-popup>` element.
- * @csspart base__popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
- * @csspart trigger - The container that wraps the trigger.
- * @csspart panel - The panel that gets shown when the dropdown is open.
+ * @cssproperty --show-duration - The duration of the show animation.
+ * @cssproperty --hide-duration - The duration of the hide animation.
+ * @cssproperty --menu-background-color - The background color of the dropdown menu.
+ * @cssproperty --menu-border-color - The border color of the dropdown menu.
+ * @cssproperty --menu-border-width - The border width of the dropdown menu.
+ * @cssproperty --menu-border-radius - The border radius of the dropdown menu.
+ * @cssproperty --menu-box-shadow - The box shadow of the dropdown menu.
+ * @cssproperty --menu-text-color - The text color of the dropdown menu items.
+ * @cssproperty --menu-padding - The padding of the dropdown menu.
  */
 @customElement('wa-dropdown')
 export default class WaDropdown extends WebAwesomeElement {
   static css = [sizeStyles, styles];
 
-  @query('.dropdown') popup: WaPopup;
-  @query('#trigger') trigger: HTMLSlotElement;
-  @query('.panel') panel: HTMLSlotElement;
+  private submenuCleanups: Map<WaDropdownItem, ReturnType<typeof autoUpdate>> = new Map();
+  private readonly localize = new LocalizeController(this);
+  private userTypedQuery = '';
+  private userTypedTimeout: ReturnType<typeof setTimeout>;
+  private openSubmenuStack: WaDropdownItem[] = [];
 
-  /**
-   * Indicates whether or not the dropdown is open. You can toggle this attribute to show and hide the dropdown, or you
-   * can use the `show()` and `hide()` methods and this attribute will reflect the dropdown's open state.
-   */
+  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+  @query('#menu') private menu: HTMLDivElement;
+  @query('wa-popup') private popup: WaPopup;
+
+  /** Opens or closes the dropdown. */
   @property({ type: Boolean, reflect: true }) open = false;
 
+  /** The dropdown's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
   /**
-   * The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel
-   * inside of the viewport.
+   * The placement of the dropdown menu in reference to the trigger. The menu will shift to a more optimal location if
+   * the preferred placement doesn't have enough room.
    */
   @property({ reflect: true }) placement:
     | 'top'
@@ -73,352 +91,637 @@ export default class WaDropdown extends WebAwesomeElement {
     | 'left-start'
     | 'left-end' = 'bottom-start';
 
-  /** Disables the dropdown so the panel will not open. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
-
-  /**
-   * By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for
-   * dropdowns that allow for multiple interactions.
-   */
-  @property({ attribute: 'stay-open-on-select', type: Boolean, reflect: true }) stayOpenOnSelect = false;
-
-  /**
-   * The dropdown will close when the user interacts outside of this element (e.g. clicking). Useful for composing other
-   * components that use a dropdown internally.
-   */
-  @property({ attribute: false }) containingElement?: HTMLElement;
-
-  /** The distance in pixels from which to offset the panel away from its trigger. */
+  /** The distance of the dropdown menu from its trigger. */
   @property({ type: Number }) distance = 0;
 
-  /** The distance in pixels from which to offset the panel along its trigger. */
+  /** The offset of the dropdown menu along its trigger. */
   @property({ type: Number }) skidding = 0;
-
-  /**
-   * Syncs the popup width or height to that of the trigger element.
-   */
-  @property({ reflect: true }) sync: 'width' | 'height' | 'both' | undefined = undefined;
-
-  connectedCallback() {
-    super.connectedCallback();
-
-    if (!this.containingElement) {
-      this.containingElement = this;
-    }
-  }
-
-  firstUpdated() {
-    this.panel.hidden = !this.open;
-
-    // If the dropdown is visible on init, update its position
-    if (this.open) {
-      this.addOpenListeners();
-      this.popup.active = true;
-    }
-  }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeOpenListeners();
-    this.hide();
+    clearInterval(this.userTypedTimeout);
+    this.closeAllSubmenus();
+
+    // Clean up all submenu positioning
+    this.submenuCleanups.forEach(cleanup => cleanup());
+    this.submenuCleanups.clear();
+
+    document.removeEventListener('mousemove', this.handleGlobalMouseMove);
   }
 
-  focusOnTrigger() {
-    const trigger = this.trigger.assignedElements({ flatten: true })[0] as HTMLElement | undefined;
-    if (typeof trigger?.focus === 'function') {
-      trigger.focus();
-    }
+  firstUpdated() {
+    this.syncAriaAttributes();
   }
 
-  getMenu() {
-    return this.panel.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'wa-menu') as
-      | WaMenu
-      | undefined;
-  }
+  async updated(changedProperties: PropertyValues) {
+    if (changedProperties.has('open')) {
+      this.customStates.set('open', this.open);
 
-  private handleKeyDown = (event: KeyboardEvent) => {
-    // Close when escape is pressed inside an open dropdown. We need to listen on the panel itself and stop propagation
-    // in case any ancestors are also listening for this key.
-    if (this.open && event.key === 'Escape') {
-      event.stopPropagation();
-      this.hide();
-      this.focusOnTrigger();
-    }
-  };
-
-  private handleDocumentKeyDown = (event: KeyboardEvent) => {
-    // Close when escape or tab is pressed
-    if (event.key === 'Escape' && this.open) {
-      event.stopPropagation();
-      this.focusOnTrigger();
-      this.hide();
-      return;
-    }
-
-    // Handle tabbing
-    if (event.key === 'Tab') {
-      // Tabbing within an open menu should close the dropdown and refocus the trigger
-      if (this.open && document.activeElement?.tagName.toLowerCase() === 'wa-menu-item') {
-        event.preventDefault();
-        this.hide();
-        this.focusOnTrigger();
-        return;
+      if (this.open) {
+        await this.showMenu();
+      } else {
+        this.closeAllSubmenus();
+        await this.hideMenu();
       }
-
-      // Tabbing outside of the containing element closes the panel
-      //
-      // If the dropdown is used within a shadow DOM, we need to obtain the activeElement within that shadowRoot,
-      // otherwise `document.activeElement` will only return the name of the parent shadow DOM element.
-      setTimeout(() => {
-        const activeElement =
-          this.containingElement?.getRootNode() instanceof ShadowRoot
-            ? document.activeElement?.shadowRoot?.activeElement
-            : document.activeElement;
-
-        if (
-          !this.containingElement ||
-          activeElement?.closest(this.containingElement.tagName.toLowerCase()) !== this.containingElement
-        ) {
-          this.hide();
-        }
-      });
     }
-  };
 
-  private handleDocumentMouseDown = (event: MouseEvent) => {
-    // Close when clicking outside of the containing element
-    const path = event.composedPath();
-    if (this.containingElement && !path.includes(this.containingElement)) {
-      this.hide();
+    if (changedProperties.has('size')) {
+      this.syncItemSizes();
     }
-  };
+  }
 
-  private handlePanelSelect = (event: WaSelectEvent) => {
-    const target = event.target as HTMLElement;
+  /** Gets all <wa-dropdown-item> elements slotted in the menu that aren't disabled. */
+  private getItems(includeDisabled = false): WaDropdownItem[] {
+    const items = [...this.children].filter(
+      el => el.localName === 'wa-dropdown-item' && !el.hasAttribute('slot'),
+    ) as WaDropdownItem[];
+    return includeDisabled ? items : items.filter(item => !item.disabled);
+  }
 
-    // Hide the dropdown when a menu item is selected
-    if (!this.stayOpenOnSelect && target.tagName.toLowerCase() === 'wa-menu') {
-      this.hide();
-      this.focusOnTrigger();
-    }
-  };
+  /** Gets all dropdown items in a specific submenu. */
+  private getSubmenuItems(parentItem: WaDropdownItem, includeDisabled = false): WaDropdownItem[] {
+    const items = [...parentItem.children].filter(
+      el => el.localName === 'wa-dropdown-item' && el.getAttribute('slot') === 'submenu',
+    ) as WaDropdownItem[];
+    return includeDisabled ? items : items.filter(item => !item.disabled);
+  }
 
-  handleTriggerClick() {
-    if (this.open) {
-      this.hide();
+  /** Syncs item sizes with the dropdown's size property. */
+  private syncItemSizes() {
+    const items = this.defaultSlot
+      .assignedElements({ flatten: true })
+      .filter(el => el.localName === 'wa-dropdown-item') as WaDropdownItem[];
+    items.forEach(item => (item.size = this.size));
+  }
+
+  /** Handles the submenu navigation stack */
+  private addToSubmenuStack(item: WaDropdownItem) {
+    const index = this.openSubmenuStack.indexOf(item);
+    if (index !== -1) {
+      this.openSubmenuStack = this.openSubmenuStack.slice(0, index + 1);
     } else {
-      this.show();
-      this.focusOnTrigger();
+      this.openSubmenuStack.push(item);
     }
   }
 
-  async handleTriggerKeyDown(event: KeyboardEvent) {
-    // When spacebar/enter is pressed, show the panel but don't focus on the menu. This let's the user press the same
-    // key again to hide the menu in case they don't want to make a selection.
-    if ([' ', 'Enter'].includes(event.key)) {
-      event.preventDefault();
-      this.handleTriggerClick();
-      return;
+  /** Removes the last item from the submenu stack */
+  private removeFromSubmenuStack() {
+    return this.openSubmenuStack.pop();
+  }
+
+  /** Gets the current active submenu item */
+  private getCurrentSubmenuItem(): WaDropdownItem | undefined {
+    return this.openSubmenuStack.length > 0 ? this.openSubmenuStack[this.openSubmenuStack.length - 1] : undefined;
+  }
+
+  /** Closes all submenus in the dropdown. */
+  private closeAllSubmenus() {
+    const items = this.getItems(true);
+    items.forEach(item => {
+      item.submenuOpen = false;
+    });
+    this.openSubmenuStack = [];
+  }
+
+  /** Closes sibling submenus at the same level as the specified item. */
+  private closeSiblingSubmenus(item: WaDropdownItem) {
+    const parentDropdownItem = item.closest<WaDropdownItem>('wa-dropdown-item:not([slot="submenu"])');
+    let siblingItems: WaDropdownItem[];
+
+    if (parentDropdownItem) {
+      siblingItems = this.getSubmenuItems(parentDropdownItem, true);
+    } else {
+      siblingItems = this.getItems(true);
     }
 
-    const menu = this.getMenu();
-
-    if (menu) {
-      const menuItems = menu.getAllItems();
-      const firstMenuItem = menuItems[0];
-      const lastMenuItem = menuItems[menuItems.length - 1];
-
-      // When up/down is pressed, we make the assumption that the user is familiar with the menu and plans to make a
-      // selection. Rather than toggle the panel, we focus on the menu (if one exists) and activate the first item for
-      // faster navigation.
-      if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
-        event.preventDefault();
-
-        // Show the menu if it's not already open
-        if (!this.open) {
-          this.show();
-
-          // Wait for the dropdown to open before focusing, but not the animation
-          await this.updateComplete;
-        }
-
-        if (menuItems.length > 0) {
-          // Focus on the first/last menu item after showing
-          this.updateComplete.then(() => {
-            if (event.key === 'ArrowDown' || event.key === 'Home') {
-              menu.setCurrentItem(firstMenuItem);
-              firstMenuItem.focus();
-            }
-
-            if (event.key === 'ArrowUp' || event.key === 'End') {
-              menu.setCurrentItem(lastMenuItem);
-              lastMenuItem.focus();
-            }
-          });
-        }
+    siblingItems.forEach(siblingItem => {
+      if (siblingItem !== item && siblingItem.submenuOpen) {
+        siblingItem.submenuOpen = false;
       }
+    });
+
+    if (!this.openSubmenuStack.includes(item)) {
+      this.openSubmenuStack.push(item);
     }
   }
 
-  handleTriggerKeyUp(event: KeyboardEvent) {
-    // Prevent space from triggering a click event in Firefox
-    if (event.key === ' ') {
-      event.preventDefault();
-    }
+  /** Get the slotted trigger button, a <wa-button> or <button> element */
+  private getTrigger(): HTMLButtonElement | WaButton | null {
+    return this.querySelector<WaButton | HTMLButtonElement>('[slot="trigger"]');
   }
 
-  handleTriggerSlotChange() {
-    this.updateAccessibleTrigger();
-  }
+  /** Shows the dropdown menu. This should only be called from within updated(). */
+  private async showMenu() {
+    const anchor = this.getTrigger();
+    if (!anchor) return;
 
-  updateAccessibleTrigger() {
-    const assignedElements = this.trigger.assignedElements({ flatten: true }) as HTMLElement[];
-    const accessibleTrigger = assignedElements[0];
-    let target: HTMLElement;
-
-    if (accessibleTrigger) {
-      const tagName = accessibleTrigger.tagName.toLowerCase();
-      switch (tagName) {
-        // Web Awesome buttons have to update the internal button so it's announced correctly by screen readers
-        case 'wa-button':
-          target = (accessibleTrigger as WaButton).button;
-
-          // Either the tag hasn't registered, or it hasn't rendered.
-          // So, wait for the tag to register, and then try again.
-          if (target === undefined || target === null) {
-            customElements.whenDefined(tagName).then(async () => {
-              await (accessibleTrigger as WaButton).updateComplete;
-              this.updateAccessibleTrigger();
-            });
-
-            return;
-          }
-          break;
-
-        default:
-          target = accessibleTrigger;
-      }
-
-      target.setAttribute('aria-haspopup', 'true');
-      target.setAttribute('aria-expanded', this.open ? 'true' : 'false');
-    }
-  }
-
-  /** Shows the dropdown panel. */
-  async show() {
-    if (this.open) {
-      return undefined;
-    }
-
-    this.open = true;
-    return waitForEvent(this, 'wa-after-show');
-  }
-
-  /** Hides the dropdown panel */
-  async hide() {
-    if (!this.open) {
-      return undefined;
-    }
-
-    this.open = false;
-    return waitForEvent(this, 'wa-after-hide');
-  }
-
-  /**
-   * Instructs the dropdown menu to reposition. Useful when the position or size of the trigger changes when the menu
-   * is activated.
-   */
-  reposition() {
-    this.popup.reposition();
-  }
-
-  addOpenListeners() {
-    this.panel.addEventListener('wa-select', this.handlePanelSelect);
-    this.panel.addEventListener('keydown', this.handleKeyDown);
-    document.addEventListener('keydown', this.handleDocumentKeyDown);
-    document.addEventListener('mousedown', this.handleDocumentMouseDown);
-  }
-
-  removeOpenListeners() {
-    if (this.panel) {
-      this.panel.removeEventListener('wa-select', this.handlePanelSelect);
-      this.panel.removeEventListener('keydown', this.handleKeyDown);
-    }
-    document.removeEventListener('keydown', this.handleDocumentKeyDown);
-    document.removeEventListener('mousedown', this.handleDocumentMouseDown);
-  }
-
-  @watch('open', { waitUntilFirstUpdate: true })
-  async handleOpenChange() {
-    if (this.disabled) {
+    const showEvent = new WaShowEvent();
+    this.dispatchEvent(showEvent);
+    if (showEvent.defaultPrevented) {
       this.open = false;
       return;
     }
 
-    this.updateAccessibleTrigger();
+    openDropdowns.forEach(dropdown => (dropdown.open = false));
 
-    if (this.open) {
-      // Show
-      const waShowEvent = new WaShowEvent();
-      this.dispatchEvent(waShowEvent);
-      if (waShowEvent.defaultPrevented) {
-        this.open = false;
-        return;
-      }
+    this.popup.active = true; // Use wa-popup's active property instead of showPopover
+    this.open = true;
+    openDropdowns.add(this);
+    this.syncAriaAttributes();
+    document.addEventListener('keydown', this.handleDocumentKeyDown);
+    document.addEventListener('pointerdown', this.handleDocumentPointerDown);
+    document.addEventListener('mousemove', this.handleGlobalMouseMove);
 
-      this.addOpenListeners();
-      this.panel.hidden = false;
-      this.popup.active = true;
-      await animateWithClass(this.popup.popup, 'show-with-scale');
-      this.dispatchEvent(new WaAfterShowEvent());
+    // In case its still trying to hide, remove the class to cancel the hide animation.
+    this.menu.classList.remove('hide');
+    await animateWithClass(this.menu, 'show'); // Animate the menu div
+
+    const items = this.getItems();
+    if (items.length > 0) {
+      items.forEach((item, index) => (item.active = index === 0));
+      items[0].focus();
+    }
+
+    this.dispatchEvent(new WaAfterShowEvent());
+  }
+
+  /** Hides the dropdown menu. This should only be called from within updated(). */
+  private async hideMenu() {
+    const hideEvent = new WaHideEvent({ source: this });
+    this.dispatchEvent(hideEvent);
+    if (hideEvent.defaultPrevented) {
+      this.open = true;
+      return;
+    }
+
+    this.open = false;
+    openDropdowns.delete(this);
+    this.syncAriaAttributes();
+    document.removeEventListener('keydown', this.handleDocumentKeyDown);
+    document.removeEventListener('pointerdown', this.handleDocumentPointerDown);
+    document.removeEventListener('mousemove', this.handleGlobalMouseMove);
+
+    this.menu.classList.remove('show');
+    await animateWithClass(this.menu, 'hide'); // Animate before hiding
+
+    // Sometimes this ends up out of sync. So make sure it aligns with `open`
+    this.popup.active = this.open; // Hide using wa-popup
+    this.dispatchEvent(new WaAfterHideEvent());
+  }
+
+  /** Handles key down events when the menu is open */
+  private handleDocumentKeyDown = async (event: KeyboardEvent) => {
+    const isRtl = this.localize.dir() === 'rtl';
+
+    if (event.key === 'Escape') {
+      const trigger = this.getTrigger();
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      this.open = false;
+      trigger?.focus();
+      return;
+    }
+
+    const activeElement = document.activeElement as HTMLElement;
+    const isFocusedOnItem = activeElement?.localName === 'wa-dropdown-item';
+    const currentSubmenuItem = this.getCurrentSubmenuItem();
+    const isInSubmenu = !!currentSubmenuItem;
+
+    let items: WaDropdownItem[];
+    let activeItem: WaDropdownItem | undefined;
+    let activeItemIndex: number;
+
+    if (isInSubmenu) {
+      items = this.getSubmenuItems(currentSubmenuItem);
+      activeItem = items.find(item => item.active || item === activeElement);
+      activeItemIndex = activeItem ? items.indexOf(activeItem) : -1;
     } else {
-      // Hide
-      const waHideEvent = new WaHideEvent();
-      this.dispatchEvent(waHideEvent);
-      if (waHideEvent.defaultPrevented) {
-        this.open = true;
+      items = this.getItems();
+      activeItem = items.find(item => item.active || item === activeElement);
+      activeItemIndex = activeItem ? items.indexOf(activeItem) : -1;
+    }
+
+    let itemToSelect: WaDropdownItem | undefined;
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      event.stopPropagation();
+      if (activeItemIndex > 0) {
+        itemToSelect = items[activeItemIndex - 1];
+      } else {
+        itemToSelect = items[items.length - 1];
+      }
+    }
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      event.stopPropagation();
+      if (activeItemIndex !== -1 && activeItemIndex < items.length - 1) {
+        itemToSelect = items[activeItemIndex + 1];
+      } else {
+        itemToSelect = items[0];
+      }
+    }
+
+    if (event.key === (isRtl ? 'ArrowLeft' : 'ArrowRight') && isFocusedOnItem && activeItem) {
+      if (activeItem.hasSubmenu) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        activeItem.submenuOpen = true;
+        this.addToSubmenuStack(activeItem);
+
+        setTimeout(() => {
+          const submenuItems = this.getSubmenuItems(activeItem!);
+          if (submenuItems.length > 0) {
+            submenuItems.forEach((item, index) => (item.active = index === 0));
+            submenuItems[0].focus();
+          }
+        }, 0);
+
         return;
       }
+    }
 
-      this.removeOpenListeners();
-      await animateWithClass(this.popup.popup, 'hide-with-scale');
-      this.panel.hidden = true;
-      this.popup.active = false;
-      this.dispatchEvent(new WaAfterHideEvent());
+    if (event.key === (isRtl ? 'ArrowRight' : 'ArrowLeft') && isInSubmenu) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const removedItem = this.removeFromSubmenuStack();
+      if (removedItem) {
+        removedItem.submenuOpen = false;
+
+        setTimeout(() => {
+          removedItem.focus();
+          removedItem.active = true;
+
+          const parentItems =
+            removedItem.slot === 'submenu'
+              ? this.getSubmenuItems(removedItem.parentElement as WaDropdownItem)
+              : this.getItems();
+
+          parentItems.forEach(item => {
+            if (item !== removedItem) {
+              item.active = false;
+            }
+          });
+        }, 0);
+      }
+
+      return;
+    }
+
+    if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      event.stopPropagation();
+      itemToSelect = event.key === 'Home' ? items[0] : items[items.length - 1];
+    }
+
+    if (event.key === 'Tab') {
+      await this.hideMenu();
+    }
+
+    if (
+      event.key.length === 1 &&
+      !(event.metaKey || event.ctrlKey || event.altKey) &&
+      !(event.key === ' ' && this.userTypedQuery === '')
+    ) {
+      clearTimeout(this.userTypedTimeout);
+      this.userTypedTimeout = setTimeout(() => {
+        this.userTypedQuery = '';
+      }, 1000);
+
+      this.userTypedQuery += event.key;
+
+      items.some(item => {
+        const label = (item.textContent || '').trim().toLowerCase();
+        const selectionQuery = this.userTypedQuery.trim().toLowerCase();
+
+        if (label.startsWith(selectionQuery)) {
+          itemToSelect = item;
+          return true;
+        }
+
+        return false;
+      });
+    }
+
+    if (itemToSelect) {
+      event.preventDefault();
+      event.stopPropagation();
+      items.forEach(item => (item.active = item === itemToSelect));
+      itemToSelect.focus();
+      return;
+    }
+
+    if ((event.key === 'Enter' || (event.key === ' ' && this.userTypedQuery === '')) && isFocusedOnItem && activeItem) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (activeItem.hasSubmenu) {
+        activeItem.submenuOpen = true;
+        this.addToSubmenuStack(activeItem);
+
+        setTimeout(() => {
+          const submenuItems = this.getSubmenuItems(activeItem!);
+          if (submenuItems.length > 0) {
+            submenuItems.forEach((item, index) => (item.active = index === 0));
+            submenuItems[0].focus();
+          }
+        }, 0);
+      } else {
+        this.makeSelection(activeItem);
+      }
+    }
+  };
+
+  /** Handles pointer down events when the dropdown is open. */
+  private handleDocumentPointerDown = (event: PointerEvent) => {
+    const path = event.composedPath();
+    const isInDropdownHierarchy = path.some(el => {
+      if (el instanceof HTMLElement) {
+        return el === this || el.closest('wa-dropdown, [part="submenu"]');
+      }
+      return false;
+    });
+
+    if (!isInDropdownHierarchy) {
+      this.open = false;
+    }
+  };
+
+  /** Handles clicks on the menu. */
+  private handleMenuClick(event: MouseEvent) {
+    const item = (event.target as Element).closest('wa-dropdown-item');
+
+    if (!item || item.disabled) return;
+
+    if (item.hasSubmenu) {
+      if (!item.submenuOpen) {
+        this.closeSiblingSubmenus(item);
+        this.addToSubmenuStack(item);
+        item.submenuOpen = true;
+      }
+
+      event.stopPropagation();
+      return;
+    }
+
+    this.makeSelection(item);
+  }
+
+  /** Prepares dropdown items when they get added or removed */
+  private async handleMenuSlotChange() {
+    const items = this.getItems(true);
+    await Promise.all(items.map(item => item.updateComplete));
+
+    this.syncItemSizes();
+
+    const hasCheckbox = items.some(item => item.type === 'checkbox');
+    const hasSubmenu = items.some(item => item.hasSubmenu);
+
+    items.forEach((item, index) => {
+      item.active = index === 0;
+      item.checkboxAdjacent = hasCheckbox;
+      item.submenuAdjacent = hasSubmenu;
+    });
+  }
+
+  /** Toggles the dropdown menu */
+  private handleTriggerClick() {
+    this.open = !this.open;
+  }
+
+  /** Handles submenu opening events */
+  private handleSubmenuOpening(event: CustomEvent) {
+    const openingItem = event.detail.item as WaDropdownItem;
+    this.closeSiblingSubmenus(openingItem);
+    this.addToSubmenuStack(openingItem);
+
+    this.setupSubmenuPosition(openingItem);
+    this.processSubmenuItems(openingItem);
+  }
+
+  /** Sets up submenu positioning with autoUpdate */
+  private setupSubmenuPosition(item: WaDropdownItem) {
+    if (!item.submenuElement) return;
+
+    this.cleanupSubmenuPosition(item);
+
+    const cleanup = autoUpdate(item, item.submenuElement, () => {
+      this.positionSubmenu(item);
+      this.updateSafeTriangleCoordinates(item);
+    });
+
+    this.submenuCleanups.set(item, cleanup);
+
+    const submenuSlot = item.submenuElement.querySelector('slot[name="submenu"]');
+    if (submenuSlot) {
+      submenuSlot.removeEventListener('slotchange', WaDropdown.handleSubmenuSlotChange);
+      submenuSlot.addEventListener('slotchange', WaDropdown.handleSubmenuSlotChange);
+      WaDropdown.handleSubmenuSlotChange({ target: submenuSlot } as unknown as Event);
     }
   }
 
+  private static handleSubmenuSlotChange(event: Event) {
+    const slot = event.target as HTMLSlotElement;
+    if (!slot) return;
+
+    const items = slot.assignedElements().filter(el => el.localName === 'wa-dropdown-item') as WaDropdownItem[];
+
+    if (items.length === 0) return;
+
+    const hasSubmenuItems = items.some(item => item.hasSubmenu);
+    const hasCheckboxItems = items.some(item => item.type === 'checkbox');
+
+    items.forEach(item => {
+      item.submenuAdjacent = hasSubmenuItems;
+      item.checkboxAdjacent = hasCheckboxItems;
+    });
+  }
+
+  private processSubmenuItems(item: WaDropdownItem) {
+    if (!item.submenuElement) return;
+
+    const submenuItems = this.getSubmenuItems(item, true);
+    const hasSubmenuItems = submenuItems.some(subItem => subItem.hasSubmenu);
+
+    submenuItems.forEach(subItem => {
+      subItem.submenuAdjacent = hasSubmenuItems;
+    });
+  }
+
+  /** Cleans up submenu positioning */
+  private cleanupSubmenuPosition(item: WaDropdownItem) {
+    const cleanup = this.submenuCleanups.get(item);
+    if (cleanup) {
+      cleanup();
+      this.submenuCleanups.delete(item);
+    }
+  }
+
+  /** Positions a submenu relative to its parent item */
+  private positionSubmenu(item: WaDropdownItem) {
+    if (!item.submenuElement) return;
+
+    const isRtl = this.localize.dir() === 'rtl';
+    const placement = isRtl ? 'left-start' : 'right-start';
+
+    computePosition(item, item.submenuElement, {
+      placement: placement,
+      middleware: [
+        offset({
+          mainAxis: 0,
+          crossAxis: -5,
+        }),
+        flip({
+          fallbackStrategy: 'bestFit',
+        }),
+        shift({
+          padding: 8,
+        }),
+      ],
+    }).then(({ x, y, placement }) => {
+      item.submenuElement.setAttribute('data-placement', placement);
+
+      Object.assign(item.submenuElement.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+      });
+    });
+  }
+
+  /** Updates the safe triangle coordinates for a submenu */
+  private updateSafeTriangleCoordinates(item: WaDropdownItem) {
+    if (!item.submenuElement || !item.submenuOpen) return;
+
+    const isKeyboardNavigation = document.activeElement?.matches(':focus-visible');
+
+    if (isKeyboardNavigation) {
+      item.submenuElement.style.setProperty('--safe-triangle-visible', 'none');
+      return;
+    }
+
+    item.submenuElement.style.setProperty('--safe-triangle-visible', 'block');
+
+    const submenuRect = item.submenuElement.getBoundingClientRect();
+    const isRtl = this.localize.dir() === 'rtl';
+
+    item.submenuElement.style.setProperty(
+      '--safe-triangle-submenu-start-x',
+      `${isRtl ? submenuRect.right : submenuRect.left}px`,
+    );
+    item.submenuElement.style.setProperty('--safe-triangle-submenu-start-y', `${submenuRect.top}px`);
+    item.submenuElement.style.setProperty(
+      '--safe-triangle-submenu-end-x',
+      `${isRtl ? submenuRect.right : submenuRect.left}px`,
+    );
+    item.submenuElement.style.setProperty('--safe-triangle-submenu-end-y', `${submenuRect.bottom}px`);
+  }
+
+  /** Handle global mouse movement for safe triangle logic */
+  private handleGlobalMouseMove = (event: MouseEvent) => {
+    const currentSubmenuItem = this.getCurrentSubmenuItem();
+    if (!currentSubmenuItem?.submenuOpen || !currentSubmenuItem.submenuElement) return;
+
+    const submenuRect = currentSubmenuItem.submenuElement.getBoundingClientRect();
+    const isRtl = this.localize.dir() === 'rtl';
+    const submenuEdgeX = isRtl ? submenuRect.right : submenuRect.left;
+
+    const constrainedX = isRtl ? Math.max(event.clientX, submenuEdgeX) : Math.min(event.clientX, submenuEdgeX);
+    const constrainedY = Math.max(submenuRect.top, Math.min(event.clientY, submenuRect.bottom));
+
+    currentSubmenuItem.submenuElement.style.setProperty('--safe-triangle-cursor-x', `${constrainedX}px`);
+    currentSubmenuItem.submenuElement.style.setProperty('--safe-triangle-cursor-y', `${constrainedY}px`);
+
+    const isOverItem = currentSubmenuItem.matches(':hover');
+    const isOverSubmenu =
+      currentSubmenuItem.submenuElement?.matches(':hover') ||
+      !!event
+        .composedPath()
+        .find(el => el instanceof HTMLElement && el.closest('[part="submenu"]') === currentSubmenuItem.submenuElement);
+
+    if (!isOverItem && !isOverSubmenu) {
+      setTimeout(() => {
+        if (!currentSubmenuItem.matches(':hover') && !currentSubmenuItem.submenuElement?.matches(':hover')) {
+          currentSubmenuItem.submenuOpen = false;
+        }
+      }, 100);
+    }
+  };
+
+  /** Makes a selection, emits the wa-select event, and closes the dropdown. */
+  private makeSelection(item: WaDropdownItem) {
+    const trigger = this.getTrigger();
+
+    if (item.disabled) {
+      return;
+    }
+
+    if (item.type === 'checkbox') {
+      item.checked = !item.checked;
+    }
+
+    const selectEvent = new WaSelectEvent({ item });
+    this.dispatchEvent(selectEvent);
+
+    if (!selectEvent.defaultPrevented) {
+      this.open = false;
+      trigger?.focus();
+    }
+  }
+
+  /** Syncs aria attributes on the slotted trigger element and the menu based on the dropdown's current state */
+  private async syncAriaAttributes() {
+    const trigger = this.getTrigger();
+    let nativeButton: HTMLButtonElement | undefined;
+
+    if (!trigger) {
+      return;
+    }
+
+    if (trigger.localName === 'wa-button') {
+      await customElements.whenDefined('wa-button');
+      await (trigger as WaButton).updateComplete;
+      nativeButton = trigger.shadowRoot!.querySelector<HTMLButtonElement>('[part="base"]')!;
+    } else {
+      nativeButton = trigger as HTMLButtonElement;
+    }
+
+    if (!nativeButton.hasAttribute('id')) {
+      nativeButton.setAttribute('id', uniqueId('wa-dropdown-trigger-'));
+    }
+
+    nativeButton.setAttribute('aria-haspopup', 'menu');
+    nativeButton.setAttribute('aria-expanded', this.open ? 'true' : 'false');
+
+    this.menu.setAttribute('aria-expanded', 'false');
+  }
+
   render() {
+    // On initial render, we want to use this.open, for everything else, we sync off of this.popup.active to get animations working.
+    let active = this.hasUpdated ? this.popup.active : this.open;
+
     return html`
-      <slot
-        name="trigger"
-        id="trigger"
-        part="trigger"
-        @click=${this.handleTriggerClick}
-        @keydown=${this.handleTriggerKeyDown}
-        @keyup=${this.handleTriggerKeyUp}
-        @slotchange=${this.handleTriggerSlotChange}
-      ></slot>
-      <wa-popup
-        part="base"
-        exportparts="popup:base__popup"
-        id="dropdown"
-        anchor="trigger"
-        placement=${this.placement}
-        distance=${this.distance}
-        skidding=${this.skidding}
-        flip
-        shift
-        auto-size="vertical"
-        auto-size-padding="10"
-        sync=${ifDefined(this.sync ? this.sync : undefined)}
-        class=${classMap({
-          dropdown: true,
-          'dropdown-open': this.open,
-        })}
-      >
-        <div aria-hidden=${this.open ? 'false' : 'true'} aria-labelledby="dropdown">
-          <slot part="panel" class="panel"></slot>
+      <wa-popup placement=${this.placement} distance=${this.distance} skidding=${this.skidding} ?active=${active}>
+        <slot
+          name="trigger"
+          slot="anchor"
+          @click=${this.handleTriggerClick}
+          @slotchange=${this.syncAriaAttributes}
+        ></slot>
+        <div
+          id="menu"
+          part="menu"
+          role="menu"
+          tabindex="-1"
+          aria-orientation="vertical"
+          @click=${this.handleMenuClick}
+          @submenu-opening=${this.handleSubmenuOpening}
+        >
+          <slot @slotchange=${this.handleMenuSlotChange}></slot>
         </div>
       </wa-popup>
     `;

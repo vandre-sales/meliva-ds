@@ -1,5 +1,3 @@
-import type WaMenuItem from '../components/menu-item/menu-item.js';
-
 export class WaSelectEvent extends Event {
   readonly detail;
 
@@ -10,7 +8,7 @@ export class WaSelectEvent extends Event {
 }
 
 interface WaSelectEventDetail {
-  item: WaMenuItem;
+  item: Element;
 }
 
 declare global {
