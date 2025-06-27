@@ -2,7 +2,6 @@ import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import appearanceStyles from '../../styles/utilities/appearance.css';
 import sizeStyles from '../../styles/utilities/size.css';
 import styles from './card.css';
 
@@ -22,15 +21,11 @@ import styles from './card.css';
  * @csspart body - The container that wraps the card's main content.
  * @csspart footer - The container that wraps the card's footer.
  *
- * @cssproperty [--border-radius=var(--wa-panel-border-radius)] - The radius for the card's corners. Expects a single value.
- * @cssproperty [--border-color=var(--wa-color-surface-border)] - The color of the card's borders. Expects a single value.
- * @cssproperty [--inner-border-color=var(--wa-color-surface-border)] - The color of the card's inner borders, e.g. those separating headers and footers from the main content. Expects a single value.
- * @cssproperty [--border-width=var(--wa-panel-border-width)] - The width of the card's borders. Expects a single value.
  * @cssproperty [--spacing=var(--wa-space-l)] - The amount of space around and between sections of the card. Expects a single value.
  */
 @customElement('wa-card')
 export default class WaCard extends WebAwesomeElement {
-  static css = [sizeStyles, appearanceStyles, styles];
+  static css = [sizeStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'media');
 

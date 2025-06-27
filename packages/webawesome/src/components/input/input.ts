@@ -10,7 +10,6 @@ import { MirrorValidator } from '../../internal/validators/mirror-validator.js';
 import { watch } from '../../internal/watch.js';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-form-associated-element.js';
 import formControlStyles from '../../styles/component/form-control.css';
-import appearanceStyles from '../../styles/utilities/appearance.css';
 import sizeStyles from '../../styles/utilities/size.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon/icon.js';
@@ -48,16 +47,11 @@ import styles from './input.css';
  * @csspart password-toggle-button - The password toggle button.
  * @csspart end - The container that wraps the `end` slot.
  *
- * @cssproperty --background-color - The input's background color.
- * @cssproperty --border-color - The color of the input's borders.
- * @cssproperty --border-width - The width of the input's borders. Expects a single value.
- * @cssproperty --box-shadow - The shadow effects around the edges of the input.
- *
  * @cssstate blank - The input is empty.
  */
 @customElement('wa-input')
 export default class WaInput extends WebAwesomeFormAssociatedElement {
-  static css = [sizeStyles, appearanceStyles, formControlStyles, styles];
+  static css = [sizeStyles, formControlStyles, styles];
 
   static shadowRootOptions = { ...WebAwesomeFormAssociatedElement.shadowRootOptions, delegatesFocus: true };
 

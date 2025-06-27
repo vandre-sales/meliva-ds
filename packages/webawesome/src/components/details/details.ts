@@ -8,7 +8,6 @@ import { animate, parseDuration } from '../../internal/animate.js';
 import { getTargetElement, waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
-import appearanceStyles from '../../styles/utilities/appearance.css';
 import { LocalizeController } from '../../utilities/localize.js';
 import '../icon/icon.js';
 import styles from './details.css';
@@ -38,15 +37,13 @@ import styles from './details.css';
  * @csspart icon - The container that wraps the expand/collapse icons.
  * @csspart content - The details content.
  *
- * @cssproperty --icon-color - The color of the details' icon.
  * @cssproperty --spacing - The amount of space around and between the details' content. Expects a single value.
  * @cssproperty [--show-duration=200ms] - The show duration to use when applying built-in animation classes.
  * @cssproperty [--hide-duration=200ms] - The hide duration to use when applying built-in animation classes.
- * @cssproperty --display - Set to `none` to hide the element, or any other valid `display` value to override the internal `display` value of the `base` part.
  */
 @customElement('wa-details')
 export default class WaDetails extends WebAwesomeElement {
-  static css = [appearanceStyles, styles];
+  static css = styles;
 
   private detailsObserver: MutationObserver;
   private readonly localize = new LocalizeController(this);

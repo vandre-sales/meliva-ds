@@ -63,16 +63,9 @@ Set the `variant` attribute to change the callout's variant.
 Use the `appearance` attribute to change the callout's visual appearance (the default is `outlined filled`).
 
 ```html {.example}
-<wa-callout variant="brand" appearance="outlined accent">
-  <wa-icon slot="icon" name="check-to-slot"></wa-icon>
-  This <strong>accent</strong> callout is also <strong>outlined</strong>
-</wa-callout>
-
-<br />
-
 <wa-callout variant="brand" appearance="accent">
   <wa-icon slot="icon" name="square-check"></wa-icon>
-  This <strong>accent</strong> callout draws attention without an outline
+  This <strong>accent</strong> callout draws attention
 </wa-callout>
 
 <br />
@@ -113,10 +106,16 @@ Use the `size` attribute to change a callout's size.
   <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
   This is meant to be very emphasized.
 </wa-callout>
+
+<br />
+
 <wa-callout size="medium">
   <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
   Normal-sized callout.
 </wa-callout>
+
+<br />
+
 <wa-callout size="small">
   <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
   Just a small tip!
@@ -133,7 +132,4 @@ Icons are optional. Simply omit the `icon` slot if you don't want them.
 
 ### Styling
 
-You can customize the callout's appearance mostly by setting regular CSS properties:
-
-- `background`, `border`, `border-radius`, `color`, `padding`, `margin`, etc. work as expected
-- `gap` sets the space between the icon and the content
+You can customize the callout's appearance mostly by setting regular CSS properties. `background`, `border`, `border-radius`, `color`, `padding`, `margin`, etc. work as expected.
