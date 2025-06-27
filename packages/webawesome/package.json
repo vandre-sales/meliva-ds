@@ -59,7 +59,9 @@
     "verify": "npm run prettier && npm run build && npm run test",
     "prepublishOnly": "npm run verify",
     "check-updates": "npx npm-check-updates --interactive --format group",
-    "print-version": "echo $npm_package_version"
+    "print-version": "echo $npm_package_version",
+    "tag-version": "git tag -a \"v$(npm run print-version | tail -n1)\" -m \"tag v$(npm run print-version | tail -n1)\"",
+    "postversion": "npm run tag-version"
   },
   "engines": {
     "node": ">=14.17.0"
