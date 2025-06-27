@@ -58,7 +58,8 @@
     "spellcheck": "cspell \"**/*.{js,ts,json,html,css,md}\" --no-progress --config=\"../../cspell.json\"",
     "verify": "npm run prettier && npm run build && npm run test",
     "prepublishOnly": "npm run verify",
-    "check-updates": "npx npm-check-updates --interactive --format group"
+    "check-updates": "npx npm-check-updates --interactive --format group",
+    "print-version": "echo $npm_package_version"
   },
   "engines": {
     "node": ">=14.17.0"
