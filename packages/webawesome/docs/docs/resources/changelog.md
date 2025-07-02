@@ -17,6 +17,7 @@ Components with the <wa-badge variant="warning">Experimental</wa-badge> badge sh
 ### Bug Fixes and Improvements {data-no-outline}
 
 - Fixed a bug in `<wa-dropdown>` that prevented the menu from flipping/shifting to keep the menu in the viewport [discuss:1106]
+- Fixed the themes page so it shows the correct palette and imports
 
 ## 3.0.0-beta.1
 
