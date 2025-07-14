@@ -14,9 +14,9 @@ Components with the <wa-badge variant="warning">Experimental</wa-badge> badge sh
 
 - Fixed a bug in `<wa-badge>` where `appearance="pulse"` was not working as expected [pr:1173]
 - Fixed a missing TypeScript type for `<wa-badge>` for its `attention` property missing `bounce` value. [pr:1173]
-- Fixed a bug in `<wa-slider>` that prevented the hint from showing up [pr:1174]
 - Fixed the missing `nanoid` dependency in `package.json` [discuss:1139]
 - Fixed a bug in `<wa-slider>` that prevented the hint from showing up [discuss:1172]
+- Fixed a bug in `<wa-textarea>` where setting `resize="auto"` caused the height of the textarea to double [issue:1155]
 
 ## 3.0.0-beta.2
 
