@@ -26,6 +26,7 @@ Components with the <wa-badge variant="warning">Experimental</wa-badge> badge sh
 - Fixed a bug in `<wa-card>` that caused slotted media to have incorrectly rounded corners [issue:1107]
 - Fixed a bug in `<wa-button-group>` that prevented pill buttons from rendering corners properly [issue:1165]
 - Fixed a bug in `<wa-button-group>` that caused some vertical groups to appear horizontal [issue:1152]
+- Improved accessibility of `<wa-animated-image>` so keyboard users can focus and toggle the animation [issue:1177]
 
 ## 3.0.0-beta.2
 
