@@ -34,7 +34,8 @@ const isDeveloping = process.argv.includes('--develop');
  * @typedef {Object} BuildOptions
  * @property {Array<string>} [watchedSrcDirectories]
  * @property {Array<string>} [watchedDocsDirectories]
- * @property {(eventName: "change" | "add" | "unlink", filePath: string) => unknown} [onWatchEvent]
+ * @property {(eventName: "change" | "add" | "unlink", filePath: string) => unknown} [beforeWatchEvent]
+ * @property {(eventName: "change" | "add" | "unlink", filePath: string) => unknown} [afterWatchEvent]
  */
 
 /**
@@ -48,8 +49,6 @@ export async function build(options = {}) {
   if (!options.watchedDocsDirectories) {
     options.watchedDocsDirectories = [getDocsDir()];
   }
-
-  function measureStep() {}
 
   /**
    * Runs the full build.
@@ -122,6 +121,11 @@ export async function build(options = {}) {
    * Generates React wrappers for all components.
    */
   function generateReactWrappers() {
+    // Used by webawesome-app to make re-rendering not miserable with extra React file generation.
+    if (process.env.SKIP_SLOW_STEPS === 'true') {
+      return Promise.resolve();
+    }
+
     spinner.start('Generating React wrappers');
 
     try {
@@ -156,6 +160,11 @@ export async function build(options = {}) {
    * Runs TypeScript to generate types.
    */
   async function generateTypes() {
+    // Used by webawesome-app to make re-rendering not miserable with extra TS compilations.
+    if (process.env.SKIP_SLOW_STEPS === 'true') {
+      return Promise.resolve();
+    }
+
     spinner.start('Running the TypeScript compiler');
 
     const cwd = process.cwd();
@@ -377,12 +386,7 @@ export async function build(options = {}) {
       },
     );
 
-    // TODO: Should probably listen for all of these instead of just "change"
-    const watchEvents = [
-      'change',
-      // "unlink",
-      // "add"
-    ];
+    const watchEvents = ['change', 'unlink', 'add'];
     // Rebuild and reload when source files change
     options.watchedSrcDirectories.forEach(dir => {
       const watcher = bs.watch(join(dir, '**', '!(*.test).*'));
@@ -392,7 +396,15 @@ export async function build(options = {}) {
       });
       function handleWatchEvent(evt) {
         return async filename => {
-          spinner.info(`File modified ${chalk.gray(`(${relative(getRootDir(), filename)})`)}`);
+          const changedFile = relative(getRootDir(), filename);
+
+          if (evt === 'changed') {
+            spinner.info(`File modified ${chalk.gray(`(${changedFile})`)}`);
+          } else if (evt === 'unlink') {
+            spinner.info(`File deleted ${chalk.gray(`(${changedFile})`)}`);
+          } else if (evt === 'add') {
+            spinner.info(`File added ${chalk.gray(`(${changedFile})`)}`);
+          }
 
           try {
             const isTestFile = filename.includes('.test.ts');
@@ -405,8 +417,8 @@ export async function build(options = {}) {
               return;
             }
 
-            if (typeof options.onWatchEvent === 'function') {
-              await options.onWatchEvent(evt, filename);
+            if (typeof options.beforeWatchEvent === 'function') {
+              await options.beforeWatchEvent(evt, filename);
             }
 
             // Copy stylesheets when CSS files change
@@ -425,6 +437,10 @@ export async function build(options = {}) {
 
             // This needs to be outside of "isComponent" check because SSR needs to run on CSS files too.
             await generateDocs({ spinner });
+
+            if (typeof options.afterWatchEvent === 'function') {
+              await options.afterWatchEvent(evt, filename);
+            }
 
             reload();
           } catch (err) {
@@ -449,10 +465,14 @@ export async function build(options = {}) {
       function handleWatchEvent(evt) {
         return async filename => {
           spinner.info(`File modified ${chalk.gray(`(${relative(getRootDir(), filename)})`)}`);
-          if (typeof options.onWatchEvent === 'function') {
-            await options.onWatchEvent(evt, filename);
+          if (typeof options.beforeWatchEvent === 'function') {
+            await options.beforeWatchEvent(evt, filename);
           }
           await generateDocs({ spinner });
+
+          if (typeof options.beforeWatchEvent === 'function') {
+            await options.afterWatchEvent(evt, filename);
+          }
           reload();
         };
       }

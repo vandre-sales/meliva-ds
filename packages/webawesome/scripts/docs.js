@@ -72,13 +72,14 @@ export async function generateDocs(options = {}) {
   isDeveloping ??= process.argv.includes('--develop');
   isIncremental ??= isDeveloping && !process.argv.includes('--no-incremental');
 
-  let eleventy = globalThis.eleventy;
   /**
    * Used by the webawesome-app to skip doc generation since it will do its own.
    */
   if (process.env.SKIP_ELEVENTY === 'true') {
     return;
   }
+
+  let eleventy = globalThis.eleventy;
 
   spinner?.start?.('Writing the docs');
 
@@ -118,7 +119,7 @@ export async function generateDocs(options = {}) {
           return !line.includes('Watching');
         });
         const lastLine = info[info.length - 1];
-        output = chalk.gray(`(${lastLine})`);
+        output = chalk.gray(`(${info.join('')})`);
         eleventy.logger.logger.reset();
       }
     } else {
@@ -137,13 +138,21 @@ export async function generateDocs(options = {}) {
     if (!isDeveloping) {
       await copy(getCdnDir(), join(getSiteDir(), 'dist'));
     }
-    spinner?.succeed?.(`Writing the docs ${output}`);
+
+    if (spinner) {
+      spinner.succeed(`Writing the docs ${output}`);
+    } else {
+      console.log(`Writing the docs ${output}`);
+    }
   } catch (error) {
     console.warn = originalWarn;
 
-    console.error('\n\n' + chalk.red(error) + '\n');
+    if (spinner) {
+      spinner.fail(chalk.red(`Error while writing the docs.`));
+    } else {
+      console.error(chalk.red(`Error while writing the docs.`));
+    }
 
-    spinner?.fail?.(chalk.red(`Error while writing the docs.`));
     if (!isDeveloping) {
       process.exit(1);
     }
