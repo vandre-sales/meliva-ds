@@ -389,7 +389,7 @@ export async function build(options = {}) {
     const watchEvents = ['change', 'unlink', 'add'];
     // Rebuild and reload when source files change
     options.watchedSrcDirectories.forEach(dir => {
-      const watcher = bs.watch(join(dir, '**', '!(*.test).*'));
+      const watcher = bs.watch(join(dir, '**', '!(*.test).*'), { ignoreInitial: true });
 
       watchEvents.forEach(evt => {
         watcher.on(evt, handleWatchEvent(evt));
@@ -456,7 +456,7 @@ export async function build(options = {}) {
 
     // Rebuild the docs and reload when the docs change
     options.watchedDocsDirectories.forEach(dir => {
-      const watcher = bs.watch(join(dir, '**', '*.*'));
+      const watcher = bs.watch(join(dir, '**', '*.*'), { ignoreInitial: true });
 
       watchEvents.forEach(evt => {
         watcher.on(evt, handleWatchEvent(evt));
