@@ -14,6 +14,10 @@ Components with the <wa-badge variant="warning">Experimental</wa-badge> badge sh
 
 - Added the `icon-position` attribute to `<wa-details>` [discuss:1099]
 
+### Bug Fixes and Improvements {data-no-outline}
+
+- Fixed a bug in `<wa-dialog>` and `<wa-drawer>` that prevented the header from showing when the label was missing [issue:1209]
+
 ## 3.0.0-beta.3
 
 ### New Features {data-no-outline}
