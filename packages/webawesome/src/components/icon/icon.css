@@ -5,6 +5,7 @@
   --secondary-opacity: 0.4;
 
   display: inline-flex;
+  justify-content: center;
   box-sizing: content-box !important;
   width: auto;
   height: 1em;
@@ -15,19 +16,17 @@ svg {
   width: auto;
   height: inherit;
   fill: currentColor;
+  /* This prevents cropped SVGs from being cut off */
+  overflow: visible;
 
-  .fa-primary {
+  /* Duotone colors with path-specific opacity fallback */
+  path[data-duotone-primary] {
     color: var(--primary-color);
-    opacity: var(--primary-opacity);
+    opacity: var(--path-opacity, var(--primary-opacity));
   }
 
-  .fa-secondary {
+  path[data-duotone-secondary] {
     color: var(--secondary-color);
-    opacity: var(--secondary-opacity);
+    opacity: var(--path-opacity, var(--secondary-opacity));
   }
-}
-
-:host([fixed-width]) {
-  width: 1em;
-  justify-content: center;
 }
