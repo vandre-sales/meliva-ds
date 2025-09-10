@@ -37,6 +37,7 @@ Components with the <wa-badge variant="warning">Experimental</wa-badge> badge sh
 - Fixed a bug in `<wa-color-picker>` that prevent the picker from staying in the viewport
 - Fixed a bug that in `<wa-icon>` that caused `library`, `family`, `variant` and `name` to not reflect [pr:#1395]
 - Fixed a bug in `<wa-format-date>` and `<wa-relative-time>` that caused spaces to appear before and after the output [#1417]
+- Added horizontal orientation support with `orientation="horizontal"` for `<wa-card>`
 
 ## 3.0.0-beta.4
 
