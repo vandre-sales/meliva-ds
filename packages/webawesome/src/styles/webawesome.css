@@ -8,3 +8,6 @@
 
 /* Theme */
 @import url('themes/default.css');
+@import url('themes/awesome.css');
+@import url('themes/shoelace.css');
+@import url('themes/meliva.css');

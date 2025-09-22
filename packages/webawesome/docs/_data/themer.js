@@ -181,6 +181,65 @@ export const themes = [
     },
   },
   // #endregion
+  //
+  // #region Meliva
+  //
+  {
+    name: 'Meliva',
+    description: 'A modern and clean theme with a professional touch.',
+    filename: 'meliva.css',
+    isPro: false,
+    fonts: {
+      body: {
+        name: 'Montserrat',
+        css: 'Montserrat, sans-serif',
+        href: 'https://fonts.bunny.net/css?family=montserrat:400,700',
+      },
+      heading: {
+        name: 'Montserrat',
+        css: 'Montserrat, sans-serif',
+        href: 'https://fonts.bunny.net/css?family=montserrat:400,700',
+      },
+      code: {
+        name: 'OS Default',
+        css: 'ui-monospace, monospace',
+        href: null,
+      },
+      longform: {
+        name: 'OS Default',
+        css: 'ui-serif, serif',
+        href: null,
+      },
+    },
+    icons: {
+      family: 'classic',
+      weight: 1,
+    },
+    palette: {
+      name: 'Meliva',
+      filename: 'meliva.css',
+    },
+    colorBrand: {
+      color: 'blue',
+    },
+    tokens: {
+      // Fonts
+      '--wa-font-family-body': 'Montserrat, sans-serif',
+      '--wa-font-family-heading': 'var(--wa-font-family-body)',
+      '--wa-font-family-code': 'ui-monospace, monospace',
+      '--wa-font-family-longform': 'ui-serif, serif',
+      '--wa-font-weight-body': 300,
+      '--wa-font-weight-heading': 500,
+      '--wa-font-weight-code': 400,
+      '--wa-font-weight-longform': 400,
+
+      // Elements
+      '--wa-border-radius-scale': 1,
+      '--wa-space-scale': 1,
+      '--wa-border-width-scale': 1,
+    },
+  },
+  // #endregion
 
   //
   // #region Active

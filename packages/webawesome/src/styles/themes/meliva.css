@@ -1,0 +1,10 @@
+@import '../color/palettes/meliva.css';
+@import '../color/variants.css';
+
+:root {
+  --wa-font-family-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.theme-meliva {
+  @apply .wa-palette-meliva;
+}
