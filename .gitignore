@@ -9,6 +9,10 @@
 /.vercel
 /packages/webawesome-pro
 
+# Build cache
+.eleventycache
+*.tsbuildinfo
+
 # Logs
 logs
 *.log
