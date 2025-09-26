@@ -9,20 +9,20 @@ Este documento descreve o plano de alto nível e o status das fases de desenvolv
 Aqui está o status atual de cada fase principal.
 
 ### Fase 1: Fundação e Rebranding
-*   **Status:** ⏳ Em Andamento
+*   **Status:** ✅ Concluída
 *   **Objetivo:** Estabelecer a base técnica do projeto, renomear todas as referências do fork original (`webawesome`) para a nova identidade da Meliva.ai, e configurar a governança inicial.
 *   **Tarefas Principais:**
     *   [x] Definir e alinhar o `blueprint.md`.
     *   [x] Estruturar os documentos de governança (`roadmap.md`, `CHANGELOG.md`).
-    *   [ ] Renomear o pacote `packages/webawesome` para `packages/meliva-ui`.
-    *   [ ] Atualizar o `package.json` da raiz e do pacote com os novos nomes.
-    *   [ ] Realizar uma busca global por "webawesome" e "shoelace" para substituir pela nova identidade.
+    *   [ADIADO] Renomear o pacote `packages/webawesome` para `packages/meliva-ui`.
+    *   [ADIADO] Atualizar o `package.json` da raiz e do pacote com os novos nomes.
+    *   [ADIADO] Realizar uma busca global por "webawesome" e "shoelace" para substituir pela nova identidade.
 
 ### Fase 2: Customização de Tokens
-*   **Status:** ⏸️ Não Iniciado
+*   **Status:** ⏳ Em Andamento
 *   **Objetivo:** Implementar as especificações de design (cores, tipografia, espaçamento, etc.) da Meliva.ai, customizando os tokens de design do sistema.
 *   **Tarefas Principais:**
-    *   [ ] Mapear todos os tokens de design necessários.
+    *   [>] Mapear todos os tokens de design necessários.
     *   [ ] Implementar a paleta de cores da Meliva.ai nos arquivos de tema.
     *   [ ] Ajustar os tokens de tipografia (fontes, tamanhos, pesos).
     *   [ ] Validar a aplicação dos tokens em componentes chave.

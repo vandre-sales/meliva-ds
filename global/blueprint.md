@@ -44,7 +44,7 @@ Para garantir clareza e consistência, seguimos as seguintes regras:
 
 Todas as decisões técnicas devem seguir estes princípios, em ordem de prioridade:
 
-1.  **Base Sólida e Manutenível:** O sistema é um fork customizado do **Shoelace**. Nossa prioridade é manter a base atualizada e estendê-la de forma limpa, focando na customização via tokens.
+1.  **Base Sólida e Manutenível:** O sistema é um fork customizado do **[Webawesome](https://github.com/shoelace-style/webawesome)**. Nossa prioridade é manter a base atualizada e estendê-la de forma limpa, focando na customização via tokens.
 2.  **Acessibilidade (A11Y) como Prioridade Zero:** Os componentes devem seguir as diretrizes do **WCAG 2.2 (Nível AA)**.
 3.  **Independência de Frameworks:** Construído sobre **Web Components**, o sistema deve ser agnóstico e interoperável.
 4.  **Customização via Design Tokens:** Toda a personalização visual (cores, fontes, etc.) deve ser gerenciada através de **CSS Custom Properties (Variáveis CSS)** para garantir um theming flexível e consistente.
@@ -58,6 +58,8 @@ A gestão do projeto é guiada por documentos com papéis bem definidos:
 
 *   **Documento Constitucional (Imutável):**
     *   **`blueprint.md` (Este documento):** Nossa "Constituição". Define os princípios, papéis e protocolos. Só pode ser alterado com consentimento mútuo.
+    *   **`global/resume.md`:** Nosso Resumo do Webawesome que usamamos como base. Descreve em sintese, qual o propósito do Webawesome para nossa finalidade.
+
 
 *   **Documentos Dinâmicos (Constantemente Atualizados):**
     *   **`global/roadmap.md`:** Nosso "Planejamento Tático". Descreve o status detalhado das tarefas e é atualizado por mim conforme o progresso.
@@ -73,8 +75,11 @@ Para garantir um fluxo de trabalho previsível e auditável, operamos com os seg
 *   **Protocolo de Auditoria:**
     *   **Gatilho:** Solicitado pelo Arquiteto com o comando: **"Execute uma Auditoria"** ou **"Audit"**.
     *   **Execução:** Eu realizo uma varredura completa do projeto (arquivos e documentos de governança) e apresento um relatório com:
-        1.  **Estado Atual:** O que eu vejo no projeto.
-        2.  **Plano de Ação:** O que precisa ser feito para alinhar o projeto aos nossos objetivos, com justificativas.
+        1.  **Estado do Github:** Como está a estrutura atual em https://github.com/vandre-sales/meliva-ds
+            - Execute: `git ls-remote https://github.com/vandre-sales/meliva-ds`
+            - Depois execute: `git log -1`
+        2.  **Estado Atual:** O que eu vejo no projeto que estamos desenvolvendo localmente.
+        3.  **Plano de Ação:** O que precisa ser feito para alinhar o projeto aos nossos objetivos, com justificativas.
     *   **Resultado:** Nenhuma ação de modificação é tomada sem a aprovação explícita do plano pelo Arquiteto.
 
 *   **Protocolo de Versionamento (Commit, Tag & Release):**
